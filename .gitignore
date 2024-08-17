@@ -46,3 +46,4 @@ Thumbs.db
 css/*
 libs/src/css/*
 storybook-static
+*storybook.log
