@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useButtonCVAClass } from './useButtonCVAClass';
 import { getSizeClass } from '@/utils/getStyleClass';
-import Icon from '@/ui/element/baseIcon/BaseIcon.vue';
+import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
@@ -60,7 +60,7 @@ const finalButtonClass = computed(() => {
 </script>
 
 <template>
-  <button :class="finalButtonClass">
+  <button :class="buttonCVAClass">
       <template v-if="prefix">
           <Icon :class="iconSizeClass" :name="props.prefix" ></Icon>
       </template>
@@ -72,8 +72,8 @@ const finalButtonClass = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "src/style/_sassloader_test.scss";
-.example {
-  background-color: $sassloader_test-color;
-}
+//@import "src/style/_sassloader_test.scss";
+//.example {
+//  background-color: $sassloader_test-color;
+//}
 </style>

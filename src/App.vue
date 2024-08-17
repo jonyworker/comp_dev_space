@@ -1,10 +1,11 @@
 <script setup>
-import Button from '@/ui/element/avatar/Button.vue'
-import Icon from '@/ui/element/baseIcon/BaseIcon.vue';
+import Button from '@/ui/element/button/Button.vue'
+import Icon from '@/ui/element/Icon/Icon.vue';
 </script>
 
 <template>
-<Button prefix="folder" size="medium" customClass="">button text</Button>
+<Button prefix="home" size="medium" customClass="">button text</Button>
+  <Icon  name="folder" ></Icon>
 
 </template>
 

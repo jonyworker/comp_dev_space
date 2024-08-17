@@ -4,16 +4,12 @@ import Button from './Button.vue';
 export default {
   title: 'Example/Button',
   component: Button,
-  // tags: ["autodocs"],
+  tags: ["autodocs"],
   argTypes: {
-    icon: {
-      control: { type: 'text' },
-    },
-
     //以下參數不刪
     content: {
-      control: { type: 'text' },
       description: '為按鈕添加文字',
+      control: { type: 'text' },
     },
     variant: {
       description: '按鈕樣式',
@@ -21,6 +17,7 @@ export default {
       options: ['contained', 'outlined', 'text'],
     },
     themeColor: {
+      description: '主題顏色',
       control: { type: 'select' },
       options: [
         'primary',
@@ -33,29 +30,37 @@ export default {
       ],
     },
     isDisable: {
+      description: '是否禁用',
       control: { type: 'boolean' },
     },
     size: {
+      description: '按鈕尺寸',
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
-      description: '設定按鈕尺寸',
     },
-
     prefix: {
-      control: { type: 'select' },
-      options: ['home', 'folder', 'academi', 'arrow-forward', 'finger-print'],
       description: '設定位於按鈕前方的 icon',
+      control: { type: 'select' },
+      options: ['None', 'home', 'folder', 'academi', 'arrow-forward', 'finger-print'],
+      mapping: {
+        None: null,
+      },
     },
     suffix: {
-      control: { type: 'select' },
-      options: ['home', 'folder'],
       description: '設定位於按鈕後方的 icon',
+      control: { type: 'select' },
+      options: ['None', 'home', 'folder', 'academi', 'arrow-forward', 'finger-print'],
+      mapping: {
+        None: null,
+      },
+    },
+    customClass: {
+      description: '客製化樣式',
+      control: { type: 'text' },
     },
   },
   parameters: {
-    // docs: {
-    //   controls: { exclude: ['style'] },
-    // },
+    // 自動文件
     docs: {
       title: '按鈕',
       description: {
@@ -82,12 +87,12 @@ export const ButtonDefault = {
     content: 'Button Text',
     variant: 'contained',
     prefix: 'folder',
-    isDisable: false,
+    size: 'medium',
   },
   // 控制各個stroys能夠顯示controls的量
   parameters: {
     controls: {
-      include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
+      // include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
     },
   },
 };

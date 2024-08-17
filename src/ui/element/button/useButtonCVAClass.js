@@ -10,6 +10,11 @@ export function useButtonCVAClass(props) {
                     outlined: 'button-outlined',
                     text: 'button-text',
                 },
+                size: {
+                    small: 'component-small',
+                    medium: 'component-medium',
+                    large: 'component-large',
+                }
             },
             compoundVariants: [
                 // [ ThemeColor ] - primary
@@ -144,6 +149,7 @@ export function useButtonCVAClass(props) {
         })({
             // 設定 variants 名稱接收 props 的值
             variant: props.variant,
+            size: props.size,
             isDisable: props.isDisable,
             themeColor: props.themeColor,
         });
