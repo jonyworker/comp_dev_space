@@ -1,8 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { cva } from 'class-variance-authority';
-import AIcon from '@/ui/element/baseIcon/BaseIcon.vue';
+import { computed } from 'vue';
+import { useButtonCVAClass } from './useButtonCVAClass';
+import { getSizeClass } from '@/utils/getStyleClass';
+import Icon from '@/ui/element/baseIcon/BaseIcon.vue';
 
+// 定義 Props
 const props = defineProps({
   variant: {
     type: String,
@@ -37,191 +39,36 @@ const props = defineProps({
   suffix: {
     type: String,
   },
+  customClass: {
+    type: String,
+    default: '',
+  },
 });
 
-const buttonCVAClass = computed(() => {
-  return cva('button', {
-    variants: {
-      variant: {
-        contained: 'button-contained',
-        outlined: 'button-outlined',
-        text: 'button-text',
-      },
-    },
-    compoundVariants: [
-      // [ ThemeColor ] - primary
-      {
-        variant: 'contained',
-        themeColor: 'primary',
-        class: 'button-contained-primary',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'primary',
-        class: 'button-outlined-primary',
-      },
-      {
-        variant: 'text',
-        themeColor: 'primary',
-        class: 'button-text-primary',
-      },
-      // [ ThemeColor ] - secondary
-      {
-        variant: 'contained',
-        themeColor: 'secondary',
-        class: 'button-contained-secondary',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'secondary',
-        class: 'button-outlined-secondary',
-      },
-      {
-        variant: 'text',
-        themeColor: 'secondary',
-        class: 'button-text-secondary',
-      },
-      // [ ThemeColor ] - tertiary
-      {
-        variant: 'contained',
-        themeColor: 'tertiary',
-        class: 'button-contained-tertiary',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'tertiary',
-        class: 'button-outlined-tertiary',
-      },
-      {
-        variant: 'text',
-        themeColor: 'tertiary',
-        class: 'button-text-tertiary',
-      },
-      // [ ThemeColor ] - success
-      {
-        variant: 'contained',
-        themeColor: 'success',
-        class: 'button-contained-success',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'success',
-        class: 'button-outlined-success',
-      },
-      {
-        variant: 'text',
-        themeColor: 'success',
-        class: 'button-text-success',
-      },
-      // [ ThemeColor ] - warning
-      {
-        variant: 'contained',
-        themeColor: 'warning',
-        class: 'button-contained-warning',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'warning',
-        class: 'button-outlined-warning',
-      },
-      {
-        variant: 'text',
-        themeColor: 'warning',
-        class: 'button-text-warning',
-      },
-      // [ ThemeColor ] - error
-      {
-        variant: 'contained',
-        themeColor: 'error',
-        class: 'button-contained-error',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'error',
-        class: 'button-outlined-error',
-      },
-      {
-        variant: 'text',
-        themeColor: 'error',
-        class: 'button-text-error',
-      },
-      // [ ThemeColor ] - info
-      {
-        variant: 'contained',
-        themeColor: 'info',
-        class: 'button-contained-info',
-      },
-      {
-        variant: 'outlined',
-        themeColor: 'info',
-        class: 'button-outlined-info',
-      },
-      {
-        variant: 'text',
-        themeColor: 'info',
-        class: 'button-text-info',
-      },
+// 引入 CVA Class
+const buttonCVAClass = useButtonCVAClass(props);
 
-      // [ Disable ]
-      {
-        variant: 'contained',
-        isDisable: true,
-        class: 'button-container-disable',
-      },
-      {
-        variant: 'outlined',
-        isDisable: true,
-        class: 'button-outline-disable',
-      },
-      {
-        variant: 'text',
-        isDisable: true,
-        class: 'button-text-disable',
-      },
-    ],
-  })({
-    //這裡設定 variants名稱接收 props的值
-    variant: props.variant,
-    isDisable: props.isDisable,
-    themeColor: props.themeColor,
-  });
+// 計算 icon class
+const iconSizeClass = computed(() => {
+  return getSizeClass('icon',props.size );
+})
+
+// 計算包括 CVA Class 與自定義 class 的按鈕
+const finalButtonClass = computed(() => {
+  return [buttonCVAClass.value, props.customClass].filter(Boolean).join(' ');
 });
 </script>
 
 <template>
-  <button  :class="buttonCVAClass">
-     <a-icon class="" :name="prefix" size="20" v-if="prefix"></a-icon>
-    <a-icon
-        class=""
-        :name="prependIcon"
-        size="20"
-        v-if="prependIcon && !iconOnly"
-    ></a-icon>
-    <slot v-if="!iconOnly"></slot>
-    <a-icon
-        :name="appendIcon"
-        size="20"
-        v-if="appendIcon && !iconOnly"
-    ></a-icon>
-
-    <a-icon :name="iconOnly" size="20" v-if="iconOnly"></a-icon>
+  <button :class="finalButtonClass">
+      <template v-if="prefix">
+          <Icon :class="iconSizeClass" :name="props.prefix" ></Icon>
+      </template>
+      <slot></slot>
+      <template v-if="suffix">
+        <Icon :class="iconSizeClass" :name="props.suffix" ></Icon>
+      </template>
   </button>
-  <!-- <button :class="buttonCVAClass">
-    <a-icon
-      class=""
-      :name="prependIcon"
-      size="20"
-      v-if="prependIcon && !iconOnly"
-    ></a-icon>
-    <slot v-if="!iconOnly"></slot>
-    <a-icon
-      :name="appendIcon"
-      size="20"
-      v-if="appendIcon && !iconOnly"
-    ></a-icon>
-
-    <a-icon :name="iconOnly" size="20" v-if="iconOnly"></a-icon>
-  </button> -->
 </template>
 
 <style lang="scss" scoped>
