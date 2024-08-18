@@ -80,6 +80,7 @@ export const ButtonDefault = {
     variant: 'contained',
     prefix: 'folder',
     size: 'medium',
+    isDisable: false
   },
   render: (args) => ({
     components: { Button },
@@ -106,6 +107,7 @@ export const MultipleButton = {
   name: '多個按鈕',
   args: {
     content: 'Button Text',
+    isDisable: false
   },
   render: (args) => ({
     components: { Button },
@@ -139,6 +141,4 @@ export const MultipleButton = {
                </div>
                 `,
   }),
-
-
 };

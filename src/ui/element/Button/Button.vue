@@ -60,7 +60,7 @@ const finalButtonClass = computed(() => {
 </script>
 
 <template>
-  <button :class="buttonCVAClass">
+  <button :class="finalButtonClass">
       <template v-if="prefix">
           <Icon :class="iconSizeClass" :name="props.prefix" ></Icon>
       </template>
