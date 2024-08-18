@@ -1,12 +1,24 @@
 <script setup>
+import { ref } from 'vue';
 import Button from '@/ui/element/Button/Button.vue'
 import Icon from '@/ui/element/Icon/Icon.vue';
+import Toggle from '@/ui/element/Toggle/Toggle.vue'
+
+// toggle 所需資料
+const isChecked = ref(true)
+const handleToggle = () => {
+  isChecked.value = !isChecked.value;
+};
 </script>
 
 <template>
-<Button prefix="home" size="medium" customClass="">button text</Button>
-  <Icon  name="folder" ></Icon>
-
+{{isChecked}} <br>
+<Toggle
+    checkChildren="on"
+    unCheckChildren="off"
+    :isChecked="isChecked"
+    @toggleIsChecked="handleToggle" >
+</Toggle>
 </template>
 
 <style scoped>
