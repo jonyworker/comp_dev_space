@@ -2,7 +2,7 @@ import Button from './Button.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-  title: 'Example/Button',
+  title: 'Design System/Button',
   component: Button,
   tags: ["autodocs"],
   argTypes: {
@@ -74,6 +74,13 @@ export default {
 };
 
 export const ButtonDefault = {
+  name: '標準按鈕',
+  args: {
+    content: 'Button Text',
+    variant: 'contained',
+    prefix: 'folder',
+    size: 'medium',
+  },
   render: (args) => ({
     components: { Button },
     setup() {
@@ -81,18 +88,57 @@ export const ButtonDefault = {
         args,
       };
     },
-    template: '<Button v-bind="args">{{args.content}}</Button>',
+    template:
+        `<Button v-bind="args">
+            {{args.content}}
+        </Button>
+        `,
   }),
-  args: {
-    content: 'Button Text',
-    variant: 'contained',
-    prefix: 'folder',
-    size: 'medium',
-  },
-  // 控制各個stroys能夠顯示controls的量
+  // 控制 controls 中能控制的參數
   parameters: {
     controls: {
       // include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
     },
   },
+};
+
+export const MultipleButton = {
+  name: '多個按鈕',
+  args: {
+    content: 'Button Text',
+  },
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return {
+        args,
+      };
+    },
+    template: `<div style="display:flex; gap: 16px">
+                  <Button v-bind="args" variant="contained" themeColor="primary" size="medium" prefix="home">
+                   {{args.content}}
+                  </Button>
+                  <Button v-bind="args" variant="contained" themeColor="secondary" size="medium" prefix="home">
+                    {{args.content}}
+                  </Button>
+                  <Button v-bind="args" variant="contained" themeColor="tertiary" size="medium" prefix="home">
+                    {{args.content}}
+                  </Button>
+                  <Button v-bind="args" variant="contained" themeColor="success" size="medium" prefix="home">
+                    {{args.content}}
+                  </Button>
+                  <Button v-bind="args" variant="contained" themeColor="warning" size="medium" prefix="home">
+                    {{args.content}}
+                  </Button>
+                  <Button v-bind="args" variant="contained" themeColor="error" size="medium" prefix="home">
+                    {{args.content}}
+                  </Button>
+                  <Button v-bind="args" variant="contained" themeColor="info" size="medium" prefix="home">
+                    {{args.content}}
+                  </Button>
+               </div>
+                `,
+  }),
+
+
 };

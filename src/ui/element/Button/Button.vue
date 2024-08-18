@@ -48,12 +48,12 @@ const props = defineProps({
 // 引入 CVA Class
 const buttonCVAClass = useButtonCVAClass(props);
 
-// 計算 icon class
+// 計算各尺寸 icon class
 const iconSizeClass = computed(() => {
   return getSizeClass('icon',props.size );
 })
 
-// 計算包括 CVA Class 與自定義 class 的按鈕
+// 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
 const finalButtonClass = computed(() => {
   return [buttonCVAClass.value, props.customClass].filter(Boolean).join(' ');
 });
@@ -72,8 +72,10 @@ const finalButtonClass = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-//@import "src/style/_sassloader_test.scss";
-//.example {
-//  background-color: $sassloader_test-color;
-//}
+/* [樣本] - 如需直接調用 sass 請解鎖
+@import "src/style/_sassloader_test.scss";
+.example {
+  background-color: $sassloader_test-color;
+}
+*/
 </style>
