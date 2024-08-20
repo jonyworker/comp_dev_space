@@ -1,5 +1,5 @@
 <script setup>
-import { computed, watch, ref, defineAsyncComponent } from 'vue';
+import { watch, ref, defineAsyncComponent, markRaw } from 'vue';
 const props = defineProps({
   name: {
     type: String,
@@ -7,7 +7,6 @@ const props = defineProps({
   },
   size: {
     type: String,
-    required: true,
   },
   color: {
     type: String,
@@ -16,10 +15,11 @@ const props = defineProps({
 
 const iconComponent = ref(null);
 
+// 加上 markRaw 防止被響應式轉換
 const loadIconComponent = async () => {
-  iconComponent.value = defineAsyncComponent(() =>
+  iconComponent.value = markRaw(defineAsyncComponent(() =>
       import(`../../../assets/icons/${props.name}.svg`)
-  );
+  ));
 };
 
 // 監聽 name一有改變調用 loadIconComponent
