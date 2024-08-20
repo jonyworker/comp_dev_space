@@ -1,22 +1,27 @@
 <script setup>
 import { ref } from 'vue';
-import Button from '@/ui/element/Button/Button.vue'
-import Icon from '@/ui/element/Icon/Icon.vue';
 import Toggle from '@/ui/element/Toggle/Toggle.vue'
 import Image from '@/ui/element/Image/Image.vue'
-import Input from '@/ui/element/Input/Input.vue'
+import Checkbox from '@/ui/element/Checkbox/Checkbox.vue'
 
 // toggle 所需資料
 const isChecked = ref(true)
 const handleToggle = () => {
   isChecked.value = !isChecked.value;
 };
-const inputValue =  ref("")
+// const inputValue =  ref("")
+
+const checkOptions = ref([
+  { label: '選項一', value: 'option1', name: 'option'  },
+  { label: '選項二', value: 'option2', name: 'option'  },
+  { label: '選項三', value: 'option3', name: 'option' },
+]);
+
+const checkedList = ref([])
 </script>
 
 <template>
   <div class="container">
-    {{isChecked}} <br>
     <Toggle
         checkChildren="on"
         unCheckChildren="off"
@@ -24,24 +29,13 @@ const inputValue =  ref("")
         @toggleIsChecked="handleToggle" >
     </Toggle>
     <Image ratio="43" objectFit="cover"></Image>
-    <Input
-        label="Name"
-        size="large"
-        placeholder="please enter here"
-        prefix="home"
-        :hint="{ error: '', description: '' }"
-        v-model="inputValue">
-    </Input>
-{{inputValue}}
+    {{checkedList}}
+    <Checkbox :options="checkOptions" v-model="checkedList"></Checkbox>
   </div>
 
 </template>
 
 <style scoped>
-  .custom-button {
-    background: #000;
-    padding: 50px;
-  }
   .container {
     padding: 40px;
   }
