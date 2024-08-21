@@ -1,8 +1,10 @@
 <script setup>
+import { ref } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 ModelValue
-const checkedModel = defineModel()
+const modelValue = defineModel()
+
 // 定義 Props
 const props = defineProps({
   // --  基礎接口 -- //
@@ -24,46 +26,42 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  //--  layout 接口 -- //
-  direction: {
+  // --  資料接口 -- //
+  label: {
     type: String,
-    validator: (value) => ['row', 'column'].includes(value),
   },
-  //--  layout 接口 -- //
-  options: {
-    type: Array,
-    default: () => [
-      { label: '選項一', value: 'option1', name: 'option' },
-      { label: '選項二', value: 'option2', name: 'option' },
-      { label: '選項三', value: 'option3', name: 'option' },]
+  value: {
+    type: String,
   },
-
+  name: {
+    type: String,
+  }
 })
 
-// 為每個 option 加上 check
-const updatedOptions = props.options.map(option => ({
-  ...option,
-  checked: false
-}));
-
+// 處理 check 勾勾顯示
+const isCheck = ref(false);
 const handleCheck = (index) => {
-  updatedOptions[index].checked = !updatedOptions[index].checked;
+  isCheck.value = !isCheck.value;
 }
 
 </script>
 
 <template>
-  <div class="checkbox-container checkbox-container-row">
-    <label :for="item.value" class="checkbox " v-for="(item,index) in updatedOptions" >
-      <input class="checkbox-input" :id="item.value" :name="item.name" type="checkbox" :value="item.value" v-model="checkedModel" @click="handleCheck(index)">
-      <!-- checkbox - 選擇框 -->
-      <div :class="['checkbox-icon', (item.checked ? `checkbox-checked-${props.themeColor}`:`checkbox-unchecked-${props.themeColor}`)]">
-          <Icon v-if="item.checked" name="check" color="#fff"></Icon>
-      </div>
-      <!-- checkbox - label -->
-      <span class="checkbox-text">{{ item.label }}</span>
-    </label>
-  </div>
+  <label :for="props.value" class="checkbox" >
+    <input class="checkbox-input"
+           type="checkbox"
+           :id="props.value"
+           :name="props.name"
+           :value="props.value"
+           v-model="modelValue"
+           @change="handleCheck">
+    <!-- checkbox - 選擇框樣式 -->
+    <div :class="['checkbox-icon', (isCheck ? `checkbox-checked-${props.themeColor}`:`checkbox-unchecked-${props.themeColor}`)]">
+      <Icon v-if="isCheck" name="check" color="#fff"></Icon>
+    </div>
+    <!-- checkbox - 選項文字 -->
+    <span class="checkbox-text">{{ props.label }}</span>
+  </label>
 </template>
 
 <style scoped lang="scss">
