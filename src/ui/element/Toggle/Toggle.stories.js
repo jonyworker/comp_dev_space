@@ -71,7 +71,7 @@ export const ToggleDefault = {
     },
 };
 
-export const MultipleButton = {
+export const MultipleToggle = {
     name: '多個開關按鈕',
     args: {
         checkChildren: 'on',
