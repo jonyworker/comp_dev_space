@@ -1,6 +1,4 @@
 <script setup>
-// 定義 ModelValue
-const modelValue = defineModel()
 // 定義 Props
 const props = defineProps({
   // --  基礎接口 -- //

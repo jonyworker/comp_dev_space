@@ -103,9 +103,14 @@ export const MultipleCheckbox = {
     args: {
         themeColor: "primary",
         checkboxOptions: [
-            { label: "選項一", value: "option1", name: "option" },
-            { label: "選項二", value: "option2", name: "option" },
-            { label: "選項三", value: "option3", name: "option" },
+            { label: "HTML", value: "HTML", name: "skills" },
+            { label: "Sass", value: "Sass", name: "skills" },
+            { label: "Tailwind CSS", value: "Tailwind CSS", name: "skills" },
+            { label: "JavaScript", value: "JavaScript", name: "skills" },
+            { label: "TypeScript", value: "TypeScript", name: "skills" },
+            { label: "Vue", value: "Vue", name: "skills" },
+            { label: "React", value: "React", name: "skills" },
+            { label: "Angular", value: "Angular", name: "skills" },
         ],
         direction: "row",
     },
@@ -113,21 +118,22 @@ export const MultipleCheckbox = {
         components: { Checkbox, CheckboxGroup },
         setup() {
             // Create a ref for modelValue to be used with v-model
-            const modelValue = ref(args.modelValue);
+            const checkedCheckboxOptions = ref([]);
             return {
                 args,
-                modelValue,
+                checkedCheckboxOptions
             };
         },
         template: `
         <CheckboxGroup :direction="args.direction">
-            <Checkbox   v-for="(item, index) in args.checkOptions"
+            <Checkbox   v-for="(item, index) in args.checkboxOptions"
                         :key="index"
                         :value="item.value"
                         :label="item.label"
                         :name="item.name"
-                        v-model="modelValue"></Checkbox>
+                        v-model="checkedCheckboxOptions">{{item.value}}</Checkbox>
         </CheckboxGroup>
+        <p>Tell me what skills you have:{{checkedCheckboxOptions}}</p>
         `,
     }),
     // 控制 controls 中能控制的參數
