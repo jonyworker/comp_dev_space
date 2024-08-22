@@ -4,7 +4,7 @@ import Toggle from "@/ui/element/Toggle/Toggle.vue";
 import Image from "@/ui/element/Image/Image.vue";
 import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
 import CheckboxGroup from "@/ui/element/Checkbox/CheckboxGroup.vue";
-
+import Radio from "@/ui/element/Radio/Radio.vue";
 // toggle 所需資料
 const isChecked = ref(true);
 const handleToggle = () => {
@@ -21,39 +21,79 @@ const checkboxOptions = ref([
 
 const checkedCheckboxOptions = ref([]);
 const isCheckboxChecked = ref(false);
+
+const radioList = [
+    {
+        inputId: "meals01",
+        name: "Meals",
+        value: "Pak Nasser's Nasi Lemak",
+        label: "帕南薩馬來椰漿飯",
+    },
+    {
+        inputId: "meals02",
+        name: "Meals",
+        value: "Hyderabadi Vegetable Biryani",
+        label: "海德拉巴素食印度香飯",
+    },
+    {
+        inputId: "meals03",
+        name: "Meals",
+        value: "Uncle Chin's Chicken Rice",
+        label: "秦叔叔海南雞飯",
+    },
+];
+const isRadioPicked = ref("");
 </script>
 
 <template>
     <div class="container">
-        <Toggle
-            checkChildren="on"
-            unCheckChildren="off"
-            :isChecked="isChecked"
-            @toggleIsChecked="handleToggle"
-        >
-        </Toggle>
+        <!-- Toggle -->
+        <div>
+            <Toggle
+                checkChildren="on"
+                unCheckChildren="off"
+                :isChecked="isChecked"
+                @toggleIsChecked="handleToggle"
+            >
+            </Toggle>
+        </div>
 
-        {{ checkedCheckboxOptions }}
-        {{ isCheckboxChecked }}
-
-        <!--  作為單選時，value不帶值 -->
-        <Checkbox
-            label="我已詳細閱讀新規定"
-            name="agreeStatement"
-            v-model="isCheckboxChecked"
-        ></Checkbox>
-
-        <!--  作為復選時， value須帶值 -->
-        <checkbox-group>
+        <!-- Checkbox -->
+        <div>
+            {{ checkedCheckboxOptions }}
+            {{ isCheckboxChecked }}
+            <br />
             <Checkbox
-                v-for="(item, index) in checkboxOptions"
-                :key="index"
+                label="我已詳細閱讀新規定"
+                name="agreeStatement"
+                v-model="isCheckboxChecked"
+            ></Checkbox>
+
+            <checkbox-group>
+                <Checkbox
+                    v-for="(item, index) in checkboxOptions"
+                    :key="index"
+                    :value="item.value"
+                    :label="item.label"
+                    :name="item.name"
+                    v-model="checkedCheckboxOptions"
+                ></Checkbox>
+            </checkbox-group>
+        </div>
+
+        <!-- Radio -->
+        <div>
+            isRadioPicked>>> {{ isRadioPicked }}
+            <br />
+            <Radio
+                v-for="item in radioList"
+                :inputId="item.inputId"
+                :name="item.name"
                 :value="item.value"
                 :label="item.label"
-                :name="item.name"
-                v-model="checkedCheckboxOptions"
-            ></Checkbox>
-        </checkbox-group>
+                v-model="isRadioPicked"
+            ></Radio>
+        </div>
     </div>
 </template>
 
