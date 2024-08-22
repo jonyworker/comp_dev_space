@@ -1,59 +1,59 @@
-import Checkbox from './Checkbox.vue';
-import CheckboxGroup from './CheckboxGroup.vue';
-import { ref } from 'vue';
+import Checkbox from "./Checkbox.vue";
+import CheckboxGroup from "./CheckboxGroup.vue";
+import { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: 'Design System/Checkbox',
+    title: "Design System/Checkbox",
     component: Checkbox,
     tags: ["autodocs"],
     argTypes: {
         //以下參數不刪
         themeColor: {
-            description: '主題顏色',
-            control: { type: 'select' },
+            description: "主題顏色",
+            control: { type: "select" },
             options: [
-                'primary',
-                'secondary',
-                'tertiary',
-                'success',
-                'warning',
-                'error',
-                'info',
+                "primary",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "error",
+                "info",
             ],
         },
         customClass: {
-            description: '客製化樣式',
-            control: { type: 'text' },
+            description: "客製化樣式",
+            control: { type: "text" },
         },
         label: {
-            description: 'Checkbox選項文字',
-            control: { type: 'text' },
+            description: "Checkbox選項文字",
+            control: { type: "text" },
         },
         value: {
-            description: 'Checkbox選項值',
-            control: { type: 'Object' },
+            description: "Checkbox選項值",
+            control: { type: "Object" },
         },
         name: {
-            description: 'Checkbox表單用name',
-            control: { type: 'text' },
+            description: "Checkbox表單用name",
+            control: { type: "text" },
         },
         modelValue: {
-            description: 'Checkbox的綁定值',
-            control: { type: 'Object' },
+            description: "Checkbox的綁定值",
+            control: { type: "Object" },
         },
         direction: {
-            description: 'Checkbox群組方向',
-            control: { type: 'select' },
-            options: ['row', 'column'],
-        }
+            description: "Checkbox群組方向",
+            control: { type: "select" },
+            options: ["row", "column"],
+        },
     },
     parameters: {
         // 自動文件
         docs: {
-            title: '複選框',
+            title: "複選框",
             description: {
-                component: '複選框組件的呈現及說明。',
+                component: "複選框組件的呈現及說明。",
             },
         },
     },
@@ -63,12 +63,12 @@ export default {
 };
 
 export const SingleCheckbox = {
-    name: '單選樣式',
+    name: "單選樣式",
     args: {
-        label:'我已閱讀並同意',
-        name:'agreeStatement',
+        label: "我已閱讀並同意",
+        name: "agreeStatement",
         value: false,
-        themeColor: 'primary',
+        themeColor: "primary",
     },
     render: (args) => ({
         components: { Checkbox },
@@ -99,19 +99,18 @@ export const SingleCheckbox = {
 };
 
 export const MultipleCheckbox = {
-    name: '複選樣式',
+    name: "複選樣式",
     args: {
-        themeColor: 'primary',
-        checkOptions: [
-            { label: '選項一', value: 'option1', name: 'option' },
-            { label: '選項二', value: 'option2', name: 'option' },
-            { label: '選項三', value: 'option3', name: 'option' },
-            { label: '選項四', value: 'option4', name: 'option' },
+        themeColor: "primary",
+        checkboxOptions: [
+            { label: "選項一", value: "option1", name: "option" },
+            { label: "選項二", value: "option2", name: "option" },
+            { label: "選項三", value: "option3", name: "option" },
         ],
-        direction: 'row',
+        direction: "row",
     },
     render: (args) => ({
-        components: {Checkbox, CheckboxGroup},
+        components: { Checkbox, CheckboxGroup },
         setup() {
             // Create a ref for modelValue to be used with v-model
             const modelValue = ref(args.modelValue);
