@@ -1,9 +1,22 @@
 <script setup>
-import { ref, computed } from "vue";
-import Icon from "@/ui/element/Icon/Icon.vue";
+import { computed } from "vue";
 
 // 定義 Props
 const props = defineProps({
+    themeColor: {
+        type: String,
+        default: "primary",
+        validator: (value) =>
+            [
+                "primary",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "error",
+                "info",
+            ].includes(value),
+    },
     inputId: {
         type: String,
     },
@@ -16,11 +29,11 @@ const props = defineProps({
     label: {
         type: String,
     },
-
-    modelValue: {
-        type: String,
-    },
+  modelValue: {
+    type: [Array, String],
+  },
 });
+
 // 處理雙向綁定
 const emits = defineEmits(["update:modelValue"]);
 const handleChange = (event) => {
@@ -41,14 +54,15 @@ const isChecked = computed(() => props.modelValue === props.value);
             :checked="isChecked"
             @change="handleChange"
         />
+        <!-- radio - 選擇框樣式 -->
         <div
             :class="[
                 'radio-icon',
                 isChecked ? 'radio-checked-primary' : 'radio-unchecked-primary',
             ]"
         >
-            <Icon v-if="isChecked" name="check" color="#fff"></Icon>
         </div>
+        <!-- radio - 選項文字 -->
         <span class="radio-text">{{ props.label }}</span>
     </label>
 </template>
