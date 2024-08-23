@@ -6,6 +6,7 @@ import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
 import CheckboxGroup from "@/ui/element/Checkbox/CheckboxGroup.vue";
 import Radio from "@/ui/element/Radio/Radio.vue";
 import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
+import Divider from "@/ui/element/Divider/Divider.vue";
 // toggle 所需資料
 const isChecked = ref(true);
 const handleToggle = () => {
@@ -96,7 +97,18 @@ const isRadioPicked = ref("");
                     v-model="isRadioPicked"
                 ></Radio>
             </Radio-Group>
+        </div>
 
+        <!-- Divider -->
+        <div class="">
+            <Divider
+                layout="horizontal"
+                type="dashed"
+                themeColor="primary"
+                width="small"
+                align="center"
+                >OR</Divider
+            >
         </div>
     </div>
 </template>
