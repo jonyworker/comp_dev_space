@@ -58,7 +58,7 @@ const isChecked = computed(() => props.modelValue === props.value);
         <div
             :class="[
                 'radio-icon',
-                isChecked ? 'radio-checked-primary' : 'radio-unchecked-primary',
+                isChecked ? `radio-checked-${props.themeColor}` : `radio-unchecked-${props.themeColor}`,
             ]"
         >
         </div>
