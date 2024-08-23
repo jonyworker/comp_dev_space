@@ -104,7 +104,6 @@ const isRadioPicked = ref("");
             <Divider
                 layout="horizontal"
                 type="dashed"
-                themeColor="primary"
                 width="small"
                 align="center"
                 >OR</Divider
