@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 
 const props = defineProps({
     layout: {
@@ -17,7 +16,6 @@ const props = defineProps({
     themeColor: {
         //線條顏色
         type: String,
-        default: "primary",
         validator: (value) =>
             [
                 "primary",
@@ -51,10 +49,10 @@ const props = defineProps({
             `divider-${props.layout}`,
             `divider-width-${props.width}`,
             `divider-${props.type}`,
-            `divider-${props.themeColor}`,
+            props.themeColor? `divider-${props.themeColor}` : '',
             $slots.default ? `divider-${props.align}` : '',
-        ]"
-    >
+        ]">
+        <!-- divider - 分隔線文字 -->
         <div v-if="$slots.default" class="divider-content">
             <b><slot></slot></b>
         </div>
