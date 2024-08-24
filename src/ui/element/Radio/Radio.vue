@@ -29,9 +29,9 @@ const props = defineProps({
     label: {
         type: String,
     },
-  modelValue: {
-    type: [Array, String],
-  },
+    modelValue: {
+        type: [Array, String],
+    },
 });
 
 // 處理雙向綁定
