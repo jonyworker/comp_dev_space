@@ -7,6 +7,8 @@ import Radio from "@/ui/element/Radio/Radio.vue";
 import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
 import Divider from "@/ui/element/Divider/Divider.vue";
 import Textarea from "@/ui/element/Textarea/Textarea.vue"
+import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue"
+import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue"
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -118,13 +120,34 @@ const textareaModelValue =ref("");
 
         <!-- Textarea -->
         <div>
-          <p>textarea model value: {{textareaModelValue}}</p>
-          <Textarea
-              label="訂單備註"
-              placeholder="請輸入此筆訂單備註"
-              :hint="textareaHint"
-              v-model="textareaModelValue"
-          ></Textarea>
+            <p>textarea model value: {{textareaModelValue}}</p>
+            <Textarea
+                label="訂單備註"
+                placeholder="請輸入此筆訂單備註"
+                :hint="textareaHint"
+                v-model="textareaModelValue"
+            ></Textarea>
+        </div>
+
+        <!-- CircleProgress -->
+        <div>
+            <CircleProgress
+                label="Something"
+                :percent="66"
+                :size="120"
+                :strokeWidth="10"
+                themeColor="primary"
+            ></CircleProgress>
+        </div>
+
+        <!-- LineProgress -->
+        <div>
+            <LineProgress
+                label="Complete"
+                :percent="66"
+                :strokeWidth="10"
+                themeColor="primary"
+            ></LineProgress>
         </div>
     </div>
 </template>
