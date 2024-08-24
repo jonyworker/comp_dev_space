@@ -1,29 +1,30 @@
 <script setup>
 import { ref } from "vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
-import Image from "@/ui/element/Image/Image.vue";
 import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
 import CheckboxGroup from "@/ui/element/Checkbox/CheckboxGroup.vue";
 import Radio from "@/ui/element/Radio/Radio.vue";
 import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
 import Divider from "@/ui/element/Divider/Divider.vue";
+import Textarea from "@/ui/element/Textarea/Textarea.vue"
+
 // toggle 所需資料
 const isChecked = ref(true);
 const handleToggle = () => {
     isChecked.value = !isChecked.value;
 };
-// const inputValue =  ref("")
 
+// checkbox 所需資料
 const checkboxOptions = ref([
     { label: "選項一", value: "option1", name: "option" },
     { label: "選項二", value: "option2", name: "option" },
     { label: "選項三", value: "option3", name: "option" },
     { label: "選項四", value: "option4", name: "option" },
 ]);
-
 const checkedCheckboxOptions = ref([]);
 const isCheckboxChecked = ref(false);
 
+// radio 所需資料
 const radioList = [
     {
         inputId: "meals01",
@@ -45,6 +46,11 @@ const radioList = [
     },
 ];
 const isRadioPicked = ref("");
+
+// textarea 所需資料
+const textareaHint = ref({ error: '', description: '' });
+const textareaModelValue =ref("");
+
 </script>
 
 <template>
@@ -108,6 +114,17 @@ const isRadioPicked = ref("");
                 align="center"
                 >OR</Divider
             >
+        </div>
+
+        <!-- Textarea -->
+        <div>
+          <p>textarea model value: {{textareaModelValue}}</p>
+          <Textarea
+              label="訂單備註"
+              placeholder="請輸入此筆訂單備註"
+              :hint="textareaHint"
+              v-model="textareaModelValue"
+          ></Textarea>
         </div>
     </div>
 </template>
