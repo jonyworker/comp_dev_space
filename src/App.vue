@@ -9,6 +9,7 @@ import Divider from "@/ui/element/Divider/Divider.vue";
 import Textarea from "@/ui/element/Textarea/Textarea.vue"
 import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue"
 import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue"
+import Tabs from  "@/ui/module/Tabs/Tabs.vue"
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -53,6 +54,21 @@ const isRadioPicked = ref("");
 const textareaHint = ref({ error: '', description: '' });
 const textareaModelValue =ref("");
 
+// Tabs 所需資料
+const TabsData = ref([
+  {
+    "title": "頁籤 1",
+    "content": "內容一"
+  },
+  {
+    "title": "頁籤 2",
+    "content": "內容二"
+  },
+  {
+    "title": "頁籤 3",
+    "content": "內容三"
+  }
+]);
 </script>
 
 <template>
@@ -148,6 +164,17 @@ const textareaModelValue =ref("");
                 :strokeWidth="10"
                 themeColor="primary"
             ></LineProgress>
+        </div>
+
+        <!-- Tabs -->
+        <div>
+            <Tabs
+                themeColor="primary"
+                type="default"
+                :tabsData="TabsData"
+                :activeIndex="0"
+            ></Tabs>
+          isDisabled
         </div>
     </div>
 </template>
