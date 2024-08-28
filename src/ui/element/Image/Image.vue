@@ -11,9 +11,15 @@ const props = defineProps({
   },
   objectFit: {
     type: String,
-    default: 'contained',
+    default: 'cover',
     validator: (value) => ['cover', 'contain', 'fill', 'none'].includes(value),
   },
+  src: {
+    type: String,
+  },
+  alt: {
+    type: String,
+  }
 });
 
 const imageContainerCVAClass = computed(()=>{
@@ -55,8 +61,8 @@ const imageObjectFitCVAClass = computed(()=>{
   <div :class="imageContainerCVAClass">
     <img
         :class="imageObjectFitCVAClass"
-        src="../../../assets/fakeImg/avatar_01.jpg"
-        alt=""
+        :src="props.src"
+        :alt="props.alt"
     />
   </div>
 </template>
