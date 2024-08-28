@@ -2,10 +2,6 @@
     position: relative;
     box-shadow: 0 0 0 2px $color-white;
     border-radius: 50%;
-
-    &:not(:first-child) {
-      margin-left: -20px;
-    }
   }
 
   .avatar {
