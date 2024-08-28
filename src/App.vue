@@ -10,6 +10,8 @@ import Textarea from "@/ui/element/Textarea/Textarea.vue"
 import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue"
 import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue"
 import Tabs from  "@/ui/module/Tabs/Tabs.vue"
+import Avatar from  "@/ui/element/Avatar/Avatar.vue"
+import AvatarGroup from  "@/ui/element/Avatar/AvatarGroup.vue"
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -69,6 +71,32 @@ const TabsData = ref([
     "content": "內容三"
   }
 ]);
+
+// Avatar Group 所需資料
+const avatarsData = ref([
+  {
+    "userName": "eason",
+    "shape": "circle",
+    "size": "large"
+  },
+  {
+    "userName": "KevinYang",
+    "shape": "circle",
+    "size": "large"
+  },
+  {
+    "userName": "AmosLee",
+    "shape": "circle",
+    "size": "large",
+    "imageSrc": "https://picsum.photos/320/240"
+  },
+  {
+    "userName": "JohnWu",
+    "shape": "circle",
+    "size": "large",
+    "imageSrc": "https://picsum.photos/320/340"
+  }
+])
 </script>
 
 <template>
@@ -174,8 +202,21 @@ const TabsData = ref([
                 :tabsData="TabsData"
                 :activeIndex="0"
             ></Tabs>
-          isDisabled
         </div>
+
+        <!-- Avatar -->
+        <Avatar
+
+            size="large"
+            shape="circle"
+            imageSrc="src/assets/fakeImg/avatar_01.jpg"
+            imageAlt="alt text"
+            username="jony wu"
+            status="offline"
+        ></Avatar>
+
+      <AvatarGroup :avatarsData="avatarsData"></AvatarGroup>
+
     </div>
 </template>
 
