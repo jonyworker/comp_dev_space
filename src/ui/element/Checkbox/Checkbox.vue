@@ -28,7 +28,7 @@ const props = defineProps({
         type: String,
     },
     value: {
-        type: [Boolean, Object],
+        type: [ String, Boolean ],
     },
     name: {
         type: String,
