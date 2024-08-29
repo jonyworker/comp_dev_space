@@ -1,7 +1,6 @@
 <script setup>
 import {computed, ref} from 'vue';
 import Avatar from  "@/ui/element/Avatar/Avatar.vue"
-import Icon from "@/ui/element/Icon/Icon.vue";
 import Menu from  "@/ui/element/Menu/Menu.vue"
 import { splitArrayAt } from '@/utils/array-utils.js';
 
@@ -91,7 +90,6 @@ const handleClick = () => {
                             imageAlt="alt text"
                         ></Avatar>
                         <div style="margin-right: auto;">{{menu.userName}}</div>
-<!--                        <Icon name="arrow_down" size="24" ></Icon>-->
                     </li>
                 </Menu>
           </div>
