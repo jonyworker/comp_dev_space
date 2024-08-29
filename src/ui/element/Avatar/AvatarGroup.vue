@@ -1,79 +1,102 @@
 <script setup>
-import { computed } from 'vue';
+import {computed, ref} from 'vue';
 import Avatar from  "@/ui/element/Avatar/Avatar.vue"
+import Icon from "@/ui/element/Icon/Icon.vue";
+import Menu from  "@/ui/element/Menu/Menu.vue"
 import { splitArrayAt } from '@/utils/array-utils.js';
 
 // 定義 Props
 const props = defineProps({
-  // --  資料接口 -- //
-  avatarsData: {
-    type: Array,
-    required: true,
-  },
-  // --  樣式接口 -- //
-  limit: {
-    type: Number,
-    default: 1,
-  },
-  customClass: {
-    type: String,
-    default: '',
-  },
+    // --  資料接口 -- //
+    avatarsData: {
+        type: Array,
+        required: true,
+    },
+    // --  樣式接口 -- //
+    size: {
+        type: String,
+        default: "large",
+        validator: (value) =>
+            ["xsmall", "small", "medium", "large"].includes(value),
+    },
+    shape: {
+        type: String,
+        default: "circle",
+        validator: (value) =>
+            ["circle", "square"].includes(value),
+    },
+    customClass: {
+        type: String,
+        default: '',
+    },
+    // --  數量控制接口 -- //
+    limit: {
+        type: Number,
+        default: 1,
+    },
 })
 
 // 計算剩餘未顯示數量
 const restCount = computed(() => {
-  const result = props.avatarsData.length - props.limit;
-  if (result >= 99 ) {
-    return 99
-  }
-  return result;
+    const result = props.avatarsData.length - props.limit;
+    return result >= 99 ? 99 : result;
 })
 
 // 分割[顯示群組]與[未顯示群組]
-const { currList, restList } = splitArrayAt(props.avatarsData, props.limit);
+const currList = computed(() => splitArrayAt(props.avatarsData, props.limit).currList);
+const restList = computed(() => splitArrayAt(props.avatarsData, props.limit).restList);
 
-// 分割[avatarSize]與[avatarShape]
-const avatarSize = computed(() => {
-  return props.avatarsData[0].size;
-})
-const avatarShape = computed(() => {
-  return props.avatarsData[0].shape;
-})
-
+// 控制顯示剩餘未顯示數據
+const isOpen =ref(false)
+const handleClick = () => {
+    isOpen.value = !isOpen.value
+}
 </script>
 
-
-
 <template>
-  <div class="avatar-group">
-    <!-- avatar group - 渲染 avatar  -->
-    <Avatar
-        v-for="(avatar) in currList"
-        :size="avatar.size"
-        :shape="avatar.shape"
-        :imageSrc="avatar.imageSrc"
-        imageAlt="alt text"
-        :username="avatar.userName"
-    ></Avatar>
+    <div class="avatar-group">
+        <!-- avatar group - 渲染 avatar  -->
+        <Avatar
+            v-for="(avatar) in currList"
+            :size="props.size"
+            :shape="props.shape"
+            :imageSrc="avatar.imageSrc"
+            imageAlt="alt text"
+            :username="avatar.userName"
+        ></Avatar>
 
-    <!-- avatar group - 剩餘未顯示總數表示 -->
-    <template v-if="restList.length > 0">
-        <div class="rest-container">
+        <div class="rest-container" v-if="restList.length > 0">
+            <!-- avatar group - 剩餘未顯示總數表示 -->
             <div class="text-large">
-                <button :class="['avatar-container', `avatar-container-${avatarSize}`]" @click="hendleclick()" style="cursor: pointer">
-                    <div :class="['avatar', `avatar-${avatarShape}`]">
-                        <span :class="['avatar-text', `text-${avatarSize}`]">{{`+${restCount}`}}</span>
+                <button :class="['avatar-container', `avatar-container-${props.size}`]"
+                        @click.prevent="handleClick()"
+                        style="cursor: pointer">
+                    <div :class="['avatar', `avatar-${props.shape}`]">
+                        <span :class="['avatar-text', `text-${props.size}`]">
+                          {{`+${restCount}`}}
+                        </span>
                     </div>
                 </button>
             </div>
+
+            <!-- avatar group - 剩餘未顯示數據 -->
+            <div class="rest-container-menu" v-if="isOpen">
+                <Menu>
+                    <li class="menu-item" v-for="(menu) in restList" :key="menu.userName">
+                        <Avatar
+                            size="xsmall"
+                            shape="circle"
+                            :imageSrc="menu.imageSrc"
+                            :username="menu.userName"
+                            imageAlt="alt text"
+                        ></Avatar>
+                        <div style="margin-right: auto;">{{menu.userName}}</div>
+<!--                        <Icon name="arrow_down" size="24" ></Icon>-->
+                    </li>
+                </Menu>
+          </div>
         </div>
-      <!--TODO: 需先完成 menu component-->
-
-    </template>
-
-
-  </div>
+    </div>
 </template>
 
 <style scoped lang="scss">

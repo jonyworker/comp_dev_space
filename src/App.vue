@@ -12,6 +12,8 @@ import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue"
 import Tabs from  "@/ui/module/Tabs/Tabs.vue"
 import Avatar from  "@/ui/element/Avatar/Avatar.vue"
 import AvatarGroup from  "@/ui/element/Avatar/AvatarGroup.vue"
+import Menu from  "@/ui/element/Menu/Menu.vue"
+import Icon from "@/ui/element/Icon/Icon.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -74,28 +76,38 @@ const TabsData = ref([
 
 // Avatar Group 所需資料
 const avatarsData = ref([
-  {
-    "userName": "eason",
-    "shape": "circle",
-    "size": "large"
-  },
-  {
-    "userName": "KevinYang",
-    "shape": "circle",
-    "size": "large"
-  },
-  {
-    "userName": "AmosLee",
-    "shape": "circle",
-    "size": "large",
-    "imageSrc": "https://picsum.photos/320/240"
-  },
-  {
-    "userName": "JohnWu",
-    "shape": "circle",
-    "size": "large",
-    "imageSrc": "https://picsum.photos/320/340"
-  }
+	{
+	"userName": "eason",
+	},
+	{
+	"userName": "KevinYang",
+	},
+	{
+	"userName": "AmosLee",
+	"imageSrc": "https://picsum.photos/320/240"
+	},
+	{
+	"userName": "JohnWu",
+	"imageSrc": "https://picsum.photos/320/340"
+	}
+])
+
+// Menu 所需資料
+const menuData = ref([
+	{
+	"userName": "eason",
+	},
+	{
+	"userName": "KevinYang",
+	},
+	{
+	"userName": "AmosLee",
+	"imageSrc": "https://picsum.photos/320/240"
+	},
+	{
+	"userName": "JohnWu",
+	"imageSrc": "https://picsum.photos/320/340"
+	}
 ])
 </script>
 
@@ -204,18 +216,39 @@ const avatarsData = ref([
             ></Tabs>
         </div>
 
+        <!-- Menu -->
+        <div>
+            <Menu :menuData="menuData">
+                <li class="menu-item" v-for="(menu) in menuData">
+                    <Avatar
+                        size="xsmall"
+                        shape="circle"
+                        :imageSrc="menu.imageSrc"
+                        :username="menu.userName"
+                        imageAlt="alt text"
+                    ></Avatar>
+                    <div style="margin-right: auto;">{{menu.userName}}</div>
+                    <Icon name="arrow_down" size="24" ></Icon>
+                </li>
+            </Menu>
+            <Menu :menuData="menuData">
+            </Menu>
+        </div>
+
         <!-- Avatar -->
-        <Avatar
+        <div>
+            <Avatar
+                size="large"
+                shape="circle"
+                imageSrc="src/assets/fakeImg/avatar_01.jpg"
+                imageAlt="alt text"
+                username="jony wu"
+                status="offline"
+            ></Avatar>
+            <AvatarGroup :avatarsData="avatarsData" size="large" shape="circle"></AvatarGroup>
+        </div>
 
-            size="large"
-            shape="circle"
-            imageSrc="src/assets/fakeImg/avatar_01.jpg"
-            imageAlt="alt text"
-            username="jony wu"
-            status="offline"
-        ></Avatar>
 
-      <AvatarGroup :avatarsData="avatarsData"></AvatarGroup>
 
     </div>
 </template>

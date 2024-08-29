@@ -46,7 +46,7 @@ const props = defineProps({
     <div :class="['avatar-container', `avatar-container-${props.size}`]">
         <div :class="['avatar', `avatar-${props.shape}`]">
             <template v-if="props.imageSrc">
-                <Image :src="props.imageSrc" :alt="props.imageAlt" ratio="11"></Image>
+                <Image :src="props.imageSrc" :alt="props.imageAlt" ratio="11" objectFit="cover" ></Image>
             </template>
             <template v-else>
                 <span :class="['avatar-text', `text-${props.size}`]">{{getInitialsOrDefault(props.username, 2)}}</span>
