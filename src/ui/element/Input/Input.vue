@@ -2,54 +2,46 @@
 import { computed } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
+// 定義 Model (改成最新寫法)
+const modelValue = defineModel()
+
 // 定義 Props
 const props = defineProps({
-  // -- input 基礎接口 -- //
-  type: { // input type
-    type: String,
-    default: 'text',
-  },
-  modelValue: { // 雙向綁定
-    type: [String, Number],
-  },
-  placeholder: {
-    type: String,
-  },
-
-  // -- 客製化接口 -- //
-  label: {
-    type: String,
-  },
-  size: {
-    type: String,
-    validator: (value) => ['small', 'medium', 'large'].includes(value),
-  },
-  prefix: {
-    type: String,
-  },
-  suffix: {
-    type: String,
-  },
-  customClass: {
-    type: String,
-    default: '',
-  },
-
-  // -- 驗證與狀態接口 -- //
-  hint: { // 錯誤提示
-    type: Object,
-    default: () => ({ error: '', description: '' }),
-  },
-  isDisable: {
-    type: Boolean,
-  },
+	// -- input 基礎接口 -- //
+	type: { // input type
+		type: String,
+		default: 'text',
+	},
+	placeholder: {
+		type: String,
+	},
+	// -- 客製化接口 -- //
+	label: {
+		type: String,
+	},
+	size: {
+		type: String,
+		validator: (value) => ['small', 'medium', 'large'].includes(value),
+	},
+	prefix: {
+		type: String,
+	},
+	suffix: {
+		type: String,
+	},
+	customClass: {
+		type: String,
+		default: '',
+	},
+	// -- 驗證與狀態接口 -- //
+	hint: { // 錯誤提示
+		type: Object,
+		default: () => ({ error: '', description: '' }),
+	},
+	isDisable: {
+		type: Boolean,
+	},
 })
-
-// 處理 input 雙向綁定
-const emits = defineEmits(['update:modelValue'])
-const handleInput = event => {
-  emits('update:modelValue', event.target.value)
-}
 
 // 根據 hint 的值，計算屬性
 const hintClass = computed(() => {
@@ -78,7 +70,7 @@ const hintClass = computed(() => {
       <input :type="props.type"
              :class="['input', `text-${size}`]"
              :placeholder="props.placeholder"
-             @input="handleInput">
+             v-model="modelValue">
 
       <!-- 輸入框 suffix icon -->
       <template v-if="suffix">
