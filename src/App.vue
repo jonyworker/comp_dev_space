@@ -14,6 +14,8 @@ import Avatar from  "@/ui/element/Avatar/Avatar.vue"
 import AvatarGroup from  "@/ui/element/Avatar/AvatarGroup.vue"
 import Menu from  "@/ui/element/Menu/Menu.vue"
 import Icon from "@/ui/element/Icon/Icon.vue";
+import Slider from "@/ui/element/Slider/Slider.vue";
+import Input from "@/ui/element/Input/Input.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -109,6 +111,12 @@ const menuData = ref([
 	"imageSrc": "https://picsum.photos/320/340"
 	}
 ])
+
+// Slider-Single 所需資料
+const currentSliderValue = ref(250);
+const currentSliderMinValue  = ref(114);
+const currentSliderMaxValue  = ref(514);
+
 </script>
 
 <template>
@@ -245,8 +253,42 @@ const menuData = ref([
                 username="jony wu"
                 status="offline"
             ></Avatar>
-            <AvatarGroup :avatarsData="avatarsData" size="large" shape="circle"></AvatarGroup>
+            <AvatarGroup
+	            :avatarsData="avatarsData"
+	            size="large"
+	            shape="circle"
+	            :limit="3"
+            ></AvatarGroup>
         </div>
+
+	    <!-- Slider -->
+	    <div>
+		    <h2>Single Slider</h2>
+			<Slider
+				:sliderMinVal=0
+				:sliderMaxVal=5000
+				themeColor="error"
+				thumbSize="20"
+				v-model="currentSliderValue"
+			></Slider>
+		    <Input type="number" v-model="currentSliderValue"/>
+		    <h2>Double Slider</h2>
+		    <Slider
+			    :sliderMinVal=0
+			    :sliderMaxVal=5000
+			    themeColor="info"
+			    thumbSize="20"
+			    v-model:currentSliderMinValue="currentSliderMinValue"
+			    v-model:currentSliderMaxValue="currentSliderMaxValue"
+			    range
+		    ></Slider>
+		    <div style="display:flex; gap: 16px;">
+			    <Input label="起始數值" type="number" v-model="currentSliderMinValue" style="flex-grow: 1"/>
+			    <Input label="結束數值" type="number" v-model="currentSliderMaxValue" style="flex-grow: 1"/>
+		    </div>
+	    </div>
+
+
 
 
 
