@@ -341,7 +341,7 @@ export const MultiAvatar = {
 					:avatarsData="args.avatarsData" 
 					size="medium" 
 					shape="circle" 
-					limit="3">
+					:limit="3">
 				</AvatarGroup>
 			</div>
         `,
