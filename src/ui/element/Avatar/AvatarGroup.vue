@@ -31,7 +31,6 @@ const props = defineProps({
     // --  數量控制接口 -- //
     limit: {
         type: Number,
-        default: 1,
     },
 })
 

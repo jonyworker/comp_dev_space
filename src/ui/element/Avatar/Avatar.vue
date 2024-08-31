@@ -7,10 +7,10 @@ import { getInitialsOrDefault } from '@/utils/string-utils.js';
 const props = defineProps({
     // --  樣式接口 -- //
     size: {
-        type: String,
-      default: "large",
-        validator: (value) =>
-          ["xsmall", "small", "medium", "large"].includes(value),
+		type: String,
+		default: "large",
+		validator: (value) =>
+			["xsmall", "small", "medium", "large"].includes(value),
     },
     shape: {
         type: String,
