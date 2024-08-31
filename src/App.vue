@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
 import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
 import CheckboxGroup from "@/ui/element/Checkbox/CheckboxGroup.vue";
@@ -16,6 +17,7 @@ import Menu from  "@/ui/element/Menu/Menu.vue"
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Slider from "@/ui/element/Slider/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
+import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -117,6 +119,13 @@ const currentSliderValue = ref(250);
 const currentSliderMinValue  = ref(114);
 const currentSliderMaxValue  = ref(514);
 
+// Tooltip 所需資料
+const tooltipPosValue = ref([
+	'top-left', 'top', 'top-right',
+	'right-top', 'right', 'right-bottom',
+	'bottom-right', 'bottom', 'bottom-left',
+	'left-bottom', 'left', 'left-top',
+]);
 </script>
 
 <template>
@@ -288,9 +297,39 @@ const currentSliderMaxValue  = ref(514);
 		    </div>
 	    </div>
 
-
-
-
+	    <!-- Tooltip -->
+	    <div style="
+		    width: 500px;
+		    display: flex;
+		    align-items: center;
+		    flex-wrap: wrap;
+		    gap: 40px;
+			margin: 56px" >
+		    <Tooltip
+			    v-for="(item) in tooltipPosValue"
+			    :content="`Tooltip on ${item}`"
+			    :position="item"
+			    :showArrow=true>
+			    <div
+				    style="
+				    width: 100px;
+				    height: 100px;
+				    display: flex;
+				    flex-direction: column;
+				    align-items: center;
+				    justify-content: center;
+				    border-radius: 12px;
+				    border: 2px solid #533bd4;
+				    color: #533bd4;
+				    padding: 8px;"
+			    >
+				    Hover<br>
+				    <p style="font-size: 12px;">
+					   - {{item}} -
+				    </p>
+			    </div>
+		    </Tooltip>
+		</div>
 
     </div>
 </template>
@@ -300,3 +339,5 @@ const currentSliderMaxValue  = ref(514);
     padding: 40px;
 }
 </style>
+
+
