@@ -99,7 +99,7 @@ export const SingleCheckbox = {
     },
 };
 
-//==== checkbox     name: "複選樣式", ====//
+//==== checkbox 複選樣式 ====//
 export const MultipleCheckbox = {
     name: "複選樣式",
     args: {
@@ -128,13 +128,14 @@ export const MultipleCheckbox = {
         },
         template: `
         <CheckboxGroup :direction="args.direction">
-            <Checkbox   v-for="(item, index) in args.checkboxOptions"
-                        :key="index"
-                        :themeColor="args.themeColor"
-                        :label="item.label"
-                        :value="item.value"
-                        :name="item.name"
-                        v-model="checkedCheckboxOptions">{{item.value}}</Checkbox>
+            <Checkbox v-for="(item, index) in args.checkboxOptions"
+                :key="index"
+                :themeColor="args.themeColor"
+                :label="item.label"
+                :value="item.value"
+                :name="item.name"
+                v-model="checkedCheckboxOptions"
+            >{{item.value}}</Checkbox>
         </CheckboxGroup>
         <p>Tell me what skills you have:{{checkedCheckboxOptions}}</p>
         `,
