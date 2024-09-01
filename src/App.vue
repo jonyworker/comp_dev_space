@@ -19,6 +19,7 @@ import Slider from "@/ui/element/Slider/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import Search from "@/ui/module/Search/Search.vue";
+import Password from "@/ui/module/Password/Password.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -131,6 +132,10 @@ const tooltipPosValue = ref([
 // Search 所需資料
 const searchInputData = ref("");
 const searchHint = ref({ error: '', description: '請輸入關鍵字搜尋' });
+
+// Password 所需資料
+const passwordInputData = ref("");
+const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混合大小寫英文字母、數字及特殊符號' });
 </script>
 
 <template>
@@ -342,17 +347,31 @@ const searchHint = ref({ error: '', description: '請輸入關鍵字搜尋' });
 		</Tooltip>
 
 	    <!-- Search -->
-	    <Search
-		    placeholder="請輸入關鍵字"
-		    size="medium"
-		    inputLabel="搜尋關鍵字"
-		    btnVariant="contained"
-		    btnColor="primary"
-		    v-model="searchInputData"
-		    :hint="searchHint"
-		    :isDisable= true
-	    ></Search>
-	    {{searchInputData}}
+	    <div>
+		    <Search
+			    label="搜尋關鍵字"
+			    placeholder="請輸入關鍵字"
+			    size="medium"
+			    inputLabel="搜尋關鍵字"
+			    btnVariant="contained"
+			    btnColor="primary"
+			    v-model="searchInputData"
+			    :hint="searchHint"
+			    :isDisable= true
+		    ></Search>
+		    {{searchInputData}}
+	    </div>
+
+	    <!-- Password -->
+	    <div>
+		    <Password
+			    label="登入密碼"
+			    placeholder="請輸入密碼"
+			    size="medium"
+			    v-model="passwordInputData"
+			    :hint="passwordHint"
+		    ></Password>
+	    </div>
 
     </div>
 </template>
