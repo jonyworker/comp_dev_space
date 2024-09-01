@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Model (改成最新寫法)
@@ -58,6 +58,12 @@ const hintClass = computed(() => {
 const clearInput = () => {
 	modelValue.value = '';
 };
+
+// 功能 - 控制顯示或隱藏密碼
+const showPassword =  ref(false);
+const togglePasswordVisibility = () => {
+	showPassword.value = !showPassword.value;
+};
 </script>
 
 
@@ -72,7 +78,8 @@ const clearInput = () => {
 			</template>
 
 			<!-- 輸入框 -->
-			<input :type="props.type"
+			<input
+				 :type="showPassword && props.type === 'password' ? 'text' : props.type"
 			     :class="['input', `text-${size}`]"
 			     :placeholder="props.placeholder"
 			     v-model="modelValue">
@@ -83,12 +90,18 @@ const clearInput = () => {
 			</template>
 
 			<!-- Suffix Icons -->
-			<template v-if="props.suffix || modelValue">
+			<template v-if="props.suffix || modelValue || props.type === 'password'">
 			    <Icon v-if="props.suffix" :class="`icon-${props.size}`" :name="props.suffix"></Icon>
 
+				<!-- input type 等於 text -->
 			    <button v-if="modelValue && props.type === 'text'" class="clear-button" @click="clearInput">
 				    <Icon name="close" :class="`icon-${props.size}`" />
 			    </button>
+
+				<!-- input type 等於 password -->
+				<button v-if="props.type === 'password'" class="clear-button" @click="togglePasswordVisibility">
+					<Icon :name="showPassword ? 'visibility' : 'visibility_off'" :class="`icon-${props.size}`" />
+				</button>
 
 			</template>
 		</div>
