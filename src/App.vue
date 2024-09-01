@@ -308,8 +308,9 @@ const tooltipPosValue = ref([
 		    <Tooltip
 			    v-for="(item) in tooltipPosValue"
 			    :content="`Tooltip on ${item}`"
-			    :position="item"
+			    :placement="item"
 			    :showArrow=true>
+			    <!-- 被 tooltip 包裹的資料 -->
 			    <div
 				    style="
 				    width: 100px;
@@ -330,6 +331,10 @@ const tooltipPosValue = ref([
 			    </div>
 		    </Tooltip>
 		</div>
+		<Tooltip content="Hi, Hi~ Nice to meet you!"
+		         placement="top-left">
+			<Button variant="contained" size="medium" prefix="face">Hover Me</Button>
+		</Tooltip>
 
     </div>
 </template>

@@ -6,7 +6,7 @@ const props = defineProps({
 		type: String,
 		required: true
 	},
-	position: {
+	placement: {
 		type: String,
 		default: 'top',
 		validator: (value) =>
@@ -23,7 +23,7 @@ const props = defineProps({
 	}
 })
 
-// tooltip 顯示變數
+// tooltip 顯示控制變數
 const visible = ref(false)
 
 // 功能 - 控制 tooltip 的顯示及隱藏
@@ -44,9 +44,9 @@ const hideTooltip = () => {
 		>
 			<slot></slot>
 			<!-- tooltip - 本體 -->
-			<div :class="['tooltip-content', `tooltip-${props.position}`]">
+			<div v-if="visible" :class="['tooltip-content', `tooltip-${props.placement}`]">
 				<div v-if="props.showArrow"
-				     :class="['tooltip-arrow',`tooltip-arrow-${props.position}`]"></div>
+				     :class="['tooltip-arrow',`tooltip-arrow-${props.placement}`]"></div>
 				{{ content }}
 			</div>
 		</div>
@@ -54,7 +54,7 @@ const hideTooltip = () => {
 
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .tooltip-wrapper {
 	position: relative;
 	display: inline-block;
@@ -87,7 +87,7 @@ const hideTooltip = () => {
 
 /*--- TOOLTIP 本體位置 TOP ---*/
 .tooltip-top, .tooltip-top-left, .tooltip-top-right {
-	bottom: 110%;
+	bottom: calc(100% + 10px);
 	left: 50%;
 	transform: translateX(-50%);
 }
@@ -105,7 +105,7 @@ const hideTooltip = () => {
 /*--- TOOLTIP 本體位置 RIGHT ---*/
 .tooltip-right, .tooltip-right-top, .tooltip-right-bottom {
 	top: 50%;
-	left: 110%;
+	left: calc(100% + 10px);
 	transform: translateY(-50%);
 }
 
@@ -121,7 +121,7 @@ const hideTooltip = () => {
 
 /*--- TOOLTIP 本體位置 BOTTOM ---*/
 .tooltip-bottom, .tooltip-bottom-left, .tooltip-bottom-right {
-	top: 110%;
+	top: calc(100% + 10px);
 	left: 50%;
 	transform: translateX(-50%);
 }
@@ -139,7 +139,7 @@ const hideTooltip = () => {
 /*--- TOOLTIP 本體位置 LEFT ---*/
 .tooltip-left, .tooltip-left-top, .tooltip-left-bottom {
 	top: 50%;
-	right: 110%;
+	right: calc(100% + 10px);
 	transform: translateY(-50%);
 }
 
@@ -212,7 +212,7 @@ const hideTooltip = () => {
 
 /*--- TOOLTIP 箭頭位置 LEFT ---*/
 .tooltip-arrow-left, .tooltip-arrow-left-top, .tooltip-arrow-left-bottom {
-	right: -5px;
+	right: -4px;
 	top: 50%;
 	transform: translateY(-50%);
 	border-width: 5px 0 5px 5px;
