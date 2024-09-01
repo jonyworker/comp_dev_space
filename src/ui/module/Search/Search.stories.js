@@ -68,7 +68,7 @@ export default {
 };
 
 //==== Search 基礎樣式 ====//
-export const DefaultAvatar = {
+export const DefaultSearch = {
 	name: "基礎樣式",
 	args: {
 		placeholder:'請輸入關鍵字',
