@@ -18,6 +18,7 @@ import Icon from "@/ui/element/Icon/Icon.vue";
 import Slider from "@/ui/element/Slider/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
+import Search from "@/ui/module/Search/Search.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -126,6 +127,10 @@ const tooltipPosValue = ref([
 	'bottom-right', 'bottom', 'bottom-left',
 	'left-bottom', 'left', 'left-top',
 ]);
+
+// Search 所需資料
+const searchInputData = ref("");
+const searchHint = ref({ error: '', description: '請輸入關鍵字搜尋' });
 </script>
 
 <template>
@@ -335,6 +340,19 @@ const tooltipPosValue = ref([
 		         placement="top-left">
 			<Button variant="contained" size="medium" prefix="face">Hover Me</Button>
 		</Tooltip>
+
+	    <!-- Search -->
+	    <Search
+		    placeholder="請輸入關鍵字"
+		    size="medium"
+		    inputLabel="搜尋關鍵字"
+		    btnVariant="contained"
+		    btnColor="primary"
+		    v-model="searchInputData"
+		    :hint="searchHint"
+		    :isDisable= true
+	    ></Search>
+	    {{searchInputData}}
 
     </div>
 </template>
