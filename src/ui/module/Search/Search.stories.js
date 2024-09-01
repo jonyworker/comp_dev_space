@@ -99,7 +99,7 @@ export const DefaultSearch = {
 	            :hint="{ error: '', description: '請輸入關鍵字搜尋' }"
 	            :isDisable="args.isDisable"
             ></Search>
-            <p> 點擊搜尋後傳送給後端的資料: {{searchInputData}}</p>
+            <p v-if="searchInputData"> 點擊搜尋後傳送給後端的資料: {{searchInputData}}</p>
         `,
 	}),
 	// 控制 controls 中能控制的參數

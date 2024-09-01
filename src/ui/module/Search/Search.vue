@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import Input from '@/ui/element/Input/Input.vue';
 import Button from '@/ui/element/Button/Button.vue';
 
-// 定義 Model (改成最新寫法)
+// 定義 Model
 const modelValue = defineModel()
 
 // 定義 Props
@@ -30,7 +30,7 @@ const props = defineProps({
 	},
 	size: {
 		type: String,
-		default: '',
+		default: 'medium',
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
 	},
 	// -- input 接口 -- //
@@ -57,7 +57,7 @@ const props = defineProps({
 
 <template>
 	<!-- 輸入框標題 -->
-	<label v-if="props.label" class="input-label">{{props.label}}</label>
+	<label v-if="props.inputLabel" class="input-label">{{props.inputLabel}}</label>
 	<div class="search">
 		<Input
 			:placeholder="props.placeholder"
