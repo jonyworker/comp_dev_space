@@ -53,39 +53,63 @@ const hintClass = computed(() => {
   }
   return '';
 });
+
+// 清除輸入框資料
+const clearInput = () => {
+	modelValue.value = '';
+};
 </script>
 
 
 <template>
-  <div class="input-container ">
-    <!-- 輸入框標題 -->
-    <label v-if="props.label" class="input-label">{{props.label}}</label>
-    <div :class="['input-group', `component-${size}`, `input-border-${hintClass}`, { 'input-disable': isDisable }, ]">
-      <!-- 輸入框 prefix icon -->
-      <template v-if="prefix">
-        <Icon :class="`icon-${size}`" :name="props.prefix" ></Icon>
-      </template>
+	<div class="input-container ">
+		<!-- 輸入框標題 -->
+		<label v-if="props.label" class="input-label">{{props.label}}</label>
+		<div :class="['input-group', `component-${size}`, `input-border-${hintClass}`, { 'input-disable': isDisable }, ]">
+			<!-- 輸入框 prefix icon -->
+			<template v-if="prefix">
+			<Icon :class="`icon-${size}`" :name="props.prefix" ></Icon>
+			</template>
 
-      <!-- 輸入框 -->
-      <input :type="props.type"
-             :class="['input', `text-${size}`]"
-             :placeholder="props.placeholder"
-             v-model="modelValue">
+			<!-- 輸入框 -->
+			<input :type="props.type"
+			     :class="['input', `text-${size}`]"
+			     :placeholder="props.placeholder"
+			     v-model="modelValue">
 
-      <!-- 輸入框 suffix icon -->
-      <template v-if="suffix">
-        <Icon :class="`icon-${size}`" :name="props.suffix" ></Icon>
-      </template>
-    </div>
+			<!-- 輸入框 suffix icon -->
+			<template v-if="suffix">
+			<Icon :class="`icon-${size}`" :name="props.suffix" ></Icon>
+			</template>
 
-    <!-- 輸入框說明文字 -->
-    <small :class="['input-hint', `input-hint-${hintClass}`, { 'input-disable': props.isDisable }]">
-      {{hint.error.length > 0 ? hint.error : hint.description}}
-    </small>
-  </div>
+			<!-- Suffix Icons -->
+			<template v-if="props.suffix || modelValue">
+			    <Icon v-if="props.suffix" :class="`icon-${props.size}`" :name="props.suffix"></Icon>
+
+			    <button v-if="modelValue && props.type === 'text'" class="clear-button" @click="clearInput">
+				    <Icon name="close" :class="`icon-${props.size}`" />
+			    </button>
+
+			</template>
+		</div>
+
+		<!-- 輸入框說明文字 -->
+		<small :class="['input-hint', `input-hint-${hintClass}`, { 'input-disable': props.isDisable }]">
+		  {{hint.error.length > 0 ? hint.error : hint.description}}
+		</small>
+	</div>
 
 </template>
 
 <style scoped lang="scss">
-
+.clear-button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: grey;
+}
 </style>
