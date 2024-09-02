@@ -7,16 +7,17 @@ import CheckboxGroup from "@/ui/element/Checkbox/CheckboxGroup.vue";
 import Radio from "@/ui/element/Radio/Radio.vue";
 import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
 import Divider from "@/ui/element/Divider/Divider.vue";
-import Textarea from "@/ui/element/Textarea/Textarea.vue"
-import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue"
-import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue"
-import Tabs from  "@/ui/module/Tabs/Tabs.vue"
-import Avatar from  "@/ui/element/Avatar/Avatar.vue"
-import AvatarGroup from  "@/ui/element/Avatar/AvatarGroup.vue"
-import Menu from  "@/ui/element/Menu/Menu.vue"
+import Textarea from "@/ui/element/Textarea/Textarea.vue";
+import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";
+import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue";
+import Tabs from  "@/ui/module/Tabs/Tabs.vue";
+import Avatar from  "@/ui/element/Avatar/Avatar.vue";
+import AvatarGroup from  "@/ui/element/Avatar/AvatarGroup.vue";
+import Menu from  "@/ui/element/Menu/Menu.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Slider from "@/ui/element/Slider/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
+import TooltipRelative from "@/ui/element/Tooltip/TooltipRelative.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
@@ -315,7 +316,7 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 		    flex-wrap: wrap;
 		    gap: 40px;
 			margin: 56px" >
-		    <Tooltip
+		    <TooltipRelative
 			    v-for="(item) in tooltipPosValue"
 			    :content="`Tooltip on ${item}`"
 			    :placement="item"
@@ -339,12 +340,12 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 					   - {{item}} -
 				    </p>
 			    </div>
-		    </Tooltip>
+		    </TooltipRelative>
 		</div>
-		<Tooltip content="Hi, Hi~ Nice to meet you!"
+		<TooltipRelative content="Hi, Hi~ Nice to meet you!"
 		         placement="top-left">
 			<Button variant="contained" size="medium" prefix="face">Hover Me</Button>
-		</Tooltip>
+		</TooltipRelative>
 
 	    <!-- Search -->
 	    <div>
@@ -373,12 +374,21 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 		    ></Password>
 	    </div>
 
+	    <!-- TooltipTeleport -->
+	    <Tooltip placement="left">
+		    <Button variant="contained" size="large" prefix="face" >Hover Me</Button>
+		    <template #content>
+			    Hi, Hi~ Nice to meet you!
+		    </template>
+	    </Tooltip>
+
+
     </div>
 </template>
 
 <style scoped>
 .container {
-    padding: 40px;
+    padding: 150px;
 }
 </style>
 

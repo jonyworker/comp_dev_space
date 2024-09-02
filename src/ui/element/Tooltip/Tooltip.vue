@@ -1,83 +1,169 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
 
+// 定義 Props
 const props = defineProps({
-	content: {
-		type: String,
-		required: true
-	},
 	placement: {
 		type: String,
 		default: 'top',
-		validator: (value) =>
-			[
-				'top-left', 'top', 'top-right',
-				'right-top', 'right', 'right-bottom',
-				'bottom-right', 'bottom', 'bottom-left',
-				'left-bottom', 'left', 'left-top'
-			].includes(value),
+		validator: value => [
+			'top-left', 'top', 'top-right',
+			'right-top', 'right', 'right-bottom',
+			'bottom-right', 'bottom', 'bottom-left',
+			'left-top','left','left-bottom'
+		].includes(value)
 	},
 	showArrow: {
 		type: Boolean,
 		default: true
 	}
-})
+});
 
-// tooltip 顯示控制變數
-const visible = ref(false)
+const tooltipTriggerRef = ref(null);
+const tooltipContentRef = ref(null);
+const tooltipStyles = ref({});
+
+// 功能 - 生成 tooltip id
+const tooltipId = `tooltip-${Math.random().toString(36).substring(2, 9)}`;
 
 // 功能 - 控制 tooltip 的顯示及隱藏
+const visible = ref(false);
 const showTooltip = () => {
-	visible.value = true
-}
+	visible.value = true;
+	nextTick(updateTooltipPosition);
+};
 const hideTooltip = () => {
-	visible.value = false
-}
+	visible.value = false;
+};
+
+// 功能 計算位置
+const updateTooltipPosition = () => {
+	if (!tooltipTriggerRef.value || !tooltipContentRef.value || !visible.value) return;
+
+
+	const triggerElement = tooltipTriggerRef.value.getBoundingClientRect();
+	const tooltipElement = tooltipContentRef.value.getBoundingClientRect();
+
+	let top, left;
+
+	switch (props.placement) {
+		//-- [ top ] --//
+		case 'top-right':
+			top = (triggerElement.top - tooltipElement.height - 12);
+			left = triggerElement.right - tooltipElement.width;
+			break;
+		case 'top':
+			top = (triggerElement.top - tooltipElement.height - 12);
+			left = triggerElement.left + (triggerElement.width / 2) - (tooltipElement.width / 2);
+			break;
+		case 'top-left':
+			top = (triggerElement.top - tooltipElement.height - 12);
+			left = triggerElement.left;
+			break;
+
+		//-- [ right ] --//
+		case 'right-top':
+			top = triggerElement.top;
+			left = (triggerElement.right + 12);
+			break;
+		case 'right':
+			top = triggerElement.top + (triggerElement.height / 2) - (tooltipElement.height / 2);
+			left = (triggerElement.right + 12);
+			break;
+		case 'right-bottom':
+			top = (triggerElement.bottom - tooltipElement.height);
+			left = (triggerElement.right + 12);
+			break;
+
+		//-- [ bottom ] --//
+		case 'bottom-right':
+			top = (triggerElement.bottom + 12);
+			left = triggerElement.right - tooltipElement.width;
+			break;
+		case 'bottom':
+			top = (triggerElement.bottom + 12);
+			left = triggerElement.left + (triggerElement.width / 2) - (tooltipElement.width / 2);
+			break;
+		case 'bottom-left':
+			top = (triggerElement.bottom + 12);
+			left = triggerElement.left;
+			break;
+
+		//-- [ left ] --//
+		case 'left-top':
+			top = triggerElement.top;
+			left = (triggerElement.left - tooltipElement.width - 12);
+			break;
+		case 'left':
+			top = triggerElement.top + (triggerElement.height / 2) - (tooltipElement.height / 2);
+			left = (triggerElement.left - tooltipElement.width - 12);
+			break;
+		case 'left-bottom':
+			top = (triggerElement.bottom - tooltipElement.height);
+			left = (triggerElement.left - tooltipElement.width - 12);
+			break;
+	}
+
+	tooltipStyles.value = {
+		top: `${top}px`,
+		left: `${left}px`,
+		position: 'fixed'
+	};
+};
+
+onMounted(() => {
+	window.addEventListener('scroll', updateTooltipPosition);
+	window.addEventListener('resize', updateTooltipPosition);
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener('scroll', updateTooltipPosition);
+	window.removeEventListener('resize', updateTooltipPosition);
+});
 </script>
 
 <template>
-	<div>
-		<div
-			class="tooltip-wrapper"
-			@mouseenter="showTooltip"
-			@mouseleave="hideTooltip"
-		>
-			<slot></slot>
-			<!-- tooltip - 本體 -->
-			<div v-if="visible" :class="['tooltip-content', `tooltip-${props.placement}`]">
-				<div v-if="props.showArrow"
-				     :class="['tooltip-arrow',`tooltip-arrow-${props.placement}`]"></div>
-				{{ content }}
-			</div>
-		</div>
+	<div
+		ref="tooltipTriggerRef"
+		class="tooltip-trigger"
+		@mouseenter="showTooltip"
+		@mouseleave="hideTooltip"
+		:aria-describedby="tooltipId"
+	>
+		<slot></slot>
 	</div>
 
+	<Teleport to="body">
+		<Transition name="fade">
+			<div
+				v-if="visible"
+				:id="tooltipId"
+				ref="tooltipContentRef"
+				:style="tooltipStyles"
+				class="tooltip-content"
+				:class="props.placement"
+			>
+				<slot name="content"></slot>
+				<div v-if="showArrow" :class="`tooltip-arrow ${props.placement}`"></div>
+			</div>
+		</Transition>
+	</Teleport>
 </template>
 
 <style lang="scss" scoped>
-.tooltip-wrapper {
-	position: relative;
+.tooltip-trigger {
 	display: inline-block;
 }
 
-/*--- TOOLTIP 本體 ---*/
 .tooltip-content {
-	position: absolute;
-	background-color: #333;
-	color: #fff;
+	background-color: black;
+	color: white;
 	padding: 4px 8px;
 	border-radius: 4px;
-	font-size: 13px;
-	white-space: nowrap;
 	z-index: 1000;
-	opacity: 0;
-	transition: opacity 0.2s;
-}
-.tooltip-wrapper:hover .tooltip-content {
-	opacity: 1;
+	position: absolute  ;
 }
 
-/*--- TOOLTIP 箭頭 ---*/
 .tooltip-arrow {
 	width: 0;
 	height: 0;
@@ -85,147 +171,91 @@ const hideTooltip = () => {
 	position: absolute;
 }
 
-/*--- TOOLTIP 本體位置 TOP ---*/
-.tooltip-top, .tooltip-top-left, .tooltip-top-right {
-	bottom: calc(100% + 10px);
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.tooltip-top-left {
-	left: 0;
-	transform: translateX(0);
-}
-
-.tooltip-top-right {
-	left: 100%;
-	transform: translateX(-100%);
-}
-
-/*--- TOOLTIP 本體位置 RIGHT ---*/
-.tooltip-right, .tooltip-right-top, .tooltip-right-bottom {
-	top: 50%;
-	left: calc(100% + 10px);
-	transform: translateY(-50%);
-}
-
-.tooltip-right-top {
-	top: 0;
-	transform: translateY(0);
-}
-
-.tooltip-right-bottom {
-	top: 100%;
-	transform: translateY(-100%);
-}
-
-/*--- TOOLTIP 本體位置 BOTTOM ---*/
-.tooltip-bottom, .tooltip-bottom-left, .tooltip-bottom-right {
-	top: calc(100% + 10px);
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.tooltip-bottom-left {
-	left: 0;
-	transform: translateX(0);
-}
-
-.tooltip-bottom-right {
-	left: 100%;
-	transform: translateX(-100%);
-}
-
-/*--- TOOLTIP 本體位置 LEFT ---*/
-.tooltip-left, .tooltip-left-top, .tooltip-left-bottom {
-	top: 50%;
-	right: calc(100% + 10px);
-	transform: translateY(-50%);
-}
-
-.tooltip-left-top {
-	top: 0;
-	transform: translateY(0);
-}
-
-.tooltip-left-bottom {
-	top: 100%;
-	transform: translateY(-100%);
-}
-
 /*--- TOOLTIP 箭頭位置 TOP ---*/
-.tooltip-arrow-top, .tooltip-arrow-top-left, .tooltip-arrow-top-right {
-	bottom: -4px;
+.tooltip-arrow.top,
+.tooltip-arrow.top-left,
+.tooltip-arrow.top-right {
+	border-width: 5px 5px 0 5px;
+	border-color: black transparent transparent transparent;
+	bottom: -5px;
+}
+.tooltip-arrow.top {
 	left: 50%;
 	transform: translateX(-50%);
-	border-width: 5px 5px 0 5px;
-	border-color: #333 transparent transparent transparent;
 }
-
-.tooltip-arrow-top-left {
-	left: 10%;
-	transform: translateX(-10%);
+.tooltip-arrow.top-left {
+	left: 10px;
 }
-
-.tooltip-arrow-top-right {
-	left: 90%;
-	transform: translateX(-90%);
+.tooltip-arrow.top-right {
+	right: 10px;
 }
 
 /*--- TOOLTIP 箭頭位置 RIGHT ---*/
-.tooltip-arrow-right, .tooltip-arrow-right-top, .tooltip-arrow-right-bottom {
-	left: -4px;
+.tooltip-arrow.right,
+.tooltip-arrow.right-top,
+.tooltip-arrow.right-bottom {
+	border-width: 5px 5px 5px 0;
+	border-color: transparent black transparent transparent;
+	left: -5px;
+}
+.tooltip-arrow.right {
 	top: 50%;
 	transform: translateY(-50%);
-	border-width: 5px 5px 5px 0;
-	border-color: transparent #333 transparent transparent;
 }
-
-.tooltip-arrow-right-top {
-	top: 20%;
-	transform: translateY(-20%);
+.tooltip-arrow.right-top{
+	top: 5px;
 }
-
-.tooltip-arrow-right-bottom {
-	top: 80%;
-	transform: translateY(-80%);
+.tooltip-arrow.right-bottom {
+	bottom: 5px;
 }
 
 /*--- TOOLTIP 箭頭位置 BOTTOM ---*/
-.tooltip-arrow-bottom, .tooltip-arrow-bottom-left, .tooltip-arrow-bottom-right {
-	top: -4px;
+.tooltip-arrow.bottom,
+.tooltip-arrow.bottom-left,
+.tooltip-arrow.bottom-right {
+	border-width: 0 5px 5px 5px;
+	border-color: transparent transparent black transparent;
+	top: -5px;
+}
+.tooltip-arrow.bottom {
 	left: 50%;
 	transform: translateX(-50%);
-	border-width: 0 5px 5px 5px;
-	border-color: transparent transparent #333 transparent;
 }
-
-.tooltip-arrow-bottom-left {
-	left: 10%;
-	transform: translateX(-10%);
+.tooltip-arrow.bottom-left {
+	left: 10px;
 }
-
-.tooltip-arrow-bottom-right {
-	left: 90%;
-	transform: translateX(-90%);
+.tooltip-arrow.bottom-right {
+	right: 10px;
 }
 
 /*--- TOOLTIP 箭頭位置 LEFT ---*/
-.tooltip-arrow-left, .tooltip-arrow-left-top, .tooltip-arrow-left-bottom {
-	right: -4px;
+.tooltip-arrow.left,
+.tooltip-arrow.left-top,
+.tooltip-arrow.left-bottom {
+	border-width: 5px 0 5px 5px;
+	border-color: transparent transparent transparent black;
+	right: -5px;
+}
+.tooltip-arrow.left {
 	top: 50%;
 	transform: translateY(-50%);
-	border-width: 5px 0 5px 5px;
-	border-color: transparent transparent transparent #333;
+}
+.tooltip-arrow.left-top {
+	top: 5px;
+}
+.tooltip-arrow.left-bottom {
+	bottom: 5px;
 }
 
-.tooltip-arrow-left-top {
-	top: 15%;
-	transform: translateY(-15%);
+
+/*--- TRANSITION 動畫 ---*/
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s ease;
 }
 
-.tooltip-arrow-left-bottom {
-	top: 85%;
-	transform: translateY(-85%);
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
 }
 </style>

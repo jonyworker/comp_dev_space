@@ -1,5 +1,5 @@
-import Tooltip from "./Tooltip.vue";
 import Button from "@/ui/element/Button/Button.vue";
+import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -22,10 +22,6 @@ export default {
 			description: "控制顯示Tooltip箭頭",
 			control: { type: "boolean" },
 		},
-		content: {
-			description: "Tooltip內容文字",
-			control: { type: "text" },
-		}
 	},
 	parameters: {
 		// 自動文件
@@ -45,7 +41,7 @@ export default {
 export const DefaultTooltip = {
 	name: "基礎樣式",
 	args: {
-		content: "Hi, Hi~ Nice to meet you!",
+
 		placement: "bottom-left",
 		showArrow: true,
 	},
@@ -57,9 +53,11 @@ export const DefaultTooltip = {
 			};
 		},
 		template: `
-			<Tooltip :content="args.content"
-			         :placement="args.placement">
-				<Button variant="contained" size="medium" prefix="face">Hover Me</Button>
+			<Tooltip :placement="args.placement">
+				<Button variant="contained" size="large" prefix="face">Hover Me</Button>
+				<template #content>
+					Hi, Hi~ Nice to meet you!
+				</template>
 			</Tooltip>
         `,
 	}),
@@ -97,12 +95,10 @@ export const TooltipPlacement = {
 				flex-wrap: wrap;
 				gap: 40px;
 				margin: 56px">
-				<Tooltip
+				<Tooltip 
 					v-for="(item) in args.tooltipPosValue"
-					:content="'Tooltip on ' + item"
-					:placement="item"
-					:showArrow=true
-					>
+					:placement="item" 
+					:showArrow=true>
 					<!-- 被 tooltip 包裹的資料 -->
 					<div
 						style="
@@ -122,6 +118,10 @@ export const TooltipPlacement = {
 							- {{ item }} -
 						</p>
 					</div>
+					
+					<template #content>
+						{{ 'Tooltip on ' + item }}
+					</template>
 				</Tooltip>
 			</div>
         `,
