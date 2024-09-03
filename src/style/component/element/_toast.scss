@@ -1,0 +1,29 @@
+@use "sass:color";
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    z-index: 9999;
+}
+@each $theme in $themes {
+    .toast-#{$theme} {
+        // border-top-width: 1px;
+        background-color: getThemeColor($mode, $theme, "default");
+    }
+}
+
+
+.toast-enter-active,
+.toast-leave-active {
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast-enter-from,
+.toast-leave-to {
+    opacity: 0;
+    transform: translateY(-20px);
+}

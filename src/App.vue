@@ -21,6 +21,10 @@ import TooltipRelative from "@/ui/element/Tooltip/TooltipRelative.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
+import Toast from "@/ui/element/Toast/Toast.vue";
+import { useToast } from '@/ui/element/Toast/useToast';
+
+
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -137,6 +141,24 @@ const searchHint = ref({ error: '', description: '請輸入關鍵字搜尋' });
 // Password 所需資料
 const passwordInputData = ref("");
 const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混合大小寫英文字母、數字及特殊符號' });
+
+// Toast 所需資料
+const { add, toasts } = useToast();
+
+const showSuccess = () => {
+	add({
+		message: 'Success Message',
+		themeColor: 'success',
+		life: 3000
+	});
+};
+const showfuck = () => {
+	add({
+		message: 'fuck',
+		themeColor: 'error',
+		life: 3000
+	});
+};
 </script>
 
 <template>
@@ -350,7 +372,6 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 	    <!-- Search -->
 	    <div>
 		    <Search
-			    label="搜尋關鍵字"
 			    placeholder="請輸入關鍵字"
 			    size="medium"
 			    inputLabel="搜尋關鍵字"
@@ -358,7 +379,6 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 			    btnColor="primary"
 			    v-model="searchInputData"
 			    :hint="searchHint"
-			    :isDisable= true
 		    ></Search>
 		    {{searchInputData}}
 	    </div>
@@ -375,12 +395,28 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 	    </div>
 
 	    <!-- TooltipTeleport -->
-	    <Tooltip placement="left">
+	    <Tooltip placement="right">
 		    <Button variant="contained" size="large" prefix="face" >Hover Me</Button>
 		    <template #content>
 			    Hi, Hi~ Nice to meet you!
 		    </template>
 	    </Tooltip>
+	    <br>
+
+		<!-- Toast -->
+	    <button @click="showSuccess">Show Success Toast</button>
+	    <button @click="showfuck">Show Success Toast</button>
+	    <Toast
+		    v-for="(toast, index) in toasts"
+		    :key="index"
+		    :message="toast.message"
+		    :duration="toast.life"
+		    :themeColor="toast.themeColor"
+		    :show="true"
+	    />
+{{toasts}}
+<!--	    <Button label="Show" @click="show()" />-->
+<!--	    <ToastManager ref="toastManager" />-->
 
 
     </div>
