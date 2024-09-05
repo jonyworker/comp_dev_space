@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
 import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
@@ -143,26 +144,37 @@ const passwordInputData = ref("");
 const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混合大小寫英文字母、數字及特殊符號' });
 
 // Toast 所需資料
-const { add, toasts } = useToast();
+const { add, toasts, remove } = useToast();
 
 const showSuccess = () => {
 	add({
-		message: 'Success Message',
 		themeColor: 'success',
+		type: 'success',
+		title: 'Success Message',
+		message: 'Hello, world! This is a toast message.',
 		life: 3000
 	});
 };
-const showfuck = () => {
+const showError = () => {
 	add({
-		message: 'fuck',
 		themeColor: 'error',
+		type: 'error',
+		title: 'Error Message',
+		message: 'Hello, world! This is a toast message.',
 		life: 3000
 	});
 };
+
 </script>
 
 <template>
     <div class="container">
+
+	    <!-- Image -->
+		<div style="width: 250px; height: 250px;">
+			<Image ratio="11" objectFit="cover" src="../../../src/assets/fakeImg/avatar_01.jpg"></Image>
+		</div>
+
         <!-- Toggle -->
         <div>
             <Toggle
@@ -404,19 +416,22 @@ const showfuck = () => {
 	    <br>
 
 		<!-- Toast -->
-	    <button @click="showSuccess">Show Success Toast</button>
-	    <button @click="showfuck">Show Success Toast</button>
+	    <div style="display:flex; gap: 16px;">
+		    <Button themeColor="success" variant="outlined" @click="showSuccess">Show Success Toast</Button>
+		    <Button themeColor="error" variant="outlined" @click="showError">Show Success Toast</Button>
+	    </div>
+
 	    <Toast
-		    v-for="(toast, index) in toasts"
-		    :key="index"
-		    :message="toast.message"
-		    :duration="toast.life"
+		    v-for="toast in toasts"
+		    :key="toast.id"
 		    :themeColor="toast.themeColor"
-		    :show="true"
-	    />
-{{toasts}}
-<!--	    <Button label="Show" @click="show()" />-->
-<!--	    <ToastManager ref="toastManager" />-->
+		    :type="toast.type"
+		    :title="toast.title"
+		    :message="toast.message"
+		    @close="remove(toast.id)"
+	    ></Toast>
+
+		{{toasts}}
 
 
     </div>
