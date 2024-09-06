@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {markRaw, ref} from "vue";
 import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -24,6 +24,10 @@ import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
 import Toast from "@/ui/element/Toast/Toast.vue";
 import { useToast } from '@/ui/element/Toast/useToast';
+import { useDialog } from "@/ui/element/Dialog/useDialog.js";
+import Dialog from "@/ui/element/Dialog/Dialog.vue";
+import ModalConfirm from "@/ui/element/Dialog/ModalConfirm.vue";
+import ModalOverview from "@/ui/element/Dialog/ModalOverview.vue";
 
 
 
@@ -145,7 +149,6 @@ const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混�
 
 // Toast 所需資料
 const { add, toasts, remove } = useToast();
-
 const showSuccess = () => {
 	add({
 		themeColor: 'success',
@@ -164,6 +167,18 @@ const showError = () => {
 		life: 3000
 	});
 };
+
+// Dialog 所需資料
+const dialog = useDialog();
+const openConfirmDialog = () => {
+	dialog.component.value =  markRaw(ModalConfirm);
+	dialog.showDialog();
+}
+const openOverviewDialog = () => {
+	dialog.component.value =  markRaw(ModalOverview);
+	dialog.showDialog();
+}
+
 
 </script>
 
@@ -432,6 +447,20 @@ const showError = () => {
 	    ></Toast>
 
 		{{toasts}}
+
+	    <!-- Dialog -->
+<!--	    <Dialog></Dialog>-->
+<!--		<Teleport to="#dialog">-->
+<!--			<component-->
+<!--				:is="dialog.component.value"-->
+<!--				v-if="dialog.dialogShow.value"-->
+<!--				@close="dialog.hideDialog()"/>-->
+<!--		</Teleport>-->
+
+	    <Dialog></Dialog>
+
+	    <Button @click="openConfirmDialog">Open confirm modal</Button>
+	    <Button @click="openOverviewDialog">Open confirm modal</Button>
 
 
     </div>
