@@ -23,7 +23,7 @@ import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
 import Toast from "@/ui/element/Toast/Toast.vue";
-import { useToast } from '@/ui/element/Toast/useToast';
+import { useToast } from '@/composables/useToast.js';
 import { useDialog } from "@/ui/element/Dialog/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import ModalConfirm from "@/ui/element/Dialog/ModalConfirm.vue";

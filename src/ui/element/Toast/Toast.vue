@@ -21,11 +21,11 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
-	type:{
+	severity:{
 		type: String,
 		default: 'success',
 		validator: (value) =>
-			['success', 'warning', 'error','info',].includes(value),
+			['success', 'warning', 'error', 'info'].includes(value),
 	},
 	title: {
 		type: String,
@@ -84,14 +84,17 @@ onUnmounted(() => {
 			<!-- toast - 標題及說明文字 -->
 			<p class="message">
 			    <span class="icon-wrapper" :class="`toast-${props.themeColor}`">
-				    <template v-if="props.type ==='success'">
+				    <template v-if="props.severity ==='success'">
 					    <Icon  name="check" size="14"></Icon>
 				    </template>
-				    <template v-if="props.type ==='error'">
+				    <template v-if="props.severity ==='error'">
 					    <Icon name="close" size="14"></Icon>
 				    </template>
-				    <template v-if="props.type ==='warning'">
+				    <template v-if="props.severity ==='warning'">
 					    <Icon name="exclamation" size="14"></Icon>
+				    </template>
+				    <template v-if="props.severity ==='info'">
+					    <Icon name="info" size="16"></Icon>
 				    </template>
 			    </span>
 				<span>{{ props.title }}</span>
