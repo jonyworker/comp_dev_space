@@ -24,12 +24,12 @@ import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
 import Toast from "@/ui/element/Toast/Toast.vue";
 import { useToast } from '@/composables/useToast.js';
-import { useDialog } from "@/ui/element/Dialog/useDialog.js";
+import { useDialogSeparate } from "@/ui/element/Dialog/test/useDialogSeparate.js";
+import DialogSeparate from "@/ui/element/Dialog/test/DialogSeparate.vue";
+import ModalConfirm from "@/ui/element/Dialog/test/ModalConfirm.vue";
+import ModalOverview from "@/ui/element/Dialog/test/ModalOverview.vue";
+import { useDialog } from "@/composables/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
-import ModalConfirm from "@/ui/element/Dialog/ModalConfirm.vue";
-import ModalOverview from "@/ui/element/Dialog/ModalOverview.vue";
-
-
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -152,7 +152,7 @@ const { add, toasts, remove } = useToast();
 const showSuccess = () => {
 	add({
 		themeColor: 'success',
-		type: 'success',
+		severity: 'success',
 		title: 'Success Message',
 		message: 'Hello, world! This is a toast message.',
 		life: 3000
@@ -161,23 +161,30 @@ const showSuccess = () => {
 const showError = () => {
 	add({
 		themeColor: 'error',
-		type: 'error',
+		severity: 'error',
 		title: 'Error Message',
 		message: 'Hello, world! This is a toast message.',
 		life: 3000
 	});
 };
 
-// Dialog 所需資料
-const dialog = useDialog();
+// Dialog Separate 所需資料
+const dialogSeparate = useDialogSeparate();
 const openConfirmDialog = () => {
-	dialog.component.value =  markRaw(ModalConfirm);
-	dialog.showDialog();
+	dialogSeparate.component.value =  markRaw(ModalConfirm);
+	dialogSeparate.showDialogSeparate();
 }
 const openOverviewDialog = () => {
-	dialog.component.value =  markRaw(ModalOverview);
-	dialog.showDialog();
+	dialogSeparate.component.value =  markRaw(ModalOverview);
+	dialogSeparate.showDialogSeparate();
 }
+
+// Modal 所需資料
+const dialog = useDialog();
+const dialogData = ref({
+	title:'Replace File?',
+	message:'A file named \"example.png\" already exist! Do you what to replace it?',
+})
 
 
 </script>
@@ -440,27 +447,29 @@ const openOverviewDialog = () => {
 		    v-for="toast in toasts"
 		    :key="toast.id"
 		    :themeColor="toast.themeColor"
-		    :type="toast.type"
+		    :severity="toast.severity"
 		    :title="toast.title"
 		    :message="toast.message"
 		    @close="remove(toast.id)"
 	    ></Toast>
 
-		{{toasts}}
-
-	    <!-- Dialog -->
-<!--	    <Dialog></Dialog>-->
-<!--		<Teleport to="#dialog">-->
-<!--			<component-->
-<!--				:is="dialog.component.value"-->
-<!--				v-if="dialog.dialogShow.value"-->
-<!--				@close="dialog.hideDialog()"/>-->
-<!--		</Teleport>-->
-
-	    <Dialog></Dialog>
-
+	    <!-- Dialog Separate -->
+	    <DialogSeparate></DialogSeparate>
 	    <Button @click="openConfirmDialog">Open confirm modal</Button>
 	    <Button @click="openOverviewDialog">Open confirm modal</Button>
+
+	    <!-- Dialog（可帶自訂樣式） -->
+	    <Dialog
+	        :title="dialogData.title"
+	        :message="dialogData.message">
+		    <template #modal-footer>
+			    <Button variant="text" @click="handleAction1">Cancel</Button>
+			    <Button  @click="handleAction2">Replace</Button>
+		    </template>
+	    </Dialog>
+
+	    <Button @click="dialog.showDialog">open modal</Button>
+
 
 
     </div>
