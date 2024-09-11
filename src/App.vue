@@ -462,7 +462,7 @@ const dialogData = ref({
 	    <Dialog
 	        :title="dialogData.title"
 	        :message="dialogData.message">
-		    <template #modal-footer>
+		    <template #dialogFooter>
 			    <Button variant="text" @click="handleAction1">Cancel</Button>
 			    <Button  @click="handleAction2">Replace</Button>
 		    </template>
