@@ -30,6 +30,7 @@ import ModalConfirm from "@/ui/element/Dialog/test/ModalConfirm.vue";
 import ModalOverview from "@/ui/element/Dialog/test/ModalOverview.vue";
 import { useDialog } from "@/composables/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
+import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -186,6 +187,32 @@ const dialogData = ref({
 	message:'A file named \"example.png\" already exist! Do you what to replace it?',
 })
 
+// Breadcrumb 所需資料
+const breadcrumbData = ref([
+	{
+		"label": "首頁",
+		"href": "/"
+	},
+	{
+		"label": "第一層",
+		"href": "/1st"
+	},
+	{
+		"label": "第二層",
+		"href": "/2nd"
+	},
+	{
+		"label": "第三層",
+		"href": "/3rd"
+	},
+	{
+		"label": "第n層",
+		"href": "/nPages"
+	},
+	{
+		"label": "當前頁"
+	}
+])
 
 </script>
 
@@ -467,8 +494,13 @@ const dialogData = ref({
 			    <Button  @click="handleAction2">Replace</Button>
 		    </template>
 	    </Dialog>
-
+		<br>
 	    <Button @click="dialog.showDialog">open modal</Button>
+
+	    <!-- Breadcrumb -->
+	    <Breadcrumb
+		    :breadcrumbData="breadcrumbData"
+	    ></Breadcrumb>
 
 
 
