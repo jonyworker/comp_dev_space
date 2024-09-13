@@ -67,7 +67,7 @@ const handleClick = () => {
 				<template v-else>
 					<BreadcrumbItem
 						:label="item.label"
-						:herf="item.href"
+						:href="item.href"
 						:isCurrentPage="index === truncatedBreadcrumbs.length - 1">
 					</BreadcrumbItem>
 				</template>
