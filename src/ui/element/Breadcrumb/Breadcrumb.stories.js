@@ -3,97 +3,115 @@ import Breadcrumb from "./Breadcrumb.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Checkbox",
-	component: Checkbox,
-	tags: ["autodocs"],
-	argTypes: {
-		//以下參數不刪
-		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
-			],
-		},
-		customClass: {
-			description: "客製化樣式",
-			control: { type: "text" },
-		},
-		label: {
-			description: "Checkbox選項文字",
-			control: { type: "text" },
-		},
-		value: {
-			description: "Checkbox選項值",
-			control: { type: "Object" },
-		},
-		name: {
-			description: "Checkbox表單用name",
-			control: { type: "text" },
-		},
-		modelValue: {
-			description: "Checkbox的綁定值",
-			control: { type: "Object" },
-		},
-		direction: {
-			description: "Checkbox群組方向",
-			control: { type: "select" },
-			options: ["row", "column"],
-		},
-	},
-	parameters: {
-		// 自動文件
-		docs: {
-			title: "複選框",
-			description: {
-				component: "複選框組件的呈現及說明。",
-			},
-		},
-	},
+    title: "Design System/Breadcrumb",
+    component: Breadcrumb,
+    tags: ["autodocs"],
+    argTypes: {
+        breadcrumbData: {
+            description: "Breadcrumb資料接口",
+            control: { type: "text" },
+        },
+    },
+    parameters: {
+        // 自動文件
+        docs: {
+            title: "Breadcrumb",
+            description: {
+                component: "Breadcrumb組件的呈現及說明。",
+            },
+        },
+    },
 
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
+    // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+    // args: { onClick: fn() },
 };
 
 //==== Breadcrumb 基礎樣式 ====//
 export const BreadcrumbDefault = {
-	name: "單選樣式",
-	args: {
-		label: "我已閱讀並同意",
-		name: "agreeStatement",
-		value: false,
-		themeColor: "primary",
-	},
-	render: (args) => ({
-		components: { Breadcrumb },
-		setup() {
-			// Create a ref for modelValue to be used with v-model
-			const modelValue = ref(args.modelValue);
-			return {
-				args,
-				modelValue,
-			};
-		},
-		template: `
-            <Checkbox
-                :themeColor="args.themeColor"
-                :label="args.label"
-                :value="args.value"
-                :name="args.name"
-                v-model="modelValue"
-            ></Checkbox>
+    name: "Breadcrumb基礎樣式",
+    args: {
+        breadcrumbData: [
+            {
+                label: "首頁",
+                href: "/",
+            },
+            {
+                label: "第一層",
+                href: "/1st",
+            },
+            {
+                label: "當前頁",
+            },
+        ],
+    },
+    render: (args) => ({
+        components: { Breadcrumb },
+        setup() {
+            return {
+                args,
+            };
+        },
+        template: `
+            <Breadcrumb
+							:breadcrumbData="args.breadcrumbData"
+						></Breadcrumb>
         `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-		},
-	},
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['themeColor', 'label', 'value', 'name' ],
+        },
+    },
+};
+
+//==== Breadcrumb 基礎樣式 ====//
+export const BreadcrumbMany = {
+    name: "Breadcrumb多資料層表示",
+    args: {
+        breadcrumbData: [
+            {
+                label: "首頁",
+                href: "/",
+            },
+            {
+                label: "第一層",
+                href: "/1st",
+            },
+            {
+                label: "第二層",
+                href: "/2nd",
+            },
+            {
+                label: "第三層",
+                href: "/3rd",
+            },
+            {
+                label: "第n層",
+                href: "/nPages",
+            },
+            {
+                label: "當前頁",
+            },
+        ],
+    },
+    render: (args) => ({
+        components: { Breadcrumb },
+        setup() {
+            return {
+                args,
+            };
+        },
+        template: `
+            <Breadcrumb
+							:breadcrumbData="args.breadcrumbData"
+						></Breadcrumb>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['themeColor', 'label', 'value', 'name' ],
+        },
+    },
 };
