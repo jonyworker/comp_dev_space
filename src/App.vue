@@ -1,5 +1,5 @@
 <script setup>
-import {markRaw, ref} from "vue";
+import { markRaw, ref } from "vue";
 import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -10,11 +10,11 @@ import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
 import Divider from "@/ui/element/Divider/Divider.vue";
 import Textarea from "@/ui/element/Textarea/Textarea.vue";
 import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";
-import LineProgress from  "@/ui/element/Progress/LineProgress/LineProgress.vue";
-import Tabs from  "@/ui/module/Tabs/Tabs.vue";
-import Avatar from  "@/ui/element/Avatar/Avatar.vue";
-import AvatarGroup from  "@/ui/element/Avatar/AvatarGroup.vue";
-import Menu from  "@/ui/element/Menu/Menu.vue";
+import LineProgress from "@/ui/element/Progress/LineProgress/LineProgress.vue";
+import Tabs from "@/ui/module/Tabs/Tabs.vue";
+import Avatar from "@/ui/element/Avatar/Avatar.vue";
+import AvatarGroup from "@/ui/element/Avatar/AvatarGroup.vue";
+import Menu from "@/ui/element/Menu/Menu.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Slider from "@/ui/element/Slider/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
@@ -23,7 +23,7 @@ import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
 import Toast from "@/ui/element/Toast/Toast.vue";
-import { useToast } from '@/composables/useToast.js';
+import { useToast } from "@/composables/useToast.js";
 import { useDialogSeparate } from "@/ui/element/Dialog/test/useDialogSeparate.js";
 import DialogSeparate from "@/ui/element/Dialog/test/DialogSeparate.vue";
 import ModalConfirm from "@/ui/element/Dialog/test/ModalConfirm.vue";
@@ -31,6 +31,7 @@ import ModalOverview from "@/ui/element/Dialog/test/ModalOverview.vue";
 import { useDialog } from "@/composables/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
+import Table from "@/ui/element/Table/Table.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -72,157 +73,207 @@ const radioList = [
 const isRadioPicked = ref("");
 
 // textarea 所需資料
-const textareaHint = ref({ error: '', description: '' });
-const textareaModelValue =ref("");
+const textareaHint = ref({ error: "", description: "" });
+const textareaModelValue = ref("");
 
 // Tabs 所需資料
 const TabsData = ref([
-  {
-    "title": "頁籤 1",
-    "content": "內容一"
-  },
-  {
-    "title": "頁籤 2",
-    "content": "內容二"
-  },
-  {
-    "title": "頁籤 3",
-    "content": "內容三"
-  }
+    {
+        title: "頁籤 1",
+        content: "內容一",
+    },
+    {
+        title: "頁籤 2",
+        content: "內容二",
+    },
+    {
+        title: "頁籤 3",
+        content: "內容三",
+    },
 ]);
 
 // Avatar Group 所需資料
 const avatarsData = ref([
-	{
-	"userName": "eason",
-	},
-	{
-	"userName": "KevinYang",
-	},
-	{
-	"userName": "AmosLee",
-	"imageSrc": "https://picsum.photos/320/240"
-	},
-	{
-	"userName": "JohnWu",
-	"imageSrc": "https://picsum.photos/320/340"
-	}
-])
+    {
+        userName: "eason",
+    },
+    {
+        userName: "KevinYang",
+    },
+    {
+        userName: "AmosLee",
+        imageSrc: "https://picsum.photos/320/240",
+    },
+    {
+        userName: "JohnWu",
+        imageSrc: "https://picsum.photos/320/340",
+    },
+]);
 
 // Menu 所需資料
 const menuData = ref([
-	{
-	"userName": "eason",
-	},
-	{
-	"userName": "KevinYang",
-	},
-	{
-	"userName": "AmosLee",
-	"imageSrc": "https://picsum.photos/320/240"
-	},
-	{
-	"userName": "JohnWu",
-	"imageSrc": "https://picsum.photos/320/340"
-	}
-])
+    {
+        userName: "eason",
+    },
+    {
+        userName: "KevinYang",
+    },
+    {
+        userName: "AmosLee",
+        imageSrc: "https://picsum.photos/320/240",
+    },
+    {
+        userName: "JohnWu",
+        imageSrc: "https://picsum.photos/320/340",
+    },
+]);
 
 // Slider-Single 所需資料
 const currentSliderValue = ref(250);
-const currentSliderMinValue  = ref(114);
-const currentSliderMaxValue  = ref(514);
+const currentSliderMinValue = ref(114);
+const currentSliderMaxValue = ref(514);
 
 // Tooltip 所需資料
 const tooltipPosValue = ref([
-	'top-left', 'top', 'top-right',
-	'right-top', 'right', 'right-bottom',
-	'bottom-right', 'bottom', 'bottom-left',
-	'left-bottom', 'left', 'left-top',
+    "top-left",
+    "top",
+    "top-right",
+    "right-top",
+    "right",
+    "right-bottom",
+    "bottom-right",
+    "bottom",
+    "bottom-left",
+    "left-bottom",
+    "left",
+    "left-top",
 ]);
 
 // Search 所需資料
 const searchInputData = ref("");
-const searchHint = ref({ error: '', description: '請輸入關鍵字搜尋' });
+const searchHint = ref({ error: "", description: "請輸入關鍵字搜尋" });
 
 // Password 所需資料
 const passwordInputData = ref("");
-const passwordHint = ref({ error: '', description: '請設定長度 8 碼，混合大小寫英文字母、數字及特殊符號' });
+const passwordHint = ref({
+    error: "",
+    description: "請設定長度 8 碼，混合大小寫英文字母、數字及特殊符號",
+});
 
 // Toast 所需資料
 const { add, toasts, remove } = useToast();
 const showSuccess = () => {
-	add({
-		themeColor: 'success',
-		severity: 'success',
-		title: 'Success Message',
-		message: 'Hello, world! This is a toast message.',
-		life: 3000
-	});
+    add({
+        themeColor: "success",
+        severity: "success",
+        title: "Success Message",
+        message: "Hello, world! This is a toast message.",
+        life: 3000,
+    });
 };
 const showError = () => {
-	add({
-		themeColor: 'error',
-		severity: 'error',
-		title: 'Error Message',
-		message: 'Hello, world! This is a toast message.',
-		life: 3000
-	});
+    add({
+        themeColor: "error",
+        severity: "error",
+        title: "Error Message",
+        message: "Hello, world! This is a toast message.",
+        life: 3000,
+    });
 };
 
 // Dialog Separate 所需資料
 const dialogSeparate = useDialogSeparate();
 const openConfirmDialog = () => {
-	dialogSeparate.component.value =  markRaw(ModalConfirm);
-	dialogSeparate.showDialogSeparate();
-}
+    dialogSeparate.component.value = markRaw(ModalConfirm);
+    dialogSeparate.showDialogSeparate();
+};
 const openOverviewDialog = () => {
-	dialogSeparate.component.value =  markRaw(ModalOverview);
-	dialogSeparate.showDialogSeparate();
-}
+    dialogSeparate.component.value = markRaw(ModalOverview);
+    dialogSeparate.showDialogSeparate();
+};
 
 // Modal 所需資料
 const dialog = useDialog();
 const dialogData = ref({
-	title:'Replace File?',
-	message:'A file named \"example.png\" already exist! Do you what to replace it?',
-})
+    title: "Replace File?",
+    message:
+        'A file named "example.png" already exist! Do you what to replace it?',
+});
 
 // Breadcrumb 所需資料
 const breadcrumbData = ref([
-	{
-		"label": "首頁",
-		"href": "/"
-	},
-	{
-		"label": "第一層",
-		"href": "/1st"
-	},
-	{
-		"label": "第二層",
-		"href": "/2nd"
-	},
-	{
-		"label": "第三層",
-		"href": "/3rd"
-	},
-	{
-		"label": "第n層",
-		"href": "/nPages"
-	},
-	{
-		"label": "當前頁"
-	}
-])
+    {
+        label: "首頁",
+        href: "/",
+    },
+    {
+        label: "第一層",
+        href: "/1st",
+    },
+    {
+        label: "第二層",
+        href: "/2nd",
+    },
+    {
+        label: "第三層",
+        href: "/3rd",
+    },
+    {
+        label: "第n層",
+        href: "/nPages",
+    },
+    {
+        label: "當前頁",
+    },
+]);
 
+// Table 所需資料
+const columnHeadData = ref([
+    { key: "employeeId", label: "員工編號", sort: true },
+    { key: "lastName", label: "姓", sort: false },
+    { key: "firstName", label: "名", sort: true },
+    { key: "email", label: "E-Mail", sort: true },
+    { key: "gender", label: "性別", sort: true },
+    { key: "position", label: "職位", sort: true },
+]);
+const columnCellData = ref([
+    {
+        employeeId: "CN-0021",
+        firstName: "Amos",
+        lastName: "Takatani",
+        email: "amos@example.com",
+        gender: "man",
+        position: "Manager",
+    },
+    {
+        employeeId: "CN-0090",
+        firstName: "Kevin",
+        lastName: "Yen",
+        email: "kevin@example.com",
+        gender: "man",
+        position: "IT Support",
+    },
+    {
+        employeeId: "CN-0100",
+        firstName: "Jenny",
+        lastName: "Wilson",
+        email: "jenny@example.com",
+        gender: "woman",
+        position: "UI/UX",
+    },
+]);
 </script>
 
 <template>
     <div class="container">
-
-	    <!-- Image -->
-		<div style="width: 250px; height: 250px;">
-			<Image ratio="11" objectFit="cover" src="../../../src/assets/fakeImg/avatar_01.jpg"></Image>
-		</div>
+        <!-- Image -->
+        <div style="width: 250px; height: 250px">
+            <Image
+                ratio="11"
+                objectFit="cover"
+                src="../../../src/assets/fakeImg/avatar_01.jpg"
+            ></Image>
+        </div>
 
         <!-- Toggle -->
         <div>
@@ -287,7 +338,7 @@ const breadcrumbData = ref([
 
         <!-- Textarea -->
         <div>
-            <p>textarea model value: {{textareaModelValue}}</p>
+            <p>textarea model value: {{ textareaModelValue }}</p>
             <Textarea
                 label="訂單備註"
                 placeholder="請輸入此筆訂單備註"
@@ -330,7 +381,7 @@ const breadcrumbData = ref([
         <!-- Menu -->
         <div>
             <Menu :menuData="menuData">
-                <li class="menu-item" v-for="(menu) in menuData">
+                <li class="menu-item" v-for="menu in menuData">
                     <Avatar
                         size="xsmall"
                         shape="circle"
@@ -338,12 +389,11 @@ const breadcrumbData = ref([
                         :username="menu.userName"
                         imageAlt="alt text"
                     ></Avatar>
-                    <div style="margin-right: auto;">{{menu.userName}}</div>
-                    <Icon name="arrow_down" size="24" ></Icon>
+                    <div style="margin-right: auto">{{ menu.userName }}</div>
+                    <Icon name="arrow_down" size="24"></Icon>
                 </li>
             </Menu>
-            <Menu :menuData="menuData">
-            </Menu>
+            <Menu :menuData="menuData"> </Menu>
         </div>
 
         <!-- Avatar -->
@@ -357,153 +407,184 @@ const breadcrumbData = ref([
                 status="offline"
             ></Avatar>
             <AvatarGroup
-	            :avatarsData="avatarsData"
-	            size="large"
-	            shape="circle"
-	            :limit="3"
+                :avatarsData="avatarsData"
+                size="large"
+                shape="circle"
+                :limit="3"
             ></AvatarGroup>
         </div>
 
-	    <!-- Slider -->
-	    <div>
-		    <h2>Single Slider</h2>
-			<Slider
-				:sliderMinVal=0
-				:sliderMaxVal=5000
-				themeColor="error"
-				thumbSize="20"
-				v-model="currentSliderValue"
-			></Slider>
-		    <Input type="number" v-model="currentSliderValue"/>
-		    <h2>Double Slider</h2>
-		    <Slider
-			    :sliderMinVal=0
-			    :sliderMaxVal=5000
-			    themeColor="info"
-			    thumbSize="20"
-			    v-model:currentSliderMinValue="currentSliderMinValue"
-			    v-model:currentSliderMaxValue="currentSliderMaxValue"
-			    range
-		    ></Slider>
-		    <div style="display:flex; gap: 16px;">
-			    <Input label="起始數值" type="number" v-model="currentSliderMinValue" style="flex-grow: 1"/>
-			    <Input label="結束數值" type="number" v-model="currentSliderMaxValue" style="flex-grow: 1"/>
-		    </div>
-	    </div>
+        <!-- Slider -->
+        <div>
+            <h2>Single Slider</h2>
+            <Slider
+                :sliderMinVal="0"
+                :sliderMaxVal="5000"
+                themeColor="error"
+                thumbSize="20"
+                v-model="currentSliderValue"
+            ></Slider>
+            <Input type="number" v-model="currentSliderValue" />
+            <h2>Double Slider</h2>
+            <Slider
+                :sliderMinVal="0"
+                :sliderMaxVal="5000"
+                themeColor="info"
+                thumbSize="20"
+                v-model:currentSliderMinValue="currentSliderMinValue"
+                v-model:currentSliderMaxValue="currentSliderMaxValue"
+                range
+            ></Slider>
+            <div style="display: flex; gap: 16px">
+                <Input
+                    label="起始數值"
+                    type="number"
+                    v-model="currentSliderMinValue"
+                    style="flex-grow: 1"
+                />
+                <Input
+                    label="結束數值"
+                    type="number"
+                    v-model="currentSliderMaxValue"
+                    style="flex-grow: 1"
+                />
+            </div>
+        </div>
 
-	    <!-- Tooltip -->
-	    <div style="
-		    width: 500px;
-		    display: flex;
-		    align-items: center;
-		    flex-wrap: wrap;
-		    gap: 40px;
-			margin: 56px" >
-		    <TooltipRelative
-			    v-for="(item) in tooltipPosValue"
-			    :content="`Tooltip on ${item}`"
-			    :placement="item"
-			    :showArrow=true>
-			    <!-- 被 tooltip 包裹的資料 -->
-			    <div
-				    style="
-				    width: 100px;
-				    height: 100px;
-				    display: flex;
-				    flex-direction: column;
-				    align-items: center;
-				    justify-content: center;
-				    border-radius: 12px;
-				    border: 2px solid #533bd4;
-				    color: #533bd4;
-				    padding: 8px;"
-			    >
-				    Hover<br>
-				    <p style="font-size: 12px;">
-					   - {{item}} -
-				    </p>
-			    </div>
-		    </TooltipRelative>
-		</div>
-		<TooltipRelative content="Hi, Hi~ Nice to meet you!"
-		         placement="top-left">
-			<Button variant="contained" size="medium" prefix="face">Hover Me</Button>
-		</TooltipRelative>
+        <!-- Tooltip -->
+        <div
+            style="
+                width: 500px;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 40px;
+                margin: 56px;
+            "
+        >
+            <TooltipRelative
+                v-for="item in tooltipPosValue"
+                :content="`Tooltip on ${item}`"
+                :placement="item"
+                :showArrow="true"
+            >
+                <!-- 被 tooltip 包裹的資料 -->
+                <div
+                    style="
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 12px;
+                        border: 2px solid #533bd4;
+                        color: #533bd4;
+                        padding: 8px;
+                    "
+                >
+                    Hover<br />
+                    <p style="font-size: 12px">- {{ item }} -</p>
+                </div>
+            </TooltipRelative>
+        </div>
+        <TooltipRelative
+            content="Hi, Hi~ Nice to meet you!"
+            placement="top-left"
+        >
+            <Button variant="contained" size="medium" prefix="face"
+                >Hover Me</Button
+            >
+        </TooltipRelative>
 
-	    <!-- Search -->
-	    <div>
-		    <Search
-			    placeholder="請輸入關鍵字"
-			    size="medium"
-			    inputLabel="搜尋關鍵字"
-			    btnVariant="contained"
-			    btnColor="primary"
-			    v-model="searchInputData"
-			    :hint="searchHint"
-		    ></Search>
-		    {{searchInputData}}
-	    </div>
+        <!-- Search -->
+        <div>
+            <Search
+                placeholder="請輸入關鍵字"
+                size="medium"
+                inputLabel="搜尋關鍵字"
+                btnVariant="contained"
+                btnColor="primary"
+                v-model="searchInputData"
+                :hint="searchHint"
+            ></Search>
+            {{ searchInputData }}
+        </div>
 
-	    <!-- Password -->
-	    <div>
-		    <Password
-			    label="登入密碼"
-			    placeholder="請輸入密碼"
-			    size="medium"
-			    v-model="passwordInputData"
-			    :hint="passwordHint"
-		    ></Password>
-	    </div>
+        <!-- Password -->
+        <div>
+            <Password
+                label="登入密碼"
+                placeholder="請輸入密碼"
+                size="medium"
+                v-model="passwordInputData"
+                :hint="passwordHint"
+            ></Password>
+        </div>
 
-	    <!-- TooltipTeleport -->
-	    <Tooltip placement="right">
-		    <Button variant="contained" size="large" prefix="face" >Hover Me</Button>
-		    <template #content>
-			    Hi, Hi~ Nice to meet you!
-		    </template>
-	    </Tooltip>
-	    <br>
+        <!-- TooltipTeleport -->
+        <Tooltip placement="right">
+            <Button variant="contained" size="large" prefix="face"
+                >Hover Me</Button
+            >
+            <template #content> Hi, Hi~ Nice to meet you! </template>
+        </Tooltip>
+        <br />
 
-		<!-- Toast -->
-	    <div style="display:flex; gap: 16px;">
-		    <Button themeColor="success" variant="outlined" @click="showSuccess">Show Success Toast</Button>
-		    <Button themeColor="error" variant="outlined" @click="showError">Show Success Toast</Button>
-	    </div>
+        <!-- Toast -->
+        <div style="display: flex; gap: 16px">
+            <Button themeColor="success" variant="outlined" @click="showSuccess"
+                >Show Success Toast</Button
+            >
+            <Button themeColor="error" variant="outlined" @click="showError"
+                >Show Success Toast</Button
+            >
+        </div>
 
-	    <Toast
-		    v-for="toast in toasts"
-		    :key="toast.id"
-		    :themeColor="toast.themeColor"
-		    :severity="toast.severity"
-		    :title="toast.title"
-		    :message="toast.message"
-		    @close="remove(toast.id)"
-	    ></Toast>
+        <Toast
+            v-for="toast in toasts"
+            :key="toast.id"
+            :themeColor="toast.themeColor"
+            :severity="toast.severity"
+            :title="toast.title"
+            :message="toast.message"
+            @close="remove(toast.id)"
+        ></Toast>
 
-	    <!-- Dialog Separate -->
-	    <DialogSeparate></DialogSeparate>
-	    <Button @click="openConfirmDialog">Open confirm modal</Button>
-	    <Button @click="openOverviewDialog">Open confirm modal</Button>
+        <!-- Dialog Separate -->
+        <DialogSeparate></DialogSeparate>
+        <Button @click="openConfirmDialog">Open confirm modal</Button>
+        <Button @click="openOverviewDialog">Open confirm modal</Button>
 
-	    <!-- Dialog（可帶自訂樣式） -->
-	    <Dialog
-	        :title="dialogData.title"
-	        :message="dialogData.message">
-		    <template #dialogFooter>
-			    <Button variant="text" @click="handleAction1">Cancel</Button>
-			    <Button  @click="handleAction2">Replace</Button>
-		    </template>
-	    </Dialog>
-		<br>
-	    <Button @click="dialog.showDialog">open modal</Button>
+        <!-- Dialog（可帶自訂樣式） -->
+        <Dialog :title="dialogData.title" :message="dialogData.message">
+            <template #dialogFooter>
+                <Button variant="text" @click="handleAction1">Cancel</Button>
+                <Button @click="handleAction2">Replace</Button>
+            </template>
+        </Dialog>
+        <br />
+        <Button @click="dialog.showDialog">open modal</Button>
 
-	    <!-- Breadcrumb -->
-	    <Breadcrumb
-		    :breadcrumbData="breadcrumbData"
-	    ></Breadcrumb>
+        <!-- Breadcrumb -->
+        <Breadcrumb :breadcrumbData="breadcrumbData"></Breadcrumb>
 
-
-
+        <!-- Table -->
+        <Table
+            :columnHeadData="columnHeadData"
+            :columnCellData="columnCellData"
+            :rowSelector="true"
+        >
+            <!-- 自訂義 table cell方法 -->
+            <template #firstName="{ item }">
+                <span>
+                    {{ item }}
+                    <button>典籍</button>
+                </span>
+            </template>
+            <!-- 自訂義 table head 方法 -->
+            <template #columnHead-employeeId="{ item }">fuck </template>
+        </Table>
     </div>
 </template>
 
@@ -512,5 +593,3 @@ const breadcrumbData = ref([
     padding: 150px;
 }
 </style>
-
-
