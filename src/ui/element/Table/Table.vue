@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed, useSlots } from "vue";
-
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 定義 emits
@@ -11,19 +10,15 @@ const props = defineProps({
     // 資料接口
     columnHeadData: {
         type: Array,
-        required: true,
         default: () => [],
     },
     columnCellData: {
         type: Array,
-        required: true,
         default: () => [],
     },
 
     header: {
-        //TABLE HEAD
         type: Object,
-        required: false,
         default: () => null,
     },
     frozenTHead: {
@@ -42,6 +37,7 @@ const props = defineProps({
     zebra: {
         //斑馬條紋顯示
         type: Boolean,
+	    default: true,
     },
 
     // 動作接口
@@ -71,17 +67,16 @@ function selectAll(e) {
 }
 
 // 爲每個 columnHead 初始默認排序狀態
-const sortStates = ref(
-    props.columnHeadData.reduce((acc, col) => {
-        acc[col.key] = "default";
-        return acc;
-    }, {})
-);
+const sortStates = computed(() => {
+	return props.columnHeadData.reduce((acc, col) => {
+		acc[col.key] = "default";
+		return acc;
+	}, {});
+});
 
 // 功能 - 排序
 function sort(columnKey) {
     const currentSortState = sortStates.value[columnKey];
-
     // 重設非當前 key 的值
     for (const key in sortStates.value) {
         if (key !== columnKey) {
@@ -112,6 +107,16 @@ function sort(columnKey) {
     }
 }
 
+// 功能 - 取得當前排序狀態
+const getSortIconName = (columnKey) => {
+	const sortState = sortStates.value[columnKey];
+	return sortState === "asc"
+		? "PrimeSortAlphaUp"
+		: sortState === "desc"
+			? "PrimeSortAlphaAltDown"
+			: "PrimeSortAlt";
+};
+
 // 取得所有設定的 slot
 const slots = useSlots();
 // 功能 - 檢查父層有沒有設定具名 slot
@@ -126,7 +131,7 @@ function hasNamedSlot(slotName) {
         <h2>{{ header.title }}</h2>
         <p>{{ header.description }}</p>
     </div>
-    <div class="table-container" style="height: 150px; overflow-y: auto">
+    <div class="table-container">
         <div style="min-width: 100%">
             <table style="border-collapse: collapse" class="table">
                 <!-- Table - 控制 column 寬度(對應) -->
@@ -174,13 +179,13 @@ function hasNamedSlot(slotName) {
                             :class="{ sticky_byHead: props.frozenTHead }"
                         >
                             <div
-                                v-if="
+	                            v-if="
                                     !hasNamedSlot(
                                         `columnHead-${columnHeadItem.key}`
                                     )
                                 "
-                                :item="columnHeadItem"
-                                style="
+	                            :item="columnHeadItem"
+	                            style="
                                     display: flex;
                                     align-items: center;
                                     gap: 8px;
@@ -191,7 +196,7 @@ function hasNamedSlot(slotName) {
                                 <!-- 排序控制按鈕 -->
                                 <button
                                     v-if="columnHeadItem.sort"
-                                    @click="
+                                    @click.prevent="
                                         sort(`columnHead-${columnHeadItem.key}`)
                                     "
                                     style="
@@ -207,14 +212,7 @@ function hasNamedSlot(slotName) {
                                         size="20"
                                         color="gray"
                                         :name="
-                                            sortStates[columnHeadItem.key] ===
-                                            'asc'
-                                                ? 'PrimeSortAlphaUp'
-                                                : sortStates[
-                                                        columnHeadItem.key
-                                                    ] === 'desc'
-                                                  ? 'PrimeSortAlphaAltDown'
-                                                  : 'PrimeSortAlt'
+                                            getSortIconName(`columnHead-${columnHeadItem.key}`)
                                         "
                                     ></Icon>
                                 </button>
@@ -228,18 +226,12 @@ function hasNamedSlot(slotName) {
                     </tr>
                 </thead>
 
-                <!-- <THead
-                    :rowSelector="props.rowSelector"
-                    :columnHeadData="props.columnHeadData"
-                    @sortColumn="sort(columnKey)"
-                    :sortStates="sortStates"
-                >
-                </THead> -->
 
                 <!-- Table - 單元格 -->
                 <tbody>
                     <tr
-                        v-for="(
+                        :class="{'table__row': props.zebra}"
+	                    v-for="(
                             columnCellItem, columnCellIdx
                         ) in copyColumnCellData"
                         :key="columnCellIdx"
@@ -248,11 +240,6 @@ function hasNamedSlot(slotName) {
                         <td
                             v-if="rowSelector"
                             class="table__cell text--left"
-                            :style="
-                                props.zebra == true && columnCellIdx % 2 === 0
-                                    ? 'background-color: #f2f2f2;'
-                                    : 'background-color: #fff'
-                            "
                         >
                             <div
                                 style="
@@ -279,13 +266,9 @@ function hasNamedSlot(slotName) {
                             :key="columnHeadIdx"
                             @click="rowSelected(columnCellItem)"
                             class="table__cell text--left text--ellipsis"
-                            style="min-width: none; max-width: 200px"
-                            :style="
-                                props.zebra == true && dataIdx % 2 === 0
-                                    ? 'background-color: #f2f2f2;'
-                                    : 'background-color: #fff'
-                            "
+                            style="min-width: 0; max-width: 200px"
                         >
+
                             <span
                                 v-if="!hasNamedSlot(columnHeadItem.key)"
                                 :item="columnCellItem"
@@ -300,6 +283,8 @@ function hasNamedSlot(slotName) {
                         </td>
                     </tr>
                 </tbody>
+
+
             </table>
         </div>
     </div>
