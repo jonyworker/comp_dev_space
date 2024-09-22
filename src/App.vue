@@ -32,6 +32,7 @@ import { useDialog } from "@/composables/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
 import Table from "@/ui/element/Table/Table.vue";
+import Tag from "@/ui/element/Tag/Tag.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -573,18 +574,21 @@ const columnCellData = ref([
         <Table
             :columnHeadData="columnHeadData"
             :columnCellData="columnCellData"
-            :rowSelector="true"
+            :rowSelector="false"
         >
             <!-- 自訂義 table cell方法 -->
-            <template #firstName="{ item }">
+            <!-- <template #firstName="{ item }">
                 <span>
                     {{ item }}
-                    <button>典籍</button>
+                    <button>點擊</button>
                 </span>
-            </template>
+            </template> -->
             <!-- 自訂義 table head 方法 -->
-            <template #columnHead-employeeId="{ item }">fuck </template>
+            <!-- <template #columnHead-employeeId="{ item }">hahahahahha </template> -->
         </Table>
+
+        <!-- Tag -->
+        <Tag label="tag label" removable></Tag>
     </div>
 </template>
 

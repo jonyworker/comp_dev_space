@@ -1,0 +1,22 @@
+.tag__container {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $color-gray90;
+    border-radius: 999px;
+    background-color: #ff0;
+    padding: 4px 8px;
+    gap: 4px;
+
+    &:hover {
+        background-color: #fff;
+    }
+}
+.tag__label {
+    font-size: 13px;
+}
+
+.tag-disable {
+    pointer-events: none !important;
+    color: $color-gray20 !important;
+    border-color: $color-gray20 !important;
+}
