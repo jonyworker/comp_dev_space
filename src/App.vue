@@ -1,5 +1,5 @@
 <script setup>
-import { markRaw, ref } from "vue";
+import {markRaw, reactive, ref} from "vue";
 import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -33,6 +33,7 @@ import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
 import Table from "@/ui/element/Table/Table.vue";
 import Tag from "@/ui/element/Tag/Tag.vue";
+import Chart from "@/ui/element/Chart/Chart.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -263,6 +264,37 @@ const columnCellData = ref([
         position: "UI/UX",
     },
 ]);
+
+// chart 所需資料
+const chartData = reactive({
+	// 橫軸上的分類
+	labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+	datasets: [
+		{
+			// label 為資料分類的名稱
+			label: "commit1",
+			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
+			data: [10, 20, 30, 50, 40, 30, 10],
+		},
+		{
+			// label 為資料分類的名稱
+			label: "commit2",
+			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
+			data: [140, 202, 230, 504, 420, 310, 140],
+		},
+		{
+			// label 為資料分類的名稱
+			label: "commit3",
+			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
+			data: [10, 252, 99, 59, 406, 350, 99],
+		},
+
+	],
+});
+
+const updateData = () => {
+	chartData.datasets[0].data = chartData.datasets[0].data.map((d) => d + 50);
+};
 </script>
 
 <template>
@@ -589,6 +621,10 @@ const columnCellData = ref([
 
         <!-- Tag -->
         <Tag label="tag label" removable></Tag>
+
+		<!--Chart-->
+	    <Chart :chartdata="chartData"></Chart>
+	    <button @click="updateData">更新 Chart</button>
     </div>
 </template>
 
