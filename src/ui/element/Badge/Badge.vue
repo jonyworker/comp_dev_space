@@ -1,9 +1,10 @@
 <script setup>
+import {computed} from "vue"
 // 定義 Props
 const props = defineProps({
 	themeColor: {
 		type: String,
-		default: 'primary',
+		default: 'error',
 		validator: (value) =>
 			[
 				'primary',
@@ -15,16 +16,11 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
-	max: {
-		type: Number,
-
-	},
-	content: {
+	badgeLabel: {
 		type: [String, Number, null],
 	},
-	placement: {
-		type: String,
-		// default: 'top-right',
+	maxValue: {
+		type: Number,
 	},
 	isDot: {
 		type: Boolean,
@@ -34,126 +30,45 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	layout:{
+	position:{
 		type: String,
-		default: 'inline',
+		default: 'default',
 		validator: (value) =>
-			['inline', 'block',].includes(value),
-
+			["default", "top-right"].includes(value),
 	}
+})
+
+// 計算是否大於對大設定值
+const computedLabel = computed(() => {
+	const isNumBadgeLabel = typeof(+props.badgeLabel) === 'number' || !isNaN(+props.badgeLabel);
+	console.log(isNumBadgeLabel)
+	if (isNumBadgeLabel) {
+		const badgeValue = props.badgeLabel;
+		return (badgeValue > props.maxValue) ? `${props.maxValue}+` : props.badgeLabel
+	}
+	return props.badgeLabel
 })
 </script>
 
 <template>
 	<span class="badge__container">
-		<slot/>
+		<!-- Badge - slot -->
+		<slot></slot>
 
-		<!-- Badge - 不含數值樣式 -->
-
-<!--			<span-->
-<!--				class="badge__content "-->
-<!--				:class="`${props.placement}`">-->
-<!--				{{content}}-->
-<!--	        </span>-->
-<!--		-->
-
-		<!-- Badge - inline -->
-
-		    <span
-			    class="badge__content"
-			    :class="{
-			        'badge__content-isDot': props.isDot,
-			        [`badge__content-${props.layout}`]: props.layout,
-			        'badge__content-isIcon': props.isIcon
-			    }">
-
-                {{ !props.isDot ? content : '' }}
-		    </span>
-
-
+		<!-- Badge - 實體 -->
+	    <span
+		    class="badge__content"
+		    :class="{
+				[`badge-color-${props.themeColor}`]: props.themeColor,
+		        'badge__content-isDot': props.isDot,
+		        [`badge__position-${props.position}`]: props.position,
+		        'badge__content-isIcon': props.isIcon
+		    }">
+            {{ !props.isDot ? computedLabel : '' }}
+	    </span>
     </span>
-</template>v
+</template>
 
 <style scoped lang="scss">
-
-.badge__container {
-	position: relative;
-	display: inline-flex;
-	//vertical-align: center;
-}
-// 基礎設定
-.badge__content{
-	background-color: #FF4C51;
-	border-radius: 999px;
-	color: #fff;
-	text-align: center;
-	white-space: nowrap;
-	z-index: 5;
-
-}
-// layout 行內 - 顯示文字
-.badge__content.badge__content-inline {
-	display: inline-block;
-	height: fit-content;
-	margin-left: 4px;
-	padding: 0 6px;
-
-}
-// layout 行內 - 顯示點點
-.badge__content.badge__content-inline.badge__content-isDot {
-	display: inline-block;
-	width: 8px;
-	height: 8px;
-	margin-left: 4px;
-	padding: 0;
-}
-
-// layout 區塊 - 顯示文字
-.badge__content.badge__content-block {
-	position: absolute;
-	font-size: 12px;
-	line-height: 1;
-	padding: 2px 6px;
-	bottom: calc(100% - 20.65%);
-	left: calc(100% - 8.65%);
-}
-
-// layout 區塊 - 顯示文字 (isIcon)
-.badge__content.badge__content-block.badge__content-isIcon {
-	bottom: calc(100% - 38%);
-	left: calc(100% - 15%);
-}
-
-// layout 區塊 - 顯示文字 (isIcon)
-.badge__content.badge__content-block.badge__content-isIcon.badge__content-isDot {
-	width: 8px;
-	height: 8px;
-	margin-left: 4px;
-	padding: 0;
-	bottom: calc(100% - 35%);
-	left: calc(100% - 30%);
-}
-
-
-
-
-
-
-
-
-//
-//.badge__content.badge__content-block.badge__content-isIcon {
-//	position: absolute;
-//	width: 8px;
-//	height: 8px;
-//	padding: 0;
-//	bottom: calc(100% - 38%);
-//	left: calc(100% - 15%);
-//}
-
-
-
-
-
 
 </style>

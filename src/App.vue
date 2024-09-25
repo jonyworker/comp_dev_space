@@ -633,29 +633,27 @@ const updateData = () => {
 <!--	    </Badge>-->
 
 	    <br/>
-	    <Badge content="999" placement="top-right" isDot>
-		   <Button size="medium" prefix="home" >click</Button>
-	    </Badge>
-
 
 	    <!--Badge-->
 
 	    <!--Badge - 行內 -->
-	    <h1>Example Title<Badge content="N99"></Badge>sdfsdf</h1>
-	    <p>Label<Badge isDot></Badge>sdfsd</p>
 
+	    <Badge badgeLabel="99"><h1>Example Title</h1></Badge>
+	    <br/>
+	    <Badge isDot><p>Jon Hopkins – Immunity</p></Badge>
+	    <br/>
 	    <!--Badge - 區塊 -->
-	    <Badge content="9" layout="block">
-		    <Button size="medium" prefix="home" >click</Button>
+	    <Badge badgeLabel="9" :maxValue="999" position="top-right">
+		    <Button size="medium" prefix="home">click</Button>
 	    </Badge>
 
 	    <br/>
 
-	    <Badge content="9" layout="block" isIcon>
+	    <Badge badgeLabel="100" :maxValue="99" position="top-right" isIcon>
 		    <Icon name="notification" size="26"></Icon>
 	    </Badge>
 		<br>
-	    <Badge content="9" layout="block" isIcon isDot>
+	    <Badge badgeLabel="9" position="top-right" isIcon isDot>
 		    <Icon name="notification" size="26"></Icon>
 	    </Badge>
 
