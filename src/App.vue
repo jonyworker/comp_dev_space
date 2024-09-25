@@ -34,6 +34,7 @@ import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
 import Table from "@/ui/element/Table/Table.vue";
 import Tag from "@/ui/element/Tag/Tag.vue";
 import Chart from "@/ui/element/Chart/Chart.vue";
+import Badge from "@/ui/element/Badge/Badge.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -625,6 +626,41 @@ const updateData = () => {
 		<!--Chart-->
 	    <Chart :chartdata="chartData"></Chart>
 	    <button @click="updateData">更新 Chart</button>
+		<br/>
+		<!--Badge-->
+<!--	    <Badge content="999" placement="top-right" isDot withIcon>-->
+<!--		    <Icon name="notification" size="28"></Icon>-->
+<!--	    </Badge>-->
+
+	    <br/>
+	    <Badge content="999" placement="top-right" isDot>
+		   <Button size="medium" prefix="home" >click</Button>
+	    </Badge>
+
+
+	    <!--Badge-->
+
+	    <!--Badge - 行內 -->
+	    <h1>Example Title<Badge content="N99"></Badge>sdfsdf</h1>
+	    <p>Label<Badge isDot></Badge>sdfsd</p>
+
+	    <!--Badge - 區塊 -->
+	    <Badge content="9" layout="block">
+		    <Button size="medium" prefix="home" >click</Button>
+	    </Badge>
+
+	    <br/>
+
+	    <Badge content="9" layout="block" isIcon>
+		    <Icon name="notification" size="26"></Icon>
+	    </Badge>
+		<br>
+	    <Badge content="9" layout="block" isIcon isDot>
+		    <Icon name="notification" size="26"></Icon>
+	    </Badge>
+
+
+
     </div>
 </template>
 
