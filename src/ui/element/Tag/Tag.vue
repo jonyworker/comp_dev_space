@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
+const emits = defineEmits(['remove']);
 // 定義 Props
 const props = defineProps({
     themeColor: {
@@ -27,16 +28,20 @@ const props = defineProps({
         default: false,
     },
 });
+
+const closeTag = () => {
+	emits('remove');
+};
 </script>
 
 <template>
     <div class="tag__container">
-        <span class="tag__label">{{ props.label }}</span>
+	    <span class="tag__label">{{ props.label }}</span>
         <Icon
             v-if="props.removable"
             name="close"
             size="14"
-            @click="$emit('remove')"
+            @click="closeTag()"
         ></Icon>
     </div>
 </template>

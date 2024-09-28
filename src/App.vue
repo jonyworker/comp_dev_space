@@ -32,6 +32,7 @@ import { useDialog } from "@/composables/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
 import Table from "@/ui/element/Table/Table.vue";
+import TablePeter from "@/ui/element/Table/TablePeter.vue";
 import Tag from "@/ui/element/Tag/Tag.vue";
 import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
@@ -265,6 +266,16 @@ const columnCellData = ref([
         position: "UI/UX",
     },
 ]);
+
+// Tag 所需資料
+
+const tagsData = ref([
+	{ id: 1, label: 'Tag 1' },
+	{ id: 2, label: 'Tag 2' },
+]);
+const removeTag = (id) => {
+	tagsData.value = tagsData.value.filter(tag => tag.id !== id);
+};
 
 // chart 所需資料
 const chartData = reactive({
@@ -620,8 +631,20 @@ const updateData = () => {
             <!-- <template #columnHead-employeeId="{ item }">hahahahahha </template> -->
         </Table>
 
+	    <TablePeter
+		    :columnHeadData="columnHeadData"
+	    :columnCellData="columnCellData"
+	    :rowSelector="false">
+
+	    </TablePeter>
+
         <!-- Tag -->
-        <Tag label="tag label" removable></Tag>
+        <Tag
+	        v-for="tag in tagsData"
+	        :key="tag.id"
+	        :label="tag.label"
+	        :removable="true"
+	        @remove="removeTag(tag.id)"></Tag>
 
 		<!--Chart-->
 	    <Chart :chartdata="chartData"></Chart>
