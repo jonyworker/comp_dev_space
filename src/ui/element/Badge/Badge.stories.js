@@ -27,7 +27,7 @@ export default {
 		},
 		maxValue: {
 			description: "徽章的最大顯示值，超過該值時將顯示加號（+）",
-			control: { type: "Object" },
+			control: { type: "number" },
 		},
 		isDot: {
 			description: "啟用點狀顯示，無文字內容的徽章",
@@ -152,7 +152,7 @@ export const BadgeMaxValue = {
 	args: {
 		position: "top-right",
 		badgeLabel: 1000,
-		maxValue: 99,
+		maxValue: 96,
 		isIcon: true,
 		isDot: true,
 	},
