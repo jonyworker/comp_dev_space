@@ -270,7 +270,7 @@ const columnCellData = ref([
 // Tag 所需資料
 
 const tagsData = ref([
-	{ id: 1, label: 'Tag 1' },
+	{ id: 1, label: 'Tag 1', iconName: 'home' },
 	{ id: 2, label: 'Tag 2' },
 ]);
 const removeTag = (id) => {
@@ -639,12 +639,17 @@ const updateData = () => {
 	    </TablePeter>
 
         <!-- Tag -->
-        <Tag
-	        v-for="tag in tagsData"
-	        :key="tag.id"
-	        :label="tag.label"
-	        :removable="true"
-	        @remove="removeTag(tag.id)"></Tag>
+	    <Tag label="label name" iconName="face" themeColor="primary"></Tag>
+	    <div style="display:flex; gap: 8px;">
+		    <Tag
+			    v-for="tag in tagsData"
+			    :key="tag.id"
+			    :label="tag.label"
+			    :removable="true"
+			    :iconName="tag.iconName"
+			    @remove="removeTag(tag.id)"></Tag>
+	    </div>
+
 
 		<!--Chart-->
 	    <Chart :chartdata="chartData"></Chart>
