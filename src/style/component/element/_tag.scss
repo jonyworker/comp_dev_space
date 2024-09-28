@@ -3,12 +3,13 @@
     align-items: center;
     border: 1px solid $color-gray90;
     border-radius: 999px;
-    background-color: #ff0;
+    //background-color: #ff0;
     padding: 4px 8px;
     gap: 4px;
 
     &:hover {
-        background-color: #fff;
+        border: 1px solid #ddd8f6;
+        background-color: #ddd8f6;
     }
 }
 .tag__label {
