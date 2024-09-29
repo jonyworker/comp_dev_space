@@ -36,6 +36,7 @@ import TablePeter from "@/ui/element/Table/TablePeter.vue";
 import Tag from "@/ui/element/Tag/Tag.vue";
 import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
+import Datepicker from "@/ui/element/Datepicker/Datepicker.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -684,6 +685,10 @@ const updateData = () => {
 	    <Badge badgeLabel="9" position="top-right" isIcon isDot>
 		    <Icon name="notification" size="26"></Icon>
 	    </Badge>
+
+	    <!--Datepicker-->
+	    <Datepicker ></Datepicker>
+
 
 
 
