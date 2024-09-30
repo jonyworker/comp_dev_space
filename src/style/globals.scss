@@ -12,7 +12,7 @@
 @import "./component/element/_checkbox";
 @import "./component/element/_divider";
 @import "./component/module/_tabs";
-@import "./component/_accordion";
+@import "component/element/accordion";
 @import "./component/element/_breadcrumb";
 @import "./component/element/_progress";
 @import "./component/module/_search";
@@ -33,6 +33,7 @@
 @import "./component/element/_tag";
 @import "./component/element/_badge";
 @import "./component/element/_datepicker";
+@import "./component/element/_accordion";
 
 .icon {
     width: 24px;

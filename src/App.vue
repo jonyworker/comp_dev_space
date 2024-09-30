@@ -37,6 +37,8 @@ import Tag from "@/ui/element/Tag/Tag.vue";
 import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
 import Datepicker from "@/ui/element/Datepicker/Datepicker.vue";
+import Accordion from "@/ui/element/Accordion/Accordion.vue";
+import AccordionTest from "@/ui/element/Accordion/AccordionTest.vue";
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -308,6 +310,37 @@ const chartData = reactive({
 const updateData = () => {
 	chartData.datasets[0].data = chartData.datasets[0].data.map((d) => d + 50);
 };
+
+// accordion 所需資料
+const accordionItems = ref([
+	{
+		title: "Apples",
+		expanded: false,
+		contents: [
+			"Apples are a fine fruit often associated with good health, and fewer doctor's appointments.",
+			"Example: An apple a day keeps the doctor away.",
+		],
+	},
+	{
+		title: "Lemons",
+		expanded: false,
+		contents: [
+			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
+		],
+	},
+	{
+		title: "Kiwis",
+		expanded: false,
+		contents: ["Kiwis are a fun, under-appreciated fruit.",
+			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
+			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
+			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",],
+	},
+]);
 </script>
 
 <template>
@@ -688,6 +721,11 @@ const updateData = () => {
 
 	    <!--Datepicker-->
 	    <Datepicker ></Datepicker>
+
+	    <!-- Accordion -->
+<!--	    <Accordion></Accordion>-->
+
+	    <AccordionTest :data="accordionItems"></AccordionTest>
 
 
 

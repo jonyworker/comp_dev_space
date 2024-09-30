@@ -43,8 +43,6 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-
-
 });
 
 const datepickerRef = useTemplateRef("datepicker");
