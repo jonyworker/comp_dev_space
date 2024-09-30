@@ -38,7 +38,7 @@ import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
 import Datepicker from "@/ui/element/Datepicker/Datepicker.vue";
 import Accordion from "@/ui/element/Accordion/Accordion.vue";
-import AccordionTest from "@/ui/element/Accordion/AccordionTest.vue";
+
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -725,7 +725,7 @@ const accordionItems = ref([
 	    <!-- Accordion -->
 <!--	    <Accordion></Accordion>-->
 
-	    <AccordionTest :data="accordionItems"></AccordionTest>
+	    <Accordion :data="accordionItems"></Accordion>
 
 
 

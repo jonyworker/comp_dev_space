@@ -1,4 +1,4 @@
-import Accordion from "./AccordionTest.vue";
+import Accordion from "./Accordion.vue";
 import { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
