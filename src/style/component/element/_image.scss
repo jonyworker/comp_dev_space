@@ -13,6 +13,7 @@ $image-ratios: (
 .image-container {
     background-color: #e4e4e4;
     overflow: hidden;
+    height: 100%;
 
     @each $key, $ratio in $image-ratios {
         &.ratio-#{$key} {
