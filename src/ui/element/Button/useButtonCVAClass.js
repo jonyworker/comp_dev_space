@@ -14,7 +14,11 @@ export function useButtonCVAClass(props) {
                     small: 'component-small',
                     medium: 'component-medium',
                     large: 'component-large',
-                }
+                },
+                width: {
+                    fit: 'button-fit',
+                    full: 'button-full',
+                },
             },
             compoundVariants: [
                 // [ ThemeColor ] - primary
@@ -152,6 +156,7 @@ export function useButtonCVAClass(props) {
             size: props.size,
             isDisable: props.isDisable,
             themeColor: props.themeColor,
+            width: props.width,
         });
     });
 }

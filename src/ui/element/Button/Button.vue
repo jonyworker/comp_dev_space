@@ -6,42 +6,47 @@ import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
-  variant: {
-    type: String,
-    default: 'contained',
-    validator: (value) => ['contained', 'outlined', 'text'].includes(value),
-  },
-  themeColor: {
-    type: String,
-    default: 'primary',
-    validator: (value) =>
-      [
-        'primary',
-        'secondary',
-        'tertiary',
-        'success',
-        'warning',
-        'error',
-        'info',
-      ].includes(value),
-  },
-  isDisable: {
-    type: Boolean,
-  },
-  size: {
-    type: String,
-    validator: (value) => ['small', 'medium', 'large'].includes(value),
-  },
-  prefix: {
-    type: String,
-  },
-  suffix: {
-    type: String,
-  },
-  customClass: {
-    type: String,
-    default: '',
-  },
+	variant: {
+		type: String,
+		default: 'contained',
+		validator: (value) => ['contained', 'outlined', 'text'].includes(value),
+	},
+	themeColor: {
+		type: String,
+		default: 'primary',
+		validator: (value) =>
+		[
+		'primary',
+		'secondary',
+		'tertiary',
+		'success',
+		'warning',
+		'error',
+		'info',
+		].includes(value),
+	},
+	isDisable: {
+		type: Boolean,
+	},
+	size: {
+		type: String,
+		validator: (value) => ['small', 'medium', 'large'].includes(value),
+	},
+	prefix: {
+		type: String,
+	},
+	suffix: {
+		type: String,
+	},
+	customClass: {
+		type: String,
+		default: '',
+	},
+	width: {
+		type: String,
+		default: 'fit',
+		validator: (value) => ['full', 'fit'].includes(value),
+	}
 });
 
 // 引入 CVA Class
