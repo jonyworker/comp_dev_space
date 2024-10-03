@@ -1,96 +1,99 @@
-.card-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  &:has(:first-child) {
-    padding-top: 16px;
-  }
-
-  &:has(:last-child) {
-    padding-bottom: 16px;
-  }
+.card__container {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid $color-gray10;
+    border-radius: 8px;
+    background-color: $color-white;
+}
+.card__container.card__direction-row {
+    flex-direction: row;
+}
+.card__container.card__direction-column {
+    flex-direction: column;
+}
+.card__container.shadow_2 {
+    box-shadow: $shadow-light2;
+}
+.card__container.shadow_5 {
+    box-shadow: $shadow-light5;
 }
 
-.card {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: $image-size-rounded;
-  background-color: $color-white;
-  overflow: hidden;
+/*-- 卡片 - header 設定 --*/
+.card__header {
+    padding: 16px;
+}
+.card__header.card__header-border {
+    border-bottom: 1px solid $color-gray10;
+}
 
-  &-pic {
-
-    @media screen and (max-width: 768px) {
-      width: 100%;
-
-      &-padding {
-        padding-inline: 16px;
-        padding-top: 16px;
-      }
-    }
-
-    &-padding {
-      padding-block: 16px;
-      padding-left: 16px;
-    }
-
-    img {
-      vertical-align: middle;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .image-rounded {
-      border-radius: $image-size-rounded;
-    }
-
-    @each $ratio in $aspectRatio {
-      &-#{$ratio} {
-        aspect-ratio: getAspectRatio($ratio);
-      }
-    }
-  }
-
-  &-header {
+/*-- 卡片 - 圖片設定 --*/
+.card__image {
     width: 100%;
-    padding-inline: 16px;
+    height: 100%;
+}
+.card__direction-row .card__image {
+    padding: 16px 0 16px 16px;
+}
+.card__direction-column .card__image {
+    padding: 16px 16px 0 16px;
+}
+.card__image.fullImg {
+    width: 100%;
+    padding: 0;
+}
+/*-- 卡片 - 圖片圓角設定 --*/
+.card__image--container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.card__image--container.rounded {
+    border-radius: 8px;
+}
+.card__image--container.rounded {
+    border-radius: 8px;
+}
+.card__image.fullImag  .card__image--container.rounded {
+    border-radius: 0;
+}
+.card__image.fullImag .card__image--container.rounded  {
+    border-radius: 0;
+}
 
-    .subtitle {
-      color: $text-color-helper;
-      padding-top: 16px;
-    }
-
-    &-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .card-icon {
-        width: 24px;
-        height: 24px;
-        color: $color-gray40;
-      }
-    }
-  }
-
-  &-body {
+/*-- 卡片 - body 設定 --*/
+.card__body {
+    padding: 16px;
+    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+}
 
-    .card-desc {
-      padding-inline: 16px;
-      color: $text-color-primary;
-    }
-  }
+/*-- 卡片 - 文字設定 --*/
+.card__title {
+    color: $color-gray90;
+}
+.card__subtitle {
+    font-size: $text-size-caption1;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $color-gray50;
+}
+.card__text {
+    font-size: $text-size-body2;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $color-gray90;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
 
-  &-footer {
-    width: 100%;
-    padding-inline: 16px;
-    margin-top: auto;
-  }
+/*-- 卡片 - footer 設定 --*/
+.card__footer {
+    padding: 16px;
+}
+.card__footer.card__footer-border {
+    border-top: 1px solid $color-gray10;
 }

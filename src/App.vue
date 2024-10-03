@@ -38,6 +38,13 @@ import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
 import Datepicker from "@/ui/element/Datepicker/Datepicker.vue";
 import Accordion from "@/ui/element/Accordion/Accordion.vue";
+import CardOld from "@/ui/element/Card/CardOld.vue";
+import Card from "@/ui/element/Card/Card.vue";
+import CardHeader from "@/ui/element/Card/CardHeader.vue";
+import CardBody from "@/ui/element/Card/CardBody.vue";
+import CardFooter from "@/ui/element/Card/CardFooter.vue";
+import CardImage from "@/ui/element/Card/CardImage.vue";
+import Col from "@/ui/layout/Col/Col.vue";
 
 
 // toggle 所需資料
@@ -723,10 +730,35 @@ const accordionItems = ref([
 	    <Datepicker ></Datepicker>
 
 	    <!-- Accordion -->
-<!--	    <Accordion></Accordion>-->
-
 	    <Accordion :data="accordionItems"></Accordion>
 
+	    <!-- Card -->
+	    <!-- Card 排列方向 row -->
+	    <Card elevation="high" direction="row">
+		    <Col col="4">
+			    <CardImage>
+			    </CardImage>
+		    </Col>
+
+		    <Col col="8">
+			    <CardBody clamp="3">
+			    </CardBody>
+		    </Col>
+	    </Card>
+	    <!-- Card 排列方向 col -->
+	    <Card elevation="high" direction="col">
+		    <CardHeader>
+		    </CardHeader>
+
+		    <CardImage>
+		    </CardImage>
+
+		    <CardBody clamp="3">
+		    </CardBody>
+
+		    <CardFooter divider>
+		    </CardFooter>
+	    </Card>
 
 
 
