@@ -6,7 +6,7 @@ import { cva } from "class-variance-authority";
 const props = defineProps({
   ratio: {
     type: String,
-    default: 'contained',
+	default: '11',
     validator: (value) => ['11', '43', '54', '169'].includes(value),
   },
   objectFit: {
@@ -19,6 +19,7 @@ const props = defineProps({
   },
   alt: {
     type: String,
+	  default: 'Image Alt Text',
   }
 });
 
