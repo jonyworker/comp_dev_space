@@ -1,5 +1,6 @@
 import Button from "@/ui/element/Button/Button.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
+import  { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -8,8 +9,16 @@ export default {
 	component: Tooltip,
 	tags: ["autodocs"],
 	argTypes: {
+		content: {
+			description: "顯示 Tooltip 文字",
+			control: { type: "text" },
+		},
+		showArrow: {
+			description: "顯示 Tooltip 箭頭",
+			control: { type: "boolean" },
+		},
 		placement: {
-			description: "Tooltip位置",
+			description: "控制 Tooltip 位置",
 			control: { type: "select" },
 			options: [
 				'top-left', 'top', 'top-right',
@@ -17,10 +26,6 @@ export default {
 				'bottom-right', 'bottom', 'bottom-left',
 				'left-bottom', 'left', 'left-top'
 			],
-		},
-		showArrow: {
-			description: "控制顯示Tooltip箭頭",
-			control: { type: "boolean" },
 		},
 	},
 	parameters: {
@@ -31,6 +36,12 @@ export default {
 				component: "Tooltip組件的呈現及說明。",
 			},
 		},
+		slots: {
+			default: {
+				description: '任何被包裝的物件都會成為 tooltip 的觸發器',
+				template: `{{ args.default }}`,
+			},
+		},
 	},
 
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -39,11 +50,11 @@ export default {
 
 //==== Tooltip 基礎樣式 ====//
 export const DefaultTooltip = {
-	name: "基礎樣式",
+	name: "Tooltip 基礎樣式",
 	args: {
-
-		placement: "bottom-left",
+		content:'Hi, Hi~ Nice to meet you!',
 		showArrow: true,
+		placement: "bottom-left",
 	},
 	render: (args) => ({
 		components: { Tooltip, Button },
@@ -53,11 +64,12 @@ export const DefaultTooltip = {
 			};
 		},
 		template: `
-			<Tooltip :placement="args.placement">
+			<Tooltip 
+				:content="args.content"
+				:showArrow="args.showArrow" 
+				:placement="args.placement" > 
+				
 				<Button variant="contained" size="large" prefix="face">Hover Me</Button>
-				<template #content>
-					Hi, Hi~ Nice to meet you!
-				</template>
 			</Tooltip>
         `,
 	}),
@@ -71,20 +83,24 @@ export const DefaultTooltip = {
 
 //==== Tooltip 顯示位置 ====//
 export const TooltipPlacement = {
-	name: "Tooltip顯示位置",
+	name: "Tooltip 顯示位置",
 	args: {
-		tooltipPosValue: [
-			'top-left', 'top', 'top-right',
-			'right-top', 'right', 'right-bottom',
-			'bottom-right', 'bottom', 'bottom-left',
-			'left-bottom', 'left', 'left-top',
-		]
+		content:'',
+		showArrow: true,
 	},
 	render: (args) => ({
 		components: { Tooltip },
+
 		setup() {
+			const tooltipPosValue = ref([
+				'top-left', 'top', 'top-right',
+				'right-top', 'right', 'right-bottom',
+				'bottom-right', 'bottom', 'bottom-left',
+				'left-bottom', 'left', 'left-top',
+			]);
 			return {
 				args,
+				tooltipPosValue
 			};
 		},
 		template: `
@@ -96,9 +112,11 @@ export const TooltipPlacement = {
 				gap: 40px;
 				margin: 56px">
 				<Tooltip 
-					v-for="(item) in args.tooltipPosValue"
+					v-for="(item, index) in tooltipPosValue"
+					:key="index"
+					:content="args.content || 'Tooltip on ' + item"
 					:placement="item" 
-					:showArrow=true>
+					:showArrow="args.showArrow">
 					<!-- 被 tooltip 包裹的資料 -->
 					<div
 						style="
@@ -118,10 +136,6 @@ export const TooltipPlacement = {
 							- {{ item }} -
 						</p>
 					</div>
-					
-					<template #content>
-						{{ 'Tooltip on ' + item }}
-					</template>
 				</Tooltip>
 			</div>
         `,
@@ -129,7 +143,7 @@ export const TooltipPlacement = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['placement' ],
 		},
 	},
 };

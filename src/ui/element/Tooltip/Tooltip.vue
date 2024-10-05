@@ -3,6 +3,13 @@ import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
 
 // 定義 Props
 const props = defineProps({
+	content: {
+		type: String,
+	},
+	showArrow: {
+		type: Boolean,
+		default: true
+	},
 	placement: {
 		type: String,
 		default: 'top',
@@ -13,10 +20,6 @@ const props = defineProps({
 			'left-top','left','left-bottom'
 		].includes(value)
 	},
-	showArrow: {
-		type: Boolean,
-		default: true
-	}
 });
 
 const tooltipTriggerRef = ref(null);
@@ -39,7 +42,6 @@ const hideTooltip = () => {
 // 功能 計算位置
 const updateTooltipPosition = () => {
 	if (!tooltipTriggerRef.value || !tooltipContentRef.value || !visible.value) return;
-
 
 	const triggerElement = tooltipTriggerRef.value.getBoundingClientRect();
 	const tooltipElement = tooltipContentRef.value.getBoundingClientRect();
@@ -130,6 +132,7 @@ onBeforeUnmount(() => {
 		@mouseleave="hideTooltip"
 		:aria-describedby="tooltipId"
 	>
+		<!-- Tooltip - slot 包裝 -->
 		<slot></slot>
 	</div>
 
@@ -143,8 +146,9 @@ onBeforeUnmount(() => {
 				class="tooltip-content"
 				:class="props.placement"
 			>
-				<slot name="content"></slot>
-				<div v-if="showArrow" :class="`tooltip-arrow ${props.placement}`"></div>
+				{{props.content}}
+				<!-- Tooltip - 箭頭 -->
+				<div v-if="props.showArrow" :class="`tooltip-arrow ${props.placement}`"></div>
 			</div>
 		</Transition>
 	</Teleport>
