@@ -34,6 +34,12 @@ const preview = {
         order: ['Components', 'Intro'], // 可根據需求調整順序
       },
     },
+    html: {
+      prettier: {
+        tabWidth: 4,
+        useTabs: true,
+      },
+    },
   },
 
   initialGlobals: {
