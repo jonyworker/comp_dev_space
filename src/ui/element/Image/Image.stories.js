@@ -24,9 +24,10 @@ export default {
     //DED VUE 用程式碼
     // src: {
     //   description: "圖片來源",
-    //     table: {
-    //       defaultValue: { summary: '01' }
-    //     },
+    //   table: {
+    //      defaultValue: { summary: '01' }
+    //   },
+    //   control: { type: 'select' },
     //   options: ['01', '02', '03', '04'],
     //   mapping: {
     //     '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
