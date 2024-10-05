@@ -18,24 +18,6 @@ export function useToggleCVAClass(props) {
                     true: "button-container-disable",
                 }
             },
-            compoundVariants: [
-                // [ Disable ]
-                // {
-                //   themeColor: 'contained',
-                //   isDisable: true,
-                //   class: 'button-container-disable',
-                // },
-                // {
-                //   themeColor: 'outlined',
-                //   isDisable: true,
-                //   class: 'button-outline-disable',
-                // },
-                // {
-                //   themeColor: 'text',
-                //   isDisable: true,
-                //   class: 'button-text-disable',
-                // },
-            ],
         })({
             //這裡設定 variants名稱接收 props的值
             themeColor: props.themeColor,
