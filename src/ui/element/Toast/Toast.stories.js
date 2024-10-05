@@ -1,7 +1,8 @@
 import { useToast } from '@/composables/useToast.js';
 import Toast from "@/ui/element/Toast/Toast.vue";
-import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
+import Button from "@/ui/element/Button/Button.vue";
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -10,51 +11,34 @@ export default {
 	component: Toast,
 	tags: ["autodocs"],
 	argTypes: {
-		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
-			],
-		},
-		severity: {
-			description: "tooltip嚴重程度",
-			control: { type: "select" },
-			options: ['success', 'warning', 'error','info'],
-		},
 		title: {
-			description: "tooltip標題",
+			description: "Toast 標題",
 			control: { type: "text" },
 		},
 		message: {
-			description: "tooltip說明文字",
+			description: "Toast 說明文字",
 			control: { type: "text" },
+		},
+		severity: {
+			description: "用於指示 Toast 信息的性質",
+			control: { type: "select" },
+			options: ['success', 'warning', 'error','info'],
 		},
 		duration: {
-			description: "tooltip顯示時間",
-			control: { type: "number" },
+			description: "Toast 顯示的持續時間（毫秒）",
+			control: { type: "range",
+						min: 500,
+						max: 10000,
+						step: 500  },
 		},
-		id: {
-			description: "tooltip id(多個顯示時)",
-			control: { type: "text" },
-		},
-		show: {
-			description: "tooltip 顯示控制)",
-			control: { type: "boolean" },
-		}
+		show: { table: { disable: true } },
 	},
 	parameters: {
 		// 自動文件
 		docs: {
 			title: "Toast",
 			description: {
-				component: "Toast組件的呈現及說明。",
+				component: "Toast 組件的呈現及說明。",
 			},
 		},
 	},
@@ -62,71 +46,54 @@ export default {
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 	// args: { onClick: fn() },
 };
-//==== Toast 種類樣式 ====//
-export const DefaultToast = {
-	name: "Toast種類樣式",
-	render: () => ({
+
+//==== Toast 基礎樣式 ====//
+export const ToastDefault = {
+	name: "Toast 基礎樣式",
+	args: {
+		title: "Success Message",
+		message: "Hello, world! This is a toast message.",
+		severity: "success",
+		duration: 1500,
+		show: true
+	},
+	render: (args) => ({
 		components: { Toast, Icon },
+		setup() {
+			const closeToast = () => {
+				args.show = false; // 处理关闭逻辑
+			};
+			return {
+				args,
+				closeToast
+			};
+		},
 		template: `
 			<div style="width: 30rem; ">
-				<div class="toast toast-border-success">
+				<div class="toast" :class="\`toast-border-\${args.severity}\`" v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
-					<button class="close-button">
+					<button class="close-button cursor-pointer" @click="closeToast">
 						<Icon name="close" size="20"></Icon>
 					</button>
 					<!-- toast - 標題及說明文字 -->
 					<p class="message">
-					<span class="icon-wrapper toast-success">
-						<Icon name="check" size="14"></Icon>
+					<span class="icon-wrapper" :class="\`toast-\${args.severity}\`">
+						<template v-if="args.severity ==='success'">
+							<Icon name="check" size="14"></Icon>
+						</template>
+						<template v-if="args.severity ==='error'">
+							<Icon name="close" size="14"></Icon>
+						</template>
+						<template v-if="args.severity ==='warning'">
+							<Icon name="exclamation" size="14"></Icon>
+						</template>
+						<template v-if="args.severity ==='info'">
+							<Icon name="info" size="16"></Icon>
+						</template>
 					</span>
-						<span>Success Message</span>
+						<span>{{ args.title }}</span>
 					</p>
-					<p class="description">Hello, world! This is a toast message.</p>
-				</div>
-				
-				<div class="toast toast-border-error">
-					<!-- toast - 關閉按鈕 -->
-					<button class="close-button">
-						<Icon name="close" size="20"></Icon>
-					</button>
-					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper toast-error">
-						<Icon name="close" size="14"></Icon>
-					</span>
-						<span>Error Message</span>
-					</p>
-					<p class="description">Hello, world! This is a toast message.</p>
-				</div>
-
-				<div class="toast toast-border-warning">
-					<!-- toast - 關閉按鈕 -->
-					<button class="close-button">
-						<Icon name="close" size="20"></Icon>
-					</button>
-					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper toast-warning">
-						<Icon name="exclamation" size="14"></Icon>
-					</span>
-						<span>Exclamation Message</span>
-					</p>
-					<p class="description">Hello, world! This is a toast message.</p>
-				</div>
-
-				<div class="toast toast-border-info">
-					<!-- toast - 關閉按鈕 -->
-					<button class="close-button">
-						<Icon name="close" size="20"></Icon>
-					</button>
-					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper toast-info">
-						<Icon name="info" size="16"></Icon>
-					</span>
-						<span>Info Message</span>
-					</p>
-					<p class="description">Hello, world! This is a toast message.</p>
+					<p class="description">{{ args.message }}</p>
 				</div>
 			</div>
         `,
@@ -139,50 +106,140 @@ export const DefaultToast = {
 	},
 };
 
-//==== Toast 觸發器 ====//
-export const ToastControl = {
-	name: "Toast觸發器 ",
-	render: () => ({
+//==== Toast 種類樣式 ====//
+export const ToastType = {
+	name: "Toast 種類樣式",
+	args: {
+		title: "Toast Message",
+		message: "Hello, world! This is a toast message.",
+		severity: "success",
+		duration: 1500,
+		show: true
+	},
+	render: (args) => ({
+		components: { Toast, Icon },
+		setup() {
+			const closeToast = () => {
+				args.show = false; // 处理关闭逻辑
+			};
+			return {
+				args,
+				closeToast
+			};
+		},
+		template: `
+			<div style="width: 30rem; ">
+				<div class="toast toast-border-success"  v-if="args.show">
+					<!-- toast - 關閉按鈕 -->
+					<button class="close-button cursor-pointer" @click="closeToast">
+						<Icon name="close" size="20"></Icon>
+					</button>
+					<!-- toast - 標題及說明文字 -->
+					<p class="message">
+					<span class="icon-wrapper toast-success">
+						<Icon name="check" size="14"></Icon>
+					</span>
+						<span>{{ args.title }}</span>
+					</p>
+					<p class="description">{{ args.message }}</p>
+				</div>
+
+				<div class="toast toast-border-error"  v-if="args.show">
+					<!-- toast - 關閉按鈕 -->
+					<button class="close-button cursor-pointer" @click="closeToast">
+						<Icon name="close" size="20"></Icon>
+					</button>
+					<!-- toast - 標題及說明文字 -->
+					<p class="message">
+					<span class="icon-wrapper toast-error">
+						<Icon name="close" size="14"></Icon>
+					</span>
+						<span>{{ args.title }}</span>
+					</p>
+					<p class="description">{{ args.message }}</p>
+				</div>
+
+				<div class="toast toast-border-warning"  v-if="args.show">
+					<!-- toast - 關閉按鈕 -->
+					<button class="close-button cursor-pointer" @click="closeToast">
+						<Icon name="close" size="20"></Icon>
+					</button>
+					<!-- toast - 標題及說明文字 -->
+					<p class="message">
+					<span class="icon-wrapper toast-warning">
+						<Icon name="exclamation" size="14"></Icon>
+					</span>
+						<span>{{ args.title }}</span>
+					</p>
+					<p class="description">{{ args.message }}</p>
+				</div>
+
+				<div class="toast toast-border-info"  v-if="args.show">
+					<!-- toast - 關閉按鈕 -->
+					<button class="close-button cursor-pointer" @click="closeToast">
+						<Icon name="close" size="20"></Icon>
+					</button>
+					<!-- toast - 標題及說明文字 -->
+					<p class="message">
+					<span class="icon-wrapper toast-info">
+						<Icon name="info" size="16"></Icon>
+					</span>
+						<span>{{ args.title }}</span>
+					</p>
+					<p class="description">{{ args.message }}</p>
+				</div>
+			</div>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			include: ['title', 'message' ],
+		},
+	},
+};
+
+//==== Toast 觸發示意 ====//
+export const ToastTrigger = {
+	name: "Toast 觸發示意 ",
+	args: {
+		duration: 1500,
+	},
+	render: (args) => ({
 		components: { Toast, Button },
 		setup() {
 			const { add, toasts, remove } = useToast();
 			const showSuccess = () => {
 				add({
-					themeColor: 'success',
-					severity: 'success',
-					title: 'Success Message',
-					message: 'Hello, world! This is a toast message.',
-					life: 3000
+					title: "Success Message",
+					message: "Hello, world! This is a toast message.",
+					severity: "success",
 				});
 			};
 			const showError = () => {
 				add({
-					themeColor: 'error',
-					severity: 'error',
-					title: 'Error Message',
-					message: 'Hello, world! This is a toast message.',
-					life: 3000
+					title: "Error Message",
+					message: "Hello, world! This is a toast message.",
+					severity: "error",
+					showToast: true,
 				});
 			};
 			const showWarning = () => {
 				add({
-					themeColor: 'warning',
-					severity: 'warning',
-					title: 'Warning Message',
-					message: 'Hello, world! This is a toast message.',
-					life: 3000
+					title: "Warning Message",
+					message: "Hello, world! This is a toast message.",
+					severity: "warning",
 				});
 			};
 			const showInfo = () => {
 				add({
-					themeColor: 'info',
-					severity: 'info',
-					title: 'Info Message',
-					message: 'Hello, world! This is a toast message.',
-					life: 3000
+					title: "Info Message",
+					message: "Hello, world! This is a toast message.",
+					severity: "info",
 				});
 			};
 			return {
+				args,
 				toasts,
 				remove,
 				showSuccess,
@@ -196,25 +253,25 @@ export const ToastControl = {
 			<Toast
 				v-for="toast in toasts"
 				:key="toast.id"
-				:themeColor="toast.themeColor"
-				:severity="toast.severity"
 				:title="toast.title"
 				:message="toast.message"
+				:severity="toast.severity"
+				:duration="args.duration"
 				@close="remove(toast.id)"
 			></Toast>
 
-			<div style="display:flex; flex-direction: column; width: fit-content ;gap: 16px;">
-				<Button themeColor="success" variant="outlined" @click="showSuccess">Success Toast</Button>
-				<Button themeColor="error" variant="outlined" @click="showError">Error Toast</Button>
-				<Button themeColor="warning" variant="outlined" @click="showWarning">Warning Toast</Button>
-				<Button themeColor="info" variant="outlined" @click="showInfo">Info Toast</Button>
+			<div style="display:flex; flex-direction: column; gap: 16px; width: 200px">
+				<Button width="full" themeColor="success" variant="outlined" @click="showSuccess">Success Toast</Button>
+				<Button width="full" themeColor="error" variant="outlined" @click="showError">Error Toast</Button>
+				<Button width="full" themeColor="warning" variant="outlined" @click="showWarning">Warning Toast</Button>
+				<Button width="full" themeColor="info" variant="outlined" @click="showInfo">Info Toast</Button>
 			</div>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			include: ['duration'],
 		},
 	},
 };
