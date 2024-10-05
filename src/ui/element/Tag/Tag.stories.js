@@ -1,4 +1,4 @@
-import {ref} from "vue";
+import { ref } from "vue";
 import Tag from "./Tag.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -7,10 +7,26 @@ export default {
 	component: Tag,
 	tags: ["autodocs"],
 	argTypes: {
+		label: {
+			description: "顯示在 Tag 上的文字內容",
+			control: { type: "text" },
+		},
+		icon: {
+			description: '顯示在 Tag 前方的 icon',
+			control: { type: 'select' },
+			options: ['None', 'busy', 'finger-print', 'home', 'folder'],
+			mapping: {
+				None: null,
+			},
+		},
 		themeColor: {
 			description: '主題顏色',
+			table: {
+				defaultValue: { summary: 'primary' },
+			},
 			control: { type: 'select' },
 			options: [
+				'None',
 				'primary',
 				'secondary',
 				'tertiary',
@@ -19,21 +35,12 @@ export default {
 				'error',
 				'info',
 			],
-		},
-		label: {
-			description: "顯示在 Tag 上的文字內容",
-			control: { type: "text" },
-		},
-		icon: {
-			description: '顯示在 Tag 前方的 icon',
-			control: { type: 'select' },
-			options: ['None', 'face', 'finger-print', 'home', 'folder'],
 			mapping: {
 				None: null,
 			},
 		},
 		removable: {
-			description: "啟用Tag關閉功能",
+			description: "當顯示多個 Tag 時，可解鎖 Tag 的關閉功能",
 			control: { type: "boolean" },
 		},
 	},
@@ -46,17 +53,17 @@ export default {
 			},
 		},
 	},
-
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 	// args: { onClick: fn() },
 };
 
-//==== 基礎 Tag ====//
+//==== Tag 基礎樣式 ====//
 export const TagDefault = {
-	name: "基礎 Tag",
+	name: "Tag 基礎樣式",
 	args: {
 		label: 'Label Title',
-		iconName: '',
+		icon: 'None',
+		themeColor: 'primary',
 		removable: false,
 	},
 	render: (args) => ({
@@ -67,7 +74,11 @@ export const TagDefault = {
 			};
 		},
 		template: `
-			<Tag v-bind="args"></Tag>
+			<Tag
+				:label="args.label"
+				:icon="args.icon"
+				:themeColor="args.themeColor"
+				:removable="args.removable"></Tag>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -78,14 +89,14 @@ export const TagDefault = {
 	},
 };
 
-//==== Tag 加圖示 ====//
+//==== Tag 帶圖標 ====//
 export const TagIcon = {
-	name: "Tag 加圖示",
+	name: "Tag 帶圖標",
 	args: {
 		label: 'Label Title',
 		icon: 'face',
+		themeColor: 'primary',
 		removable: false,
-		themeColor: ''
 	},
 	render: (args) => ({
 		components: { Tag },
@@ -106,6 +117,7 @@ export const TagIcon = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['removable'],
 		},
 	},
 };
@@ -142,6 +154,7 @@ export const TagColor = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['themeColor'],
 		},
 	},
 };
@@ -150,8 +163,7 @@ export const TagColor = {
 export const TagRemove = {
 	name: "Tag 刪除功能",
 	args: {
-		label: 'Label Title',
-		iconName: 'face',
+		themeColor: 'primary',
 		removable: true,
 	},
 	render: (args) => ({
@@ -180,8 +192,8 @@ export const TagRemove = {
 				     :key="tag.id"
 				     :label="tag.label"
 				     :icon="tag.iconName"
-				     :removable="true"
-				     themeColor="primary"
+				     :removable="args.removable"
+				     :themeColor="args.themeColor"
 				     @remove="removeTag(tag.id)"></Tag>
 			</div>
         `,
@@ -189,7 +201,7 @@ export const TagRemove = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			include: ['themeColor', 'removable' ],
 		},
 	},
 };

@@ -4,6 +4,12 @@ import Icon from "@/ui/element/Icon/Icon.vue";
 const emits = defineEmits(['remove']);
 // 定義 Props
 const props = defineProps({
+	label: {
+		type: String,
+	},
+	icon: {
+		type: [String, null],
+	},
 	themeColor: {
 		type: String,
 		validator: (value) =>
@@ -16,12 +22,6 @@ const props = defineProps({
 				'error',
 				'info',
 			].includes(value),
-	},
-    label: {
-        type: String,
-    },
-	icon: {
-		type: [String, null],
 	},
     removable: {
         type: Boolean,
