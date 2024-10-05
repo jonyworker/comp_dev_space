@@ -25,12 +25,18 @@ const props = defineProps({
 		'info',
 		].includes(value),
 	},
-	isDisable: {
-		type: Boolean,
-	},
 	size: {
 		type: String,
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
+	},
+	width: {
+		type: String,
+		default: 'fit',
+		validator: (value) => ['full', 'fit'].includes(value),
+	},
+	isDisable: {
+		type: Boolean,
+		default: false,
 	},
 	prefix: {
 		type: String,
@@ -42,11 +48,6 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	width: {
-		type: String,
-		default: 'fit',
-		validator: (value) => ['full', 'fit'].includes(value),
-	}
 });
 
 // 引入 CVA Class
