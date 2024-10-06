@@ -9,25 +9,9 @@ const props = defineProps({
 		type: String,
 		default: "請輸入日期",
 	},
-	rangeStartLabel: {
-		type: String,
-		default: "開始日期",
-	},
-	rangeEndLabel: {
-		type: String,
-		default: "結束日期",
-	},
 	placeholder:{
 		type: String,
 		default: "請輸入日期",
-	},
-	rangeStartPlaceholder:{
-		type: String,
-		default: "請輸入開始日期",
-	},
-	rangeEndPlaceholder:{
-		type: String,
-		default: "請輸入結束日期",
 	},
 	size: {
 		type: String,
@@ -43,19 +27,36 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	rangeStartLabel: {
+		type: String,
+		default: "開始日期",
+	},
+	rangeStartPlaceholder:{
+		type: String,
+		default: "請輸入開始日期",
+	},
+	rangeEndLabel: {
+		type: String,
+		default: "結束日期",
+	},
+	rangeEndPlaceholder:{
+		type: String,
+		default: "請輸入結束日期",
+	},
 });
 
 const datepickerRef = useTemplateRef("datepicker");
 const dateRangeRef = useTemplateRef("dateRange");
 
+// 掛載時載入
 onMounted(() => {
 	if (props.range) {
-		new DateRangePicker(dateRangeRef.value, {
+		const dateRangeInstance = new DateRangePicker(dateRangeRef.value, {
 			format: "yyyy/mm/dd",
 			language: props.language,
 		});
 	} else {
-		new Datepicker(datepickerRef.value, {
+		const datepickerInstance = new Datepicker(datepickerRef.value, {
 			format: "yyyy/mm/dd", // Example format
 			language: props.language,
 		});
