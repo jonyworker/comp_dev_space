@@ -2,34 +2,32 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-  // -- textarea 基礎接口 -- //
-  label: {
-    type: String,
-  },
-  placeholder: {
-    type: String,
-    default: "placeholder text",
-  },
-  modelValue: { // 雙向綁定
-    type: [String],
-  },
-  customClass: {
-    type: String,
-    default: '',
-  },
-  // -- 驗證與狀態接口 -- //
-  total: { // 最多輸入字數
-    type: Number,
-    default: 100,
-  },
-  hint: { // 錯誤提示
-    type: Object,
-    default: () => ({ error: '', description: '' }),
-  },
-  isDisabled: {
-    type: Boolean,
-    default: false,
-  },
+	label: {
+		type: String,
+	},
+	placeholder: {
+		type: String,
+		default: "placeholder text",
+	},
+	total: {
+		type: Number,
+		default: 100,
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
+	hint: {
+		type: Object,
+		default: () => ({ error: '', description: '' }),
+	},
+	modelValue: {
+		type: [String],
+	},
+	customClass: {
+		type: String,
+		default: '',
+	},
 })
 
 // 處理 input 雙向綁定
@@ -54,9 +52,9 @@ const hintClass = computed(() => {
   <div class="textarea-container ">
     <!-- 多行輸入框標題 -->
     <template v-if="props.label">
-      <label :class="['textarea-label', {'textarea-disable': props.isDisabled}]" for="id">
-        {{ props.label }}
-      </label>
+		<label :class="['textarea-label', {'textarea-disable': props.isDisabled}]" for="id">
+			{{ props.label }}
+		</label>
     </template>
 
     <div :class="['textarea-group',
