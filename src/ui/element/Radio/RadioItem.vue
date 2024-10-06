@@ -3,6 +3,18 @@ import { computed } from "vue";
 
 // 定義 Props
 const props = defineProps({
+	label: {
+		type: String,
+	},
+	value: {
+		type: String,
+	},
+	inputId: {
+		type: String,
+	},
+	name: {
+		type: String,
+	},
     themeColor: {
         type: String,
         default: "primary",
@@ -17,21 +29,9 @@ const props = defineProps({
                 "info",
             ].includes(value),
     },
-    inputId: {
-        type: String,
-    },
-    name: {
-        type: String,
-    },
-    value: {
-        type: String,
-    },
-    label: {
-        type: String,
-    },
-    modelValue: {
-        type: [Array, String],
-    },
+	modelValue: {
+		type: [Array, String],
+	},
 });
 
 // 處理雙向綁定
@@ -48,9 +48,9 @@ const isChecked = computed(() => props.modelValue === props.value);
         <input
             class="radio-input"
             type="radio"
+            :value="props.value"
             :id="props.inputId"
             :name="props.name"
-            :value="props.value"
             :checked="isChecked"
             @change="handleChange"
         />
