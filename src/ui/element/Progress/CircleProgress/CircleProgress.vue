@@ -3,6 +3,22 @@ import { ref, computed, onMounted, watch } from "vue";
 
 // 定義 Props
 const props = defineProps({
+	label: {
+		type: String,
+		default: "label"
+	},
+	percent: { //進度
+		type: Number,
+		default: 66,
+	},
+	size: { //直徑
+		type: Number,
+		default: 120,
+	},
+	strokeWidth: { //線條寬度
+		type: Number,
+		default: 10,
+	},
     themeColor: {
         type: String,
         default: "primary",
@@ -17,22 +33,6 @@ const props = defineProps({
               "info",
             ].includes(value),
     },
-    label: {
-        type: String,
-        default: "label"
-    },
-    percent: { //進度
-        type: Number,
-        default: 66,
-    },
-    size: { //直徑
-        type: Number,
-        default: 120,
-    },
-    strokeWidth: { //線條寬度
-        type: Number,
-        default: 10,
-    }
 })
 
 const textRef = ref(null);

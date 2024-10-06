@@ -6,8 +6,40 @@ export default {
     component: CircleProgress,
     tags: ["autodocs"],
     argTypes: {
+        label: {
+            description: "顯示在 CircleProgress 上的標題文字",
+            control: { type: 'text' },
+        },
+        percent: {
+            description: "設置 CircleProgress 的進度百分比（0-100）",
+            control: {
+                type: "range",
+                min: 0,
+                max: 100,
+                step: 1, },
+            defaultValue: 66,
+        },
+        size: {
+            description: 'CircleProgress 的直徑大小（單位：像素）',
+            control: {
+                type: 'range',
+                min: 24,
+                max: 200,
+                step: 1,
+            },
+            defaultValue: 50,
+        },
+        strokeWidth: {
+            description: 'CircleProgress 的線條寬度（單位：像素）',
+            control: {
+                type: 'range',
+                min: 1,
+                max: 20,
+                step: 1,
+            },
+        },
         themeColor: {
-            description: "主題顏色",
+            description: "CircleProgress 主題顏色",
             control: { type: "select" },
             options: [
                 "primary",
@@ -19,45 +51,13 @@ export default {
                 "info",
             ],
         },
-        label: {
-            description: "圓形進度條標題",
-            control: { type: 'text' },
-        },
-        percent: {
-            description: "圓形進度條進度",
-            control: {
-                type: "range",
-                min: 0,
-                max: 100,
-                step: 1, },
-            defaultValue: 66,
-        },
-        size: {
-            description: '圓形進度條直徑大小',
-            control: {
-                type: 'range',
-                min: 24,
-                max: 200,
-                step: 1,
-            },
-            defaultValue: 50,
-        },
-        strokeWidth: {
-            description: '圓形進度條寬度',
-            control: {
-                type: 'range',
-                min: 1,
-                max: 20,
-                step: 1,
-            },
-        },
     },
     parameters: {
         // 自動文件
         docs: {
-            title: "圓形進度條",
+            title: "CircleProgress",
             description: {
-                component: "圓形進度條組件的呈現及說明。",
+                component: "CircleProgress 組件的呈現及說明。",
             },
         },
     },
@@ -66,9 +66,9 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== 圓形進度條 ====//
+//==== CircleProgress 基礎樣式 ====//
 export const DefaultCircleProgress = {
-    name: "圓形進度條",
+    name: "CircleProgress 基礎樣式",
     args: {
         label: "Saving",
         percent: 66,
