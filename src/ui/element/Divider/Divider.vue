@@ -1,5 +1,6 @@
 <script setup>
 
+// 定義 Props
 const props = defineProps({
     layout: {
         //線條方向
@@ -7,6 +8,13 @@ const props = defineProps({
         default: "horizontal",
         validator: (value) => ["horizontal", "vertical"].includes(value),
     },
+	width: {
+		//線條粗細
+		type: String,
+		default: "xsmall",
+		validator: (value) =>
+			["xsmall", "small", "medium", "large", "xlarge"].includes(value),
+	},
     type: {
         //線條種類
         type: String,
@@ -26,13 +34,6 @@ const props = defineProps({
                 "error",
                 "info",
             ].includes(value),
-    },
-    width: {
-        //線條粗細
-        type: String,
-        default: "xsmall",
-        validator: (value) =>
-            ["xsmall", "small", "medium", "large", "xlarge"].includes(value),
     },
     align: {
         //文字位置

@@ -12,6 +12,7 @@
     position: absolute;
     display: block;
     top: 50%;
+    transform: translateY(-50%);
     left: 0;
     width: 100%;
     content: "";
@@ -30,6 +31,7 @@
     display: block;
     top: 0;
     left: 50%;
+    transform: translateX(-50%);
     height: 100%;
     content: "";
 }
