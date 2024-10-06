@@ -3,32 +3,32 @@ import { computed } from "vue";
 
 // 定義 Props
 const props = defineProps({
-  themeColor: {
-    type: String,
-    default: "primary",
-    validator: (value) =>
-        [
-          "primary",
-          "secondary",
-          "tertiary",
-          "success",
-          "warning",
-          "error",
-          "info",
-        ].includes(value),
-  },
-  label: {
-    type: String,
-    default: "label"
-  },
-  percent: { //進度
-    type: Number,
-    default: 66,
-  },
-  strokeWidth: { //線條寬度
-    type: Number,
-    default: 10,
-  }
+	label: {
+		type: String,
+		default: "label"
+	},
+	percent: { //進度
+		type: Number,
+		default: 66,
+	},
+	strokeWidth: { //線條寬度
+		type: Number,
+		default: 10,
+	},
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+		    [
+		      "primary",
+		      "secondary",
+		      "tertiary",
+		      "success",
+		      "warning",
+		      "error",
+		      "info",
+		    ].includes(value),
+	},
 })
 
 // 計算屬性 - 進度條進度，並且限制 0-100 之間

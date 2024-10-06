@@ -6,8 +6,30 @@ export default {
     component: LineProgress,
     tags: ["autodocs"],
     argTypes: {
+        label: {
+            description: "顯示在 LineProgress 上的標題文字",
+            control: { type: 'text' },
+        },
+        percent: {
+            description: "設置 LineProgress 的進度百分比（0-100）",
+            control: {
+                type: "range",
+                min: 0,
+                max: 100,
+                step: 1, },
+            defaultValue: 66,
+        },
+        strokeWidth: {
+            description: 'LineProgress 的直徑大小（單位：像素）',
+            control: {
+                type: 'range',
+                min: 1,
+                max: 20,
+                step: 1,
+            },
+        },
         themeColor: {
-            description: "主題顏色",
+            description: "LineProgress 的主題顏色",
             control: { type: "select" },
             options: [
                 "primary",
@@ -19,35 +41,13 @@ export default {
                 "info",
             ],
         },
-        label: {
-            description: "線形進度條標題",
-            control: { type: 'text' },
-        },
-        percent: {
-            description: "線形進度條進度",
-            control: {
-                type: "range",
-                min: 0,
-                max: 100,
-                step: 1, },
-            defaultValue: 66,
-        },
-        strokeWidth: {
-            description: '線形進度條寬度',
-            control: {
-                type: 'range',
-                min: 1,
-                max: 20,
-                step: 1,
-            },
-        },
     },
     parameters: {
         // 自動文件
         docs: {
-            title: "線形進度條",
+            title: "LineProgress",
             description: {
-                component: "線形進度條組件的呈現及說明。",
+                component: "LineProgress 組件的呈現及說明。",
             },
         },
     },
@@ -56,9 +56,9 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== 線形進度條 ====//
+//==== LineProgress 基礎樣式 ====//
 export const DefaultLineProgress = {
-    name: "線形進度條",
+    name: "LineProgress 基礎樣式",
     args: {
         label: "Complete",
         percent: 66,
