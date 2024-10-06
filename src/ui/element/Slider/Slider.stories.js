@@ -1,7 +1,6 @@
 import {ref} from "vue";
 import Slider from "./Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
-import {DividerColors} from "@/ui/element/Divider/Divider.stories.js";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -10,8 +9,23 @@ export default {
 	component: Slider,
 	tags: ["autodocs"],
 	argTypes: {
+		sliderMinVal: {
+			description: "設定 Slider 的最小值，控制可滑動的起始範圍",
+			control: { type: "number" },
+		},
+		sliderMaxVal: {
+			description: "設定 Slider 的最大值，控制可滑動的結束範圍",
+			control: { type: "number" },
+		},
+		thumbSize: {
+			description: "設定 Slider 滑塊的大小，以像素為單位",
+			control: { type: "range",
+				min: 20,
+				max: 30,
+				step: 1  },
+		},
 		themeColor: {
-			description: "主題顏色",
+			description: "選擇 Slider 的主題顏色",
 			control: { type: "select" },
 			options: [
 				"default",
@@ -24,20 +38,8 @@ export default {
 				"info",
 			],
 		},
-		sliderMinVal: {
-			description: "Slider起始值",
-			control: { type: "number" },
-		},
-		sliderMaxVal: {
-			description: "Slider結束值",
-			control: { type: "number" },
-		},
-		thumbSize: {
-			description: "Slider滑塊大小",
-			control: { type: "number" },
-		},
 		range: {
-			description: "勾選啟動 Range Slider",
+			description: "勾選以啟動 Range Slider，允許選擇一個範圍的值",
 			control: { type: "boolean" },
 		},
 	},
@@ -56,13 +58,13 @@ export default {
 };
 
 //==== Slider 基礎樣式 ====//
-export const DefaultSlider = {
-	name: "基礎樣式",
+export const SliderDefault = {
+	name: "Slider 基礎樣式",
 	args: {
-		sliderMinVal: "0",
-		sliderMaxVal: "5000",
+		sliderMinVal: 0,
+		sliderMaxVal: 5000,
+		thumbSize: 20,
 		themeColor: "primary",
-		thumbSize: "20",
 	},
 	render: (args) => ({
 		components: { Slider },
@@ -77,28 +79,30 @@ export const DefaultSlider = {
             <Slider
 	            :sliderMinVal="args.sliderMinVal"
 	            :sliderMaxVal="args.sliderMaxVal"
-	            :themeColor="args.themeColor"
 	            :thumbSize="args.thumbSize"
+	            :themeColor="args.themeColor"
 	            v-model="currentSliderValue"
             ></Slider>
+            {{currentSliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['range']
 		},
 	},
 };
 
 //==== Slider 範圍樣式 ====//
 export const RangeSlider = {
-	name: "範圍樣式",
+	name: "Slider 範圍樣式",
 	args: {
-		sliderMinVal: "0",
-		sliderMaxVal: "5000",
+		sliderMinVal: 0,
+		sliderMaxVal: 5000,
+		thumbSize: 20,
 		themeColor: "primary",
-		thumbSize: "20",
 	},
 	render: (args) => ({
 		components: { Slider },
@@ -115,8 +119,8 @@ export const RangeSlider = {
             <Slider
 	            :sliderMinVal="args.sliderMinVal"
 	            :sliderMaxVal="args.sliderMaxVal"
-	            :themeColor="args.themeColor"
 	            :thumbSize="args.thumbSize"
+	            :themeColor="args.themeColor"
 	            v-model:currentSliderMinValue="currentSliderMinValue"
 	            v-model:currentSliderMaxValue="currentSliderMaxValue"
 	            range
@@ -131,14 +135,14 @@ export const RangeSlider = {
 	},
 };
 
-//==== Slider 基礎樣式結合 v-model ====//
-export const DefaultSliderWithVModel = {
-	name: "基礎樣式雙向綁定",
+//==== Slider 基礎結合輸入框 ====//
+export const DefaultSliderWithInput = {
+	name: "Slider 基礎結合輸入框",
 	args: {
-		sliderMinVal: "0",
-		sliderMaxVal: "5000",
+		sliderMinVal: 0,
+		sliderMaxVal: 5000,
+		thumbSize: 20,
 		themeColor: "primary",
-		thumbSize: "20",
 	},
 	render: (args) => ({
 		components: { Slider, Input },
@@ -153,8 +157,8 @@ export const DefaultSliderWithVModel = {
             <Slider
 	            :sliderMinVal="args.sliderMinVal"
 	            :sliderMaxVal="args.sliderMaxVal"
-	            :themeColor="args.themeColor"
 	            :thumbSize="args.thumbSize"
+	            :themeColor="args.themeColor"
 	            v-model="currentSliderValue"
             ></Slider>
             <Input type="number" v-model="currentSliderValue"/>
@@ -164,18 +168,19 @@ export const DefaultSliderWithVModel = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['range']
 		},
 	},
 };
 
-//==== Slider 範圍樣式結合 v-model  ====//
-export const RangeSliderWithVModel = {
-	name: "範圍樣式雙向綁定",
+//==== Slider 範圍樣式結合輸入框  ====//
+export const RangeSliderWithInput = {
+	name: "Slider 範圍樣式結合輸入框",
 	args: {
-		sliderMinVal: "0",
-		sliderMaxVal: "5000",
+		sliderMinVal: 0,
+		sliderMaxVal: 5000,
+		thumbSize: 20,
 		themeColor: "primary",
-		thumbSize: "20",
 	},
 	render: (args) => ({
 		components: { Slider, Input },
@@ -192,8 +197,8 @@ export const RangeSliderWithVModel = {
             <Slider
 	            :sliderMinVal="args.sliderMinVal"
 	            :sliderMaxVal="args.sliderMaxVal"
-	            :themeColor="args.themeColor"
 	            :thumbSize="args.thumbSize"
+	            :themeColor="args.themeColor"
 	            v-model:currentSliderMinValue="currentSliderMinValue"
 	            v-model:currentSliderMaxValue="currentSliderMaxValue"
 	            range
@@ -214,11 +219,12 @@ export const RangeSliderWithVModel = {
 
 //==== Slider 顏色 ====//
 export const SliderColors = {
-	name: "Slider顏色",
+	name: "Slider 顏色",
 	args: {
-		sliderMinVal: "0",
-		sliderMaxVal: "5000",
-		thumbSize: "20",
+		sliderMinVal: 0,
+		sliderMaxVal: 5000,
+		thumbSize: 20,
+		themeColor: "primary",
 	},
 	render: (args) => ({
 		components: { Slider },
@@ -287,6 +293,7 @@ export const SliderColors = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['themeColor'],
 		},
 	},
 };

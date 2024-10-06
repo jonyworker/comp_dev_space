@@ -8,7 +8,18 @@ const modelCurrentSliderMinValue = defineModel('currentSliderMinValue')
 const modelCurrentSliderMaxValue = defineModel('currentSliderMaxValue')
 
 const props = defineProps({
-	//樣式接口
+	sliderMinVal:{
+		type: Number,
+		default: 0
+	},
+	sliderMaxVal: {
+		type: Number,
+		default: 5000
+	},
+	thumbSize: {
+		type: [Number, String],
+		default: '20',
+	},
 	themeColor: {
 		type: String,
 		default: 'primary',
@@ -23,23 +34,10 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
-	// 數據接口
-	sliderMinVal:{
-		type: Number,
-		default: 0
-	},
-	sliderMaxVal: {
-		type: Number,
-		default: 5000
-	},
-	thumbSize: {
-		type: [Number, String],
-		default: '20',
-	},
 	range: {
 		type: Boolean,
 		default: false
-	}
+	},
 })
 </script>
 
