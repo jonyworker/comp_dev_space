@@ -4,7 +4,6 @@ import TabItem from "./TabItem.vue";
 
 // 定義 Props
 const props = defineProps({
-    // --  樣式接口 -- //
     themeColor: {
         type: String,
         default: "primary",
@@ -25,23 +24,21 @@ const props = defineProps({
         validator: (value) =>
             ["card", "default",].includes(value),
     },
+	activeIndex: {
+		type: Number,
+		default:2
+	},
+	isDisabled: {
+		type: Boolean,
+	},
+
+	tabsData: {
+		type: Array,
+	},
     customClass: {
         type: String,
         default: '',
-    },
-    // --  狀態接口 -- //
-    activeIndex: {
-      type: Number,
-      default:2
-    },
-    isDisabled: {
-        type: Boolean,
-    },
-    // --  資料接口 -- //
-    tabsData: {
-        type: Array,
-        required: true,
-    },
+    }
 })
 
 const activeTabIndex = ref(props.activeIndex || 0);
@@ -63,12 +60,12 @@ watch(() => props.activeIndex, (newIndex) => {
             <TabItem
                 v-for="(item, index) in props.tabsData"
                 :key="index"
-                :title="item.title"
                 :themeColor="props.themeColor"
+                :title="item.title"
                 :type="props.type"
-                :isDisabled="props.isDisabled"
                 :index="index"
                 :isActive="index === activeTabIndex"
+                :isDisabled="props.isDisabled || item.isDisabled"
                 @click="handleClick"
             ></TabItem>
         </div>
