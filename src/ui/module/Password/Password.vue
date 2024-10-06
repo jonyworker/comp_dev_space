@@ -20,32 +20,33 @@ const props = defineProps({
 		default: 'medium',
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
 	},
-	customClass: {
-		type: String,
-		default: '',
-	},
 	// -- 驗證與狀態接口 -- //
 	hint: { // 錯誤提示
 		type: Object,
 		default: () => ({ error: '', description: '' }),
 	},
-	isDisable: {
+	isDisabled: {
 		type: Boolean,
 		default: false,
 	},
+	customClass: {
+		type: String,
+		default: '',
+	}
 })
 
 </script>
 
 <template>
 	<Input
-		prefix="lock"
 		type="password"
-		:label="props.label"
+		prefix="lock"
 		:placeholder="props.placeholder"
+		:label="props.label"
 		:size="props.size"
-		v-model="modelValue"
 		:hint="props.hint"
+		:isDisabled="props.isDisabled"
+		v-model="modelValue"
 	></Input>
 </template>
 
