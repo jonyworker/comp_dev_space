@@ -38,7 +38,7 @@ const props = defineProps({
 		type: Object,
 		default: () => ({ error: '', description: '' }),
 	},
-	isDisable: {
+	isDisabled: {
 		type: Boolean,
 	},
 })
@@ -71,7 +71,8 @@ const togglePasswordVisibility = () => {
 	<div class="input-container ">
 		<!-- 輸入框標題 -->
 		<label v-if="props.label" class="input-label">{{props.label}}</label>
-		<div :class="['input-group', `component-${size}`, `input-border-${hintClass}`, { 'input-disable': isDisable }, ]">
+		<div :class="['input-group', `component-${size}`, `input-border-${hintClass}`, { 'input-disable':
+		props.isDisabled }, ]">
 			<!-- 輸入框 prefix icon -->
 			<template v-if="prefix">
 			<Icon :class="`icon-${size}`" :name="props.prefix" ></Icon>
@@ -90,8 +91,8 @@ const togglePasswordVisibility = () => {
 			</template>
 
 			<!-- Suffix Icons -->
-			<template v-if="props.suffix || modelValue || props.type === 'password'">
-			    <Icon v-if="props.suffix" :class="`icon-${props.size}`" :name="props.suffix"></Icon>
+			<template v-if=" modelValue || props.type === 'password'">
+<!--			    <Icon v-if="props.suffix" :class="`icon-${props.size}`" :name="props.suffix"></Icon>-->
 
 				<!-- input type 等於 text -->
 			    <button v-if="modelValue && props.type === 'text'" class="clear-button" @click="clearInput">
@@ -107,7 +108,7 @@ const togglePasswordVisibility = () => {
 		</div>
 
 		<!-- 輸入框說明文字 -->
-		<small :class="['input-hint', `input-hint-${hintClass}`, { 'input-disable': props.isDisable }]">
+		<small :class="['input-hint', `input-hint-${hintClass}`, { 'input-disable': props.isDisabled }]">
 		  {{hint.error.length > 0 ? hint.error : hint.description}}
 		</small>
 	</div>
