@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from 'vue';
 import Input from '@/ui/element/Input/Input.vue';
 import Button from '@/ui/element/Button/Button.vue';
 
@@ -8,7 +7,6 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-	// -- Button 接口 -- //
 	btnVariant: {
 		type: String,
 		default: 'contained',
@@ -28,19 +26,15 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
+	placeholder: {
+		type: String,
+	},
 	size: {
 		type: String,
 		default: 'medium',
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
 	},
-	// -- input 接口 -- //
-	inputLabel: {
-		type: String,
-	},
-	placeholder: {
-		type: String,
-	},
-	hint: { // 錯誤提示
+	hint: {
 		type: Object,
 		default: () => ({ error: '', description: '' }),
 	},
@@ -60,12 +54,12 @@ const props = defineProps({
 	<label v-if="props.inputLabel" class="input-label">{{props.inputLabel}}</label>
 	<div class="search">
 		<Input
+			prefix="search"
 			:placeholder="props.placeholder"
 			:size="props.size"
-			prefix="search"
-			v-model="modelValue"
 			:hint="props.hint"
 			:isDisable="props.isDisable"
+			v-model="modelValue"
 		></Input>
 		<Button
 			:themeColor="props.btnColor"

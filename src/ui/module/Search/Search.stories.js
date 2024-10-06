@@ -25,27 +25,23 @@ export default {
 				'info',
 			],
 		},
+		placeholder: {
+			description: '設定 Search 的提示文字，幫助用戶了解預期輸入內容',
+			control: { type: 'text' },
+		},
 		size: {
-			description: '搜尋框尺寸',
+			description: '設定 Search 的大小',
 			control: { type: 'select' },
 			options: ['small', 'medium', 'large'],
 		},
-		inputLabel: {
-			description: '設定搜尋框標題',
-			control: { type: 'text' },
-		},
-		placeholder: {
-			description: '設定搜尋框輸入提示',
-			control: { type: 'text' },
-		},
 		hint: {
-			description: '提示訊息',
+			description: '顯示在 Search 下方的提示訊息，提供額外的指導信息',
 			control: {
 				type: 'object',
 			},
 		},
 		isDisable: {
-			description: '是否禁用',
+			description: '設定 Search 是否禁用，禁用後無法進行輸入',
 			control: { type: 'boolean' },
 		},
 		customClass: {
@@ -58,7 +54,7 @@ export default {
 		docs: {
 			title: 'Search',
 			description: {
-				component: '搜尋框組件的呈現及說明。',
+				component: 'Search 組件的呈現及說明。',
 			},
 		},
 	},
@@ -69,14 +65,13 @@ export default {
 
 //==== Search 基礎樣式 ====//
 export const DefaultSearch = {
-	name: "基礎樣式",
+	name: "Search 基礎樣式",
 	args: {
-		placeholder:'請輸入關鍵字',
-		size: "medium",
-		inputLabel: '搜尋關鍵字',
 		btnVariant: 'contained',
 		btnColor: 'primary',
-		hint: { error: '', description: 'Please enter a Guide description' },
+		placeholder:'請輸入關鍵字',
+		size: "medium",
+		hint: { error: '', description: '請輸入關鍵字搜尋' },
 		isDisable: false
 	},
 	render: (args) => ({
@@ -90,16 +85,15 @@ export const DefaultSearch = {
 		},
 		template: `
             <Search
-	            :placeholder="args.placeholder"
-	            :size="args.size"
-	            :inputLabel="args.inputLabel"
 	            :btnVariant="args.btnVariant"
 	            :btnColor="args.btnColor"
-	            v-model="searchInputData"
-	            :hint="{ error: '', description: '請輸入關鍵字搜尋' }"
+	            :placeholder="args.placeholder"
+	            :size="args.size"
+	            :hint="args.hint"
 	            :isDisable="args.isDisable"
+	            v-model="searchInputData"
             ></Search>
-            <p v-if="searchInputData"> 點擊搜尋後傳送給後端的資料: {{searchInputData}}</p>
+            <p v-if="searchInputData"> 傳送給後端的資料: {{searchInputData}}</p>
         `,
 	}),
 	// 控制 controls 中能控制的參數
