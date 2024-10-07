@@ -2,6 +2,26 @@
 import {computed} from "vue"
 // 定義 Props
 const props = defineProps({
+	isDot: {
+		type: Boolean,
+		default: false,
+	},
+	label: {
+		type: [String, Number, null],
+	},
+	maxValue: {
+		type: Number,
+	},
+	withIcon: {
+		type: Boolean,
+		default: false,
+	},
+	position:{
+		type: String,
+		default: 'default',
+		validator: (value) =>
+			["default", "top-right"].includes(value),
+	},
 	themeColor: {
 		type: String,
 		default: 'error',
@@ -16,37 +36,17 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
-	badgeLabel: {
-		type: [String, Number, null],
-	},
-	maxValue: {
-		type: Number,
-	},
-	isDot: {
-		type: Boolean,
-		default: false,
-	},
-	isIcon: {
-		type: Boolean,
-		default: false,
-	},
-	position:{
-		type: String,
-		default: 'default',
-		validator: (value) =>
-			["default", "top-right"].includes(value),
-	}
 })
 
 // 計算是否大於對大設定值
 const computedLabel = computed(() => {
-	const isNumBadgeLabel = typeof(+props.badgeLabel) === 'number' || !isNaN(+props.badgeLabel);
+	const isNumBadgeLabel = typeof(+props.label) === 'number' || !isNaN(+props.label);
 	console.log(isNumBadgeLabel)
 	if (isNumBadgeLabel) {
-		const badgeValue = props.badgeLabel;
-		return (badgeValue > props.maxValue) ? `${props.maxValue}+` : props.badgeLabel
+		const badgeValue = props.label;
+		return (badgeValue > props.maxValue) ? `${props.maxValue}+` : props.label
 	}
-	return props.badgeLabel
+	return props.label
 })
 </script>
 
@@ -62,7 +62,7 @@ const computedLabel = computed(() => {
 				[`badge-color-${props.themeColor}`]: props.themeColor,
 		        'badge__content-isDot': props.isDot,
 		        [`badge__position-${props.position}`]: props.position,
-		        'badge__content-isIcon': props.isIcon
+		        'badge__content-withIcon': props.withIcon
 		    }">
             {{ !props.isDot ? computedLabel : '' }}
 	    </span>

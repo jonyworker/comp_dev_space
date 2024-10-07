@@ -8,8 +8,35 @@ export default {
 	components: {Icon},
 	tags: ["autodocs"],
 	argTypes: {
+		isDot: {
+			description: "啟用點狀 Badge，無文字內容，僅顯示圓點",
+			control: { type: "boolean" },
+		},
+		label: {
+			description: "Badge 上顯示的文字內容",
+			control: { type: "range",
+				min:0,
+				max:1000,
+				step: 1 },
+		},
+		maxValue: {
+			description: "Badge 的最大顯示值，超過此值時顯示為加號（+）",
+			control: { type: "range",
+				min:0,
+				max:999,
+				step: 1 },
+		},
+		withIcon: {
+			description: "當啟用時，調整圖標接近 Badge 旁邊的顯示位置",
+			control: { type: "boolean" },
+		},
+		position: {
+			description: "選擇 Badge 的位置顯示方式",
+			control: { type: "radio" },
+			options: ["default", "top-right"],
+		},
 		themeColor: {
-			description: "徽章主題顏色",
+			description: "設定 Badge 主題顏色",
 			control: { type: "select" },
 			options: [
 				"primary",
@@ -21,34 +48,19 @@ export default {
 				"info",
 			],
 		},
-		badgeLabel: {
-			description: "顯示在徽章上的文字內容",
-			control: { type: "text" },
-		},
-		maxValue: {
-			description: "徽章的最大顯示值，超過該值時將顯示加號（+）",
-			control: { type: "number" },
-		},
-		isDot: {
-			description: "啟用點狀顯示，無文字內容的徽章",
-			control: { type: "boolean" },
-		},
-		isIcon: {
-			description: "設定徽章與Icon的顯示位置",
-			control: { type: "boolean" },
-		},
-		position: {
-			description: "指定徽章的位置",
-			control: { type: "radio" },
-			options: ["default", "top-right"],
-		},
 	},
 	parameters: {
 		// 自動文件
 		docs: {
 			title: "Badge",
 			description: {
-				component: "徽章組件的呈現及說明。",
+				component: "Badge 組件的呈現及說明。",
+			},
+		},
+		slots: {
+			default: {
+				description: '用於插入 Badge 內容，例如：圖標或文字',
+				template: `{{ args.default }}`,
 			},
 		},
 	},
@@ -57,13 +69,16 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== Badge 樣式 ====//
-export const BadgeStyle = {
-	name: "徽章樣式",
+//==== Badge 基礎樣式 ====//
+export const BadgeDefault = {
+	name: "Badge 基礎樣式",
 	args: {
-		position: "top-right",
-		isIcon: true,
 		isDot: true,
+		label: 100,
+		maxValue: 99,
+		withIcon: true,
+		position: "top-right",
+		themeColor: "error",
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -74,10 +89,14 @@ export const BadgeStyle = {
 		},
 		template: `
 			<div style="display:flex; gap:24px;">
-				<Badge :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge badgeLabel="99" :position="args.position" :isIcon="args.isIcon">
+				<Badge 
+					:isDot="args.isDot"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon" 
+					:position="args.position" 
+					:themeColor="args.themeColor"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 			</div>
@@ -91,13 +110,66 @@ export const BadgeStyle = {
 	},
 };
 
-//==== Badge 位置 ====//
-export const BadgePosition = {
-	name: "徽章位置",
+//==== Badge 類型選擇 ====//
+export const BadgeStyle = {
+	name: "Badge 類型選擇",
 	args: {
+		// isDot: true,
+		label: 999,
+		maxValue: 99,
+		withIcon: true,
 		position: "top-right",
-		isIcon: true,
-		isDot: true,
+		themeColor: "error",
+	},
+	render: (args) => ({
+		components: { Badge, Icon },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+			<div style="display:flex; gap:24px;">
+				<Badge
+					:isDot="true"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					:themeColor="args.themeColor"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					:themeColor="args.themeColor"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+			</div>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['isDot']
+		},
+	},
+};
+
+//==== Badge 顯示位置 ====//
+export const BadgePosition = {
+	name: "Badge 顯示位置",
+	args: {
+		label: 100,
+		maxValue: 99,
+		withIcon: true,
+		themeColor: "error",
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -108,53 +180,66 @@ export const BadgePosition = {
 		},
 		template: `
 			<div style="display:flex; gap:60px; margin-bottom: 24px;">
-				<Badge :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge 
+					:isDot="true"
+					:withIcon="args.withIcon" 
+					position="top-right"
+					:themeColor="args.themeColor"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge badgeLabel="9" :position="args.position" :isIcon="args.isIcon">
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge badgeLabel="99" :position="args.position" :isIcon="args.isIcon">
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					position="top-right"
+					:themeColor="args.themeColor"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 			</div>
-
 			<div style="display:flex; gap:24px">
-				<Badge :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					position="default"
+					:themeColor="args.themeColor"
+				>
 					<p>Label</p>
 				</Badge>
-				<Badge badgeLabel="9">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					position="default"
+					:themeColor="args.themeColor"
+				>
 					<p>Label</p>
 				</Badge>
-				<Badge badgeLabel="99">
-					<p>Label</p>
-				</Badge>
-				<Badge badgeLabel="999">
-					<p>Label</p>
-				</Badge>
+				
 			</div>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			include: [ 'label', 'maxValue', 'withIcon', 'themeColor' ],
 		},
 	},
 };
 
 //==== Badge 最大值設定 ====//
 export const BadgeMaxValue = {
-	name: "徽章最大值",
+	name: "Badge 最大值設定",
 	args: {
+		isDot: false,
+		label: 100,
+		maxValue: 99,
+		withIcon: true,
 		position: "top-right",
-		badgeLabel: 1000,
-		maxValue: 96,
-		isIcon: true,
-		isDot: true,
+		themeColor: "error",
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -165,10 +250,23 @@ export const BadgeMaxValue = {
 		},
 		template: `
 			<div style="display:flex; gap:60px; margin-bottom: 24px;">
-				<Badge :badgeLabel="args.badgeLabel"  :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="args.isDot"
+					:label="args.label"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					:themeColor="args.themeColor"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge :badgeLabel="args.badgeLabel" :maxValue="args.maxValue" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="args.isDot"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					:themeColor="args.themeColor"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 			</div>
@@ -182,16 +280,16 @@ export const BadgeMaxValue = {
 	},
 };
 
-//==== Badge 顏色 ====//
+//==== Badge 顏色設定 ====//
 export const BadgeThemeColor = {
-	name: "徽章顏色",
+	name: "Badge 顏色設定",
 	args: {
-		position: "top-right",
-		badgeLabel: 1000,
+		isDot: false,
+		label: 100,
 		maxValue: 99,
-		isIcon: true,
-		isDot: true,
-		themeColor: "primary",
+		withIcon: true,
+		position: "top-right",
+		// themeColor: "error",
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -202,50 +300,135 @@ export const BadgeThemeColor = {
 		},
 		template: `
 			<div style="display:flex; gap:56px; margin-bottom: 24px;">
-				<Badge themeColor="primary" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="primary"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="secondary" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="secondary"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="tertiary" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="tertiary"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="success" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="success"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="warning" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="warning"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="error" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="error"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="info" :position="args.position" :isIcon="args.isIcon" :isDot="args.isDot">
+				<Badge
+					:isDot="true"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="info"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 			</div>
 			<div style="display:flex; gap:56px">
-				<Badge themeColor="primary"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="primary"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="secondary"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="secondary"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="tertiary"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="tertiary"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="success"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="success"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="warning"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="warning"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="error"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="error"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
-				<Badge themeColor="info"  badgeLabel="999" :position="args.position" :isIcon="args.isIcon">
+				<Badge
+					:isDot="false"
+					:label="args.label"
+					:maxValue="args.maxValue"
+					:withIcon="args.withIcon"
+					:position="args.position"
+					themeColor="info"
+				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
+				
 			</div>
 		`,
 	}),
@@ -253,6 +436,7 @@ export const BadgeThemeColor = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['isDot', 'themeColor']
 		},
 	},
 };
