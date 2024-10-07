@@ -1,16 +1,25 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
-	data: {
+	items: {
 		type: Array,
 		default: () => []
 	},
 })
 
 const accordionItems = ref([
-	...props.data
+	...props.items
 ]);
+
+
+watch(() => props.items, (newValue) => {
+	accordionItems.value = newValue.map(item => ({
+		...item,
+		expanded: false // 確保每個項目都有 expanded 屬性
+	}));
+});
+
 
 const accordionToggle = (index) => {
 	accordionItems.value[index].expanded = !accordionItems.value[index].expanded;

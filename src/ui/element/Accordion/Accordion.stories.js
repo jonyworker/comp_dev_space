@@ -1,5 +1,4 @@
 import Accordion from "./Accordion.vue";
-import { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -7,75 +6,37 @@ export default {
 	component: Accordion,
 	tags: ["autodocs"],
 	argTypes: {
-		//以下參數不刪
-		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
-			],
-		},
-		customClass: {
-			description: "客製化樣式",
-			control: { type: "text" },
-		},
-		label: {
-			description: "Checkbox選項文字",
-			control: { type: "text" },
-		},
-		value: {
-			description: "Checkbox選項值",
-			control: { type: "Object" },
-		},
-		name: {
-			description: "Checkbox表單用name",
-			control: { type: "text" },
-		},
-		modelValue: {
-			description: "Checkbox的綁定值",
-			control: { type: "Object" },
-		},
-		direction: {
-			description: "Checkbox群組方向",
-			control: { type: "select" },
-			options: ["row", "column"],
+		items: {
+			description: "Accordion 對應的資料陣列",
+			control: { type: "object" },
 		},
 	},
 	parameters: {
 		// 自動文件
 		docs: {
-			title: "收合式選單",
+			title: "Accordion",
 			description: {
-				component: "收合式選單組件的呈現及說明。",
+				component: "Accordion 組件的呈現及說明。",
 			},
 		},
 	},
-
 	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 	// args: { onClick: fn() },
 };
 
 //==== Accordion 基礎樣式 ====//
 export const AccordionDefault = {
-	name: "基礎樣式",
+	name: "Accordion 基礎樣式",
 	args: {
-		data: ref([
+		accordionData: [
 			{
-				title: "Apples",
-				expanded: false,
+				title: "這個產品跟我的設備能兼容嗎？",
 				contents: [
-					"Apples are a fine fruit often associated with good health, and fewer doctor's appointments.",
-					"Example: An apple a day keeps the doctor away.",
+					"使用前先確保這個產品和你的設備是能搭配的，特別是在連接和設置上。",
+					"例如，如果你是用舊款設備，建議查看一下產品手冊，確保一切正常！"
 				],
 			},
-
-		])
+		]
 	},
 	render: (args) => ({
 		components: { Accordion },
@@ -86,8 +47,7 @@ export const AccordionDefault = {
 		},
 		template: `
             <Accordion
-                :data="args.data"
-                
+                :items="args.accordionData"
             ></Accordion>
         `,
 	}),
@@ -99,40 +59,33 @@ export const AccordionDefault = {
 	},
 };
 
-//==== Accordion Group ====//
+//==== Accordion 群組樣式 ====//
 export const AccordionGroup = {
-	name: "多個 Accordion",
+	name: "Accordion 群組樣式",
 	args: {
-		data: ref([
+		accordionData: [
 			{
-				title: "Apples",
-				expanded: false,
+				title: "怎麼保養我的產品？",
 				contents: [
-					"Apples are a fine fruit often associated with good health, and fewer doctor's appointments.",
-					"Example: An apple a day keeps the doctor away.",
+					"要讓你的產品保持最佳狀態，建議定期清理，並避免放在太熱或太冷的地方。",
+					"比如說，用柔軟的布輕輕擦拭，不要用化學清潔劑哦！"
 				],
 			},
 			{
-				title: "Lemons",
-				expanded: false,
+				title: "保修政策是什麼？",
 				contents: [
-					"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
-					"Example: The bread from the french bakery is normally very good, but the one we lksdjfkjs" +
-					" s;ldfs; s;ldfsd;f; sdlfsdldo dodoep ep epope bought today was a lemon.",
+					"我們的產品提供一年保修，涵蓋材料和製作上的問題。",
+					"記得保留購買憑證，如果需要維修，隨時聯繫我們的客服！"
 				],
 			},
 			{
-				title: "Kiwis",
-				expanded: false,
-				contents: ["Kiwis are a fun, under-appreciated fruit.",
-					"Lemons are good with almost anything, yet are often have a negative conng, yet are often have a negativotation when used in conversation.",
-					"Example: The bread from the french bakeg, yet are often hg, yet are often have a negativave a negativ normally very good, but the one we bought today was a lemon.",
-					"Lemons are good with almost anything, yet are g, yet are often have a negativoften have a negative connotation when used in conversation.",
-					"Example: The bread from the french bakery is ng, yet are often have a negativormally very goog, yet are often have a negativd, but the one we bought today was a lemon.",
-					"Lemons are good with almost anything,g, yet are often have a negativ yet are often have a negative connotation when used in conversation.",
-					"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",],
+				title: "這個產品跟我的設備能兼容嗎？",
+				contents: [
+					"使用前先確保這個產品和你的設備是能搭配的，特別是在連接和設置上。",
+					"例如，如果你是用舊款設備，建議查看一下產品手冊，確保一切正常！"
+				],
 			},
-		])
+		]
 	},
 	render: (args) => ({
 		components: { Accordion },
@@ -143,8 +96,7 @@ export const AccordionGroup = {
 		},
 		template: `
             <Accordion
-                :data="args.data"
-                
+                :items="args.accordionData"
             ></Accordion>
         `,
 	}),
