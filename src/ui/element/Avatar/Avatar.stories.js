@@ -7,40 +7,57 @@ export default {
 	component: Avatar,
 	tags: ["autodocs"],
 	argTypes: {
+		shape: {
+			description: "選擇 Avatar 的外型樣式（圓形或方形）",
+			control: { type: "select" },
+			options: ["circle", "square"],
+		},
 		size: {
-			description: "Avatar尺寸",
+			description: "設定 Avatar 的尺寸大小",
 			control: { type: "select" },
 			options: ["xsmall", "small", "medium", "large"],
 		},
-		shape: {
-			description: "Avatar外型",
+		status: {
+			description: "選擇 Avatar 的顯示狀態",
 			control: { type: "select" },
-			options: ["circle", "square"],
+			options: ["default", "online", "idle", "busy", "offline"],
+		},
+		imageSrc: {
+			description: "輸入 Avatar 圖片的 URL 連結",
+			control: { type: "select" },
+			options: ['None', '01', '02', '03', '04'],
+			mapping: {
+				'None': '',
+				'01': '../../../src/assets/fakeImg/avatar_01.jpg',
+				'02': '../../../src/assets/fakeImg/avatar_02.jpg',
+				'03': '../../../src/assets/fakeImg/avatar_03.jpg',
+				'04': '../../../src/assets/fakeImg/avatar_04.jpg',
+			},
+			// mapping: {
+			// 	    '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
+			// 	    '02': 'libs/src/assets/fakeImg/avatar_02.jpg',
+			// 	    '03': 'libs/src/assets/fakeImg/avatar_03.jpg',
+			// 	    '04': 'libs/src/assets/fakeImg/avatar_04.jpg',
+			// 	  },
+		},
+		imageAlt: {
+			description: "為 Avatar 圖片提供替代文字",
+			control: { type: "text" },
+		},
+		username: {
+			description: "顯示使用者名稱，當沒有圖片時作取頭文字顯示",
+			control: { type: "text" },
+		},
+		limit: {
+			description: "在 AvatarGroup 中控制顯示的 Avatar 數量上限",
+			control: { type: "number",
+						min:0,
+						max:5,
+						step: 1 },
 		},
 		customClass: {
 			description: "客製化樣式",
 			control: { type: "text" },
-		},
-		imageSrc: {
-			description: "Avatar圖片連結",
-			control: { type: "text" },
-		},
-		imageAlt: {
-			description: "Avatar圖片替代文字",
-			control: { type: "text" },
-		},
-		username: {
-			description: "Avatar使用者名稱，沒圖片時顯示",
-			control: { type: "text" },
-		},
-		status: {
-			description: "Avatar狀態",
-			control: { type: "select" },
-			options: ["default", "online", "idle", "busy", "offline"],
-		},
-		limit: {
-			description: "AvatarGroup 中控制 Avatar 顯示數量",
-			control: { type: "number" },
 		},
 	},
 	parameters: {
@@ -48,7 +65,7 @@ export default {
 		docs: {
 			title: "Avatar頭像",
 			description: {
-				component: "Avatar組件的呈現及說明。",
+				component: "Avatar 組件的呈現及說明。",
 			},
 		},
 	},
@@ -59,14 +76,14 @@ export default {
 
 //==== Avatar 基礎樣式 ====//
 export const DefaultAvatar = {
-	name: "基礎樣式",
+	name: "Avatar 基礎樣式",
 	args: {
-		size: "large",
 		shape: "circle",
-		imageSrc: "src/assets/fakeImg/avatar_01.jpg",
+		size: "large",
+		status: "online",
+		imageSrc: "01",
 		imageAlt: "alt text",
 		username: "JonyWu",
-		status: "offline",
 	},
 	render: (args) => ({
 		components: { Avatar },
@@ -77,12 +94,12 @@ export const DefaultAvatar = {
 		},
 		template: `
             <Avatar
-	            :size="args.size"
 	            :shape="args.shape"
+	            :size="args.size"
+	            :status="args.status"
 	            :imageSrc="args.imageSrc"
 	            :imageAlt="args.imageAlt"
 	            :username="args.username"
-	            :status="args.status"
             ></Avatar>
         `,
 	}),
@@ -90,16 +107,18 @@ export const DefaultAvatar = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['limit']
 		},
 	},
 };
 
-//==== Avatar 外型 ====//
+//==== Avatar 外型設置 ====//
 export const AvatarShape = {
-	name: "Avatar外型",
+	name: "Avatar 外型設置",
 	args: {
 		size: "large",
-		imageSrc: "src/assets/fakeImg/avatar_01.jpg",
+		status: "default",
+		imageSrc: "01",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -113,15 +132,17 @@ export const AvatarShape = {
 		template: `
 			<div style="display:flex; gap: 16px">
 				<Avatar
-					:size="args.size"
 					shape="circle"
+					:size="args.size"
+					:status="args.status"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
 				></Avatar>
 				<Avatar
-					:size="args.size"
 					shape="square"
+					:size="args.size"
+					:status="args.status"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
@@ -133,17 +154,18 @@ export const AvatarShape = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['shape', 'limit']
 		},
 	},
 };
 
-//==== Avatar 狀態 ====//
+//==== Avatar 狀態顯示 ====//
 export const AvatarStatus = {
-	name: "Avatar狀態",
+	name: "Avatar 狀態顯示",
 	args: {
-		size: "large",
 		shape: "circle",
-		imageSrc: "src/assets/fakeImg/avatar_01.jpg",
+		size: "large",
+		imageSrc: "01",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -157,44 +179,44 @@ export const AvatarStatus = {
 		template: `
 			<div style="display:flex; gap: 16px">
 				<Avatar
-					:size="args.size"
 					:shape="args.shape"
-					:imageSrc="args.imageSrc"
-					:imageAlt="args.imageAlt"
-					:username="args.username"
+					:size="args.size"
 					status="default"
-				></Avatar>
-				<Avatar
-					:size="args.size"
-					:shape="args.shape"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
+				></Avatar>
+				<Avatar
+					:shape="args.shape"
+					:size="args.size"
 					status="online"
-				></Avatar>
-				<Avatar
-					:size="args.size"
-					:shape="args.shape"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
+				></Avatar>
+				<Avatar
+					:shape="args.shape"
+					:size="args.size"
 					status="idle"
-				></Avatar>
-				<Avatar
-					:size="args.size"
-					:shape="args.shape"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
+				></Avatar>
+				<Avatar
+					:shape="args.shape"
+					:size="args.size"
 					status="busy"
-				></Avatar>
-				<Avatar
-					:size="args.size"
-					:shape="args.shape"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
+				></Avatar>
+				<Avatar
+					:shape="args.shape"
+					:size="args.size"
 					status="offline"
+					:imageSrc="args.imageSrc"
+					:imageAlt="args.imageAlt"
+					:username="args.username"
 				></Avatar>
 			</div>
             
@@ -204,16 +226,18 @@ export const AvatarStatus = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['status', 'limit']
 		},
 	},
 };
 
-//==== Avatar 大小 ====//
+//==== Avatar 尺寸設定 ====//
 export const AvatarSizes = {
-	name: "Avatar大小",
+	name: "Avatar 尺寸設定",
 	args: {
 		shape: "circle",
-		imageSrc: "src/assets/fakeImg/avatar_01.jpg",
+		status: "online",
+		imageSrc: "01",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -227,51 +251,59 @@ export const AvatarSizes = {
 		template: `
 			<div style="display:flex; gap: 16px">
 				<Avatar
+					:shape="args.shape"
 					size="xsmall"
-					:shape="args.shape"
+					:status="args.status"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
 				></Avatar>
 				<Avatar
+					:shape="args.shape"
 					size="small"
-					:shape="args.shape"
+					:status="args.status"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
 				></Avatar>
 				<Avatar
+					:shape="args.shape"
 					size="medium"
-					:shape="args.shape"
+					:status="args.status"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
 				></Avatar>
 				<Avatar
-					size="large"
 					:shape="args.shape"
+					size="large"
+					:status="args.status"
 					:imageSrc="args.imageSrc"
 					:imageAlt="args.imageAlt"
 					:username="args.username"
 				></Avatar>
 			</div>
-            
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['size', 'limit']
 		},
 	},
 };
 
-//==== Avatar 內容 ====//
+//==== Avatar 內容顯示 ====//
 export const AvatarContent = {
-	name: "Avatar內容",
+	name: "Avatar 內容顯示",
 	args: {
-		size: "large",
 		shape: "circle",
+		size: "large",
+		status: "online",
+		imageSrc: "01",
+		imageAlt: "alt text",
+		username: "JonyWu",
 	},
 	render: (args) => ({
 		components: { Avatar },
@@ -283,18 +315,20 @@ export const AvatarContent = {
 		template: `
 			<div style="display:flex; gap: 16px">
 				<Avatar
-					:size="args.size"
 					:shape="args.shape"
-					imageSrc="src/assets/fakeImg/avatar_01.jpg"
-					imageAlt="圖片替代文字"
-					username="JonyWu"
+					:size="args.size"
+					:status="args.status"
+					:imageSrc="args.imageSrc"
+					:imageAlt="args.imageAlt"
+					:username="args.username"
 				></Avatar>
 				<Avatar
-					:size="args.size"
 					:shape="args.shape"
-					imageSrc=""
-					imageAlt="圖片替代文字"
-					username="JonyWu"
+					:size="args.size"
+					:status="args.status"
+					:imageSrc="null"
+					:imageAlt="args.imageAlt"
+					:username="args.username"
 				></Avatar>
 			</div>
         `,
@@ -303,30 +337,41 @@ export const AvatarContent = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['', 'limit']
 		},
 	},
 };
 
-//==== MultiAvatar ====//
+//==== Avatar 群組樣式 ====//
 export const MultiAvatar = {
-	name: "多個 Avatar",
+	name: "Avatar 群組樣式",
 	args: {
 		avatarsData:[
 			{
 				"userName": "Eason",
+				"imageSrc": "../../../src/assets/fakeImg/avatar_01.jpg",
+				// "imageSrc": "'libs/src/assets/fakeImg/avatar_01.jpg'"
 			},
 			{
 				"userName": "KevinYang",
-				"imageSrc": "https://picsum.photos/320/240"
+				"imageSrc": "../../../src/assets/fakeImg/avatar_02.jpg",
+				// "imageSrc": "'libs/src/assets/fakeImg/avatar_02.jpg'"
 			},
 			{
 				"userName": "AmosLee",
+				"imageSrc": "../../../src/assets/fakeImg/avatar_03.jpg",
+				// "imageSrc": "'libs/src/assets/fakeImg/avatar_03.jpg'"
 			},
 			{
 				"userName": "JohnWu",
-				"imageSrc": "https://picsum.photos/320/340"
+				"imageSrc": "../../../src/assets/fakeImg/avatar_04.jpg",
+				// "imageSrc": "'libs/src/assets/fakeImg/avatar_04.jpg'"
 			}
 		],
+		shape: "circle",
+		size: "large",
+		limit: 3
+
 	},
 	render: (args) => ({
 		components: { AvatarGroup },
@@ -338,11 +383,11 @@ export const MultiAvatar = {
 		template: `
 			<div style="display:flex; gap: 16px">
 				<AvatarGroup 
-					:avatarsData="args.avatarsData" 
-					size="medium" 
-					shape="circle" 
-					:limit="3">
-				</AvatarGroup>
+					:items="args.avatarsData" 
+					:size="args.size" 
+					:shape="args.shape" 
+					:limit="args.limit"
+				></AvatarGroup>
 			</div>
         `,
 	}),
@@ -350,6 +395,7 @@ export const MultiAvatar = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['status', 'imageSrc', 'imageAlt', 'username' ],
 		},
 	},
 };

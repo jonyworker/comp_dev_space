@@ -5,23 +5,23 @@ import { getInitialsOrDefault } from '@/utils/string-utils.js';
 
 // 定義 Props
 const props = defineProps({
-    // --  樣式接口 -- //
-    size: {
-		type: String,
-		default: "large",
-		validator: (value) =>
-			["xsmall", "small", "medium", "large"].includes(value),
-    },
     shape: {
         type: String,
         default: "circle",
         validator: (value) =>
           ["circle", "square"].includes(value),
     },
-    customClass: {
-        type: String,
-        default: '',
-    },
+	size: {
+		type: String,
+		default: "large",
+		validator: (value) =>
+			["xsmall", "small", "medium", "large"].includes(value),
+	},
+	status: {
+		type: String,
+		validator: (value) =>
+			["default", "online", "idle", "busy", "offline"].includes(value),
+	},
     imageSrc: {
         type: String,
     },
@@ -32,13 +32,10 @@ const props = defineProps({
     username: {
         type: String,
     },
-    // --  狀態接口 -- //
-    status: {
-        type: String,
-        validator: (value) =>
-            ["default", "online", "idle", "busy", "offline"].includes(value),
-    },
-
+	customClass: {
+		type: String,
+		default: '',
+	},
 })
 </script>
 

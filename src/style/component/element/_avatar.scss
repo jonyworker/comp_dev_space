@@ -2,6 +2,7 @@
     position: relative;
     box-shadow: 0 0 0 2px $color-white;
     border-radius: 50%;
+    box-sizing: border-box;
   }
 
   .avatar {
@@ -53,5 +54,6 @@
   @each $shape in $avatarShape {
     .avatar-#{$shape} {
       border-radius: getAvatarShape($mode, $shape);
+      box-shadow: 0 0 0 2px $color-white;
     }
   }

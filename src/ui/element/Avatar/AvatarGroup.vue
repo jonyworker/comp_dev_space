@@ -7,7 +7,7 @@ import { splitArrayAt } from '@/utils/array-utils.js';
 // 定義 Props
 const props = defineProps({
     // --  資料接口 -- //
-    avatarsData: {
+    items: {
         type: Array,
         required: true,
     },
@@ -36,13 +36,13 @@ const props = defineProps({
 
 // 計算剩餘未顯示數量
 const restCount = computed(() => {
-    const result = props.avatarsData.length - props.limit;
+    const result = props.items.length - props.limit;
     return result >= 99 ? 99 : result;
 })
 
 // 分割[顯示群組]與[未顯示群組]
-const currList = computed(() => splitArrayAt(props.avatarsData, props.limit).currList);
-const restList = computed(() => splitArrayAt(props.avatarsData, props.limit).restList);
+const currList = computed(() => splitArrayAt(props.items, props.limit).currList);
+const restList = computed(() => splitArrayAt(props.items, props.limit).restList);
 
 // 控制顯示剩餘未顯示數據
 const isOpen =ref(false)
@@ -56,9 +56,9 @@ const handleClick = () => {
         <!-- avatar group - 渲染 avatar  -->
         <Avatar
             v-for="(avatar) in currList"
+            :imageSrc="avatar.imageSrc"
             :size="props.size"
             :shape="props.shape"
-            :imageSrc="avatar.imageSrc"
             imageAlt="alt text"
             :username="avatar.userName"
         ></Avatar>
@@ -77,7 +77,7 @@ const handleClick = () => {
                 </button>
             </div>
 
-            <!-- avatar group - 剩餘未顯示數據 -->
+            <!-- avatar group - 彈窗 剩餘未顯示數據 -->
             <div class="rest-container-menu" v-if="isOpen">
                 <Menu>
                     <li class="menu-item" v-for="(menu) in restList" :key="menu.userName">
