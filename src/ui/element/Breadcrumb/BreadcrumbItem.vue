@@ -15,8 +15,7 @@ const props = defineProps({
 </script>
 
 <template>
-	<a
-		:class="props.isCurrentPage ? 'breadcrumb-item-label': 'breadcrumb-item-link'"
+	<a :class="props.isCurrentPage ? 'breadcrumb-item-label': 'breadcrumb-item-link'"
 		:href="props.href"
 	>{{props.label}}</a>
 </template>

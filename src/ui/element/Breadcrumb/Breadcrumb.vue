@@ -4,20 +4,23 @@ import BreadcrumbItem from "@/ui/element/Breadcrumb/BreadcrumbItem.vue";
 
 // 定義 Props
 const props = defineProps({
-	breadcrumbData: {
+	items: {
 		type: Array,
-		required: true,
 		default: () => []
 	},
 	// --  資料接口 -- //
-	title: {
+	label: {
 		type: String,
 	},
 	href: {
 		type: String,
 	},
+	isCurrentPage: {
+		type: Boolean,
+		default: false,
+	}
 });
-const copyBreadcrumbsData = ref([...props.breadcrumbData])
+const copyBreadcrumbsData = ref([...props.items])
 console.log(copyBreadcrumbsData.value.length)
 
 const truncatedBreadcrumbs = computed(() => {
