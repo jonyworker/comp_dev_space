@@ -1,15 +1,28 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
+
+// 定義 Model
+const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-    // --  基礎接口 -- //
+	label: {
+		type: String,
+	},
+	value: {
+		type: [ String, Boolean ],
+	},
+	name: {
+		type: String,
+	},
+	id: {
+		type: String,
+	},
     themeColor: {
         type: String,
         default: "primary",
-        validator: (value) =>
-            [
+        validator: (value) => [
                 "primary",
                 "secondary",
                 "tertiary",
@@ -23,33 +36,11 @@ const props = defineProps({
         type: String,
         default: "",
     },
-    // --  資料接口 -- //
-    label: {
-        type: String,
-    },
-    value: {
-        type: [ String, Boolean ],
-    },
-    name: {
-        type: String,
-    },
-    modelValue: {
-        type: [Array, Boolean],
-    },
 });
-// 處理雙向綁定
-const emits = defineEmits(["update:modelValue"]);
-const computedModel = computed({
-    get() {
-        return props.modelValue;
-    },
-    set(value) {
-        emits("update:modelValue", value);
-    },
-});
+
 // 處理 check 狀態顯示
 const isCheck = ref(false);
-const handleCheck = (index, event) => {
+const handleCheck = () => {
     isCheck.value = !isCheck.value;
 };
 </script>
@@ -62,7 +53,7 @@ const handleCheck = (index, event) => {
             :id="props.value"
             :name="props.name"
             :value="props.value"
-            v-model="computedModel"
+            v-model="modelValue"
             @change="handleCheck"
         />
         <!-- checkbox - 選擇框樣式 -->

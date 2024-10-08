@@ -1,17 +1,15 @@
 <script setup>
 // 定義 Props
 const props = defineProps({
-  // --  基礎接口 -- //
-  customClass: {
-    type: String,
-    default: '',
-  },
-  //--  layout 接口 -- //
-  direction: {
-    type: String,
-    validator: (value) => ['row', 'column'].includes(value),
-    default: 'row',
-  },
+	direction: {
+		type: String,
+		validator: (value) => ['row', 'column'].includes(value),
+		default: 'row',
+	},
+	customClass: {
+		type: String,
+		default: '',
+	},
 })
 </script>
 
