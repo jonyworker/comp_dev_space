@@ -5,7 +5,7 @@ import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Col from "@/ui/layout/Col/Col.vue";
-import Heading from "@/ui/element/Heading/Heading.vue";
+import Title from "@/ui/element/Title/Title.vue";
 
 
 
@@ -105,7 +105,7 @@ const cardContainerCVAClass = computed(()=>{
 		<div class="card__body">
 			<slot name="card-body">
 				<div style="display:flex; justify-content: space-between; align-items: center">
-					<Heading class="card__title" level="2">Card title</Heading>
+					<Title class="card__title" level="2">Card title</Title>
 					<Icon name="more_vert" size="24"></Icon>
 				</div>
 

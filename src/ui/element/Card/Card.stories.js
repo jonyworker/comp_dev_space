@@ -1,5 +1,5 @@
 import Card from "@/ui/element/Card/Card.vue";
-import Heading from "@/ui/element/Heading/Heading.vue";
+import Heading from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import CardHeader from "@/ui/element/Card/CardHeader.vue";
 import CardImage from "@/ui/element/Card/CardImage.vue";

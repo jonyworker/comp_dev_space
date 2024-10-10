@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-import Heading from "@/ui/element/Heading/Heading.vue";
+import Title from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 
 // 定義 props
@@ -35,7 +35,7 @@ const clampValue = computed(() => {
 	<div class="card__body">
 		<slot>
 			<div style="display:flex; justify-content: space-between; align-items: center">
-				<Heading class="card__title" level="2">{{ props.title }}</Heading>
+				<Title class="card__title" level="2">{{ props.title }}</Title>
 				<Icon name="more_vert" size="24"></Icon>
 			</div>
 
