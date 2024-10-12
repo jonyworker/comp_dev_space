@@ -7,7 +7,7 @@ const config = {
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
     "@storybook/addon-viewport",
-
+    'storybook-addon-deep-controls'
   ],
   framework: {
     name: "@storybook/vue3-vite",

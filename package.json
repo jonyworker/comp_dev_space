@@ -13,6 +13,7 @@
   "dependencies": {
     "chart.js": "^4.4.4",
     "comp_dev_space": "file:",
+    "storybook-addon-deep-controls": "^0.8.1",
     "vue": "^3.4.37"
   },
   "devDependencies": {
