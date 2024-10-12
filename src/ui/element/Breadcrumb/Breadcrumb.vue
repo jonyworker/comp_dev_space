@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import BreadcrumbItem from "@/ui/element/Breadcrumb/BreadcrumbItem.vue";
 
 // 定義 Props
@@ -20,8 +20,13 @@ const props = defineProps({
 		default: false,
 	}
 });
-const copyBreadcrumbsData = ref([...props.items])
-console.log(copyBreadcrumbsData.value.length)
+
+const copyBreadcrumbsData = ref([...props.items]);
+
+// 監視 props.items 的變化
+watch(() => props.items, (newData) => {
+	copyBreadcrumbsData.value = [...newData];
+});
 
 const truncatedBreadcrumbs = computed(() => {
 	const data = copyBreadcrumbsData.value;
