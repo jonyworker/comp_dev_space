@@ -1,19 +1,22 @@
 <script setup>
 import {markRaw, reactive, ref} from "vue";
+import PageToast from "@/page/PageToast.vue";
+import PageCheckbox from "@/page/PageCheckbox.vue";
+import PageBreadcrumb from "@/page/PageBreadcrumb.vue";
+
 import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
-import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
-import CheckboxGroup from "@/ui/element/Checkbox/CheckboxGroup.vue";
-import Radio from "@/ui/element/Radio/Radio.vue";
-import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
+
+// import Radio from "@/ui/element/Radio/Radio.vue";
+// import RadioGroup from "@/ui/element/Radio/RadioGroup.vue";
 import Divider from "@/ui/element/Divider/Divider.vue";
 import Textarea from "@/ui/element/Textarea/Textarea.vue";
 import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";
 import LineProgress from "@/ui/element/Progress/LineProgress/LineProgress.vue";
 import Tabs from "@/ui/module/Tabs/Tabs.vue";
-import Avatar from "@/ui/element/Avatar/Avatar.vue";
-import AvatarGroup from "@/ui/element/Avatar/AvatarGroup.vue";
+// import Avatar from "@/ui/element/Avatar/Avatar.vue";
+// import AvatarGroup from "@/ui/element/Avatar/AvatarGroup.vue";
 import Menu from "@/ui/element/Menu/Menu.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Slider from "@/ui/element/Slider/Slider.vue";
@@ -22,15 +25,13 @@ import TooltipRelative from "@/ui/element/Tooltip/TooltipRelative.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import Search from "@/ui/module/Search/Search.vue";
 import Password from "@/ui/module/Password/Password.vue";
-import Toast from "@/ui/element/Toast/Toast.vue";
-import { useToast } from "@/composables/useToast.js";
+
 import { useDialogSeparate } from "@/ui/element/Dialog/test/useDialogSeparate.js";
 import DialogSeparate from "@/ui/element/Dialog/test/DialogSeparate.vue";
 import ModalConfirm from "@/ui/element/Dialog/test/ModalConfirm.vue";
 import ModalOverview from "@/ui/element/Dialog/test/ModalOverview.vue";
-import { useDialog } from "@/composables/useDialog.js";
-import Dialog from "@/ui/element/Dialog/Dialog.vue";
-import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
+
+
 import Table from "@/ui/element/Table/Table.vue";
 import TablePeter from "@/ui/element/Table/TablePeter.vue";
 import Tag from "@/ui/element/Tag/Tag.vue";
@@ -45,6 +46,8 @@ import CardBody from "@/ui/element/Card/CardBody.vue";
 import CardFooter from "@/ui/element/Card/CardFooter.vue";
 import CardImage from "@/ui/element/Card/CardImage.vue";
 import Col from "@/ui/layout/Col/Col.vue";
+import Title from "@/ui/element/Title/Title.vue";
+import PageDialog from "@/page/PageDialog.vue";
 
 
 // toggle 所需資料
@@ -53,15 +56,6 @@ const handleToggle = () => {
     isChecked.value = !isChecked.value;
 };
 
-// checkbox 所需資料
-const checkboxOptions = ref([
-    { label: "選項一", value: "option1", name: "option" },
-    { label: "選項二", value: "option2", name: "option" },
-    { label: "選項三", value: "option3", name: "option" },
-    { label: "選項四", value: "option4", name: "option" },
-]);
-const checkedCheckboxOptions = ref([]);
-const isCheckboxChecked = ref(false);
 
 // radio 所需資料
 const radioList = [
@@ -174,26 +168,7 @@ const passwordHint = ref({
     description: "請設定長度 8 碼，混合大小寫英文字母、數字及特殊符號",
 });
 
-// Toast 所需資料
-const { add, toasts, remove } = useToast();
-const showSuccess = () => {
-    add({
-        themeColor: "success",
-        severity: "success",
-        title: "Success Message",
-        message: "Hello, world! This is a toast message.",
-        life: 3000,
-    });
-};
-const showError = () => {
-    add({
-        themeColor: "error",
-        severity: "error",
-        title: "Error Message",
-        message: "Hello, world! This is a toast message.",
-        life: 3000,
-    });
-};
+
 
 // Dialog Separate 所需資料
 const dialogSeparate = useDialogSeparate();
@@ -206,40 +181,6 @@ const openOverviewDialog = () => {
     dialogSeparate.showDialogSeparate();
 };
 
-// Modal 所需資料
-const dialog = useDialog();
-const dialogData = ref({
-    title: "Replace File?",
-    message:
-        'A file named "example.png" already exist! Do you what to replace it?',
-});
-
-// Breadcrumb 所需資料
-const breadcrumbData = ref([
-    {
-        label: "首頁",
-        href: "/",
-    },
-    {
-        label: "第一層",
-        href: "/1st",
-    },
-    {
-        label: "第二層",
-        href: "/2nd",
-    },
-    {
-        label: "第三層",
-        href: "/3rd",
-    },
-    {
-        label: "第n層",
-        href: "/nPages",
-    },
-    {
-        label: "當前頁",
-    },
-]);
 
 // Table 所需資料
 const columnHeadData = ref([
@@ -373,27 +314,7 @@ const accordionItems = ref([
         </div>
 
         <!-- Checkbox -->
-        <div>
-            {{ isCheckboxChecked }}
-            {{ checkedCheckboxOptions }}
-            <br />
-            <Checkbox
-                label="我已詳細閱讀新規定"
-                name="agreeStatement"
-                v-model="isCheckboxChecked"
-            ></Checkbox>
-
-            <Checkbox-Group>
-                <Checkbox
-                    v-for="(item, index) in checkboxOptions"
-                    :key="index"
-                    :value="item.value"
-                    :label="item.label"
-                    :name="item.name"
-                    v-model="checkedCheckboxOptions"
-                ></Checkbox>
-            </Checkbox-Group>
-        </div>
+        <PageCheckbox/>
 
         <!-- Radio -->
         <div>
@@ -616,26 +537,8 @@ const accordionItems = ref([
             <template #content> Hi, Hi~ Nice to meet you! </template>
         </Tooltip>
         <br />
-
-        <!-- Toast -->
-        <div style="display: flex; gap: 16px">
-            <Button themeColor="success" variant="outlined" @click="showSuccess"
-                >Show Success Toast</Button
-            >
-            <Button themeColor="error" variant="outlined" @click="showError"
-                >Show Success Toast</Button
-            >
-        </div>
-
-        <Toast
-            v-for="toast in toasts"
-            :key="toast.id"
-            :themeColor="toast.themeColor"
-            :severity="toast.severity"
-            :title="toast.title"
-            :message="toast.message"
-            @close="remove(toast.id)"
-        ></Toast>
+	    <!-- Toast -->
+		<PageToast/>
 
         <!-- Dialog Separate -->
         <DialogSeparate></DialogSeparate>
@@ -643,17 +546,10 @@ const accordionItems = ref([
         <Button @click="openOverviewDialog">Open confirm modal</Button>
 
         <!-- Dialog（可帶自訂樣式） -->
-        <Dialog :title="dialogData.title" :message="dialogData.message">
-            <template #dialogFooter>
-                <Button variant="text" @click="handleAction1">Cancel</Button>
-                <Button @click="handleAction2">Replace</Button>
-            </template>
-        </Dialog>
-        <br />
-        <Button @click="dialog.showDialog">open modal</Button>
+        <PageDialog></PageDialog>
 
         <!-- Breadcrumb -->
-        <Breadcrumb :breadcrumbData="breadcrumbData"></Breadcrumb>
+        <PageBreadcrumb></PageBreadcrumb>
 
         <!-- Table -->
         <Table
@@ -760,7 +656,7 @@ const accordionItems = ref([
 		    </CardFooter>
 	    </Card>
 
-
+		<Title level="2">sdfsdf</Title>
 
     </div>
 </template>
