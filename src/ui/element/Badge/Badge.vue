@@ -6,7 +6,7 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	label: {
+	value: {
 		type: [String, Number, null],
 	},
 	maxValue: {
@@ -39,14 +39,14 @@ const props = defineProps({
 })
 
 // 計算是否大於對大設定值
-const computedLabel = computed(() => {
-	const isNumBadgeLabel = typeof(+props.label) === 'number' || !isNaN(+props.label);
+const computedValue = computed(() => {
+	const isNumBadgeLabel = typeof(+props.value) === 'number' || !isNaN(+props.value);
 	console.log(isNumBadgeLabel)
 	if (isNumBadgeLabel) {
-		const badgeValue = props.label;
-		return (badgeValue > props.maxValue) ? `${props.maxValue}+` : props.label
+		const badgeValue = props.value;
+		return (badgeValue > props.maxValue) ? `${props.maxValue}+` : props.value
 	}
-	return props.label
+	return props.value
 })
 </script>
 
@@ -64,7 +64,7 @@ const computedLabel = computed(() => {
 		        [`badge__position-${props.position}`]: props.position,
 		        'badge__content-withIcon': props.withIcon
 		    }">
-            {{ !props.isDot ? computedLabel : '' }}
+            {{ !props.isDot ? computedValue : '' }}
 	    </span>
     </span>
 </template>

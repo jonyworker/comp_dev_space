@@ -12,15 +12,15 @@ export default {
 			description: "啟用點狀 Badge，無文字內容，僅顯示圓點",
 			control: { type: "boolean" },
 		},
-		label: {
-			description: "Badge 上顯示的文字內容",
+		value: {
+			description: "Badge 上顯示的文字內容，啟用點狀時無法作用",
 			control: { type: "range",
 				min:0,
 				max:1000,
 				step: 1 },
 		},
 		maxValue: {
-			description: "Badge 的最大顯示值，超過此值時顯示為加號（+）",
+			description: "Badge 的最大顯示值，超過此值時，Badge 右側顯示加號（+），啟用點狀時無法作用",
 			control: { type: "range",
 				min:0,
 				max:999,
@@ -74,7 +74,7 @@ export const BadgeDefault = {
 	name: "Badge 基礎樣式",
 	args: {
 		isDot: true,
-		label: 100,
+		value: 100,
 		maxValue: 99,
 		withIcon: true,
 		position: "top-right",
@@ -91,7 +91,7 @@ export const BadgeDefault = {
 			<div style="display:flex; gap:24px;">
 				<Badge 
 					:isDot="args.isDot"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon" 
 					:position="args.position" 
@@ -105,7 +105,7 @@ export const BadgeDefault = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			// include: ['themeColor', 'value', 'value', 'name' ],
 		},
 	},
 };
@@ -115,7 +115,7 @@ export const BadgeStyle = {
 	name: "Badge 類型選擇",
 	args: {
 		// isDot: true,
-		label: 999,
+		value: 999,
 		maxValue: 99,
 		withIcon: true,
 		position: "top-right",
@@ -132,7 +132,7 @@ export const BadgeStyle = {
 			<div style="display:flex; gap:24px;">
 				<Badge
 					:isDot="true"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -142,7 +142,7 @@ export const BadgeStyle = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -156,7 +156,7 @@ export const BadgeStyle = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			// include: ['themeColor', 'value', 'value', 'name' ],
 			exclude: ['isDot']
 		},
 	},
@@ -166,7 +166,7 @@ export const BadgeStyle = {
 export const BadgePosition = {
 	name: "Badge 顯示位置",
 	args: {
-		label: 100,
+		value: 100,
 		maxValue: 99,
 		withIcon: true,
 		themeColor: "error",
@@ -190,7 +190,7 @@ export const BadgePosition = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					position="top-right"
@@ -206,17 +206,17 @@ export const BadgePosition = {
 					position="default"
 					:themeColor="args.themeColor"
 				>
-					<p>Label</p>
+					<p>value</p>
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					position="default"
 					:themeColor="args.themeColor"
 				>
-					<p>Label</p>
+					<p>value</p>
 				</Badge>
 				
 			</div>
@@ -225,7 +225,7 @@ export const BadgePosition = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: [ 'label', 'maxValue', 'withIcon', 'themeColor' ],
+			include: [ 'value', 'maxValue', 'withIcon', 'themeColor' ],
 		},
 	},
 };
@@ -235,7 +235,7 @@ export const BadgeMaxValue = {
 	name: "Badge 最大值設定",
 	args: {
 		isDot: false,
-		label: 100,
+		value: 100,
 		maxValue: 99,
 		withIcon: true,
 		position: "top-right",
@@ -252,7 +252,7 @@ export const BadgeMaxValue = {
 			<div style="display:flex; gap:60px; margin-bottom: 24px;">
 				<Badge
 					:isDot="args.isDot"
-					:label="args.label"
+					:value="args.value"
 					:withIcon="args.withIcon"
 					:position="args.position"
 					:themeColor="args.themeColor"
@@ -261,7 +261,7 @@ export const BadgeMaxValue = {
 				</Badge>
 				<Badge
 					:isDot="args.isDot"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -275,7 +275,7 @@ export const BadgeMaxValue = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			// include: ['themeColor', 'value', 'value', 'name' ],
 		},
 	},
 };
@@ -285,7 +285,7 @@ export const BadgeThemeColor = {
 	name: "Badge 顏色設定",
 	args: {
 		isDot: false,
-		label: 100,
+		value: 100,
 		maxValue: 99,
 		withIcon: true,
 		position: "top-right",
@@ -360,7 +360,7 @@ export const BadgeThemeColor = {
 			<div style="display:flex; gap:56px">
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -370,7 +370,7 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -380,7 +380,7 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -390,7 +390,7 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -400,7 +400,7 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -410,7 +410,7 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -420,7 +420,7 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					:isDot="false"
-					:label="args.label"
+					:value="args.value"
 					:maxValue="args.maxValue"
 					:withIcon="args.withIcon"
 					:position="args.position"
@@ -435,7 +435,7 @@ export const BadgeThemeColor = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
+			// include: ['themeColor', 'value', 'value', 'name' ],
 			exclude: ['isDot', 'themeColor']
 		},
 	},
