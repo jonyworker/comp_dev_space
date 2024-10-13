@@ -1,10 +1,12 @@
 <script setup>
 import {markRaw, reactive, ref} from "vue";
-import PageToast from "@/page/PageToast.vue";
-import PageCheckbox from "@/page/PageCheckbox.vue";
+// [ PAGE ]
 import PageBreadcrumb from "@/page/PageBreadcrumb.vue";
+import PageCheckbox from "@/page/PageCheckbox.vue";
+import PageImage from "@/page/PageImage.vue";
+import PageToast from "@/page/PageToast.vue";
 
-import Image from "@/ui/element/Image/Image.vue";
+
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
 
@@ -295,11 +297,7 @@ const accordionItems = ref([
     <div class="container">
         <!-- Image -->
         <div style="width: 250px; height: 250px">
-            <Image
-                ratio="11"
-                objectFit="cover"
-                src="../../../src/assets/fakeImg/avatar_01.jpg"
-            ></Image>
+            <PageImage/>
         </div>
 
         <!-- Toggle -->
