@@ -15,8 +15,8 @@ export default {
             description: '設定 Textarea 的輸入提示文字，指引用戶輸入內容',
             control: { type: 'text' },
         },
-        total: {
-            description: '設定 Textarea 的最大字符數限制',
+        limit: {
+            description: '設定 Textarea 的最大字符數限制；設為 0 表示不限制字符數',
             control: { type: 'number' },
         },
         isDisabled: {
@@ -50,7 +50,7 @@ export const TextareaDefault = {
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
-        total: 50,
+        limit: 50,
         isDisabled: false,
         hint: { error: '', description: '' },
     },
@@ -67,7 +67,7 @@ export const TextareaDefault = {
             <Textarea
                 :label="args.label"
                 :placeholder="args.placeholder"
-                :total="args.total"
+                :limit="args.limit"
                 :isDisabled="args.isDisabled"
                 :hint="args.hint"
                 v-model="textareaModelValue"
@@ -89,7 +89,7 @@ export const TextareaStatus = {
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
-        total: 50,
+        limit: 50,
         isDisabled: false,
     },
     render: (args) => ({
@@ -111,7 +111,7 @@ export const TextareaStatus = {
                 <Textarea
                     :label="args.label"
                     :placeholder="args.placeholder"
-                    :total="args.total"
+                    :limit="args.limit"
                     :isDisabled="args.isDisabled"
                     :hint="{ error: '', description: '' }"
                     v-model="textareaModelValue01"
@@ -120,7 +120,7 @@ export const TextareaStatus = {
                 <Textarea
                     :label="args.label"
                     :placeholder="args.placeholder"
-                    :total="args.total"
+                    :limit="args.limit"
                     :isDisabled="args.isDisabled"
                     :hint="{ error: '請勿使用特殊符號', description: '' }"
                     v-model="textareaModelValue02"
@@ -129,7 +129,7 @@ export const TextareaStatus = {
                 <Textarea
                     :label="args.label"
                     :placeholder="args.placeholder"
-                    :total="args.total"
+                    :limit="args.limit"
                     :isDisabled="args.isDisabled"
                     :hint="{ error: '', description: '請簡述本筆訂單的使用回饋' }"
                     v-model="textareaModelValue03"
