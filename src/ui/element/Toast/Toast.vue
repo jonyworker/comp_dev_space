@@ -38,11 +38,6 @@ const show = () => {
 	}, props.duration);
 }
 
-// 有新值則設定新的關閉時間
-// watch(() => props.trigger, (newVal) => {
-// 	if (newVal) show();
-// });
-
 // 元件掛載時 setTimeout
 onMounted(() => {
 	show();
