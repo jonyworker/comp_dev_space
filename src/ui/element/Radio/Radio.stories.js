@@ -1,23 +1,19 @@
-import RadioItem from "./RadioItem.vue";
+import Radio from "./Radio.vue";
 import { ref } from "vue";
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Radio/子元件/RadioItem",
-	component: RadioItem,
+	title: "Design System/Radio",
+	component: Radio,
 	tags: ["autodocs"],
 	argTypes: {
 		label: {
-			description: "RadioItem 選項文字",
+			description: "Radio 選項文字",
 			control: { type: "text" },
 		},
 		value: {
-			description: "RadioItem 的選項值 (表單)",
-			control: { type: "text" },
-		},
-		inputId: {
-			description: "RadioItem 唯一 ID (表單)",
+			description: "Radio 的選項值 (表單)",
 			control: { type: "text" },
 		},
 		name: {
@@ -25,7 +21,7 @@ export default {
 			control: { type: "text" },
 		},
 		themeColor: {
-			description: "RadioItem 主題顏色",
+			description: "Radio 主題顏色",
 			control: { type: "select" },
 			options: [
 				"primary",
@@ -38,16 +34,16 @@ export default {
 			],
 		},
 		modelValue: {
-			description: "與 RadioItem 綁定的值，表示當前選中的選項",
+			description: "與 Radio 綁定的值，表示當前選中的選項",
 			control: { type: "Object" },
 		},
 	},
 	parameters: {
 		// 自動文件
 		docs: {
-			title: "RadioItem",
+			title: "Radio",
 			description: {
-				component: "RadioItem 組件的呈現及說明。",
+				component: "Radio 組件的呈現及說明。",
 			},
 		},
 	},
@@ -56,18 +52,17 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== RadioItem 基礎樣式 ====//
-export const RadioItemDefault = {
-	name: "RadioItem 基礎樣式",
+//==== Radio 基礎樣式 ====//
+export const RadioDefault = {
+	name: "Radio 基礎樣式",
 	args: {
 		label: "Season 1",
 		value: "s1",
-		inputId: "s1",
 		name: "seasons",
 		themeColor: "primary",
 	},
 	render: (args) => ({
-		components: { RadioItem },
+		components: { Radio },
 		setup() {
 			// Create a ref for modelValue to be used with v-model
 			const isRadioPicked = ref("");
@@ -77,22 +72,21 @@ export const RadioItemDefault = {
 			};
 		},
 		template: `
-            <RadioItem
+            <Radio
                 :value="args.value"
-                :inputId="args.inputId"
                 :name="args.name"
                 :label="args.label"
                 :themeColor="args.themeColor"
                 v-model="isRadioPicked"
-            ></RadioItem>
-            
-<!--            model value{{isRadioPicked}}-->
+            ></Radio>
+            <p> modelValue: {{ isRadioPicked }} </p>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['modelValue'],
 		},
 	},
 };

@@ -1,15 +1,15 @@
 <script setup>
 import { computed } from "vue";
 
+// 定義 Model
+const modelValue = defineModel()
+
 // 定義 Props
 const props = defineProps({
 	label: {
 		type: String,
 	},
 	value: {
-		type: String,
-	},
-	inputId: {
 		type: String,
 	},
 	name: {
@@ -29,30 +29,21 @@ const props = defineProps({
                 "info",
             ].includes(value),
     },
-	modelValue: {
-		type: [Array, String],
-	},
 });
 
-// 處理雙向綁定
-const emits = defineEmits(["update:modelValue"]);
-const handleChange = (event) => {
-    emits("update:modelValue", event.target.value);
-};
 // 處理 checked 狀態顯示
 const isChecked = computed(() => props.modelValue === props.value);
 </script>
 
 <template>
-    <label :for="props.inputId" class="radio">
+    <label class="radio">
         <input
             class="radio-input"
             type="radio"
             :value="props.value"
-            :id="props.inputId"
             :name="props.name"
             :checked="isChecked"
-            @change="handleChange"
+            v-model="modelValue"
         />
         <!-- radio - 選擇框樣式 -->
         <div
