@@ -1,4 +1,4 @@
-import { useDialog } from "@/composables/useDialog.js";
+import { useDialog } from "@/ui/element/Dialog/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import FakeContent from "@/ui/utility/FakeContent/FakeContent.vue";
@@ -43,7 +43,7 @@ export const DialogClick = {
 	args: {
 		dialogHeader: `<div class="title title-level-2 title-undefined">Replace Image?</div>`,
 
-		dialogBody: `<p>A file named \"example.png\" already exist! Do you what to replace it?</p>`,
+		dialogBody: `<p>A file named "example.png" already exist! Do you what to replace it?</p>`,
 
 		dialogFooter: `<div style="display: flex; justify-content: flex-end; gap: 16px"><button class="button button-text button-fit button-text-error" @click="dialog.closeDialog()" >Cancel</button><button class="button button-contained button-fit button-contained-error" @click="dialog.closeDialog()">Replace</button></div>`,
 	},

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useDialog } from "@/composables/useDialog.js";
+import { useDialog } from "@/ui/element/Dialog/useDialog.js";
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Button from "@/ui/element/Button/Button.vue";
 

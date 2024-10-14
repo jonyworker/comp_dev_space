@@ -1,7 +1,7 @@
 <script setup>
 
 // 調用 composable
-import {useDialog} from "@/composables/useDialog.js";
+import {useDialog} from "@/ui/element/Dialog/useDialog.js";
 const dialog = useDialog();
 
 // 定義 Props
