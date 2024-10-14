@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [vue(),svgLoader()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'), // 使用 path.resolve 创建绝对路径
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 })
