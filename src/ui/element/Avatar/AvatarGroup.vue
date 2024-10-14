@@ -56,6 +56,7 @@ const handleClick = () => {
         <!-- avatar group - 渲染 avatar  -->
         <Avatar
             v-for="(avatar) in currList"
+            :key="index"
             :imageSrc="avatar.imageSrc"
             :size="props.size"
             :shape="props.shape"
