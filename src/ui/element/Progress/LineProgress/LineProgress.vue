@@ -42,7 +42,7 @@ const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 1
     <!-- LineProgress - 圖表 -->
     <div class="progress-line">
         <div class="progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
-            <div class="progress-line-percent-primary" :style="{ width: `${normalizedProgress}%` }">
+            <div :class="`progress-line-percent-${props.themeColor}`" :style="{ width: `${normalizedProgress}%` }">
             </div>
         </div>
         <!-- LineProgress - 進度 -->
