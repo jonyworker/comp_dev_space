@@ -1,6 +1,6 @@
 <script setup>
 import Toast from "@/ui/element/Toast/Toast.vue";
-import { useToast } from "@/composables/useToast.js";
+import { useToast } from "@/ui/element/Toast/useToast.js";
 import Button from "@/ui/element/Button/Button.vue";
 
 // Toast 所需資料

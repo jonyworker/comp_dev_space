@@ -1,4 +1,4 @@
-import { useToast } from '@/composables/useToast.js';
+import { useToast } from '@/ui/element/Toast/useToast.js';
 import Toast from "@/ui/element/Toast/Toast.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Button from "@/ui/element/Button/Button.vue";
