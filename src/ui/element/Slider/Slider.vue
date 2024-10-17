@@ -1,25 +1,8 @@
 <script setup>
-import SliderSingle from "@/ui/element/Slider/SliderSingle.vue";
-import SliderDouble from "@/ui/element/Slider/SliderDouble.vue";
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
 
-// 定義 Model
-const modelValue = defineModel()
-const modelCurrentSliderMinValue = defineModel('currentSliderMinValue')
-const modelCurrentSliderMaxValue = defineModel('currentSliderMaxValue')
-
+// 定義 Props
 const props = defineProps({
-	sliderMinVal:{
-		type: Number,
-		default: 0
-	},
-	sliderMaxVal: {
-		type: Number,
-		default: 5000
-	},
-	thumbSize: {
-		type: [Number, String],
-		default: '20',
-	},
 	themeColor: {
 		type: String,
 		default: 'primary',
@@ -34,37 +17,121 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
-	range: {
-		type: Boolean,
-		default: false
+	min: {
+		type: Number,
+		default: -100,
 	},
+	max: {
+		type: Number,
+		default: 100,
+	},
+	step: {
+		type: [Number, String],
+		default: 1,
+	},
+	initValue: {
+		type: Number,
+		default: 50,
+	},
+	unit: {
+		type: String,
+		default: '%',
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
+	className: {
+		type: String,
+		default: '',
+	}
 })
+
+const value = ref(props.initValue || props.min);
+const thumbPosition = ref(0);
+const rangeRef = ref(null);
+const containerRef = ref(null);
+const thumbWidth = 20;
+const tooltipWidth = 40;
+
+const updateThumbPosition = (val) => {
+	if (!rangeRef.value) return;
+	const rangeWidth = rangeRef.value.offsetWidth - thumbWidth;
+	thumbPosition.value = ((val - props.min) / (props.max - props.min)) * rangeWidth;
+};
+
+const updateRangeBackground = (val) => {
+	const valuePercentage = ((val - props.min) / (props.max - props.min)) * 100;
+	if (containerRef.value) {
+		containerRef.value.style.setProperty('--progress', `${valuePercentage}%`);
+	}
+};
+
+const handleChange = (e) => {
+	const newValue = parseInt(e.target.value, 10);
+	value.value = newValue;
+
+	updateRangeBackground(newValue);
+	updateThumbPosition(newValue);
+
+	if (props.onChange) {
+		props.onChange(newValue);
+	}
+};
+
+watch(() => props.initValue, (newValue) => {
+	value.value = newValue;
+});
+
+watch(value, (newValue) => {
+	updateRangeBackground(newValue);
+	updateThumbPosition(newValue);
+});
+
+onMounted(() => {
+	updateRangeBackground(value.value);
+	updateThumbPosition(value.value);
+
+	const handleResize = () => {
+		updateRangeBackground(value.value);
+		updateThumbPosition(value.value);
+	};
+
+	window.addEventListener('resize', handleResize);
+
+	onBeforeUnmount(() => {
+		window.removeEventListener('resize', handleResize);
+	});
+});
 </script>
 
 <template>
-	<template v-if="!props.range">
-		<SliderSingle
-			:sliderMinVal="props.sliderMinVal"
-			:sliderMaxVal="props.sliderMaxVal"
-			:themeColor="props.themeColor"
-			:thumbSize="props.thumbSize"
-			v-model="modelValue"
-		></SliderSingle>
-	</template>
-	<template v-else>
-		<SliderDouble
-			:sliderMinVal="props.sliderMinVal"
-			:sliderMaxVal="props.sliderMaxVal"
-			:themeColor="props.themeColor"
-			:thumbSize="props.thumbSize"
-			v-model:currentSliderMinValue="modelCurrentSliderMinValue"
-			v-model:currentSliderMaxValue="modelCurrentSliderMaxValue"
-		></SliderDouble>
-	</template>
+	<div class="slider-container" ref="containerRef">
+		<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+			<input
+				ref="rangeRef"
+				type="range"
+				:min="props.min"
+				:max="props.max"
+				:step="props.step"
+				:value="value"
+				:disabled="props.isDisabled"
+				@input="handleChange"
+				:class="['slider', props.isDisabled ? 'slider-disable' : `slider-${props.themeColor}`]"
+			/>
+		</div>
+
+		<div
+			:class="['tooltip', props.isDisabled ? 'tooltip-disable' : `tooltip-${props.themeColor}`]"
+			:style="{ left: `calc(${ thumbPosition }px + ${ thumbWidth / 2 }px - ${ tooltipWidth / 2 }px)` }"
+		>
+			<span>{{ value }}</span>
+			<span v-if="props.unit">{{ props.unit }}</span>
+		</div>
+	</div>
+
 </template>
 
-
-
-<style>
+<style scoped lang="scss">
 
 </style>

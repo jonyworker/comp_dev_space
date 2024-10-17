@@ -12,7 +12,7 @@
 @import "./component/element/_checkbox";
 @import "./component/element/_divider";
 @import "./component/module/_tabs";
-@import "component/element/accordion";
+@import "./component/element/accordion";
 @import "./component/element/_breadcrumb";
 @import "./component/element/_progress";
 @import "./component/module/_search";
@@ -23,9 +23,10 @@
 @import "./component/module/_menu";
 @import "./component/module/_password";
 @import "./component/module/_tooltip";
-@import "./custom";
+
 @import "./component/element/_image";
 @import "./component/element/_slider";
+@import "./component/element/_sliderWithButton";
 @import "./component/element/_toast";
 @import "./component/element/_dialog";
 @import "./component/module/_table";
@@ -35,9 +36,9 @@
 @import "./component/element/_datepicker";
 @import "./component/element/_accordion";
 
+
 @import "./layout/_grid-system";
 
-.icon {
-    width: 24px;
-    height: 24px;
-}
+
+@import "./custom";
+

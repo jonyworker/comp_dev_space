@@ -5,7 +5,8 @@ import PageBreadcrumb from "@/page/PageBreadcrumb.vue";
 import PageCheckbox from "@/page/PageCheckbox.vue";
 import PageImage from "@/page/PageImage.vue";
 import PageToast from "@/page/PageToast.vue";
-
+import PageSlider from "@/page/PageSlider.vue";
+import PageSliderWithButton from "@/page/PageSliderWithButton.vue";
 
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -16,12 +17,12 @@ import Divider from "@/ui/element/Divider/Divider.vue";
 import Textarea from "@/ui/element/Textarea/Textarea.vue";
 import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";
 import LineProgress from "@/ui/element/Progress/LineProgress/LineProgress.vue";
-import Tabs from "@/ui/module/Tabs/Tabs.vue";
+import Tabs from "@/ui/element/Tabs/Tabs.vue";
 // import Avatar from "@/ui/element/Avatar/Avatar.vue";
 // import AvatarGroup from "@/ui/element/Avatar/AvatarGroup.vue";
 import Menu from "@/ui/element/Menu/Menu.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-import Slider from "@/ui/element/Slider/Slider.vue";
+import Slider from "@/ui/element/Slider/old/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
 import TooltipRelative from "@/ui/element/Tooltip/TooltipRelative.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
@@ -50,6 +51,7 @@ import CardImage from "@/ui/element/Card/CardImage.vue";
 import Col from "@/ui/layout/Col/Col.vue";
 import Title from "@/ui/element/Title/Title.vue";
 import PageDialog from "@/page/PageDialog.vue";
+
 
 
 // toggle 所需資料
@@ -573,6 +575,7 @@ const accordionItems = ref([
 
 	    </TablePeter>
 
+
         <!-- Tag -->
 	    <Tag label="label name" iconName="face" themeColor="primary"></Tag>
 	    <div style="display:flex; gap: 8px;">
@@ -655,6 +658,9 @@ const accordionItems = ref([
 	    </Card>
 
 		<Title level="2">sdfsdf</Title>
+
+	    <PageSlider></PageSlider>
+	    <PageSliderWithButton></PageSliderWithButton>
 
     </div>
 </template>
