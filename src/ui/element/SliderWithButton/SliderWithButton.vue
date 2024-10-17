@@ -60,18 +60,20 @@ const props = defineProps({
 		type: Function,
 		default: null,
 	}
-})
+});
 
 const value = ref(props.initValue);
 
 // 處理加法
 const handleIncreaseClick = () => {
 	value.value = Math.min(value.value + Number(props.step), props.max);
+	handleChange(value.value); // Notify parent on increase
 };
 
 // 處理減法
 const handleDecreaseClick = () => {
 	value.value = Math.max(value.value - Number(props.step), props.min);
+	handleChange(value.value); // Notify parent on decrease
 };
 
 // 處理滑塊變更
@@ -98,17 +100,17 @@ watch(() => props.initValue, (newValue) => {
 			@click="handleDecreaseClick"
 		>
 			<slot name="prefix">
-				<Icon v-if="prefix" :name="prefix" size="32"/>
+				<Icon v-if="props.prefix" :name="props.prefix" size="32"/>
 			</slot>
 		</Button>
 
 		<Slider
 			:themeColor="props.themeColor"
-			:min="min"
-			:max="max"
-			:unit="unit"
-			:step="step"
-			:isDisabled="isDisabled"
+			:min="props.min"
+			:max="props.max"
+			:unit="props.unit"
+			:step="props.step"
+			:isDisabled="props.isDisabled"
 			:initValue="value"
 			@change="handleChange"
 		/>
@@ -116,11 +118,11 @@ watch(() => props.initValue, (newValue) => {
 		<Button
 			variant="text"
 			:themeColor="props.themeColor"
-			:isDisabled="isDisabled"
+			:isDisabled="props.isDisabled"
 			@click="handleIncreaseClick"
 		>
 			<slot name="suffix">
-				<Icon v-if="suffix" :name="suffix" size="32"/>
+				<Icon v-if="props.suffix" :name="props.suffix" size="32"/>
 			</slot>
 		</Button>
 	</div>

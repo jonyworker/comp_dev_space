@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount, defineProps } from 'vue';
 
 // 定義 Props
 const props = defineProps({
@@ -44,8 +44,12 @@ const props = defineProps({
 	className: {
 		type: String,
 		default: '',
+	},
+	onChange: {
+		type: Function,
+		default: null,
 	}
-})
+});
 
 const value = ref(props.initValue || props.min);
 const thumbPosition = ref(0);
@@ -79,15 +83,18 @@ const handleChange = (e) => {
 	}
 };
 
+// Watch for changes to initValue and update value accordingly
 watch(() => props.initValue, (newValue) => {
 	value.value = newValue;
 });
 
+// Watch for changes to value and update UI accordingly
 watch(value, (newValue) => {
 	updateRangeBackground(newValue);
 	updateThumbPosition(newValue);
 });
 
+// Initialize on mount
 onMounted(() => {
 	updateRangeBackground(value.value);
 	updateThumbPosition(value.value);
@@ -99,6 +106,7 @@ onMounted(() => {
 
 	window.addEventListener('resize', handleResize);
 
+	// Cleanup on before unmount
 	onBeforeUnmount(() => {
 		window.removeEventListener('resize', handleResize);
 	});
@@ -129,9 +137,22 @@ onMounted(() => {
 			<span v-if="props.unit">{{ props.unit }}</span>
 		</div>
 	</div>
-
 </template>
 
 <style scoped lang="scss">
-
+//.slider-container {
+//	position: relative;
+//	width: 100%; /* Ensure the container takes full width */
+//}
+//
+//.tooltip {
+//	position: absolute;
+//	bottom: 100%; /* Position tooltip above the slider */
+//	transform: translateX(-50%); /* Center the tooltip */
+//	background-color: #fff; /* Background color for tooltip */
+//	border: 1px solid #ccc; /* Optional border */
+//	border-radius: 4px; /* Rounded corners */
+//	padding: 4px; /* Padding around text */
+//	white-space: nowrap; /* Prevent text wrapping */
+//}
 </style>
