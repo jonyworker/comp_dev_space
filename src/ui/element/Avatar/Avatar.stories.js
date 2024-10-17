@@ -1,5 +1,4 @@
 import Avatar from "./Avatar.vue";
-import AvatarGroup from "./AvatarGroup.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -24,21 +23,7 @@ export default {
 		},
 		imageSrc: {
 			description: "輸入 Avatar 圖片的 URL 連結",
-			control: { type: "select" },
-			options: ['None', '01', '02', '03', '04'],
-			mapping: {
-				'None': '',
-				'01': '../../../src/assets/fakeImg/avatar_01.jpg',
-				'02': '../../../src/assets/fakeImg/avatar_02.jpg',
-				'03': '../../../src/assets/fakeImg/avatar_03.jpg',
-				'04': '../../../src/assets/fakeImg/avatar_04.jpg',
-			},
-			// mapping: {
-			// 	    '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
-			// 	    '02': 'libs/src/assets/fakeImg/avatar_02.jpg',
-			// 	    '03': 'libs/src/assets/fakeImg/avatar_03.jpg',
-			// 	    '04': 'libs/src/assets/fakeImg/avatar_04.jpg',
-			// 	  },
+			control: { type: "text" },
 		},
 		imageAlt: {
 			description: "為 Avatar 圖片提供替代文字",
@@ -81,7 +66,7 @@ export const DefaultAvatar = {
 		shape: "circle",
 		size: "large",
 		status: "online",
-		imageSrc: "01",
+		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -118,7 +103,7 @@ export const AvatarShape = {
 	args: {
 		size: "large",
 		status: "default",
-		imageSrc: "01",
+		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -165,7 +150,7 @@ export const AvatarStatus = {
 	args: {
 		shape: "circle",
 		size: "large",
-		imageSrc: "01",
+		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -237,7 +222,7 @@ export const AvatarSizes = {
 	args: {
 		shape: "circle",
 		status: "online",
-		imageSrc: "01",
+		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -301,7 +286,7 @@ export const AvatarContent = {
 		shape: "circle",
 		size: "large",
 		status: "online",
-		imageSrc: "01",
+		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
 	},
@@ -338,64 +323,6 @@ export const AvatarContent = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: ['', 'limit']
-		},
-	},
-};
-
-//==== Avatar 群組樣式 ====//
-export const MultiAvatar = {
-	name: "Avatar 群組樣式",
-	args: {
-		avatarsData:[
-			{
-				"userName": "Eason",
-				"imageSrc": "../../../src/assets/fakeImg/avatar_01.jpg",
-				// "imageSrc": "'libs/src/assets/fakeImg/avatar_01.jpg'"
-			},
-			{
-				"userName": "KevinYang",
-				"imageSrc": "../../../src/assets/fakeImg/avatar_02.jpg",
-				// "imageSrc": "'libs/src/assets/fakeImg/avatar_02.jpg'"
-			},
-			{
-				"userName": "AmosLee",
-				"imageSrc": "../../../src/assets/fakeImg/avatar_03.jpg",
-				// "imageSrc": "'libs/src/assets/fakeImg/avatar_03.jpg'"
-			},
-			{
-				"userName": "JohnWu",
-				"imageSrc": "../../../src/assets/fakeImg/avatar_04.jpg",
-				// "imageSrc": "'libs/src/assets/fakeImg/avatar_04.jpg'"
-			}
-		],
-		shape: "circle",
-		size: "large",
-		limit: 3
-
-	},
-	render: (args) => ({
-		components: { AvatarGroup },
-		setup() {
-			return {
-				args,
-			};
-		},
-		template: `
-			<div style="display:flex; gap: 16px">
-				<AvatarGroup 
-					:items="args.avatarsData" 
-					:size="args.size" 
-					:shape="args.shape" 
-					:limit="args.limit"
-				></AvatarGroup>
-			</div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ['status', 'imageSrc', 'imageAlt', 'username' ],
 		},
 	},
 };
