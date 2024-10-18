@@ -1,5 +1,8 @@
 <script setup>
+import { ref } from 'vue';
 import slider from "@/ui/element/slider/slider.vue";
+
+const sliderValue = ref(-10);
 </script>
 
 <template>
@@ -7,10 +10,11 @@ import slider from "@/ui/element/slider/slider.vue";
 		themeColor="primary"
 		:min="-100"
 		:max="100"
+        :initValue
 		step="1"
-		:initValue="50"
 		unit="℃"
 		:isDisabled="false"
+        v-model="sliderValue"
 	></slider>
 </template>
 

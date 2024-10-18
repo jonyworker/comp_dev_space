@@ -42,7 +42,7 @@ const props = defineProps({
 	},
 	initValue: {
 		type: Number,
-		default: 50,
+		default: 27,
 	},
 	unit: {
 		type: String,
@@ -56,32 +56,25 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	onChange: {
-		type: Function,
-		default: null,
-	}
 });
 
-const value = ref(props.initValue);
+const value = ref( props.initValue || props.min);
 
 // 處理加法
 const handleIncreaseClick = () => {
-	value.value = Math.min(value.value + Number(props.step), props.max);
-	handleChange(value.value); // Notify parent on increase
+    const newValue = Math.min(value.value + Number(props.step), props.max);
+    if (newValue) {
+        value.value = newValue;
+    }
 };
 
 // 處理減法
 const handleDecreaseClick = () => {
-	value.value = Math.max(value.value - Number(props.step), props.min);
-	handleChange(value.value); // Notify parent on decrease
-};
-
-// 處理滑塊變更
-const handleChange = (val) => {
-	value.value = val;
-	if (props.onChange) {
-		props.onChange(val);
-	}
+    const newValue = Math.max(value.value - Number(props.step), props.min);
+    console.log(newValue);
+    if (newValue) {
+        value.value = newValue;
+    }
 };
 
 // 監聽 initValue 的變更
@@ -111,8 +104,8 @@ watch(() => props.initValue, (newValue) => {
 			:unit="props.unit"
 			:step="props.step"
 			:isDisabled="props.isDisabled"
-			:initValue="value"
-			@change="handleChange"
+			:initValue="props.initValue"
+            v-model="value"
 		/>
 
 		<Button

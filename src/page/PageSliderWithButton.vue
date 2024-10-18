@@ -1,5 +1,6 @@
 <script setup>
 import sliderWithButton from "@/ui/element/sliderWithButton/sliderWithButton.vue";
+
 </script>
 
 <template>
@@ -8,7 +9,7 @@ import sliderWithButton from "@/ui/element/sliderWithButton/sliderWithButton.vue
 		:min="-100"
 		:max="100"
 		step="1"
-		:initValue="50"
+		:initValue="19"
 		unit="℃"
 		:isDisabled="false"
 		prefix="decrease"
