@@ -1,4 +1,5 @@
 import Slider from "./Slider.vue";
+import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -68,7 +69,7 @@ export const SliderDefault = {
 	name: "Slider 基礎樣式",
 	args: {
 		themeColor: "primary",
-		min: -100,
+		min: 0,
 		max: 100,
 		step: 1,
 		initValue: "50",
@@ -78,8 +79,10 @@ export const SliderDefault = {
 	render: (args) => ({
 		components: { Slider },
 		setup() {
+			const sliderValue = ref(20);
 			return {
 				args,
+				sliderValue
 			};
 		},
 		template: `
@@ -91,7 +94,10 @@ export const SliderDefault = {
 				:initValue="args.initValue"
 				:unit="args.unit"
 				:isDisabled="args.isDisabled"
+				v-model="sliderValue"
 			></slider>
+			
+			ModelValue: {{sliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數

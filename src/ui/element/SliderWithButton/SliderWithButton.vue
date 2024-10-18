@@ -1,8 +1,11 @@
 <script setup>
-import { ref, watch, defineProps } from 'vue';
+import {computed, defineProps, watch} from 'vue';
 import Slider from '@/ui/element/Slider/Slider.vue';
 import Button from '@/ui/element/Button/Button.vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
+
+// 定義 Model
+const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
@@ -58,28 +61,28 @@ const props = defineProps({
 	},
 });
 
-const value = ref( props.initValue || props.min);
+const value = computed({
+    get: () => modelValue.value ?? props.initValue ?? props.min,
+    set: (newValue) => {
+        modelValue.value = newValue;
+    }
+});
 
 // 處理加法
 const handleIncreaseClick = () => {
-    const newValue = Math.min(value.value + Number(props.step), props.max);
-    if (newValue) {
-        value.value = newValue;
-    }
+    value.value = Math.min(value.value + Number(props.step), props.max);
 };
 
 // 處理減法
 const handleDecreaseClick = () => {
-    const newValue = Math.max(value.value - Number(props.step), props.min);
-    console.log(newValue);
-    if (newValue) {
-        value.value = newValue;
-    }
+    value.value = Math.max(value.value - Number(props.step), props.min);
 };
 
 // 監聽 initValue 的變更
 watch(() => props.initValue, (newValue) => {
-	value.value = newValue;
+    if (modelValue.value === undefined) {
+        value.value = newValue;
+    }
 });
 
 </script>
@@ -121,9 +124,4 @@ watch(() => props.initValue, (newValue) => {
 	</div>
 </template>
 
-<style scoped lang="scss">
-.button-slider {
-	display: flex;
-	align-items: center;
-}
-</style>
+
