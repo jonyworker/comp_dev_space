@@ -7,7 +7,6 @@ import Icon from "@/ui/element/Icon/Icon.vue";
 	<ListItem
 		label="123"
 		value="123"
-
 		className="col-5"
 	>
 		<template #listPrefix>

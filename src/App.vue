@@ -7,6 +7,8 @@ import PageImage from "@/page/PageImage.vue";
 import PageToast from "@/page/PageToast.vue";
 import PageSlider from "@/page/PageSlider.vue";
 import PageSliderWithButton from "@/page/PageSliderWithButton.vue";
+import PageListItem from "@/page/PageListItem.vue";
+import PageList from "@/page/PageList.vue";
 
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -660,7 +662,12 @@ const accordionItems = ref([
 		<Title level="2">sdfsdf</Title>
 
 	    <PageSlider></PageSlider>
+
 	    <PageSliderWithButton></PageSliderWithButton>
+
+	    <PageListItem></PageListItem>
+
+	    <PageList></PageList>
 
     </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import {computed, defineProps, watch} from 'vue';
+import {computed, watch} from 'vue';
 import Slider from '@/ui/element/Slider/Slider.vue';
 import Button from '@/ui/element/Button/Button.vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
