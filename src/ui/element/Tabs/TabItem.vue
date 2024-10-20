@@ -21,10 +21,6 @@ const props = defineProps({
         validator: (value) =>
             ["card", "default",].includes(value),
     },
-    customClass: {
-        type: String,
-        default: '',
-    },
     // --  內容接口 -- //
     title: {
         type: String,
@@ -44,7 +40,11 @@ const props = defineProps({
     // --  事件接口 -- //
     onClick: {
         type: Function,
-  },
+    },
+	className: {
+		type: String,
+		default: '',
+	},
 })
 
 // 處理 tab 點擊事件
@@ -60,9 +60,10 @@ const handleClick = (event) => {
     <button
         :class="['tab', 'button', 'component-medium', 'tab',
                 props.type === 'default'
-                ? props.isActive ? `tab-${props.themeColor}-active` : `tab-${props.themeColor}`
-                : props.isActive ? `tab-card-${props.themeColor}-active` : `tab-card-${props.themeColor}`,
-                props.isDisabled && 'tab-disable']"
+	                ? props.isActive ? `tab-${props.themeColor}-active` : `tab-${props.themeColor}`
+	                : props.isActive ? `tab-card-${props.themeColor}-active` : `tab-card-${props.themeColor}`,
+                props.isDisabled && 'tab-disable',
+                props.className || '']"
         :disabled="props.isDisabled"
         @click="handleClick"
         :data-index="props.index"

@@ -35,7 +35,7 @@ const props = defineProps({
 	tabsData: {
 		type: Array,
 	},
-    customClass: {
+    className: {
         type: String,
         default: '',
     }
@@ -54,7 +54,7 @@ watch(() => props.activeIndex, (newIndex) => {
 </script>
 
 <template>
-    <div class="tabs-container">
+    <div :class="{'tabs-container': true, [props.className]: !!props.className }">
         <!-- Tabs - 按鈕 -->
         <div class="tabs">
             <TabItem
