@@ -27,6 +27,10 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+	className: {
+		type: String,
+		default: '',
+	},
 });
 
 const closeTag = () => {
@@ -35,7 +39,11 @@ const closeTag = () => {
 </script>
 
 <template>
-    <span :class="['tag__container', `tag-${props.themeColor}`]">
+    <span :class="{
+		'tag__container':true,
+		 [`tag-${props.themeColor}`]:true,
+		  [props.className]: !!props.className
+	}">
 
 	    <template v-if="props.icon">
 		    <Icon size="14" :name="props.icon"></Icon>
