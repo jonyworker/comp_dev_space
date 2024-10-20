@@ -56,9 +56,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== Radio 基礎樣式 ====//
+//==== 主要項目 ====//
 export const RadioDefault = {
-	name: "Radio 基礎樣式",
+	name: "主要項目",
 	args: {
 		label: "Season 1",
 		value: "s1",

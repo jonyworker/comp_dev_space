@@ -52,9 +52,9 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== RadioGroup 基礎樣式 ====//
+//==== 主要項目 ====//
 export const RadioGroupDefault = {
-    name: "RadioGroup 基礎樣式",
+    name: "主要項目",
     args: {
         direction: "row",
         default:[
