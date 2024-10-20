@@ -9,12 +9,14 @@ const props = defineProps({
 		default: "circle",
 		validator: (value) =>
 			["circle", "square"].includes(value),
+		required: true,
 	},
 	size: {
 		type: String,
 		default: "large",
 		validator: (value) =>
 			["xsmall", "small", "medium", "large"].includes(value),
+		required: true,
 	},
 	status: {
 		type: String,
@@ -30,8 +32,9 @@ const props = defineProps({
 	},
 	username: {
 		type: String,
+		required: true,
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -54,7 +57,11 @@ const getInitialsOrDefault = (string, count) => {
 </script>
 
 <template>
-	<div :class="['avatar-container', `avatar-container-${props.size}`]">
+	<div :class="{
+		'avatar-container': true,
+		 [`avatar-container-${props.size}`]: true,
+		 [ props.className ]: !!props.className
+	}">
 		<div :class="['avatar', `avatar-${props.shape}`]">
 			<template v-if="props.imageSrc">
 				<Image :src="props.imageSrc" :alt="props.imageAlt" ratio="11" objectFit="cover"></Image>
