@@ -20,6 +20,10 @@ const props = defineProps({
 			'left-top','left','left-bottom'
 		].includes(value)
 	},
+	className: {
+		type: String,
+		default: '',
+	},
 });
 
 const tooltipTriggerRef = ref(null);
@@ -127,7 +131,7 @@ onBeforeUnmount(() => {
 <template>
 	<div
 		ref="tooltipTriggerRef"
-		class="tooltip-trigger"
+		:class="{'tooltip-trigger': true, [props.className]: !!props.className}"
 		@mouseenter="showTooltip"
 		@mouseleave="hideTooltip"
 		:aria-describedby="tooltipId"
