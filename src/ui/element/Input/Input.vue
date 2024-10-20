@@ -29,7 +29,7 @@ const props = defineProps({
 	suffix: {
 		type: String,
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -68,7 +68,7 @@ const togglePasswordVisibility = () => {
 
 
 <template>
-	<div class="input-container ">
+	<div :class="{'input-container': true, [props.className]: !!props.className}">
 		<!-- 輸入框標題 -->
 		<label v-if="props.label" class="input-label">{{props.label}}</label>
 		<div :class="['input-group', `component-${size}`, `input-border-${hintClass}`, { 'input-disable':
