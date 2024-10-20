@@ -23,7 +23,7 @@ const props = defineProps({
 		validator: (value) =>
 			["circle", "square"].includes(value),
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -58,7 +58,10 @@ const handleClick = () => {
 </script>
 
 <template>
-	<div class="avatar-group">
+	<div :class="{
+		'avatar-group': true,
+		[ props.className ]: !!props.className,
+	}">
 		<!-- avatar group - 渲染 avatar  -->
 		<Avatar
 			v-for="(avatar, index) in currList"
