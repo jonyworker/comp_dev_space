@@ -21,7 +21,7 @@ const props = defineProps({
 		default: '0',
 		validator: (value) => ['0', '1', '2', '3', '4', '5', '6'].includes(value),
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -33,7 +33,7 @@ const headingCVAClass = computed(() => {
 
 // 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
 const finalHeadingClass = computed(() => {
-	return [headingCVAClass.value, props.customClass].filter(Boolean).join(' ');
+	return [headingCVAClass.value, props.className].filter(Boolean).join(' ');
 });
 </script>
 
