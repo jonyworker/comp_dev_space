@@ -15,10 +15,10 @@ const props = defineProps({
 	href: {
 		type: String,
 	},
-	isCurrentPage: {
-		type: Boolean,
-		default: false,
-	}
+	className: {
+		type: String,
+		default: '',
+	},
 });
 
 const copyBreadcrumbsData = ref([...props.items]);
@@ -57,7 +57,10 @@ const handleClick = () => {
 </script>
 
 <template>
-	<nav class="breadcrumb-container undefined">
+	<nav :class="{
+		'breadcrumb-container': true,
+		[ props.className ]: !!props.className
+	}">
 		<ul class="breadcrumb">
 			<li class="breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs">
 				<!-- breadcrumb - 等於...時折疊數據 -->
