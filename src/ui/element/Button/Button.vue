@@ -9,6 +9,7 @@ const props = defineProps({
 		type: String,
 		default: 'contained',
 		validator: (value) => ['contained', 'outlined', 'text'].includes(value),
+		required: true,
 	},
 	themeColor: {
 		type: String,
@@ -43,7 +44,7 @@ const props = defineProps({
 	suffix: {
 		type: String,
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -57,9 +58,9 @@ const iconSizeClass = computed(() => {
 	return `icon-${props.size}`;
 })
 
-// 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
+// 計算包括 CVA Class 與自定義 className 的按鈕樣式
 const finalButtonClass = computed(() => {
-	return [buttonCVAClass.value, props.customClass].filter(Boolean).join(' ');
+	return [buttonCVAClass.value, props.className].filter(Boolean).join(' ');
 });
 </script>
 
