@@ -36,7 +36,7 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -47,7 +47,7 @@ const toggleCVAClass = useToggleCVAClass(props);
 
 // 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
 const finalToggleClass = computed(() => {
-  return [toggleCVAClass.value, props.customClass].filter(Boolean).join(' ');
+  return [toggleCVAClass.value, props.className].filter(Boolean).join(' ');
 });
 
 // 監聽 isChecked 的值，有改動即觸發 isToggle
