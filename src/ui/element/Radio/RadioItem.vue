@@ -29,6 +29,10 @@ const props = defineProps({
                 "info",
             ].includes(value),
     },
+	className: {
+		type: String,
+		default: '',
+	},
 });
 
 // 處理 checked 狀態顯示
@@ -36,7 +40,7 @@ const isChecked = computed(() => props.modelValue === props.value);
 </script>
 
 <template>
-    <label class="radio">
+    <label :class="{ 'radio': true, [ props.className ]: !!props.className }">
         <input
             class="radio-input"
             type="radio"

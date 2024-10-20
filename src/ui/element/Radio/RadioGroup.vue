@@ -8,7 +8,7 @@ const props = defineProps({
 		default: 'row',
 	},
 	// --  基礎接口 -- //
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -16,9 +16,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="['radio-container', `radio-container-${props.direction}`]">
-    <slot></slot>
-  </div>
+	<div :class="{
+		'radio-container': true,
+		[`checkbox-container-${props.direction}`]: true,
+		[ props.className ]: !!props.className,
+	}">
+		<slot></slot>
+	</div>
 </template>
 
 <style scoped lang="scss">
