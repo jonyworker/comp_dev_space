@@ -6,7 +6,7 @@ const props = defineProps({
 		validator: (value) => ['row', 'column'].includes(value),
 		default: 'row',
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: '',
 	},
@@ -14,7 +14,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="['checkbox-container', `checkbox-container-${props.direction}`]">
-    <slot></slot>
-  </div>
+	<div :class="{
+		'checkbox-container': true,
+		[`checkbox-container-${props.direction}`]: true,
+		[props.className]: !!props.className
+		}">
+
+		<slot></slot>
+
+	</div>
 </template>
