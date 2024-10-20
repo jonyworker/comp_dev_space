@@ -25,7 +25,7 @@
 			type: Object,
 			default: () => ({ error: '', description: '' }),
 		},
-		customClass: {
+		className: {
 			type: String,
 			default: '',
 		},
@@ -44,7 +44,7 @@
 </script>
 
 <template>
-	<div class="textarea-container ">
+	<div :class="{'textarea-container': true, [props.className]: !!props.className}">
 		<!-- 多行輸入框標題 -->
 		<template v-if="props.label">
 			<label :class="['textarea-label', {'textarea-disable': props.isDisabled}]" for="id">
