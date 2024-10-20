@@ -62,9 +62,9 @@ export default {
 };
 
 
-//==== Tag 刪除功能 ====//
+//==== 主要項目 ====//
 export const TagRemove = {
-	name: "Tag 刪除功能",
+	name: "主要項目",
 	args: {
 		themeColor: 'primary',
 		removable: true,
