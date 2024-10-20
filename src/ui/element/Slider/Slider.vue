@@ -147,7 +147,7 @@ defineExpose({ updateWidth });
 </script>
 
 <template>
-    <div class="slider-container" ref="containerRef">
+    <div :class="{ 'slider-container': true, [props.className]: !!props.className }" ref="containerRef">
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
             <input
                 ref="rangeRef"
