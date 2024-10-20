@@ -2,16 +2,16 @@ import LineProgress from "./LineProgress.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: "Design System/Progress/LineProgress",
+    title: "Design System/Progress-Line",
     component: LineProgress,
     tags: ["autodocs"],
     argTypes: {
         label: {
-            description: "顯示在 LineProgress 上的標題文字",
+            description: "進度指示標籤",
             control: { type: 'text' },
         },
         percent: {
-            description: "設置 LineProgress 的進度百分比（0-100）",
+            description: "進度",
             control: {
                 type: "range",
                 min: 0,
@@ -20,7 +20,7 @@ export default {
             defaultValue: 66,
         },
         strokeWidth: {
-            description: 'LineProgress 的直徑大小（單位：像素）',
+            description: '線條寬度',
             control: {
                 type: 'range',
                 min: 1,
@@ -29,7 +29,7 @@ export default {
             },
         },
         themeColor: {
-            description: "LineProgress 的主題顏色",
+            description: "主題顏色",
             control: { type: "select" },
             options: [
                 "primary",
@@ -40,6 +40,10 @@ export default {
                 "error",
                 "info",
             ],
+        },
+        className: {
+            description: '客製化樣式',
+            control: { type: 'text' },
         },
     },
     parameters: {
@@ -56,14 +60,15 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== LineProgress 基礎樣式 ====//
+//==== 主要項目 ====//
 export const DefaultLineProgress = {
-    name: "LineProgress 基礎樣式",
+    name: "主要項目",
     args: {
         label: "Complete",
         percent: 66,
         strokeWidth: 10,
         themeColor: "primary",
+        className: '',
     },
     render: (args) => ({
         components: { LineProgress },
@@ -79,6 +84,7 @@ export const DefaultLineProgress = {
                 :percent="args.percent"
                 :strokeWidth="args.strokeWidth"
                 :themeColor="args.themeColor"
+                :className="args.className"
             ></LineProgress>
         `,
     }),

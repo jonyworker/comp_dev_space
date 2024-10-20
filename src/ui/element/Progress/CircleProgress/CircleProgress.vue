@@ -33,6 +33,10 @@ const props = defineProps({
               "info",
             ].includes(value),
     },
+	className: {
+		type: String,
+		default: '',
+	},
 })
 
 const textRef = ref(null);
@@ -73,7 +77,7 @@ const getLimitBorder = computed(() => {
 </script>
 
 <template>
-    <div class="progress-circle-container">
+    <div :class="{'progress-circle-container':true, [props.className]:!!props.className}">
         <svg class="progress" :width="props.size" :height="props.size">
             <!-- CircleProgress - 圖表 -->
             <circle class="progress-circle-track"

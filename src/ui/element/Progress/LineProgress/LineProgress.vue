@@ -29,6 +29,10 @@ const props = defineProps({
 		      "info",
 		    ].includes(value),
 	},
+	className: {
+		type: String,
+		default: '',
+	},
 })
 
 // 計算屬性 - 進度條進度，並且限制 0-100 之間
@@ -40,7 +44,7 @@ const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 1
     <!-- LineProgress - 文字顯示 -->
     <div class="progress-line-label">{{props.label}}</div>
     <!-- LineProgress - 圖表 -->
-    <div class="progress-line">
+	<div :class="{'progress-line':true, [props.className]:!!props.className}">
         <div class="progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
             <div :class="`progress-line-percent-${props.themeColor}`" :style="{ width: `${normalizedProgress}%` }">
             </div>
