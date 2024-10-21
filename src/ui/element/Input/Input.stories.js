@@ -88,19 +88,17 @@ export const InputDefault = {
             };
         },
         template:
-            `<div style="display:flex; gap: 16px">
-                <Input 
-                    :type="args.type"
-                    :placeholder="args.placeholder"
-                    :label="args.label"
-                    :size="args.size"
-                    :prefix="args.prefix"
-                    :suffix="args.suffix"
-                    :hint="args.hint"
-                    :isDisabled="args.isDisabled"
-                    :className="args.className"
-                />
-            </div>
+            `<Input
+                :type="args.type"
+                :placeholder="args.placeholder"
+                :label="args.label"
+                :size="args.size"
+                :prefix="args.prefix"
+                :suffix="args.suffix"
+                :hint="args.hint"
+                :isDisabled="args.isDisabled"
+                :className="args.className"
+            />
             `,
     }),
     // 控制 controls 中能控制的參數

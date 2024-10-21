@@ -116,14 +116,5 @@ const togglePasswordVisibility = () => {
 </template>
 
 <style scoped lang="scss">
-.clear-button {
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: grey;
-}
+
 </style>

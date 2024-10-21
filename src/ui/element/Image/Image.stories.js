@@ -8,18 +8,7 @@ export default {
   argTypes: {
     src: {
       description: "圖片來源",
-      //控制 argType Control default 顯示
-      table: {
-        defaultValue: { summary: '01' }
-      },
-      control: { type: 'select' },
-      options: ['01', '02', '03', '04'],
-      mapping: {
-        '01': '../../../src/assets/fakeImg/avatar_01.jpg',
-        '02': '../../../src/assets/fakeImg/avatar_02.jpg',
-        '03': '../../../src/assets/fakeImg/avatar_03.jpg',
-        '04': '../../../src/assets/fakeImg/avatar_04.jpg',
-      },
+      control: { type: "text" },
     },
     //DED VUE 用程式碼
     // src: {
@@ -80,7 +69,7 @@ export default {
 export const ImageDefault = {
     name: '基本圖片',
     args: {
-        src: '01',
+        src: 'https://picsum.photos/300/300',
         alt: 'User Photo',
         objectFit: 'cover',
         ratio: '11',
@@ -115,7 +104,7 @@ export const ImageDefault = {
 export const ImageRatio = {
   name: '圖片比例總覽',
   args: {
-    src: '01',
+    src: 'https://picsum.photos/300/300',
     objectFit: 'cover'
   },
   render: (args) => ({
@@ -195,7 +184,7 @@ export const ImageRatio = {
 export const ImageFit = {
   name: '圖片自適應',
   args: {
-    src: '01',
+    src: 'https://picsum.photos/300/300',
     objectFit: 'cover',
     ratio: '169'
   },

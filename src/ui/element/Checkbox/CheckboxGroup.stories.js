@@ -1,5 +1,6 @@
 import Checkbox from "./Checkbox.vue";
 import CheckboxGroup from "./CheckboxGroup.vue";
+import { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -70,10 +71,10 @@ export const MultiCheckbox = {
         components: { Checkbox, CheckboxGroup },
         setup() {
             // Create a ref for modelValue to be used with v-model
-
+            const checkedCheckboxOptions = ref([]);
             return {
                 args,
-
+                checkedCheckboxOptions
             };
         },
         template: `

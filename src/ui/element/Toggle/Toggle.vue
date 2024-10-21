@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, defineEmits, computed } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useToggleCVAClass } from './useToggleCVAClass';
 // 定義 Emit
 const emit = defineEmits(['toggleIsChecked']);
