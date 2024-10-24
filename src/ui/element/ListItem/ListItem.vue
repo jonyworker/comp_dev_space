@@ -1,4 +1,7 @@
 <script setup>
+import { defineEmits } from 'vue'
+
+const emits = defineEmits(['selectedItem'])
 // 定義 Props
 const props = defineProps({
 	label: {
@@ -15,16 +18,20 @@ const props = defineProps({
 	className: {
 		type: String,
 	},
+	onClick: {  // 建議加入 onClick prop 的定義
+		type: Function,
+	},
 })
 
 // 新頁面開起網頁
-const handleClick = () => {
+const handleClick = (value) => {
 	if (!props.href) {
-		return;
-	}else {
+		emits('selectedItem', value)  // 如果沒有 href，直接觸發事件
+	} else {
 		window.open(props.href, '_blank');
+		emits('selectedItem', value)  // 開啟新視窗後觸發事件
 	}
-	props.onClick && props.onClick(props.value);
+	props.onClick?.(props.value);  // 使用可選鏈運算符
 };
 </script>
 
@@ -35,7 +42,7 @@ const handleClick = () => {
 			'menu-link': props.href,
 			[props.className]: !!props.className
 		}"
-		@click="handleClick">
+		@click="handleClick(props.label)">
 
 		<slot name="listPrefix">
 		</slot>
