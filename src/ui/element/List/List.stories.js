@@ -11,15 +11,19 @@ export default {
 	argTypes: {
 		options: {
 			description: "選項",
-			control: "object",
+			control: { type: 'object' },
 		},
 		isMenu: {
 			description: "是否為選單",
-			control: "boolean",
+			control: { type: 'boolean' },
+		},
+		maxHeight: {
+			description: "最大高度，自動顯示卷軸 (px)",
+			control: { type: 'text' },
 		},
 		className: {
 			description: "客製化樣式",
-			control: "text",
+			control: { type: 'text' },
 		}
 	},
 	parameters: {
@@ -37,9 +41,10 @@ export default {
 };
 
 //==== List 基礎樣式 ====//
-export const ListDefault = {
+export const ListDefault1 = {
 	name: "List 基礎樣式",
 	args: {
+		maxHeight: '',
 		isMenu: true,
 		className: 'col-5',
 		options:[
@@ -63,8 +68,9 @@ export const ListDefault = {
 					"value": "option3",
 					"href": "https://www.google.com"
 				}
-			}
-		]
+			},
+		],
+
 	},
 	render: (args) => ({
 		components: { List, ListItem, Icon },
@@ -75,8 +81,9 @@ export const ListDefault = {
 		},
 		template: `
 			<List
-				:isMenu="args.isMenu"
+				:maxHeight="args.maxHeight"
 				:className="args.className"
+				:isMenu="args.isMenu"
 			>
 				<ListItem
 					v-for="(item, index) in args.options"

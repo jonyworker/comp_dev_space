@@ -24,6 +24,47 @@ const options = reactive([
 			"value": "option3",
 			"href": "https://www.google.com"
 		}
+	},
+	{
+		"content": {
+			"label": "選項一",
+			"value": "option1",
+			"href": "https://www.google.com"
+		}
+	},
+	{
+		"content": {
+			"label": "選項二",
+			"value": "option2",
+			"href": "https://www.google.com"
+		}
+	},
+	{
+		"content": {
+			"label": "選項三",
+			"value": "option3",
+			"href": "https://www.google.com"
+		}
+	},{
+		"content": {
+			"label": "選項一",
+			"value": "option1",
+			"href": "https://www.google.com"
+		}
+	},
+	{
+		"content": {
+			"label": "選項二",
+			"value": "option2",
+			"href": "https://www.google.com"
+		}
+	},
+	{
+		"content": {
+			"label": "選項三",
+			"value": "option3",
+			"href": "https://www.google.com"
+		}
 	}
 ])
 </script>
@@ -32,6 +73,7 @@ const options = reactive([
 	<List
 		className="col-5"
 		:isMenu=true
+		maxHeight="200"
 	>
 		<ListItem
 			v-for="(item, index) in options"

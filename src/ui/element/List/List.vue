@@ -8,6 +8,9 @@ const props = defineProps({
 	className: {
 		type: String,
 	},
+	maxHeight: {
+		type: String,
+	}
 })
 </script>
 
@@ -17,6 +20,7 @@ const props = defineProps({
 		list: true,
 		menu: props.isMenu,
 		[props.className]: !!props.className }"
+	    :style="{'max-height': props.maxHeight ? `${props.maxHeight}px`: null }"
 	>
 		<slot></slot>
 	</ul>
