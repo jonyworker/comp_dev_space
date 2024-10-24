@@ -1,0 +1,58 @@
+.dropdown-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    font-size: $text-size-large;
+}
+
+.dropdown {
+    display: flex;
+    align-items: center;
+    color: $color-gray40;
+    border-width: $input-border-width;
+    border-style: solid;
+    border-color: $border-color-default;
+    border-radius: $radius-size-xsmall;
+    background-color: $color-white;
+    overflow: hidden;
+    cursor: pointer;
+
+    &-small {
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: $text-size-small;
+        height: $component-size-small
+    }
+
+    &-medium {
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: $text-size-medium;
+        height: $component-size-medium ;
+    }
+
+    &-large {
+        padding-left: 16px;
+        padding-right: 16px;
+        font-size: $text-size-large;
+        height: $component-size-large ;
+    }
+}
+
+.dropdown:hover {
+    border: 1px solid getBorderColor($mode, 'primary', 'hover');
+    box-shadow: 0 0 0 2px getBorderColor($mode, 'primary', 'hover');
+}
+
+.dropdown:focus-within {
+    border: 1px solid getBorderColor($mode, 'primary', 'focus');
+    box-shadow: 0 0 0 3px getBorderColor($mode, 'primary', 'focus');
+}
+
+.dropdown-selectValue-unselect {
+    color: $text-color-placeholder;
+}
+.dropdown-selectValue-select {
+    color: $color-black;
+}

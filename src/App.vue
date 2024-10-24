@@ -9,6 +9,7 @@ import PageSlider from "@/page/PageSlider.vue";
 import PageSliderWithButton from "@/page/PageSliderWithButton.vue";
 import PageListItem from "@/page/PageListItem.vue";
 import PageList from "@/page/PageList.vue";
+import PageDropdown from "@/page/PageDropdown.vue";
 
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -24,7 +25,7 @@ import Tabs from "@/ui/element/Tabs/Tabs.vue";
 // import AvatarGroup from "@/ui/element/Avatar/AvatarGroup.vue";
 import Menu from "@/ui/element/Menu/Menu.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-import Slider from "@/ui/element/Slider/old/Slider.vue";
+// import Slider from "@/ui/element/Slider/old/Slider.vue";
 import Input from "@/ui/element/Input/Input.vue";
 import TooltipRelative from "@/ui/element/Tooltip/TooltipRelative.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
@@ -143,9 +144,9 @@ const menuData = ref([
 ]);
 
 // Slider-Single 所需資料
-const currentSliderValue = ref(250);
-const currentSliderMinValue = ref(114);
-const currentSliderMaxValue = ref(514);
+// const currentSliderValue = ref(250);
+// const currentSliderMinValue = ref(114);
+// const currentSliderMaxValue = ref(514);
 
 // Tooltip 所需資料
 const tooltipPosValue = ref([
@@ -235,66 +236,66 @@ const removeTag = (id) => {
 };
 
 // chart 所需資料
-const chartData = reactive({
-	// 橫軸上的分類
-	labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
-	datasets: [
-		{
-			// label 為資料分類的名稱
-			label: "commit1",
-			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
-			data: [10, 20, 30, 50, 40, 30, 10],
-		},
-		{
-			// label 為資料分類的名稱
-			label: "commit2",
-			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
-			data: [140, 202, 230, 504, 420, 310, 140],
-		},
-		{
-			// label 為資料分類的名稱
-			label: "commit3",
-			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
-			data: [10, 252, 99, 59, 406, 350, 99],
-		},
-
-	],
-});
-
-const updateData = () => {
-	chartData.datasets[0].data = chartData.datasets[0].data.map((d) => d + 50);
-};
+// const chartData = reactive({
+// 	// 橫軸上的分類
+// 	labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+// 	datasets: [
+// 		{
+// 			// label 為資料分類的名稱
+// 			label: "commit1",
+// 			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
+// 			data: [10, 20, 30, 50, 40, 30, 10],
+// 		},
+// 		{
+// 			// label 為資料分類的名稱
+// 			label: "commit2",
+// 			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
+// 			data: [140, 202, 230, 504, 420, 310, 140],
+// 		},
+// 		{
+// 			// label 為資料分類的名稱
+// 			label: "commit3",
+// 			// data 為資料內容，是一個陣列，相同 index 的數值會放在同一個橫軸的分類區間
+// 			data: [10, 252, 99, 59, 406, 350, 99],
+// 		},
+//
+// 	],
+// });
+//
+// const updateData = () => {
+// 	chartData.datasets[0].data = chartData.datasets[0].data.map((d) => d + 50);
+// };
 
 // accordion 所需資料
-const accordionItems = ref([
-	{
-		title: "Apples",
-		expanded: false,
-		contents: [
-			"Apples are a fine fruit often associated with good health, and fewer doctor's appointments.",
-			"Example: An apple a day keeps the doctor away.",
-		],
-	},
-	{
-		title: "Lemons",
-		expanded: false,
-		contents: [
-			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
-			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
-		],
-	},
-	{
-		title: "Kiwis",
-		expanded: false,
-		contents: ["Kiwis are a fun, under-appreciated fruit.",
-			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
-			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
-			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
-			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
-			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
-			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",],
-	},
-]);
+// const accordionItems = ref([
+// 	{
+// 		title: "Apples",
+// 		expanded: false,
+// 		contents: [
+// 			"Apples are a fine fruit often associated with good health, and fewer doctor's appointments.",
+// 			"Example: An apple a day keeps the doctor away.",
+// 		],
+// 	},
+// 	{
+// 		title: "Lemons",
+// 		expanded: false,
+// 		contents: [
+// 			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+// 			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
+// 		],
+// 	},
+// 	{
+// 		title: "Kiwis",
+// 		expanded: false,
+// 		contents: ["Kiwis are a fun, under-appreciated fruit.",
+// 			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+// 			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
+// 			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+// 			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",
+// 			"Lemons are good with almost anything, yet are often have a negative connotation when used in conversation.",
+// 			"Example: The bread from the french bakery is normally very good, but the one we bought today was a lemon.",],
+// 	},
+// ]);
 </script>
 
 <template>
@@ -346,206 +347,206 @@ const accordionItems = ref([
         </div>
 
         <!-- Textarea -->
-        <div>
-            <p>textarea model value: {{ textareaModelValue }}</p>
-            <Textarea
-                label="訂單備註"
-                placeholder="請輸入此筆訂單備註"
-                :hint="textareaHint"
-                v-model="textareaModelValue"
-            ></Textarea>
-        </div>
+<!--        <div>-->
+<!--            <p>textarea model value: {{ textareaModelValue }}</p>-->
+<!--            <Textarea-->
+<!--                label="訂單備註"-->
+<!--                placeholder="請輸入此筆訂單備註"-->
+<!--                :hint="textareaHint"-->
+<!--                v-model="textareaModelValue"-->
+<!--            ></Textarea>-->
+<!--        </div>-->
 
         <!-- CircleProgress -->
-        <div>
-            <CircleProgress
-                label="Something"
-                :percent="66"
-                :size="120"
-                :strokeWidth="10"
-                themeColor="primary"
-            ></CircleProgress>
-        </div>
+<!--        <div>-->
+<!--            <CircleProgress-->
+<!--                label="Something"-->
+<!--                :percent="66"-->
+<!--                :size="120"-->
+<!--                :strokeWidth="10"-->
+<!--                themeColor="primary"-->
+<!--            ></CircleProgress>-->
+<!--        </div>-->
 
         <!-- LineProgress -->
-        <div>
-            <LineProgress
-                label="Complete"
-                :percent="66"
-                :strokeWidth="10"
-                themeColor="primary"
-            ></LineProgress>
-        </div>
+<!--        <div>-->
+<!--            <LineProgress-->
+<!--                label="Complete"-->
+<!--                :percent="66"-->
+<!--                :strokeWidth="10"-->
+<!--                themeColor="primary"-->
+<!--            ></LineProgress>-->
+<!--        </div>-->
 
         <!-- Tabs -->
-        <div>
-            <Tabs
-                themeColor="primary"
-                type="default"
-                :tabsData="TabsData"
-                :activeIndex="0"
-            ></Tabs>
-        </div>
+<!--        <div>-->
+<!--            <Tabs-->
+<!--                themeColor="primary"-->
+<!--                type="default"-->
+<!--                :tabsData="TabsData"-->
+<!--                :activeIndex="0"-->
+<!--            ></Tabs>-->
+<!--        </div>-->
 
         <!-- Menu -->
-        <div>
-            <Menu :menuData="menuData">
-                <li class="menu-item" v-for="menu in menuData">
-                    <Avatar
-                        size="xsmall"
-                        shape="circle"
-                        :imageSrc="menu.imageSrc"
-                        :username="menu.userName"
-                        imageAlt="alt text"
-                    ></Avatar>
-                    <div style="margin-right: auto">{{ menu.userName }}</div>
-                    <Icon name="arrow_down" size="24"></Icon>
-                </li>
-            </Menu>
-            <Menu :menuData="menuData"> </Menu>
-        </div>
+<!--        <div>-->
+<!--            <Menu :menuData="menuData">-->
+<!--                <li class="menu-item" v-for="menu in menuData">-->
+<!--                    <Avatar-->
+<!--                        size="xsmall"-->
+<!--                        shape="circle"-->
+<!--                        :imageSrc="menu.imageSrc"-->
+<!--                        :username="menu.userName"-->
+<!--                        imageAlt="alt text"-->
+<!--                    ></Avatar>-->
+<!--                    <div style="margin-right: auto">{{ menu.userName }}</div>-->
+<!--                    <Icon name="arrow_down" size="24"></Icon>-->
+<!--                </li>-->
+<!--            </Menu>-->
+<!--            <Menu :menuData="menuData"> </Menu>-->
+<!--        </div>-->
 
         <!-- Avatar -->
-        <div>
-            <Avatar
-                size="large"
-                shape="circle"
-                imageSrc="src/assets/fakeImg/avatar_01.jpg"
-                imageAlt="alt text"
-                username="jony wu"
-                status="offline"
-            ></Avatar>
-            <AvatarGroup
-                :avatarsData="avatarsData"
-                size="large"
-                shape="circle"
-                :limit="3"
-            ></AvatarGroup>
-        </div>
+<!--        <div>-->
+<!--            <Avatar-->
+<!--                size="large"-->
+<!--                shape="circle"-->
+<!--                imageSrc="src/assets/fakeImg/avatar_01.jpg"-->
+<!--                imageAlt="alt text"-->
+<!--                username="jony wu"-->
+<!--                status="offline"-->
+<!--            ></Avatar>-->
+<!--            <AvatarGroup-->
+<!--                :avatarsData="avatarsData"-->
+<!--                size="large"-->
+<!--                shape="circle"-->
+<!--                :limit="3"-->
+<!--            ></AvatarGroup>-->
+<!--        </div>-->
 
         <!-- Slider -->
-        <div>
-            <h2>Single Slider</h2>
-            <Slider
-                :sliderMinVal="0"
-                :sliderMaxVal="5000"
-                themeColor="error"
-                thumbSize="20"
-                v-model="currentSliderValue"
-            ></Slider>
-            <Input type="number" v-model="currentSliderValue" />
-            <h2>Double Slider</h2>
-            <Slider
-                :sliderMinVal="0"
-                :sliderMaxVal="5000"
-                themeColor="info"
-                thumbSize="20"
-                v-model:currentSliderMinValue="currentSliderMinValue"
-                v-model:currentSliderMaxValue="currentSliderMaxValue"
-                range
-            ></Slider>
-            <div style="display: flex; gap: 16px">
-                <Input
-                    label="起始數值"
-                    type="number"
-                    v-model="currentSliderMinValue"
-                    style="flex-grow: 1"
-                />
-                <Input
-                    label="結束數值"
-                    type="number"
-                    v-model="currentSliderMaxValue"
-                    style="flex-grow: 1"
-                />
-            </div>
-        </div>
+<!--        <div>-->
+<!--            <h2>Single Slider</h2>-->
+<!--            <Slider-->
+<!--                :sliderMinVal="0"-->
+<!--                :sliderMaxVal="5000"-->
+<!--                themeColor="error"-->
+<!--                thumbSize="20"-->
+<!--                v-model="currentSliderValue"-->
+<!--            ></Slider>-->
+<!--            <Input type="number" v-model="currentSliderValue" />-->
+<!--            <h2>Double Slider</h2>-->
+<!--            <Slider-->
+<!--                :sliderMinVal="0"-->
+<!--                :sliderMaxVal="5000"-->
+<!--                themeColor="info"-->
+<!--                thumbSize="20"-->
+<!--                v-model:currentSliderMinValue="currentSliderMinValue"-->
+<!--                v-model:currentSliderMaxValue="currentSliderMaxValue"-->
+<!--                range-->
+<!--            ></Slider>-->
+<!--            <div style="display: flex; gap: 16px">-->
+<!--                <Input-->
+<!--                    label="起始數值"-->
+<!--                    type="number"-->
+<!--                    v-model="currentSliderMinValue"-->
+<!--                    style="flex-grow: 1"-->
+<!--                />-->
+<!--                <Input-->
+<!--                    label="結束數值"-->
+<!--                    type="number"-->
+<!--                    v-model="currentSliderMaxValue"-->
+<!--                    style="flex-grow: 1"-->
+<!--                />-->
+<!--            </div>-->
+<!--        </div>-->
 
         <!-- Tooltip -->
-        <div
-            style="
-                width: 500px;
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: 40px;
-                margin: 56px;
-            "
-        >
-            <TooltipRelative
-                v-for="item in tooltipPosValue"
-                :content="`Tooltip on ${item}`"
-                :placement="item"
-                :showArrow="true"
-            >
-                <!-- 被 tooltip 包裹的資料 -->
-                <div
-                    style="
-                        width: 100px;
-                        height: 100px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 12px;
-                        border: 2px solid #533bd4;
-                        color: #533bd4;
-                        padding: 8px;
-                    "
-                >
-                    Hover<br />
-                    <p style="font-size: 12px">- {{ item }} -</p>
-                </div>
-            </TooltipRelative>
-        </div>
-        <TooltipRelative
-            content="Hi, Hi~ Nice to meet you!"
-            placement="top-left"
-        >
-            <Button variant="contained" size="medium" prefix="face"
-                >Hover Me</Button
-            >
-        </TooltipRelative>
+<!--        <div-->
+<!--            style="-->
+<!--                width: 500px;-->
+<!--                display: flex;-->
+<!--                align-items: center;-->
+<!--                flex-wrap: wrap;-->
+<!--                gap: 40px;-->
+<!--                margin: 56px;-->
+<!--            "-->
+<!--        >-->
+<!--            <TooltipRelative-->
+<!--                v-for="item in tooltipPosValue"-->
+<!--                :content="`Tooltip on ${item}`"-->
+<!--                :placement="item"-->
+<!--                :showArrow="true"-->
+<!--            >-->
+<!--                &lt;!&ndash; 被 tooltip 包裹的資料 &ndash;&gt;-->
+<!--                <div-->
+<!--                    style="-->
+<!--                        width: 100px;-->
+<!--                        height: 100px;-->
+<!--                        display: flex;-->
+<!--                        flex-direction: column;-->
+<!--                        align-items: center;-->
+<!--                        justify-content: center;-->
+<!--                        border-radius: 12px;-->
+<!--                        border: 2px solid #533bd4;-->
+<!--                        color: #533bd4;-->
+<!--                        padding: 8px;-->
+<!--                    "-->
+<!--                >-->
+<!--                    Hover<br />-->
+<!--                    <p style="font-size: 12px">- {{ item }} -</p>-->
+<!--                </div>-->
+<!--            </TooltipRelative>-->
+<!--        </div>-->
+<!--        <TooltipRelative-->
+<!--            content="Hi, Hi~ Nice to meet you!"-->
+<!--            placement="top-left"-->
+<!--        >-->
+<!--            <Button variant="contained" size="medium" prefix="face"-->
+<!--                >Hover Me</Button-->
+<!--            >-->
+<!--        </TooltipRelative>-->
 
         <!-- Search -->
-        <div>
-            <Search
-                placeholder="請輸入關鍵字"
-                size="medium"
-                inputLabel="搜尋關鍵字"
-                btnVariant="contained"
-                btnColor="primary"
-                v-model="searchInputData"
-                :hint="searchHint"
-            ></Search>
-            {{ searchInputData }}
-        </div>
+<!--        <div>-->
+<!--            <Search-->
+<!--                placeholder="請輸入關鍵字"-->
+<!--                size="medium"-->
+<!--                inputLabel="搜尋關鍵字"-->
+<!--                btnVariant="contained"-->
+<!--                btnColor="primary"-->
+<!--                v-model="searchInputData"-->
+<!--                :hint="searchHint"-->
+<!--            ></Search>-->
+<!--            {{ searchInputData }}-->
+<!--        </div>-->
 
         <!-- Password -->
-        <div>
-            <Password
-                label="登入密碼"
-                placeholder="請輸入密碼"
-                size="medium"
-                v-model="passwordInputData"
-                :hint="passwordHint"
-            ></Password>
-        </div>
+<!--        <div>-->
+<!--            <Password-->
+<!--                label="登入密碼"-->
+<!--                placeholder="請輸入密碼"-->
+<!--                size="medium"-->
+<!--                v-model="passwordInputData"-->
+<!--                :hint="passwordHint"-->
+<!--            ></Password>-->
+<!--        </div>-->
 
         <!-- TooltipTeleport -->
-        <Tooltip placement="right">
-            <Button variant="contained" size="large" prefix="face"
-                >Hover Me</Button
-            >
-            <template #content> Hi, Hi~ Nice to meet you! </template>
-        </Tooltip>
-        <br />
+<!--        <Tooltip placement="right">-->
+<!--            <Button variant="contained" size="large" prefix="face"-->
+<!--                >Hover Me</Button-->
+<!--            >-->
+<!--            <template #content> Hi, Hi~ Nice to meet you! </template>-->
+<!--        </Tooltip>-->
+<!--        <br />-->
 	    <!-- Toast -->
 		<PageToast/>
 
         <!-- Dialog Separate -->
-        <DialogSeparate></DialogSeparate>
-        <Button @click="openConfirmDialog">Open confirm modal</Button>
-        <Button @click="openOverviewDialog">Open confirm modal</Button>
+<!--        <DialogSeparate></DialogSeparate>-->
+<!--        <Button @click="openConfirmDialog">Open confirm modal</Button>-->
+<!--        <Button @click="openOverviewDialog">Open confirm modal</Button>-->
 
         <!-- Dialog（可帶自訂樣式） -->
         <PageDialog></PageDialog>
@@ -663,11 +664,13 @@ const accordionItems = ref([
 
 	    <PageSlider></PageSlider>
 
-	    <PageSliderWithButton></PageSliderWithButton>
+<!--	    <PageSliderWithButton></PageSliderWithButton>-->
 
 	    <PageListItem></PageListItem>
 
 	    <PageList></PageList>
+
+	    <PageDropdown></PageDropdown>
 
     </div>
 </template>
