@@ -10,6 +10,8 @@ import PageSliderWithButton from "@/page/PageSliderWithButton.vue";
 import PageListItem from "@/page/PageListItem.vue";
 import PageList from "@/page/PageList.vue";
 import PageDropdown from "@/page/PageDropdown.vue";
+import PageSideNav from "@/page/PageSideNav.vue";
+import PageSideNavList from "@/page/PageSideNavList.vue";
 
 import Button from "@/ui/element/Button/Button.vue";
 import Toggle from "@/ui/element/Toggle/Toggle.vue";
@@ -672,11 +674,15 @@ const removeTag = (id) => {
 
 	    <PageDropdown></PageDropdown>
 
+	    <PageSideNav></PageSideNav>
+
+	    <PageSideNavList></PageSideNavList>
+
     </div>
 </template>
 
 <style scoped>
 .container {
-    padding: 150px;
+    padding: 50px;
 }
 </style>
