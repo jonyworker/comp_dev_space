@@ -1,26 +1,24 @@
-import Menu from "@/ui/element/Menu/Menu.vue";
+import SideNavMenu from "@/ui/element/SideNavMenu/SideNavMenu.vue";
+
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Menu",
-	component: Menu,
+	title: "Design System/SideNavMenu",
+	component: SideNavMenu,
 	tags: ["autodocs"],
 	argTypes: {
-		menuData: {
-			description: "Menu 對應的資料陣列",
+		navItems: {
+			description: "navItems 對應的資料陣列",
 			control: { type: "object" },
 		},
-	},
-	isExpanded: {
-		description: "Menu 展開收合",
-		control: { type: "boolean" },
 	},
 	parameters: {
 		// 自動文件
 		docs: {
-			title: "Menu",
+			title: "SideNavMenu",
 			description: {
-				component: "Menu 組件的呈現及說明。",
+				component: "SideNavMenu 組件的呈現及說明。",
 			},
 		},
 	},
@@ -30,10 +28,10 @@ export default {
 };
 
 //==== 主要項目 ====//
-export const MenuDefault = {
+export const SideNavMenuDefault = {
 	name: "主要項目",
 	args: {
-		menuData: [
+		navItems: [
 			{
 				icon: "home",
 				label: "首頁",
@@ -44,7 +42,7 @@ export const MenuDefault = {
 				label: "用戶管理",
 				path: "/users",
 				children: [
-					{ label: "用戶列表 (模擬帶 icon 效果)", path: "/users/list" },
+					{ label: "用戶列表 (模擬帶 icon 效果)", path: "/users/list", icon: "users" },
 					{ label: "用戶設置", path: "/users/settings" },
 				],
 			},
@@ -70,26 +68,23 @@ export const MenuDefault = {
 		]
 	},
 	render: (args) => ({
-		components: { Menu },
+		components: { SideNavMenu },
 		setup() {
 			return {
 				args,
 			};
 		},
 		template: `
-			<div style="width: 400px">
-				<Menu
-					:menuData="args.menuData"
-					:isExpanded="true"
-				></Menu>
-			</div>
-			
+			<SideNavMenu
+				:navItems="args.navItems"
+				:isExpanded="true"
+			></SideNavMenu>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['menuData'],
+			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
 	},
 };

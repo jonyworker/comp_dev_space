@@ -1,6 +1,6 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue"
-import { defineEmits, ref } from "vue";
+import { computed, defineEmits, ref } from "vue";
 
 const isExpandedModelValue = defineModel('isExpanded')
 // 定義 Props
@@ -19,6 +19,10 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+	fontColor: {
+		type: String,
+		default: '#000',
+	}
 })
 
 const emit = defineEmits(["navItemClick","expandedNav"]);
@@ -35,7 +39,6 @@ const handleItemClick = (item) => {
 		expandedItems.value[item.path] = !expandedItems.value[item.path];
 	}
 };
-
 </script>
 
 <template>
@@ -44,13 +47,16 @@ const handleItemClick = (item) => {
 		<nav class="nav">
 			<ul class="nav-menu">
 				<li v-for="item in menuData" :key="item.path">
-					<div class="menu-item" @click.stop="handleItemClick(item)">
-						<div class="menu-item-content" style="color: rgb(0, 0, 0)">
+					<div class="menu-item" @click.stop="handleItemClick(item)" :style="`color:${props.fontColor}`">
+						<div class="menu-item-content" >
 							<template v-if="item.icon" >
 								<Icon class="menu-item-content-icon" :name="item.icon" size="20"></Icon>
 							</template>
 
-							<span class="menu-item-content-title" style="opacity: 1">{{item.label }}</span>
+							<span class="menu-item-content-title"
+							      :style="isExpandedModelValue? 'opacity: 1; display: block' :
+							      'opacity:0; display: none'">{{item.label
+								}}</span>
 
 							<template v-if="isExpandedModelValue && item.children" >
 								<Icon
@@ -72,9 +78,11 @@ const handleItemClick = (item) => {
 	                    expandedItems[item.path]
 	                ">
 						<li v-for="child in item.children"
-						    :key="child.path">
+						    :key="child.path"
+						    @click.stop="handleItemClick(child)"
+						    >
 							<div class="menu-item">
-								<div class="menu-item-content" style="color: rgb(0, 0, 0)">
+								<div class="menu-item-content" :style="`color:${props.fontColor}`">
 									<div class="menu-item-content-icon">
 										<Icon v-if="child.icon" class="nav-item-icon" :name="child.icon" size="20"></Icon>
 									</div>

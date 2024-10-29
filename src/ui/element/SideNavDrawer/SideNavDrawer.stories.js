@@ -1,26 +1,23 @@
-import Menu from "@/ui/element/Menu/Menu.vue";
+import SideNavDrawer from "./SideNavDrawer.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Menu",
-	component: Menu,
+	title: "Design System/SideNavDrawer",
+	component: SideNavDrawer,
+	subcomponents: { SideNavDrawer },
 	tags: ["autodocs"],
 	argTypes: {
-		menuData: {
-			description: "Menu 對應的資料陣列",
+		navItems: {
+			description: "SideNavDrawer 對應的資料陣列",
 			control: { type: "object" },
 		},
-	},
-	isExpanded: {
-		description: "Menu 展開收合",
-		control: { type: "boolean" },
 	},
 	parameters: {
 		// 自動文件
 		docs: {
-			title: "Menu",
+			title: "SideNavDrawer",
 			description: {
-				component: "Menu 組件的呈現及說明。",
+				component: "SideNavDrawer 組件的呈現及說明。",
 			},
 		},
 	},
@@ -30,10 +27,10 @@ export default {
 };
 
 //==== 主要項目 ====//
-export const MenuDefault = {
+export const SideNavDrawerDefault = {
 	name: "主要項目",
 	args: {
-		menuData: [
+		navItems: [
 			{
 				icon: "home",
 				label: "首頁",
@@ -70,26 +67,24 @@ export const MenuDefault = {
 		]
 	},
 	render: (args) => ({
-		components: { Menu },
+		components: { SideNavDrawer },
 		setup() {
 			return {
 				args,
 			};
 		},
 		template: `
-			<div style="width: 400px">
-				<Menu
-					:menuData="args.menuData"
-					:isExpanded="true"
-				></Menu>
+			<div style="height: 480px; overflow: hidden">
+				<SideNavDrawer
+					:navItems="args.navItems"
+				></SideNavDrawer>
 			</div>
-			
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['menuData'],
+			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
 	},
 };

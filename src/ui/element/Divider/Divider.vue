@@ -1,5 +1,4 @@
 <script setup>
-
 // 定義 Props
 const props = defineProps({
     layout: {
@@ -8,13 +7,13 @@ const props = defineProps({
         default: "horizontal",
         validator: (value) => ["horizontal", "vertical"].includes(value),
     },
-	width: {
-		//線條粗細
-		type: String,
-		default: "xsmall",
-		validator: (value) =>
-			["xsmall", "small", "medium", "large", "xlarge"].includes(value),
-	},
+    width: {
+        //線條粗細
+        type: String,
+        default: "xsmall",
+        validator: (value) =>
+            ["xsmall", "small", "medium", "large", "xlarge"].includes(value),
+    },
     type: {
         //線條種類
         type: String,
@@ -50,11 +49,12 @@ const props = defineProps({
             `divider-${props.layout}`,
             `divider-width-${props.width}`,
             `divider-${props.type}`,
-            props.themeColor? `divider-${props.themeColor}` : '',
+            props.themeColor ? `divider-${props.themeColor}` : '',
             $slots.default ? `divider-${props.align}` : '',
-        ]">
+        ]"
+    >
         <!-- divider - 分隔線文字 -->
-        <div v-if="$slots.default" class="divider-content">
+        <div v-if="$slots.default?.()" class="divider-content">
             <b><slot></slot></b>
         </div>
     </div>
