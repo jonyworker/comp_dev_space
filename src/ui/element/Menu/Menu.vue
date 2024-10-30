@@ -83,9 +83,12 @@ const handleItemClick = (item) => {
 						    >
 							<div class="menu-item">
 								<div class="menu-item-content" :style="`color:${props.fontColor}`">
-									<div class="menu-item-content-icon">
-										<Icon v-if="child.icon" class="nav-item-icon" :name="child.icon" size="20"></Icon>
-									</div>
+									<template v-if="item.icon">
+										<div class="menu-item-content-icon"  v-if="child.icon">
+											<Icon class="nav-item-icon" :name="child.icon" size="20"></Icon>
+										</div>
+									</template>
+
 									<span class="menu-item-content-title" style="opacity: 1">{{ child.label }}</span>
 								</div>
 							</div>
