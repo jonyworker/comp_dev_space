@@ -55,7 +55,7 @@ const props = defineProps({
     >
         <!-- divider - 分隔線文字 -->
         <div v-if="$slots.default?.()" class="divider-content">
-            <b><slot></slot></b>
+            <slot></slot>
         </div>
     </div>
 </template>
