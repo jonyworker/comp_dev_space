@@ -6,16 +6,6 @@
     --line-style: solid;
     display: flex;
 }
-
-.divider::before,
-.divider::after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-top: var(--line-weight) var(--line-style) $color-gray20;
-    border-left: var(--line-weight) var(--line-style) $color-gray20;
-    flex-grow: 1;
-}
 /*--- Divider 方向 ---*/
 .divider-horizontal {
     align-items: center;
@@ -24,6 +14,25 @@
     flex-direction: column;
     align-items: center;
 }
+
+.divider-horizontal.divider::before,
+.divider-horizontal.divider::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: var(--line-weight) var(--line-style) $color-gray20;
+    flex-grow: 1;
+}
+
+.divider-vertical.divider::before,
+.divider-vertical.divider::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: var(--line-weight) var(--line-style) $color-gray20;
+    flex-grow: 1;
+}
+
 
 /*--- Divider 線條粗細 ---*/
 .divider-width-xsmall {
@@ -40,6 +49,17 @@
 }
 .divider-width-xlarge {
     --line-weight: 8px;
+}
+
+/*--- Divider 線條樣式 ---*/
+.divider-solid {
+    --line-style: solid;
+}
+.divider-dashed {
+    --line-style: dashed;
+}
+.divider-dotted {
+    --line-style: dotted;
 }
 
 /*--- Divider content ---*/

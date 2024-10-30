@@ -1,46 +1,54 @@
+
+//基礎設定
 @import "./theme/_reset";
 @import "./theme/_variable";
 @import "./theme/_function";
 @import "./theme/_map";
 @import "./theme/_base";
-@import "./component/element/_title";
-@import "./component/element/_button";
-@import "./component/element/_input";
-@import "./component/element/_textarea";
-@import "./component/element/_toggle";
-@import "./component/element/_radio";
-@import "./component/element/_checkbox";
-@import "./component/element/_divider";
-@import "./component/module/_tabs";
-@import "./component/element/accordion";
-@import "./component/element/_breadcrumb";
-@import "./component/element/_progress";
-@import "./component/module/_search";
-@import "./component/module/_slider";
-@import "./component/section/_card";
+
+//基礎設定
+@import "./component/element/_accordion";
 @import "./component/element/_avatar";
 @import "./component/element/_avatar_group";
-@import "./component/module/_menu";
-@import "./component/module/_password";
-@import "./component/module/_tooltip";
-
+@import "./component/element/_badge";
+@import "./component/element/_breadcrumb";
+@import "./component/element/_button";
+@import "./component/element/_card";
+@import "./component/element/_checkbox";
+@import "./component/element/_datepicker";
+@import "./component/element/_dialog";
+@import "./component/element/_divider";
+@import "./component/element/_dropdown";
 @import "./component/element/_image";
+@import "./component/element/_input";
+@import "./component/element/_list";
+@import "./component/element/_menu";
+@import "./component/element/_password";
+@import "./component/element/_progress";
+@import "./component/element/_radio";
+@import "./component/element/_search";
+@import "./component/element/_sidenav";
 @import "./component/element/_slider";
 @import "./component/element/_sliderWithButton";
-@import "./component/element/_toast";
-@import "./component/element/_dialog";
-@import "./component/module/_table";
-//@import "./component/section/_tablePeter";
+@import "./component/element/_table"; //(未完成)
+@import "./component/element/_tabs";
 @import "./component/element/_tag";
-@import "./component/element/_badge";
-@import "./component/element/_datepicker";
-@import "./component/element/_accordion";
-@import "./component/element/_list";
-@import "./component/element/_dropdown";
+@import "./component/element/_textarea";
+@import "./component/element/_title";
+@import "./component/element/_toast";
+@import "./component/element/_toggle";
+@import "./component/element/_tooltip";
 
+//舊的
+@import "./component/old/_sliderJonyOldVer";
+@import "./component/old/_tablePeter";
+
+//頁面佈局
 @import "./layout/_grid-system";
 
+//輔助工具
 @import "./utility/fakeContent";
 
+//客制化樣式
 @import "./custom";
 
