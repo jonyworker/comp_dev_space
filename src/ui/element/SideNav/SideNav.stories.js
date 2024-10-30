@@ -48,7 +48,7 @@ export const SideNavDefault = {
 				label: "用戶管理",
 				path: "/users",
 				children: [
-					{ label: "用戶列表 (模擬帶 icon 效果)", path: "/users/list" },
+					{ label: "用戶列表 ", path: "/users/list" },
 					{ label: "用戶設置", path: "/users/settings" },
 				],
 			},
