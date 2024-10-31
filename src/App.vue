@@ -55,11 +55,12 @@ import CardHeader from "@/ui/element/Card/CardHeader.vue";
 import CardBody from "@/ui/element/Card/CardBody.vue";
 import CardFooter from "@/ui/element/Card/CardFooter.vue";
 import CardImage from "@/ui/element/Card/CardImage.vue";
-import Col from "@/ui/layout/Col/Col.vue";
 import Title from "@/ui/element/Title/Title.vue";
 import PageDialog from "@/page/PageDialog.vue";
 
-
+import Grid from "@/ui/layout/Grid/Grid.vue"
+import Row from "@/ui/layout/Grid/Row.vue"
+import Column from "@/ui/layout/Grid/Column.vue"
 
 // toggle 所需資料
 const isChecked = ref(true);
@@ -638,19 +639,19 @@ const removeTag = (id) => {
 
 	    <!-- Card -->
 	    <!-- Card 排列方向 row -->
-	    <Card elevation="high" direction="row">
-		    <Col col="4">
-			    <CardImage>
-			    </CardImage>
-		    </Col>
+<!--	    <Card elevation="high" direction="row">-->
+<!--		    <Col col="4">-->
+<!--			    <CardImage>-->
+<!--			    </CardImage>-->
+<!--		    </Col>-->
 
-		    <Col col="8">
-			    <CardBody clamp="3">
-			    </CardBody>
-		    </Col>
-	    </Card>
+<!--		    <Col col="8">-->
+<!--			    <CardBody clamp="3">-->
+<!--			    </CardBody>-->
+<!--		    </Col>-->
+<!--	    </Card>-->
 	    <!-- Card 排列方向 col -->
-	    <Card elevation="high" direction="col">
+	    <Card elevation="high" >
 		    <CardHeader>
 		    </CardHeader>
 
@@ -684,11 +685,32 @@ const removeTag = (id) => {
 
 	    <PageSideNav></PageSideNav>
 
+	    <Grid fluid>
+		    <Row hasGap gap="100">
+			    <Column xs="12" sm="6" md="4" lg="3" xl="2">
+				    <div
+					    class="diagonal-background"
+					    style= "border: 1px solid #ccc; padding: 8px 16px;"
+					>
+				        Column1
+				    </div>
+			    </Column>
+			    <Column xs="12" sm="6" md="4" lg="3" xl="2" >
+				    <div
+					    class="diagonal-background"
+					    style= "border: 1px solid #ccc; padding: 8px 16px;"
+				    >
+					    Column1
+				    </div>
+			    </Column>
+		    </Row>
+	    </Grid>
+
+
+
     </div>
 </template>
 
 <style scoped>
-.container {
-    padding: 50px;
-}
+
 </style>
