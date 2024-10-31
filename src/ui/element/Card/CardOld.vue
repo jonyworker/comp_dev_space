@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-import Col from "@/ui/layout/Col/Col.vue";
+import Column from "@/ui/layout/Grid/Column.vue";
 import Title from "@/ui/element/Title/Title.vue";
 
 
@@ -136,7 +136,7 @@ const cardContainerCVAClass = computed(()=>{
 	<!-- Card - row -->
 	<div :class="cardContainerCVAClass">
 		<!-- Card Image -->
-		<Col col="4">
+		<Column xs="4">
 			<div class="card__image" :class="{'fullImg': props.fullImg}" >
 				<div class="card__image--container"
 				     :class="{'rounded': props.rounded}">
@@ -147,14 +147,14 @@ const cardContainerCVAClass = computed(()=>{
 					</Image>
 				</div>
 			</div>
-		</Col>
+		</Column>
 
 		<!-- Card Body -->
-		<Col col="8">
+		<Column xs="8">
 			<div class="card__body">
 				<slot name="card-body">
 					<div style="display:flex; justify-content: space-between; align-items: center">
-						<Heading class="card__title" level="2">{{ props.title }}</Heading>
+						<Title class="card__title" level="2">{{ props.title }}</Title>
 						<Icon name="more_vert" size="24"></Icon>
 					</div>
 
@@ -171,7 +171,7 @@ const cardContainerCVAClass = computed(()=>{
 					</Button>
 				</slot>
 			</div>
-		</Col>
+		</Column>
 
 
 	</div>
