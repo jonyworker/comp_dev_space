@@ -1,0 +1,273 @@
+// gridLayout.scss
+
+// 設定基本變數
+// 設定 class 的前綴名稱
+$prefix: "ded-";
+
+// 定義響應式斷點
+$grid-breakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+// 每個斷點對應的最大容器寬度
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px,
+);
+// gutter 尺寸
+$spacers: (
+    0: 0,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 1rem,
+    4: 1.5rem,
+    5: 3rem,
+);
+// 設定欄位數量
+$grid-columns: 6;
+// 欄間水平間距
+$gutter-x: 1.5rem;
+// 欄間垂直間距
+$gutter-y: 0;
+
+// Mixin: 設定容器最大寬度
+@mixin container-max-width($breakpoint) {
+    max-width: map-get($container-max-widths, $breakpoint);
+}
+
+// Mixin: 設置行容器 (Row)
+@mixin make-row {
+    --ded-gutter-x: #{$gutter-x};
+    --ded-gutter-y: #{$gutter-y};
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--ded-gutter-y) * -1);
+    margin-right: calc(var(--ded-gutter-x) * -0.5);
+    margin-left: calc(var(--ded-gutter-x) * -0.5);
+}
+
+// Mixin: 設置欄位基礎樣式
+@mixin make-col-ready {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--ded-gutter-x) * 0.5);
+    padding-left: calc(var(--ded-gutter-x) * 0.5);
+    margin-top: var(--ded-gutter-y);
+}
+// Mixin: 基本佔滿一行的欄位
+@mixin make-col {
+    flex: 1 0 0;
+}
+// Mixin: 自適應寬度的欄位
+@mixin make-col-auto {
+    flex: 0 0 auto;
+    width: auto;
+}
+// Mixin: 根據指定的欄位數設置欄位寬度
+@mixin make-col-size($size) {
+    flex: 0 0 auto;
+    width: if($size == "auto", auto, calc(100% / $size));
+}
+// Mixin: 根據總欄位數分配欄位寬度
+@mixin col-width($num-columns) {
+    flex: 0 0 auto;
+    width: percentage($num-columns / 12);
+}
+// Mixin: gutter
+@mixin generate-gutters($sizes) {
+    @each $size, $value in $sizes {
+        // 橫向 gutter
+        .#{$prefix}g-#{$size},
+        .#{$prefix}gx-#{$size} {
+            --ded-gutter-x: #{$value};
+        }
+
+        // 垂直向 gutter
+        .#{$prefix}g-#{$size},
+        .#{$prefix}gy-#{$size} {
+            --ded-gutter-y: #{$value};
+        }
+    }
+}
+
+/* 容器樣式 */
+.#{$prefix}container,
+.#{$prefix}container-fluid,
+.#{$prefix}container-xxl,
+.#{$prefix}container-xl,
+.#{$prefix}container-lg,
+.#{$prefix}container-md,
+.#{$prefix}container-sm {
+    width: 100%;
+    padding-right: var(--ded-gutter-x, 0.75rem);
+    padding-left: var(--ded-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* 各斷點下的容器最大寬度 */
+@media (min-width: 576px) {
+    .#{$prefix}container-sm,
+    .#{$prefix}container {
+        @include container-max-width(sm);
+    }
+}
+
+@media (min-width: 768px) {
+    .#{$prefix}container-md,
+    .#{$prefix}container-sm,
+    .#{$prefix}container {
+        @include container-max-width(md);
+    }
+}
+
+@media (min-width: 992px) {
+    .#{$prefix}container-lg,
+    .#{$prefix}container-md,
+    .#{$prefix}container-sm,
+    .#{$prefix}container {
+        @include container-max-width(lg);
+    }
+}
+
+@media (min-width: 1200px) {
+    .#{$prefix}container-xl,
+    .#{$prefix}container-lg,
+    .#{$prefix}container-md,
+    .#{$prefix}container-sm,
+    .#{$prefix}container {
+        @include container-max-width(xl);
+    }
+}
+
+@media (min-width: 1400px) {
+    .#{$prefix}container-xxl,
+    .#{$prefix}container-xl,
+    .#{$prefix}container-lg,
+    .#{$prefix}container-md,
+    .#{$prefix}container-sm,
+    .#{$prefix}container {
+        @include container-max-width(xxl);
+    }
+}
+
+/* 行 (Row) 的樣式 */
+.#{$prefix}row {
+    @include make-row;
+
+    > * {
+        @include make-col-ready;
+    }
+}
+
+/* 基本佔滿一行的欄位樣式 */
+.#{$prefix}col {
+    @include make-col;
+}
+
+/* 自適應行內自適應欄位 */
+.#{$prefix}row-cols-auto > * {
+    @include make-col-auto;
+}
+
+/* Row-cols: 設置欄位的分佈 */
+@for $i from 1 through $grid-columns {
+    .#{$prefix}row-cols-#{$i} > * {
+        @include make-col-size($i);
+    }
+}
+
+/* 響應式欄位樣式 */
+@each $breakpoint, $width in $grid-breakpoints {
+    @media (min-width: $width) {
+        .#{$prefix}col-#{$breakpoint} {
+            @include make-col;
+        }
+
+        .#{$prefix}row-cols-#{$breakpoint}-auto > * {
+            @include make-col-auto;
+        }
+
+        @for $i from 1 through $grid-columns {
+            .#{$prefix}row-cols-#{$breakpoint}-#{$i} > * {
+                @include make-col-size($i);
+            }
+        }
+    }
+}
+
+/* col-auto */
+.#{$prefix}col-auto {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+/* col-sm-1 各欄位寬度樣式 */
+@for $i from 1 through 12 {
+    .#{$prefix}col-#{$i} {
+        @include col-width($i);
+    }
+}
+
+/* offset-sm-1偏移樣式 */
+@for $i from 1 through 11 {
+    .#{$prefix}offset-#{$i} {
+        margin-left: calc(100% / 12 * $i);
+    }
+}
+
+// Optional: Custom sizes can be added
+@include generate-gutters($spacers);
+
+// 響應式欄位樣式
+@each $breakpoint, $width in $grid-breakpoints {
+    @media (min-width: $width) {
+        .#{$prefix}col-#{$breakpoint}-auto {
+            flex: 0 0 auto;
+            width: auto;
+        }
+        @for $i from 1 through 12 {
+            .#{$prefix}col-#{$breakpoint}-#{$i} {
+                @include col-width($i);
+            }
+        }
+        .#{$prefix}offset-#{$breakpoint}-0 {
+            margin-left: 0;
+        }
+        @for $i from 1 through 11 {
+            .#{$prefix}offset-#{$breakpoint}-#{$i} {
+                margin-left: calc(100% / 12 * $i);
+            }
+        }
+
+        @each $space, $value in $spacers {
+            .#{$prefix}g-#{$breakpoint}-#{$space},
+            .#{$prefix}gx-#{$breakpoint}-#{$space} {
+                --ded-gutter-x: #{$value};
+            }
+
+            .#{$prefix}g-#{$breakpoint}-#{$space},
+            .#{$prefix}gy-#{$breakpoint}-#{$space} {
+                --ded-gutter-y: #{$value};
+            }
+        }
+    }
+}
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

@@ -58,7 +58,7 @@ import CardImage from "@/ui/element/Card/CardImage.vue";
 import Title from "@/ui/element/Title/Title.vue";
 import PageDialog from "@/page/PageDialog.vue";
 
-import Grid from "@/ui/layout/Grid/Grid.vue"
+import Container from "@/ui/layout/Grid/Container.vue"
 import Row from "@/ui/layout/Grid/Row.vue"
 import Column from "@/ui/layout/Grid/Column.vue"
 
@@ -685,30 +685,22 @@ const removeTag = (id) => {
 
 	    <PageSideNav></PageSideNav>
 
-	    <Grid fluid>
-		    <Row hasGap gap="100">
-			    <Column xs="12" sm="6" md="4" lg="3" xl="2">
-				    <div
-					    class="diagonal-background"
-					    style= "border: 1px solid #ccc; padding: 8px 16px;"
-					>
-				        Column1
-				    </div>
-			    </Column>
-			    <Column xs="12" sm="6" md="4" lg="3" xl="2" >
-				    <div
-					    class="diagonal-background"
-					    style= "border: 1px solid #ccc; padding: 8px 16px;"
-				    >
-					    Column1
-				    </div>
-			    </Column>
-		    </Row>
-	    </Grid>
+
 
 
 
     </div>
+	<Container style="border:1px solid #f00; height: 500px;">
+		<Row>
+			<Column col="6">
+				<div style="background-color:#f00; width: 100%; height: 100px;"></div>
+			</Column>
+			<Column col="6">
+				<div style="background-color:#f00; width: 100%; height: 100px;"></div>
+			</Column>
+
+		</Row>
+	</Container>
 </template>
 
 <style scoped>
