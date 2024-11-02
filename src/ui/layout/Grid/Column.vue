@@ -33,33 +33,89 @@ const props = defineProps({
 		default: null,
 		validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
 	},
+    alignSelfSm: {
+        type: String,
+        required: false,
+        default: null,
+        validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
+    },
+    alignSelfMd: {
+        type: String,
+        required: false,
+        default: null,
+        validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
+    },
+    alignSelfLg: {
+        type: String,
+        required: false,
+        default: null,
+        validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
+    },
+    alignSelfXl: {
+        type: String,
+        required: false,
+        default: null,
+        validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
+    },
+    alignSelfXxl: {
+        type: String,
+        required: false,
+        default: null,
+        validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
+    },
+    order: {
+        type: String,
+        required: false,
+        default: null,
+        validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
+    },
 	className: {
 		type: String,
 		default: '',
 	}
 })
 
-const colNum = Number.parseInt(props.col);
-const smColNum = Number.parseInt(props.sm);
-const mdColNum = Number.parseInt(props.md);
-const lgColNum = Number.parseInt(props.lg);
-const xlColNum = Number.parseInt(props.xl);
-const xxlColNum = Number.parseInt(props.xxl)
+function isValidCol(value) {
+    if (value){
+        return value || parseInt(value) > 0 && parseInt(value) < 13;
+    } else {
+        return false;
+    }
+}
 
 const dynamicClasses = computed(() => {
 	return {
-		col: !isNaN(colNum) && colNum > 0 && colNum < 13,
-		[`col-${colNum}`]: !isNaN(colNum) && colNum > 0 && colNum < 13,
-		[`col-sm-${smColNum}`]:
-		!isNaN(smColNum) && smColNum > 0 && smColNum < 13,
-		[`col-md-${mdColNum}`]:
-		!isNaN(mdColNum) && mdColNum > 0 && mdColNum < 13,
-		[`col-lg-${lgColNum}`]:
-		!isNaN(lgColNum) && lgColNum > 0 && lgColNum < 13,
-		[`col-xl-${xlColNum}`]:
-		!isNaN(xlColNum) && xlColNum > 0 && xlColNum < 13,
-		[`col-xxl-${xlColNum}`]:
-		!isNaN(xxlColNum) && xxlColNum > 0 && xxlColNum < 13,
+        // col
+        'col':!isValidCol(props.col),
+		[`col-${props.col}`]:isValidCol(props.col),
+
+        // 'col-sm':!isValidCol(props.col),
+		[`col-sm-${props.sm}`]:isValidCol(props.sm),
+
+        // 'col-md':!isValidCol(props.col),
+		[`col-md-${props.md}`]:isValidCol(props.md),
+
+        // 'col-lg':!isValidCol(props.col),
+		[`col-lg-${props.lg}`]:isValidCol(props.lg),
+
+        // 'col-xl':!isValidCol(props.col),
+		[`col-xl-${props.xl}`]:isValidCol(props.xl),
+        //
+        // 'col-xxl':!isValidCol(props.col),
+		[`col-xxl-${props.xxl}`]:isValidCol(props.xxl),
+
+        // align-self
+        [`align-self-${props.alignSelf}`]: props.alignSelf,
+        [`align-self-sm-${props.alignSelfSm}`]: props.alignSelfSm,
+        [`align-self-md-${props.alignSelfMd}`]: props.alignSelfMd,
+        [`align-self-lg-${props.alignSelfLg}`]: props.alignSelfLg,
+        [`align-self-xl-${props.alignSelfXl}`]: props.alignSelfXl,
+        [`align-self-xxl-${props.alignSelfXxl}`]: props.alignSelfXxl,
+
+        // order
+        [`order-${props.order}`]: props.order,
+
+        [props.className]: !!props.className
 	};
 });
 
@@ -67,6 +123,7 @@ const dynamicClasses = computed(() => {
 
 <template>
 	<div :class="dynamicClasses">
+        {{props.col}}
 		<slot></slot>
 	</div>
 </template>

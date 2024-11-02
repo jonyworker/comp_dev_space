@@ -691,16 +691,51 @@ const removeTag = (id) => {
 
     </div>
 	<Container style="border:1px solid #f00; height: 500px;">
-		<Row>
-			<Column col="6">
+		<Row style="height: 400px;border: 1px solid #00f" justifyMd="center">
+			<Column col="1" align-self="start" align-self-lg="center">
 				<div style="background-color:#f00; width: 100%; height: 100px;"></div>
 			</Column>
-			<Column col="6">
-				<div style="background-color:#f00; width: 100%; height: 100px;"></div>
+<!--            <Column col="6">-->
+<!--                Variable width content-->
+<!--            </Column>-->
+			<Column  >
+				<div style="background-color:#ff0; width: 100%; height: 100px;"></div>
 			</Column>
-
 		</Row>
 	</Container>
+
+<!--    <div class="row justify-content-md-center">-->
+<!--        <div class="col col-lg-2">-->
+<!--            1 of 3-->
+<!--        </div>-->
+<!--        <div class="col-md-auto">-->
+<!--            Variable width content-->
+<!--        </div>-->
+<!--        <div class="col col-lg-2">-->
+<!--            3 of 3-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <Container style="border:1px solid #f00; height: 500px;" >-->
+<!--        <Row  >-->
+<!--            <Column col="12" sm="3">-->
+<!--                <h1 style="font-size: 50px;">大標題</h1>-->
+<!--            </Column>-->
+
+<!--            <Column col="12" sm="3">-->
+<!--                購買按鈕-->
+<!--            </Column>-->
+<!--        </Row>-->
+<!--        <Row  align="top">-->
+<!--            <Column col="12" sm="6">-->
+<!--                <h1 style="font-size: 50px;">大標題</h1>-->
+<!--            </Column>-->
+<!--            <Column col="12" sm="6">-->
+<!--                購買按鈕-->
+<!--            </Column>-->
+<!--        </Row>-->
+<!--    </Container>-->
 </template>
 
 <style scoped>

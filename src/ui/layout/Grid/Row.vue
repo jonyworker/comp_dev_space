@@ -78,6 +78,7 @@ const props = defineProps({
 		default: null,
 		validator: (value) => ['start', 'end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly',].includes(value),
 	},
+
 	//響應式 align-content 設定，適用於多行內容的分配
 	alignContent: {
 		type: String,

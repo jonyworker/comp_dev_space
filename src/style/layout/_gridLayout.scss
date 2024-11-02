@@ -168,11 +168,6 @@ $gutter-y: 0;
     }
 }
 
-/* 基本佔滿一行的欄位樣式 */
-.#{$prefix}col {
-    @include make-col;
-}
-
 /* 自適應行內自適應欄位 */
 .#{$prefix}row-cols-auto > * {
     @include make-col-auto;
@@ -202,6 +197,11 @@ $gutter-y: 0;
             }
         }
     }
+}
+
+/* 基本佔滿一行的 col */
+.#{$prefix}col {
+    @include make-col;
 }
 
 /* col-auto */
@@ -261,13 +261,13 @@ $gutter-y: 0;
         }
     }
 }
-.no-gutters {
-    margin-right: 0;
-    margin-left: 0;
-
-    > .col,
-    > [class*="col-"] {
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
+//.no-gutters {
+//    margin-right: 0;
+//    margin-left: 0;
+//
+//    > .col,
+//    > [class*="col-"] {
+//        padding-right: 0;
+//        padding-left: 0;
+//    }
+//}
