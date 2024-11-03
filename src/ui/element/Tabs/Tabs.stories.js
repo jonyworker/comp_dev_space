@@ -56,9 +56,9 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const DefaultTabs = {
-    name: "主要項目",
+    name: "預設項目",
     args: {
         themeColor: "primary",
         type: "default",
