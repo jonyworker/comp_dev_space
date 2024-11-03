@@ -419,7 +419,7 @@ export const GridDefault = {
 		className: '',
 
 		//Row
-		g: '0',
+		g: '2',
 		gx: '',
 		gy: '',
 
@@ -946,7 +946,7 @@ export const ColWidthSetStory = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['g', 'gx','gy','className'],
+			include: ['g', 'gx','gy','className'],
 		},
 	},
 }
