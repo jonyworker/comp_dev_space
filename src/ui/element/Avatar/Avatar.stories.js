@@ -60,9 +60,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const DefaultAvatar = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
 		shape: "circle",
 		size: "large",
