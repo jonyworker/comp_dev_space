@@ -54,9 +54,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const ToggleDefault = {
-	name: '主要項目',
+	name: '預設項目',
 	args: {
 		checkedLabel: 'on',
 		unCheckedLabel: 'off',
@@ -93,9 +93,9 @@ export const ToggleDefault = {
 	},
 };
 
-//==== 主題顏色開關按鈕 ====//
+//==== 主題色彩 ====//
 export const ToggleColor = {
-	name: '主題顏色開關按鈕',
+	name: '主題色彩',
 	args: {
 		checkedLabel: 'on',
 		unCheckedLabel: 'off',
