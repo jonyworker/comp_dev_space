@@ -1,10 +1,10 @@
-import SliderWithButton from "./SliderWithButton.vue";
+import SliderControl from "./SliderControl.vue";
 import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/SliderWithButton",
-	component: SliderWithButton,
+	title: "Design System/Slider-Control",
+	component: SliderControl,
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
@@ -69,7 +69,7 @@ export default {
 	parameters: {
 		// 自動文件
 		docs: {
-			title: "Slider",
+			title: "SliderControl",
 			description: {
 				component: "Slider組件的呈現及說明。",
 			},
@@ -81,9 +81,9 @@ export default {
 };
 
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const SliderButton = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
 		themeColor: "primary",
 		min: -100,
@@ -97,7 +97,7 @@ export const SliderButton = {
 		className: ''
 	},
 	render: (args) => ({
-		components: { SliderWithButton },
+		components: { SliderControl },
 		setup() {
 			const sliderValue = ref(-10)
 			return {
@@ -106,7 +106,7 @@ export const SliderButton = {
 			};
 		},
 		template: `
-			<sliderWithButton
+			<SliderControl
 				:themeColor="args.themeColor"
 				:min="args.min"
 				:max="args.max"
@@ -118,7 +118,7 @@ export const SliderButton = {
 				:suffix="args.suffix"
 				v-model="sliderValue"
 				:className="sliderValue"
-			></sliderWithButton>
+			></SliderControl>
 
 			ModelValue: {{sliderValue}}
         `,
@@ -132,9 +132,9 @@ export const SliderButton = {
 	},
 };
 
-//==== 主題色按鈕滑桿 ====//
+//==== 主題色彩 ====//
 export const SliderButtonColors = {
-	name: "主題色按鈕滑桿",
+	name: "主題色彩",
 	args: {
 		themeColor: "primary",
 		min: -100,
@@ -147,7 +147,7 @@ export const SliderButtonColors = {
 		suffix: "increase",
 	},
 	render: (args) => ({
-		components: { SliderWithButton },
+		components: { SliderControl },
 		setup() {
 			const sliderValue = ref(-10)
 			return {
@@ -158,7 +158,7 @@ export const SliderButtonColors = {
 		template: `
 
 			<div style="display:flex; flex-direction: column;">
-				<sliderWithButton
+				<SliderControl
 					themeColor="primary"
 					:min="args.min"
 					:max="args.max"
@@ -169,8 +169,8 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
-				<sliderWithButton
+				></SliderControl>
+				<SliderControl
 					themeColor="secondary"
 					:min="args.min"
 					:max="args.max"
@@ -181,8 +181,8 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
-				<sliderWithButton
+				></SliderControl>
+				<SliderControl
 					themeColor="tertiary"
 					:min="args.min"
 					:max="args.max"
@@ -193,8 +193,8 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
-				<sliderWithButton
+				></SliderControl>
+				<SliderControl
 					themeColor="success"
 					:min="args.min"
 					:max="args.max"
@@ -205,8 +205,8 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
-				<sliderWithButton
+				></SliderControl>
+				<SliderControl
 					themeColor="warning"
 					:min="args.min"
 					:max="args.max"
@@ -217,8 +217,8 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
-				<sliderWithButton
+				></SliderControl>
+				<SliderControl
 					themeColor="error"
 					:min="args.min"
 					:max="args.max"
@@ -229,8 +229,8 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
-				<sliderWithButton
+				></SliderControl>
+				<SliderControl
 					themeColor="info"
 					:min="args.min"
 					:max="args.max"
@@ -241,7 +241,7 @@ export const SliderButtonColors = {
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					v-model="sliderValue"
-				></sliderWithButton>
+				></SliderControl>
 			</div>
 			
 
