@@ -46,9 +46,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 群組狀態 ====//
+//==== 預設項目 ====//
 export const MultiAvatar = {
-	name: "群組狀態",
+	name: "預設項目",
 	args: {
 		items:[
 			{
