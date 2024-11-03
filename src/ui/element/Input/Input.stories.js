@@ -66,9 +66,9 @@ export default {
     },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const InputDefault = {
-    name: '主要項目',
+    name: '預設項目',
     args: {
         type: 'text',
         placeholder:'example@mail.com',
