@@ -47,9 +47,9 @@ $gutter-y: 0;
     --ded-gutter-y: #{$gutter-y};
     display: flex;
     flex-wrap: wrap;
-    margin-top: calc(var(--ded-gutter-y) * -1);
-    margin-right: calc(var(--ded-gutter-x) * -0.5);
-    margin-left: calc(var(--ded-gutter-x) * -0.5);
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 
 // Mixin: 設置欄位基礎樣式
@@ -261,13 +261,4 @@ $gutter-y: 0;
         }
     }
 }
-//.no-gutters {
-//    margin-right: 0;
-//    margin-left: 0;
-//
-//    > .col,
-//    > [class*="col-"] {
-//        padding-right: 0;
-//        padding-left: 0;
-//    }
-//}
+

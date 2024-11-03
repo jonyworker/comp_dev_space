@@ -116,35 +116,61 @@ const props = defineProps({
 		default: null,
 		validator: (value) => ['start', 'end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly',].includes(value),
 	},
+
+	// column row gap 設定
+	g: {
+		type: String,
+		required: false,
+		validator: (value) => ['0', '1', '2', '3', '4', '5',].includes(value),
+	},
+	gx: {
+		type: String,
+		required: false,
+		validator: (value) => ['0', '1', '2', '3', '4', '5',].includes(value),
+	},
+	gy: {
+		type: String,
+		required: false,
+		validator: (value) => ['0', '1', '2', '3', '4', '5',].includes(value),
+	},
 	className: {
 		type: String,
 		default: '',
 	}
 })
-
+const prefix =  "ded-"
 const dynamicClasses = computed(() => {
 	return {
-		[`align-items-${props.align}`]: props.align,
-		[`align-items-sm-${props.alignSm}`]: props.alignSm,
-		[`align-items-md-${props.alignMd}`]: props.alignMd,
-		[`align-items-lg-${props.alignLg}`]: props.alignLg,
-		[`align-items-xl-${props.alignXl}`]: props.alignXl,
-		[`align-items-xxl-${props.alignXxl}`]: props.alignXxl,
+		// align-items
+		[`${prefix}align-items-${props.align}`]: props.align,
+		[`${prefix}align-items-sm-${props.alignSm}`]: props.alignSm,
+		[`${prefix}align-items-md-${props.alignMd}`]: props.alignMd,
+		[`${prefix}align-items-lg-${props.alignLg}`]: props.alignLg,
+		[`${prefix}align-items-xl-${props.alignXl}`]: props.alignXl,
+		[`${prefix}align-items-xxl-${props.alignXxl}`]: props.alignXxl,
 
-		[`justify-content-${props.justify}`]: props.justify,
-		[`justify-content-sm-${props.justifySm}`]: props.justifySm,
-		[`justify-content-md-${props.justifyMd}`]: props.justifyMd,
-		[`justify-content-lg-${props.justifyLg}`]: props.justifyLg,
-		[`justify-content-xl-${props.justifyXl}`]: props.justifyXl,
-		[`justify-content-xxl-${props.justifyXxl}`]: props.justifyXxl,
+		// justify-content
+		[`${prefix}justify-content-${props.justify}`]: props.justify,
+		[`${prefix}justify-content-sm-${props.justifySm}`]: props.justifySm,
+		[`${prefix}justify-content-md-${props.justifyMd}`]: props.justifyMd,
+		[`${prefix}justify-content-lg-${props.justifyLg}`]: props.justifyLg,
+		[`${prefix}justify-content-xl-${props.justifyXl}`]: props.justifyXl,
+		[`${prefix}justify-content-xxl-${props.justifyXxl}`]: props.justifyXxl,
 
-		[`align-content-${props.alignContent}`]: props.alignContent,
-		[`align-content-sm-${props.alignContentSm}`]: props.alignContentSm,
-		[`align-content-md-${props.alignContentMd}`]: props.alignContentMd,
-		[`align-content-lg-${props.alignContentLg}`]: props.alignContentLg,
-		[`align-content-xl-${props.alignContentXl}`]: props.alignContentXl,
-		[`align-content-xxl-${props.alignContentXxl}`]: props.alignContentXxl,
+		// align-content
+		[`${prefix}align-content-${props.alignContent}`]: props.alignContent,
+		[`${prefix}align-content-sm-${props.alignContentSm}`]: props.alignContentSm,
+		[`${prefix}align-content-md-${props.alignContentMd}`]: props.alignContentMd,
+		[`${prefix}align-content-lg-${props.alignContentLg}`]: props.alignContentLg,
+		[`${prefix}align-content-xl-${props.alignContentXl}`]: props.alignContentXl,
+		[`${prefix}align-content-xxl-${props.alignContentXxl}`]: props.alignContentXxl,
 
+		// gap 控制 column 間距
+		[`${prefix}g-${props.g}`]: props.g,
+		[`${prefix}gx-${props.gx}`]: props.gx,
+		[`${prefix}gy-${props.gy}`]: props.gy,
+
+		// 自定義 class
 		[props.className]: !!props.className
 	};
 });
@@ -152,7 +178,7 @@ const dynamicClasses = computed(() => {
 </script>
 
 <template>
-	<div class="row" :class="dynamicClasses">
+	<div class="ded-row" :class="dynamicClasses">
 		<slot></slot>
 	</div>
 </template>

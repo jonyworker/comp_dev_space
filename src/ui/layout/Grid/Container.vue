@@ -21,10 +21,11 @@ const props = defineProps({
 		default: '',
 	}
 })
+const prefix =  "ded-"
 const containerClass = computed(() => {
 	return {
-		[`container${props.size ? '-' + props.size : ''}`]: !props.fluid,
-		"container-fluid": props.fluid,
+		[`${prefix}container${props.size ? '-' + props.size : ''}`]: !props.fluid,
+		[`${prefix}container-fluid`]: props.fluid,
 		[props.className]: !!props.className
 	};
 });

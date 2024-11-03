@@ -27,6 +27,7 @@ const props = defineProps({
 		type: [Number, String],
 		required: false,
 	},
+
 	alignSelf: {
 		type: String,
 		required: false,
@@ -63,12 +64,44 @@ const props = defineProps({
         default: null,
         validator: (value) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(value),
     },
+
     order: {
         type: String,
         required: false,
         default: null,
         validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
     },
+	orderSm: {
+		type: String,
+		required: false,
+		default: null,
+		validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
+	},
+	orderMd: {
+		type: String,
+		required: false,
+		default: null,
+		validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
+	},
+	orderLg: {
+		type: String,
+		required: false,
+		default: null,
+		validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
+	},
+	orderXl: {
+		type: String,
+		required: false,
+		default: null,
+		validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
+	},
+	orderXxl: {
+		type: String,
+		required: false,
+		default: null,
+		validator: (value) => ['first', '0', '1', '2', '3', '4', '5', 'last'].includes(value),
+	},
+
 	className: {
 		type: String,
 		default: '',
@@ -82,39 +115,35 @@ function isValidCol(value) {
         return false;
     }
 }
-
+const prefix =  "ded-"
 const dynamicClasses = computed(() => {
 	return {
         // col
-        'col':!isValidCol(props.col),
-		[`col-${props.col}`]:isValidCol(props.col),
-
-        // 'col-sm':!isValidCol(props.col),
-		[`col-sm-${props.sm}`]:isValidCol(props.sm),
-
-        // 'col-md':!isValidCol(props.col),
-		[`col-md-${props.md}`]:isValidCol(props.md),
-
-        // 'col-lg':!isValidCol(props.col),
-		[`col-lg-${props.lg}`]:isValidCol(props.lg),
-
-        // 'col-xl':!isValidCol(props.col),
-		[`col-xl-${props.xl}`]:isValidCol(props.xl),
-        //
-        // 'col-xxl':!isValidCol(props.col),
-		[`col-xxl-${props.xxl}`]:isValidCol(props.xxl),
+        [`${prefix}col`]:!isValidCol(props.col) && !props.sm && !props.md && !props.lg && !props.xl && !props.xxl,
+		[`${prefix}col-${props.col}`]:isValidCol(props.col),
+		[`${prefix}col-sm-${props.sm}`]:isValidCol(props.sm),
+		[`${prefix}col-md-${props.md}`]:isValidCol(props.md),
+		[`${prefix}col-lg-${props.lg}`]:isValidCol(props.lg),
+		[`${prefix}col-xl-${props.xl}`]:isValidCol(props.xl),
+		[`${prefix}col-xxl-${props.xxl}`]:isValidCol(props.xxl),
 
         // align-self
-        [`align-self-${props.alignSelf}`]: props.alignSelf,
-        [`align-self-sm-${props.alignSelfSm}`]: props.alignSelfSm,
-        [`align-self-md-${props.alignSelfMd}`]: props.alignSelfMd,
-        [`align-self-lg-${props.alignSelfLg}`]: props.alignSelfLg,
-        [`align-self-xl-${props.alignSelfXl}`]: props.alignSelfXl,
-        [`align-self-xxl-${props.alignSelfXxl}`]: props.alignSelfXxl,
+        [`${prefix}align-self-${props.alignSelf}`]: props.alignSelf,
+        [`${prefix}align-self-sm-${props.alignSelfSm}`]: props.alignSelfSm,
+        [`${prefix}align-self-md-${props.alignSelfMd}`]: props.alignSelfMd,
+        [`${prefix}align-self-lg-${props.alignSelfLg}`]: props.alignSelfLg,
+        [`${prefix}align-self-xl-${props.alignSelfXl}`]: props.alignSelfXl,
+        [`${prefix}align-self-xxl-${props.alignSelfXxl}`]: props.alignSelfXxl,
 
         // order
-        [`order-${props.order}`]: props.order,
+        [`${prefix}order-${props.order}`]: props.order,
+		[`${prefix}order-${props.orderSm}`]: props.orderSm,
+		[`${prefix}order-${props.orderMd}`]: props.orderMd,
+		[`${prefix}order-${props.orderLg}`]: props.orderLg,
+		[`${prefix}order-${props.orderXl}`]: props.orderXl,
+		[`${prefix}order-${props.orderXxl}`]: props.orderXxl,
 
+		// 自定義 class
         [props.className]: !!props.className
 	};
 });
@@ -123,7 +152,8 @@ const dynamicClasses = computed(() => {
 
 <template>
 	<div :class="dynamicClasses">
-        {{props.col}}
 		<slot></slot>
 	</div>
 </template>
+
+<style lang="scss" scoped></style>

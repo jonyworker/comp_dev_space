@@ -46,8 +46,9 @@
 //頁面佈局
 //@import "./layout/_grid";
 @import "./layout/_grid-system";
-//@import "./layout/_gridLayout"; //bs5
-//@import "./layout/_gridUtilities"; //bs5
+@import "./layout/_gridSystem"; //已編譯，有加 ded- 前綴的
+//@import "./layout/_gridLayout"; //不知為何非得編譯才能解讀
+//@import "./layout/_gridUtilities"; //不知為何非得編譯才能解讀
 
 //輔助工具
 @import "./utility/fakeContent";
