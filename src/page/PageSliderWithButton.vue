@@ -1,10 +1,10 @@
 <script setup>
-import sliderWithButton from "@/ui/element/sliderWithButton/sliderWithButton.vue";
+import SliderControl from "@/ui/element/sliderWithButton/SliderControl.vue";
 
 </script>
 
 <template>
-	<sliderWithButton
+	<SliderControl
 		themeColor="primary"
 		:min="-100"
 		:max="100"
@@ -14,7 +14,7 @@ import sliderWithButton from "@/ui/element/sliderWithButton/sliderWithButton.vue
 		:isDisabled="false"
 		prefix="decrease"
 		suffix="increase"
-	></sliderWithButton>
+	></SliderControl>
 </template>
 
 <style scoped lang="scss">
