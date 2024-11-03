@@ -51,9 +51,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const HeadingDefault = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
 		content: "標題",
 		themeColor: "",
@@ -84,7 +84,129 @@ export const HeadingDefault = {
 	},
 };
 
+//==== 標題大小 ====//
+export const HeadingSizeDefault = {
+	name: "標題大小",
+	args: {
+		content: "標題文字",
+		themeColor: "",
+		className: "",
+	},
+	render: (args) => ({
+		components: { Title },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+            <Title 
+                :themeColor="args.themeColor"
+                level="1"
+                :className="args.className"
+            >Level:1 {{ args.content }}</Title>
+            <Title
+	            :themeColor="args.themeColor"
+	            level="2"
+	            :className="args.className"
+            >Level:2 {{ args.content }}</Title>
+            <Title
+	            :themeColor="args.themeColor"
+	            level="3"
+	            :className="args.className"
+            >Level:3 {{ args.content }}</Title>
+            <Title
+	            :themeColor="args.themeColor"
+	            level="4"
+	            :className="args.className"
+            >Level:4 {{ args.content }}</Title>
+            <Title
+	            :themeColor="args.themeColor"
+	            level="5"
+	            :className="args.className"
+            >Level:5 {{ args.content }}</Title>
+            <Title
+	            :themeColor="args.themeColor"
+	            level="6"
+	            :className="args.className"
+            >Level:6 {{ args.content }}</Title>
+            <Title
+	            :themeColor="args.themeColor"
+	            level="0"
+	            :className="args.className"
+            >Level:0 {{ args.content }}</Title>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['default','level']
+		},
+	},
+};
 
+//==== 主題色彩 ====//
+export const HeadingColorDefault = {
+	name: "主題色彩",
+	args: {
+		content: "標題文字",
+		level: 1,
+		className: "",
+	},
+	render: (args) => ({
+		components: { Title },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+            <Title
+                themeColor="primary"
+                :level="args.level"
+                :className="args.className"
+            >{{ args.content }}</Title>
+            <Title
+	            themeColor="secondary"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.content }}</Title>
+            <Title
+	            themeColor="tertiary"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.content }}</Title>
+            <Title
+	            themeColor="success"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.content }}</Title>
+            <Title
+	            themeColor="warning"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.content }}</Title>
+            <Title
+	            themeColor="error"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.content }}</Title>
+            <Title
+	            themeColor="info"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.content }}</Title>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['default', 'themeColor'],
+		},
+	},
+};
 
 
 
