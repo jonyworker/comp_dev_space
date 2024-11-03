@@ -64,9 +64,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const SliderDefault = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
 		themeColor: "primary",
 		min: 0,
@@ -111,9 +111,9 @@ export const SliderDefault = {
 	},
 };
 
-//==== 主題色滑桿 ====//
+//==== 主題色彩 ====//
 export const SliderColors = {
-	name: "主題色滑桿",
+	name: "主題色彩",
 	args: {
 		min: 0,
 		max: 100,
