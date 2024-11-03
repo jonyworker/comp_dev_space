@@ -20,9 +20,9 @@ const computedHeight = computed(() => {
 <template>
 	<div :style="{ height: computedHeight }">
 		<div class="fakeContent" role="presentation" aria-hidden="true">
-			<b class="fakeContent--text">
+			<p class="fakeContent--text">
 				<slot></slot>
-			</b>
+			</p>
 		</div>
 	</div>
 </template>
