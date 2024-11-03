@@ -48,9 +48,50 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const TextareaDefault = {
-    name: "主要項目",
+    name: "預設項目",
+    args: {
+        label: "",
+        placeholder: "請輸入此筆訂單備註",
+        limit: 50,
+        isDisabled: false,
+        hint: { error: '', description: '' },
+        className: ''
+    },
+    render: (args) => ({
+        components: { Textarea },
+        setup() {
+            const textareaModelValue =ref("");
+            return {
+                args,
+                textareaModelValue
+            };
+        },
+        template: `
+            <Textarea
+                :label="args.label"
+                :placeholder="args.placeholder"
+                :limit="args.limit"
+                :isDisabled="args.isDisabled"
+                :hint="args.hint"
+                v-model="textareaModelValue"
+                :className="args.className"
+            ></Textarea>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['themeColor', 'label', 'value', 'name' ],
+            exclude: ['modelValue', 'customClass'],
+        },
+    },
+};
+
+//==== 顯示標籤 ====//
+export const TextareaLabelDefault = {
+    name: "顯示標籤",
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
