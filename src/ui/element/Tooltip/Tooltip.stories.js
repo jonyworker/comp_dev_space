@@ -58,9 +58,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const DefaultTooltip = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
 		content:'Hi, Hi~ Nice to meet you!',
 		showArrow: true,
@@ -96,9 +96,9 @@ export const DefaultTooltip = {
 	},
 };
 
-//==== Tooltip 顯示位置 ====//
+//==== 顯示位置 ====//
 export const TooltipPlacement = {
-	name: "Tooltip 顯示位置",
+	name: "顯示位置",
 	args: {
 		content:'',
 		showArrow: true,
