@@ -1,5 +1,4 @@
 <script setup>
-import { defineEmits } from 'vue'
 
 const emits = defineEmits(['selectedItem'])
 // 定義 Props
