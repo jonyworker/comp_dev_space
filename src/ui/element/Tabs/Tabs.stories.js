@@ -32,7 +32,7 @@ export default {
             description: "是否禁用",
             control: { type: "boolean" },
         },
-        tabsData: {
+        datasource: {
             description: "頁籤列表",
             control: { type: "array" },
         },
@@ -64,7 +64,7 @@ export const DefaultTabs = {
         type: "default",
         isDisabled: false,
         activeIndex: 0,
-        tabsData: [
+        datasource: [
             {
                 "title": "頁籤 1",
                 "content": "內容一"
@@ -92,7 +92,7 @@ export const DefaultTabs = {
                 :type="args.type"
                 :activeIndex="args.activeIndex"
                 :isDisabled="args.isDisabled"
-                :tabsData="args.tabsData"
+                :datasource="args.datasource"
                 :className="args.className"
             ></Tabs>
         `,
@@ -113,7 +113,7 @@ export const CardTabs = {
         type: "card",
         isDisabled: false,
         activeIndex: 0,
-        tabsData: [
+        datasource: [
             {
                 "title": "頁籤 1",
                 "content": "內容一"
@@ -141,7 +141,7 @@ export const CardTabs = {
                 :type="args.type"
                 :activeIndex="args.activeIndex"
                 :isDisabled="args.isDisabled"
-                :tabsData="args.tabsData"
+                :datasource="args.datasource"
                 :className="args.className"
             ></Tabs>
         `,

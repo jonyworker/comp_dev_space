@@ -32,7 +32,7 @@ const props = defineProps({
 		type: Boolean,
 	},
 
-	tabsData: {
+	datasource: {
 		type: Array,
 	},
     className: {
@@ -58,7 +58,7 @@ watch(() => props.activeIndex, (newIndex) => {
         <!-- Tabs - 按鈕 -->
         <div class="tabs">
             <TabItem
-                v-for="(item, index) in props.tabsData"
+                v-for="(item, index) in props.datasource"
                 :key="index"
                 :themeColor="props.themeColor"
                 :title="item.title"
@@ -71,7 +71,7 @@ watch(() => props.activeIndex, (newIndex) => {
         </div>
         <!-- Tabs - 內容顯示 -->
         <div :class="['tab-content', {'tab-disable': props.isDisabled} ]">
-            {{ props.tabsData[activeTabIndex]?.content }}
+            {{ props.datasource[activeTabIndex]?.content }}
         </div>
     </div>
 </template>
