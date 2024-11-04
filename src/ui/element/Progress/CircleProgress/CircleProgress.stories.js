@@ -69,9 +69,9 @@ export default {
     // args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const DefaultCircleProgress = {
-    name: "主要項目",
+    name: "預設項目",
     args: {
         label: "Saving",
         percent: 66,
@@ -107,8 +107,143 @@ export const DefaultCircleProgress = {
     },
 };
 
+//==== 顯示標籤 ====//
+export const CircleProgressLabelStory = {
+    name: "顯示標籤",
+    args: {
+        label: "測試",
+        percent: 66,
+        size: 120,
+        strokeWidth: 10,
+        themeColor: "primary",
+        className: '',
+    },
+    render: (args) => ({
+        components: { CircleProgress },
+        setup() {
+            // Create a ref for modelValue to be used with v-model
+            return {
+                args,
+            };
+        },
+        template: `
+            <div style="display:flex; align-items: center; gap: 24px">
+                <CircleProgress
+                    :label="args.label"
+                    :percent="args.percent"
+                    size="70"
+                    :strokeWidth="args.strokeWidth"
+                    :themeColor="args.themeColor"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent="args.percent"
+                    size="120"
+                    :strokeWidth="args.strokeWidth"
+                    :themeColor="args.themeColor"
+                    :className="args.className"
+                ></CircleProgress>
+            </div>
+            
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['themeColor', 'label', 'value', 'name' ],
+        },
+    },
+};
 
-
+//==== 主題色彩 ====//
+export const CircleProgressColorStory = {
+    name: "主題色彩",
+    args: {
+        label: "測試",
+        // percent: 66,
+        size: 120,
+        strokeWidth: 10,
+        // themeColor: "primary",
+        className: '',
+    },
+    render: (args) => ({
+        components: { CircleProgress },
+        setup() {
+            // Create a ref for modelValue to be used with v-model
+            return {
+                args,
+            };
+        },
+        template: `
+            <div style="display:flex; align-items: center; flex-wrap: wrap; gap: 16px">
+                <CircleProgress
+                    :label="args.label"
+                    :percent=40
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="primary"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent=50
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="secondary"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent=60
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="tertiary"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent=70
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="success"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent=80
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="warning"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent=90
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="error"
+                    :className="args.className"
+                ></CircleProgress>
+                <CircleProgress
+                    :label="args.label"
+                    :percent=100
+                    :size="args.size"
+                    :strokeWidth="args.strokeWidth"
+                    themeColor="info"
+                    :className="args.className"
+                ></CircleProgress>
+            </div>
+            
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['themeColor', 'label', 'value', 'name' ],
+        },
+    },
+};
 
 
 
