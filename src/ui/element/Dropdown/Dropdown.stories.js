@@ -6,7 +6,7 @@ export default {
 	component: Dropdown,
 	tags: ["autodocs"],
 	argTypes: {
-		options: {
+		datasource: {
 			description: "資料陣列",
 			control: { type: "object" },
 		},
@@ -46,11 +46,11 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const DropdownDefault = {
-	name: '主要項目',
+	name: '預設項目',
 	args: {
-		options: [
+		datasource: [
 			{
 				"label": "選項一",
 				"value": "option1",
@@ -80,7 +80,7 @@ export const DropdownDefault = {
 		},
 		template: `
 			<Dropdown 
-				:options="args.options"
+				:datasource="args.datasource"
 				:label="args.label"
 				:placeholder="args.placeholder"
 				:size="args.size"

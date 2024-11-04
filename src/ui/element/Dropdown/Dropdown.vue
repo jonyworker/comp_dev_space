@@ -8,8 +8,11 @@ import List from "@/ui/element/List/List.vue";
 const modelValue = defineModel()
 
 // 定義 Props
-//TODO: prop還沒確認
 const props = defineProps({
+	datasource: {
+		type: Array,
+		default: () => [],
+	},
 	label: {
 		type: String,
 	},
@@ -28,12 +31,7 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	options: {
-		type: Array,
-		default: () => [],
-	}
 })
-
 
 const selectValue =  ref(null)
 
@@ -69,7 +67,7 @@ const handleSelect = (value) => {
 			v-if="isDropdownVisible"
 		>
 			<ListItem
-				v-for="(item, index) in props.options"
+				v-for="(item, index) in props.datasource"
 				:key="index"
 				:label="item.label"
 				:value="item.value"
