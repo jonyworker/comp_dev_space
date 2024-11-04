@@ -84,12 +84,12 @@ export default {
 export const DividerDefault = {
     name: "預設項目",
     args: {
-        default: "Divider Text",
+        default: "分隔線",
         layout: "horizontal",
         width: "small",
         type: "solid",
         themeColor: "None",
-        align: "start",
+        align: "center",
     },
     render: (args) => ({
         components: { Divider },
@@ -119,14 +119,13 @@ export const DividerDefault = {
     },
 };
 
-//==== 線條類型 ====//
-export const DividerTypes = {
-    name: "線條類型",
+//==== 文字對齊 ====//
+export const DividerContent = {
+    name: "文字對齊",
     args: {
-        layout: "horizontal",
         width: "small",
+        type: "solid",
         themeColor: "None",
-        align: "start",
     },
     render: (args) => ({
         components: { Divider },
@@ -137,29 +136,28 @@ export const DividerTypes = {
             };
         },
         template: `
-			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
-			     style="display:flex; gap: 16px; height: 200px">
+			<div style="display:flex; flex-direction: column; gap: 16px">
 				<Divider
-					:layout="args.layout"
+					layout="horizontal"
 					:width="args.width"
-					type="solid"
+					:type="args.type"
 					:themeColor="args.themeColor"
-					:align="args.align"
-				>solid</Divider>
+					align="start"
+				>start</Divider>
 				<Divider
-					:layout="args.layout"
+					layout="horizontal"
 					:width="args.width"
-					type="dashed"
+					:type="args.type"
 					:themeColor="args.themeColor"
-					:align="args.align"
-				>dashed</Divider>
+					align="center"
+				>center</Divider>
 				<Divider
-					:layout="args.layout"
+					layout="horizontal"
 					:width="args.width"
-					type="dotted"
+					:type="args.type"
 					:themeColor="args.themeColor"
-					:align="args.align"
-				>dotted</Divider>
+					align="end"
+				>end</Divider>
 			</div>
 		`,
     }),
@@ -167,7 +165,7 @@ export const DividerTypes = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ["type"],
+            exclude: ["layout", "align"],
         },
     },
 };
@@ -180,7 +178,7 @@ export const DividerWidth = {
         width: "small",
         type: "solid",
         themeColor: "None",
-        align: "start",
+        align: "center",
     },
     render: (args) => ({
         components: { Divider },
@@ -240,13 +238,14 @@ export const DividerWidth = {
     },
 };
 
-//==== 文字對齊 ====//
-export const DividerContent = {
-    name: "文字對齊",
+//==== 線條類型 ====//
+export const DividerTypes = {
+    name: "線條類型",
     args: {
+        layout: "horizontal",
         width: "small",
-        type: "solid",
         themeColor: "None",
+        align: "center",
     },
     render: (args) => ({
         components: { Divider },
@@ -257,28 +256,29 @@ export const DividerContent = {
             };
         },
         template: `
-			<div style="display:flex; flex-direction: column; gap: 16px">
+			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+			     style="display:flex; gap: 16px; height: 200px">
 				<Divider
-					layout="horizontal"
+					:layout="args.layout"
 					:width="args.width"
-					:type="args.type"
+					type="solid"
 					:themeColor="args.themeColor"
-					align="start"
-				>start</Divider>
+					:align="args.align"
+				>solid</Divider>
 				<Divider
-					layout="horizontal"
+					:layout="args.layout"
 					:width="args.width"
-					:type="args.type"
+					type="dashed"
 					:themeColor="args.themeColor"
-					align="center"
-				>center</Divider>
+					:align="args.align"
+				>dashed</Divider>
 				<Divider
-					layout="horizontal"
+					:layout="args.layout"
 					:width="args.width"
-					:type="args.type"
+					type="dotted"
 					:themeColor="args.themeColor"
-					align="end"
-				>end</Divider>
+					:align="args.align"
+				>dotted</Divider>
 			</div>
 		`,
     }),
@@ -286,7 +286,7 @@ export const DividerContent = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ["layout", "align"],
+            exclude: ["type"],
         },
     },
 };
@@ -350,7 +350,7 @@ export const DividerColors = {
         width: "small",
         type: "solid",
         themeColor: "None",
-        align: "start",
+        align: "center",
     },
     render: (args) => ({
         components: { Divider },
