@@ -87,16 +87,13 @@
   border-color: transparent black transparent transparent;
   left: -5px;
 }
-.tooltip-arrow.right {
+.tooltip-arrow.right,
+.tooltip-arrow.right-top,
+.tooltip-arrow.right-bottom{
   top: 50%;
   transform: translateY(-50%);
 }
-.tooltip-arrow.right-top{
-  top: 5px;
-}
-.tooltip-arrow.right-bottom {
-  bottom: 5px;
-}
+
 
 /*--- TOOLTIP 箭頭位置 BOTTOM ---*/
 .tooltip-arrow.bottom,
@@ -125,15 +122,11 @@
   border-color: transparent transparent transparent black;
   right: -5px;
 }
-.tooltip-arrow.left {
+.tooltip-arrow.left,
+.tooltip-arrow.left-top,
+.tooltip-arrow.left-bottom {
   top: 50%;
   transform: translateY(-50%);
-}
-.tooltip-arrow.left-top {
-  top: 5px;
-}
-.tooltip-arrow.left-bottom {
-  bottom: 5px;
 }
 
 

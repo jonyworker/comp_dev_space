@@ -1,6 +1,5 @@
 import Button from "@/ui/element/Button/Button.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
-import  { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -76,16 +75,19 @@ export const DefaultTooltip = {
 			};
 		},
 		template: `
-			<Tooltip 
-				:content="args.content"
-				:showArrow="args.showArrow" 
-				:placement="args.placement"
-				:className="args.className"
-			>
-				<template #default>
-					<div v-html="args.default"></div>
-				</template>
-			</Tooltip>
+			<div style="text-align: center">
+				<Tooltip
+					:content="args.content"
+					:showArrow="args.showArrow"
+					:placement="args.placement"
+					:className="args.className"
+				>
+					<template #default>
+						<div v-html="args.default"></div>
+					</template>
+				</Tooltip>
+			</div>
+			
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -97,71 +99,71 @@ export const DefaultTooltip = {
 };
 
 //==== 顯示位置 ====//
-export const TooltipPlacement = {
-	name: "顯示位置",
-	args: {
-		content:'',
-		showArrow: true,
-	},
-	render: (args) => ({
-		components: { Tooltip },
-
-		setup() {
-			const tooltipPosValue = ref([
-				'top-left', 'top', 'top-right',
-				'right-top', 'right', 'right-bottom',
-				'bottom-right', 'bottom', 'bottom-left',
-				'left-bottom', 'left', 'left-top',
-			]);
-			return {
-				args,
-				tooltipPosValue
-			};
-		},
-		template: `
-			<div style="
-				width: 500px;
-				display: flex;
-				align-items: center;
-				flex-wrap: wrap;
-				gap: 40px;
-				margin: 56px">
-				<Tooltip 
-					v-for="(item, index) in tooltipPosValue"
-					:key="index"
-					:content="args.content || 'Tooltip on ' + item"
-					:placement="item" 
-					:showArrow="args.showArrow">
-					<!-- 被 tooltip 包裹的資料 -->
-					<div
-						style="
-						width: 100px;
-						height: 100px;
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-						justify-content: center;
-						border-radius: 12px;
-						border: 2px solid #533bd4;
-						color: #533bd4;
-						padding: 8px;"
-					>
-						Hover<br>
-						<p style="font-size: 12px;">
-							- {{ item }} -
-						</p>
-					</div>
-				</Tooltip>
-			</div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			exclude: ['placement' ],
-		},
-	},
-};
+// export const TooltipPlacement = {
+// 	name: "顯示位置",
+// 	args: {
+// 		content:'',
+// 		showArrow: true,
+// 	},
+// 	render: (args) => ({
+// 		components: { Tooltip },
+//
+// 		setup() {
+// 			const tooltipPosValue = ref([
+// 				'top-left', 'top', 'top-right',
+// 				'right-top', 'right', 'right-bottom',
+// 				'bottom-right', 'bottom', 'bottom-left',
+// 				'left-bottom', 'left', 'left-top',
+// 			]);
+// 			return {
+// 				args,
+// 				tooltipPosValue
+// 			};
+// 		},
+// 		template: `
+// 			<div style="
+// 				width: 500px;
+// 				display: flex;
+// 				align-items: center;
+// 				flex-wrap: wrap;
+// 				gap: 40px;
+// 				margin: 56px">
+// 				<Tooltip
+// 					v-for="(item, index) in tooltipPosValue"
+// 					:key="index"
+// 					:content="args.content || 'Tooltip on ' + item"
+// 					:placement="item"
+// 					:showArrow="args.showArrow">
+// 					<!-- 被 tooltip 包裹的資料 -->
+// 					<div
+// 						style="
+// 						width: 100px;
+// 						height: 100px;
+// 						display: flex;
+// 						flex-direction: column;
+// 						align-items: center;
+// 						justify-content: center;
+// 						border-radius: 12px;
+// 						border: 2px solid #533bd4;
+// 						color: #533bd4;
+// 						padding: 8px;"
+// 					>
+// 						Hover<br>
+// 						<p style="font-size: 12px;">
+// 							- {{ item }} -
+// 						</p>
+// 					</div>
+// 				</Tooltip>
+// 			</div>
+//         `,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			exclude: ['placement' ],
+// 		},
+// 	},
+// };
 
 
 
