@@ -6,14 +6,14 @@ export default {
 	component: Menu,
 	tags: ["autodocs"],
 	argTypes: {
-		menuData: {
+		datasource: {
 			description: "Menu 對應的資料陣列",
 			control: { type: "object" },
 		},
-	},
-	isExpanded: {
-		description: "Menu 展開收合",
-		control: { type: "boolean" },
+		isExpanded: {
+			description: "Menu 展開收合",
+			control: { type: "boolean" },
+		},
 	},
 	parameters: {
 		// 自動文件
@@ -24,16 +24,14 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+
+//==== 預設項目 ====//
 export const MenuDefault = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
-		menuData: [
+		datasource: [
 			{
 				icon: "home",
 				label: "首頁",
@@ -44,7 +42,7 @@ export const MenuDefault = {
 				label: "用戶管理",
 				path: "/users",
 				children: [
-					{ label: "用戶列表 (模擬帶 icon 效果)", path: "/users/list" },
+					{ label: "用戶列表", path: "/users/list" },
 					{ label: "用戶設置", path: "/users/settings" },
 				],
 			},
@@ -67,7 +65,8 @@ export const MenuDefault = {
 				label: "系統設置",
 				path: "/settings",
 			},
-		]
+		],
+		isExpanded: true,
 	},
 	render: (args) => ({
 		components: { Menu },
@@ -77,22 +76,18 @@ export const MenuDefault = {
 			};
 		},
 		template: `
-			<div style="width: 400px">
+			<div :style="args.isExpanded ? 'width:auto' : 'width:47px'">
 				<Menu
-					:menuData="args.menuData"
-					:isExpanded="true"
+					:datasource="args.datasource"
+					:isExpanded="args.isExpanded"
 				></Menu>
 			</div>
-			
-        `,
+		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['menuData'],
+			include: ["datasource", "isExpanded"], // 確保包含有效的參數名稱
 		},
 	},
 };
-
-
-

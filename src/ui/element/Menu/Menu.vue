@@ -1,12 +1,12 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue"
-import { computed, defineEmits, ref } from "vue";
+import { ref } from "vue";
 
 const isExpandedModelValue = defineModel('isExpanded')
 // 定義 Props
 const props = defineProps({
 	// --  資料接口 -- //
-	menuData: {
+	datasource: {
 		type: Array,
 		required: true,
 		default: () => [],
@@ -46,9 +46,9 @@ const handleItemClick = (item) => {
 	<div class="menu-container">
 		<nav class="nav">
 			<ul class="nav-menu">
-				<li v-for="item in menuData" :key="item.path">
+				<li v-for="item in props.datasource" :key="item.path">
 					<div class="menu-item" @click.stop="handleItemClick(item)" :style="`color:${props.fontColor}`">
-						<div class="menu-item-content" >
+						<div class="menu-item-content" style="min-height: 24px;">
 							<template v-if="item.icon" >
 								<Icon class="menu-item-content-icon" :name="item.icon" size="20"></Icon>
 							</template>
@@ -62,8 +62,8 @@ const handleItemClick = (item) => {
 								<Icon
 									class="menu-item-content-icon"
 									:name="expandedItems[item.path]
-                                    ? 'chevronDown'
-                                    : 'chevronRight'"
+                                    ? 'chevronUp'
+                                    : 'chevronDown'"
 									size="16"
 								></Icon>
 							</template>
