@@ -15,21 +15,23 @@ export default {
         },
         width: {
             description: "分隔線寬度",
-            control: { type: "select" },
+            control: {
+                type: "select",
+                // 使用 labels 來定義顯示文字
+                labels: {
+                    xsmall: "xsmall (1px)",
+                    small: "small (2px)",
+                    medium: "medium (4px)",
+                    large: "large (6px)",
+                    xlarge: "xlarge (8px)",
+                }},
             options: [
-                "xsmall (1px)",
-                "small (2px)",
-                "medium (4px)",
-                "large (6px)",
-                "xlarge (8px)",
+                "xsmall",
+                "small",
+                "medium",
+                "large",
+                "xlarge",
             ],
-            mapping: {
-                "xsmall (1px)": "xsmall",
-                "small (2px)": "xsmall",
-                "medium (4px)": "medium",
-                "large (6px)": "large",
-                "xlarge (8px)": "xlarge",
-            },
         },
         type: {
             description: "分隔線樣式",
@@ -116,6 +118,24 @@ export const DividerDefault = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<Divider',
+                        `  layout="${args.layout}"`,
+                        `  width="${args.width}"`,
+                        `  type="${args.type}"`,
+                        `  themeColor="${args.themeColor}"`,
+                        `  align="${args.align}"`,
+                        '>',
+                        `  ${args.default}`,
+                        '</Divider>'
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
