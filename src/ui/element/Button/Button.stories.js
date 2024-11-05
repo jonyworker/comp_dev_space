@@ -79,11 +79,11 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
-export const ButtonDefault = {
+//==== 預設項目 ====//
+export const DefaultButtonStory = {
 	name: '主要項目',
 	args: {
-		default: 'Button Text',
+		default: '按鈕',
 		variant: 'contained',
 		themeColor: 'primary',
 		size: 'medium',
@@ -100,8 +100,8 @@ export const ButtonDefault = {
 				args,
 			};
 		},
-		template:
-			`<Button
+		template: `
+			<Button
 				:variant="args.variant"
 				:themeColor="args.themeColor"
 				:size="args.size"
@@ -120,11 +120,158 @@ export const ButtonDefault = {
 		controls: {
 			// include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="${args.themeColor}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  ${args.default}`,
+						'</Button>'
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
-//==== 多個按鈕 ====//
-export const MultipleButton = {
+//==== 附加元素 ====//
+export const ButtonPrefixSuffixStory = {
+	name: '附加元素',
+	args: {
+		default: 'Button Text',
+		variant: 'contained',
+		themeColor: 'primary',
+		size: 'medium',
+		width: 'fit',
+		isDisable: false,
+		className: ""
+	},
+	render: (args) => ({
+		components: { Button },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
+			<Button
+				:variant="args.variant"
+				:themeColor="args.themeColor"
+				:size="args.size"
+				:width="args.width"
+				prefix="folder"
+				suffix=""
+				:isDisable="args.isDisable"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:variant="args.variant"
+				:themeColor="args.themeColor"
+				:size="args.size"
+				:width="args.width"
+				prefix=""
+				suffix="folder"
+				:isDisable="args.isDisable"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			
+		</div>
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			exclude: ['prefix','suffix'],
+		},
+	},
+};
+
+//==== 按鈕樣式 ====//
+export const ButtonTypeStory = {
+	name: '按鈕樣式',
+	args: {
+		default: 'Button Text',
+		variant: 'contained',
+		themeColor: 'primary',
+		size: 'medium',
+		width: 'fit',
+		prefix: 'folder',
+		suffix: 'None',
+		isDisable: false,
+		className: ""
+	},
+	render: (args) => ({
+		components: { Button },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
+			<Button
+				variant="contained"
+				:themeColor="args.themeColor"
+				:size="args.size"
+				:width="args.width"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:isDisable="args.isDisable"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				variant="outlined"
+				:themeColor="args.themeColor"
+				:size="args.size"
+				:width="args.width"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:isDisable="args.isDisable"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				variant="text"
+				:themeColor="args.themeColor"
+				:size="args.size"
+				:width="args.width"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:isDisable="args.isDisable"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			
+		</div>
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			exclude: ['variant'],
+		},
+	},
+};
+
+//==== 主題色彩 ====//
+export const ButtonColorStory = {
 	name: '多個按鈕',
 	args: {
 		default: 'Button Text',
