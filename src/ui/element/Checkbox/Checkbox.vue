@@ -47,15 +47,13 @@ watch(
 	() => props.isChecked,
 	(newVal) => {
 		if (props.isMultiple) {
-			// 多選模式下，將值加入陣列中
 			if (newVal && Array.isArray(modelValue.value) && !modelValue.value.includes(props.value)) {
 				modelValue.value.push(props.value);
+			} else if (!newVal && Array.isArray(modelValue.value) && modelValue.value.includes(props.value)) {
+				modelValue.value = modelValue.value.filter((item) => item !== props.value);
 			}
 		} else {
-			// 單選模式下，直接設定為 value
-			if (newVal) {
-				modelValue.value = props.value;
-			}
+			modelValue.value = newVal;
 		}
 		isCheck.value = newVal;
 	},
@@ -67,20 +65,16 @@ const handleCheck = () => {
 	if (props.isMultiple) {
 		if (Array.isArray(modelValue.value)) {
 			if (isCheck.value) {
-				// 如果已勾選，取消勾選並從陣列中移除
 				modelValue.value = modelValue.value.filter((item) => item !== props.value);
 			} else {
-				// 否則將值加入陣列
 				modelValue.value.push(props.value);
 			}
 		}
 	} else {
-		// 單選模式，直接設定或清除值
-		modelValue.value = isCheck.value ?  props.value : true;
+		modelValue.value = !isCheck.value;
 	}
 	isCheck.value = !isCheck.value;
 };
-
 </script>
 
 <template>

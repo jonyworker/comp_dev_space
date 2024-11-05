@@ -73,6 +73,7 @@ export const CheckboxDefaultStory = {
         name: "terms",
         themeColor: "primary",
         className: "",
+        isChecked: true,
     },
     render: (args) => ({
         components: { Checkbox },
@@ -91,6 +92,7 @@ export const CheckboxDefaultStory = {
                 :themeColor="args.themeColor"
                 :className="args.className"
                 v-model="isCheckboxChecked"
+                :isChecked="args.isChecked"
             ></Checkbox>
             <br/>
             v-model value: {{isCheckboxChecked}}
@@ -99,7 +101,7 @@ export const CheckboxDefaultStory = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            include: [ 'label', 'id', 'value', 'name', 'themeColor', 'className'],
+            include: [ 'label', 'id', 'value', 'name', 'themeColor', 'className', 'isChecked' ],
         },
         docs: {
             source: {
