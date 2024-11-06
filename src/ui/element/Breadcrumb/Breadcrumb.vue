@@ -4,7 +4,7 @@ import BreadcrumbItem from "@/ui/element/Breadcrumb/BreadcrumbItem.vue";
 
 // 定義 Props
 const props = defineProps({
-	items: {
+	datasource: {
 		type: Array,
 		default: () => []
 	},
@@ -21,10 +21,10 @@ const props = defineProps({
 	},
 });
 
-const copyBreadcrumbsData = ref([...props.items]);
+const copyBreadcrumbsData = ref([...props.datasource]);
 
-// 監視 props.items 的變化
-watch(() => props.items, (newData) => {
+// 監視 props.datasource 的變化
+watch(() => props.datasource, (newData) => {
 	copyBreadcrumbsData.value = [...newData];
 });
 

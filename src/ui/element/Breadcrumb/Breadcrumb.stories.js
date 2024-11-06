@@ -8,7 +8,7 @@ export default {
     subcomponents: { BreadcrumbItem },
     tags: ["autodocs"],
     argTypes: {
-        items: {
+        datasource: {
             description: "資料來源",
             control: { type: "object" },
         },
@@ -31,12 +31,11 @@ export default {
     // args: { onClick: fn() },
 };
 
-
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const BreadcrumbMany = {
-    name: "主要項目",
+    name: "預設項目",
     args: {
-        items: [
+        datasource: [
             {
                 label: "首頁",
                 href: "/",
@@ -88,7 +87,7 @@ export const BreadcrumbMany = {
         },
         template: `
             <Breadcrumb
-                :items="args.items"
+                :datasource="args.datasource"
                 :className="args.className"
             ></Breadcrumb>
         `,
@@ -96,11 +95,24 @@ export const BreadcrumbMany = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            include: ['items', 'className' ],
+            include: ['datasource', 'className' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<Breadcrumb',
+                        `  datasource="datasource"`,
+                        `  className="${args.className}"`,
+                        '>',
+                        '</Breadcrumb>'
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
-
 
 
 
