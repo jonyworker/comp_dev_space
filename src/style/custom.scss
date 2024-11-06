@@ -45,3 +45,16 @@
   background-color: #f26940;
   color: #ffffff;
 }
+
+.diagonal-background {
+    background:
+      linear-gradient(315deg,
+      #e0e0e0 25%,
+      transparent 25%,
+      transparent 50%,
+      #e0e0e0 50%,
+      #e0e0e0 75%,
+      transparent 75%,
+      transparent);
+    background-size: 8px 8px;
+}
