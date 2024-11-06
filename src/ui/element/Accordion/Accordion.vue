@@ -2,18 +2,18 @@
 import { ref, watch } from "vue";
 
 const props = defineProps({
-	items: {
+	datasource: {
 		type: Array,
 		default: () => []
 	},
 })
 
 const accordionItems = ref([
-	...props.items
+	...props.datasource
 ]);
 
 
-watch(() => props.items, (newValue) => {
+watch(() => props.datasource, (newValue) => {
 	accordionItems.value = newValue.map(item => ({
 		...item,
 		expanded: false // 確保每個項目都有 expanded 屬性

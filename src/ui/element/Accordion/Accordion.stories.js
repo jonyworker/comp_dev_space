@@ -2,11 +2,11 @@ import Accordion from "./Accordion.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Accordion",
+	title: "Design System/Accordion*",
 	component: Accordion,
 	tags: ["autodocs"],
 	argTypes: {
-		items: {
+		datasource: {
 			description: "Accordion 對應的資料陣列",
 			control: { type: "object" },
 		},
@@ -47,7 +47,7 @@ export const AccordionDefault = {
 		},
 		template: `
             <Accordion
-                :items="args.accordionData"
+                :datasource="args.accordionData"
             ></Accordion>
         `,
 	}),
@@ -96,7 +96,7 @@ export const AccordionGroup = {
 		},
 		template: `
             <Accordion
-                :items="args.accordionData"
+                :datasource="args.accordionData"
             ></Accordion>
         `,
 	}),
