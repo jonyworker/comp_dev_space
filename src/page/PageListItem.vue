@@ -1,5 +1,5 @@
 <script setup>
-import ListItem from "@/ui/element/ListItem/ListItem.vue";
+import ListItem from "@/ui/element/List/ListItem.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 </script>
 

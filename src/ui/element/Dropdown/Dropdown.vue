@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Icon from '@/ui/element/Icon/Icon.vue'
-import ListItem from "@/ui/element/ListItem/ListItem.vue";
+import ListItem from "@/ui/element/List/ListItem.vue";
 import List from "@/ui/element/List/List.vue";
 
 // 定義 Model (改成最新寫法)

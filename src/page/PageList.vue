@@ -2,7 +2,7 @@
 import List from "@/ui/element/List/List.vue";
 import { reactive } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-import ListItem from "@/ui/element/ListItem/ListItem.vue";
+import ListItem from "@/ui/element/List/ListItem.vue";
 const options = reactive([
 	{
 		"content": {
