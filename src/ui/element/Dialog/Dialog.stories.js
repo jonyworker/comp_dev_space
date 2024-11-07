@@ -6,7 +6,7 @@ import FakeContent from "@/ui/utility/FakeContent/FakeContent.vue";
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
 	components: { Dialog },
-	title: "Design System/Dialog",
+	title: "Design System/Dialog*",
 	component: Dialog,
 	tags: ["autodocs"],
 	argTypes: {
@@ -70,7 +70,8 @@ export const DialogClick = {
 			</Dialog>
 			
 			<!-- Dialog 觸發器 -->
-			<Button themeColor="error" 
+			<Button themeColor="error"
+			        variant="contained"
 			        size="medium" 
 			        prefix="replace" 
 			        @click="dialog.showDialog">

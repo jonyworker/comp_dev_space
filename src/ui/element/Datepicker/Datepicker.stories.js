@@ -2,7 +2,7 @@ import Datepicker from "./Datepicker.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Datepicker",
+	title: "Design System/Datepicker*",
 	component: Datepicker,
 	tags: ["autodocs"],
 	argTypes: {

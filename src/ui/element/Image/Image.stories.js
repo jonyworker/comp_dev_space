@@ -2,7 +2,7 @@ import Image from './Image.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-  title: 'Design System/Image',
+  title: 'Design System/Image*',
   component: Image,
   tags: ["autodocs"],
   argTypes: {

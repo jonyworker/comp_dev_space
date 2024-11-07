@@ -7,7 +7,7 @@ import Button from "@/ui/element/Button/Button.vue";
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
 	components: {Icon, Toast},
-	title: "Design System/Toast",
+	title: "Design System/Toast*",
 	component: Toast,
 	tags: ["autodocs"],
 	argTypes: {
