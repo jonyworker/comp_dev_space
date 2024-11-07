@@ -178,7 +178,7 @@ export const ToastDefaultNew = {
 			></Toast>
 
 			<div style="display:flex; flex-direction: column; gap: 16px; width: 200px">
-				<Button width="full" themeColor="primary" @click="showToast">Toast Trigger</Button>
+				<Button width="full" themeColor="primary" variant="contained" @click="showToast">Toast Trigger</Button>
 			</div>
         `,
 	}),
