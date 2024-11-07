@@ -1,5 +1,5 @@
 import RadioGroup from "./RadioGroup.vue";
-import RadioItem from "./RadioItem.vue";
+import Radio from "../Radio.vue";
 import { ref } from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
