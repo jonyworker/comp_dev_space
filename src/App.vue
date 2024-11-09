@@ -34,8 +34,8 @@ import Icon from "@/ui/element/Icon/Icon.vue";
 import Input from "@/ui/element/Input/Input.vue";
 import TooltipRelative from "@/ui/element/Tooltip/TooltipRelative.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
-import Search from "@/ui/module/Search/Search.vue";
-import Password from "@/ui/module/Password/Password.vue";
+import Search from "@/ui/element/Search/Search.vue";
+import Password from "@/ui/element/Password/Password.vue";
 
 import { useDialogSeparate } from "@/ui/element/Dialog/test/useDialogSeparate.js";
 import DialogSeparate from "@/ui/element/Dialog/test/DialogSeparate.vue";

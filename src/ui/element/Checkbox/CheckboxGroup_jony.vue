@@ -16,7 +16,7 @@ const props = defineProps({
 <template>
 	<div :class="{
 		'checkbox-container': true,
-		[`checkbox-container-${props.direction}`]: true,
+		[`checkbox-container-${props.direction}`]: props.direction,
 		[props.className]: !!props.className
 		}">
 
