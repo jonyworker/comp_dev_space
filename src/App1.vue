@@ -1,23 +1,52 @@
 <script setup>
-import checkbox from "@/ui/element/checkbox/checkbox.vue";
-import { ref } from "vue";
+import BB from "@/ui/element/Breadcrumb/BB.vue";
 const datasource = [
-	{ label: "選項ㄧ", id: "option1", value: "option1", name: "group1" },
-	{ label: "選項二", id: "option2", value: "option2", name: "group1" },
-	{ label: "選項三", id: "option3", value: "option3", name: "group1" },
+	{
+		label: "首頁",
+		href: "/",
+	},
+	{
+		label: "第一層",
+		href: "/1st",
+	},
+	{
+		label: "第二層",
+		href: "/2nd",
+	},
+	{
+		label: "第三層",
+		href: "/3rd",
+	},
+	{
+		label: "第四層",
+		href: "/4th",
+	},
+	{
+		label: "第五層",
+		href: "/5th",
+	},
+	{
+		label: "第六層",
+		href: "/6th",
+	},
+	{
+		label: "第七層",
+		href: "/7th",
+	},
+	{
+		label: "第八層",
+		href: "/8th",
+	},
+	{
+		label: "當前頁",
+	},
 ]
-const initValue = ["option1", "option3"]
-const checkedCheckboxOptions = ref([]);
 </script>
 
 <template>
-<checkbox
-	themeColor="error"
-	:data-source="datasource"
-	direction="row"
-	:initValue="initValue"
-	v-model="checkedCheckboxOptions"></checkbox>
-	{{checkedCheckboxOptions}}
+<BB
+	:dataSource="datasource"></BB>
+
 </template>
 
 <style scoped lang="scss">

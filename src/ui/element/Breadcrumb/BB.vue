@@ -7,7 +7,6 @@ import ListItem from "@/ui/element/List/ListItem.vue";
 const props = defineProps({
 	dataSource: {
 		type: Array,
-		required:true,
 		default: () => []
 	},
 	className: {

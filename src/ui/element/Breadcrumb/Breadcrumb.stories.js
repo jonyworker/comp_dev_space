@@ -1,16 +1,25 @@
 import Breadcrumb from "./Breadcrumb.vue";
-import BreadcrumbItem from "./BreadcrumbItem.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
     title: "Design System/Breadcrumb",
     component: Breadcrumb,
-    subcomponents: { BreadcrumbItem },
     tags: ["autodocs"],
     argTypes: {
-        datasource: {
+        dataSource: {
             description: "資料來源",
             control: { type: "object" },
+            table: {
+                type: {
+                    summary: '{ label: string; href?: string | undefined; }[]',
+//                     detail: `{
+//     label: string,
+//     id: string,
+//     value: string,
+//     name: string
+// }`
+                }
+            }
         },
         className: {
             description: "客製化樣式",
@@ -35,7 +44,7 @@ export default {
 export const BreadcrumbMany = {
     name: "預設項目",
     args: {
-        datasource: [
+        dataSource: [
             {
                 label: "首頁",
                 href: "/",
@@ -87,7 +96,7 @@ export const BreadcrumbMany = {
         },
         template: `
             <Breadcrumb
-                :datasource="args.datasource"
+                :dataSource="args.dataSource"
                 :className="args.className"
             ></Breadcrumb>
         `,
@@ -95,7 +104,7 @@ export const BreadcrumbMany = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            include: ['datasource', 'className' ],
+            include: ['dataSource', 'className' ],
         },
         docs: {
             source: {
@@ -103,7 +112,7 @@ export const BreadcrumbMany = {
                     const { args } = storyContext;
                     return [
                         '<Breadcrumb',
-                        `  datasource="datasource"`,
+                        `  :dataSource="dataSource"`,
                         `  className="${args.className}"`,
                         '>',
                         '</Breadcrumb>'
