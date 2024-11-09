@@ -1,6 +1,6 @@
 <script setup>
+const emits = defineEmits(['selectedItem']);
 
-const emits = defineEmits(['selectedItem'])
 // 定義 Props
 const props = defineProps({
 	label: {
@@ -17,20 +17,25 @@ const props = defineProps({
 	className: {
 		type: String,
 	},
-	onClick: {  // 建議加入 onClick prop 的定義
-		type: Function,
+	openInNewTab: {
+		type: Boolean,
+		default: false
 	},
-})
+});
 
-// 新頁面開起網頁
-const handleClick = (value) => {
+// 點擊事件處理
+const handleClick = () => {
 	if (!props.href) {
-		emits('selectedItem', value)  // 如果沒有 href，直接觸發事件
+		emits('selectedItem', props.value);  // 如果沒有 href，直接觸發事件，傳遞 value
 	} else {
-		window.open(props.href, '_blank');
-		emits('selectedItem', value)  // 開啟新視窗後觸發事件
+		// 檢查 openInNewTab 的值，決定是否在新分頁開啟
+		if (props.openInNewTab) {
+			window.open(props.href, '_blank');  // 開新分頁
+		} else {
+			window.location.href = props.href;  // 在當前分頁開啟
+		}
+		emits('selectedItem', props.value);  // 開啟連結後觸發事件，傳遞 value
 	}
-	props.onClick?.(props.value);  // 使用可選鏈運算符
 };
 </script>
 
@@ -41,18 +46,16 @@ const handleClick = (value) => {
 			'menu-link': props.href,
 			[props.className]: !!props.className
 		}"
-		@click="handleClick(props.label)">
+		@click="handleClick">
 
-		<slot name="listPrefix">
-		</slot>
+		<slot name="listPrefix"></slot>
 
-		<div class="item-label">{{props.label}}</div>
+		<div class="item-label">{{ props.label }}</div>
 
-		<slot name="listSuffix">
-		</slot>
+		<slot name="listSuffix"></slot>
 	</div>
 </template>
 
 <style scoped lang="scss">
-
+/* 在此處加入必要的樣式 */
 </style>

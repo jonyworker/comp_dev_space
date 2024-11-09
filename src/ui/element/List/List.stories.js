@@ -215,7 +215,6 @@ export const ListDefaultStory = {
 						'</List>'
 					].join('\n').trim();
 
-
 				}
 			}
 		}
