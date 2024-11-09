@@ -3,7 +3,7 @@ import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: 'Design System/Search',
+	title: 'Design System/Search*',
 	component: Search,
 	tags: ["autodocs"],
 	argTypes: {
@@ -24,6 +24,11 @@ export default {
 				'error',
 				'info',
 			],
+			table: {
+				type: {
+					summary: 'primary | secondary | tertiary | success | warning | error | info'
+				}
+			}
 		},
 		placeholder: {
 			description: '設定 Search 的提示文字，幫助用戶了解預期輸入內容',
@@ -63,9 +68,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== Search 基礎樣式 ====//
+//==== 預設項目 ====//
 export const DefaultSearch = {
-	name: "Search 基礎樣式",
+	name: "預設項目",
 	args: {
 		btnVariant: 'contained',
 		btnColor: 'primary',

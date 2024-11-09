@@ -3,7 +3,7 @@ import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: 'Design System/Password',
+	title: 'Design System/Password*',
 	component: Password,
 	tags: ["autodocs"],
 	argTypes: {
@@ -49,9 +49,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== Password 基礎樣式 ====//
+//==== 預設項目 ====//
 export const PasswordDefault = {
-	name: "Password 基礎樣式",
+	name: "預設項目",
 	args: {
 		placeholder:'請輸入密碼',
 		label: '登入密碼',
