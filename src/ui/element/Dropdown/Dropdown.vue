@@ -9,7 +9,7 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-	datasource: {
+	dataSource: {
 		type: Array,
 		default: () => [],
 	},
@@ -67,7 +67,7 @@ const handleSelect = (value) => {
 			v-if="isDropdownVisible"
 		>
 			<ListItem
-				v-for="(item, index) in props.datasource"
+				v-for="(item, index) in props.dataSource"
 				:key="index"
 				:label="item.label"
 				:value="item.value"

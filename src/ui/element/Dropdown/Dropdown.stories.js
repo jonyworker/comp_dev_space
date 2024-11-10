@@ -1,4 +1,12 @@
 import Dropdown from "@/ui/element/Dropdown/Dropdown.vue";
+function formatDataSource(dataSource) {
+	return `[
+    ${dataSource.map(item => `{
+        label: '${item.label}',
+        value: '${item.value}',
+    }`).join(',\n    ')}
+  ]`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -6,9 +14,20 @@ export default {
 	component: Dropdown,
 	tags: ["autodocs"],
 	argTypes: {
-		datasource: {
-			description: "資料陣列",
+		dataSource: {
+			description: "資料來源",
 			control: { type: "object" },
+			table: {
+				type: {
+					summary: '{ label: string; value: string; }[]',
+//                     detail: `{
+//     label: string,
+//     id: string,
+//     value: string,
+//     name: string
+// }`
+				}
+			}
 		},
 		label: {
 			description: '標題',
@@ -50,7 +69,7 @@ export default {
 export const DropdownDefault = {
 	name: '預設項目',
 	args: {
-		datasource: [
+		dataSource: [
 			{
 				"label": "選項一",
 				"value": "option1",
@@ -80,15 +99,13 @@ export const DropdownDefault = {
 		},
 		template: `
 			<Dropdown 
-				:datasource="args.datasource"
+				:dataSource="args.dataSource"
 				:label="args.label"
 				:placeholder="args.placeholder"
 				:size="args.size"
 				:maxHeight="args.maxHeight"
-				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
-				
 			</Dropdown>
             `,
 	}),
@@ -97,6 +114,25 @@ export const DropdownDefault = {
 		controls: {
 			// include: ['objectFit', 'src', 'value', 'name' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<Dropdown',
+						`  :datasource="${dataSourceString}"`,
+						`  :label="${args.label}"`,
+						`  :placeholder="${args.placeholder}"`,
+						`  :size="${args.size}"`,
+						`  :maxHeight="${args.maxHeight}"`,
+						`  :className="${args.className}"`,
+						'>',
+						'</Dropdown>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
