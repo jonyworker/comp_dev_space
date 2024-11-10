@@ -24,16 +24,17 @@ const props = defineProps({
         validator: (value) =>
             ["card", "default",].includes(value),
     },
-	activeIndex: {
-		type: Number,
-		default:2
-	},
 	isDisabled: {
 		type: Boolean,
 	},
-
-	datasource: {
+	dataSource: {
 		type: Array,
+		required: true,
+		default: () => [],
+	},
+	activeIndex: {
+		type: Number,
+		default:2
 	},
     className: {
         type: String,
@@ -58,7 +59,7 @@ watch(() => props.activeIndex, (newIndex) => {
         <!-- Tabs - 按鈕 -->
         <div class="tabs">
             <TabItem
-                v-for="(item, index) in props.datasource"
+                v-for="(item, index) in props.dataSource"
                 :key="index"
                 :themeColor="props.themeColor"
                 :title="item.title"
@@ -71,7 +72,7 @@ watch(() => props.activeIndex, (newIndex) => {
         </div>
         <!-- Tabs - 內容顯示 -->
         <div :class="['tab-content', {'tab-disable': props.isDisabled} ]">
-            {{ props.datasource[activeTabIndex]?.content }}
+            {{ props.dataSource[activeTabIndex]?.content }}
         </div>
     </div>
 </template>

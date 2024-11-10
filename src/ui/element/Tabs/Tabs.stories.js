@@ -1,4 +1,12 @@
 import Tabs from "./Tabs.vue";
+function formatDataSource(dataSource) {
+    return `[
+    ${dataSource.map(item => `{
+        title: '${item.label}',
+        content: '${item.id}',
+    }`).join(',\n    ')}
+  ]`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -21,7 +29,7 @@ export default {
         },
         type: {
             description: "頁籤樣式",
-            control: { type: "radio" },
+            control: { type: "select" },
             options: ["default", "card",],
         },
         activeIndex: {
@@ -32,9 +40,14 @@ export default {
             description: "是否禁用",
             control: { type: "boolean" },
         },
-        datasource: {
+        dataSource: {
             description: "頁籤列表",
-            control: { type: "array" },
+            control: { type: "object" },
+            table: {
+                type: {
+                    summary: '{ title: string; content: string; }[]',
+                }
+            }
         },
         className: {
             description: "客製化樣式",
@@ -64,7 +77,7 @@ export const DefaultTabs = {
         type: "default",
         isDisabled: false,
         activeIndex: 0,
-        datasource: [
+        dataSource: [
             {
                 "title": "頁籤 1",
                 "content": "內容一"
@@ -92,7 +105,7 @@ export const DefaultTabs = {
                 :type="args.type"
                 :activeIndex="args.activeIndex"
                 :isDisabled="args.isDisabled"
-                :datasource="args.datasource"
+                :dataSource="args.dataSource"
                 :className="args.className"
             ></Tabs>
         `,
@@ -102,6 +115,24 @@ export const DefaultTabs = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Tabs',
+                        `  themeColor="${args.themeColor}"`,
+                        `  type="${args.type}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
@@ -113,7 +144,7 @@ export const CardTabs = {
         type: "card",
         isDisabled: false,
         activeIndex: 0,
-        datasource: [
+        dataSource: [
             {
                 "title": "頁籤 1",
                 "content": "內容一"
@@ -141,7 +172,7 @@ export const CardTabs = {
                 :type="args.type"
                 :activeIndex="args.activeIndex"
                 :isDisabled="args.isDisabled"
-                :datasource="args.datasource"
+                :dataSource="args.dataSource"
                 :className="args.className"
             ></Tabs>
         `,
@@ -151,6 +182,24 @@ export const CardTabs = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Tabs',
+                        `  themeColor="${args.themeColor}"`,
+                        `  type="${args.type}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
