@@ -221,16 +221,33 @@ export const GridDefaultStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Grid fluid="${args.fluid}" className="${args.className}">`,
-						`  <Row g="${args.g}" gx="${args.gx}" gy="${args.gy}" justify="${args.start}" align="${args.align}">`,
-						`    <Column col="${args.col} sm="${args.sm}" md="${args.md}" lg="${args.lg}" xl="${args.xl}" xxl="${args.xxl}">`,
-						`      <div>`,
-						'        Column1',
-						`      </div>`,
-						`    </Column>`,
-						`  </Row>`,
-						'</Grid>'
+						'<Grid',
+						`  :fluid="${args.fluid}"`,
+						`  className="${args.className}"`,
+						'>',
+						'  <Row',
+						`    g="${args.g}"`,
+						`    gx="${args.gx}"`,
+						`    gy="${args.gy}"`,
+						`    justify="${args.start}"`,
+						`    align="${args.align}"`,
+						'  >',
+						'    <Column v-for="(index) in 12" :key="index"',
+						`      col="${args.col}"`,
+						`      sm="${args.sm}"`,
+						`      md="${args.md}"`,
+						`      lg="${args.lg}"`,
+						`      xl="${args.xl}"`,
+						`      xxl="${args.xxl}"`,
+						'    >',
+						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
+						'        Column {{index}}',
+						'      </div>',
+						'    </Column>',
+						'  </Row>',
+						'</Grid>',
 					].join('\n').trim();
+
 				}
 			}
 		}
@@ -286,6 +303,40 @@ export const Grid4ColumnsStory = {
 		controls: {
 			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Grid',
+						`  :fluid="${args.fluid}"`,
+						`  className="${args.className}"`,
+						'>',
+						'  <Row',
+						`    g="${args.g}"`,
+						`    gx="${args.gx}"`,
+						`    gy="${args.gy}"`,
+						`    justify="${args.start}"`,
+						`    align="${args.align}"`,
+						'  >',
+						'    <Column v-for="(index) in 12" :key="index"',
+						`      col="${args.col}"`,
+						`      sm="${args.sm}"`,
+						`      md="${args.md}"`,
+						`      lg="${args.lg}"`,
+						`      xl="${args.xl}"`,
+						`      xxl="${args.xxl}"`,
+						'    >',
+						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
+						'        Column {{index}}',
+						'      </div>',
+						'    </Column>',
+						'  </Row>',
+						'</Grid>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -338,6 +389,40 @@ export const Grid3ColumnsStory = {
 		controls: {
 			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Grid',
+						`  :fluid="${args.fluid}"`,
+						`  className="${args.className}"`,
+						'>',
+						'  <Row',
+						`    g="${args.g}"`,
+						`    gx="${args.gx}"`,
+						`    gy="${args.gy}"`,
+						`    justify="${args.start}"`,
+						`    align="${args.align}"`,
+						'  >',
+						'    <Column v-for="(index) in 12" :key="index"',
+						`      col="${args.col}"`,
+						`      sm="${args.sm}"`,
+						`      md="${args.md}"`,
+						`      lg="${args.lg}"`,
+						`      xl="${args.xl}"`,
+						`      xxl="${args.xxl}"`,
+						'    >',
+						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
+						'        Column {{index}}',
+						'      </div>',
+						'    </Column>',
+						'  </Row>',
+						'</Grid>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -390,6 +475,40 @@ export const Grid2ColumnsStory = {
 		controls: {
 			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Grid',
+						`  :fluid="${args.fluid}"`,
+						`  className="${args.className}"`,
+						'>',
+						'  <Row',
+						`    g="${args.g}"`,
+						`    gx="${args.gx}"`,
+						`    gy="${args.gy}"`,
+						`    justify="${args.start}"`,
+						`    align="${args.align}"`,
+						'  >',
+						'    <Column v-for="(index) in 12" :key="index"',
+						`      col="${args.col}"`,
+						`      sm="${args.sm}"`,
+						`      md="${args.md}"`,
+						`      lg="${args.lg}"`,
+						`      xl="${args.xl}"`,
+						`      xxl="${args.xxl}"`,
+						'    >',
+						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
+						'        Column {{index}}',
+						'      </div>',
+						'    </Column>',
+						'  </Row>',
+						'</Grid>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -441,6 +560,40 @@ export const Grid1ColumnsStory = {
 		controls: {
 			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Grid',
+						`  :fluid="${args.fluid}"`,
+						`  className="${args.className}"`,
+						'>',
+						'  <Row',
+						`    g="${args.g}"`,
+						`    gx="${args.gx}"`,
+						`    gy="${args.gy}"`,
+						`    justify="${args.start}"`,
+						`    align="${args.align}"`,
+						'  >',
+						'    <Column v-for="(index) in 12" :key="index"',
+						`      col="${args.col}"`,
+						`      sm="${args.sm}"`,
+						`      md="${args.md}"`,
+						`      lg="${args.lg}"`,
+						`      xl="${args.xl}"`,
+						`      xxl="${args.xxl}"`,
+						'    >',
+						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
+						'        Column {{index}}',
+						'      </div>',
+						'    </Column>',
+						'  </Row>',
+						'</Grid>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
