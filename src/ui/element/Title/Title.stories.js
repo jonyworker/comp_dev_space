@@ -7,10 +7,22 @@ export default {
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
+			description: "分隔線主題顏色",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					primary: "primary",
+					secondary: "secondary",
+					tertiary: "tertiary",
+					success: "success",
+					warning: "warning",
+					error: "error",
+					info: "info",
+				}
+			},
 			options: [
-				"none",
+				"",
 				"primary",
 				"secondary",
 				"tertiary",
@@ -19,13 +31,6 @@ export default {
 				"error",
 				"info",
 			],
-			mapping: {
-				'none': '',
-			},
-		},
-		content: {
-			description: '標題內容',
-			control: { type: 'text' },
 		},
 		level: {
 			description: "標題等級",
@@ -55,10 +60,10 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		content: "標題",
 		themeColor: "",
 		level: 1,
 		className: "",
+		default: "標題",
 	},
 	render: (args) => ({
 		components: { Title },
@@ -72,15 +77,31 @@ export const HeadingDefault = {
                 :themeColor="args.themeColor"
                 :level="args.level"
                 :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['default']
+			// exclude:['default']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						'</Title>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -88,9 +109,9 @@ export const HeadingDefault = {
 export const HeadingSizeDefault = {
 	name: "標題大小",
 	args: {
-		content: "標題文字",
 		themeColor: "",
 		className: "",
+		default: "標題文字",
 	},
 	render: (args) => ({
 		components: { Title },
@@ -104,37 +125,37 @@ export const HeadingSizeDefault = {
                 :themeColor="args.themeColor"
                 level="1"
                 :className="args.className"
-            >Level:1 {{ args.content }}</Title>
+            >Level:1 {{ args.default }}</Title>
             <Title
 	            :themeColor="args.themeColor"
 	            level="2"
 	            :className="args.className"
-            >Level:2 {{ args.content }}</Title>
+            >Level:2 {{ args.default }}</Title>
             <Title
 	            :themeColor="args.themeColor"
 	            level="3"
 	            :className="args.className"
-            >Level:3 {{ args.content }}</Title>
+            >Level:3 {{ args.default }}</Title>
             <Title
 	            :themeColor="args.themeColor"
 	            level="4"
 	            :className="args.className"
-            >Level:4 {{ args.content }}</Title>
+            >Level:4 {{ args.default }}</Title>
             <Title
 	            :themeColor="args.themeColor"
 	            level="5"
 	            :className="args.className"
-            >Level:5 {{ args.content }}</Title>
+            >Level:5 {{ args.default }}</Title>
             <Title
 	            :themeColor="args.themeColor"
 	            level="6"
 	            :className="args.className"
-            >Level:6 {{ args.content }}</Title>
+            >Level:6 {{ args.default }}</Title>
             <Title
 	            :themeColor="args.themeColor"
 	            level="0"
 	            :className="args.className"
-            >Level:0 {{ args.content }}</Title>
+            >Level:0 {{ args.default }}</Title>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -143,6 +164,50 @@ export const HeadingSizeDefault = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude:['default','level']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="1"`,
+						`  :className="${args.className}"`,
+						`>Level:1 ${args.default}</Title>`,
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="2"`,
+						`  :className="${args.className}"`,
+						`>Level:2 ${args.default}</Title>`,
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="3"`,
+						`  :className="${args.className}"`,
+						`>Level:3 ${args.default}</Title>`,
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="4"`,
+						`  :className="${args.className}"`,
+						`>Level:4 ${args.default}</Title>`,
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="5"`,
+						`  :className="${args.className}"`,
+						`>Level:5 ${args.default}</Title>`,
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="6"`,
+						`  :className="${args.className}"`,
+						`>Level:6 ${args.default}</Title>`,
+						'<Title',
+						`  :themeColor="${args.themeColor}"`,
+						`  level="0"`,
+						`  :className="${args.className}"`,
+						`>Level:0 ${args.default}</Title>`,
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -150,9 +215,9 @@ export const HeadingSizeDefault = {
 export const HeadingColorDefault = {
 	name: "主題色彩",
 	args: {
-		content: "標題文字",
 		level: 1,
 		className: "",
+		default: "標題文字",
 	},
 	render: (args) => ({
 		components: { Title },
@@ -166,37 +231,37 @@ export const HeadingColorDefault = {
                 themeColor="primary"
                 :level="args.level"
                 :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
             <Title
 	            themeColor="secondary"
 	            :level="args.level"
 	            :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
             <Title
 	            themeColor="tertiary"
 	            :level="args.level"
 	            :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
             <Title
 	            themeColor="success"
 	            :level="args.level"
 	            :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
             <Title
 	            themeColor="warning"
 	            :level="args.level"
 	            :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
             <Title
 	            themeColor="error"
 	            :level="args.level"
 	            :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
             <Title
 	            themeColor="info"
 	            :level="args.level"
 	            :className="args.className"
-            >{{ args.content }}</Title>
+            >{{ args.default }}</Title>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -205,6 +270,51 @@ export const HeadingColorDefault = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude:['default', 'themeColor'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Title',
+						`  themeColor="primary"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="secondary"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="tertiary"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="success"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="warning"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="error"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="info"`,
+						`  :level="${args.level}"`,
+						`  :className="${args.className}"`,
+						`>${args.default}</Title>`,
+					].join('\n').trim();
+
+				}
+			}
+		}
 	},
 };
 
@@ -282,7 +392,7 @@ export const HeadingColorDefault = {
 //             <Title
 //                 :themeColor="args.themeColor"
 //                 :level="args.level"
-//             >{{ args.content }}</Title>
+//             >{{ args.default }}</Title>
 //         `,
 // 	}),
 // 	// 控制 controls 中能控制的參數
