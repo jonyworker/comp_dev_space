@@ -6,12 +6,22 @@ export default {
     component: CircleProgress,
     tags: ["autodocs"],
     argTypes: {
-        label: {
-            description: "進度指示標籤",
-            control: { type: 'text' },
+        themeColor: {
+            description: "主題顏色",
+            control: { type: "select" },
+            options: [
+                "primary",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "error",
+                "info",
+            ],
         },
         percent: {
             description: "進度",
+            required: true,
             control: {
                 type: "range",
                 min: 0,
@@ -38,18 +48,9 @@ export default {
                 step: 1,
             },
         },
-        themeColor: {
-            description: "主題顏色",
-            control: { type: "select" },
-            options: [
-                "primary",
-                "secondary",
-                "tertiary",
-                "success",
-                "warning",
-                "error",
-                "info",
-            ],
+        label: {
+            description: "進度指示標籤",
+            control: { type: 'text' },
         },
         className: {
             description: '客製化樣式',
@@ -73,11 +74,11 @@ export default {
 export const DefaultCircleProgress = {
     name: "預設項目",
     args: {
-        label: "Saving",
+        themeColor: "primary",
         percent: 66,
         size: 120,
         strokeWidth: 10,
-        themeColor: "primary",
+        label: "Saving",
         className: '',
     },
     render: (args) => ({
@@ -104,6 +105,24 @@ export const DefaultCircleProgress = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="${args.percent}"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="${args.themeColor}"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                    ].join('\n').trim();
+
+                }
+            }
+        }
     },
 };
 
@@ -111,11 +130,11 @@ export const DefaultCircleProgress = {
 export const CircleProgressLabelStory = {
     name: "顯示標籤",
     args: {
-        label: "測試",
+        themeColor: "primary",
         percent: 66,
         size: 120,
         strokeWidth: 10,
-        themeColor: "primary",
+        label: "測試",
         className: '',
     },
     render: (args) => ({
@@ -153,6 +172,32 @@ export const CircleProgressLabelStory = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="${args.percent}"`,
+                        `  :size="70"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="${args.themeColor}"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="${args.percent}"`,
+                        `  :size="120"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="${args.themeColor}"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                    ].join('\n').trim();
+
+                }
+            }
+        }
     },
 };
 
@@ -160,11 +205,9 @@ export const CircleProgressLabelStory = {
 export const CircleProgressColorStory = {
     name: "主題色彩",
     args: {
-        label: "測試",
-        // percent: 66,
         size: 120,
         strokeWidth: 10,
-        // themeColor: "primary",
+        label: "測試",
         className: '',
     },
     render: (args) => ({
@@ -242,6 +285,72 @@ export const CircleProgressColorStory = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="40"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="primary"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="50"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="secondary"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="60"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="tertiary"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="70"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="success"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="80"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="warning"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="90"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="error"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                        '<CircleProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="100"`,
+                        `  :size="${args.size}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="info"`,
+                        `  className="${args.className}"`,
+                        '></CircleProgress>',
+                    ].join('\n').trim();
+
+                }
+            }
+        }
     },
 };
 

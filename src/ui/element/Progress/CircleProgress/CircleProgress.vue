@@ -3,12 +3,23 @@ import { ref, computed, onMounted, watch } from "vue";
 
 // 定義 Props
 const props = defineProps({
-	label: {
+	themeColor: {
 		type: String,
-		default: "label"
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
 	},
 	percent: { //進度
 		type: Number,
+		required: true,
 		default: 66,
 	},
 	size: { //直徑
@@ -19,20 +30,10 @@ const props = defineProps({
 		type: Number,
 		default: 10,
 	},
-    themeColor: {
-        type: String,
-        default: "primary",
-        validator: (value) =>
-            [
-              "primary",
-              "secondary",
-              "tertiary",
-              "success",
-              "warning",
-              "error",
-              "info",
-            ].includes(value),
-    },
+	label: {
+		type: String,
+		default: "label"
+	},
 	className: {
 		type: String,
 		default: '',
