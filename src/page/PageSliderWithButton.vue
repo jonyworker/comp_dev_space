@@ -1,5 +1,5 @@
 <script setup>
-import SliderControl from "@/ui/element/sliderWithButton/SliderControl.vue";
+import SliderControl from "@/ui/element/SliderControl/SliderControl.vue";
 
 </script>
 

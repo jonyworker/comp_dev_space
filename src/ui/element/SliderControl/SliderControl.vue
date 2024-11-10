@@ -1,11 +1,11 @@
 <script setup>
-import {computed, watch} from 'vue';
+import { computed, watch } from 'vue';
 import Slider from '@/ui/element/Slider/Slider.vue';
 import Button from '@/ui/element/Button/Button.vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Model
-const modelValue = defineModel()
+const modelValue = defineModel('modelValue');
 
 // 定義 Props
 const props = defineProps({
@@ -31,6 +31,10 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
 	min: {
 		type: Number,
 		default: -100,
@@ -43,17 +47,13 @@ const props = defineProps({
 		type: [Number, String],
 		default: 1,
 	},
-	initValue: {
-		type: Number,
-		default: 27,
-	},
 	unit: {
 		type: String,
 		default: '%',
 	},
-	isDisabled: {
-		type: Boolean,
-		default: false,
+	initValue: {
+		type: Number,
+		required: true,
 	},
 	className: {
 		type: String,
@@ -61,34 +61,33 @@ const props = defineProps({
 	},
 });
 
-const value = computed({
-    get: () => modelValue.value ?? props.initValue ?? props.min,
-    set: (newValue) => {
-        modelValue.value = newValue;
-    }
+const computedValue = computed({
+	get: () => modelValue.value ?? props.initValue ?? props.min,
+	set: (newValue) => {
+		modelValue.value = newValue;
+	}
 });
 
 // 處理加法
 const handleIncreaseClick = () => {
-    value.value = Math.min(value.value + Number(props.step), props.max);
+	computedValue.value = Math.min(computedValue.value + Number(props.step), props.max);
 };
 
 // 處理減法
 const handleDecreaseClick = () => {
-    value.value = Math.max(value.value - Number(props.step), props.min);
+	computedValue.value = Math.max(computedValue.value - Number(props.step), props.min);
 };
 
 // 監聽 initValue 的變更
 watch(() => props.initValue, (newValue) => {
-    if (modelValue.value === undefined) {
-        value.value = newValue;
-    }
+	if (modelValue.value === undefined) {
+		computedValue.value = newValue;
+	}
 });
-
 </script>
 
 <template>
-	<div :class="{'button-slider':true, [props.className]:!!modelValue.value}">
+	<div :class="{'button-slider': true, [props.className]: !!props.className}">
 		<Button
 			variant="text"
 			:themeColor="props.themeColor"
@@ -108,7 +107,7 @@ watch(() => props.initValue, (newValue) => {
 			:step="props.step"
 			:isDisabled="props.isDisabled"
 			:initValue="props.initValue"
-            v-model="value"
+			v-model="computedValue"
 		/>
 
 		<Button
@@ -123,5 +122,3 @@ watch(() => props.initValue, (newValue) => {
 		</Button>
 	</div>
 </template>
-
-

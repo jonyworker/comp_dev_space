@@ -1,5 +1,4 @@
 import SliderControl from "./SliderControl.vue";
-import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -19,22 +18,39 @@ export default {
 				'error',
 				'info',
 			],
+			table: {
+				type: {
+					summary: 'primary | secondary | tertiary | success | warning | error | info'
+				}
+			}
 		},
 		prefix: {
 			description: '前置元素',
-			control: { type: "select" },
-			options: ['None', 'increase', 'decrease'],
-			mapping: {
-				'None': '',
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					increase: "increase",
+					decrease: "decrease",
+				}
 			},
+			options: ['', 'increase', 'decrease'],
 		},
 		suffix: {
 			description: '後置元素',
-			control: { type: "select" },
-			options: ['None', 'increase', 'decrease'],
-			mapping: {
-				'None': '',
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					increase: "increase",
+					decrease: "decrease",
+				}
 			},
+			options: ['', 'increase', 'decrease'],
+		},
+		isDisabled: {
+			description: '是否禁用',
+			control: { type: 'boolean' },
 		},
 		min: {
 			description: '最小值',
@@ -48,23 +64,18 @@ export default {
 			description: '步進值',
 			control: { type: 'number' },
 		},
-		initValue: {
-			description: '初始值',
-			control: { type: 'number' },
-		},
 		unit: {
 			description: '單位',
 			control: { type: 'text' },
 		},
-		isDisabled: {
-			description: '是否禁用',
-			control: { type: 'boolean' },
+		initValue: {
+			description: '初始值',
+			control: { type: 'number' },
 		},
 		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
-
 	},
 	parameters: {
 		// 自動文件
@@ -86,166 +97,182 @@ export const SliderButton = {
 	name: "預設項目",
 	args: {
 		themeColor: "primary",
+		prefix: "decrease",
+		suffix: "increase",
+		isDisabled: false,
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: 19,
 		unit: "℃",
-		isDisabled: false,
-		prefix: "decrease",
-		suffix: "increase",
+		initValue:50,
 		className: ''
 	},
 	render: (args) => ({
 		components: { SliderControl },
 		setup() {
-			const sliderValue = ref(-10)
 			return {
-				args,
-				sliderValue
+				args
 			};
 		},
 		template: `
 			<SliderControl
 				:themeColor="args.themeColor"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:isDisabled="args.isDisabled"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
-				:initValue="args.initValue"
 				:unit="args.unit"
-				:isDisabled="args.isDisabled"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				v-model="sliderValue"
-				:className="sliderValue"
+				:initValue="args.initValue"
+				:className="args.className"
 			></SliderControl>
-
-			ModelValue: {{sliderValue}}
-        `,
+		`,
 	}),
-	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-			// exclude:['range']
+			// include or exclude keys as needed
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<SliderControl',
+						`  themeColor="${args.themeColor}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="${args.initValue}"`,
+						`  className="${args.className}"`,
+						'></SliderControl>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
+
 
 //==== 主題色彩 ====//
 export const SliderButtonColors = {
 	name: "主題色彩",
 	args: {
 		themeColor: "primary",
+		prefix: "decrease",
+		suffix: "increase",
+		isDisabled: false,
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: 19,
 		unit: "℃",
-		isDisabled: false,
-		prefix: "decrease",
-		suffix: "increase",
+		className: '',
 	},
 	render: (args) => ({
 		components: { SliderControl },
 		setup() {
-			const sliderValue = ref(-10)
 			return {
 				args,
-				sliderValue
 			};
 		},
 		template: `
-
 			<div style="display:flex; flex-direction: column;">
 				<SliderControl
 					themeColor="primary"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="40"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
 					themeColor="secondary"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="50"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
 					themeColor="tertiary"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="60"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
 					themeColor="success"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="70"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
 					themeColor="warning"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="80"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
 					themeColor="error"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="90"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
 					themeColor="info"
+					:prefix="args.prefix"
+					:suffix="args.suffix"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
+					:initValue="100"
+					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
 			</div>
-			
-
-			ModelValue: {{sliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -254,11 +281,108 @@ export const SliderButtonColors = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			// exclude:['range']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<SliderControl',
+						`  themeColor="primary"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="40"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+						'<SliderControl',
+						`  themeColor="secondary"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="50"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+						'<SliderControl',
+						`  themeColor="tertiary"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="60"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+						'<SliderControl',
+						`  themeColor="success"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="70"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+						'<SliderControl',
+						`  themeColor="warning"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="80"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+						'<SliderControl',
+						`  themeColor="error"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="90"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+						'<SliderControl',
+						`  themeColor="info"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  unit="${args.unit}"`,
+						`  :initValue="100"`,
+						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
+						'></SliderControl>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
-
-
-
 
 //--- JONY VERSION START ---//
 
