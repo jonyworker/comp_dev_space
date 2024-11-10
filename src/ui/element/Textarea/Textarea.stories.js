@@ -1,5 +1,11 @@
 import Textarea from "./Textarea.vue";
 import { ref } from "vue";
+function formatDataSource(hint) {
+    return `{
+        error: '${hint.error || ''}',
+        description: '${hint.description || ''}'
+    }`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -15,19 +21,24 @@ export default {
             description: '輸入提示',
             control: { type: 'text' },
         },
-        limit: {
-            description: '字數限制',
-            control: { type: 'number' },
-        },
         isDisabled: {
             description: '是否禁用',
             control: { type: 'boolean' },
+        },
+        limit: {
+            description: '字數限制',
+            control: { type: 'number' },
         },
         hint: {
             description: '提示訊息',
             control: {
                 type: 'object',
             },
+            table: {
+                type: {
+                    summary: '{ error: string; description: string; }[]',
+                }
+            }
         },
         className: {
             description: '客製化樣式',
@@ -54,8 +65,8 @@ export const TextareaDefault = {
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
-        limit: 50,
         isDisabled: false,
+        limit: 50,
         hint: { error: '', description: '多行文字輸入框提示訊息' },
         className: ''
     },
@@ -86,6 +97,25 @@ export const TextareaDefault = {
             // include: ['themeColor', 'label', 'value', 'name' ],
             exclude: ['modelValue', 'customClass'],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.hint);
+                    return [
+                        '<Textarea',
+                        `  label="${args.label}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  :limit="${args.limit}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :hint="${dataSourceString}"`,
+                        `  v-model="textareaModelValue"`,
+                        `  className="${args.className}"`,
+                        '></Textarea>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
@@ -95,8 +125,8 @@ export const TextareaLabelDefault = {
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
-        limit: 50,
         isDisabled: false,
+        limit: 50,
         hint: { error: '', description: '' },
         className: ''
     },
@@ -127,6 +157,25 @@ export const TextareaLabelDefault = {
             // include: ['themeColor', 'label', 'value', 'name' ],
             exclude: ['modelValue', 'customClass'],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.hint);
+                    return [
+                        '<Textarea',
+                        `  label="${args.label}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  :limit="${args.limit}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :hint="${dataSourceString}"`,
+                        `  v-model="textareaModelValue"`,
+                        `  className="${args.className}"`,
+                        '></Textarea>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
@@ -136,8 +185,8 @@ export const TextareaLimit = {
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
-        limit: 50,
         isDisabled: false,
+        limit: 50,
         hint: { error: '', description: '' },
         className: ''
     },
@@ -168,6 +217,25 @@ export const TextareaLimit = {
             // include: ['themeColor', 'label', 'value', 'name' ],
             exclude: ['modelValue', 'customClass'],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.hint);
+                    return [
+                        '<Textarea',
+                        `  label="${args.label}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  :limit="${args.limit}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :hint="${dataSourceString}"`,
+                        `  v-model="textareaModelValue"`,
+                        `  className="${args.className}"`,
+                        '></Textarea>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
@@ -177,8 +245,8 @@ export const TextareaStatus = {
     args: {
         label: "訂單備註",
         placeholder: "請輸入此筆訂單備註",
-        limit: 50,
         isDisabled: false,
+        limit: 50,
     },
     render: (args) => ({
         components: { Textarea },
@@ -195,7 +263,7 @@ export const TextareaStatus = {
             };
         },
         template: `
-            <div style="display: flex; flex-wrap: wrap; gap:16px">
+            <div style="display: flex; flex-direction: column; gap:16px">
                 <Textarea
                     :label="args.label"
                     :placeholder="args.placeholder"
@@ -231,6 +299,39 @@ export const TextareaStatus = {
             // include: ['themeColor', 'label', 'value', 'name' ],
             exclude: ['modelValue', 'hint', 'customClass'],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<Textarea',
+                        `  label="${args.label}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  :limit="${args.limit}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :hint="{ error: '', description: '' }"`,
+                        `  v-model="textareaModelValue01"`,
+                        '></Textarea>',
+                        '<Textarea',
+                        `  label="${args.label}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  :limit="${args.limit}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :hint="{ error: '請勿使用特殊符號', description: '' }"`,
+                        `  v-model="textareaModelValue02"`,
+                        '></Textarea>',
+                        '<Textarea',
+                        `  label="${args.label}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  :limit="${args.limit}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :hint="{ error: '', description: '請簡述本筆訂單的使用回饋' }"`,
+                        `  v-model="textareaModelValue03"`,
+                        '></Textarea>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
