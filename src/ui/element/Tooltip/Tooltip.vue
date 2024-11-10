@@ -5,13 +5,11 @@ import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
 const props = defineProps({
 	content: {
 		type: String,
-	},
-	showArrow: {
-		type: Boolean,
-		default: true
+		required: true,
 	},
 	placement: {
 		type: String,
+		required: true,
 		default: 'top',
 		validator: value => [
 			'top-left', 'top', 'top-right',
@@ -19,6 +17,10 @@ const props = defineProps({
 			'bottom-right', 'bottom', 'bottom-left',
 			'left-top','left','left-bottom'
 		].includes(value)
+	},
+	showArrow: {
+		type: Boolean,
+		default: true
 	},
 	className: {
 		type: String,
