@@ -6,11 +6,6 @@ export default {
 	component: Button,
 	tags: ["autodocs"],
 	argTypes: {
-		variant: {
-			description: '按鈕樣式',
-			control: { type: 'select' },
-			options: ['contained', 'outlined', 'text'],
-		},
 		themeColor: {
 			description: '主題顏色',
 			control: { type: 'select' },
@@ -23,6 +18,12 @@ export default {
 				'error',
 				'info',
 			],
+		},
+		variant: {
+			description: '按鈕樣式',
+			required: true,
+			control: { type: 'select' },
+			options: ['contained', 'outlined', 'text'],
 		},
 		size: {
 			description: '按鈕尺寸',
@@ -84,8 +85,8 @@ export const DefaultButtonStory = {
 	name: '主要項目',
 	args: {
 		default: '按鈕',
-		variant: 'contained',
 		themeColor: 'primary',
+		variant: 'contained',
 		size: 'medium',
 		width: 'fit',
 		prefix: 'folder',
@@ -148,7 +149,7 @@ export const DefaultButtonStory = {
 export const ButtonPrefixSuffixStory = {
 	name: '附加元素',
 	args: {
-		default: 'Button Text',
+		default: '按鈕',
 		variant: 'contained',
 		themeColor: 'primary',
 		size: 'medium',
@@ -188,7 +189,6 @@ export const ButtonPrefixSuffixStory = {
 			>
 				{{ args.default }}
 			</Button>
-			
 		</div>
 		`,
 	}),
@@ -197,6 +197,39 @@ export const ButtonPrefixSuffixStory = {
 		controls: {
 			exclude: ['prefix','suffix'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="${args.themeColor}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="folder"`,
+						`  suffix=""`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="${args.themeColor}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix=""`,
+						`  suffix="folder"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -204,7 +237,7 @@ export const ButtonPrefixSuffixStory = {
 export const ButtonTypeStory = {
 	name: '按鈕樣式',
 	args: {
-		default: 'Button Text',
+		default: '按鈕',
 		variant: 'contained',
 		themeColor: 'primary',
 		size: 'medium',
@@ -258,7 +291,6 @@ export const ButtonTypeStory = {
 			>
 				{{ args.default }}
 			</Button>
-			
 		</div>
 		`,
 	}),
@@ -267,6 +299,51 @@ export const ButtonTypeStory = {
 		controls: {
 			exclude: ['variant'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Button',
+						`  variant="contained"`,
+						`  themeColor="${args.themeColor}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="outlined"`,
+						`  themeColor="${args.themeColor}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						` className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="text"`,
+						`  themeColor="${args.themeColor}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -274,7 +351,7 @@ export const ButtonTypeStory = {
 export const ButtonColorStory = {
 	name: '多個按鈕',
 	args: {
-		default: 'Button Text',
+		default: '按鈕',
 		variant: 'contained',
 		themeColor: 'primary',
 		size: 'medium',
@@ -384,6 +461,99 @@ export const ButtonColorStory = {
 		controls: {
 			exclude: ['themeColor'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="primary"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="secondary"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="tertiary"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="success"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="warning"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="error"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+						'<Button',
+						`  variant="${args.variant}"`,
+						`  themeColor="info"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
+						`  prefix="${args.prefix}"`,
+						`  suffix="${args.suffix}"`,
+						`  :isDisable="${args.isDisable}"`,
+						`  className="${args.className}"`,
+						'>',
+						`  {{ ${args.default} }}`,
+						'</Button>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
