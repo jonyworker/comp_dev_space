@@ -20,6 +20,15 @@ const props = defineProps({
 	      'info',
 	    ].includes(value),
 	},
+	isChecked: {
+		type: Boolean,
+		required: true,
+		default: false,
+	},
+	isDisable: {
+		type: Boolean,
+		default: false,
+	},
 	checkedLabel: {
 		type: String,
 		default: 'on',
@@ -27,14 +36,6 @@ const props = defineProps({
 	unCheckedLabel: {
 		type: String,
 		default: 'off',
-	},
-	isChecked: {
-		type: Boolean,
-		default: false,
-	},
-	isDisable: {
-		type: Boolean,
-		default: false,
 	},
 	className: {
 		type: String,
