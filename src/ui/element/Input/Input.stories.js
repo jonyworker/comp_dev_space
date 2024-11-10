@@ -1,4 +1,10 @@
 import Input from './Input.vue';
+function formatDataSource(hint) {
+    return `{
+        error: '${hint.error || ''}',
+        description: '${hint.description || ''}'
+    }`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -26,19 +32,35 @@ export default {
         },
         prefix: {
             description: '前置元素',
-            control: { type: 'select' },
-            options: ['None', 'home', 'folder', 'lock', 'arrow-forward', 'finger-print', 'account_circle'],
-            mapping: {
-                'None': null,
+            control: {
+                type: 'select',
+                labels: {
+                    "": "None",
+                    home: "home",
+                    folder: "folder",
+                    lock: "lock",
+                    'arrow-forward': "arrow-forward",
+                    'finger-print': "finger-print",
+                    'account_circle': "account_circle",
+                }
             },
+            options: ['', 'home', 'folder', 'lock', 'arrow-forward', 'finger-print', 'account_circle'],
         },
         suffix: {
             description: '後置元素',
-            control: { type: 'select' },
-            options: ['None', 'home', 'folder', 'lock', 'arrow-forward', 'finger-print', 'account_circle'],
-            mapping: {
-                'None': null,
+            control: {
+                type: 'select',
+                labels: {
+                    "": "None",
+                    home: "home",
+                    folder: "folder",
+                    lock: "lock",
+                    'arrow-forward': "arrow-forward",
+                    'finger-print': "finger-print",
+                    'account_circle': "account_circle",
+                }
             },
+            options: ['', 'home', 'folder', 'lock', 'arrow-forward', 'finger-print', 'account_circle'],
         },
         className: {
             description: '客製化樣式',
@@ -49,6 +71,11 @@ export default {
             control: {
                 type: 'object',
             },
+            table: {
+                type: {
+                    summary: '{ error: string; description: string; }[]',
+                }
+            }
         },
         isDisabled: {
             description: '是否禁用',
@@ -75,7 +102,7 @@ export const InputDefault = {
         label: '輸入框標題',
         size: 'medium',
         prefix: 'account_circle',
-        suffix: 'None',
+        suffix: '',
         hint: { error: '', description: '輸入框提示訊息' },
         isDisabled: false,
         className: ''
@@ -87,8 +114,8 @@ export const InputDefault = {
                 args,
             };
         },
-        template:
-            `<Input
+        template: `
+            <Input
                 :type="args.type"
                 :placeholder="args.placeholder"
                 :label="args.label"
@@ -107,6 +134,27 @@ export const InputDefault = {
             // include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
             exclude: ['modelValue' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.hint);
+                    return [
+                        '<Input',
+                        `  type="${args.type}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  label="${args.label}"`,
+                        `  size="${args.size}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  suffix="${args.suffix}"`,
+                        `  :hint="${dataSourceString}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '/>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
 
@@ -115,11 +163,11 @@ export const InputStatus = {
     name: "輸入框狀態",
     args: {
         type: 'text',
-        placeholder:'example@mail.com',
-        label: '輸入框標題',
+        placeholder:'請輸入帳號',
+        label: '帳號',
         size: 'medium',
         prefix: 'account_circle',
-        suffix: 'None',
+        suffix: '',
         isDisabled: false,
         className: ''
     },
@@ -131,7 +179,7 @@ export const InputStatus = {
             };
         },
         template: `
-            <div style="display: flex; gap:16px">
+            <div style="display: flex; flex-direction: column; gap:16px">
                 <Input
                     :type="args.type"
                     :placeholder="args.placeholder"
@@ -139,7 +187,18 @@ export const InputStatus = {
                     :size="args.size"
                     :prefix="args.prefix"
                     :suffix="args.suffix"
-                    :hint="args.hint"
+                    :hint="{ error: '', description: '描述提示訊息' }"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                />
+                <Input
+                    type="password"
+                    placeholder="請輸入密碼"
+                    label="密碼"
+                    :size="args.size"
+                    prefix="lock"
+                    :suffix="args.suffix"
+                    :hint="{ error: '', description: '描述提示訊息' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
@@ -150,7 +209,7 @@ export const InputStatus = {
                     :size="args.size"
                     :prefix="args.prefix"
                     :suffix="args.suffix"
-                    :hint="{ error: '輸入框錯誤提示訊息', description: '' }"
+                    :hint="{ error: '輸入框錯誤訊息', description: '' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
@@ -174,9 +233,61 @@ export const InputStatus = {
             // include: ['themeColor', 'label', 'value', 'name' ],
             exclude: ['modelValue', 'hint'],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<Input',
+                        `  type="${args.type}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  label="${args.label}"`,
+                        `  size="${args.size}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  suffix="${args.suffix}"`,
+                        `  :hint="{ error: '', description: '描述提示訊息' }"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '/>',
+                        '<Input',
+                        `  type="password"`,
+                        `  placeholder="請輸入密碼"`,
+                        `  label="密碼"`,
+                        `  size="${args.size}"`,
+                        `  prefix="lock"`,
+                        `  suffix="${args.suffix}"`,
+                        `  :hint="{ error: '', description: '描述提示訊息' }"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '/>',
+                        '<Input',
+                        `  type="${args.type}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  label="${args.label}"`,
+                        `  size="${args.size}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  suffix="${args.suffix}"`,
+                        `  :hint="{ error: '輸入框錯誤訊息', description: '' }"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '/>',
+                        '<Input',
+                        `  type="${args.type}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  label="${args.label}"`,
+                        `  size="${args.size}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  suffix="${args.suffix}"`,
+                        `  :hint="{ error: '', description: '輸入框提示訊息' }"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '/>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };
-
 
 
 //--- JONY VERSION START ---//
@@ -256,7 +367,7 @@ export const InputStatus = {
 //         label: '輸入框標題',
 //         size: 'medium',
 //         prefix: 'account_circle',
-//         suffix: 'None',
+//         suffix: '',
 //         hint: { error: '', description: '輸入框提示訊息' },
 //         isDisabled: false,
 //     },
@@ -300,7 +411,7 @@ export const InputStatus = {
 //         label: '輸入框標題',
 //         size: 'medium',
 //         prefix: 'account_circle',
-//         suffix: 'None',
+//         suffix: '',
 //         isDisabled: false,
 //     },
 //     render: (args) => ({
