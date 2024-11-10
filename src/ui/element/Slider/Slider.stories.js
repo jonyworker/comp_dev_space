@@ -19,6 +19,15 @@ export default {
 				'error',
 				'info',
 			],
+			table: {
+				type: {
+					summary: 'primary | secondary | tertiary | success | warning | error | info'
+				}
+			}
+		},
+		isDisabled: {
+			description: '是否禁用',
+			control: { type: 'boolean' },
 		},
 		min: {
 			description: '最小值',
@@ -39,10 +48,6 @@ export default {
 		unit: {
 			description: '單位',
 			control: { type: 'text' },
-		},
-		isDisabled: {
-			description: '是否禁用',
-			control: { type: 'boolean' },
 		},
 		className: {
 			description: '客製化樣式',
@@ -69,18 +74,19 @@ export const SliderDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "primary",
-		min: 0,
+		isDisabled: false,
+		min: -100,
 		max: 100,
 		step: 1,
-		initValue: "50",
+		initValue: "0",
 		unit: "℃",
-		isDisabled: false,
 		className: ''
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref(20);
+			const sliderValue = ref();
+			sliderValue.value = args.initValue;
 			return {
 				args,
 				sliderValue
@@ -89,12 +95,12 @@ export const SliderDefault = {
 		template: `
 			<slider
 				:themeColor="args.themeColor"
+				:isDisabled="args.isDisabled"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
 				:initValue="args.initValue"
 				:unit="args.unit"
-				:isDisabled="args.isDisabled"
 				v-model="sliderValue"
 				:className="sliderValue"
 			></slider>
@@ -108,6 +114,27 @@ export const SliderDefault = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			// exclude:['range']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<slider',
+						`  themeColor="${args.themeColor}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="${args.initValue}"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						`  className="${args.className}"`,
+						'></slider>',
+					].join('\n').trim();
+
+				}
+			}
+		}
 	},
 };
 
@@ -118,14 +145,13 @@ export const SliderColors = {
 		min: 0,
 		max: 100,
 		step: 1,
-		initValue: "50",
 		unit: "℃",
 		isDisabled: false
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref(20);
+			const sliderValue = ref();
 			return {
 				args,
 				sliderValue
@@ -135,78 +161,75 @@ export const SliderColors = {
 			<div style="display:flex; flex-direction: column;">
 				<slider
 					themeColor="primary"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="40"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="secondary"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="50"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="tertiary"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="60"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="success"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="70"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="warning"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="80"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="error"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="90"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="info"
+					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					:initValue="args.initValue"
+					initValue="100"
 					:unit="args.unit"
-					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 			</div>
-			
-			
-			ModelValue: {{sliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -215,6 +238,85 @@ export const SliderColors = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			// exclude:['range']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<slider',
+						`  themeColor="primary"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="40"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+						'<slider',
+						`  themeColor="secondary"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="50"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+						'<slider',
+						`  themeColor="tertiary"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="60"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+						'<slider',
+						`  themeColor="success"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="70"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+						'<slider',
+						`  themeColor="warning"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="80"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+						'<slider',
+						`  themeColor="error"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="90"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+						'<slider',
+						`  themeColor="info"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :min="${args.min}"`,
+						`  :max="${args.max}"`,
+						`  :step="${args.step}"`,
+						`  :initValue="100"`,
+						`  unit="${args.unit}"`,
+						`  v-model="sliderValue"`,
+						'></slider>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 

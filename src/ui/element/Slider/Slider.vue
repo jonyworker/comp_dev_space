@@ -20,6 +20,10 @@ const props = defineProps({
                 'info',
             ].includes(value),
     },
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
     min: {
         type: Number,
         default: 0,
@@ -34,15 +38,10 @@ const props = defineProps({
     },
     initValue: {
         type: Number,
-        default: 50,
     },
     unit: {
         type: String,
         default: '%',
-    },
-    isDisabled: {
-        type: Boolean,
-        default: false,
     },
     className: {
         type: String,
