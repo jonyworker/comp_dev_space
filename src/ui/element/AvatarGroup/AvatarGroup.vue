@@ -1,13 +1,18 @@
 <script setup>
 import { computed, ref } from 'vue';
 import Avatar from "@/ui/element/Avatar/Avatar.vue"
-import Menu from "@/ui/element/Menu/Menu.vue"
+import List from "@/ui/element/List/List.vue"
 
 // 定義 Props
 const props = defineProps({
 	// --  資料接口 -- //
-	items: {
+	dataSource: {
 		type: Array,
+		required: true,
+	},
+	// --  數量控制接口 -- //
+	limit: {
+		type: Number,
 		required: true,
 	},
 	// --  樣式接口 -- //
@@ -27,15 +32,12 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	// --  數量控制接口 -- //
-	limit: {
-		type: Number,
-	},
+
 })
 
 // 計算剩餘未顯示數量
 const restCount = computed(() => {
-	const result = props.items.length - props.limit;
+	const result = props.dataSource.length - props.limit;
 	return result >= 99 ? 99 : result;
 })
 
@@ -47,8 +49,8 @@ const splitArrayAt = (arr, splitCount) => {
 };
 
 // 分割[顯示群組]與[未顯示群組]
-const currList = computed(() => splitArrayAt(props.items, props.limit).currList);
-const restList = computed(() => splitArrayAt(props.items, props.limit).restList);
+const currList = computed(() => splitArrayAt(props.dataSource, props.limit).currList);
+const restList = computed(() => splitArrayAt(props.dataSource, props.limit).restList);
 
 // 控制顯示剩餘未顯示數據
 const isOpen = ref(false)
@@ -89,7 +91,7 @@ const handleClick = () => {
 
 			<!-- avatar group - 彈窗 剩餘未顯示數據 -->
 			<div class="rest-container-menu" v-if="isOpen">
-				<Menu>
+				<List>
 					<li class="menu-item" v-for="(menu) in restList" :key="menu.userName">
 						<Avatar
 							size="xsmall"
@@ -100,7 +102,7 @@ const handleClick = () => {
 						></Avatar>
 						<div style="margin-right: auto;">{{ menu.userName }}</div>
 					</li>
-				</Menu>
+				</List>
 			</div>
 		</div>
 	</div>

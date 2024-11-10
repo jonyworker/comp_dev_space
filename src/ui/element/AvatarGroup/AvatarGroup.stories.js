@@ -1,4 +1,12 @@
 import AvatarGroup from "./AvatarGroup.vue";
+function formatDataSource(dataSource) {
+	return `[
+    ${dataSource.map(item => `{
+        userName: '${item.userName}',
+        imageSrc: '${item.imageSrc}',
+    }`).join(',\n    ')}
+  ]`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -6,7 +14,7 @@ export default {
 	component: AvatarGroup,
 	tags: ["autodocs"],
 	argTypes: {
-		items: {
+		dataSource: {
 			description: "資料來源",
 			control: { type: "object" },
 		},
@@ -50,7 +58,7 @@ export default {
 export const MultiAvatar = {
 	name: "預設項目",
 	args: {
-		items:[
+		dataSource:[
 			{
 				"userName": "Eason",
 				"imageSrc": "https://picsum.photos/320/240/?random=1",
@@ -68,9 +76,9 @@ export const MultiAvatar = {
 				"imageSrc": "https://picsum.photos/320/240/?random=1000",
 			}
 		],
+		limit: 3,
 		size: "large",
 		shape: "circle",
-		limit: 3,
 		className: ""
 	},
 	render: (args) => ({
@@ -81,23 +89,38 @@ export const MultiAvatar = {
 			};
 		},
 		template: `
-			<div style="display:flex; gap: 16px">
-				<AvatarGroup 
-					:items="args.items" 
-					:size="args.size" 
-					:shape="args.shape" 
-					:limit="args.limit"
-					:className="args.className"
-				></AvatarGroup>
-			</div>
+			<AvatarGroup 
+				:dataSource="args.dataSource" 
+				:size="args.size" 
+				:shape="args.shape" 
+				:limit="args.limit"
+				:className="args.className"
+			></AvatarGroup>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ['status', 'imageSrc', 'imageAlt', 'username' ],
+			// exclude: ['status', 'imageSrc', 'imageAlt', 'username' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const {args} = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<AvatarGroup',
+						`  :dataSource="${dataSourceString}"`,
+						`  :limit="${args.limit}"`,
+						`  size="${args.size}"`,
+						`  shape="${args.shape}"`,
+						`  className="${args.className}"`,
+						'></AvatarGroup>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
