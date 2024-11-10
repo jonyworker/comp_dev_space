@@ -6,9 +6,18 @@ export default {
     component: LineProgress,
     tags: ["autodocs"],
     argTypes: {
-        label: {
-            description: "進度指示標籤",
-            control: { type: 'text' },
+        themeColor: {
+            description: "主題顏色",
+            control: { type: "select" },
+            options: [
+                "primary",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "error",
+                "info",
+            ],
         },
         percent: {
             description: "進度",
@@ -28,18 +37,9 @@ export default {
                 step: 1,
             },
         },
-        themeColor: {
-            description: "主題顏色",
-            control: { type: "select" },
-            options: [
-                "primary",
-                "secondary",
-                "tertiary",
-                "success",
-                "warning",
-                "error",
-                "info",
-            ],
+        label: {
+            description: "進度指示標籤",
+            control: { type: 'text' },
         },
         className: {
             description: '客製化樣式',
@@ -64,10 +64,10 @@ export default {
 export const DefaultLineProgress = {
     name: "預設項目",
     args: {
-        label: "",
+        themeColor: "primary",
         percent: 66,
         strokeWidth: 10,
-        themeColor: "primary",
+        label: "",
         className: '',
     },
     render: (args) => ({
@@ -93,6 +93,23 @@ export const DefaultLineProgress = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<LineProgress',
+                        `  :label="${args.label}"`,
+                        `  :percent="${args.percent}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  :themeColor="${args.themeColor}"`,
+                        `  :className="${args.className}"`,
+                        '></LineProgress>',
+                    ].join('\n').trim();
+
+                }
+            }
+        }
     },
 };
 
@@ -129,6 +146,23 @@ export const LineProgressLabelStory = {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<LineProgress',
+                        `  :label="${args.label}"`,
+                        `  :percent="${args.percent}"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  :themeColor="${args.themeColor}"`,
+                        `  :className="${args.className}"`,
+                        '></LineProgress>',
+                    ].join('\n').trim();
+
+                }
+            }
+        }
     },
 };
 
@@ -202,7 +236,6 @@ export const LineProgressColorStory = {
                     :className="args.className"
                 ></LineProgress>
             </div>
-            
         `,
     }),
     // 控制 controls 中能控制的參數
@@ -210,5 +243,63 @@ export const LineProgressColorStory = {
         controls: {
             exclude: ['themeColor', 'percent' ],
         },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="40"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="primary"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="50"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="secondary"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="60"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="tertiary"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="70"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="success"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="80"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="warning"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="90"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="error"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  label="${args.label}"`,
+                        `  :percent="100"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  themeColor="info"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                    ].join('\n').trim();
+                }
+            }
+        }
     },
 };

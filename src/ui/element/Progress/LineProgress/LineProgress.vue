@@ -3,9 +3,19 @@ import { computed } from "vue";
 
 // 定義 Props
 const props = defineProps({
-	label: {
+	themeColor: {
 		type: String,
-		default: "label"
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
 	},
 	percent: { //進度
 		type: Number,
@@ -15,19 +25,9 @@ const props = defineProps({
 		type: Number,
 		default: 10,
 	},
-	themeColor: {
+	label: {
 		type: String,
-		default: "primary",
-		validator: (value) =>
-		    [
-		      "primary",
-		      "secondary",
-		      "tertiary",
-		      "success",
-		      "warning",
-		      "error",
-		      "info",
-		    ].includes(value),
+		default: "label"
 	},
 	className: {
 		type: String,
