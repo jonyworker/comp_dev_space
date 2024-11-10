@@ -1,51 +1,45 @@
 <script setup>
-import BB from "@/ui/element/Breadcrumb/BB.vue";
-const datasource = [
+import Menu from "@/ui/element/Menu/Menu.vue";
+const dataSource = [
 	{
+		icon: "home",
 		label: "首頁",
-		href: "/",
+		path: "/",
 	},
 	{
-		label: "第一層",
-		href: "/1st",
+		icon: "users",
+		label: "用戶管理",
+		path: "/users",
+		children: [
+			{ label: "用戶列表", path: "/users/list" },
+			{ label: "用戶設置", path: "/users/settings" },
+		],
 	},
 	{
-		label: "第二層",
-		href: "/2nd",
+		icon: "file",
+		label: "文件管理",
+		path: "/files",
+		children: [
+			{ label: "所有文件", path: "/files/all" },
+			{ label: "已分享", path: "/files/shared" },
+		],
 	},
 	{
-		label: "第三層",
-		href: "/3rd",
+		icon: "mail",
+		label: "訊息中心",
+		path: "/messages",
 	},
 	{
-		label: "第四層",
-		href: "/4th",
-	},
-	{
-		label: "第五層",
-		href: "/5th",
-	},
-	{
-		label: "第六層",
-		href: "/6th",
-	},
-	{
-		label: "第七層",
-		href: "/7th",
-	},
-	{
-		label: "第八層",
-		href: "/8th",
-	},
-	{
-		label: "當前頁",
+		icon: "setting",
+		label: "系統設置",
+		path: "/settings",
 	},
 ]
 </script>
 
 <template>
-<BB
-	:dataSource="datasource"></BB>
+<Menu
+	:dataSource="dataSource"></Menu>
 
 </template>
 

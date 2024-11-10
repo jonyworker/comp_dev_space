@@ -1,4 +1,19 @@
 import Menu from "@/ui/element/Menu/Menu.vue";
+function formatDataSource(dataSource) {
+	return `[
+    ${dataSource.map(item => `{
+        icon: '${item.icon}',
+        label: '${item.label}',
+        path: '${item.path}',
+        ${item.children ? `children: [
+            ${item.children.map(child => `{
+                label: '${child.label}',
+                path: '${child.path}'
+            }`).join(',\n            ')}
+        ]` : ''}
+    }`).join(',\n    ')}
+]`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -6,13 +21,26 @@ export default {
 	component: Menu,
 	tags: ["autodocs"],
 	argTypes: {
-		datasource: {
-			description: "Menu 對應的資料陣列",
+		dataSource: {
+			description: "資料來源",
 			control: { type: "object" },
+			table: {
+				type: {
+					summary: '{ icon: string; label: string; path: string; children?: [ label: string; path: string;] }[]',
+				}
+			}
 		},
-		isExpanded: {
-			description: "Menu 展開收合",
+		isCollapsed: {
+			description: "是否收合",
 			control: { type: "boolean" },
+		},
+		color: {
+			description: "顏色",
+			control: { type: "color" },
+		},
+		className: {
+			description: "客製化樣式",
+			control: { type: "text" },
 		},
 	},
 	parameters: {
@@ -31,7 +59,7 @@ export default {
 export const MenuDefault = {
 	name: "預設項目",
 	args: {
-		datasource: [
+		dataSource: [
 			{
 				icon: "home",
 				label: "首頁",
@@ -66,7 +94,9 @@ export const MenuDefault = {
 				path: "/settings",
 			},
 		],
-		isExpanded: true,
+		isCollapsed: false,
+		color:'#000',
+		className: ""
 	},
 	render: (args) => ({
 		components: { Menu },
@@ -76,10 +106,12 @@ export const MenuDefault = {
 			};
 		},
 		template: `
-			<div :style="args.isExpanded ? 'width:auto' : 'width:47px'">
+			<div :style="args.isCollapsed ? 'width:40px' : 'width:auto'">
 				<Menu
-					:datasource="args.datasource"
-					:isExpanded="args.isExpanded"
+					:dataSource="args.dataSource"
+					:isCollapsed="args.isCollapsed"
+					:color="args.color"
+					:className="args.className"
 				></Menu>
 			</div>
 		`,
@@ -87,7 +119,28 @@ export const MenuDefault = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ["datasource", "isExpanded"], // 確保包含有效的參數名稱
+			// include: ["dataSource", "isExpanded"],
+			exclude: ["navItemClick", "expandedNav"],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<div',
+						`  :style="${args.isCollapsed ? 'width:40px' : 'width:auto'}"`,
+						'>',
+						'  <Menu',
+						`    :dataSource="${dataSourceString}"`,
+						`    :isCollapsed="${args.isCollapsed}"`,
+						`    color="${args.color}"`,
+						`    className="${args.className}"`,
+						'  ></Menu>',
+						'</div>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
