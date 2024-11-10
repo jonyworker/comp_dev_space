@@ -127,6 +127,7 @@ export const AvatarShape = {
 		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
+		className: ""
 	},
 	render: (args) => ({
 		components: { Avatar },
@@ -201,6 +202,7 @@ export const AvatarStatus = {
 		imageSrc: "https://picsum.photos/320/240",
 		imageAlt: "alt text",
 		username: "JonyWu",
+		className: ""
 	},
 	render: (args) => ({
 		components: { Avatar },
