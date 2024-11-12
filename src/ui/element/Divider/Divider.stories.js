@@ -6,12 +6,27 @@ export default {
     component: Divider,
     tags: ["autodocs"],
     argTypes: {
-        //以下參數不刪
-        layout: {
-            description: "分隔線方向",
-            control: { type: "select" },
-            defaultValue: "horizontal",
-            options: ["horizontal", "vertical"],
+        themeColor: {
+            description: "分隔線主題顏色",
+            control: {
+                type: "select",
+                labels: {
+                    "": "None",
+                    primary: "primary",
+                    secondary: "secondary",
+                    tertiary: "tertiary",
+                    success: "success",
+                    warning: "warning",
+                    error: "error",
+                    info: "info",
+                }
+            },
+            options: ["", "primary", "secondary", "tertiary", "success", "warning", "error", "info",],
+            table: {
+                type: {
+                    summary: "primary | secondary | tertiary | success | warning | error | info"
+                }
+            }
         },
         width: {
             description: "分隔線寬度",
@@ -32,43 +47,47 @@ export default {
                 "large",
                 "xlarge",
             ],
+            table: {
+                type: {
+                    summary: "xsmall | small | medium | large | xlarge"
+                }
+            }
         },
         type: {
             description: "分隔線樣式",
             control: { type: "select" },
             defaultValue: "solid",
             options: ["solid", "dashed", "dotted"],
-        },
-        themeColor: {
-            description: "分隔線主題顏色",
-            control: {
-                type: "select",
-                labels: {
-                    "": "None",
-                    primary: "primary",
-                    secondary: "secondary",
-                    tertiary: "tertiary",
-                    success: "success",
-                    warning: "warning",
-                    error: "error",
-                    info: "info",
+            table: {
+                type: {
+                    summary: "solid | dashed | dotted",
                 }
-            },
-            options: [
-                "",
-                "primary",
-                "secondary",
-                "tertiary",
-                "success",
-                "warning",
-                "error",
-                "info",
-            ],
+            }
+        },
+        direction: {
+            description: "分隔線方向",
+            control: { type: "select" },
+            defaultValue: "horizontal",
+            options: ["horizontal", "vertical"],
+            table: {
+                type: {
+                    summary: "horizontal | vertical"
+                }
+            }
         },
         align: {
             description: "文字對齊方式",
             control: { type: "select" },
             options: ["start", "center", "end"],
+            table: {
+                type: {
+                    summary: "start | center | end",
+                }
+            }
+        },
+        default: {
+            description: "分隔線內容",
+            control: { type: "text" },
         },
     },
     parameters: {
@@ -79,28 +98,20 @@ export default {
                 component: "Divider 組件的呈現及說明。",
             },
         },
-        slots: {
-            default: {
-                description: "分隔線內容",
-                template: `{{ args.default }}`,
-            },
-        },
     },
-
-    // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-    // args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
 export const DividerDefault = {
     name: "預設項目",
     args: {
-        default: "分隔線",
-        layout: "horizontal",
+        themeColor: "",
         width: "small",
         type: "solid",
-        themeColor: "",
+        direction: "horizontal",
         align: "center",
+        default: "分隔線",
+        className: "",
     },
     render: (args) => ({
         components: { Divider },
@@ -113,11 +124,12 @@ export const DividerDefault = {
         template: `
 			<div style="display:flex; flex-direction: column; justify-content:center; gap: 16px; height: 200px">
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>{{args.default}}</Divider>
 			</div>
 		`,
@@ -133,11 +145,12 @@ export const DividerDefault = {
                     const { args } = storyContext;
                     return [
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>',
                         `  ${args.default}`,
                         '</Divider>'
@@ -152,9 +165,10 @@ export const DividerDefault = {
 export const DividerContent = {
     name: "文字對齊",
     args: {
+        themeColor: "",
         width: "small",
         type: "solid",
-        themeColor: "",
+        className: ""
     },
     render: (args) => ({
         components: { Divider },
@@ -167,25 +181,28 @@ export const DividerContent = {
         template: `
 			<div style="display:flex; flex-direction: column; gap: 16px">
 				<Divider
-					layout="horizontal"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					direction="horizontal"
 					align="start"
+                    :className="args.className"
 				>start</Divider>
 				<Divider
-					layout="horizontal"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					direction="horizontal"
 					align="center"
+                    :className="args.className"
 				>center</Divider>
 				<Divider
-					layout="horizontal"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					direction="horizontal"
 					align="end"
+                    :className="args.className"
 				>end</Divider>
 			</div>
 		`,
@@ -194,7 +211,7 @@ export const DividerContent = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ["layout", "align"],
+            exclude: ["direction", "align"],
         },
         docs: {
             source: {
@@ -202,25 +219,28 @@ export const DividerContent = {
                     const { args } = storyContext;
                     return [
                         '<Divider',
-                        `  layout="horizontal"`,
+                        `  direction="horizontal"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
                         `  themeColor="${args.themeColor}"`,
                         `  align="start"`,
+                        `  className="${args.className}"`,
                         '>start</Divider>',
                         '<Divider',
-                        `  layout="horizontal"`,
+                        `  direction="horizontal"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
                         `  themeColor="${args.themeColor}"`,
                         `  align="center"`,
+                        `  className="${args.className}"`,
                         '>center</Divider>',
                         '<Divider',
-                        `  layout="horizontal"`,
+                        `  direction="horizontal"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
                         `  themeColor="${args.themeColor}"`,
                         `  align="end"`,
+                        `  className="${args.className}"`,
                         '>end</Divider>',
                     ].join('\n').trim();
 
@@ -234,11 +254,12 @@ export const DividerContent = {
 export const DividerWidth = {
     name: "線條粗細",
     args: {
-        layout: "horizontal",
+        themeColor: "",
         width: "small",
         type: "solid",
-        themeColor: "",
+        direction: "horizontal",
         align: "center",
+        className: "",
     },
     render: (args) => ({
         components: { Divider },
@@ -249,42 +270,46 @@ export const DividerWidth = {
             };
         },
         template: `
-			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 					style="display:flex; gap: 16px; height: 400px">
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					width="xsmall"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>xsmall / 1px</Divider>
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					width="small"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>small / 2px</Divider>
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					width="medium"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>medium / 4px</Divider>
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					width="large"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
 				>large / 6px</Divider>
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					width="xlarge"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>xlarge / 8px</Divider>
 			</div>
 		`,
@@ -301,39 +326,44 @@ export const DividerWidth = {
                     const { args } = storyContext;
                     return [
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="xsmall"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>xsmall / 1px</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="small"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>small / 2px</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="medium"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>medium / 4px</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="large"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>large / 6px</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="xlarge"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>xlarge / 8px</Divider>',
                     ].join('\n').trim();
 
@@ -347,10 +377,11 @@ export const DividerWidth = {
 export const DividerTypes = {
     name: "線條類型",
     args: {
-        layout: "horizontal",
-        width: "small",
         themeColor: "",
+        width: "small",
+        direction: "horizontal",
         align: "center",
+        className: "",
     },
     render: (args) => ({
         components: { Divider },
@@ -361,28 +392,31 @@ export const DividerTypes = {
             };
         },
         template: `
-			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 			     style="display:flex; gap: 16px; height: 200px">
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					type="solid"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>solid</Divider>
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					type="dashed"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>dashed</Divider>
 				<Divider
-					:layout="args.layout"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					type="dotted"
-					:themeColor="args.themeColor"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>dotted</Divider>
 			</div>
 		`,
@@ -399,25 +433,28 @@ export const DividerTypes = {
                     const { args } = storyContext;
                     return [
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="solid"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>solid</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="dashed"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>dashed</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="dotted"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>dotted</Divider>',
                     ].join('\n').trim();
 
@@ -431,9 +468,10 @@ export const DividerTypes = {
 export const DividerDirection = {
     name: "線條方向",
     args: {
+        themeColor: "",
         width: "small",
         type: "solid",
-        themeColor: "",
+        className: "",
     },
     render: (args) => ({
         components: { Divider },
@@ -446,25 +484,28 @@ export const DividerDirection = {
         template: `
 			<div style="display:flex; justify-content: center; gap: 16px; height: 200px">
 				<Divider
-					layout="vertical"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					direction="vertical"
 					align="start"
+                    :className="args.className"
 				>start</Divider>
 				<Divider
-					layout="vertical"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					direction="vertical"
 					align="center"
+                    :className="args.className"
 				>center</Divider>
 				<Divider
-					layout="vertical"
+					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
-					:themeColor="args.themeColor"
+					direction="vertical"
 					align="end"
+                    :className="args.className"
 				>end</Divider>
 			</div>
 		`,
@@ -473,7 +514,7 @@ export const DividerDirection = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ["layout", "align"],
+            exclude: ["direction", "align"],
         },
         docs: {
             source: {
@@ -481,25 +522,28 @@ export const DividerDirection = {
                     const { args } = storyContext;
                     return [
                         '<Divider',
-                        `  layout="vertical"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="vertical"`,
                         `  align="start"`,
+                        `  className="${args.className}"`,
                         '>start</Divider>',
                         '<Divider',
-                        `  layout="vertical"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="vertical"`,
                         `  align="center"`,
+                        `  className="${args.className}"`,
                         '>center</Divider>',
                         '<Divider',
-                        `  layout="vertical"`,
+                        `  themeColor="${args.themeColor}"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="${args.themeColor}"`,
+                        `  direction="vertical"`,
                         `  align="end"`,
+                        `  className="${args.className}"`,
                         '>end</Divider>',
                     ].join('\n').trim();
                 }
@@ -512,10 +556,11 @@ export const DividerDirection = {
 export const DividerColors = {
     name: "線條顏色",
     args: {
-        layout: "horizontal",
         width: "small",
         type: "solid",
+        direction: "horizontal",
         align: "center",
+        className: "",
     },
     render: (args) => ({
         components: { Divider },
@@ -526,62 +571,71 @@ export const DividerColors = {
             };
         },
         template: `
-			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 			     style="display:flex; gap: 16px; height: 400px">
 				<Divider
-					:layout="args.layout"
+                    themeColor=""
 					:width="args.width"
 					:type="args.type"
+					:direction="args.direction"
 					:align="args.align"
+                    :className=args.className
 				>None</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="primary"
 					:width="args.width"
 					:type="args.type"
-					themeColor="primary"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>primary</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="secondary"
 					:width="args.width"
 					:type="args.type"
-					themeColor="secondary"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>secondary</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="tertiary"
 					:width="args.width"
 					:type="args.type"
-					themeColor="tertiary"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>tertiary</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="success"
 					:width="args.width"
 					:type="args.type"
-					themeColor="success"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>success</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="warning"
 					:width="args.width"
 					:type="args.type"
-					themeColor="warning"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>warning</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="error"
 					:width="args.width"
 					:type="args.type"
-					themeColor="error"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>error</Divider>
 				<Divider
-					:layout="args.layout"
+					themeColor="info"
 					:width="args.width"
 					:type="args.type"
-					themeColor="info"
+					:direction="args.direction"
 					:align="args.align"
+                    :className="args.className"
 				>info</Divider>
 			</div>
 		`,
@@ -598,60 +652,68 @@ export const DividerColors = {
                     const { args } = storyContext;
                     return [
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor=""`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor=""`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>None</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="primary"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="primary"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>primary</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="secondary"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="secondary"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>secondary</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="tertiary"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="tertiary"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>tertiary</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="success"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="success"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>success</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="warning"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="warning"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>warning</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="error"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="error"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>error</Divider>',
                         '<Divider',
-                        `  layout="${args.layout}"`,
+                        `  themeColor="info"`,
                         `  width="${args.width}"`,
                         `  type="${args.type}"`,
-                        `  themeColor="info"`,
+                        `  direction="${args.direction}"`,
                         `  align="${args.align}"`,
+                        `  className="${args.className}"`,
                         '>info</Divider>',
                     ].join('\n').trim();
                 }
@@ -671,7 +733,7 @@ export const DividerColors = {
 //     tags: ["autodocs"],
 //     argTypes: {
 //         //以下參數不刪
-//         layout: {
+//         direction: {
 //             description: "設定 Divider  方向",
 //             control: { type: "select" },
 //             defaultValue: "horizontal",
@@ -749,7 +811,7 @@ export const DividerColors = {
 //     name: "Divider 基礎樣式",
 //     args: {
 //         default: "Divider Text",
-//         layout: "horizontal",
+//         direction: "horizontal",
 //         width: "small",
 //         type: "solid",
 //         themeColor: "None",
@@ -766,7 +828,7 @@ export const DividerColors = {
 //         template: `
 // 			<div style="display:flex; flex-direction: column; justify-content:center; gap: 16px; height: 200px">
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
@@ -787,7 +849,7 @@ export const DividerColors = {
 // export const DividerTypes = {
 //     name: "Divider 種類",
 //     args: {
-//         layout: "horizontal",
+//         direction: "horizontal",
 //         width: "small",
 //         themeColor: "None",
 //         align: "start",
@@ -801,24 +863,24 @@ export const DividerColors = {
 //             };
 //         },
 //         template: `
-// 			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+// 			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 // 			     style="display:flex; gap: 16px; height: 200px">
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					type="solid"
 // 					:themeColor="args.themeColor"
 // 					:align="args.align"
 // 				>solid</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					type="dashed"
 // 					:themeColor="args.themeColor"
 // 					:align="args.align"
 // 				>dashed</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					type="dotted"
 // 					:themeColor="args.themeColor"
@@ -840,7 +902,7 @@ export const DividerColors = {
 // export const DividerWidth = {
 //     name: "Divider 粗細",
 //     args: {
-//         layout: "horizontal",
+//         direction: "horizontal",
 //         width: "small",
 //         type: "solid",
 //         themeColor: "None",
@@ -855,38 +917,38 @@ export const DividerColors = {
 //             };
 //         },
 //         template: `
-// 			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+// 			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 // 					style="display:flex; gap: 16px; height: 400px">
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					width="xsmall"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					:align="args.align"
 // 				>xsmall / 1px</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					width="small"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					:align="args.align"
 // 				>small / 2px</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					width="medium"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					:align="args.align"
 // 				>medium / 4px</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					width="large"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					:align="args.align"
 // 				>large / 6px</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					width="xlarge"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
@@ -923,21 +985,21 @@ export const DividerColors = {
 //         template: `
 // 			<div style="display:flex; flex-direction: column; gap: 16px">
 // 				<Divider
-// 					layout="horizontal"
+// 					direction="horizontal"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					align="start"
 // 				>start</Divider>
 // 				<Divider
-// 					layout="horizontal"
+// 					direction="horizontal"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					align="center"
 // 				>center</Divider>
 // 				<Divider
-// 					layout="horizontal"
+// 					direction="horizontal"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
@@ -947,21 +1009,21 @@ export const DividerColors = {
 //
 // 			<div style="display:flex; justify-content: center; gap: 16px; height: 200px">
 // 				<Divider
-// 					layout="vertical"
+// 					direction="vertical"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					align="start"
 // 				>start</Divider>
 // 				<Divider
-// 					layout="vertical"
+// 					direction="vertical"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
 // 					align="center"
 // 				>center</Divider>
 // 				<Divider
-// 					layout="vertical"
+// 					direction="vertical"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:themeColor="args.themeColor"
@@ -974,7 +1036,7 @@ export const DividerColors = {
 //     parameters: {
 //         controls: {
 //             // include: ['themeColor', 'label', 'value', 'name' ],
-//             exclude: ["layout", "align"],
+//             exclude: ["direction", "align"],
 //         },
 //     },
 // };
@@ -983,7 +1045,7 @@ export const DividerColors = {
 // export const DividerColors = {
 //     name: "Divider 顏色",
 //     args: {
-//         layout: "horizontal",
+//         direction: "horizontal",
 //         width: "small",
 //         type: "solid",
 //         themeColor: "None",
@@ -998,58 +1060,58 @@ export const DividerColors = {
 //             };
 //         },
 //         template: `
-// 			<div :style="{ flexDirection: args.layout === 'horizontal' ? 'column' : 'row' }"
+// 			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 // 			     style="display:flex; gap: 16px; height: 400px">
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					:align="args.align"
 // 				>None</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="primary"
 // 					:align="args.align"
 // 				>primary</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="secondary"
 // 					:align="args.align"
 // 				>secondary</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="tertiary"
 // 					:align="args.align"
 // 				>tertiary</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="success"
 // 					:align="args.align"
 // 				>success</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="warning"
 // 					:align="args.align"
 // 				>warning</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="error"
 // 					:align="args.align"
 // 				>error</Divider>
 // 				<Divider
-// 					:layout="args.layout"
+// 					:direction="args.direction"
 // 					:width="args.width"
 // 					:type="args.type"
 // 					themeColor="info"
