@@ -19,7 +19,7 @@ const props = defineProps({
 	},
 	percent: { //進度
 		type: Number,
-		default: 66,
+		default: 0,
 	},
 	strokeWidth: { //線條寬度
 		type: Number,
