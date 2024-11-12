@@ -26,7 +26,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: '{ icon: string; label: string; path: string; children?: [ label: string; path: string;] }[]',
+					summary: "{ icon: string; label: string; path: string; children?: [ label: string; path: string;] }[]",
 				}
 			}
 		},
@@ -53,6 +53,7 @@ export default {
 		},
 	},
 };
+
 
 
 //==== 預設項目 ====//

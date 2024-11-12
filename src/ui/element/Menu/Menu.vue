@@ -6,17 +6,15 @@ import { ref } from "vue";
 const props = defineProps({
 	dataSource: {
 		type: Array,
-		required: true,
 		default: () => [],
 	},
 	isCollapsed: {
 		type: Boolean,
-		required: true,
 		default: false,
 	},
 	color: {
 		type: String,
-		default: '#000',
+		default: '#000000',
 	},
 	className: {
 		type: String,
