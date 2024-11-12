@@ -3,30 +3,27 @@ function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
         userName: '${item.userName}',
-        imageSrc: '${item.imageSrc}',
+        src: '${item.imageSrc}',
     }`).join(',\n    ')}
   ]`;
 }
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/AvatarGroup",
+	title: "Design System/Avatar-Group",
 	component: AvatarGroup,
 	tags: ["autodocs"],
 	argTypes: {
 		dataSource: {
 			description: "資料來源",
-			control: { type: "object" },
-		},
-		size: {
-			description: "Avatar 尺寸",
-			control: { type: "select" },
-			options: ["xsmall", "small", "medium", "large"],
-		},
-		shape: {
-			description: "形狀",
-			control: { type: "select" },
-			options: ["circle", "square"],
+			control: {
+				type: "object",
+			},
+			table: {
+				type: {
+					summary: '{ userName: string; src: string; }[]',
+				}
+			}
 		},
 		limit: {
 			description: "顯示數量上限",
@@ -61,24 +58,22 @@ export const MultiAvatar = {
 		dataSource:[
 			{
 				"userName": "Eason",
-				"imageSrc": "https://picsum.photos/320/240/?random=1",
+				"src": "https://picsum.photos/320/240/?random=1",
 			},
 			{
 				"userName": "KevinYang",
-				"imageSrc": "https://picsum.photos/320/240/?random=10",
+				"src": "https://picsum.photos/320/240/?random=10",
 			},
 			{
 				"userName": "AmosLee",
-				"imageSrc": "https://picsum.photos/320/240/?random=100",
+				"src": "https://picsum.photos/320/240/?random=100",
 			},
 			{
 				"userName": "JohnWu",
-				"imageSrc": "https://picsum.photos/320/240/?random=1000",
+				"src": "https://picsum.photos/320/240/?random=1000",
 			}
 		],
 		limit: 3,
-		size: "large",
-		shape: "circle",
 		className: ""
 	},
 	render: (args) => ({
@@ -90,9 +85,7 @@ export const MultiAvatar = {
 		},
 		template: `
 			<AvatarGroup 
-				:dataSource="args.dataSource" 
-				:size="args.size" 
-				:shape="args.shape" 
+				:dataSource="args.dataSource"
 				:limit="args.limit"
 				:className="args.className"
 			></AvatarGroup>
@@ -113,8 +106,6 @@ export const MultiAvatar = {
 						'<AvatarGroup',
 						`  :dataSource="${dataSourceString}"`,
 						`  :limit="${args.limit}"`,
-						`  size="${args.size}"`,
-						`  shape="${args.shape}"`,
 						`  className="${args.className}"`,
 						'></AvatarGroup>',
 					].join('\n').trim();
@@ -123,8 +114,6 @@ export const MultiAvatar = {
 		}
 	},
 };
-
-
 
 
 

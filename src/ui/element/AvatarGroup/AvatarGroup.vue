@@ -5,33 +5,30 @@ import List from "@/ui/element/List/List.vue"
 
 // 定義 Props
 const props = defineProps({
-	// --  資料接口 -- //
 	dataSource: {
 		type: Array,
-		required: true,
+		default: () => [],
 	},
-	// --  數量控制接口 -- //
 	limit: {
 		type: Number,
-		required: true,
-	},
-	// --  樣式接口 -- //
-	size: {
-		type: String,
-		default: "large",
-		validator: (value) =>
-			["xsmall", "small", "medium", "large"].includes(value),
-	},
-	shape: {
-		type: String,
-		default: "circle",
-		validator: (value) =>
-			["circle", "square"].includes(value),
+		default: 1,
 	},
 	className: {
 		type: String,
 		default: '',
 	},
+	// size: {
+	// 	type: String,
+	// 	default: "large",
+	// 	validator: (value) =>
+	// 		["xsmall", "small", "medium", "large"].includes(value),
+	// },
+	// shape: {
+	// 	type: String,
+	// 	default: "circle",
+	// 	validator: (value) =>
+	// 		["circle", "square"].includes(value),
+	// },
 
 })
 
@@ -68,21 +65,20 @@ const handleClick = () => {
 		<Avatar
 			v-for="(avatar, index) in currList"
 			:key="index"
-			:imageSrc="avatar.imageSrc"
-			:size="props.size"
-			:shape="props.shape"
-			imageAlt="alt text"
+			:src="avatar.src"
+			alt="alt text"
 			:username="avatar.userName"
 		></Avatar>
 
 		<div class="rest-container" v-if="restList.length > 0">
 			<!-- avatar group - 剩餘未顯示總數表示 -->
-			<div class="text-large">
-				<button :class="['avatar-container', `avatar-container-${props.size}`]"
+			<div class="text-medium">
+				<button :class="['avatar-container', props.size ? `avatar-container-${props.size}`:
+				'avatar-container-medium']"
 				        @click.prevent="handleClick()"
 				        style="cursor: pointer">
-                    <span :class="['avatar', `avatar-${props.shape}`]">
-                        <span :class="['avatar-text', `text-${props.size}`]">
+                    <span :class="['avatar', props.shape ?`avatar-${props.shape}`: 'avatar-circle']">
+                        <span :class="['avatar-text', props.size ? `text-${props.size}` : 'text-medium']">
                           {{ `+${restCount}` }}
                         </span>
                     </span>
@@ -95,10 +91,9 @@ const handleClick = () => {
 					<li class="menu-item" v-for="(menu) in restList" :key="menu.userName">
 						<Avatar
 							size="xsmall"
-							shape="circle"
-							:imageSrc="menu.imageSrc"
+							:src="menu.src"
+							alt="alt text"
 							:username="menu.userName"
-							imageAlt="alt text"
 						></Avatar>
 						<div style="margin-right: auto;">{{ menu.userName }}</div>
 					</li>
