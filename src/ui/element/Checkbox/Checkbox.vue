@@ -17,15 +17,15 @@ const props = defineProps({
 		type: Array,
 		default: () => [],
 	},
-	initValue: {
-		type: Array,
-		default: () => [],
-	},
 	direction: {
 		type: String,
 		default: "row",
 		validator: (value) =>
 			["row", "column"].includes(value),
+	},
+	initValue: {
+		type: Array,
+		default: () => [],
 	},
 	className: {
 		type: String,

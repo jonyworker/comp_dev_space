@@ -1,6 +1,5 @@
 import Checkbox from "./Checkbox.vue";
 import { ref } from "vue";
-
 function formatDataSource(dataSource) {
     return `[
     ${dataSource.map(item => `{
@@ -12,7 +11,6 @@ function formatDataSource(dataSource) {
   ]`;
 }
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
     title: "Design System/Checkbox",
     component: Checkbox,
@@ -32,7 +30,7 @@ export default {
             ],
             table: {
                 type: {
-                    summary: 'primary | secondary | tertiary | success | warning | error | info'
+                    summary: "primary | secondary | tertiary | success | warning | error | info"
                 }
             }
         },
@@ -41,32 +39,26 @@ export default {
             control: { type: "object" },
             table: {
                 type: {
-                    summary: '{ label: string; id: string; value: string; name: string; }[]',
-//                     detail: `{
-//     label: string,
-//     id: string,
-//     value: string,
-//     name: string
-// }`
+                    summary: "{ label: string; id: string; value: string; name: string; }[]",
+                }
+            }
+        },
+        initValue: {
+            description: "選中的項目",
+            control: { type: "object" },
+            table: {
+                type: {
+                    summary: "string[]"
                 }
             }
         },
         direction: {
             description: "排列方向",
             control: { type: "select" },
-            options: ['row', 'column'],
+            options: ["row", "column"],
             table: {
                 type: {
-                    summary: 'row | column'
-                }
-            }
-        },
-        initValue: {
-            description:'選中的項目',
-            control: { type: "object" },
-            table: {
-                type: {
-                    summary: 'string[]'
+                    summary: "row | column"
                 }
             }
         },
@@ -84,10 +76,8 @@ export default {
             },
         },
     },
-
-    // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-    // args: { onClick: fn() },
 };
+
 
 //==== 預設項目 ====//
 export const CheckboxMultiStory = {
@@ -99,8 +89,8 @@ export const CheckboxMultiStory = {
             { label: "選項二", id: "option2", value: "option2", name: "group1" },
             { label: "選項三", id: "option3", value: "option3", name: "group1" },
         ],
-        initValue: ["option1", "option3"],
         direction: "row",
+        initValue: ["option1", "option3"],
         className: "",
     },
     render: (args) => ({
@@ -116,8 +106,8 @@ export const CheckboxMultiStory = {
             <Checkbox
                 :themeColor="args.themeColor"
                 :dataSource="args.dataSource"
-                :direction="args.direction"
                 :initValue="args.initValue"
+                :direction="args.direction"
                 v-model="checkedCheckboxOptions"></Checkbox>
         `,
     }),
@@ -134,9 +124,9 @@ export const CheckboxMultiStory = {
                     return [
                         '<Checkbox',
                         `  themeColor="'${args.themeColor}'"`,
-                        `  direction="'${args.direction}'"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                     ].join('\n').trim();
@@ -185,8 +175,8 @@ export const CheckboxColorStory = {
             { label: "選項二", id: "option20", value: "option20", name: "info" },
             { label: "選項三", id: "option21", value: "option21", name: "info" },
         ],
-        initValue: ["option01","option4","option7","option10","option13","option16","option19"],
         direction: "row",
+        initValue: ["option01","option4","option7","option10","option13","option16","option19"],
         className: "",
     },
     render: (args) => ({
@@ -267,30 +257,30 @@ export const CheckboxColorStory = {
                     return [
                         '<Checkbox',
                         `  themeColor="primary"`,
+                        `  :dataSource="${datasourcePrimary}"`,
                         `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[0]}]"`,
-                        `  :dataSource="${datasourcePrimary}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="secondary"`,
+                        `  :dataSource="${datasourceSecondary}"`,
                         `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[1]}]"`,
-                        `  :dataSource="${datasourceSecondary}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="tertiary"`,
+                        `  :dataSource="${datasourceTertiary}"`,
                         `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[2]}]"`,
-                        `  :dataSource="${datasourceTertiary}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="success"`,
+                        `  :dataSource="${datasourceSuccess}"`,
                         `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[3]}]"`,
-                        `  :dataSource="${datasourceSuccess}"`,
                         '  v-model="vModelData">',
                         '<Checkbox',
                         `  themeColor="warning"`,
@@ -301,16 +291,16 @@ export const CheckboxColorStory = {
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="error"`,
+                        `  :dataSource="${datasourceError}"`,
                         `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[5]}]"`,
-                        `  :dataSource="${datasourceError}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="info"`,
+                        `  :dataSource="${datasourceInfo}"`,
                         `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[6]}]"`,
-                        `  :dataSource="${datasourceInfo}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                     ].join('\n').trim();
