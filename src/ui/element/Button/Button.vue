@@ -5,12 +5,6 @@ import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
-	variant: {
-		type: String,
-		default: 'contained',
-		validator: (value) => ['contained', 'outlined', 'text'].includes(value),
-		required: true,
-	},
 	themeColor: {
 		type: String,
 		default: 'primary',
@@ -25,8 +19,20 @@ const props = defineProps({
 				'info',
 			].includes(value),
 	},
+	variant: {
+		type: String,
+		default: 'contained',
+		validator: (value) => ['contained', 'outlined', 'text'].includes(value),
+	},
+	prefix: {
+		type: String,
+	},
+	suffix: {
+		type: String,
+	},
 	size: {
 		type: String,
+		default: 'medium',
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
 	},
 	width: {
@@ -37,12 +43,6 @@ const props = defineProps({
 	isDisable: {
 		type: Boolean,
 		default: false,
-	},
-	prefix: {
-		type: String,
-	},
-	suffix: {
-		type: String,
 	},
 	className: {
 		type: String,

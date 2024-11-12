@@ -2,76 +2,94 @@ import Button from './Button.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: 'Design System/Button',
+	title: "Design System/Button",
 	component: Button,
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
-			description: '主題顏色',
-			control: { type: 'select' },
+			description: "主題顏色",
+			control: { type: "select" },
 			options: [
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
 			],
+			table: {
+				type: {
+					summary: "primary | secondary | tertiary | success | warning | error | info"
+				}
+			}
 		},
 		variant: {
-			description: '按鈕樣式',
+			description: "按鈕樣式",
 			required: true,
-			control: { type: 'select' },
-			options: ['contained', 'outlined', 'text'],
-		},
-		size: {
-			description: '按鈕尺寸',
-			control: { type: 'select' },
-			options: ['small', 'medium', 'large'],
-		},
-		width: {
-			description: '按鈕寬度',
-			control: { type: 'select' },
-			options: ['fit', 'full'],
-		},
-		isDisable: {
-			description: '是否禁用',
-			control: { type: 'boolean' },
+			control: { type: "select" },
+			options: ["contained", "outlined", "text"],
 		},
 		prefix: {
-			description: '前置元素',
-			control: { type: 'select' },
-			options: [ 'home', 'folder', 'academi', 'arrow-forward', 'finger-print', 'None' ],
-			mapping: {
-				None: null,
+			description: "前置元素",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					home: "home",
+					folder: "folder",
+					academy: "academy",
+					"arrow-forward": "arrow-forward",
+					"finger-print": "finger-print",
+				}
 			},
+			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
 		},
 		suffix: {
-			description: '後置元素',
-			control: { type: 'select' },
-			options: [ 'home', 'folder', 'academi', 'arrow-forward', 'finger-print', 'None' ],
-			mapping: {
-				None: null,
+			description: "後置元素",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					home: "home",
+					folder: "folder",
+					academy: "academy",
+					"arrow-forward": "arrow-forward",
+					"finger-print": "finger-print",
+				}
 			},
+			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
 		},
+		size: {
+			description: "按鈕尺寸",
+			control: { type: "select" },
+			options: ["small", "medium", "large"],
+		},
+		width: {
+			description: "按鈕寬度",
+			control: { type: "select" },
+			options: ["fit", "full"],
+		},
+		isDisable: {
+			description: "是否禁用",
+			control: { type: "boolean" },
+		},
+
 		className: {
-			description: '客製化樣式',
-			control: { type: 'text' },
+			description: "客製化樣式",
+			control: { type: "text" },
+		},
+		default: {
+			description: "按鈕內容",
+			control: { type: "text" },
 		},
 	},
 	parameters: {
 		// 自動文件
 		docs: {
-			title: '按鈕',
+			title: "按鈕",
 			description: {
-				component: '按鈕組件的呈現及說明。',
-			},
-		},
-		slots: {
-			default: {
-				description: 'Default slot 接收按鈕文字',
-				template: `{{ args.default }}`,
+				component: "按鈕組件的呈現及說明。",
 			},
 		},
 	},
@@ -80,19 +98,20 @@ export default {
 	// args: { onClick: fn() },
 };
 
+
 //==== 預設項目 ====//
 export const DefaultButtonStory = {
 	name: '主要項目',
 	args: {
-		default: '按鈕',
 		themeColor: 'primary',
 		variant: 'contained',
+		prefix: 'folder',
+		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		prefix: 'folder',
-		suffix: 'None',
 		isDisable: false,
-		className: ""
+		className: "",
+		default: '按鈕',
 	},
 	render: (args) => ({
 		components: { Button },
@@ -127,12 +146,12 @@ export const DefaultButtonStory = {
 					const { args } = storyContext;
 					return [
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
@@ -149,13 +168,13 @@ export const DefaultButtonStory = {
 export const ButtonPrefixSuffixStory = {
 	name: '附加元素',
 	args: {
-		default: '按鈕',
-		variant: 'contained',
 		themeColor: 'primary',
+		variant: 'contained',
 		size: 'medium',
 		width: 'fit',
 		isDisable: false,
-		className: ""
+		className: "",
+		default: '按鈕'
 	},
 	render: (args) => ({
 		components: { Button },
@@ -166,24 +185,24 @@ export const ButtonPrefixSuffixStory = {
 		},
 		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
 			<Button
-				:variant="args.variant"
 				:themeColor="args.themeColor"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				prefix="folder"
 				suffix=""
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				:themeColor="args.themeColor"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				prefix=""
 				suffix="folder"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
@@ -203,24 +222,24 @@ export const ButtonPrefixSuffixStory = {
 					const { args } = storyContext;
 					return [
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="folder"`,
 						`  suffix=""`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix=""`,
 						`  suffix="folder"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
@@ -237,15 +256,15 @@ export const ButtonPrefixSuffixStory = {
 export const ButtonTypeStory = {
 	name: '按鈕樣式',
 	args: {
-		default: '按鈕',
-		variant: 'contained',
 		themeColor: 'primary',
+		variant: 'contained',
+		prefix: 'folder',
+		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		prefix: 'folder',
-		suffix: 'None',
 		isDisable: false,
-		className: ""
+		className: "",
+		default: '按鈕',
 	},
 	render: (args) => ({
 		components: { Button },
@@ -256,36 +275,36 @@ export const ButtonTypeStory = {
 		},
 		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
 			<Button
+				:themeColor="args.themeColor"
 				variant="contained"
-				:themeColor="args.themeColor"
-				:size="args.size"
-				:width="args.width"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
+				:themeColor="args.themeColor"
 				variant="outlined"
-				:themeColor="args.themeColor"
-				:size="args.size"
-				:width="args.width"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				variant="text"
 				:themeColor="args.themeColor"
-				:size="args.size"
-				:width="args.width"
+				variant="text"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
@@ -305,36 +324,36 @@ export const ButtonTypeStory = {
 					const { args } = storyContext;
 					return [
 						'<Button',
-						`  variant="contained"`,
 						`  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="contained"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="outlined"`,
 						`  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="outlined"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						` className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="text"`,
 						`  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="text"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
@@ -351,15 +370,15 @@ export const ButtonTypeStory = {
 export const ButtonColorStory = {
 	name: '多個按鈕',
 	args: {
-		default: '按鈕',
-		variant: 'contained',
 		themeColor: 'primary',
+		variant: 'contained',
+		prefix: 'folder',
+		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		prefix: 'folder',
-		suffix: 'None',
 		isDisable: false,
-		className: ""
+		className: "",
+		default: '按鈕',
 	},
 	render: (args) => ({
 		components: { Button },
@@ -370,84 +389,84 @@ export const ButtonColorStory = {
 		},
 		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
 			<Button
-				:variant="args.variant"
 				themeColor="primary"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				themeColor="secondary"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				themeColor="tertiary"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				themeColor="success"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				themeColor="warning"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				themeColor="error"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				:variant="args.variant"
 				themeColor="info"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
 				:isDisable="args.isDisable"
 				:className="args.className"
 			>
@@ -467,84 +486,84 @@ export const ButtonColorStory = {
 					const { args } = storyContext;
 					return [
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="primary"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="secondary"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="tertiary"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="success"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="warning"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="error"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
 						'</Button>',
 						'<Button',
-						`  variant="${args.variant}"`,
 						`  themeColor="info"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  variant="${args.variant}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
+						`  size="${args.size}"`,
+						`  width="${args.width}"`,
 						`  :isDisable="${args.isDisable}"`,
 						`  className="${args.className}"`,
 						'>',
@@ -562,8 +581,8 @@ export const ButtonColorStory = {
 
 //--- JONY VERSION START ---//
 
-// // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 // export default {
+// // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 // 	title: 'Design System/Button',
 // 	component: Button,
 // 	tags: ["autodocs"],
@@ -603,7 +622,7 @@ export const ButtonColorStory = {
 // 		prefix: {
 // 			description: '設定位於按鈕前方的 icon',
 // 			control: { type: 'select' },
-// 			options: [ 'home', 'folder', 'academi', 'arrow-forward', 'finger-print', 'None' ],
+// 			options: [ 'home', 'folder', 'academy', 'arrow-forward', 'finger-print', 'None' ],
 // 			mapping: {
 // 				None: null,
 // 			},
@@ -611,7 +630,7 @@ export const ButtonColorStory = {
 // 		suffix: {
 // 			description: '設定位於按鈕後方的 icon',
 // 			control: { type: 'select' },
-// 			options: [ 'home', 'folder', 'academi', 'arrow-forward', 'finger-print', 'None' ],
+// 			options: [ 'home', 'folder', 'academy', 'arrow-forward', 'finger-print', 'None' ],
 // 			mapping: {
 // 				None: null,
 // 			},
@@ -651,7 +670,7 @@ export const ButtonColorStory = {
 // 		size: 'medium',
 // 		width: 'fit',
 // 		prefix: 'folder',
-// 		suffix: 'None',
+// 		suffix: '',
 // 		isDisable: false,
 // 	},
 // 	render: (args) => ({
@@ -692,7 +711,7 @@ export const ButtonColorStory = {
 // 		size: 'medium',
 // 		width: 'fit',
 // 		prefix: 'folder',
-// 		suffix: 'None',
+// 		suffix: '',
 // 		isDisable: false,
 // 	},
 // 	render: (args) => ({
@@ -760,7 +779,7 @@ export const ButtonColorStory = {
 // 		size: 'medium',
 // 		width: 'fit',
 // 		prefix: 'folder',
-// 		suffix: 'None',
+// 		suffix: '',
 // 		isDisable: false,
 // 	},
 // 	render: (args) => ({
@@ -868,7 +887,7 @@ export const ButtonColorStory = {
 // 		themeColor: 'primary',
 // 		size: 'medium',
 // 		prefix: 'folder',
-// 		suffix: 'None',
+// 		suffix: '',
 // 		isDisable: false,
 // 	},
 // 	render: (args) => ({
