@@ -9,34 +9,34 @@ const props = defineProps({
 		default: "circle",
 		validator: (value) =>
 			["circle", "square"].includes(value),
-		required: true,
 	},
 	size: {
 		type: String,
-		default: "large",
+		default: "medium",
 		validator: (value) =>
 			["xsmall", "small", "medium", "large"].includes(value),
-		required: true,
 	},
 	status: {
 		type: String,
+		default: "default",
 		validator: (value) =>
 			["default", "online", "idle", "busy", "offline"].includes(value),
 	},
-	imageSrc: {
+	src: {
 		type: String,
+		default: "",
 	},
-	imageAlt: {
+	alt: {
 		type: String,
-		default: 'avatar image',
+		default: "無圖顯示",
 	},
 	username: {
 		type: String,
-		required: true,
+		default: "default",
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 })
 
@@ -63,8 +63,8 @@ const getInitialsOrDefault = (string, count) => {
 		 [ props.className ]: !!props.className
 	}">
 		<div :class="['avatar', `avatar-${props.shape}`]">
-			<template v-if="props.imageSrc">
-				<Image :src="props.imageSrc" :alt="props.imageAlt" ratio="11" objectFit="cover"></Image>
+			<template v-if="props.src">
+				<Image :src="props.src" :alt="props.alt" ratio="11" objectFit="cover"></Image>
 			</template>
 			<template v-else>
 				<span
