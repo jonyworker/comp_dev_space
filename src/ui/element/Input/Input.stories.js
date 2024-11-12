@@ -8,101 +8,116 @@ function formatDataSource(hint) {
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: 'Design System/Input',
+    title: "Design System/Input",
     component: Input,
     tags: ["autodocs"],
     argTypes: {
+        label: {
+            description: "標題",
+            control: { type: "text" },
+        },
         type: {
-            description: '輸入類型',
-            control: { type: 'select' },
-            options: ['text', 'number', 'password', 'email'],
+            description: "輸入類型",
+            control: { type: "select" },
+            options: ["number", "text", "password", "email"],
+            table: {
+                type: {
+                    summary: "number | text | password | email "
+                }
+            }
         },
         placeholder: {
-            description: '輸入提示',
-            control: { type: 'text' },
-        },
-        label: {
-            description: '標題',
-            control: { type: 'text' },
-        },
-        size: {
-            description: '輸入框尺寸',
-            control: { type: 'select' },
-            options: ['small', 'medium', 'large']
+            description: "輸入提示",
+            control: { type: "text" },
         },
         prefix: {
-            description: '前置元素',
+            description: "前置元素",
             control: {
-                type: 'select',
+                type: "select",
                 labels: {
                     "": "None",
                     home: "home",
                     folder: "folder",
                     lock: "lock",
-                    'arrow-forward': "arrow-forward",
-                    'finger-print': "finger-print",
-                    'account_circle': "account_circle",
+                    "arrow-forward": "arrow-forward",
+                    "finger-print": "finger-print",
+                    "account_circle": "account_circle",
                 }
             },
-            options: ['', 'home', 'folder', 'lock', 'arrow-forward', 'finger-print', 'account_circle'],
+            options: ["", "home", "folder", "lock", "arrow-forward", "finger-print", "account_circle"],
         },
-        suffix: {
-            description: '後置元素',
-            control: {
-                type: 'select',
-                labels: {
-                    "": "None",
-                    home: "home",
-                    folder: "folder",
-                    lock: "lock",
-                    'arrow-forward': "arrow-forward",
-                    'finger-print': "finger-print",
-                    'account_circle': "account_circle",
+        // suffix: {
+        //     description: "後置元素",
+        //     control: {
+        //         type: "select",
+        //         labels: {
+        //             "": "None",
+        //             home: "home",
+        //             folder: "folder",
+        //             lock: "lock",
+        //             "arrow-forward": "arrow-forward",
+        //             "finger-print": "finger-print",
+        //             "account_circle": "account_circle",
+        //         }
+        //     },
+        //     options: ["", "home", "folder", "lock", "arrow-forward", "finger-print", "account_circle"],
+        // },
+        size: {
+            description: "輸入框尺寸",
+            control: { type: "select" },
+            options: ["small", "medium", "large"],
+            table: {
+                type: {
+                    summary: "small | medium | large "
                 }
-            },
-            options: ['', 'home', 'folder', 'lock', 'arrow-forward', 'finger-print', 'account_circle'],
+            }
         },
-        className: {
-            description: '客製化樣式',
-            control: { type: 'text' },
+        initValue: {
+            description: "",
+            control: { type: "text" },
         },
         hint: {
-            description: '提示訊息',
+            description: "提示訊息",
             control: {
-                type: 'object',
+                type: "object",
             },
             table: {
                 type: {
-                    summary: '{ error: string; description: string; }[]',
+                    summary: "{ error: string; description: string; }[]",
                 }
             }
         },
         isDisabled: {
-            description: '是否禁用',
-            control: { type: 'boolean' },
+            description: "是否禁用",
+            control: { type: "boolean" },
+        },
+        className: {
+            description: "客製化樣式",
+            control: { type: "text" },
         },
     },
     parameters: {
         // 自動文件
         docs: {
-            title: 'Input',
+            title: "Input",
             description: {
-                component: 'Input 組件的呈現及說明。。',
+                component: "Input 組件的呈現及說明。。",
             },
         },
     },
 };
 
+
 //==== 預設項目 ====//
 export const InputDefault = {
     name: '預設項目',
     args: {
+        label: '輸入框標題',
         type: 'text',
         placeholder:'example@mail.com',
-        label: '輸入框標題',
-        size: 'medium',
         prefix: 'account_circle',
-        suffix: '',
+        size: 'medium',
+        initValue: '',
         hint: { error: '', description: '輸入框提示訊息' },
         isDisabled: false,
         className: ''
@@ -116,12 +131,12 @@ export const InputDefault = {
         },
         template: `
             <Input
+                :label="args.label"
                 :type="args.type"
                 :placeholder="args.placeholder"
-                :label="args.label"
-                :size="args.size"
                 :prefix="args.prefix"
-                :suffix="args.suffix"
+                :size="args.size"
+                :initValue="args.initValue"
                 :hint="args.hint"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
@@ -141,12 +156,12 @@ export const InputDefault = {
                     const dataSourceString = formatDataSource(args.hint);
                     return [
                         '<Input',
+                        `  label="${args.label}"`,
                         `  type="${args.type}"`,
                         `  placeholder="${args.placeholder}"`,
-                        `  label="${args.label}"`,
-                        `  size="${args.size}"`,
                         `  prefix="${args.prefix}"`,
-                        `  suffix="${args.suffix}"`,
+                        `  size="${args.size}"`,
+                        `  initValue="${args.initValue}"`,
                         `  :hint="${dataSourceString}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -162,12 +177,12 @@ export const InputDefault = {
 export const InputStatus = {
     name: "輸入框狀態",
     args: {
+        label: '帳號',
         type: 'text',
         placeholder:'請輸入帳號',
-        label: '帳號',
-        size: 'medium',
         prefix: 'account_circle',
-        suffix: '',
+        size: 'medium',
+        initValue: '',
         isDisabled: false,
         className: ''
     },
@@ -181,45 +196,45 @@ export const InputStatus = {
         template: `
             <div style="display: flex; flex-direction: column; gap:16px">
                 <Input
+                    :label="args.label"
                     :type="args.type"
                     :placeholder="args.placeholder"
-                    :label="args.label"
-                    :size="args.size"
                     :prefix="args.prefix"
-                    :suffix="args.suffix"
+                    :size="args.size"
+                    :initValue="args.initValue"
                     :hint="{ error: '', description: '描述提示訊息' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
                 <Input
+                    label="密碼"
                     type="password"
                     placeholder="請輸入密碼"
-                    label="密碼"
-                    :size="args.size"
                     prefix="lock"
-                    :suffix="args.suffix"
+                    :size="args.size"
+                    :initValue="args.initValue"
                     :hint="{ error: '', description: '描述提示訊息' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
                 <Input
+                    :label="args.label"
                     :type="args.type"
                     :placeholder="args.placeholder"
-                    :label="args.label"
-                    :size="args.size"
                     :prefix="args.prefix"
-                    :suffix="args.suffix"
+                    :size="args.size"
+                    :initValue="args.initValue"
                     :hint="{ error: '輸入框錯誤訊息', description: '' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
                 <Input
+                    :label="args.label"
                     :type="args.type"
                     :placeholder="args.placeholder"
-                    :label="args.label"
-                    :size="args.size"
                     :prefix="args.prefix"
-                    :suffix="args.suffix"
+                    :size="args.size"
+                    :initValue="args.initValue"
                     :hint="{ error: '', description: '輸入框提示訊息' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -231,7 +246,7 @@ export const InputStatus = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ['modelValue', 'hint'],
+            // exclude: ['modelValue', 'hint'],
         },
         docs: {
             source: {
@@ -239,45 +254,45 @@ export const InputStatus = {
                     const { args } = storyContext;
                     return [
                         '<Input',
+                        `  label="${args.label}"`,
                         `  type="${args.type}"`,
                         `  placeholder="${args.placeholder}"`,
-                        `  label="${args.label}"`,
-                        `  size="${args.size}"`,
                         `  prefix="${args.prefix}"`,
-                        `  suffix="${args.suffix}"`,
+                        `  size="${args.size}"`,
+                        `  initValue="${args.initValue}"`,
                         `  :hint="{ error: '', description: '描述提示訊息' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
                         '<Input',
+                        `  label="密碼"`,
                         `  type="password"`,
                         `  placeholder="請輸入密碼"`,
-                        `  label="密碼"`,
-                        `  size="${args.size}"`,
                         `  prefix="lock"`,
-                        `  suffix="${args.suffix}"`,
+                        `  size="${args.size}"`,
+                        `  initValue="${args.initValue}"`,
                         `  :hint="{ error: '', description: '描述提示訊息' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
                         '<Input',
+                        `  label="${args.label}"`,
                         `  type="${args.type}"`,
                         `  placeholder="${args.placeholder}"`,
-                        `  label="${args.label}"`,
-                        `  size="${args.size}"`,
                         `  prefix="${args.prefix}"`,
-                        `  suffix="${args.suffix}"`,
+                        `  size="${args.size}"`,
+                        `  initValue="${args.initValue}"`,
                         `  :hint="{ error: '輸入框錯誤訊息', description: '' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
                         '<Input',
+                        `  label="${args.label}"`,
                         `  type="${args.type}"`,
                         `  placeholder="${args.placeholder}"`,
-                        `  label="${args.label}"`,
-                        `  size="${args.size}"`,
                         `  prefix="${args.prefix}"`,
-                        `  suffix="${args.suffix}"`,
+                        `  size="${args.size}"`,
+                        `  initValue="${args.initValue}"`,
                         `  :hint="{ error: '', description: '輸入框提示訊息' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
