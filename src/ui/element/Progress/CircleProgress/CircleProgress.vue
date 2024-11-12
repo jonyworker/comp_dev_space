@@ -19,12 +19,11 @@ const props = defineProps({
 	},
 	percent: { //進度
 		type: Number,
-		required: true,
-		default: 66,
+		default: 0,
 	},
 	size: { //直徑
 		type: Number,
-		default: 120,
+		default: 100,
 	},
 	strokeWidth: { //線條寬度
 		type: Number,
@@ -32,11 +31,11 @@ const props = defineProps({
 	},
 	label: {
 		type: String,
-		default: "label"
+		default: ""
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 })
 
