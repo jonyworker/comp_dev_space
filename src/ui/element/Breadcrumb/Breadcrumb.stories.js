@@ -12,12 +12,6 @@ export default {
             table: {
                 type: {
                     summary: '{ label: string; href?: string | undefined; }[]',
-//                     detail: `{
-//     label: string,
-//     id: string,
-//     value: string,
-//     name: string
-// }`
                 }
             }
         },
