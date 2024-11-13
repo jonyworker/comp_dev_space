@@ -1,8 +1,8 @@
 import Input from './Input.vue';
 function formatDataSource(hint) {
     return `{
-        error: '${hint.error || ''}',
-        description: '${hint.description || ''}'
+        error: '${hint.error || ""}',
+        description: '${hint.description || ""}'
     }`;
 }
 

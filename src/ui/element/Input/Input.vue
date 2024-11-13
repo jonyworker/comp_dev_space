@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
-// 定義 Model (改成最新寫法)
+// 定義 Model
 const modelValue = defineModel();
 
 // 定義 Props
@@ -13,7 +13,7 @@ const props = defineProps({
 	},
 	type: { // input type
 		type: String,
-		default: 'text',
+		default: "text",
 	},
 	placeholder: {
 		type: String,
@@ -29,16 +29,16 @@ const props = defineProps({
 	// },
 	size: {
 		type: String,
-		default: 'medium',
-		validator: (value) => ['small', 'medium', 'large'].includes(value),
+		default: "medium",
+		validator: (value) => ["small", "medium", "large"].includes(value),
 	},
 	initValue: { // 預設值
 		type: String,
-		default: '',
+		default: "",
 	},
 	hint: { // 錯誤提示
 		type: Object,
-		default: () => ({ error: '', description: '' }),
+		default: () => ({ error: "", description: "" }),
 	},
 	isDisabled: {
 		type: Boolean,
@@ -46,10 +46,10 @@ const props = defineProps({
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
+});
 
-})
 
 // 根據 hint 的值，計算屬性
 const hintClass = computed(() => {
@@ -59,7 +59,7 @@ const hintClass = computed(() => {
 	if (props.hint.description.length > 0) {
 		return 'desc';
 	}
-	return '';
+	return "";
 });
 
 // 初始化 modelValue 的值
@@ -72,7 +72,7 @@ watch(() => props.initValue, (newValue) => {
 
 // 清除輸入框資料
 const clearInput = () => {
-	modelValue.value = '';
+	modelValue.value = "";
 };
 
 // 功能 - 控制顯示或隱藏密碼
@@ -127,5 +127,4 @@ const togglePasswordVisibility = () => {
 </template>
 
 <style scoped lang="scss">
-/* 在此處添加您的樣式 */
 </style>
