@@ -31,16 +31,30 @@ export default {
 				"error",
 				"info",
 			],
+			table: {
+				type: {
+					summary: 'primary | secondary | tertiary | success | warning | error | info'
+				}
+			}
 		},
 		level: {
 			description: "標題等級",
 			control: { type: "select" },
 			options: ['0', '1', '2', '3', '4', '5', '6'],
+			table: {
+				type: {
+					summary: '0 | 1 | 2 | 3 | 4 | 5 | 6'
+				}
+			}
 		},
 		className: {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
+		default: {
+			description: "標題內容",
+			control: { type: "text" },
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -60,7 +74,7 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "",
+		themeColor: "primary",
 		level: 1,
 		className: "",
 		default: "標題",
@@ -92,9 +106,9 @@ export const HeadingDefault = {
 					const { args } = storyContext;
 					return [
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  themeColor="${args.themeColor}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>`,
 						`  ${args.default}`,
 						'</Title>',
@@ -170,39 +184,39 @@ export const HeadingSizeDefault = {
 					const { args } = storyContext;
 					return [
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="1"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`>Level:1 ${args.default}</Title>`,
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="2"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`>Level:2 ${args.default}</Title>`,
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="3"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`>Level:3 ${args.default}</Title>`,
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="4"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`>Level:4 ${args.default}</Title>`,
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="5"`,
 						`  :className="${args.className}"`,
 						`>Level:5 ${args.default}</Title>`,
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="6"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`>Level:6 ${args.default}</Title>`,
 						'<Title',
-						`  :themeColor="${args.themeColor}"`,
+						`  themeColor="${args.themeColor}"`,
 						`  level="0"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`>Level:0 ${args.default}</Title>`,
 					].join('\n').trim();
 				}
@@ -277,38 +291,38 @@ export const HeadingColorDefault = {
 					return [
 						'<Title',
 						`  themeColor="primary"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
 						`  themeColor="secondary"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
 						`  themeColor="tertiary"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
 						`  themeColor="success"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
 						`  themeColor="warning"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
 						`  themeColor="error"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
 						`  themeColor="info"`,
-						`  :level="${args.level}"`,
-						`  :className="${args.className}"`,
+						`  level="${args.level}"`,
+						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 					].join('\n').trim();
 

@@ -5,27 +5,29 @@ import { computed } from 'vue';
 const props = defineProps({
 	themeColor: {
 		type: String,
+		default: "primary",
 		validator: (value) =>
 			[
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
 			].includes(value),
 	},
 	level: {
 		type: String,
-		default: '0',
-		validator: (value) => ['0', '1', '2', '3', '4', '5', '6'].includes(value),
+		default: "0",
+		validator: (value) => ["0", "1", "2", "3", "4", "5", "6"].includes(value),
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
-})
+});
+
 
 const headingCVAClass = computed(() => {
 	return [`title title-level-${props.level} title-${props.themeColor}`];
