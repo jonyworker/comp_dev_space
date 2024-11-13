@@ -89,8 +89,8 @@ export const CheckboxMultiStory = {
             { label: "選項二", id: "option2", value: "option2", name: "group1" },
             { label: "選項三", id: "option3", value: "option3", name: "group1" },
         ],
-        direction: "row",
         initValue: ["option1", "option3"],
+        direction: "row",
         className: "",
     },
     render: (args) => ({
@@ -175,8 +175,8 @@ export const CheckboxColorStory = {
             { label: "選項二", id: "option20", value: "option20", name: "info" },
             { label: "選項三", id: "option21", value: "option21", name: "info" },
         ],
-        direction: "row",
         initValue: ["option01","option4","option7","option10","option13","option16","option19"],
+        direction: "row",
         className: "",
     },
     render: (args) => ({
@@ -193,47 +193,48 @@ export const CheckboxColorStory = {
                 <Checkbox
                     themeColor="primary"
                     :dataSource="args.datasourcePrimary"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
                 <Checkbox
                     themeColor="secondary"
                     :dataSource="args.datasourceSecondary"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
                 <Checkbox
                     themeColor="tertiary"
                     :dataSource="args.datasourceTertiary"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
 
                 <Checkbox
                     themeColor="success"
                     :dataSource="args.datasourceSuccess"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
 
                 <Checkbox
                     themeColor="warning"
                     :dataSource="args.datasourceWarning"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
 
                 <Checkbox
                     themeColor="error"
                     :dataSource="args.datasourceError"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
+                
                 <Checkbox
                     themeColor="info"
                     :dataSource="args.datasourceInfo"
-                    :direction="args.direction"
                     :initValue="args.initValue"
+                    :direction="args.direction"
                     v-model="checkedCheckboxOptions"></Checkbox>
             </div>
         `,
@@ -258,49 +259,49 @@ export const CheckboxColorStory = {
                         '<Checkbox',
                         `  themeColor="primary"`,
                         `  :dataSource="${datasourcePrimary}"`,
-                        `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[0]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="secondary"`,
                         `  :dataSource="${datasourceSecondary}"`,
-                        `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[1]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="tertiary"`,
                         `  :dataSource="${datasourceTertiary}"`,
-                        `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[2]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="success"`,
                         `  :dataSource="${datasourceSuccess}"`,
-                        `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[3]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '<Checkbox',
                         `  themeColor="warning"`,
-                        `  direction="'${args.direction}'"`,
-                        `  :initValue="[${args.initValue[4]}]"`,
                         `  :dataSource="${datasourceWarning}"`,
+                        `  :initValue="[${args.initValue[4]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="error"`,
                         `  :dataSource="${datasourceError}"`,
-                        `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[5]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="info"`,
                         `  :dataSource="${datasourceInfo}"`,
-                        `  direction="'${args.direction}'"`,
                         `  :initValue="[${args.initValue[6]}]"`,
+                        `  direction="'${args.direction}'"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                     ].join('\n').trim();
