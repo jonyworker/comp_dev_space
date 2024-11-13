@@ -14,14 +14,14 @@ export function useToggleCVAClass(props) {
                     error: "toggle-error",
                     info: "toggle-info"
                 },
-                isDisable: {
+                isDisabled: {
                     true: "button-container-disable",
                 }
             },
         })({
             //這裡設定 variants名稱接收 props的值
             themeColor: props.themeColor,
-            isDisable: props.isDisable,
+            isDisabled: props.isDisabled,
         })
     })
 }

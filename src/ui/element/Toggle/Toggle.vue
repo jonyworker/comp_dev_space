@@ -7,41 +7,41 @@ const emit = defineEmits(['toggleIsChecked']);
 // 定義 Props
 const props = defineProps({
 	themeColor: {
-	type: String,
-	default: 'primary',
-	validator: (value) =>
-	    [
-	      'primary',
-	      'secondary',
-	      'tertiary',
-	      'success',
-	      'warning',
-	      'error',
-	      'info',
-	    ].includes(value),
-	},
-	isChecked: {
-		type: Boolean,
-		required: true,
-		default: false,
-	},
-	isDisable: {
-		type: Boolean,
-		default: false,
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
 	},
 	checkedLabel: {
 		type: String,
-		default: 'on',
+		default: "on",
 	},
 	unCheckedLabel: {
 		type: String,
-		default: 'off',
+		default: "off",
+	},
+	isChecked: {
+		type: Boolean,
+		default: false,
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
-})
+});
+
 
 // 引入 CVA Class
 const toggleCVAClass = useToggleCVAClass(props);
