@@ -4,43 +4,47 @@ import TabItem from "./TabItem.vue";
 
 // 定義 Props
 const props = defineProps({
-    themeColor: {
-        type: String,
-        default: "primary",
-        validator: (value) =>
-            [
-            "primary",
-            "secondary",
-            "tertiary",
-            "success",
-            "warning",
-            "error",
-            "info",
-          ].includes(value),
-    },
-    type: {
-        type: String,
-        default: "default",
-        validator: (value) =>
-            ["card", "default",].includes(value),
-    },
-	isDisabled: {
-		type: Boolean,
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
 	},
 	dataSource: {
 		type: Array,
-		required: true,
 		default: () => [],
+		validator: (value) =>
+			value.every(
+				(item) => typeof item.title === "string" && typeof item.content === "string"
+			),
 	},
 	activeIndex: {
 		type: Number,
-		default:2
+		default: 0,
 	},
-    className: {
-        type: String,
-        default: '',
-    }
-})
+	type: {
+		type: String,
+		default: "default",
+		validator: (value) =>
+			["card", "default"].includes(value),
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false
+	},
+	className: {
+		type: String,
+		default: "",
+	}
+});
 
 const activeTabIndex = ref(props.activeIndex || 0);
 

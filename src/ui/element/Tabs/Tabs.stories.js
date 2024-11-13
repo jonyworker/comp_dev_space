@@ -2,8 +2,8 @@ import Tabs from "./Tabs.vue";
 function formatDataSource(dataSource) {
     return `[
     ${dataSource.map(item => `{
-        title: '${item.label}',
-        content: '${item.id}',
+        title: '${item.title}',
+        content: '${item.content}',
     }`).join(',\n    ')}
   ]`;
 }
@@ -26,34 +26,43 @@ export default {
                 "error",
                 "info",
             ],
-        },
-        type: {
-            description: "頁籤樣式",
-            control: { type: "select" },
-            options: ["default", "card",],
-        },
-        activeIndex: {
-            description: '活動頁籤索引',
-            control: {type: 'number',},
-        },
-        isDisabled: {
-            description: "是否禁用",
-            control: { type: "boolean" },
+            table: {
+                type: {
+                    summary: "primary | secondary | tertiary | success | warning | error | info"
+                }
+            }
         },
         dataSource: {
             description: "頁籤列表",
             control: { type: "object" },
             table: {
                 type: {
-                    summary: '{ title: string; content: string; }[]',
+                    summary: "{ title: string; content: string; }[]",
                 }
             }
+        },
+        activeIndex: {
+            description: "活動頁籤索引",
+            control: { type: "number" },
+        },
+        type: {
+            description: "頁籤樣式",
+            control: { type: "select" },
+            options: ["default", "card"],
+            table: {
+                type: {
+                    summary: "default | card "
+                }
+            }
+        },
+        isDisabled: {
+            description: "是否禁用",
+            control: { type: "boolean" },
         },
         className: {
             description: "客製化樣式",
             control: { type: "text" },
         },
-
     },
     parameters: {
         // 自動文件
@@ -69,14 +78,12 @@ export default {
     // args: { onClick: fn() },
 };
 
+
 //==== 預設項目 ====//
 export const DefaultTabs = {
     name: "預設項目",
     args: {
         themeColor: "primary",
-        type: "default",
-        isDisabled: false,
-        activeIndex: 0,
         dataSource: [
             {
                 "title": "頁籤 1",
@@ -90,6 +97,9 @@ export const DefaultTabs = {
                 "title": "頁籤 3",
                 "content": "內容三",
             }],
+        activeIndex: 0,
+        type: "default",
+        isDisabled: false,
         className: ''
     },
     render: (args) => ({
@@ -102,10 +112,10 @@ export const DefaultTabs = {
         template: `
             <Tabs
                 :themeColor="args.themeColor"
-                :type="args.type"
-                :activeIndex="args.activeIndex"
-                :isDisabled="args.isDisabled"
                 :dataSource="args.dataSource"
+                :activeIndex="args.activeIndex"
+                :type="args.type"
+                :isDisabled="args.isDisabled"
                 :className="args.className"
             ></Tabs>
         `,
@@ -123,10 +133,10 @@ export const DefaultTabs = {
                     return [
                         '<Tabs',
                         `  themeColor="${args.themeColor}"`,
-                        `  type="${args.type}"`,
-                        `  :activeIndex="${args.activeIndex}"`,
-                        `  :isDisabled="${args.isDisabled}"`,
                         `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '></Tabs>',
                     ].join('\n').trim();
@@ -141,9 +151,6 @@ export const CardTabs = {
     name: "卡片式頁籤",
     args: {
         themeColor: "primary",
-        type: "card",
-        isDisabled: false,
-        activeIndex: 0,
         dataSource: [
             {
                 "title": "頁籤 1",
@@ -157,6 +164,9 @@ export const CardTabs = {
                 "title": "頁籤 3",
                 "content": "內容三",
             }],
+        activeIndex: 0,
+        type: "card",
+        isDisabled: false,
         className: ''
     },
     render: (args) => ({
@@ -169,10 +179,10 @@ export const CardTabs = {
         template: `
             <Tabs
                 :themeColor="args.themeColor"
-                :type="args.type"
-                :activeIndex="args.activeIndex"
-                :isDisabled="args.isDisabled"
                 :dataSource="args.dataSource"
+                :activeIndex="args.activeIndex"
+                :type="args.type"
+                :isDisabled="args.isDisabled"
                 :className="args.className"
             ></Tabs>
         `,
@@ -190,10 +200,10 @@ export const CardTabs = {
                     return [
                         '<Tabs',
                         `  themeColor="${args.themeColor}"`,
-                        `  type="${args.type}"`,
-                        `  :activeIndex="${args.activeIndex}"`,
-                        `  :isDisabled="${args.isDisabled}"`,
                         `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '></Tabs>',
                     ].join('\n').trim();
