@@ -11,7 +11,7 @@ const props = defineProps({
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 });
 
