@@ -15,7 +15,7 @@ const props = defineProps({
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 	// size: {
 	// 	type: String,
@@ -30,7 +30,8 @@ const props = defineProps({
 	// 		["circle", "square"].includes(value),
 	// },
 
-})
+});
+
 
 // 計算剩餘未顯示數量
 const restCount = computed(() => {
@@ -54,6 +55,7 @@ const isOpen = ref(false)
 const handleClick = () => {
 	isOpen.value = !isOpen.value
 }
+
 </script>
 
 <template>

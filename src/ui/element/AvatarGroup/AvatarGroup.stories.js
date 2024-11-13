@@ -1,11 +1,11 @@
 import AvatarGroup from "./AvatarGroup.vue";
 function formatDataSource(dataSource) {
 	return `[
-    ${dataSource.map(item => `{
-        userName: '${item.userName}',
-        src: '${item.imageSrc}',
-    }`).join(',\n    ')}
-  ]`;
+        ${dataSource.map(item => `{
+            userName: "${item.userName}",
+            src: "${item.src}",
+        }`).join(',\n    ')}
+    ]`;
 }
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -57,20 +57,20 @@ export const MultiAvatar = {
 	args: {
 		dataSource:[
 			{
-				"userName": "Eason",
-				"src": "https://picsum.photos/320/240/?random=1",
+				userName: "Eason",
+				src: "https://picsum.photos/320/240/?random=1",
 			},
 			{
-				"userName": "KevinYang",
-				"src": "https://picsum.photos/320/240/?random=10",
+				userName: "KevinYang",
+				src: "https://picsum.photos/320/240/?random=10",
 			},
 			{
-				"userName": "AmosLee",
-				"src": "https://picsum.photos/320/240/?random=100",
+				userName: "AmosLee",
+				src: "https://picsum.photos/320/240/?random=100",
 			},
 			{
-				"userName": "JohnWu",
-				"src": "https://picsum.photos/320/240/?random=1000",
+				userName: "JohnWu",
+				src: "https://picsum.photos/320/240/?random=1000",
 			}
 		],
 		limit: 3,
@@ -95,19 +95,19 @@ export const MultiAvatar = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			// exclude: ['status', 'imageSrc', 'imageAlt', 'username' ],
+			// exclude: ['status', 'src', 'imageAlt', 'username' ],
 		},
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
-					const {args} = storyContext;
+					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						'<AvatarGroup',
-						`  :dataSource="${dataSourceString}"`,
+						`  :dataSource='${dataSourceString}'`,
 						`  :limit="${args.limit}"`,
-						`  className="${args.className}"`,
-						'></AvatarGroup>',
+						`  class="${args.className}"`,
+						'></AvatarGroup>'
 					].join('\n').trim();
 				}
 			}
@@ -173,19 +173,19 @@ export const MultiAvatar = {
 // 		items:[
 // 			{
 // 				"userName": "Eason",
-// 				"imageSrc": "https://picsum.photos/320/240/?random=1",
+// 				"src": "https://picsum.photos/320/240/?random=1",
 // 			},
 // 			{
 // 				"userName": "KevinYang",
-// 				"imageSrc": "https://picsum.photos/320/240/?random=10",
+// 				"src": "https://picsum.photos/320/240/?random=10",
 // 			},
 // 			{
 // 				"userName": "AmosLee",
-// 				"imageSrc": "https://picsum.photos/320/240/?random=100",
+// 				"src": "https://picsum.photos/320/240/?random=100",
 // 			},
 // 			{
 // 				"userName": "JohnWu",
-// 				"imageSrc": "https://picsum.photos/320/240/?random=1000",
+// 				"src": "https://picsum.photos/320/240/?random=1000",
 // 			}
 // 		],
 // 		size: "large",
@@ -215,7 +215,7 @@ export const MultiAvatar = {
 // 	parameters: {
 // 		controls: {
 // 			// include: ['themeColor', 'label', 'value', 'name' ],
-// 			exclude: ['status', 'imageSrc', 'imageAlt', 'username' ],
+// 			exclude: ['status', 'src', 'imageAlt', 'username' ],
 // 		},
 // 	},
 // };
