@@ -83,11 +83,11 @@ export const DropdownDefault = {
 				"value": "option3",
 			}
 		],
-		label: '下拉選單標題',
-		placeholder:'請選擇項目',
-		size: 'medium',
-		maxHeight: '',
-		className: ''
+		label: "下拉選單標題",
+		placeholder: "請選擇項目",
+		size: "medium",
+		maxHeight: "",
+		className: ""
 	},
 	render: (args) => ({
 		components: { Dropdown },

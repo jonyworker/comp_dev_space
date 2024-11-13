@@ -21,17 +21,18 @@ const props = defineProps({
 	},
 	size: {
 		type: String,
-		validator: (value) => ['small', 'medium', 'large'].includes(value),
-		default: 'medium',
+		validator: (value) => ["small", "medium", "large"].includes(value),
+		default: "medium",
 	},
 	maxHeight: {
 		type: String,
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
-})
+});
+
 
 const selectValue =  ref(null)
 
