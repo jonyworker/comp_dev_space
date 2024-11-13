@@ -7,22 +7,22 @@ import Icon from '@/ui/element/Icon/Icon.vue';
 const props = defineProps({
 	themeColor: {
 		type: String,
-		default: 'primary',
+		default: "primary",
 		validator: (value) =>
 			[
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
 			].includes(value),
 	},
 	variant: {
 		type: String,
-		default: 'contained',
-		validator: (value) => ['contained', 'outlined', 'text'].includes(value),
+		default: "contained",
+		validator: (value) => ["contained", "outlined", "text"].includes(value),
 	},
 	prefix: {
 		type: String,
@@ -32,23 +32,24 @@ const props = defineProps({
 	},
 	size: {
 		type: String,
-		default: 'medium',
-		validator: (value) => ['small', 'medium', 'large'].includes(value),
+		default: "medium",
+		validator: (value) => ["small", "medium", "large"].includes(value),
 	},
 	width: {
 		type: String,
-		default: 'fit',
-		validator: (value) => ['full', 'fit'].includes(value),
+		default: "fit",
+		validator: (value) => ["full", "fit"].includes(value),
 	},
-	isDisable: {
+	isDisabled: {
 		type: Boolean,
 		default: false,
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 });
+
 
 // 引入 CVA Class
 const buttonCVAClass = useButtonCVAClass(props);

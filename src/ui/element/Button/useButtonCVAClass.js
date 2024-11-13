@@ -136,17 +136,17 @@ export function useButtonCVAClass(props) {
                 // [ Disable ]
                 {
                     variant: 'contained',
-                    isDisable: true,
+                    isDisabled: true,
                     class: 'button-container-disable',
                 },
                 {
                     variant: 'outlined',
-                    isDisable: true,
+                    isDisabled: true,
                     class: 'button-outline-disable',
                 },
                 {
                     variant: 'text',
-                    isDisable: true,
+                    isDisabled: true,
                     class: 'button-text-disable',
                 },
             ],
@@ -154,7 +154,7 @@ export function useButtonCVAClass(props) {
             // 設定 variants 名稱接收 props 的值
             variant: props.variant,
             size: props.size,
-            isDisable: props.isDisable,
+            isDisabledd: props.isDisabledd,
             themeColor: props.themeColor,
             width: props.width,
         });

@@ -70,7 +70,7 @@ export default {
 			control: { type: "select" },
 			options: ["fit", "full"],
 		},
-		isDisable: {
+		isDisabled: {
 			description: "是否禁用",
 			control: { type: "boolean" },
 		},
@@ -109,7 +109,7 @@ export const DefaultButtonStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		isDisable: false,
+		isDisabled: false,
 		className: "",
 		default: '按鈕',
 	},
@@ -128,7 +128,7 @@ export const DefaultButtonStory = {
 				:width="args.width"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -138,7 +138,7 @@ export const DefaultButtonStory = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
+			// include: ['variant', 'content', 'themeColor', 'isDisabled', 'prefix'],
 		},
 		docs: {
 			source: {
@@ -152,7 +152,7 @@ export const DefaultButtonStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  isDisable="${args.isDisable}"`,
+						`  isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -172,7 +172,7 @@ export const ButtonPrefixSuffixStory = {
 		variant: 'contained',
 		size: 'medium',
 		width: 'fit',
-		isDisable: false,
+		isDisabled: false,
 		className: "",
 		default: '按鈕'
 	},
@@ -191,7 +191,7 @@ export const ButtonPrefixSuffixStory = {
 				suffix=""
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -203,7 +203,7 @@ export const ButtonPrefixSuffixStory = {
 				suffix="folder"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -228,7 +228,7 @@ export const ButtonPrefixSuffixStory = {
 						`  suffix=""`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -240,7 +240,7 @@ export const ButtonPrefixSuffixStory = {
 						`  suffix="folder"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -262,7 +262,7 @@ export const ButtonTypeStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		isDisable: false,
+		isDisabled: false,
 		className: "",
 		default: '按鈕',
 	},
@@ -281,7 +281,7 @@ export const ButtonTypeStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -293,7 +293,7 @@ export const ButtonTypeStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -305,7 +305,7 @@ export const ButtonTypeStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -330,7 +330,7 @@ export const ButtonTypeStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -342,7 +342,7 @@ export const ButtonTypeStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						` className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -354,7 +354,7 @@ export const ButtonTypeStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -376,7 +376,7 @@ export const ButtonColorStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		isDisable: false,
+		isDisabled: false,
 		className: "",
 		default: '按鈕',
 	},
@@ -395,7 +395,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -407,7 +407,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -419,7 +419,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -431,7 +431,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -443,7 +443,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -455,7 +455,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -467,7 +467,7 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisable="args.isDisable"
+				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
@@ -492,7 +492,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -504,7 +504,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -516,7 +516,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -528,7 +528,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -540,7 +540,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -552,7 +552,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -564,7 +564,7 @@ export const ButtonColorStory = {
 						`  suffix="${args.suffix}"`,
 						`  size="${args.size}"`,
 						`  width="${args.width}"`,
-						`  :isDisable="${args.isDisable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						'>',
 						`  ${args.default}`,
@@ -615,7 +615,7 @@ export const ButtonColorStory = {
 // 			control: { type: 'select' },
 // 			options: ['fit', 'full'],
 // 		},
-// 		isDisable: {
+// 		isDisabled: {
 // 			description: '是否禁用',
 // 			control: { type: 'boolean' },
 // 		},
@@ -671,7 +671,7 @@ export const ButtonColorStory = {
 // 		width: 'fit',
 // 		prefix: 'folder',
 // 		suffix: '',
-// 		isDisable: false,
+// 		isDisabled: false,
 // 	},
 // 	render: (args) => ({
 // 		components: { Button },
@@ -688,7 +688,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -697,7 +697,7 @@ export const ButtonColorStory = {
 // 	// 控制 controls 中能控制的參數
 // 	parameters: {
 // 		controls: {
-// 			// include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
+// 			// include: ['variant', 'content', 'themeColor', 'isDisabled', 'prefix'],
 // 		},
 // 	},
 // };
@@ -712,7 +712,7 @@ export const ButtonColorStory = {
 // 		width: 'fit',
 // 		prefix: 'folder',
 // 		suffix: '',
-// 		isDisable: false,
+// 		isDisabled: false,
 // 	},
 // 	render: (args) => ({
 // 		components: { Button },
@@ -731,7 +731,7 @@ export const ButtonColorStory = {
 // 						:width="args.width"
 // 						:prefix="args.prefix"
 // 						:suffix="args.suffix"
-// 						:isDisable="args.isDisable"
+// 						:isDisabled="args.isDisabled"
 // 					>
 // 						{{ args.default }}
 // 					</Button>
@@ -742,7 +742,7 @@ export const ButtonColorStory = {
 // 						:width="args.width"
 // 						:prefix="args.prefix"
 // 						:suffix="args.suffix"
-// 						:isDisable="args.isDisable"
+// 						:isDisabled="args.isDisabled"
 // 					>
 // 						{{ args.default }}
 // 					</Button>
@@ -753,7 +753,7 @@ export const ButtonColorStory = {
 // 						:width="args.width"
 // 						:prefix="args.prefix"
 // 						:suffix="args.suffix"
-// 						:isDisable="args.isDisable"
+// 						:isDisabled="args.isDisabled"
 // 					>
 // 						{{ args.default }}
 // 					</Button>
@@ -780,7 +780,7 @@ export const ButtonColorStory = {
 // 		width: 'fit',
 // 		prefix: 'folder',
 // 		suffix: '',
-// 		isDisable: false,
+// 		isDisabled: false,
 // 	},
 // 	render: (args) => ({
 // 		components: { Button },
@@ -797,7 +797,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -808,7 +808,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -819,7 +819,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -830,7 +830,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -841,7 +841,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -852,7 +852,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -863,7 +863,7 @@ export const ButtonColorStory = {
 // 				:width="args.width"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
-// 				:isDisable="args.isDisable"
+// 				:isDisabled="args.isDisabled"
 // 			>
 // 				{{ args.default }}
 // 			</Button>
@@ -888,7 +888,7 @@ export const ButtonColorStory = {
 // 		size: 'medium',
 // 		prefix: 'folder',
 // 		suffix: '',
-// 		isDisable: false,
+// 		isDisabled: false,
 // 	},
 // 	render: (args) => ({
 // 		components: { Button },
@@ -908,7 +908,7 @@ export const ButtonColorStory = {
 // 						width="full"
 // 						:prefix="args.prefix"
 // 						:suffix="args.suffix"
-// 						:isDisable="args.isDisable"
+// 						:isDisabled="args.isDisabled"
 // 					>
 // 						{{ args.default }}
 // 					</Button>
@@ -919,7 +919,7 @@ export const ButtonColorStory = {
 // 						width="fit"
 // 						:prefix="args.prefix"
 // 						:suffix="args.suffix"
-// 						:isDisable="args.isDisable"
+// 						:isDisabled="args.isDisabled"
 // 					>
 // 						{{ args.default }}
 // 					</Button>
