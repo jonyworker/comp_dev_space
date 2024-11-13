@@ -21,7 +21,7 @@ export default {
 			control: { type: "select" },
 			options: ["default", "online", "idle", "busy", "offline"],
 		},
-		username: {
+		userName: {
 			description: "使用者名稱",
 			control: { type: "text" },
 		},
@@ -68,7 +68,7 @@ export const DefaultAvatar = {
 		status: "default",
 		src: "https://picsum.photos/320/240",
 		alt: "alt text",
-		username: "JonyWu",
+		userName: "JonyWu",
 		className: ""
 	},
 	render: (args) => ({
@@ -82,7 +82,7 @@ export const DefaultAvatar = {
             <Avatar
 	            :shape="args.shape"
 	            :size="args.size"
-	            :username="args.username"
+	            :userName="args.userName"
 	            :status="args.status"
 	            :src="args.src"
 	            :alt="args.alt"
@@ -107,7 +107,7 @@ export const DefaultAvatar = {
 						`  status="${args.status}"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 					].join('\n').trim();
@@ -125,7 +125,7 @@ export const AvatarShape = {
 		status: "default",
 		src: "https://picsum.photos/320/240",
 		alt: "alt text",
-		username: "JonyWu",
+		userName: "JonyWu",
 		className: ""
 	},
 	render: (args) => ({
@@ -143,7 +143,7 @@ export const AvatarShape = {
 					:status="args.status"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 					:className="args.className"
 				></Avatar>
 				<Avatar
@@ -152,7 +152,7 @@ export const AvatarShape = {
 					:status="args.status"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 					:className="args.className"
 				></Avatar>
 			</div>
@@ -175,7 +175,7 @@ export const AvatarShape = {
 						`  status="${args.status}"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
@@ -184,7 +184,7 @@ export const AvatarShape = {
 						`  status="${args.status}"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 					].join('\n').trim();
@@ -202,7 +202,7 @@ export const AvatarStatus = {
 		size: "large",
 		src: "https://picsum.photos/320/240",
 		alt: "alt text",
-		username: "JonyWu",
+		userName: "JonyWu",
 		className: ""
 	},
 	render: (args) => ({
@@ -220,7 +220,7 @@ export const AvatarStatus = {
 					status="default"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
@@ -228,7 +228,7 @@ export const AvatarStatus = {
 					status="online"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
@@ -236,7 +236,7 @@ export const AvatarStatus = {
 					status="idle"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
@@ -244,7 +244,7 @@ export const AvatarStatus = {
 					status="busy"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
@@ -252,7 +252,7 @@ export const AvatarStatus = {
 					status="offline"
 					:src="args.src"
 					:alt="args.alt"
-					:username="args.username"
+					:userName="args.userName"
 				></Avatar>
 			</div>
             
@@ -275,7 +275,7 @@ export const AvatarStatus = {
 						`  status="default"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
@@ -284,7 +284,7 @@ export const AvatarStatus = {
 						`  status="online"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
@@ -293,7 +293,7 @@ export const AvatarStatus = {
 						`  status="idle"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
@@ -302,7 +302,7 @@ export const AvatarStatus = {
 						`  status="busy"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
@@ -311,7 +311,7 @@ export const AvatarStatus = {
 						`  status="offline"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
-						`  username="${args.username}"`,
+						`  userName="${args.userName}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 					].join('\n').trim();
@@ -353,7 +353,7 @@ export const AvatarStatus = {
 // 			description: "為 Avatar 圖片提供替代文字",
 // 			control: { type: "text" },
 // 		},
-// 		username: {
+// 		userName: {
 // 			description: "顯示使用者名稱，當沒有圖片時作取頭文字顯示",
 // 			control: { type: "text" },
 // 		},
@@ -392,7 +392,7 @@ export const AvatarStatus = {
 // 		status: "online",
 // 		src: "https://picsum.photos/320/240",
 // 		alt: "alt text",
-// 		username: "JonyWu",
+// 		userName: "JonyWu",
 // 	},
 // 	render: (args) => ({
 // 		components: { Avatar },
@@ -408,7 +408,7 @@ export const AvatarStatus = {
 // 	            :status="args.status"
 // 	            :src="args.src"
 // 	            :alt="args.alt"
-// 	            :username="args.username"
+// 	            :userName="args.userName"
 //             ></Avatar>
 //         `,
 // 	}),
@@ -429,7 +429,7 @@ export const AvatarStatus = {
 // 		status: "default",
 // 		src: "https://picsum.photos/320/240",
 // 		alt: "alt text",
-// 		username: "JonyWu",
+// 		userName: "JonyWu",
 // 	},
 // 	render: (args) => ({
 // 		components: { Avatar },
@@ -446,7 +446,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					shape="square"
@@ -454,7 +454,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 			</div>
 //         `,
@@ -476,7 +476,7 @@ export const AvatarStatus = {
 // 		size: "large",
 // 		src: "https://picsum.photos/320/240",
 // 		alt: "alt text",
-// 		username: "JonyWu",
+// 		userName: "JonyWu",
 // 	},
 // 	render: (args) => ({
 // 		components: { Avatar },
@@ -493,7 +493,7 @@ export const AvatarStatus = {
 // 					status="default"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -501,7 +501,7 @@ export const AvatarStatus = {
 // 					status="online"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -509,7 +509,7 @@ export const AvatarStatus = {
 // 					status="idle"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -517,7 +517,7 @@ export const AvatarStatus = {
 // 					status="busy"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -525,7 +525,7 @@ export const AvatarStatus = {
 // 					status="offline"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 			</div>
 //
@@ -548,7 +548,7 @@ export const AvatarStatus = {
 // 		status: "online",
 // 		src: "https://picsum.photos/320/240",
 // 		alt: "alt text",
-// 		username: "JonyWu",
+// 		userName: "JonyWu",
 // 	},
 // 	render: (args) => ({
 // 		components: { Avatar },
@@ -565,7 +565,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -573,7 +573,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -581,7 +581,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -589,7 +589,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 			</div>
 //         `,
@@ -612,7 +612,7 @@ export const AvatarStatus = {
 // 		status: "online",
 // 		src: "https://picsum.photos/320/240",
 // 		alt: "alt text",
-// 		username: "JonyWu",
+// 		userName: "JonyWu",
 // 	},
 // 	render: (args) => ({
 // 		components: { Avatar },
@@ -629,7 +629,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="args.src"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 				<Avatar
 // 					:shape="args.shape"
@@ -637,7 +637,7 @@ export const AvatarStatus = {
 // 					:status="args.status"
 // 					:src="null"
 // 					:alt="args.alt"
-// 					:username="args.username"
+// 					:userName="args.userName"
 // 				></Avatar>
 // 			</div>
 //         `,

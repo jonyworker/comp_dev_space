@@ -30,7 +30,7 @@ const props = defineProps({
 		type: String,
 		default: "無圖顯示",
 	},
-	username: {
+	userName: {
 		type: String,
 		default: "default",
 	},
@@ -68,7 +68,7 @@ const getInitialsOrDefault = (string, count) => {
 			</template>
 			<template v-else>
 				<span
-					:class="['avatar-text', `text-${props.size}`]">{{ getInitialsOrDefault(props.username, 2) }}</span>
+					:class="['avatar-text', `text-${props.size}`]">{{ getInitialsOrDefault(props.userName, 2) }}</span>
 			</template>
 		</div>
 		<AvatarStatus :avatarStatus="props.status" :avatarSize="props.size"></AvatarStatus>
