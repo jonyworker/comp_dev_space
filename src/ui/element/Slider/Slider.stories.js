@@ -8,52 +8,54 @@ export default {
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
-			description: '主題顏色',
-			control: { type: 'select' },
+			description: "主題顏色",
+			control: { type: "select" },
 			options: [
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
 			],
 			table: {
 				type: {
-					summary: 'primary | secondary | tertiary | success | warning | error | info'
+					summary: "primary | secondary | tertiary | success | warning | error | info"
 				}
 			}
 		},
-		isDisabled: {
-			description: '是否禁用',
-			control: { type: 'boolean' },
-		},
 		min: {
-			description: '最小值',
-			control: { type: 'number' },
+			description: "最小值",
+			control: { type: "number" },
 		},
 		max: {
-			description: '最大值',
-			control: { type: 'number' },
+			description: "最大值",
+			control: { type: "number" },
 		},
 		step: {
-			description: '步進值',
-			control: { type: 'number' },
+			description: "步進值",
+			control: { type: "number" },
 		},
 		initValue: {
-			description: '初始值',
-			control: { type: 'number' },
+			description: "初始值",
+			control: { type: "number" },
 		},
 		unit: {
-			description: '單位',
-			control: { type: 'text' },
+			description: "單位",
+			control: { type: "text" },
+		},
+		isDisabled: {
+			description: "是否禁用",
+			control: { type: "boolean" },
 		},
 		className: {
-			description: '客製化樣式',
-			control: { type: 'text' },
+			description: "客製化樣式",
+			control: { type: "text" },
 		},
-
+		updateWidth: {
+			table: { disable: true }
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -74,12 +76,12 @@ export const SliderDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "primary",
-		isDisabled: false,
 		min: -100,
 		max: 100,
 		step: 1,
 		initValue: "0",
 		unit: "℃",
+		isDisabled: false,
 		className: ''
 	},
 	render: (args) => ({
@@ -95,14 +97,14 @@ export const SliderDefault = {
 		template: `
 			<slider
 				:themeColor="args.themeColor"
-				:isDisabled="args.isDisabled"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
 				:initValue="args.initValue"
 				:unit="args.unit"
-				v-model="sliderValue"
+				:isDisabled="args.isDisabled"
 				:className="sliderValue"
+				v-model="sliderValue"
 			></slider>
 			
 			ModelValue: {{sliderValue}}
@@ -112,7 +114,7 @@ export const SliderDefault = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			// exclude:['range']
+			// exclude:['updateWidth']
 		},
 		docs: {
 			source: {
@@ -127,8 +129,8 @@ export const SliderDefault = {
 						`  :step="${args.step}"`,
 						`  :initValue="${args.initValue}"`,
 						`  unit="${args.unit}"`,
-						`  v-model="sliderValue"`,
 						`  className="${args.className}"`,
+						`  v-model="sliderValue"`,
 						'></slider>',
 					].join('\n').trim();
 
@@ -146,7 +148,8 @@ export const SliderColors = {
 		max: 100,
 		step: 1,
 		unit: "℃",
-		isDisabled: false
+		isDisabled: false,
+		className: ''
 	},
 	render: (args) => ({
 		components: { Slider },
@@ -161,72 +164,78 @@ export const SliderColors = {
 			<div style="display:flex; flex-direction: column;">
 				<slider
 					themeColor="primary"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="40"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					:className="sliderValue"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="secondary"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="50"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					:className="sliderValue"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="tertiary"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="60"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="success"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="70"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					:className="sliderValue"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="warning"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="80"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					:className="sliderValue"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="error"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="90"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					:className="sliderValue"
 					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="info"
-					:isDisabled="args.isDisabled"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
 					initValue="100"
 					:unit="args.unit"
+					:isDisabled="args.isDisabled"
+					:className="sliderValue"
 					v-model="sliderValue"
 				></slider>
 			</div>
@@ -245,72 +254,79 @@ export const SliderColors = {
 					return [
 						'<slider',
 						`  themeColor="primary"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="40"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
 						`  themeColor="secondary"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="50"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
 						`  themeColor="tertiary"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="60"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
 						`  themeColor="success"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="70"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
 						`  themeColor="warning"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="80"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
 						`  themeColor="error"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="90"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
 						`  themeColor="info"`,
-						`  :isDisabled="${args.isDisabled}"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="100"`,
 						`  unit="${args.unit}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
 					].join('\n').trim();

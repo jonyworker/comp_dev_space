@@ -6,47 +6,47 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-    themeColor: {
-        type: String,
-        default: 'primary',
-        validator: (value) =>
-            [
-                'primary',
-                'secondary',
-                'tertiary',
-                'success',
-                'warning',
-                'error',
-                'info',
-            ].includes(value),
-    },
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
+	},
+	min: {
+		type: Number,
+		default: 0,
+	},
+	max: {
+		type: Number,
+		default: 100,
+	},
+	step: {
+		type: [Number, String],
+		default: 1,
+	},
+	initValue: {
+		type: Number,
+	},
+	unit: {
+		type: String,
+		default: "%",
+	},
 	isDisabled: {
 		type: Boolean,
 		default: false,
 	},
-    min: {
-        type: Number,
-        default: 0,
-    },
-    max: {
-        type: Number,
-        default: 100,
-    },
-    step: {
-        type: [Number, String],
-        default: 1,
-    },
-    initValue: {
-        type: Number,
-    },
-    unit: {
-        type: String,
-        default: '%',
-    },
-    className: {
-        type: String,
-        default: '',
-    },
+	className: {
+		type: String,
+		default: "",
+	},
 });
 
 
