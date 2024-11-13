@@ -17,6 +17,10 @@ const props = defineProps({
 				"info",
 			].includes(value),
 	},
+	label: {
+		type: String,
+		default: "label"
+	},
 	percent: { //進度
 		type: Number,
 		default: 0,
@@ -25,15 +29,12 @@ const props = defineProps({
 		type: Number,
 		default: 10,
 	},
-	label: {
-		type: String,
-		default: "label"
-	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
-})
+});
+
 
 // 計算屬性 - 進度條進度，並且限制 0-100 之間
 const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 100));
