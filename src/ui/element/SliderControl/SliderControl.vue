@@ -11,29 +11,17 @@ const modelValue = defineModel('modelValue');
 const props = defineProps({
 	themeColor: {
 		type: String,
-		default: 'primary',
+		default: "primary",
 		validator: (value) =>
 			[
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
 			].includes(value),
-	},
-	prefix: {
-		type: String,
-		default: '',
-	},
-	suffix: {
-		type: String,
-		default: '',
-	},
-	isDisabled: {
-		type: Boolean,
-		default: false,
 	},
 	min: {
 		type: Number,
@@ -47,22 +35,43 @@ const props = defineProps({
 		type: [Number, String],
 		default: 1,
 	},
-	unit: {
-		type: String,
-		default: '%',
-	},
 	initValue: {
 		type: Number,
-		required: true,
+		default: 0,
+	},
+	unit: {
+		type: String,
+		default: "%",
+	},
+	prefix: {
+		type: String,
+		default: "",
+	},
+	suffix: {
+		type: String,
+		default: "",
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 });
 
+// 修正後的 computedValue
 const computedValue = computed({
-	get: () => modelValue.value ?? props.initValue ?? props.min,
+	get: () => {
+		if (modelValue.value !== undefined) {
+			return modelValue.value;
+		}
+		if (props.initValue !== undefined) {
+			return props.initValue;
+		}
+		return props.min;
+	},
 	set: (newValue) => {
 		modelValue.value = newValue;
 	}
@@ -80,7 +89,7 @@ const handleDecreaseClick = () => {
 
 // 監聽 initValue 的變更
 watch(() => props.initValue, (newValue) => {
-	if (modelValue.value === undefined) {
+	if (modelValue.value === undefined || modelValue.value === null) {
 		computedValue.value = newValue;
 	}
 });
@@ -103,10 +112,10 @@ watch(() => props.initValue, (newValue) => {
 			:themeColor="props.themeColor"
 			:min="props.min"
 			:max="props.max"
-			:unit="props.unit"
 			:step="props.step"
-			:isDisabled="props.isDisabled"
+			:unit="props.unit"
 			:initValue="props.initValue"
+			:isDisabled="props.isDisabled"
 			v-model="computedValue"
 		/>
 
