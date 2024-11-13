@@ -5,17 +5,16 @@ import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
 const props = defineProps({
 	content: {
 		type: String,
-		required: true,
+		default: "",
 	},
 	placement: {
 		type: String,
-		required: true,
-		default: 'top',
+		default: "top",
 		validator: value => [
-			'top-left', 'top', 'top-right',
-			'right-top', 'right', 'right-bottom',
-			'bottom-right', 'bottom', 'bottom-left',
-			'left-top','left','left-bottom'
+			"top-left", "top", "top-right",
+			"right-top", "right", "right-bottom",
+			"bottom-right", "bottom", "bottom-left",
+			"left-top", "left", "left-bottom"
 		].includes(value)
 	},
 	showArrow: {
@@ -24,9 +23,10 @@ const props = defineProps({
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 });
+
 
 const tooltipTriggerRef = ref(null);
 const tooltipContentRef = ref(null);

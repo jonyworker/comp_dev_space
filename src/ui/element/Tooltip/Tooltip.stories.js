@@ -21,6 +21,11 @@ export default {
 				'bottom-right', 'bottom', 'bottom-left',
 				'left-bottom', 'left', 'left-top'
 			],
+			table: {
+				type: {
+					summary: 'top-left | top | top-right | right-top | right | right-bottom | bottom-right | bottom | bottom-left | left-bottom | left | left-top '
+				}
+			}
 		},
 		showArrow: {
 			description: "是否顯示箭頭",
@@ -31,7 +36,7 @@ export default {
 			control: { type: 'text' },
 		},
 		default: {
-			description: 'tooltip 的觸發器',
+			description: 'tooltip 觸發器',
 			control: { type: 'text' },
 		},
 
