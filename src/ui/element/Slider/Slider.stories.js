@@ -66,9 +66,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
@@ -79,7 +76,7 @@ export const SliderDefault = {
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: "0",
+		initValue: 0,
 		unit: "℃",
 		isDisabled: false,
 		className: ''
@@ -87,8 +84,7 @@ export const SliderDefault = {
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref();
-			sliderValue.value = args.initValue;
+			const sliderValue = ref(args.initValue || 0);
 			return {
 				args,
 				sliderValue
@@ -133,7 +129,6 @@ export const SliderDefault = {
 						`  v-model="sliderValue"`,
 						'></slider>',
 					].join('\n').trim();
-
 				}
 			}
 		}
@@ -147,6 +142,7 @@ export const SliderColors = {
 		min: 0,
 		max: 100,
 		step: 1,
+		initValue: 50,
 		unit: "℃",
 		isDisabled: false,
 		className: ''
@@ -154,7 +150,7 @@ export const SliderColors = {
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref();
+			const sliderValue = ref(args.initValue || 0);
 			return {
 				args,
 				sliderValue
@@ -167,76 +163,69 @@ export const SliderColors = {
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="40"
+					:initValue="40"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
-					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="secondary"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="50"
+					:initValue="50"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
-					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="tertiary"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="60"
+					:initValue="60"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
-					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="success"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="70"
+					:initValue="70"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
-					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="warning"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="80"
+					:initValue="80"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
-					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="error"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="90"
+					:initValue="90"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
-					v-model="sliderValue"
 				></slider>
 				<slider
 					themeColor="info"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
-					initValue="100"
+					:initValue="100"
 					:unit="args.unit"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
-					v-model="sliderValue"
 				></slider>
 			</div>
         `,

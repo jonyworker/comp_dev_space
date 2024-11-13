@@ -34,6 +34,7 @@ const props = defineProps({
 	},
 	initValue: {
 		type: Number,
+		default: 0,
 	},
 	unit: {
 		type: String,
@@ -55,7 +56,13 @@ const containerRef = useTemplateRef("containerRef");
 const rangeWidth = ref(0);
 
 // 設定值為初始值或是最小值
-const value = ref(modelValue.value || props.initValue || props.min);
+const value = ref(
+	modelValue.value !== undefined
+		? modelValue.value
+		: props.initValue !== undefined
+			? props.initValue
+			: props.min
+);
 
 // thumb 位置
 const thumbPosition = ref(0);
