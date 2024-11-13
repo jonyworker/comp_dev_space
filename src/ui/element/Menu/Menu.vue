@@ -14,11 +14,11 @@ const props = defineProps({
 	},
 	color: {
 		type: String,
-		default: '#000000',
+		default: "#000000",
 	},
 	className: {
 		type: String,
-		default: '',
+		default: "",
 	},
 });
 
