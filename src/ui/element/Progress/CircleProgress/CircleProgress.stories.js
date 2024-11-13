@@ -24,6 +24,10 @@ export default {
                 }
             }
         },
+        label: {
+            description: "進度指示標籤",
+            control: { type: "text" },
+        },
         percent: {
             description: "進度",
             required: true,
@@ -53,10 +57,6 @@ export default {
                 step: 1,
             },
         },
-        label: {
-            description: "進度指示標籤",
-            control: { type: "text" },
-        },
         className: {
             description: "客製化樣式",
             control: { type: "text" },
@@ -81,10 +81,10 @@ export const DefaultCircleProgress = {
     name: "預設項目",
     args: {
         themeColor: "primary",
+        label: "Saving",
         percent: 50,
         size: 100,
         strokeWidth: 10,
-        label: "Saving",
         className: '',
     },
     render: (args) => ({
@@ -98,10 +98,10 @@ export const DefaultCircleProgress = {
         template: `
             <CircleProgress 
                 :themeColor="args.themeColor"
+                :label="args.label"
                 :percent="args.percent"
                 :size="args.size"
                 :strokeWidth="args.strokeWidth"
-                :label="args.label"
                 :className="args.className"
             ></CircleProgress>
         `,
@@ -118,10 +118,10 @@ export const DefaultCircleProgress = {
                     return [
                         '<CircleProgress',
                         `  themeColor="${args.themeColor}"`,
+                        `  label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                     ].join('\n').trim();
@@ -137,10 +137,10 @@ export const CircleProgressLabelStory = {
     name: "顯示標籤",
     args: {
         themeColor: "primary",
+        label: "測試",
         percent: 66,
         size: 120,
         strokeWidth: 10,
-        label: "測試",
         className: '',
     },
     render: (args) => ({
@@ -155,18 +155,18 @@ export const CircleProgressLabelStory = {
             <div style="display:flex; align-items: center; gap: 24px">
                 <CircleProgress
                     :themeColor="args.themeColor"
+                    :label="args.label"
                     :percent="args.percent"
                     size="70"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     :themeColor="args.themeColor"
+                    :label="args.label"
                     :percent="args.percent"
                     size="120"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
             </div>
@@ -185,18 +185,18 @@ export const CircleProgressLabelStory = {
                     return [
                         '<CircleProgress',
                         `  themeColor="${args.themeColor}"`,
+                        `  label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :size="70"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="${args.themeColor}"`,
+                        `  label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :size="120"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                     ].join('\n').trim();
@@ -211,9 +211,9 @@ export const CircleProgressLabelStory = {
 export const CircleProgressColorStory = {
     name: "主題色彩",
     args: {
+        label: "測試",
         size: 120,
         strokeWidth: 10,
-        label: "測試",
         className: '',
     },
     render: (args) => ({
@@ -228,58 +228,58 @@ export const CircleProgressColorStory = {
             <div style="display:flex; align-items: center; flex-wrap: wrap; gap: 16px">
                 <CircleProgress
                     themeColor="primary"
+                    :label="args.label"
                     :percent=40
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     themeColor="secondary"
+                    :label="args.label"
                     :percent=50
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     themeColor="tertiary"
+                    :label="args.label"
                     :percent=60
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     themeColor="success"
+                    :label="args.label"
                     :percent=70
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     themeColor="warning"
+                    :label="args.label"
                     :percent=80
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     themeColor="error"
+                    :label="args.label"
                     :percent=90
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
                     themeColor="info"
+                    :label="args.label"
                     :percent=100
                     :size="args.size"
                     :strokeWidth="args.strokeWidth"
-                    :label="args.label"
                     :className="args.className"
                 ></CircleProgress>
             </div>
@@ -298,58 +298,58 @@ export const CircleProgressColorStory = {
                     return [
                         '<CircleProgress',
                         `  themeColor="primary"`,
+                        `  label="${args.label}"`,
                         `  :percent="40"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="secondary"`,
+                        `  label="${args.label}"`,
                         `  :percent="50"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="tertiary"`,
+                        `  label="${args.label}"`,
                         `  :percent="60"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="success"`,
+                        `  label="${args.label}"`,
                         `  :percent="70"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="warning"`,
+                        `  label="${args.label}"`,
                         `  :percent="80"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="error"`,
+                        `  label="${args.label}"`,
                         `  :percent="90"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
                         `  themeColor="info"`,
+                        `  label="${args.label}"`,
                         `  :percent="100"`,
                         `  :size="${args.size}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
-                        `  label="${args.label}"`,
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                     ].join('\n').trim();

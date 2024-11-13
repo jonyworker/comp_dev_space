@@ -17,6 +17,10 @@ const props = defineProps({
 				"info",
 			].includes(value),
 	},
+	label: {
+		type: String,
+		default: ""
+	},
 	percent: { //進度
 		type: Number,
 		default: 0,
@@ -28,10 +32,6 @@ const props = defineProps({
 	strokeWidth: { //線條寬度
 		type: Number,
 		default: 10,
-	},
-	label: {
-		type: String,
-		default: ""
 	},
 	className: {
 		type: String,
