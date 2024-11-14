@@ -24,6 +24,14 @@ export default {
 				}
 			}
 		},
+		checkLabel: {
+			description: '開啟文字',
+			control: { type: 'text' },
+		},
+		unCheckedLabel: {
+			description: '關閉文字',
+			control: { type: 'text' },
+		},
 		isChecked: {
 			description: '是否開啟',
 			control: { type: 'boolean' },
@@ -32,16 +40,6 @@ export default {
 			description: '是否禁用',
 			control: { type: 'boolean' },
 		},
-
-		checkedLabel: {
-			description: '開啟文字',
-			control: { type: 'text' },
-		},
-		unCheckedLabel: {
-			description: '關閉文字',
-			control: { type: 'text' },
-		},
-
 		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
@@ -56,9 +54,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
@@ -66,7 +61,7 @@ export const ToggleDefault = {
 	name: '預設項目',
 	args: {
 		themeColor: 'primary',
-		checkedLabel: 'on',
+		checkLabel: 'on',
 		unCheckedLabel: 'off',
 		isChecked: true,
 		isDisabled: false,
@@ -83,7 +78,7 @@ export const ToggleDefault = {
 			`<div style="display:flex; gap: 16px">
 				<Toggle
 					:themeColor="args.themeColor"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -104,7 +99,7 @@ export const ToggleDefault = {
 					return [
 						'<Toggle',
 						`  themeColor="${args.themeColor}"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -121,7 +116,7 @@ export const ToggleDefault = {
 export const ToggleColor = {
 	name: '主題色彩',
 	args: {
-		checkedLabel: 'on',
+		checkLabel: 'on',
 		unCheckedLabel: 'off',
 		isChecked: true,
 		isDisabled: false,
@@ -138,7 +133,7 @@ export const ToggleColor = {
 			`<div style="display:flex; gap: 16px">
 				<Toggle
 					themeColor="primary"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -146,7 +141,7 @@ export const ToggleColor = {
 				</Toggle>
 				<Toggle
 					themeColor="secondary"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -154,7 +149,7 @@ export const ToggleColor = {
 				</Toggle>
 				<Toggle
 					themeColor="tertiary"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -162,7 +157,7 @@ export const ToggleColor = {
 				</Toggle>
 				<Toggle
 					themeColor="success"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -170,7 +165,7 @@ export const ToggleColor = {
 				</Toggle>
 				<Toggle
 					themeColor="warning"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -178,7 +173,7 @@ export const ToggleColor = {
 				</Toggle>
 				<Toggle
 					themeColor="error"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -186,7 +181,7 @@ export const ToggleColor = {
 				</Toggle>
 				<Toggle
 					themeColor="info"
-					:checkedLabel="args.checkedLabel"
+					:checkLabel="args.checkLabel"
 					:unCheckedLabel="args.unCheckedLabel"
 					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
@@ -207,7 +202,7 @@ export const ToggleColor = {
 					return [
 						'<Toggle',
 						`  themeColor="primary"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -215,7 +210,7 @@ export const ToggleColor = {
 						'></Toggle>',
 						'<Toggle',
 						`  themeColor="secondary"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -223,7 +218,7 @@ export const ToggleColor = {
 						'></Toggle>',
 						'<Toggle',
 						`  themeColor="tertiary"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -231,7 +226,7 @@ export const ToggleColor = {
 						'></Toggle>',
 						'<Toggle',
 						`  themeColor="success"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -239,7 +234,7 @@ export const ToggleColor = {
 						'></Toggle>',
 						'<Toggle',
 						`  themeColor="warning"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -247,7 +242,7 @@ export const ToggleColor = {
 						'></Toggle>',
 						'<Toggle',
 						`  themeColor="error"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -255,7 +250,7 @@ export const ToggleColor = {
 						'></Toggle>',
 						'<Toggle',
 						`  themeColor="info"`,
-						`  checkedLabel="${args.checkedLabel}"`,
+						`  checkLabel="${args.checkLabel}"`,
 						`  unCheckedLabel="${args.unCheckedLabel}"`,
 						`  :isChecked="${args.isChecked}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -285,7 +280,7 @@ export const ToggleColor = {
 // 	component: Toggle,
 // 	tags: ["autodocs"],
 // 	argTypes: {
-// 		checkedLabel: {
+// 		checkLabel: {
 // 			description: '開啟文字',
 // 			control: { type: 'text' },
 // 		},
@@ -337,7 +332,7 @@ export const ToggleColor = {
 // export const ToggleDefault = {
 // 	name: 'Toggle 基礎樣式',
 // 	args: {
-// 		checkedLabel: 'on',
+// 		checkLabel: 'on',
 // 		unCheckedLabel: 'off',
 // 		themeColor: 'primary',
 // 		isDisabled: false,
@@ -353,7 +348,7 @@ export const ToggleColor = {
 // 		template:
 // 			`<div style="display:flex; gap: 16px">
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					:themeColor="args.themeColor"
 // 					:isDisabled="args.isDisabled"
@@ -374,7 +369,7 @@ export const ToggleColor = {
 // export const ToggleColor = {
 // 	name: 'Toggle 顏色',
 // 	args: {
-// 		checkedLabel: 'on',
+// 		checkLabel: 'on',
 // 		unCheckedLabel: 'off',
 // 		isDisabled: false,
 // 		isChecked: true
@@ -389,49 +384,49 @@ export const ToggleColor = {
 // 		template:
 // 			`<div style="display:flex; gap: 16px">
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="primary"
 // 					:isDisabled="args.isDisabled"
 // 					:isChecked="args.isChecked">
 // 				</Toggle>
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="secondary"
 // 					:isDisabled="args.isDisabled"
 // 					:isChecked="args.isChecked">
 // 				</Toggle>
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="tertiary"
 // 					:isDisabled="args.isDisabled"
 // 					:isChecked="args.isChecked">
 // 				</Toggle>
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="success"
 // 					:isDisabled="args.isDisabled"
 // 					:isChecked="args.isChecked">
 // 				</Toggle>
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="warning"
 // 					:isDisabled="args.isDisabled"
 // 					:isChecked="args.isChecked">
 // 				</Toggle>
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="error"
 // 					:isDisabled="args.isDisabled"
 // 					:isChecked="args.isChecked">
 // 				</Toggle>
 // 				<Toggle
-// 					:checkedLabel="args.checkedLabel"
+// 					:checkLabel="args.checkLabel"
 // 					:unCheckedLabel="args.unCheckedLabel"
 // 					themeColor="info"
 // 					:isDisabled="args.isDisabled"
