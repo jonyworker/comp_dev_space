@@ -34,7 +34,7 @@ export default {
 			],
 			table: {
 				type: {
-					summary: 'primary | secondary | tertiary | success | warning | error | info'
+					summary: "primary | secondary | tertiary | success | warning | error | info"
 				}
 			}
 		},
@@ -43,12 +43,18 @@ export default {
 			control: { type: "text" },
 		},
 		prefix: {
-			description: '圖示',
-			control: { type: 'select' },
-			options: ['None', 'busy', 'finger-print', 'home', 'folder'],
-			mapping: {
-				None: null,
+			description: "圖示",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					busy: "busy",
+					"finger-print": "finger-print",
+					home: "home",
+					folder: "folder",
+				}
 			},
+			options: ["None", "busy", "finger-print", "home", "folder"],
 		},
 		closeable: {
 			description: "是否可關閉",
@@ -59,9 +65,12 @@ export default {
 			control: { type: "boolean" },
 		},
 		className: {
-			description: '客製化樣式',
-			control: { type: 'text' },
+			description: "客製化樣式",
+			control: { type: "text" },
 		},
+		remove: {
+			description: "刪除 emit",
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -73,14 +82,15 @@ export default {
 		},
 	},
 };
+
 //==== 預設項目 ====//
 export const TagDefaultStory = {
 	name: "預設項目",
 	args: {
 		themeColor: 'primary',
-		label:'Social work',
+		label:'Social Work',
 		prefix: 'folder',
-		closeable: true,
+		closeable: false,
 		isDisabled: false,
 		className: ''
 	},
@@ -88,14 +98,9 @@ export const TagDefaultStory = {
 		components: { Tag },
 		setup() {
 			const showTag = ref(true); // 控制單一 Tag 是否顯示
-
-			const removeTag = () => {
-				showTag.value = false; // 將 showTag 設為 false 以隱藏 Tag
-			};
 			return {
 				args,
 				showTag,
-				removeTag
 			};
 		},
 		template: `
@@ -108,8 +113,7 @@ export const TagDefaultStory = {
 					 :closeable="args.closeable"
 					 :isDisabled="args.isDisabled"
 					 :className="args.className"
-				     @remove="removeTag()"
-				>
+				     @remove="() => showTag = false">
 				</Tag>
 			</div>
         `,
@@ -132,11 +136,9 @@ export const TagDefaultStory = {
 						`  :closeable="${args.closeable}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  :className="${args.className}"`,
-						`  @remove="removeTag()"`,
-						'>',
+						`  @remove="() => showTag = false">`,
 						'</Tag>',
 					].join('\n').trim();
-
 				}
 			}
 		}
@@ -144,59 +146,59 @@ export const TagDefaultStory = {
 };
 
 //==== 多個項目 ====//
-export const TagMultiple = {
-	name: "多個項目",
-	args: {
-		themeColor: 'primary',
-		// label:'',
-		// prefix: '',
-		closeable: true,
-		isDisabled: false,
-		className: ''
-	},
-	render: (args) => ({
-		components: { Tag },
-		setup() {
-			const tagsData = ref([
-				{ id: 1, label: 'Photography', prefix: '' },
-				{ id: 2, label: 'Cooking', prefix: 'home' },
-				{ id: 3, label: 'Reading', prefix: '' },
-				{ id: 4, label: 'Social work', prefix: 'folder' },
-				{ id: 5, label: 'Arts and crafts', prefix: '' },
-				{ id: 6, label: 'Dancing', prefix: '' },
-			]);
-			const removeTag = (id) => {
-				tagsData.value = tagsData.value.filter(tag => tag.id !== id);
-			};
-			return {
-				args,
-				tagsData,
-				removeTag,
-			};
-		},
-		template: `
-			<div style="display:flex; gap: 8px; flex-wrap: wrap">
-				<Tag v-for="tag in tagsData"
-				     :key="tag.id"
-					 :themeColor="args.themeColor"
-					 :label="tag.label"
-					 :prefix="tag.prefix"
-					 :closeable="args.closeable"
-					 :isDisabled="args.isDisabled"
-					 :className="args.className"
-				     @remove="removeTag(tag.id)"
-				>
-				</Tag>
-			</div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'removable' ],
-		},
-	},
-};
+// export const TagMultiple = {
+// 	name: "多個項目",
+// 	args: {
+// 		themeColor: 'primary',
+// 		// label:'',
+// 		// prefix: '',
+// 		closeable: true,
+// 		isDisabled: false,
+// 		className: ''
+// 	},
+// 	render: (args) => ({
+// 		components: { Tag },
+// 		setup() {
+// 			const tagsData = ref([
+// 				{ id: 1, label: 'Photography', prefix: '' },
+// 				{ id: 2, label: 'Cooking', prefix: 'home' },
+// 				{ id: 3, label: 'Reading', prefix: '' },
+// 				{ id: 4, label: 'Social work', prefix: 'folder' },
+// 				{ id: 5, label: 'Arts and crafts', prefix: '' },
+// 				{ id: 6, label: 'Dancing', prefix: '' },
+// 			]);
+// 			const removeTag = (id) => {
+// 				tagsData.value = tagsData.value.filter(tag => tag.id !== id);
+// 			};
+// 			return {
+// 				args,
+// 				tagsData,
+// 				removeTag,
+// 			};
+// 		},
+// 		template: `
+// 			<div style="display:flex; gap: 8px; flex-wrap: wrap">
+// 				<Tag v-for="tag in tagsData"
+// 				     :key="tag.id"
+// 					 :themeColor="args.themeColor"
+// 					 :label="tag.label"
+// 					 :prefix="tag.prefix"
+// 					 :closeable="args.closeable"
+// 					 :isDisabled="args.isDisabled"
+// 					 :className="args.className"
+// 				     @remove="removeTag(tag.id)"
+// 				>
+// 				</Tag>
+// 			</div>
+//         `,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			// include: ['themeColor', 'removable' ],
+// 		},
+// 	},
+// };
 
 
 
