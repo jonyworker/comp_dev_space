@@ -24,7 +24,7 @@ const props = defineProps({
 		type: String,
 		default: "on",
 	},
-	unCheckedLabel: {
+	unCheckLabel: {
 		type: String,
 		default: "off",
 	},
@@ -74,7 +74,7 @@ const handleToggle = () => {
 
 		<!-- Toggle 文字 -->
 		<label class="toggle-label" :class="{'toggle-label-on': isToggle, 'toggle-label-off': !isToggle}">
-		  {{ isToggle === true ? props.checkLabel : props.unCheckedLabel}}
+		  {{ isToggle === true ? props.checkLabel : props.unCheckLabel}}
 		</label>
 	</div>
 </template>
