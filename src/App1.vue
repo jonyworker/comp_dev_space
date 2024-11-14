@@ -1,53 +1,19 @@
 <script setup>
-import MenuMain from '@/ui/element/Menu_Recursive_Jony/Menu_Main.vue'
+import Radio from '@/ui/element/Radio/Radio.vue'
+import { ref } from 'vue'
 
 const dataSource = [
-    {
-        icon: "home",
-        label: "首頁",
-        path: "/",
-    },
-    {
-        icon: "users",
-        label: "用戶管理",
-        path: "/users",
-        children: [
-            { label: "用戶列表", path: "/users/list" },
-            { label: "用戶設置", path: "/users/settings",children: [
-                    { label: "用戶列表", path: "/users/list" },
-                    { label: "用戶設置", path: "/users/settings" },
-                ], },
-        ],
-    },
-    {
-        icon: "file",
-        label: "文件管理",
-        path: "/files",
-        children: [
-            { label: "所有文件", path: "/files/all" },
-            { label: "已分享", path: "/files/shared" },
-        ],
-    },
-    {
-        icon: "mail",
-        label: "訊息中心",
-        path: "/messages",
-    },
-    {
-        icon: "setting",
-        label: "系統設置",
-        path: "/settings",
-    },
+	{ label: "選項 1", value: "option1", name: "group1" },
+	{ label: "選項 2", value: "option2", name: "group1" },
+	{ label: "選項 3", value: "option3", name: "group1" },
 ];
+const modelValue = ref("");
 </script>
 
 <template>
-<MenuMain
-    :dataSource="dataSource">
 
-</MenuMain>
-
-<!--    <Menu :dataSource="dataSource"></Menu>-->
+<Radio :dataSource="dataSource" v-model="modelValue"></Radio>
+{{modelValue}}
 
 </template>
 

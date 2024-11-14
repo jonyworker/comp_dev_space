@@ -1,6 +1,14 @@
 import Radio from "./Radio.vue";
 import { ref } from "vue";
-
+function formatDataSource(dataSource) {
+	return `[
+    ${dataSource.map(item => `{
+        label: '${item.label}',
+        value: '${item.value}',
+        name: '${item.name}'
+    }`).join(',\n    ')}
+  ]`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -8,18 +16,6 @@ export default {
 	component: Radio,
 	tags: ["autodocs"],
 	argTypes: {
-		label: {
-			description: "選項文字",
-			control: { type: "text" },
-		},
-		value: {
-			description: "選項值",
-			control: { type: "text" },
-		},
-		name: {
-			description: "用於分組的名稱",
-			control: { type: "text" },
-		},
 		themeColor: {
 			description: "主題顏色",
 			control: { type: "select" },
@@ -32,14 +28,38 @@ export default {
 				"error",
 				"info",
 			],
+			table: {
+				type: {
+					summary: "primary | secondary | tertiary | success | warning | error | info"
+				}
+			}
+		},
+		dataSource: {
+			description: "資料來源",
+			control: { type: "object" },
+			table: {
+				type: {
+					summary: "{ label: string; value: string; name: string; }[]",
+				}
+			}
+		},
+		initValue: {
+			description: "預設值",
+			control: { type: "text" },
+		},
+		direction: {
+			description: "排列方向",
+			control: { type: "select" },
+			options: ["row", "column"],
+			table: {
+				type: {
+					summary: "row | column"
+				}
+			}
 		},
 		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
-		},
-		modelValue: {
-			description: "與 Radio 綁定的值，表示當前選中的選項",
-			control: { type: "Object" },
 		},
 	},
 	parameters: {
@@ -51,43 +71,40 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
-
 
 //==== 預設項目 ====//
 export const RadioDefaultStory = {
 	name: "預設項目",
 	args: {
-		inputId: "meals01",
-		label: "帕南薩馬來椰漿飯",
-		value: "Pak Nasser's Nasi Lemak",
-		name: "Meals",
 		themeColor: 'primary',
+		dataSource: [
+			{ label: "選項 1", value: "option1", name: "group1" },
+			{ label: "選項 2", value: "option2", name: "group1" },
+			{ label: "選項 3", value: "option3", name: "group1" },
+		],
+		initValue: "option3",
+		direction: "row",
+		className: "",
 	},
 	render: (args) => ({
 		components: { Radio },
 		setup() {
-			const isRadioPicked = ref("");
+			const modelValue = ref("");
 			return {
 				args,
-				isRadioPicked,
+				modelValue,
 			};
 		},
 		template: `
-            <div style="display:flex; gap: 8px">
-                <Radio  
-                    :inputId="args.inputId"
-                    :label="args.label"
-                    :value="args.value"
-                    :name="args.name"
-                    :themeColor="args.themeColor"
-                    v-model="isRadioPicked">
-                </Radio>
-            </div>
-            <p> Meal You Have Reserved: {{ isRadioPicked }} </p>
+            <Radio  
+                :themeColor="args.themeColor"
+                :dataSource="args.dataSource"
+                :initValue="args.initValue"
+                :direction="args.direction"
+                :className="args.className"
+                v-model="modelValue">
+            </Radio>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -95,135 +112,109 @@ export const RadioDefaultStory = {
 		controls: {
 			expanded: true,
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			docs: {
-				source: {
-					transform: (src, storyContext) => {
-						const { args } = storyContext;
-						return [
-							'<Radio',
-							`  inputId="${args.inputId}"`,
-							`  label="${args.label}"`,
-							`  value="${args.value}"`,
-							`  name="${args.name}"`,
-							`  themeColor="${args.themeColor}"`,
-							'  v-model="isRadioPicked"',
-							'/>'
-						].join('\n').trim();
-					}
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<Radio',
+						`  themeColor="${args.themeColor}"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+					].join('\n').trim();
 				}
 			}
-		},
+		}
 	},
 };
 
-//==== 主題色彩 ====//
+// ==== 主題色彩 ==== //
 export const RadioColorDefault = {
 	name: "主題色彩",
 	args: {
-		data:[
-			{
-				inputId: "meals01",
-				name: "Meals",
-				value: "Pak Nasser's Nasi Lemak",
-				label: "帕南薩馬來椰漿飯",
-			},
-			{
-				inputId: "meals02",
-				name: "Meals",
-				value: "Hyderabadi Vegetable Biryani",
-				label: "海德拉巴素食印度香飯",
-			},
-			{
-				inputId: "meals03",
-				name: "Meals",
-				value: "Uncle Chin's Chicken Rice",
-				label: "秦叔叔海南雞飯",
-			},
+		// themeColor: '',
+		dataSource: [
+			{ label: "選項 1", value: "option1", name: "group1" },
+			{ label: "選項 2", value: "option2", name: "group1" },
+			{ label: "選項 3", value: "option3", name: "group1" },
 		],
-		themeColor: 'primary',
+		initValue: "option1",
+		direction: "row",
+		className: "",
 	},
 	render: (args) => ({
 		components: { Radio },
 		setup() {
-			const isRadioPicked = ref("Pak Nasser's Nasi Lemak",);
+			const modelValue = ref("");
 			return {
 				args,
-				isRadioPicked,
+				modelValue,
 			};
 		},
 		template: `
-			<div style="display:flex; flex-direction:column; gap: 12px">
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="primary"
-					        :isChecked="isRadioPicked"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="secondary"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="tertiary"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="success"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="warning"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="error"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<Radio  v-for="(item) in args.data"
-					        :inputId="item.inputId"
-					        :label="item.label"
-					        :value="item.value"
-					        :name="item.name"
-					        themeColor="info"
-					        v-model="isRadioPicked">
-					</Radio>
-				</div>
+			<div style="display:flex; flex-direction:column; gap: 16px">
+				<Radio
+					themeColor="primary"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="secondary"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="tertiary"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="success"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="warning"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="error"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="info"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
 			</div>
 		`,
 	}),
@@ -233,6 +224,72 @@ export const RadioColorDefault = {
 			expanded: true,
 			exclude: ['themeColor'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<Radio',
+						`  themeColor="primary"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="secondary"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="tertiary"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="success"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="warning"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="error"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="info"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
