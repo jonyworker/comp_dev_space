@@ -1,13 +1,4 @@
 import Accordion from "./Accordion.vue";
-function formatDataSource(dataSource) {
-	return `[
-    ${dataSource.map(item => `{
-        title: '${item.title}',
-        contents: ${JSON.stringify(item.contents)},
-    }`).join(',\n    ')}
-  ]`;
-}
-
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -159,8 +150,6 @@ export const AccordionGroup = {
 		}
 	},
 };
-
-
 
 
 
