@@ -130,12 +130,12 @@ export const TagDefaultStory = {
 					return [
 						'<Tag',
 						`  v-if="showTag"`,
-						`  :themeColor="${args.themeColor}"`,
-						`  :label="${args.label}"`,
-						`  :prefix="${args.prefix}"`,
+						`  themeColor="${args.themeColor}"`,
+						`  label="${args.label}"`,
+						`  prefix="${args.prefix}"`,
 						`  :closeable="${args.closeable}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
+						`  className="${args.className}"`,
 						`  @remove="() => showTag = false">`,
 						'</Tag>',
 					].join('\n').trim();
