@@ -7,11 +7,42 @@ export default {
 	component: Tag,
 	tags: ["autodocs"],
 	argTypes: {
+		themeColor: {
+			description: "分隔線主題顏色",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					primary: "primary",
+					secondary: "secondary",
+					tertiary: "tertiary",
+					success: "success",
+					warning: "warning",
+					error: "error",
+					info: "info",
+				}
+			},
+			options: [
+				"",
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			],
+			table: {
+				type: {
+					summary: 'primary | secondary | tertiary | success | warning | error | info'
+				}
+			}
+		},
 		label: {
 			description: "文字內容",
 			control: { type: "text" },
 		},
-		icon: {
+		prefix: {
 			description: '圖示',
 			control: { type: 'select' },
 			options: ['None', 'busy', 'finger-print', 'home', 'folder'],
@@ -19,28 +50,12 @@ export default {
 				None: null,
 			},
 		},
-		themeColor: {
-			description: '主題顏色',
-			table: {
-				defaultValue: { summary: 'primary' },
-			},
-			control: { type: 'select' },
-			options: [
-				'None',
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
-			],
-			mapping: {
-				None: null,
-			},
-		},
-		removable: {
+		closeable: {
 			description: "是否可關閉",
+			control: { type: "boolean" },
+		},
+		isDisabled: {
+			description: "是否禁用",
 			control: { type: "boolean" },
 		},
 		className: {
@@ -57,29 +72,98 @@ export default {
 			},
 		},
 	},
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
-
-
 //==== 預設項目 ====//
-export const TagRemove = {
+export const TagDefaultStory = {
 	name: "預設項目",
 	args: {
 		themeColor: 'primary',
-		removable: true,
+		label:'Social work',
+		prefix: 'folder',
+		closeable: true,
+		isDisabled: false,
+		className: ''
+	},
+	render: (args) => ({
+		components: { Tag },
+		setup() {
+			const showTag = ref(true); // 控制單一 Tag 是否顯示
+
+			const removeTag = () => {
+				showTag.value = false; // 將 showTag 設為 false 以隱藏 Tag
+			};
+			return {
+				args,
+				showTag,
+				removeTag
+			};
+		},
+		template: `
+			<div style="display:flex; gap: 8px; flex-wrap: wrap">
+				<Tag 
+					v-if="showTag"
+					 :themeColor="args.themeColor"
+					 :label="args.label"
+					 :prefix="args.prefix"
+					 :closeable="args.closeable"
+					 :isDisabled="args.isDisabled"
+					 :className="args.className"
+				     @remove="removeTag()"
+				>
+				</Tag>
+			</div>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'removable' ],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Tag',
+						`  v-if="showTag"`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :label="${args.label}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :closeable="${args.closeable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`  @remove="removeTag()"`,
+						'>',
+						'</Tag>',
+					].join('\n').trim();
+
+				}
+			}
+		}
+	},
+};
+
+//==== 多個項目 ====//
+export const TagMultiple = {
+	name: "多個項目",
+	args: {
+		themeColor: 'primary',
+		// label:'',
+		// prefix: '',
+		closeable: true,
+		isDisabled: false,
 		className: ''
 	},
 	render: (args) => ({
 		components: { Tag },
 		setup() {
 			const tagsData = ref([
-				{ id: 1, label: 'Photography', iconName: '' },
-				{ id: 2, label: 'Cooking', iconName: 'home' },
-				{ id: 3, label: 'Reading', iconName: '' },
-				{ id: 4, label: 'Social work', iconName: 'folder' },
-				{ id: 5, label: 'Arts and crafts', iconName: '' },
-				{ id: 6, label: 'Dancing', iconName: '' },
+				{ id: 1, label: 'Photography', prefix: '' },
+				{ id: 2, label: 'Cooking', prefix: 'home' },
+				{ id: 3, label: 'Reading', prefix: '' },
+				{ id: 4, label: 'Social work', prefix: 'folder' },
+				{ id: 5, label: 'Arts and crafts', prefix: '' },
+				{ id: 6, label: 'Dancing', prefix: '' },
 			]);
 			const removeTag = (id) => {
 				tagsData.value = tagsData.value.filter(tag => tag.id !== id);
@@ -94,12 +178,14 @@ export const TagRemove = {
 			<div style="display:flex; gap: 8px; flex-wrap: wrap">
 				<Tag v-for="tag in tagsData"
 				     :key="tag.id"
-				     :label="tag.label"
-				     :icon="tag.iconName"
-				     :removable="args.removable"
-				     :themeColor="args.themeColor"
+					 :themeColor="args.themeColor"
+					 :label="tag.label"
+					 :prefix="tag.prefix"
+					 :closeable="args.closeable"
+					 :isDisabled="args.isDisabled"
+					 :className="args.className"
 				     @remove="removeTag(tag.id)"
-				     :className="args.className">
+				>
 				</Tag>
 			</div>
         `,
