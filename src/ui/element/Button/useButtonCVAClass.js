@@ -154,7 +154,7 @@ export function useButtonCVAClass(props) {
             // 設定 variants 名稱接收 props 的值
             variant: props.variant,
             size: props.size,
-            isDisabledd: props.isDisabledd,
+            isDisabled: props.isDisabled,
             themeColor: props.themeColor,
             width: props.width,
         });
