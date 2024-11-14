@@ -2,18 +2,22 @@
 import { ref, watch } from "vue";
 
 const props = defineProps({
-	datasource: {
+	dataSource: {
 		type: Array,
 		default: () => []
+	},
+	className: {
+		type: String,
+		default: "",
 	},
 })
 
 const accordionItems = ref([
-	...props.datasource
+	...props.dataSource
 ]);
 
 
-watch(() => props.datasource, (newValue) => {
+watch(() => props.dataSource, (newValue) => {
 	accordionItems.value = newValue.map(item => ({
 		...item,
 		expanded: false // 確保每個項目都有 expanded 屬性
@@ -27,7 +31,10 @@ const accordionToggle = (index) => {
 </script>
 
 <template>
-	<div class="accordion__container">
+	<div :class="{
+			'accordion__container': true,
+			[props.className]: !!props.className
+		}">
 		<ul aria-label="Accordion" class="accordion__list">
 			<li v-for="(item, index) in accordionItems" :key="index" class="accordion__item" @click="accordionToggle(index)">
 				<button

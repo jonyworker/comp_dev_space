@@ -1,4 +1,13 @@
 import Accordion from "./Accordion.vue";
+function formatDataSource(dataSource) {
+	return `[
+    ${dataSource.map(item => `{
+        title: '${item.title}',
+        contents: ${JSON.stringify(item.contents)},
+    }`).join(',\n    ')}
+  ]`;
+}
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -6,9 +15,18 @@ export default {
 	component: Accordion,
 	tags: ["autodocs"],
 	argTypes: {
-		datasource: {
-			description: "Accordion 對應的資料陣列",
+		dataSource: {
+			description: "資料來源",
 			control: { type: "object" },
+			table: {
+				type: {
+					summary: "{ title: string; content: string[]; }[]",
+				}
+			}
+		},
+		className: {
+			description: '客製化樣式',
+			control: { type: 'text' },
 		},
 	},
 	parameters: {
@@ -28,7 +46,7 @@ export default {
 export const AccordionDefault = {
 	name: "預設項目",
 	args: {
-		accordionData: [
+		dataSource: [
 			{
 				title: "這個產品跟我的設備能兼容嗎？",
 				contents: [
@@ -36,7 +54,8 @@ export const AccordionDefault = {
 					"例如，如果你是用舊款設備，建議查看一下產品手冊，確保一切正常！"
 				],
 			},
-		]
+		],
+		className: ""
 	},
 	render: (args) => ({
 		components: { Accordion },
@@ -47,7 +66,8 @@ export const AccordionDefault = {
 		},
 		template: `
             <Accordion
-                :datasource="args.accordionData"
+                :dataSource="args.dataSource"
+                :className="args.className"
             ></Accordion>
         `,
 	}),
@@ -56,6 +76,21 @@ export const AccordionDefault = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const formattedDataSource = JSON.stringify(args.dataSource, null, 2).replace(/'/g, "\\'");
+					return [
+						'<Accordion',
+						`  :dataSource='${formattedDataSource}'`,
+						`  :className="${args.className}"`,
+						'></Accordion>',
+					].join('\n').trim();
+				},
+			}
+
+		}
 	},
 };
 
@@ -63,7 +98,7 @@ export const AccordionDefault = {
 export const AccordionGroup = {
 	name: "群組樣式",
 	args: {
-		accordionData: [
+		dataSource: [
 			{
 				title: "怎麼保養我的產品？",
 				contents: [
@@ -85,7 +120,8 @@ export const AccordionGroup = {
 					"例如，如果你是用舊款設備，建議查看一下產品手冊，確保一切正常！"
 				],
 			},
-		]
+		],
+		className: ""
 	},
 	render: (args) => ({
 		components: { Accordion },
@@ -95,9 +131,10 @@ export const AccordionGroup = {
 			};
 		},
 		template: `
-            <Accordion
-                :datasource="args.accordionData"
-            ></Accordion>
+			<Accordion
+				:dataSource="args.dataSource"
+				:className="args.className"
+			></Accordion>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -105,6 +142,21 @@ export const AccordionGroup = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const formattedDataSource = JSON.stringify(args.dataSource, null, 2).replace(/'/g, "\\'");
+					return [
+						'<Accordion',
+						`  :dataSource='${formattedDataSource}'`,
+						`  :className="${args.className}"`,
+						'></Accordion>',
+					].join('\n').trim();
+				},
+			}
+
+		}
 	},
 };
 
@@ -121,7 +173,7 @@ export const AccordionGroup = {
 // 	component: Accordion,
 // 	tags: ["autodocs"],
 // 	argTypes: {
-// 		datasource: {
+// 		dataSource: {
 // 			description: "Accordion 對應的資料陣列",
 // 			control: { type: "object" },
 // 		},
@@ -162,7 +214,7 @@ export const AccordionGroup = {
 // 		},
 // 		template: `
 //             <Accordion
-//                 :datasource="args.accordionData"
+//                 :dataSource="args.accordionData"
 //             ></Accordion>
 //         `,
 // 	}),
@@ -211,7 +263,7 @@ export const AccordionGroup = {
 // 		},
 // 		template: `
 //             <Accordion
-//                 :datasource="args.accordionData"
+//                 :dataSource="args.accordionData"
 //             ></Accordion>
 //         `,
 // 	}),
