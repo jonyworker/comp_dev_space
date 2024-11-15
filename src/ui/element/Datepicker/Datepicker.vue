@@ -9,19 +9,19 @@ const props = defineProps({
 		type: String,
 		default: "請輸入日期",
 	},
-	placeholder:{
+	placeholder: {
 		type: String,
 		default: "請輸入日期",
 	},
 	size: {
 		type: String,
 		default: "medium",
-		validator: (value) => ['small', 'medium', 'large'].includes(value),
+		validator: (value) => ["small", "medium", "large"].includes(value),
 	},
 	language: {
 		type: String,
 		default: "zh-TW",
-		validator: (value) => ['en', 'zh-TW'].includes(value),
+		validator: (value) => ["en", "zh-TW"].includes(value),
 	},
 	range: {
 		type: Boolean,
@@ -31,7 +31,7 @@ const props = defineProps({
 		type: String,
 		default: "開始日期",
 	},
-	rangeStartPlaceholder:{
+	rangeStartPlaceholder: {
 		type: String,
 		default: "請輸入開始日期",
 	},
@@ -39,14 +39,19 @@ const props = defineProps({
 		type: String,
 		default: "結束日期",
 	},
-	rangeEndPlaceholder:{
+	rangeEndPlaceholder: {
 		type: String,
 		default: "請輸入結束日期",
+	},
+	className: {
+		type: String,
+		default: "",
 	},
 });
 
 const datepickerRef = useTemplateRef("datepicker");
 const dateRangeRef = useTemplateRef("dateRange");
+const calendarWrapperRef = useTemplateRef("calendarWrapper");
 
 // 掛載時載入
 onMounted(() => {
@@ -54,11 +59,13 @@ onMounted(() => {
 		const dateRangeInstance = new DateRangePicker(dateRangeRef.value, {
 			format: "yyyy/mm/dd",
 			language: props.language,
+			container: calendarWrapperRef.value,
 		});
 	} else {
 		const datepickerInstance = new Datepicker(datepickerRef.value, {
-			format: "yyyy/mm/dd", // Example format
+			format: "yyyy/mm/dd",
 			language: props.language,
+			container: calendarWrapperRef.value,
 		});
 	}
 });
@@ -66,15 +73,7 @@ onMounted(() => {
 // 中文日曆設定
 (function () {
 	Datepicker.locales["zh-TW"] = {
-		days: [
-			"星期日",
-			"星期一",
-			"星期二",
-			"星期三",
-			"星期四",
-			"星期五",
-			"星期六",
-		],
+		days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
 		daysShort: ["日", "一", "二", "三", "四", "五", "六"],
 		daysMin: ["日", "一", "二", "三", "四", "五", "六"],
 		months: [
@@ -115,26 +114,30 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="input-container">
-
+	<div
+		:class="[
+			'input-container',
+			...props.className.split(' ').filter(c => c), // 分割並過濾空白
+		]"
+	>
 		<template v-if="range">
 			<div ref="dateRange">
-				<div style="display:flex; gap:8px">
+				<div style="display: flex; gap: 8px">
 					<!-- 時間區間 - 開始 -->
 					<div style="width: 100%;">
-						<label v-if="props.rangeStartLabel" class="input-label">{{props.rangeStartLabel}}</label>
-						<div :class="['input-group', `component-${size}`, ]">
-							<Icon :class="`icon-${size}`" name="calendar" ></Icon>
-							<input type="text" name="start" :placeholder="props.rangeStartPlaceholder" />
+						<label v-if="props.rangeStartLabel" class="input-label">{{ props.rangeStartLabel }}</label>
+						<div :class="['input-group', `component-${size}`]">
+							<Icon :class="`icon-${size}`" name="calendar"/>
+							<input type="text" name="start" :placeholder="props.rangeStartPlaceholder"/>
 						</div>
 					</div>
 
 					<!-- 時間區間 - 結束 -->
-					<div  style="width: 100%;">
-						<label v-if="props.rangeEndLabel" class="input-label">{{props.rangeEndLabel}}</label>
-						<div :class="['input-group', `component-${size}`, ]">
-							<Icon :class="`icon-${size}`" name="calendar" ></Icon>
-							<input type="text" name="end" :placeholder="props.rangeEndPlaceholder" />
+					<div style="width: 100%;">
+						<label v-if="props.rangeEndLabel" class="input-label">{{ props.rangeEndLabel }}</label>
+						<div :class="['input-group', `component-${size}`]">
+							<Icon :class="`icon-${size}`" name="calendar"/>
+							<input type="text" name="end" :placeholder="props.rangeEndPlaceholder"/>
 						</div>
 					</div>
 				</div>
@@ -142,15 +145,19 @@ onMounted(() => {
 		</template>
 
 		<template v-else>
-			<label v-if="props.label" class="input-label">{{props.label}}</label>
-			<div :class="['input-group', `component-${size}`, ]">
-				<Icon :class="`icon-${size}`" name="calendar" ></Icon>
+			<label v-if="props.label" class="input-label">{{ props.label }}</label>
+			<div :class="['input-group', `component-${size}`]">
+				<Icon :class="`icon-${size}`" name="calendar"/>
 				<input type="text" ref="datepicker" :placeholder="props.placeholder"/>
 			</div>
 		</template>
+
+		<!-- Teleport 將日曆渲染到 body -->
+		<teleport to="body">
+			<div ref="calendarWrapper" class="calendar-wrapper"></div>
+		</teleport>
 	</div>
 </template>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
 </style>

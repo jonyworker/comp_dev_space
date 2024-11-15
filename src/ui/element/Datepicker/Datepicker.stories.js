@@ -17,12 +17,12 @@ export default {
 		size: {
 			description: "選擇 Datepicker 的大小",
 			control: { type: "select" },
-			options: ['small', 'medium', 'large'],
+			options: ["small", "medium", "large"],
 		},
 		language: {
 			description: "設定 Datepicker 月曆的語言 (需重整頁面)",
 			control: { type: "select" },
-			options: ['en', 'zh-TW'],
+			options: ["en", "zh-TW"],
 		},
 		range: {
 			description: "啟用範圍選擇功能，允許選擇起始日期和結束日期",
@@ -44,7 +44,10 @@ export default {
 			description: "範圍選擇的結束日期輸入提示文字",
 			control: { type: "text" },
 		},
-
+		className: {
+			description: "客製化樣式",
+			default: "",
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -55,10 +58,8 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
+
 
 //==== 預設項目 ====//
 export const DatepickerSingle = {
@@ -68,6 +69,7 @@ export const DatepickerSingle = {
 		placeholder: "請輸入日期",
 		size: "large",
 		language:"zh-TW",
+		className:""
 	},
 	render: (args) => ({
 		components: { Datepicker },
@@ -82,21 +84,38 @@ export const DatepickerSingle = {
 				:placeholder="args.placeholder"
 				:size="args.size"
 				:language="args.language"
+				:className="args.className"
 			></Datepicker>
-        `,
+		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			exclude: ['range', 'rangeStartLabel', 'rangeStartPlaceholder', 'rangeEndLabel', 'rangeEndPlaceholder' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Datepicker',
+						`  label="${args.label}"`,
+						`  placeholder="${args.placeholder}"`,
+						`  size="${args.size}"`,
+						`  language="${args.language}"`,
+						`  className="${args.className}"`,
+						'></Datepicker>',
+					].join('\n').trim();
+
+				}
+			}
+		}
 	},
 };
 
 //==== 範圍樣式 ====//
 export const DatepickerRange = {
 	name: "範圍樣式",
-
 	args: {
 		rangeStartLabel: '入住日期',
 		rangeStartPlaceholder: '請輸入入住時間',
@@ -104,6 +123,7 @@ export const DatepickerRange = {
 		rangeEndPlaceholder: '請輸入退房時間',
 		size: "large",
 		language:"zh-TW",
+		className:""
 	},
 	render: (args) => ({
 		components: { Datepicker },
@@ -121,6 +141,7 @@ export const DatepickerRange = {
 				:rangeEndPlaceholder="args.rangeEndPlaceholder"
 				:size="args.size"
 				:language="args.language"
+				:className="args.className"
 			></Datepicker>
 		`,
 	}),
@@ -130,6 +151,25 @@ export const DatepickerRange = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: ['label', 'placeholder'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Datepicker',
+						`  :range="true"`,
+						`  rangeStartLabel="${args.rangeStartLabel}"`,
+						`  rangeStartPlaceholder="${args.rangeStartPlaceholder}"`,
+						`  rangeEndLabel="${args.rangeEndLabel}"`,
+						`  rangeEndPlaceholder="${args.rangeEndPlaceholder}"`,
+						`  size="${args.size}"`,
+						`  language="${args.language}"`,
+						`  className="${args.className}"`,
+						'></Datepicker>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -138,6 +178,7 @@ export const DatepickerLanguage = {
 	name: "日曆語言",
 	args: {
 		size: "large",
+		className:""
 	},
 	render: (args) => ({
 		components: { Datepicker },
@@ -147,12 +188,13 @@ export const DatepickerLanguage = {
 			};
 		},
 		template: `
-			<div style="display:flex; gap: 8px;">
+			<div style="display:flex; flex-direction: column; gap: 24px;">
 				<Datepicker
 					label="Pickup Date(English)"
 					placeholder="Select Pickup Date"
 					:size="args.size"
 					language="en"
+					:className="args.className"
 				></Datepicker>
 
 				<Datepicker
@@ -160,6 +202,7 @@ export const DatepickerLanguage = {
 					placeholder="選擇取貨日期"
 					:size="args.size"
 					language="zh-TW"
+					:className="args.className"
 				></Datepicker>
 			</div>
 		`,
@@ -167,8 +210,31 @@ export const DatepickerLanguage = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['size'],
+			include: ['size','className'],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Datepicker',
+						`  label="Pickup Date(English)"`,
+						`  placeholder="Select Pickup Date"`,
+						`  size="${args.size}"`,
+						`  language="en"`,
+						`  className="${args.className}"`,
+						'></Datepicker>',
+						'<Datepicker',
+						`  label="取貨時間(繁體中文)"`,
+						`  placeholder="選擇取貨日期"`,
+						`  size="${args.size}"`,
+						`  language="zh-TW"`,
+						`  className="${args.className}"`,
+						'></Datepicker>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
