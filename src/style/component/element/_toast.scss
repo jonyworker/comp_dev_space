@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    max-width: 27rem;
+    width:min(23rem, 27rem);
 }
 
 .toast {
@@ -49,6 +49,9 @@
     .description {
         font-size: 14px;
         color: #4b5563;
+        word-wrap: break-word; // 長字元換行
+        word-break: break-word; // 支援非空白符號的換行
+        white-space: normal; // 確保正常換行
     }
 }
 @each $theme in $themes {

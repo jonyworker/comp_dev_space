@@ -32,6 +32,21 @@ export default {
 						step: 500  },
 		},
 		show: { table: { disable: true } },
+		icon: {
+			description: "icon",
+			control: {
+				type: "select",
+				labels: {
+					"": "None",
+					home: "home",
+					folder: "folder",
+					academy: "academy",
+					"arrow-forward": "arrow-forward",
+					"finger-print": "finger-print",
+				}
+			},
+			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -54,7 +69,8 @@ export const ToastType = {
 		title: "Toast Message",
 		message: "Hello, world! This is a toast message.",
 		severity: "success",
-		show: true
+		show: true,
+		icon: "",
 	},
 	render: (args) => ({
 		components: { Toast, Icon },
@@ -136,6 +152,55 @@ export const ToastType = {
 		controls: {
 			include: ['title', 'message' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="success"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="error"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="warning"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+						'<Toast',
+						`  v-for="toast in toasts"`,
+						`  :key="toast.id"`,
+						`  title="${args.title}"`,
+						`  message="${args.message}"`,
+						`  severity="info"`,
+						`  :duration="${args.duration}"`,
+						`  icon=""`,
+						`  @close="remove(toast.id)"`,
+						'></Toast>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
@@ -147,6 +212,7 @@ export const ToastDefaultNew = {
 		message: "Hello, world! This is a toast message.",
 		severity: "success",
 		duration: 1100,
+		icon: "",
 	},
 	render: (args) => ({
 		components: { Toast, Button },
@@ -174,11 +240,14 @@ export const ToastDefaultNew = {
 				:message="toast.message"
 				:severity="toast.severity"
 				:duration="args.duration"
+				:icon="args.icon"
 				@close="remove(toast.id)"
 			></Toast>
 
 			<div style="display:flex; flex-direction: column; gap: 16px; width: 200px">
-				<Button width="full" themeColor="primary" variant="contained" @click="showToast">Toast Trigger</Button>
+				<Button width="full" themeColor="primary" variant="contained" @click="showToast">
+					Toast Trigger
+				</Button>
 			</div>
         `,
 	}),
@@ -188,6 +257,50 @@ export const ToastDefaultNew = {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: ['close']
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return `
+						<template>
+							<Toast
+								v-for="toast in toasts"
+								:key="toast.id"
+								:title="${args.title}"
+								:message="${args.message}"
+								:severity="${args.severity}"
+								:duration="${args.duration}"
+								:icon="${args.icon}"
+								@close="remove(toast.id)"
+							></Toast>
+						
+							<div style="display: flex; flex-direction: column; gap: 16px; width: 200px">
+								<Button width="full" themeColor="primary" variant="contained" @click="showToast">
+									Toast Trigger
+								</Button>
+							</div>
+						</template>
+						
+						<script setup>
+						import { useToast } from "@/path/to/useToast";
+						import Toast from "@/path/to/Toast";
+						import Button from "@/path/to/Button";
+						
+						const { add, toasts, remove } = useToast();
+						
+						const showToast = () => {
+							add({
+								title: "${args.title}",
+								message: "${args.message}",
+								severity: "${args.severity}",
+							});
+						};
+						</script>
+					`.trim();
+					// options: ['success', 'warning', 'error','info'],
+				}
+			}
+		}
 	},
 };
 
