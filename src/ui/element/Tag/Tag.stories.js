@@ -56,7 +56,7 @@ export default {
 			},
 			options: ["None", "busy", "finger-print", "home", "folder"],
 		},
-		closeable: {
+		closable: {
 			description: "是否可關閉",
 			control: { type: "boolean" },
 		},
@@ -68,8 +68,8 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		remove: {
-			description: "刪除 emit",
+		onClose: {
+			description: "關閉事件",
 		}
 	},
 	parameters: {
@@ -90,7 +90,7 @@ export const TagDefaultStory = {
 		themeColor: 'primary',
 		label:'Social Work',
 		prefix: 'folder',
-		closeable: false,
+		closable: false,
 		isDisabled: false,
 		className: ''
 	},
@@ -110,10 +110,10 @@ export const TagDefaultStory = {
 					 :themeColor="args.themeColor"
 					 :label="args.label"
 					 :prefix="args.prefix"
-					 :closeable="args.closeable"
+					 :closable="args.closable"
 					 :isDisabled="args.isDisabled"
 					 :className="args.className"
-				     @remove="() => showTag = false">
+				     @onClose="() => showTag = false">
 				</Tag>
 			</div>
         `,
@@ -133,10 +133,10 @@ export const TagDefaultStory = {
 						`  themeColor="${args.themeColor}"`,
 						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
-						`  :closeable="${args.closeable}"`,
+						`  :closable="${args.closable}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
-						`  @remove="() => showTag = false">`,
+						`  @onClose="() => showTag = false">`,
 						'</Tag>',
 					].join('\n').trim();
 				}
@@ -152,7 +152,7 @@ export const TagDefaultStory = {
 // 		themeColor: 'primary',
 // 		// label:'',
 // 		// prefix: '',
-// 		closeable: true,
+// 		closable: true,
 // 		isDisabled: false,
 // 		className: ''
 // 	},
@@ -183,10 +183,10 @@ export const TagDefaultStory = {
 // 					 :themeColor="args.themeColor"
 // 					 :label="tag.label"
 // 					 :prefix="tag.prefix"
-// 					 :closeable="args.closeable"
+// 					 :closable="args.closable"
 // 					 :isDisabled="args.isDisabled"
 // 					 :className="args.className"
-// 				     @remove="removeTag(tag.id)"
+// 				     @onClose="removeTag(tag.id)"
 // 				>
 // 				</Tag>
 // 			</div>
@@ -398,7 +398,7 @@ export const TagDefaultStory = {
 // 				     :icon="tag.iconName"
 // 				     :removable="args.removable"
 // 				     :themeColor="args.themeColor"
-// 				     @remove="removeTag(tag.id)"></Tag>
+// 				     @onClose="removeTag(tag.id)"></Tag>
 // 			</div>
 //         `,
 // 	}),

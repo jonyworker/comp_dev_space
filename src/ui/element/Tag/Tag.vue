@@ -1,7 +1,7 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue";
 
-const emits = defineEmits(['remove']);
+const emits = defineEmits(['onClose']);
 // 定義 Props
 const props = defineProps({
     themeColor: {
@@ -23,7 +23,7 @@ const props = defineProps({
     prefix: {
         type: [String, null],
     },
-    closeable: {
+    closable: {
         type: Boolean,
         default: false,
     },
@@ -39,7 +39,7 @@ const props = defineProps({
 
 
 const closeTag = () => {
-	emits('remove');
+	emits('onClose');
 };
 </script>
 
@@ -58,7 +58,7 @@ const closeTag = () => {
 	    <span class="tag__label">{{ props.label }}</span>
 
         <Icon
-            v-if="props.closeable"
+            v-if="props.closable"
             name="close"
             size="14"
             @click="closeTag()"
