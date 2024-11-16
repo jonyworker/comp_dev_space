@@ -25,23 +25,23 @@ const props = defineProps({
 	},
 	min: {
 		type: Number,
-		default: -100,
+		default: 0,
 	},
 	max: {
 		type: Number,
 		default: 100,
 	},
 	step: {
-		type: [Number, String],
+		type: Number,
 		default: 1,
 	},
 	initValue: {
 		type: Number,
-		default: 0,
+		required: true,
 	},
-	unit: {
+	label: {
 		type: String,
-		default: "%",
+		default: "",
 	},
 	prefix: {
 		type: String,
@@ -113,7 +113,7 @@ watch(() => props.initValue, (newValue) => {
 			:min="props.min"
 			:max="props.max"
 			:step="props.step"
-			:unit="props.unit"
+			:label="props.label"
 			:initValue="props.initValue"
 			:isDisabled="props.isDisabled"
 			v-model="computedValue"

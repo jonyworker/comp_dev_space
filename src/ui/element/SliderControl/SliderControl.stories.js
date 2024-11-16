@@ -41,7 +41,7 @@ export default {
 			description: '初始值',
 			control: { type: 'number' },
 		},
-		unit: {
+		label: {
 			description: '單位',
 			control: { type: 'text' },
 		},
@@ -102,7 +102,7 @@ export const SliderButton = {
 		max: 100,
 		step: 1,
 		initValue: 0,
-		unit: "℃",
+		label: "℃",
 		prefix: "decrease",
 		suffix: "increase",
 		isDisabled: false,
@@ -124,7 +124,7 @@ export const SliderButton = {
 				:max="args.max"
 				:step="args.step"
 				:initValue="args.initValue"
-				:unit="args.unit"
+				:label="args.label"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
 				:isDisabled="args.isDisabled"
@@ -150,7 +150,7 @@ export const SliderButton = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="${args.initValue}"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -173,7 +173,7 @@ export const SliderButtonColors = {
 		min: -100,
 		max: 100,
 		step: 1,
-		unit: "℃",
+		label: "℃",
 		prefix: "decrease",
 		suffix: "increase",
 		isDisabled: false,
@@ -197,7 +197,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="40"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -210,7 +210,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="50"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -223,7 +223,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="60"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -236,7 +236,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="70"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -249,7 +249,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="80"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -262,7 +262,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="90"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -275,7 +275,7 @@ export const SliderButtonColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="100"
-					:unit="args.unit"
+					:label="args.label"
 					:className="args.className"
 					v-model="sliderValue"
 				></SliderControl>
@@ -299,7 +299,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="40"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -312,7 +312,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="50"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -325,7 +325,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="60"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -338,7 +338,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="70"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -351,7 +351,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="80"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -364,7 +364,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="90"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -377,7 +377,7 @@ export const SliderButtonColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="100"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
@@ -444,7 +444,7 @@ export const SliderButtonColors = {
 // 			description: '初始值',
 // 			control: { type: 'number' },
 // 		},
-// 		unit: {
+// 		label: {
 // 			description: '單位',
 // 			control: { type: 'text' },
 // 		},
@@ -482,7 +482,7 @@ export const SliderButtonColors = {
 // 		max: 100,
 // 		step: 1,
 // 		initValue: 19,
-// 		unit: "℃",
+// 		label: "℃",
 // 		isDisabled: false,
 // 		prefix: "decrease",
 // 		suffix: "increase",
@@ -503,7 +503,7 @@ export const SliderButtonColors = {
 // 				:max="args.max"
 // 				:step="args.step"
 // 				:initValue="args.initValue"
-// 				:unit="args.unit"
+// 				:label="args.label"
 // 				:isDisabled="args.isDisabled"
 // 				:prefix="args.prefix"
 // 				:suffix="args.suffix"
