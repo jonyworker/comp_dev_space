@@ -15,11 +15,11 @@ const props = defineProps({
 	},
 	limit: {
 		type: Number,
-		default: 100,
+		default: 500,
 	},
 	initValue: {
 		type: String,
-		default: "",
+		required: true,
 	},
 	hint: {
 		type: Object,

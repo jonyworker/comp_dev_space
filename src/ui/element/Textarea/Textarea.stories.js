@@ -67,11 +67,11 @@ export default {
 export const TextareaDefault = {
     name: "預設項目",
     args: {
-        label: "訂單備註",
-        placeholder: "請輸入此筆訂單備註",
-        limit: 50,
-        initValue: "Hello World",
-        hint: { error: "", description: "多行文字輸入框提示訊息" },
+        label: "Label",
+        placeholder: "Description...",
+        limit: null,
+        initValue: "",
+        hint: { error: "", description: "Prompt message" },
         isDisabled: false,
         className: ""
     },
@@ -130,8 +130,8 @@ export const TextareaDefault = {
 export const TextareaLabelDefault = {
     name: "顯示標籤",
     args: {
-        label: "訂單備註",
-        placeholder: "請輸入此筆訂單備註",
+        label: "Label",
+        placeholder: "Description...",
         limit: 50,
         initValue: "",
         hint: { error: '', description: '' },
@@ -193,10 +193,10 @@ export const TextareaLabelDefault = {
 export const TextareaLimit = {
     name: "字數限制",
     args: {
-        label: "訂單備註",
-        placeholder: "請輸入此筆訂單備註",
+        label: "Label",
+        placeholder: "Description...",
         limit: 50,
-        initValue: "Hello World",
+        initValue: "",
         hint: { error: '', description: '' },
         isDisabled: false,
         className: ''
