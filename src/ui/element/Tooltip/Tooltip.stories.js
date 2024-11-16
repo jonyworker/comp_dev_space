@@ -65,7 +65,7 @@ export default {
 export const DefaultTooltip = {
 	name: "預設項目",
 	args: {
-		content:'Hi, Hi~ Nice to meet you!',
+		content:'good day',
 		placement: "bottom-left",
 		showArrow: true,
 		className: '',
