@@ -25,8 +25,13 @@ export default {
 				}
 			}
 		},
+		size: {
+			description: "Avatar 尺寸",
+			control: { type: "select" },
+			options: ["xsmall", "small", "medium", "large"],
+		},
 		limit: {
-			description: "顯示數量上限",
+			description: "展開數量上限",
 			control: { type: "number",
 				min:0,
 				max:5,
@@ -58,22 +63,27 @@ export const MultiAvatar = {
 		dataSource:[
 			{
 				userName: "Eason",
-				src: "https://picsum.photos/320/240/?random=1",
+				src: "",
 			},
 			{
 				userName: "KevinYang",
-				src: "https://picsum.photos/320/240/?random=10",
+				src: "",
 			},
 			{
 				userName: "AmosLee",
-				src: "https://picsum.photos/320/240/?random=100",
+				src: "",
 			},
 			{
 				userName: "JohnWu",
-				src: "https://picsum.photos/320/240/?random=1000",
+				src: "",
+			},
+			{
+				userName: "PeterLiao",
+				src: "",
 			}
 		],
-		limit: 3,
+		size: "large",
+		limit: 2,
 		className: ""
 	},
 	render: (args) => ({
@@ -86,6 +96,7 @@ export const MultiAvatar = {
 		template: `
 			<AvatarGroup 
 				:dataSource="args.dataSource"
+				:size="args.size"
 				:limit="args.limit"
 				:className="args.className"
 			></AvatarGroup>
@@ -105,6 +116,7 @@ export const MultiAvatar = {
 					return [
 						'<AvatarGroup',
 						`  :dataSource='${dataSourceString}'`,
+						`  size="${args.size}"`,
 						`  :limit="${args.limit}"`,
 						`  class="${args.className}"`,
 						'></AvatarGroup>'

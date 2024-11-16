@@ -7,7 +7,13 @@ import List from "@/ui/element/List/List.vue";
 const props = defineProps({
 	dataSource: {
 		type: Array,
-		default: () => [],
+		required: true,
+	},
+	size: {
+		type: String,
+		default: "medium",
+		validator: (value) =>
+			["xsmall", "small", "medium", "large"].includes(value),
 	},
 	limit: {
 		type: Number,
@@ -90,9 +96,10 @@ onBeforeUnmount(() => {
 		<Avatar
 			v-for="(avatar, index) in currList"
 			:key="index"
+			:size="props.size"
 			:src="avatar.src"
 			alt="alt text"
-			:username="avatar.userName"
+			:userName="avatar.userName"
 		></Avatar>
 
 		<div
