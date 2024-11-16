@@ -18,9 +18,9 @@ const props = defineProps({
 			].includes(value),
 	},
 	level: {
-		type: String,
-		default: "0",
-		validator: (value) => ["0", "1", "2", "3", "4", "5", "6"].includes(value),
+		type: Number,
+		default: 0,
+		validator: (value) => [ 0, 1, 2, 3, 4, 5, 6 ].includes(value),
 	},
 	className: {
 		type: String,
