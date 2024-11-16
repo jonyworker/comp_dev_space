@@ -4,8 +4,7 @@ function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
         label: '${item.label}',
-        value: '${item.value}',
-        name: '${item.name}'
+        value: '${item.value}'
     }`).join(',\n    ')}
   ]`;
 }
@@ -39,7 +38,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ label: string; value: string; name: string; }[]",
+					summary: "{ label: string; value: string; }[]",
 				}
 			}
 		},
@@ -79,11 +78,11 @@ export const RadioDefaultStory = {
 	args: {
 		themeColor: 'primary',
 		dataSource: [
-			{ label: "選項 1", value: "option1", name: "group1" },
-			{ label: "選項 2", value: "option2", name: "group1" },
-			{ label: "選項 3", value: "option3", name: "group1" },
+			{ label: "Option1", value: "option1" },
+			{ label: "Option2", value: "option2" },
+			{ label: "Option3", value: "option3" },
 		],
-		initValue: "option3",
+		initValue: "option1",
 		direction: "row",
 		className: "",
 	},
@@ -140,9 +139,9 @@ export const RadioColorDefault = {
 	args: {
 		// themeColor: '',
 		dataSource: [
-			{ label: "選項 1", value: "option1", name: "group1" },
-			{ label: "選項 2", value: "option2", name: "group1" },
-			{ label: "選項 3", value: "option3", name: "group1" },
+			{ label: "Option1", value: "option1" },
+			{ label: "Option2", value: "option2" },
+			{ label: "Option3", value: "option3" },
 		],
 		initValue: "option1",
 		direction: "row",

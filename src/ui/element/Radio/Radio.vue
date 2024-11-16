@@ -22,11 +22,11 @@ const props = defineProps({
 	},
 	dataSource: {
 		type: Array,
-		default: () => [],
+		required: true,
 	},
 	initValue: {
 		type: String,
-		default: "",
+		required: true,
 	},
 	direction: {
 		type: String,
