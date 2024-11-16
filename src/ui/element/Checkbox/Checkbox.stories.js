@@ -4,9 +4,7 @@ function formatDataSource(dataSource) {
     return `[
     ${dataSource.map(item => `{
         label: '${item.label}',
-           id: '${item.id}',
         value: '${item.value}',
-        name: '${item.name}'
     }`).join(',\n    ')}
   ]`;
 }
@@ -39,7 +37,7 @@ export default {
             control: { type: "object" },
             table: {
                 type: {
-                    summary: "{ label: string; id: string; value: string; name: string; }[]",
+                    summary: "{ label: string; value: string; }[]",
                 }
             }
         },
@@ -78,16 +76,15 @@ export default {
     },
 };
 
-
 //==== 預設項目 ====//
 export const CheckboxMultiStory = {
     name: "預設項目",
     args: {
         themeColor: "primary",
         dataSource: [
-            { label: "選項ㄧ", id: "option1", value: "option1", name: "group1" },
-            { label: "選項二", id: "option2", value: "option2", name: "group1" },
-            { label: "選項三", id: "option3", value: "option3", name: "group1" },
+            { label: "Option1", value: "option1" },
+            { label: "Option2", value: "option2" },
+            { label: "Option3", value: "option3" },
         ],
         initValue: ["option1", "option3"],
         direction: "row",
@@ -141,39 +138,39 @@ export const CheckboxColorStory = {
     name: "主題色彩",
     args: {
         datasourcePrimary: [
-            { label: "選項ㄧ", id: "option01", value: "option01", name: "primary" },
-            { label: "選項二", id: "option02", value: "option02", name: "primary" },
-            { label: "選項三", id: "option03", value: "option03", name: "primary" },
+            { label: "選項ㄧ", value: "option01" },
+            { label: "選項二", value: "option02" },
+            { label: "選項三", value: "option03" },
         ],
         datasourceSecondary: [
-            { label: "選項ㄧ", id: "option4", value: "option4", name: "secondary" },
-            { label: "選項二", id: "option5", value: "option5", name: "secondary" },
-            { label: "選項三", id: "option6", value: "option6", name: "secondary" },
+            { label: "選項ㄧ", value: "option4" },
+            { label: "選項二", value: "option5" },
+            { label: "選項三", value: "option6" },
         ],
         datasourceTertiary: [
-            { label: "選項ㄧ", id: "option7", value: "option7", name: "tertiary" },
-            { label: "選項二", id: "option8", value: "option8", name: "tertiary" },
-            { label: "選項三", id: "option9", value: "option9", name: "tertiary" },
+            { label: "選項ㄧ", value: "option7" },
+            { label: "選項二", value: "option8" },
+            { label: "選項三", value: "option9" },
         ],
         datasourceSuccess: [
-            { label: "選項ㄧ", id: "option10", value: "option10", name: "success" },
-            { label: "選項二", id: "option11", value: "option11", name: "success" },
-            { label: "選項三", id: "option12", value: "option12", name: "success" },
+            { label: "選項ㄧ", value: "option10" },
+            { label: "選項二", value: "option11" },
+            { label: "選項三", value: "option12" },
         ],
         datasourceWarning: [
-            { label: "選項ㄧ", id: "option13", value: "option13", name: "warning" },
-            { label: "選項二", id: "option14", value: "option14", name: "warning" },
-            { label: "選項三", id: "option15", value: "option15", name: "warning" },
+            { label: "選項ㄧ", value: "option13" },
+            { label: "選項二", value: "option14" },
+            { label: "選項三", value: "option15" },
         ],
         datasourceError: [
-            { label: "選項ㄧ", id: "option16", value: "option16", name: "error" },
-            { label: "選項二", id: "option17", value: "option17", name: "error" },
-            { label: "選項三", id: "option18", value: "option18", name: "error" },
+            { label: "選項ㄧ", value: "option16" },
+            { label: "選項二", value: "option17" },
+            { label: "選項三", value: "option18" },
         ],
         datasourceInfo: [
-            { label: "選項ㄧ", id: "option19", value: "option19", name: "info" },
-            { label: "選項二", id: "option20", value: "option20", name: "info" },
-            { label: "選項三", id: "option21", value: "option21", name: "info" },
+            { label: "選項ㄧ", value: "option19" },
+            { label: "選項二", value: "option20" },
+            { label: "選項三", value: "option21" },
         ],
         initValue: ["option01","option4","option7","option10","option13","option16","option19"],
         direction: "row",

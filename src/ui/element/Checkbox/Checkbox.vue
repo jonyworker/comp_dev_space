@@ -15,11 +15,11 @@ const props = defineProps({
 	},
 	dataSource: {
 		type: Object,
-		default: () => [],
+		required: true,
 	},
 	initValue: {
 		type: Object,
-		default: () => [],
+		required: true,
 	},
 	direction: {
 		type: String,
