@@ -8,7 +8,7 @@ export default {
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
-			description: "分隔線主題顏色",
+			description: "主題顏色",
 			control: {
 				type: "select",
 				labels: {
@@ -39,7 +39,7 @@ export default {
 			}
 		},
 		label: {
-			description: "文字內容",
+			description: "標籤文字",
 			control: { type: "text" },
 		},
 		prefix: {
@@ -88,9 +88,9 @@ export const TagDefaultStory = {
 	name: "預設項目",
 	args: {
 		themeColor: 'primary',
-		label:'Social Work',
-		prefix: 'folder',
-		closable: false,
+		label:'Tag',
+		prefix: '',
+		closable: true,
 		isDisabled: false,
 		className: ''
 	},

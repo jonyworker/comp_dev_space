@@ -19,13 +19,15 @@ const props = defineProps({
     },
     label: {
         type: String,
+	    required: true,
+	    default: "Tag",
     },
     prefix: {
-        type: [String, null],
+        type: String,
     },
     closable: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     isDisabled: {
         type: Boolean,
