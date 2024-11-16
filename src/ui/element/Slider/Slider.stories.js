@@ -41,7 +41,7 @@ export default {
 			description: "初始值",
 			control: { type: "number" },
 		},
-		unit: {
+		label: {
 			description: "單位",
 			control: { type: "text" },
 		},
@@ -77,7 +77,7 @@ export const SliderDefault = {
 		max: 100,
 		step: 1,
 		initValue: 0,
-		unit: "℃",
+		label: "℃",
 		isDisabled: false,
 		className: ''
 	},
@@ -97,7 +97,7 @@ export const SliderDefault = {
 				:max="args.max"
 				:step="args.step"
 				:initValue="args.initValue"
-				:unit="args.unit"
+				:label="args.label"
 				:isDisabled="args.isDisabled"
 				:className="sliderValue"
 				v-model="sliderValue"
@@ -124,7 +124,7 @@ export const SliderDefault = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="${args.initValue}"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></slider>',
@@ -143,7 +143,7 @@ export const SliderColors = {
 		max: 100,
 		step: 1,
 		initValue: 50,
-		unit: "℃",
+		label: "℃",
 		isDisabled: false,
 		className: ''
 	},
@@ -164,7 +164,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="40"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
@@ -174,7 +174,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="50"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
@@ -184,7 +184,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="60"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 				></slider>
 				<slider
@@ -193,7 +193,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="70"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
@@ -203,7 +203,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="80"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
@@ -213,7 +213,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="90"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
@@ -223,7 +223,7 @@ export const SliderColors = {
 					:max="args.max"
 					:step="args.step"
 					:initValue="100"
-					:unit="args.unit"
+					:label="args.label"
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
@@ -247,7 +247,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="40"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -258,7 +258,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="50"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -269,7 +269,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="60"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -280,7 +280,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="70"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -291,7 +291,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="80"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -302,7 +302,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="90"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -313,7 +313,7 @@ export const SliderColors = {
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
 						`  :initValue="100"`,
-						`  unit="${args.unit}"`,
+						`  label="${args.label}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
@@ -364,7 +364,7 @@ export const SliderColors = {
 // 			description: '初始值',
 // 			control: { type: 'number' },
 // 		},
-// 		unit: {
+// 		label: {
 // 			description: '單位',
 // 			control: { type: 'text' },
 // 		},
@@ -401,7 +401,7 @@ export const SliderColors = {
 // 		max: 100,
 // 		step: 1,
 // 		initValue: "50",
-// 		unit: "℃",
+// 		label: "℃",
 // 		isDisabled: false
 // 	},
 // 	render: (args) => ({
@@ -420,7 +420,7 @@ export const SliderColors = {
 // 				:max="args.max"
 // 				:step="args.step"
 // 				:initValue="args.initValue"
-// 				:unit="args.unit"
+// 				:label="args.label"
 // 				:isDisabled="args.isDisabled"
 // 				v-model="sliderValue"
 // 			></slider>

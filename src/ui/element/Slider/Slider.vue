@@ -29,16 +29,16 @@ const props = defineProps({
 		default: 100,
 	},
 	step: {
-		type: [Number, String],
+		type: Number,
 		default: 1,
 	},
 	initValue: {
 		type: Number,
-		default: 0,
+		required: true,
 	},
-	unit: {
+	label: {
 		type: String,
-		default: "%",
+		default: "",
 	},
 	isDisabled: {
 		type: Boolean,
@@ -173,7 +173,7 @@ defineExpose({ updateWidth });
             :style="{ left: tooltipPosition }"
         >
             <span>{{ value }}</span>
-            <span v-if="props.unit">{{ props.unit }}</span>
+            <span v-if="props.label">{{ props.label }}</span>
 
         </div>
     </div>
