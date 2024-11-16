@@ -37,6 +37,7 @@ const props = defineProps({
     align: {
         //文字位置
         type: String,
+	    default: "center",
         validator: (value) => ["start", "center", "end"].includes(value),
     },
 	className: {

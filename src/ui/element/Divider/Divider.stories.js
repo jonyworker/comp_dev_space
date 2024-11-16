@@ -7,7 +7,7 @@ export default {
     tags: ["autodocs"],
     argTypes: {
         themeColor: {
-            description: "分隔線主題顏色",
+            description: "主題顏色",
             control: {
                 type: "select",
                 labels: {
@@ -29,17 +29,18 @@ export default {
             }
         },
         width: {
-            description: "分隔線寬度",
+            description: "線條寬度",
             control: {
                 type: "select",
                 // 使用 labels 來定義顯示文字
-                labels: {
-                    xsmall: "xsmall (1px)",
-                    small: "small (2px)",
-                    medium: "medium (4px)",
-                    large: "large (6px)",
-                    xlarge: "xlarge (8px)",
-                }},
+                // labels: {
+                //     xsmall: "xsmall (1px)",
+                //     small: "small (2px)",
+                //     medium: "medium (4px)",
+                //     large: "large (6px)",
+                //     xlarge: "xlarge (8px)",
+                // }
+            },
             options: [
                 "xsmall",
                 "small",
@@ -54,7 +55,7 @@ export default {
             }
         },
         type: {
-            description: "分隔線樣式",
+            description: "線條樣式",
             control: { type: "select" },
             defaultValue: "solid",
             options: ["solid", "dashed", "dotted"],
@@ -65,7 +66,7 @@ export default {
             }
         },
         direction: {
-            description: "分隔線方向",
+            description: "線條方向",
             control: { type: "select" },
             defaultValue: "horizontal",
             options: ["horizontal", "vertical"],
@@ -76,7 +77,7 @@ export default {
             }
         },
         align: {
-            description: "文字對齊方式",
+            description: "文字位置",
             control: { type: "select" },
             options: ["start", "center", "end"],
             table: {
@@ -84,6 +85,10 @@ export default {
                     summary: "start | center | end",
                 }
             }
+        },
+        className: {
+            description: "客製化樣式",
+            control: { type: "text" },
         },
         default: {
             description: "分隔線內容",
