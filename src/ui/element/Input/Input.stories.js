@@ -73,7 +73,7 @@ export default {
             }
         },
         initValue: {
-            description: "",
+            description: "初始值",
             control: { type: "text" },
         },
         hint: {
@@ -83,7 +83,7 @@ export default {
             },
             table: {
                 type: {
-                    summary: "{ error: string; description: string; }[]",
+                    summary: "{ error: string; description: string; }",
                 }
             }
         },
@@ -112,13 +112,13 @@ export default {
 export const InputDefault = {
     name: '預設項目',
     args: {
-        label: '輸入框標題',
+        label: 'Label',
         type: 'text',
-        placeholder:'example@mail.com',
+        placeholder:'placeholder...',
         prefix: 'account_circle',
         size: 'medium',
         initValue: '',
-        hint: { error: '', description: '輸入框提示訊息' },
+        hint: { error: '', description: 'prompt message' },
         isDisabled: false,
         className: ''
     },

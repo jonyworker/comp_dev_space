@@ -34,7 +34,7 @@ const props = defineProps({
 	},
 	initValue: { // 預設值
 		type: String,
-		default: "",
+		required: true,
 	},
 	hint: { // 錯誤提示
 		type: Object,
