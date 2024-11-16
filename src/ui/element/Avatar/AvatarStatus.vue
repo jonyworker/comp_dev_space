@@ -12,17 +12,20 @@ const props = defineProps({
     // --  狀態接口 -- //
     avatarStatus: {
         type: String,
-        default: "default",
+        default: "none",
         validator: (value) =>
-            ["default", "online", "idle", "busy", "offline"].includes(value),
+            ["none", "online", "idle", "busy", "offline"].includes(value),
     },
 })
 </script>
 
 <template>
-    <div v-if="props.avatarStatus !== 'default'" :class="['avatar-icon', `avatar-icon-${props.avatarSize}`, `avatar-icon-${props.avatarStatus}`]">
-        <Icon :name="props.avatarStatus"></Icon>
-    </div>
+	<template v-if="props.avatarStatus !== 'none'">
+		<div  :class="['avatar-icon', `avatar-icon-${props.avatarSize}`, `avatar-icon-${props.avatarStatus}`]">
+			<Icon :name="props.avatarStatus"></Icon>
+		</div>
+	</template>
+
 </template>
 
 <style scoped lang="scss">

@@ -18,9 +18,9 @@ const props = defineProps({
 	},
 	status: {
 		type: String,
-		default: "default",
+		default: "none",
 		validator: (value) =>
-			["default", "online", "idle", "busy", "offline"].includes(value),
+			["none", "online", "idle", "busy", "offline"].includes(value),
 	},
 	src: {
 		type: String,
@@ -32,7 +32,7 @@ const props = defineProps({
 	},
 	userName: {
 		type: String,
-		default: "default",
+		required: true,
 	},
 	className: {
 		type: String,

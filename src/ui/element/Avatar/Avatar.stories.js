@@ -10,16 +10,31 @@ export default {
 			description: "形狀",
 			control: { type: "select" },
 			options: ["circle", "square"],
+			table: {
+				type: {
+					summary: "circle | square"
+				}
+			}
 		},
 		size: {
-			description: "Avatar 尺寸",
+			description: "尺寸",
 			control: { type: "select" },
 			options: ["xsmall", "small", "medium", "large"],
+			table: {
+				type: {
+					summary: "xsmall | small | medium | large"
+				}
+			}
 		},
 		status: {
 			description: "狀態",
 			control: { type: "select" },
-			options: ["default", "online", "idle", "busy", "offline"],
+			options: ["none", "online", "idle", "busy", "offline"],
+			table: {
+				type: {
+					summary: "none | online | idle | busy | offline"
+				}
+			}
 		},
 		userName: {
 			description: "使用者名稱",
@@ -65,7 +80,7 @@ export const DefaultAvatar = {
 	args: {
 		shape: "circle",
 		size: "large",
-		status: "default",
+		status: "none",
 		src: "https://picsum.photos/320/240",
 		alt: "alt text",
 		userName: "JonyWu",
@@ -122,7 +137,7 @@ export const AvatarShape = {
 	name: "頭像形狀",
 	args: {
 		size: "large",
-		status: "default",
+		status: "none",
 		src: "https://picsum.photos/320/240",
 		alt: "alt text",
 		userName: "JonyWu",
