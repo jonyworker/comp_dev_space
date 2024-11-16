@@ -1,4 +1,12 @@
 import Breadcrumb from "./Breadcrumb.vue";
+function formatDataSource(dataSource) {
+    return `[
+        ${dataSource.map(item => `{
+            label: "${item.label}",
+            href: "${item.href}",
+        }`).join(',\n    ')}
+    ]`;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -56,26 +64,6 @@ export const BreadcrumbMany = {
                 href: "/3rd",
             },
             {
-                label: "第四層",
-                href: "/4th",
-            },
-            {
-                label: "第五層",
-                href: "/5th",
-            },
-            {
-                label: "第六層",
-                href: "/6th",
-            },
-            {
-                label: "第七層",
-                href: "/7th",
-            },
-            {
-                label: "第八層",
-                href: "/8th",
-            },
-            {
                 label: "當前頁",
             },
         ],
@@ -104,9 +92,10 @@ export const BreadcrumbMany = {
             source: {
                 transform: (src, storyContext) => {
                     const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
                     return [
                         '<Breadcrumb',
-                        `  :dataSource="dataSource"`,
+                        `  :dataSource='${dataSourceString}'`,
                         `  className="${args.className}"`,
                         '>',
                         '</Breadcrumb>'
