@@ -81,8 +81,8 @@ export const DefaultCircleProgress = {
     name: "預設項目",
     args: {
         themeColor: "primary",
-        label: "Saving",
-        percent: 50,
+        label: "Label",
+        percent: 65,
         size: 100,
         strokeWidth: 10,
         className: '',
@@ -137,8 +137,8 @@ export const CircleProgressLabelStory = {
     name: "顯示標籤",
     args: {
         themeColor: "primary",
-        label: "測試",
-        percent: 66,
+        label: "Label",
+        percent: 65,
         size: 120,
         strokeWidth: 10,
         className: '',
@@ -211,7 +211,7 @@ export const CircleProgressLabelStory = {
 export const CircleProgressColorStory = {
     name: "主題色彩",
     args: {
-        label: "測試",
+        label: "Label",
         size: 120,
         strokeWidth: 10,
         className: '',
