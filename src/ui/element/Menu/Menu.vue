@@ -6,7 +6,7 @@ import { ref } from "vue";
 const props = defineProps({
 	dataSource: {
 		type: Array,
-		default: () => [],
+		required: true,
 	},
 	isCollapsed: {
 		type: Boolean,

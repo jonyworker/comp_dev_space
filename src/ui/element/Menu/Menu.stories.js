@@ -75,20 +75,20 @@ export const MenuDefault = {
 					{ label: "用戶設置", path: "/users/settings" },
 				],
 			},
-			{
-				icon: "file",
-				label: "文件管理",
-				path: "/files",
-				children: [
-					{ label: "所有文件", path: "/files/all" },
-					{ label: "已分享", path: "/files/shared" },
-				],
-			},
-			{
-				icon: "mail",
-				label: "訊息中心",
-				path: "/messages",
-			},
+			// {
+			// 	icon: "file",
+			// 	label: "文件管理",
+			// 	path: "/files",
+			// 	children: [
+			// 		{ label: "所有文件", path: "/files/all" },
+			// 		{ label: "已分享", path: "/files/shared" },
+			// 	],
+			// },
+			// {
+			// 	icon: "mail",
+			// 	label: "訊息中心",
+			// 	path: "/messages",
+			// },
 			{
 				icon: "setting",
 				label: "系統設置",
@@ -96,7 +96,7 @@ export const MenuDefault = {
 			},
 		],
 		isCollapsed: false,
-		color:'#000',
+		color:'#000000',
 		className: ""
 	},
 	render: (args) => ({
