@@ -29,6 +29,11 @@ export default {
 			required: true,
 			control: { type: "select" },
 			options: ["contained", "outlined", "text"],
+			table: {
+				type: {
+					summary: "contained | outlined | text",
+				}
+			}
 		},
 		prefix: {
 			description: "前置元素",
@@ -64,11 +69,21 @@ export default {
 			description: "按鈕尺寸",
 			control: { type: "select" },
 			options: ["small", "medium", "large"],
+			table: {
+				type: {
+					summary: "small | medium | large",
+				}
+			}
 		},
 		width: {
 			description: "按鈕寬度",
 			control: { type: "select" },
-			options: ["fit", "full"],
+			options: ["fit", "fluid"],
+			table: {
+				type: {
+					summary: "fit | fluid",
+				}
+			}
 		},
 		isDisabled: {
 			description: "是否禁用",
@@ -105,7 +120,7 @@ export const DefaultButtonStory = {
 	args: {
 		themeColor: 'primary',
 		variant: 'contained',
-		prefix: 'folder',
+		prefix: '',
 		suffix: '',
 		size: 'medium',
 		width: 'fit',

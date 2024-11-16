@@ -21,7 +21,7 @@ const props = defineProps({
 	},
 	variant: {
 		type: String,
-		default: "contained",
+		required: true,
 		validator: (value) => ["contained", "outlined", "text"].includes(value),
 	},
 	prefix: {
@@ -38,7 +38,7 @@ const props = defineProps({
 	width: {
 		type: String,
 		default: "fit",
-		validator: (value) => ["full", "fit"].includes(value),
+		validator: (value) => ["fit", "fluid"].includes(value),
 	},
 	isDisabled: {
 		type: Boolean,
