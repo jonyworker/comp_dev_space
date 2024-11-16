@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
 								size="xsmall"
 								:src="menu.src"
 								alt="alt text"
-								:username="menu.userName"
+								:userName="menu.userName"
 							></Avatar>
 							<div style="margin-right: auto;">{{ menu.userName }}</div>
 						</li>
