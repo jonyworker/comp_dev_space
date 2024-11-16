@@ -20,7 +20,7 @@ const props = defineProps({
 	},
 	dataSource: {
 		type: Array,
-		default: () => [],
+		required: true,
 		validator: (value) =>
 			value.every(
 				(item) => typeof item.title === "string" && typeof item.content === "string"

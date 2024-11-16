@@ -33,7 +33,7 @@ export default {
             }
         },
         dataSource: {
-            description: "頁籤列表",
+            description: "資料來源",
             control: { type: "object" },
             table: {
                 type: {
@@ -86,17 +86,18 @@ export const DefaultTabs = {
         themeColor: "primary",
         dataSource: [
             {
-                "title": "頁籤 1",
-                "content": "內容一"
+                "title": "Tab 1",
+                "content": "Content 1",
             },
             {
-                "title": "頁籤 2",
-                "content": "內容二"
+                "title": "Tab 2",
+                "content": "Content 2"
             },
             {
-                "title": "頁籤 3",
-                "content": "內容三",
-            }],
+                "title": "Tab 3",
+                "content": "Content 3",
+            }
+        ],
         activeIndex: 0,
         type: "default",
         isDisabled: false,
@@ -153,17 +154,18 @@ export const CardTabs = {
         themeColor: "primary",
         dataSource: [
             {
-                "title": "頁籤 1",
-                "content": "內容一"
+                "title": "Tab 1",
+                "content": "Content 1",
             },
             {
-                "title": "頁籤 2",
-                "content": "內容二"
+                "title": "Tab 2",
+                "content": "Content 2"
             },
             {
-                "title": "頁籤 3",
-                "content": "內容三",
-            }],
+                "title": "Tab 3",
+                "content": "Content 3",
+            }
+        ],
         activeIndex: 0,
         type: "card",
         isDisabled: false,
