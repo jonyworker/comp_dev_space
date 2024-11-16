@@ -66,8 +66,8 @@ export const DefaultLineProgress = {
     name: "預設項目",
     args: {
         themeColor: "primary",
-        label: "",
-        percent: 50,
+        label: "Label",
+        percent: 65,
         strokeWidth: 10,
         className: '',
     },
@@ -118,8 +118,8 @@ export const LineProgressLabelStory = {
     name: "顯示標籤",
     args: {
         themeColor: "primary",
-        label: "Complete",
-        percent: 66,
+        label: "Label",
+        percent: 65,
         strokeWidth: 10,
         className: '',
     },
