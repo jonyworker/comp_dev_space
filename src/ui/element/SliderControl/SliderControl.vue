@@ -38,6 +38,7 @@ const props = defineProps({
 	initValue: {
 		type: Number,
 		required: true,
+		default: 0,
 	},
 	label: {
 		type: String,
