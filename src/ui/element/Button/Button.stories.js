@@ -116,7 +116,7 @@ export default {
 
 //==== 預設項目 ====//
 export const DefaultButtonStory = {
-	name: '主要項目',
+	name: '預設項目',
 	args: {
 		themeColor: 'primary',
 		variant: 'contained',
@@ -383,7 +383,7 @@ export const ButtonTypeStory = {
 
 //==== 主題色彩 ====//
 export const ButtonColorStory = {
-	name: '多個按鈕',
+	name: '主題色彩',
 	args: {
 		themeColor: 'primary',
 		variant: 'contained',

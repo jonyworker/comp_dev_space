@@ -33,9 +33,9 @@ export default {
 	// args: { onClick: fn() },
 };
 
-//==== 主要項目 ====//
+//==== 預設項目 ====//
 export const SideNavDefault = {
-	name: "主要項目",
+	name: "預設項目",
 	args: {
 		navItems: [
 			{

@@ -254,9 +254,9 @@ export const GridDefaultStory = {
 	},
 };
 
-//==== 隔線系統-4欄 ====//
+//==== 格線系統-4欄 ====//
 export const Grid4ColumnsStory = {
-	name: '隔線系統-4欄',
+	name: '格線系統-4欄',
 	args: {
 		//Grid
 		fluid: false,
@@ -340,9 +340,9 @@ export const Grid4ColumnsStory = {
 	},
 };
 
-//==== 隔線系統-3欄 ====//
+//==== 格線系統-3欄 ====//
 export const Grid3ColumnsStory = {
-	name: '隔線系統-3欄',
+	name: '格線系統-3欄',
 	args: {
 		//Grid
 		fluid: false,
@@ -426,9 +426,9 @@ export const Grid3ColumnsStory = {
 	},
 };
 
-//==== 隔線系統-2欄 ====//
+//==== 格線系統-2欄 ====//
 export const Grid2ColumnsStory = {
-	name: '隔線系統-2欄',
+	name: '格線系統-2欄',
 	args: {
 		//Grid
 		fluid: false,
@@ -512,9 +512,9 @@ export const Grid2ColumnsStory = {
 	},
 };
 
-//==== 隔線系統-1欄 ====//
+//==== 格線系統-1欄 ====//
 export const Grid1ColumnsStory = {
-	name: '隔線系統-1欄',
+	name: '格線系統-1欄',
 	args: {
 		//Grid
 		fluid: false,
