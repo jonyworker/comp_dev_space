@@ -68,7 +68,7 @@ export const TextareaDefault = {
     name: "預設項目",
     args: {
         label: "Label",
-        placeholder: "Description...",
+        placeholder: "Placeholder...",
         limit: null,
         initValue: "",
         hint: { error: "", description: "Prompt message" },
@@ -131,7 +131,7 @@ export const TextareaLabelDefault = {
     name: "顯示標籤",
     args: {
         label: "Label",
-        placeholder: "Description...",
+        placeholder: "Placeholder...",
         limit: 50,
         initValue: "",
         hint: { error: '', description: '' },
@@ -194,7 +194,7 @@ export const TextareaLimit = {
     name: "字數限制",
     args: {
         label: "Label",
-        placeholder: "Description...",
+        placeholder: "Placeholder...",
         limit: 50,
         initValue: "",
         hint: { error: '', description: '' },
