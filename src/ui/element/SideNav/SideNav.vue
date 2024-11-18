@@ -136,14 +136,11 @@ const computedContentColor = computed(() => {
 			/>
 
 			<!-- Navigation Items -->
+
 			<Menu
-				:menuData="props.navItems"
-				:activePath="activePath"
-				@expandedNav="handleNavExpanded"
-				@navItemClick="navItemClick"
-				v-model:isExpanded="isExpanded"
-				v-model:navItemActivePath="activePath"
-				:fontColor="computedContentColor"
+				:dataSource="props.navItems"
+				:isCollapsed="!isExpanded"
+				:color="computedContentColor"
 
 			></Menu>
 
