@@ -19,7 +19,7 @@ const props = defineProps({
 	},
 	label: {
 		type: String,
-		default: "Label"
+		default: ""
 	},
 	percent: { //進度
 		type: Number,
