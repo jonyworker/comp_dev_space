@@ -114,11 +114,11 @@ export const InputDefault = {
     args: {
         label: 'Label',
         type: 'text',
-        placeholder:'placeholder...',
+        placeholder:'Placeholder...',
         prefix: 'account_circle',
         size: 'medium',
         initValue: '',
-        hint: { error: '', description: 'prompt message' },
+        hint: { error: '', description: 'Prompt message' },
         isDisabled: false,
         className: ''
     },
