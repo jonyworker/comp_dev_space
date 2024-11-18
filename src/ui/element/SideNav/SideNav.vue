@@ -1,6 +1,6 @@
 
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, computed } from "vue";
 import Menu from "@/ui/element/Menu/Menu.vue";
 import Input from "@/ui/element/Input/Input.vue"
 import Icon from "@/ui/element/Icon/Icon.vue"
