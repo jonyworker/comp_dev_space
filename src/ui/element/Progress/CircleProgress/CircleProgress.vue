@@ -77,17 +77,17 @@ const getLimitBorder = computed(() => {
 </script>
 
 <template>
-    <div :class="{'progress-circle-container':true, [props.className]:!!props.className}">
-        <svg class="progress" :width="props.size" :height="props.size">
+    <div :class="{'ded-progress-circle-container':true, [props.className]:!!props.className}">
+        <svg class="ded-progress" :width="props.size" :height="props.size">
             <!-- CircleProgress - 圖表 -->
-            <circle class="progress-circle-track"
+            <circle class="ded-progress-circle-track"
                     fill="transparent"
                     :stroke-width="props.strokeWidth"
                     :r="radius"
                     :cx="props.size / 2"
                     :cy="props.size / 2">
             </circle>
-            <circle :class="`progress-circle-percent-${props.themeColor}`"
+            <circle :class="`ded-progress-circle-percent-${props.themeColor}`"
                     fill="transparent"
                     :stroke-width="props.strokeWidth"
                     :stroke-dasharray="circumference"
@@ -121,7 +121,7 @@ const getLimitBorder = computed(() => {
 
         <!-- CircleProgress - 文字顯示（空間不夠時顯示） -->
         <template v-if="size < getLimitBorder">
-            <div class="progress-circle-label">
+            <div class="ded-progress-circle-label">
                 <span>{{ props.label }}</span>
                 <span>{{ `${normalizedProgress}%` }}</span>
             </div>
