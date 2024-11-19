@@ -43,15 +43,15 @@ const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 1
 
 <template>
     <!-- LineProgress - 文字顯示 -->
-    <div class="progress-line-label">{{props.label}}</div>
+    <div class="ded-progress-line-label">{{props.label}}</div>
     <!-- LineProgress - 圖表 -->
-	<div :class="{'progress-line':true, [props.className]:!!props.className}">
-        <div class="progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
-            <div :class="`progress-line-percent-${props.themeColor}`" :style="{ width: `${normalizedProgress}%` }">
+	<div :class="{'ded-progress-line':true, [props.className]:!!props.className}">
+        <div class="ded-progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
+            <div :class="`ded-progress-line-percent-${props.themeColor}`" :style="{ width: `${normalizedProgress}%` }">
             </div>
         </div>
         <!-- LineProgress - 進度 -->
-        <div class="progress-line-percent">{{`${normalizedProgress}%`}}</div>
+        <div class="ded-progress-line-percent">{{`${normalizedProgress}%`}}</div>
     </div>
 </template>
 
