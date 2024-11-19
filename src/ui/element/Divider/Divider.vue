@@ -50,17 +50,17 @@ const props = defineProps({
 <template>
     <div
         :class="[
-            'divider',
-            `divider-${props.direction}`,
-            `divider-width-${props.width}`,
-            `divider-${props.type}`,
-            props.themeColor ? `divider-${props.themeColor}` : '',
-            $slots.default ? `divider-${props.align}` : '',
+            'ded-divider',
+            `ded-divider-${props.direction}`,
+            `ded-divider-width-${props.width}`,
+            `ded-divider-${props.type}`,
+            props.themeColor ? `ded-divider-${props.themeColor}` : '',
+            $slots.default ? `ded-divider-${props.align}` : '',
             ...props.className.split(' ')
         ]"
     >
         <!-- divider - 分隔線文字 -->
-        <div v-if="$slots.default?.()" class="divider-content">
+        <div v-if="$slots.default?.()" class="ded-divider-content">
             <slot></slot>
         </div>
     </div>

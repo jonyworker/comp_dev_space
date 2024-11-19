@@ -1,22 +1,22 @@
 @use "sass:color";
 
 /*--- Divider ---*/
-.divider {
+.ded-divider {
     --line-weight: 2px;
     --line-style: solid;
     display: flex;
 }
 /*--- Divider 方向 ---*/
-.divider-horizontal {
+.ded-divider-horizontal {
     align-items: center;
 }
-.divider-vertical {
+.ded-divider-vertical {
     flex-direction: column;
     align-items: center;
 }
 
-.divider-horizontal.divider::before,
-.divider-horizontal.divider::after {
+.ded-divider-horizontal.ded-divider::before,
+.ded-divider-horizontal.ded-divider::after {
     content: "";
     width: 0;
     height: 0;
@@ -24,8 +24,8 @@
     flex-grow: 1;
 }
 
-.divider-vertical.divider::before,
-.divider-vertical.divider::after {
+.ded-divider-vertical.ded-divider::before,
+.ded-divider-vertical.ded-divider::after {
     content: "";
     width: 0;
     height: 0;
@@ -35,72 +35,72 @@
 
 
 /*--- Divider 線條粗細 ---*/
-.divider-width-xsmall {
+.ded-divider-width-xsmall {
     --line-weight: 1px;
 }
-.divider-width-small {
+.ded-divider-width-small {
     --line-weight: 2px;
 }
-.divider-width-medium {
+.ded-divider-width-medium {
     --line-weight: 4px;
 }
-.divider-width-large {
+.ded-divider-width-large {
     --line-weight: 6px;
 }
-.divider-width-xlarge {
+.ded-divider-width-xlarge {
     --line-weight: 8px;
 }
 
 /*--- Divider 線條樣式 ---*/
-.divider-solid {
+.ded-divider-solid {
     --line-style: solid;
 }
-.divider-dashed {
+.ded-divider-dashed {
     --line-style: dashed;
 }
-.divider-dotted {
+.ded-divider-dotted {
     --line-style: dotted;
 }
 
 /*--- Divider content ---*/
-.divider-content {
+.ded-divider-content {
     z-index: 1;
     padding: 0.5em;
 }
 
 /*--- Divider 對齊位置 - Horizontal ---*/
-.divider-start.divider-horizontal::before {
+.ded-divider-start.ded-divider-horizontal::before {
     flex-grow: 0;
     width: 1rem;
 }
-.divider-end.divider-horizontal::after {
+.ded-divider-end.ded-divider-horizontal::after {
     flex-grow: 0;
     width: 1rem;
 }
 
 /*--- Divider 對齊位置 - vertical ---*/
-.divider-start.divider-vertical::before {
+.ded-divider-start.ded-divider-vertical::before {
     flex-grow: 0;
     height: 1rem;
 }
-.divider-end.divider-vertical::after {
+.ded-divider-end.ded-divider-vertical::after {
     flex-grow: 0;
     height: 1rem;
 }
 
 @each $theme in $themes {
-    .divider-#{$theme}.divider-vertical::before {
+    .ded-divider-#{$theme}.ded-divider-vertical::before {
         border-left-color: getThemeColor($mode, $theme, "default");
     }
-    .divider-#{$theme}.divider-vertical::after {
+    .ded-divider-#{$theme}.ded-divider-vertical::after {
         border-left-color: getThemeColor($mode, $theme, "default");
     }
 }
 @each $theme in $themes {
-    .divider-#{$theme}.divider-horizontal::before {
+    .ded-divider-#{$theme}.ded-divider-horizontal::before {
         border-top-color: getThemeColor($mode, $theme, "default");
     }
-    .divider-#{$theme}.divider-horizontal::after {
+    .ded-divider-#{$theme}.ded-divider-horizontal::after {
         border-top-color: getThemeColor($mode, $theme, "default");
     }
 }

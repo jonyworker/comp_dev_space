@@ -115,7 +115,7 @@ export const DividerDefault = {
         type: "solid",
         direction: "horizontal",
         align: "center",
-        default: "分隔線",
+        default: "Divider",
         className: "",
     },
     render: (args) => ({
@@ -127,7 +127,8 @@ export const DividerDefault = {
             };
         },
         template: `
-			<div style="display:flex; flex-direction: column; justify-content:center; gap: 16px; height: 200px">
+			<div style="display:flex;  justify-content:center; gap: 16px; height: 200px"
+                :style="args.direction === 'horizontal'? 'flex-direction: column;': ''">
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
