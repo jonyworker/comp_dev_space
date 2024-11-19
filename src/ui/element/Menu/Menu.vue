@@ -40,26 +40,26 @@ const handleItemClick = (item) => {
 
 <template>
 	<div :class="{
-		'menu-container': true,
+		'ded-menu-container': true,
 		[props.className]: !!props.className
 	}">
-		<nav class="nav">
-			<ul class="nav-menu">
+		<nav class="ded-nav">
+			<ul class="ded-nav-menu">
 				<li v-for="item in props.dataSource" :key="item.path">
-					<div class="menu-item" @click.stop="handleItemClick(item)" :style="`color:${props.color}`">
-						<div class="menu-item-content" style="min-height: 24px;">
+					<div class="ded-menu-item" @click.stop="handleItemClick(item)" :style="`color:${props.color}`">
+						<div class="ded-menu-item-content" style="min-height: 24px;">
 							<template v-if="item.icon">
-								<Icon class="menu-item-content-icon" :name="item.icon" size="20"></Icon>
+								<Icon class="ded-menu-item-content-icon" :name="item.icon" size="20"></Icon>
 							</template>
 
-							<span class="menu-item-content-title"
+							<span class="ded-menu-item-content-title"
 							      :style="!props.isCollapsed ? 'opacity: 1; display: block' : 'opacity: 0; display: none'">
 								{{ item.label }}
 							</span>
 
 							<template v-if="!props.isCollapsed && item.children">
 								<Icon
-									class="menu-item-content-icon"
+									class="ded-menu-item-content-icon"
 									:name="expandedItems[item.path] ? 'chevronUp' : 'chevronDown'"
 									size="16"
 								></Icon>
@@ -68,21 +68,21 @@ const handleItemClick = (item) => {
 					</div>
 
 					<!-- submenu -->
-					<ul class="menu-subitem" v-if="
+					<ul class="ded-menu-subitem" v-if="
 	                    !props.isCollapsed &&
 	                    item.children &&
 	                    expandedItems[item.path]
 	                ">
 						<li v-for="child in item.children" :key="child.path" @click.stop="handleItemClick(child)">
-							<div class="menu-item">
-								<div class="menu-item-content" :style="`color:${props.color}`">
+							<div class="ded-menu-item">
+								<div class="ded-menu-item-content" :style="`color:${props.color}`">
 									<template v-if="child.icon">
-										<div class="menu-item-content-icon">
+										<div class="ded-menu-item-content-icon">
 											<Icon class="nav-item-icon" :name="child.icon" size="20"></Icon>
 										</div>
 									</template>
 
-									<span class="menu-item-content-title" style="opacity: 1">{{ child.label }}</span>
+									<span class="ded-menu-item-content-title" style="opacity: 1">{{ child.label }}</span>
 								</div>
 							</div>
 						</li>

@@ -63,16 +63,16 @@ export const MenuDefault = {
 		dataSource: [
 			{
 				icon: "home",
-				label: "首頁",
+				label: "Dashboard",
 				path: "/",
 			},
 			{
 				icon: "users",
-				label: "用戶管理",
+				label: "Profile",
 				path: "/users",
 				children: [
-					{ label: "用戶列表", path: "/users/list" },
-					{ label: "用戶設置", path: "/users/settings" },
+					{ label: "Edit Info", path: "/users/list" },
+					{ label: "Password", path: "/users/settings" },
 				],
 			},
 			// {
@@ -91,7 +91,7 @@ export const MenuDefault = {
 			// },
 			{
 				icon: "setting",
-				label: "系統設置",
+				label: "Setting",
 				path: "/settings",
 			},
 		],

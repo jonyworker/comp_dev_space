@@ -1,61 +1,65 @@
-.menu-item {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  padding: 8px;
-  border-bottom: 1px solid #ccc;
-  overflow: hidden;
-  white-space: nowrap;
-
-  &-content {
-    flex: 1;
+.ded-menu-item {
+    cursor: pointer;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 8px;
 
-    &-icon {
-      min-width: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    // jony沒有
+    //margin-inline: 8px;
 
-    &-title {
-      flex: 1;
-      transition: opacity 0.3s;
-    }
-  }
-}
-
-.menu-subitem {
-  // margin-left: 24px;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-
-  .menu-item {
-    padding-left: 32px;
-  }
-}
-
-.menu-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  height: 100%;
-
-  .nav {
-    transition: width 0.3s ease-in-out;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
     overflow: hidden;
-    height: 100%;
-    width: 100%;
+    white-space: nowrap;
 
-    &-menu {
-      list-style: none;
-      padding: 0;
+    &-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        &-icon {
+            min-width: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-title {
+            flex: 1;
+            transition: opacity 0.3s;
+        }
     }
-  }
+}
+
+.ded-menu-subitem {
+    // margin-left: 24px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+
+    .ded-menu-item {
+        padding-left: 24px;
+    }
+}
+
+.ded-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    height: 100%;
+
+    .ded-nav {
+        transition: width 0.3s ease-in-out;
+        overflow: hidden;
+        height: 100%;
+        width: 100%; //jony有 學長設定在 inline style
+
+        &-menu {
+            list-style: none;
+            padding: 0;
+        }
+    }
 }
