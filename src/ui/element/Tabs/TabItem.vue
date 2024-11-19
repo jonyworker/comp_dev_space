@@ -59,11 +59,11 @@ const handleClick = (event) => {
 <template>
     <!-- Tabs - 按鈕 -->
     <button
-        :class="['tab', 'button', 'component-medium', 'tab',
+        :class="['ded-tab', 'ded-button', 'ded-component-medium', 'ded-tab',
                 props.type === 'default'
-	                ? props.isActive ? `tab-${props.themeColor}-active` : `tab-${props.themeColor}`
-	                : props.isActive ? `tab-card-${props.themeColor}-active` : `tab-card-${props.themeColor}`,
-                props.isDisabled && 'tab-disable',
+	                ? props.isActive ? `ded-tab-${props.themeColor}-active` : `ded-tab-${props.themeColor}`
+	                : props.isActive ? `ded-tab-card-${props.themeColor}-active` : `ded-tab-card-${props.themeColor}`,
+                props.isDisabled && 'ded-tab-disable',
                 props.className || '']"
         :disabled="props.isDisabled"
         @click="handleClick"

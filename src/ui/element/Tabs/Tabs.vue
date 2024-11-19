@@ -59,9 +59,9 @@ watch(() => props.activeIndex, (newIndex) => {
 </script>
 
 <template>
-    <div :class="{'tabs-container': true, [props.className]: !!props.className }">
+    <div :class="{'ded-tabs-container': true, [props.className]: !!props.className }">
         <!-- Tabs - 按鈕 -->
-        <div class="tabs">
+        <div class="ded-tabs">
             <TabItem
                 v-for="(item, index) in props.dataSource"
                 :key="index"
@@ -75,7 +75,7 @@ watch(() => props.activeIndex, (newIndex) => {
             ></TabItem>
         </div>
         <!-- Tabs - 內容顯示 -->
-        <div :class="['tab-content', {'tab-disable': props.isDisabled} ]">
+        <div :class="['ded-tab-content', {'ded-tab-disable': props.isDisabled} ]">
             {{ props.dataSource[activeTabIndex]?.content }}
         </div>
     </div>
