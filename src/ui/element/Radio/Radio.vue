@@ -62,18 +62,18 @@ const isChecked = (value) => modelValue.value === value;
 <template>
 	<div
 		:class="{
-      'radio-container': true,
-      [`radio-container-${props.direction}`]: props.direction,
+      'ded-radio-container': true,
+      [`ded-radio-container-${props.direction}`]: props.direction,
       [props.className]: !!props.className,
     }"
 	>
 		<label
 			v-for="(item, index) in props.dataSource"
 			:key="index"
-			:class="['radio', props.className || '']"
+			:class="['ded-radio', props.className || '']"
 		>
 			<input
-				class="radio-input"
+				class="ded-radio-input"
 				type="radio"
 				:value="item.value"
 				:name="item.name"
@@ -83,15 +83,15 @@ const isChecked = (value) => modelValue.value === value;
 			<!-- radio - 選擇框樣式 -->
 			<div
 				:class="[
-          'radio-icon',
+          'ded-radio-icon',
           isChecked(item.value)
-            ? `radio-checked-${props.themeColor}`
-            : `radio-unchecked-${props.themeColor}`,
+            ? `ded-radio-checked-${props.themeColor}`
+            : `ded-radio-unchecked-${props.themeColor}`,
         ]"
 			>
 			</div>
 			<!-- radio - 選項文字 -->
-			<span class="radio-text">{{ item.label }}</span>
+			<span class="ded-radio-text">{{ item.label }}</span>
 		</label>
 	</div>
 </template>
