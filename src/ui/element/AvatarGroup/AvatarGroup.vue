@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
 <template>
 	<div
 		:class="{
-            'avatar-group': true,
+            'ded-avatar-group': true,
             [props.className]: !!props.className,
         }"
 	>
@@ -108,17 +108,17 @@ onBeforeUnmount(() => {
 			v-if="restList.length > 0"
 		>
 			<!-- avatar group - 剩餘未顯示總數表示 -->
-			<div class="text-medium">
+			<div class="">
 				<button
-					:class="[ 'avatar-container', props.size ? `avatar-container-${props.size}` : 'avatar-container-medium' ]"
+					:class="[ 'ded-avatar-container', props.size ? `ded-avatar-container-${props.size}` : 'ded-avatar-container-medium' ]"
 					@click.prevent="handleClick"
 					style="cursor: pointer"
 				>
                     <span
-	                    :class="[ 'avatar', props.shape ? `avatar-${props.shape}` : 'avatar-circle' ]"
+	                    :class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
                     >
                         <span
-	                        :class="[ 'avatar-text', props.size ? `text-${props.size}` : 'text-medium' ]"
+	                        :class="[ 'ded-avatar-text', props.size ? `text-${props.size}` : 'text-medium' ]"
                         >
                             {{ `+${restCount}` }}
                         </span>
