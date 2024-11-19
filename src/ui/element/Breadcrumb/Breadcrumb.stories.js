@@ -48,23 +48,23 @@ export const BreadcrumbMany = {
     args: {
         dataSource: [
             {
-                label: "首頁",
+                label: "Home",
                 href: "/",
             },
             {
-                label: "第一層",
+                label: "Level1",
                 href: "/1st",
             },
             {
-                label: "第二層",
+                label: "Level2",
                 href: "/2nd",
             },
             {
-                label: "第三層",
+                label: "Level3",
                 href: "/3rd",
             },
             {
-                label: "當前頁",
+                label: "Current",
             },
         ],
         className: ""
@@ -105,7 +105,6 @@ export const BreadcrumbMany = {
         }
     },
 };
-
 
 
 //--- JONY VERSION START ---//

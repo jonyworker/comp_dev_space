@@ -84,14 +84,16 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<nav :class="['breadcrumb-container', props.className]">
-		<ul class="breadcrumb">
-			<li class="breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs" :key="index">
+	<nav :class="['ded-breadcrumb-container', props.className]">
+		<ul class="ded-breadcrumb">
+			<li class="ded-breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs" :key="index">
 				<template v-if="item.label === '...'">
-					<div class="rest">
-						<span class="rest-label" @click="handleClick">...</span>
+					<div class="ded-rest">
+						<span class="ded-rest-label" @click="handleClick">...</span>
 						<teleport to="body">
-							<List v-if="isOpen" class="col-3 rest" :style="{ top: `${dropdownPosition.top}px`, left: `${dropdownPosition.left}px`, position: 'absolute' }">
+							<List v-if="isOpen" class="ded-col-3 ded-rest" :style="{ top: `${dropdownPosition.top}px`,
+							left:
+							`${dropdownPosition.left}px`, position: 'absolute' }">
 								<ListItem
 									v-for="(restItem, index) in restBreadcrumbs"
 									:key="index"
