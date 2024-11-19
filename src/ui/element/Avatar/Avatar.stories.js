@@ -151,7 +151,7 @@ export const AvatarShape = {
 			};
 		},
 		template: `
-			<div style="display:flex; gap: 16px">
+			<div style="display: flex; gap: 32px; align-items: flex-end">
 				<Avatar
 					shape="circle"
 					:size="args.size"
@@ -228,7 +228,7 @@ export const AvatarStatus = {
 			};
 		},
 		template: `
-			<div style="display:flex; gap: 16px">
+			<div style="display: flex; gap: 32px; align-items: flex-end">
 				<Avatar
 					:shape="args.shape"
 					:size="args.size"

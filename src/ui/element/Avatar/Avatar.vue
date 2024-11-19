@@ -58,17 +58,17 @@ const getInitialsOrDefault = (string, count) => {
 
 <template>
 	<div :class="{
-		'avatar-container': true,
-		 [`avatar-container-${props.size}`]: true,
+		'ded-avatar-container': true,
+		 [`ded-avatar-container-${props.size}`]: true,
 		 [ props.className ]: !!props.className
 	}">
-		<div :class="['avatar', `avatar-${props.shape}`]">
+		<div :class="['ded-avatar', `ded-avatar-${props.shape}`]">
 			<template v-if="props.src">
 				<Image :src="props.src" :alt="props.alt" ratio="11" objectFit="cover"></Image>
 			</template>
 			<template v-else>
 				<span
-					:class="['avatar-text', `text-${props.size}`]">{{ getInitialsOrDefault(props.userName, 2) }}</span>
+					:class="['ded-avatar-text', `text-${props.size}`]">{{ getInitialsOrDefault(props.userName, 2) }}</span>
 			</template>
 		</div>
 		<AvatarStatus :avatarStatus="props.status" :avatarSize="props.size"></AvatarStatus>
