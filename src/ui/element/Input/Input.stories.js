@@ -177,9 +177,9 @@ export const InputDefault = {
 export const InputStatus = {
     name: "輸入框狀態",
     args: {
-        label: '帳號',
+        label: 'Account',
         type: 'text',
-        placeholder:'請輸入帳號',
+        placeholder:'Placeholder...',
         prefix: 'account_circle',
         size: 'medium',
         initValue: '',
@@ -202,18 +202,18 @@ export const InputStatus = {
                     :prefix="args.prefix"
                     :size="args.size"
                     :initValue="args.initValue"
-                    :hint="{ error: '', description: '描述提示訊息' }"
+                    :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
                 <Input
-                    label="密碼"
+                    label="Password"
                     type="password"
-                    placeholder="請輸入密碼"
+                    :placeholder="args.placeholder"
                     prefix="lock"
                     :size="args.size"
                     :initValue="args.initValue"
-                    :hint="{ error: '', description: '描述提示訊息' }"
+                    :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
@@ -224,7 +224,7 @@ export const InputStatus = {
                     :prefix="args.prefix"
                     :size="args.size"
                     :initValue="args.initValue"
-                    :hint="{ error: '輸入框錯誤訊息', description: '' }"
+                    :hint="{ error: 'Error message', description: '' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
@@ -235,7 +235,7 @@ export const InputStatus = {
                     :prefix="args.prefix"
                     :size="args.size"
                     :initValue="args.initValue"
-                    :hint="{ error: '', description: '輸入框提示訊息' }"
+                    :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                 />
@@ -260,7 +260,7 @@ export const InputStatus = {
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
-                        `  :hint="{ error: '', description: '描述提示訊息' }"`,
+                        `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
@@ -271,7 +271,7 @@ export const InputStatus = {
                         `  prefix="lock"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
-                        `  :hint="{ error: '', description: '描述提示訊息' }"`,
+                        `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
@@ -282,7 +282,7 @@ export const InputStatus = {
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
-                        `  :hint="{ error: '輸入框錯誤訊息', description: '' }"`,
+                        `  :hint="{ error: 'Error message', description: '' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
@@ -293,7 +293,7 @@ export const InputStatus = {
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
-                        `  :hint="{ error: '', description: '輸入框提示訊息' }"`,
+                        `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '/>',
