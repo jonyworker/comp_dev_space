@@ -30,7 +30,7 @@ const props = defineProps({
 
 
 const headingCVAClass = computed(() => {
-	return [`title title-level-${props.level} title-${props.themeColor}`];
+	return [`ded-title ded-title-level-${props.level} ded-title-${props.themeColor}`];
 });
 
 // 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
