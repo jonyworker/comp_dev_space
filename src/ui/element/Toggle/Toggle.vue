@@ -66,14 +66,14 @@ const handleToggle = () => {
 </script>
 
 <template>
-	<div :class="[finalToggleClass, {'toggle-on': isToggle, 'toggle-off': !isToggle}]"
+	<div :class="[finalToggleClass, {'ded-toggle-on': isToggle, 'ded-toggle-off': !isToggle}]"
 	   @click.prevent="handleToggle" style="cursor: pointer">
 
 		<!-- Toggle 按鈕 -->
-		<div class="toggle-thumb" :class="{'toggle-thumb-on': isToggle, 'toggle-thumb-off': !isToggle}"></div>
+		<div class="ded-toggle-thumb" :class="{'ded-toggle-thumb-on': isToggle, 'ded-toggle-thumb-off': !isToggle}"></div>
 
 		<!-- Toggle 文字 -->
-		<label class="toggle-label" :class="{'toggle-label-on': isToggle, 'toggle-label-off': !isToggle}">
+		<label class="ded-toggle-label" :class="{'ded-toggle-label-on': isToggle, 'ded-toggle-label-off': !isToggle}">
 		  {{ isToggle === true ? props.checkLabel : props.unCheckLabel}}
 		</label>
 	</div>
