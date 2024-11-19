@@ -71,20 +71,20 @@ export const DropdownDefault = {
 	args: {
 		dataSource: [
 			{
-				"label": "選項一",
+				"label": "Option1",
 				"value": "option1",
 			},
 			{
-				"label": "選項二",
+				"label": "Option2",
 				"value": "option2",
 			},
 			{
-				"label": "選項三",
+				"label": "Option3",
 				"value": "option3",
 			}
 		],
-		label: "下拉選單標題",
-		placeholder: "請選擇項目",
+		label: "Label",
+		placeholder: "PLease Select",
 		size: "medium",
 		maxHeight: "",
 		className: ""
