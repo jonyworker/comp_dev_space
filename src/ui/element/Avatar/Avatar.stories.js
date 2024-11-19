@@ -287,7 +287,7 @@ export const AvatarStatus = {
 						'<Avatar',
 						`  shape="${args.shape}"`,
 						`  size="${args.size}"`,
-						`  status="default"`,
+						`  status="none"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
