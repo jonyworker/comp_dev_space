@@ -126,7 +126,7 @@ export const DefaultButtonStory = {
 		width: 'fit',
 		isDisabled: false,
 		className: "",
-		default: '按鈕',
+		default: 'Button',
 	},
 	render: (args) => ({
 		components: { Button },
@@ -189,7 +189,7 @@ export const ButtonPrefixSuffixStory = {
 		width: 'fit',
 		isDisabled: false,
 		className: "",
-		default: '按鈕'
+		default: 'Button'
 	},
 	render: (args) => ({
 		components: { Button },
@@ -279,7 +279,7 @@ export const ButtonTypeStory = {
 		width: 'fit',
 		isDisabled: false,
 		className: "",
-		default: '按鈕',
+		default: 'Button',
 	},
 	render: (args) => ({
 		components: { Button },
@@ -393,7 +393,7 @@ export const ButtonColorStory = {
 		width: 'fit',
 		isDisabled: false,
 		className: "",
-		default: '按鈕',
+		default: 'Button',
 	},
 	render: (args) => ({
 		components: { Button },

@@ -3,21 +3,21 @@ import { cva } from 'class-variance-authority';
 
 export function useButtonCVAClass(props) {
     return computed(() => {
-        return cva('button', {
+        return cva('ded-button', {
             variants: {
                 variant: {
-                    contained: 'button-contained',
-                    outlined: 'button-outlined',
-                    text: 'button-text',
+                    contained: 'ded-button-contained',
+                    outlined: 'ded-button-outlined',
+                    text: 'ded-button-text',
                 },
                 size: {
-                    small: 'component-small',
-                    medium: 'component-medium',
-                    large: 'component-large',
+                    small: 'ded-component-small',
+                    medium: 'ded-component-medium',
+                    large: 'ded-component-large',
                 },
                 width: {
-                    fit: 'button-fit',
-                    fluid: 'button-full',
+                    fit: 'ded-button-fit',
+                    fluid: 'ded-button-full',
                 },
             },
             compoundVariants: [
@@ -25,129 +25,129 @@ export function useButtonCVAClass(props) {
                 {
                     variant: 'contained',
                     themeColor: 'primary',
-                    class: 'button-contained-primary',
+                    class: 'ded-button-contained-primary',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'primary',
-                    class: 'button-outlined-primary',
+                    class: 'ded-button-outlined-primary',
                 },
                 {
                     variant: 'text',
                     themeColor: 'primary',
-                    class: 'button-text-primary',
+                    class: 'ded-button-text-primary',
                 },
                 // [ ThemeColor ] - secondary
                 {
                     variant: 'contained',
                     themeColor: 'secondary',
-                    class: 'button-contained-secondary',
+                    class: 'ded-button-contained-secondary',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'secondary',
-                    class: 'button-outlined-secondary',
+                    class: 'ded-button-outlined-secondary',
                 },
                 {
                     variant: 'text',
                     themeColor: 'secondary',
-                    class: 'button-text-secondary',
+                    class: 'ded-button-text-secondary',
                 },
                 // [ ThemeColor ] - tertiary
                 {
                     variant: 'contained',
                     themeColor: 'tertiary',
-                    class: 'button-contained-tertiary',
+                    class: 'ded-button-contained-tertiary',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'tertiary',
-                    class: 'button-outlined-tertiary',
+                    class: 'ded-button-outlined-tertiary',
                 },
                 {
                     variant: 'text',
                     themeColor: 'tertiary',
-                    class: 'button-text-tertiary',
+                    class: 'ded-button-text-tertiary',
                 },
                 // [ ThemeColor ] - success
                 {
                     variant: 'contained',
                     themeColor: 'success',
-                    class: 'button-contained-success',
+                    class: 'ded-button-contained-success',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'success',
-                    class: 'button-outlined-success',
+                    class: 'ded-button-outlined-success',
                 },
                 {
                     variant: 'text',
                     themeColor: 'success',
-                    class: 'button-text-success',
+                    class: 'ded-button-text-success',
                 },
                 // [ ThemeColor ] - warning
                 {
                     variant: 'contained',
                     themeColor: 'warning',
-                    class: 'button-contained-warning',
+                    class: 'ded-button-contained-warning',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'warning',
-                    class: 'button-outlined-warning',
+                    class: 'ded-button-outlined-warning',
                 },
                 {
                     variant: 'text',
                     themeColor: 'warning',
-                    class: 'button-text-warning',
+                    class: 'ded-button-text-warning',
                 },
                 // [ ThemeColor ] - error
                 {
                     variant: 'contained',
                     themeColor: 'error',
-                    class: 'button-contained-error',
+                    class: 'ded-button-contained-error',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'error',
-                    class: 'button-outlined-error',
+                    class: 'ded-button-outlined-error',
                 },
                 {
                     variant: 'text',
                     themeColor: 'error',
-                    class: 'button-text-error',
+                    class: 'ded-button-text-error',
                 },
                 // [ ThemeColor ] - info
                 {
                     variant: 'contained',
                     themeColor: 'info',
-                    class: 'button-contained-info',
+                    class: 'ded-button-contained-info',
                 },
                 {
                     variant: 'outlined',
                     themeColor: 'info',
-                    class: 'button-outlined-info',
+                    class: 'ded-button-outlined-info',
                 },
                 {
                     variant: 'text',
                     themeColor: 'info',
-                    class: 'button-text-info',
+                    class: 'ded-button-text-info',
                 },
                 // [ Disable ]
                 {
                     variant: 'contained',
                     isDisabled: true,
-                    class: 'button-container-disable',
+                    class: 'ded-button-container-disable',
                 },
                 {
                     variant: 'outlined',
                     isDisabled: true,
-                    class: 'button-outline-disable',
+                    class: 'ded-button-outline-disable',
                 },
                 {
                     variant: 'text',
                     isDisabled: true,
-                    class: 'button-text-disable',
+                    class: 'ded-button-text-disable',
                 },
             ],
         })({

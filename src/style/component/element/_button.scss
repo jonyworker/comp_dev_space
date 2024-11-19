@@ -1,4 +1,4 @@
-.button {
+.ded-button {
     display: inline-flex;
     gap: 8px;
     align-items: center;
@@ -8,10 +8,11 @@
     cursor: pointer;
     transition: background-color 0.3s;
 
+    //jony有學長沒有
     &-fit {
         width: fit-content;
     }
-
+    //jony有學長沒有
     &-full {
         width: 100%;
     }
@@ -25,6 +26,7 @@
     }
 
     &-contained {
+        background-color: $color-black;
         color: #fff;
     }
 
@@ -34,7 +36,7 @@
         border-style: solid;
 
         &:focus {
-            box-shadow: 0 0 0 3px $border-color-focus;
+            box-shadow: 0 0 0 3px blend-rgba(getThemeColor($mode, 'primary', 'default'), $lightness50);
         }
 
         &:active {
@@ -94,21 +96,21 @@
     }
 }
 
-.button-container-disable {
+.ded-button-container-disable {
     pointer-events: none !important;
     color: $color-gray20 !important;
     background-color: $color-gray20 !important;
     color: $color-white !important;
 }
 
-.button-outline-disable {
+.ded-button-outline-disable {
     pointer-events: none !important;
     color: $color-gray20 !important;
     background-color: transparent !important;
     border: $btn-border-width solid $color-gray20 !important;
 }
 
-.button-text-disable {
+.ded-button-text-disable {
     pointer-events: none !important;
     color: $color-gray20 !important;
     background-color: transparent !important;
