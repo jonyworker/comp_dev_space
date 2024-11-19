@@ -1,12 +1,12 @@
 @use "sass:color";
-.toast-container {
+.ded-toast-container {
     position: fixed;
     top: 0;
     right: 0;
     width:min(23rem, 27rem);
 }
 
-.toast {
+.ded-toast {
     position: relative;
     border-radius: 4px;
     margin: 20px;
@@ -17,7 +17,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Shadow-md
     z-index: 9999;
 
-    .close-button {
+    .ded-close-button {
         position: absolute;
         top: 0;
         right: 0;
@@ -26,14 +26,14 @@
         background-color: transparent;
     }
 
-    .message {
+    .ded-message {
         position: relative;
         margin-bottom: 4px;
         font-size: 14px;
         font-weight: 500;
         color: #374151;
 
-        .icon-wrapper {
+        .ded-icon-wrapper {
             position: absolute;
             left: -32px;
             height: 20px;
@@ -46,7 +46,7 @@
         }
     }
 
-    .description {
+    .ded-description {
         font-size: 14px;
         color: #4b5563;
         word-wrap: break-word; // 長字元換行
@@ -55,24 +55,13 @@
     }
 }
 @each $theme in $themes {
-    .toast-#{$theme} {
+    .ded-toast-#{$theme} {
         // border-top-width: 1px;
         background-color: getThemeColor($mode, $theme, "default");
     }
 }
 @each $theme in $themes {
-    .toast-border-#{$theme} {
+    .ded-toast-border-#{$theme} {
         border-left-color: getThemeColor($mode, $theme, "default");
     }
 }
-
-//.toast-enter-active,
-//.toast-leave-active {
-//    transition: opacity 0.3s, transform 0.3s;
-//}
-//
-//.toast-enter-from,
-//.toast-leave-to {
-//    opacity: 0;
-//    transform: translateY(-20px);
-//}

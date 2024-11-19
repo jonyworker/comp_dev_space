@@ -85,64 +85,64 @@ export const ToastType = {
 		},
 		template: `
 			<div style="width: 30rem; ">
-				<div class="toast" :class="\`toast-border-${args.severity}\`"  v-if="args.show">
+				<div class="ded-toast" :class="\`ded-toast-border-${args.severity}\`"  v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
-					<button class="close-button cursor-pointer" @click="closeToast">
+					<button class="ded-close-button cursor-pointer" @click="closeToast">
 						<Icon name="close" size="20"></Icon>
 					</button>
 					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper" :class="\`toast-${args.severity}\`">
+					<p class="ded-message">
+					<span class="ded-icon-wrapper" :class="\`ded-toast-${args.severity}\`">
 						<Icon name="check" size="14"></Icon>
 					</span>
 						<span>{{ args.title }}</span>
 					</p>
-					<p class="description">{{ args.message }}</p>
+					<p class="ded-description">{{ args.message }}</p>
 				</div>
 
-				<div class="toast toast-border-error"  v-if="args.show">
+				<div class="ded-toast ded-toast-border-error"  v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
-					<button class="close-button cursor-pointer" @click="closeToast">
+					<button class="ded-close-button cursor-pointer" @click="closeToast">
 						<Icon name="close" size="20"></Icon>
 					</button>
 					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper toast-error">
+					<p class="ded-message">
+					<span class="ded-icon-wrapper ded-toast-error">
 						<Icon name="close" size="14"></Icon>
 					</span>
 						<span>{{ args.title }}</span>
 					</p>
-					<p class="description">{{ args.message }}</p>
+					<p class="ded-description">{{ args.message }}</p>
 				</div>
 
-				<div class="toast toast-border-warning"  v-if="args.show">
+				<div class="ded-toast ded-toast-border-warning"  v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
-					<button class="close-button cursor-pointer" @click="closeToast">
+					<button class="ded-close-button cursor-pointer" @click="closeToast">
 						<Icon name="close" size="20"></Icon>
 					</button>
 					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper toast-warning">
+					<p class="ded-message">
+					<span class="ded-icon-wrapper ded-toast-warning">
 						<Icon name="exclamation" size="14"></Icon>
 					</span>
 						<span>{{ args.title }}</span>
 					</p>
-					<p class="description">{{ args.message }}</p>
+					<p class="ded-description">{{ args.message }}</p>
 				</div>
 
-				<div class="toast toast-border-info"  v-if="args.show">
+				<div class="ded-toast ded-toast-border-info"  v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
-					<button class="close-button cursor-pointer" @click="closeToast">
+					<button class="ded-close-button cursor-pointer" @click="closeToast">
 						<Icon name="close" size="20"></Icon>
 					</button>
 					<!-- toast - 標題及說明文字 -->
-					<p class="message">
-					<span class="icon-wrapper toast-info">
+					<p class="ded-message">
+					<span class="ded-icon-wrapper ded-toast-info">
 						<Icon name="info" size="16"></Icon>
 					</span>
 						<span>{{ args.title }}</span>
 					</p>
-					<p class="description">{{ args.message }}</p>
+					<p class="ded-description">{{ args.message }}</p>
 				</div>
 			</div>
         `,
@@ -211,7 +211,7 @@ export const ToastDefaultNew = {
 		title: "Toast Title",
 		message: "Hello, world! This is a toast message.",
 		severity: "success",
-		duration: 1100,
+		duration: 11100,
 		icon: "",
 	},
 	render: (args) => ({

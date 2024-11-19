@@ -57,14 +57,14 @@ onUnmounted(() => {
 
 <template>
 	<teleport to="#toast">
-		<div class="toast" :class="`toast-border-${props.severity}`">
+		<div class="ded-toast" :class="`ded-toast-border-${props.severity}`">
 			<!-- toast - 關閉按鈕 -->
-			<button class="close-button" style="cursor: pointer" @click="handleClose">
+			<button class="ded-close-button" style="cursor: pointer" @click="handleClose">
 				<Icon name="close" size="20"></Icon>
 			</button>
 			<!-- toast - 標題及說明文字 -->
-			<p class="message">
-				<span class="icon-wrapper" :class="`toast-${props.severity}`">
+			<p class="ded-message">
+				<span class="ded-icon-wrapper" :class="`ded-toast-${props.severity}`">
 					<Icon
 						:name="props.icon || getDefaultIcon(props.severity)"
 						size="14"
@@ -72,7 +72,7 @@ onUnmounted(() => {
 				</span>
 				<span>{{ props.title }}</span>
 			</p>
-			<p class="description">{{ props.message }}</p>
+			<p class="ded-description">{{ props.message }}</p>
 		</div>
 	</teleport>
 </template>

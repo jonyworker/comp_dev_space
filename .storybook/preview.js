@@ -6,7 +6,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 // 創建 Toast 容器
 const toastContainer = document.createElement('div');
 toastContainer.id = 'toast';
-toastContainer.className = 'toast-container'
+toastContainer.className = 'ded-toast-container'
 document.body.appendChild(toastContainer);
 
 // 創建 Dialog 容器
