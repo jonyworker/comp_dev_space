@@ -87,7 +87,8 @@ export const CheckboxMultiStory = {
             { label: "Option3", value: "option3" },
         ],
         initValue: ["option1", "option3"],
-        direction: "row",      className: "",
+        direction: "row",
+        className: "",
     },
     render: (args) => ({
         components: { Checkbox },
@@ -104,6 +105,7 @@ export const CheckboxMultiStory = {
                 :dataSource="args.dataSource"
                 :initValue="args.initValue"
                 :direction="args.direction"
+                :className="args.className"
                 v-model="checkedCheckboxOptions"></Checkbox>
         `,
     }),
@@ -123,6 +125,7 @@ export const CheckboxMultiStory = {
                         `  :dataSource="${dataSourceString}"`,
                         `  :initValue="[${args.initValue}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                     ].join('\n').trim();
@@ -191,18 +194,21 @@ export const CheckboxColorStory = {
                     :dataSource="args.datasourcePrimary"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
                 <Checkbox
                     themeColor="secondary"
                     :dataSource="args.datasourceSecondary"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
                 <Checkbox
                     themeColor="tertiary"
                     :dataSource="args.datasourceTertiary"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
 
                 <Checkbox
@@ -210,6 +216,7 @@ export const CheckboxColorStory = {
                     :dataSource="args.datasourceSuccess"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
 
                 <Checkbox
@@ -217,6 +224,7 @@ export const CheckboxColorStory = {
                     :dataSource="args.datasourceWarning"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
 
                 <Checkbox
@@ -224,6 +232,7 @@ export const CheckboxColorStory = {
                     :dataSource="args.datasourceError"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
                 
                 <Checkbox
@@ -231,6 +240,7 @@ export const CheckboxColorStory = {
                     :dataSource="args.datasourceInfo"
                     :initValue="args.initValue"
                     :direction="args.direction"
+                    :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
             </div>
         `,
@@ -257,6 +267,7 @@ export const CheckboxColorStory = {
                         `  :dataSource="${datasourcePrimary}"`,
                         `  :initValue="[${args.initValue[0]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
@@ -264,6 +275,7 @@ export const CheckboxColorStory = {
                         `  :dataSource="${datasourceSecondary}"`,
                         `  :initValue="[${args.initValue[1]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
@@ -271,6 +283,7 @@ export const CheckboxColorStory = {
                         `  :dataSource="${datasourceTertiary}"`,
                         `  :initValue="[${args.initValue[2]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
@@ -278,12 +291,14 @@ export const CheckboxColorStory = {
                         `  :dataSource="${datasourceSuccess}"`,
                         `  :initValue="[${args.initValue[3]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '<Checkbox',
                         `  themeColor="warning"`,
                         `  :dataSource="${datasourceWarning}"`,
                         `  :initValue="[${args.initValue[4]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
@@ -291,6 +306,7 @@ export const CheckboxColorStory = {
                         `  :dataSource="${datasourceError}"`,
                         `  :initValue="[${args.initValue[5]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
@@ -298,6 +314,7 @@ export const CheckboxColorStory = {
                         `  :dataSource="${datasourceInfo}"`,
                         `  :initValue="[${args.initValue[6]}]"`,
                         `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
                     ].join('\n').trim();

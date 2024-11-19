@@ -67,18 +67,18 @@ const handleCheck = (item, index) => {
 
 <template>
 	<div :class="{
-		'checkbox-container': true,
-		[`checkbox-container-${props.direction}`]: props.direction,
+		'ded-checkbox-container': true,
+		[`ded-checkbox-container-${props.direction}`]: props.direction,
 		[props.className]: !!props.className
 		}">
 		<label
 			v-for="(item, index) in props.dataSource"
 			:key="item.id"
 			:for="item.id"
-			:class="{'checkbox': true}"
+			:class="{'ded-checkbox': true}"
 		>
 			<input
-				class="checkbox-input"
+				class="ded-checkbox-input"
 				type="checkbox"
 				:id="item.id"
 				:name="item.name"
@@ -89,16 +89,16 @@ const handleCheck = (item, index) => {
 			<!-- checkbox - 選擇框樣式 -->
 			<div
 				:class="[
-					'checkbox-icon',
+					'ded-checkbox-icon',
 					isCheck[index]
-						? `checkbox-checked-${props.themeColor}`
-						: `checkbox-unchecked-${props.themeColor}`,
+						? `ded-checkbox-checked-${props.themeColor}`
+						: `ded-checkbox-unchecked-${props.themeColor}`,
 				]"
 			>
 				<Icon v-if="isCheck[index]" name="check" color="#fff"></Icon>
 			</div>
 			<!-- checkbox - 選項文字 -->
-			<span class="checkbox-text">{{ item.label }}</span>
+			<span class="ded-checkbox-text">{{ item.label }}</span>
 		</label>
 	</div>
 </template>
