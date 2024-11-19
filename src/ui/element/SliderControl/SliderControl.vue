@@ -97,7 +97,7 @@ watch(() => props.initValue, (newValue) => {
 </script>
 
 <template>
-	<div :class="{'button-slider': true, [props.className]: !!props.className}">
+	<div :class="{'ded-button-slider': true, [props.className]: !!props.className}">
 		<Button
 			variant="text"
 			:themeColor="props.themeColor"
