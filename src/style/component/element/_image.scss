@@ -10,7 +10,7 @@ $image-ratios: (
     "16x9": math.div(16, 9),
 );
 
-.image-container {
+.ded-image-container {
     background-color: #e4e4e4;
     overflow: hidden;
     height: 100%;
@@ -21,7 +21,7 @@ $image-ratios: (
         }
     }
 
-    .image {
+    .ded-image {
         width: 100%;
         height: 100%;
         vertical-align: bottom;

@@ -24,7 +24,7 @@ const props = defineProps({
 });
 
 const imageContainerCVAClass = computed(()=>{
-  return cva ("image-container",{
+  return cva ("ded-image-container",{
     variants: {
       ratio: {
         11: "ratio-1x1",
@@ -40,7 +40,7 @@ const imageContainerCVAClass = computed(()=>{
 })
 
 const imageObjectFitCVAClass = computed(()=>{
-  return cva ("image",{
+  return cva ("ded-image",{
     variants: {
       objectFit: {
         cover: "cover",
