@@ -51,18 +51,18 @@ const computedValue = computed(() => {
 </script>
 
 <template>
-	<span class="badge__container">
+	<span class="ded-badge__container">
 		<!-- Badge - slot -->
 		<slot></slot>
 
 		<!-- Badge - 實體 -->
 	    <span
-		    class="badge__content"
+		    class="ded-badge__content"
 		    :class="{
-				[`badge-color-${props.themeColor}`]: props.themeColor,
-		        'badge__content-isDot': props.isDot,
-		        [`badge__position-${props.position}`]: props.position,
-		        'badge__content-withIcon': props.withIcon
+				[`ded-badge-color-${props.themeColor}`]: props.themeColor,
+		        'ded-badge__content-isDot': props.isDot,
+		        [`ded-badge__position-${props.position}`]: props.position,
+		        'ded-badge__content-withIcon': props.withIcon
 		    }">
             {{ !props.isDot ? computedValue : '' }}
 	    </span>

@@ -1,12 +1,12 @@
 @use "sass:color";
 
-.badge__container {
+.ded-badge__container {
     position: relative;
     display: inline-flex;
 }
 
 // 基礎設定
-.badge__content{
+.ded-badge__content{
     margin: auto 0;
     background-color: #FF4C51;
     border-radius: 999px;
@@ -20,12 +20,12 @@
 }
 
 // position-default - 顯示數字
-.badge__content.badge__position-default {
+.ded-badge__content.ded-badge__position-default {
     margin-left: 4px;
 }
 
 // position-default - 顯示點點
-.badge__content.badge__position-default.badge__content-isDot {
+.ded-badge__content.ded-badge__position-default.ded-badge__content-isDot {
     width: 8px;
     height: 8px;
     margin-left: 4px;
@@ -33,21 +33,21 @@
 }
 
 // position-top-right - 顯示數字
-.badge__content.badge__position-top-right {
+.ded-badge__content.ded-badge__position-top-right {
     position: absolute;
     bottom: calc(100% - 20%);
     left: calc(100% - 10%);
 }
 
 // position-top-right - 顯示數字 (withIcon)
-.badge__content.badge__position-top-right.badge__content-withIcon {
+.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon {
     bottom: calc(100% - 38%);
     left: calc(100% - 15%);
 }
 
 
 // position-top-right - 顯示點點
-.badge__content.badge__position-top-right.badge__content-isDot {
+.ded-badge__content.ded-badge__position-top-right.ded-badge__content-isDot {
     width: 8px;
     height: 8px;
     margin-left: 4px;
@@ -57,7 +57,7 @@
 }
 
 // position-top-right - 顯示點點 (withIcon)
-.badge__content.badge__position-top-right.badge__content-withIcon.badge__content-isDot {
+.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon.ded-badge__content-isDot {
     width: 8px;
     height: 8px;
     margin-left: 4px;
@@ -67,7 +67,7 @@
 }
 
 @each $theme in $themes {
-    .badge__content.badge-color-#{$theme} {
+    .ded-badge__content.ded-badge-color-#{$theme} {
         background: getThemeColor($mode, $theme, "default");
     }
 }
