@@ -170,7 +170,8 @@ defineExpose({ updateWidth });
         </div>
 
         <div
-            :class="['ded-tooltip', props.isDisabled ? 'ded-tooltip-disable' : `ded-tooltip-${props.themeColor}`]"
+            :class="['ded-slider-tooltip', props.isDisabled ? 'ded-slider-tooltip-disable' :
+            `ded-slider-tooltip-${props.themeColor}`]"
             :style="{ left: tooltipPosition }"
         >
             <span>{{ value }}</span>

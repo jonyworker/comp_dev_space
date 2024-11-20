@@ -15,7 +15,8 @@
     border-radius: 8px;
 }
 
-.ded-tooltip {
+//jony有學長沒有 為避免與 tooltip 相衝 改 slider-tooltip
+.ded-slider-tooltip {
     position: absolute;
     top: -20px;
     width: 40px; //jony有學長沒有
@@ -88,7 +89,7 @@ input[type="range"].ded-slider::-webkit-slider-runnable-track {
         background: linear-gradient(to right, getThemeColor($mode, $theme, 'default') 0%, getThemeColor($mode, $theme, 'default') var(--progress), $color-gray20 var(--progress), $color-gray20 100%);
     }
 
-    .ded-tooltip-#{$theme} {
+    .ded-slider-tooltip-#{$theme} {
         color: getThemeColor($mode, $theme, 'default');
     }
 }
@@ -115,7 +116,8 @@ input[type="range"].ded-slider-disable::-webkit-slider-thumb {
     cursor: not-allowed;
 }
 
-.ded-tooltip-disable {
+//jony有學長沒有 為避免與 tooltip 相衝 改 slider-tooltip-disable
+.ded-slider-tooltip-disable {
     color: $color-gray20;
     pointer-events: none;
 }
