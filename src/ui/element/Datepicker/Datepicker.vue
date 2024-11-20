@@ -126,8 +126,8 @@ onMounted(() => {
 					<!-- 時間區間 - 開始 -->
 					<div style="width: 100%;">
 						<label v-if="props.rangeStartLabel" class="ded-input-label">{{ props.rangeStartLabel }}</label>
-						<div :class="['ded-input-group', `component-${size}`]">
-							<Icon :class="`icon-${size}`" name="calendar"/>
+						<div :class="['ded-input-group', `ded-component-${size}`]">
+							<Icon :class="`ded-icon-${size}`" name="calendar"/>
 							<input type="text" name="start" :placeholder="props.rangeStartPlaceholder"/>
 						</div>
 					</div>
@@ -135,8 +135,8 @@ onMounted(() => {
 					<!-- 時間區間 - 結束 -->
 					<div style="width: 100%;">
 						<label v-if="props.rangeEndLabel" class="ded-input-label">{{ props.rangeEndLabel }}</label>
-						<div :class="['ded-input-group', `component-${size}`]">
-							<Icon :class="`icon-${size}`" name="calendar"/>
+						<div :class="['ded-input-group', `ded-component-${size}`]">
+							<Icon :class="`ded-icon-${size}`" name="calendar"/>
 							<Input type="text" name="end" :placeholder="props.rangeEndPlaceholder"/>
 						</div>
 					</div>
@@ -146,8 +146,8 @@ onMounted(() => {
 
 		<template v-else>
 			<label v-if="props.label" class="ded-input-label">{{ props.label }}</label>
-			<div :class="['ded-input-group', `component-${size}`]">
-				<Icon :class="`icon-${size}`" name="calendar"/>
+			<div :class="['ded-input-group', `ded-component-${size}`]">
+				<Icon :class="`ded-icon-${size}`" name="calendar"/>
 				<Input type="text" ref="datepicker" :placeholder="props.placeholder"/>
 			</div>
 		</template>

@@ -41,14 +41,14 @@ export default {
 export const DialogClick = {
 	name: "預設項目",
 	args: {
-		dialogHeader: `<div class="title title-level-2 title-undefined">Replace Image?</div>`,
+		dialogHeader: `<div class="ded-title ded-title-level-2 ded-title-undefined">Replace Image?</div>`,
 
 		dialogBody: `<p>A file named "example.png" already exist! Do you what to replace it?</p>`,
 
 		dialogFooter:
 			`<div style="display: flex; justify-content: flex-end; gap: 16px">
-<button class="button button-text button-fit button-text-error" @click="dialog.closeDialog()" >Cancel</button>
-<button class="button button-contained button-fit button-contained-error" @click="dialog.closeDialog()">Replace</button>
+<button class="ded-button ded-button-text ded-button-fit ded-button-text-error" @click="dialog.closeDialog()" >Cancel</button>
+<button class="ded-button ded-button-contained ded-button-fit ded-button-contained-error" @click="dialog.closeDialog()">Replace</button>
 </div>`,
 	},
 	render: (args) => ({

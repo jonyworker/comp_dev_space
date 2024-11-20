@@ -139,7 +139,7 @@ onBeforeUnmount(() => {
                     }"
 				>
 					<List>
-						<li class="menu-item" v-for="(menu) in restList" :key="menu.userName" style="border-bottom:
+						<li class="ded-menu-item" v-for="(menu) in restList" :key="menu.userName" style="border-bottom:
 						none">
 							<Avatar
 								size="xsmall"

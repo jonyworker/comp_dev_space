@@ -56,7 +56,7 @@ const buttonCVAClass = useButtonCVAClass(props);
 
 // 計算各尺寸 icon class
 const iconSizeClass = computed(() => {
-	return `icon-${props.size}`;
+	return `ded-icon-${props.size}`;
 })
 
 // 計算包括 CVA Class 與自定義 className 的按鈕樣式
