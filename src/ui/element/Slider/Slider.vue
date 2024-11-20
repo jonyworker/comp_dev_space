@@ -155,20 +155,17 @@ defineExpose({ updateWidth });
 
 <template>
     <div :class="{ 'ded-slider-container': true, [props.className]: !!props.className }" ref="containerRef">
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <input
-                ref="rangeRef"
-                type="range"
-                :min="props.min"
-                :max="props.max"
-                :step="props.step"
-                :disabled="props.isDisabled"
-                @input="handleChange"
-                v-model="value"
-                :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
-            />
-        </div>
-
+        <input
+            ref="rangeRef"
+            type="range"
+            :min="props.min"
+            :max="props.max"
+            :step="props.step"
+            :disabled="props.isDisabled"
+            @input="handleChange"
+            v-model="value"
+            :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
+        />
         <div
             :class="['ded-slider-tooltip', props.isDisabled ? 'ded-slider-tooltip-disable' :
             `ded-slider-tooltip-${props.themeColor}`]"
