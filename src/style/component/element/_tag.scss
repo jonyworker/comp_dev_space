@@ -1,41 +1,165 @@
-.tag__container {
+//.tag__container {
+//    display: inline-flex;
+//    justify-content: center;
+//    align-items: center;
+//    border: 1px solid $color-gray90;
+//    border-radius: 999px;
+//    flex-shrink: 0;
+//    //background-color: #ff0;
+//    padding: 4px 8px;
+//    gap: 6px;
+//
+//    &:hover {
+//        border: 1px solid #ddd8f6;
+//        background-color: #ddd8f6;
+//    }
+//}
+//
+//.tag__label {
+//    font-size: 14px;
+//}
+//
+//.tag-disable {
+//    pointer-events: none !important;
+//    color: $color-gray20 !important;
+//    background-color: $color-white !important;
+//    border-color: $color-gray20 !important;
+//}
+//
+//@each $theme in $themes {
+//    .tag-#{$theme} {
+//        // border-top-width: 1px;
+//        background-color: getThemeColor($mode, $theme, "default");
+//        color: #fff;
+//        border-color: getThemeColor($mode, $theme, "default");
+//
+//        &:hover {
+//                background-color: getThemeColor($mode, $theme, 'hover');
+//                border-color: getThemeColor($mode, $theme, 'hover');
+//        }
+//    }
+//}
+
+
+@use "sass:math";
+
+.ded-tag {
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 4px;
     border: 1px solid $color-gray90;
-    border-radius: 999px;
-    flex-shrink: 0;
-    //background-color: #ff0;
-    padding: 4px 8px;
-    gap: 6px;
+    border-radius: 16px;
+    padding-inline: 8px;
+    color: $text-color-secondary;
 
-    &:hover {
-        border: 1px solid #ddd8f6;
-        background-color: #ddd8f6;
+    &-text {
+        font-size: 14px;
     }
-}
 
-.tag__label {
-    font-size: 14px;
-}
+    &-icon {
+        display: flex;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+    }
 
-.tag-disable {
-    pointer-events: none !important;
-    color: $color-gray20 !important;
-    background-color: $color-white !important;
-    border-color: $color-gray20 !important;
-}
+    &-close {
+        color: $color-white;
+        width: 18px;
+        height: 18px;
 
-@each $theme in $themes {
-    .tag-#{$theme} {
-        // border-top-width: 1px;
-        background-color: getThemeColor($mode, $theme, "default");
+        &-disabled {
+            color: $color-gray20;
+        }
+    }
+
+    &-contained {
+        background-color: $color-black;
         color: #fff;
-        border-color: getThemeColor($mode, $theme, "default");
+    }
 
-        &:hover {
-                background-color: getThemeColor($mode, $theme, 'hover');
-                border-color: getThemeColor($mode, $theme, 'hover');
+    &-outlined {
+        background-color: transparent;
+        border-width: $btn-border-width;
+        border-style: solid;
+
+        &:focus {
+            box-shadow: 0 0 0 3px blend-rgba(getThemeColor($mode, 'primary', 'default'), $lightness50);
+        }
+
+        &:active {
+            box-shadow: unset;
+        }
+    }
+
+    &-contained-disabled {
+        pointer-events: none;
+        background-color: $color-gray20 !important;
+        border-color: $color-gray20 !important;
+        color: $color-white !important;
+    }
+
+    &-outlined-disabled {
+        pointer-events: none;
+        background-color: transparent !important;
+        border-color: $color-gray20 !important;
+        color: $color-gray20 !important;
+    }
+
+    @each $variant in $variants {
+        @each $theme in $themes {
+            &-#{$variant}-#{$theme} {
+
+                @if($variant =='contained') {
+                    border-color: getThemeColor($mode, $theme, 'default');
+                    background-color: getThemeColor($mode, $theme, 'default');
+                }
+
+                @else {
+                    border-color: getThemeColor($mode, $theme, 'default');
+                    color: getThemeColor($mode, $theme, 'default');
+                }
+
+                &:hover {
+
+                    @if($variant =='contained') {
+                        border-color: getThemeColor($mode, $theme, 'hover');
+                        background-color: getThemeColor($mode, $theme, 'hover');
+                    }
+
+                    @else {
+                        border-color: getThemeColor($mode, $theme, 'hover');
+                        color: getThemeColor($mode, $theme, 'hover');
+                    }
+                }
+
+                &:focus {
+
+                    @if($variant =='contained') {
+                        border-color: getThemeColor($mode, $theme, 'focus');
+                        background-color: getThemeColor($mode, $theme, 'focus');
+                    }
+
+                    @else {
+                        border-color: getThemeColor($mode, $theme, 'focus');
+                        color: getThemeColor($mode, $theme, 'focus');
+                    }
+                }
+
+                &:active {
+
+                    @if($variant =='contained') {
+                        border-color: getThemeColor($mode, $theme, 'active');
+                        background-color: getThemeColor($mode, $theme, 'active');
+                    }
+
+                    @else {
+                        border-color: getThemeColor($mode, $theme, 'active');
+                        color: getThemeColor($mode, $theme, 'active');
+                    }
+                }
+            }
         }
     }
 }
