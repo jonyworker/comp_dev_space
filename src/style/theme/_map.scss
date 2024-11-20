@@ -274,12 +274,12 @@ $arrow-position: (
         'bottom-left': ('top': calc(0% - 4px), 'left': 30%, 'transform': translateX(-50%) rotate(180deg)),
         'bottom': ('top': calc(0% - 4px), 'left': 50%, 'transform': translateX(-50%) rotate(180deg)),
         'bottom-right': ('top': calc(0% - 4px), 'left': 70%, 'transform': translateX(-50%) rotate(180deg)),
-        'left-top': ('top': 30%, 'left': calc(100% - 2px), 'transform': translateY(-50%) rotate(-90deg)),
+        'left-top': ('top': 50%, 'left': calc(100% - 2px), 'transform': translateY(-50%) rotate(-90deg)),
         'left': ('top': 50%, 'left': calc(100% - 2px), 'transform': translateY(-50%) rotate(-90deg)),
-        'left-bottom': ('top': 70%, 'left': calc(100% - 2px), 'transform': translateY(-50%) rotate(-90deg)),
-        'right-top': ('top': 30%, 'left': calc(0% - 8px), 'transform': translateY(-50%) rotate(90deg)),
+        'left-bottom': ('top': 50%, 'left': calc(100% - 2px), 'transform': translateY(-50%) rotate(-90deg)),
+        'right-top': ('top': 50%, 'left': calc(0% - 8px), 'transform': translateY(-50%) rotate(90deg)),
         'right': ('top': 50%, 'left': calc(0% - 8px), 'transform': translateY(-50%) rotate(90deg)),
-        'right-bottom': ('top': 70%, 'left': calc(0% - 8px), 'transform': translateY(-50%) rotate(90deg)),
+        'right-bottom': ('top': 50%, 'left': calc(0% - 8px), 'transform': translateY(-50%) rotate(90deg)),
 );
 
 

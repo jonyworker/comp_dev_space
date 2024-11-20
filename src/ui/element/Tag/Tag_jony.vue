@@ -61,7 +61,7 @@ const closeTag = () => {
 
         <Icon
             v-if="props.closable"
-            name="close"ㄌ
+            name="close"
             size="14"
             @click="closeTag()"
         ></Icon>
