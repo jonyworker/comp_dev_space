@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from "vue";
+import Icon from '@/ui/element/Icon/Icon.vue';
 
 const props = defineProps({
 	dataSource: {
@@ -31,48 +32,26 @@ const accordionToggle = (index) => {
 </script>
 
 <template>
-	<div :class="{
-			'accordion__container': true,
-			[props.className]: !!props.className
-		}">
-		<ul aria-label="Accordion" class="accordion__list">
-			<li v-for="(item, index) in accordionItems" :key="index" class="accordion__item" @click="accordionToggle(index)">
-				<button
-					class="accordion-header"
-
-				>
+	<div :class="{'ded-accordion__container': true, [props.className]: !!props.className}">
+		<ul aria-label="Accordion" class="ded-accordion__list">
+			<li v-for="(item, index) in accordionItems" :key="index" class="ded-accordion__item" @click="accordionToggle(index)">
+				<button class="ded-accordion-header">
 					<span>{{item.title}}</span>
 					<!-- 箭頭 - 下 -->
 					<template v-if="item.expanded">
-						<div style="width: 24px;height: 24px;">
-							<svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="100%" fill="currentColor">
-								<path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/>
-							</svg>
-						</div>
+						<Icon name="chevronDown" size="24"></Icon>
 					</template>
 
 					<!-- 箭頭 - 上 -->
 					<template v-else>
-						<div style="width: 24px;height: 24px;">
-							<svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="100%" fill="currentColor">
-								<path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
-							</svg>
-						</div>
+						<Icon name="chevronUp" size="24"></Icon>
 					</template>
-
 				</button>
 				<!--	            v-show="item.expanded"-->
-				<div
-					class="accordion-content"
-					:class="{'expanded': item.expanded}"
-
-				>
-
+				<div class="ded-accordion-content" :class="{'expanded': item.expanded}">
 					<p v-for="(content, i) in item.contents" :key="i">
 						{{ content }}
 					</p>
-
-
 				</div>
 			</li>
 		</ul>

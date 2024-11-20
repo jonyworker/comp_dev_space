@@ -1,9 +1,9 @@
-.accordion__container {
+.ded-accordion__container {
 
-  .accordion__list {
+  .ded-accordion__list {
     list-style: none;
   }
-  .accordion__item {
+  .ded-accordion__item {
     border-bottom: 1px solid #EEEEEE;
     padding: 16px;
     border-radius: 4px;
@@ -13,7 +13,7 @@
     }
 
   }
-  .accordion-header {
+  .ded-accordion-header {
     position: relative;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
     border: none;
     background: none;
     padding: 0;
-    //outline: none;
+
     font-size: 16px;
     font-weight: 700;
     color: black;
@@ -31,19 +31,16 @@
 
 
   // 展開部分
-  .accordion-content {
+  .ded-accordion-content {
     padding-top: 0 ;
     max-height: 0; /* 初始時不顯示 */
     overflow: hidden; /* 隱藏溢出內容 */
     opacity: 0;
     transition: all 0.1s;  /* 添加過渡效果 */
   }
-  .accordion-content.expanded {
-    //height: auto;
-    //height: calc-size(auto);
+  .ded-accordion-content.expanded {
     padding-top: 8px;
     max-height: 800px;
     opacity: 1;
-
   }
 }
