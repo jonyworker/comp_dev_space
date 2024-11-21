@@ -15,20 +15,19 @@
     border-radius: 8px;
 }
 
-//jony有學長沒有 為避免與 tooltip 相衝 改 slider-tooltip
+
 .ded-slider-tooltip {
     position: absolute;
     top: -20px;
-    width: 40px; //jony有學長沒有
+    width: 40px; //here
     height: 30px;
     display: flex;
-    justify-content: center; //jony有學長沒有
+    justify-content: center; //here
     align-items: center;
     border-radius: 4px;
     font-size: 14px;
     white-space: nowrap;
 
-    //學長有 （建議可刪）
     //&-center {
     //    justify-content: center;
     //}

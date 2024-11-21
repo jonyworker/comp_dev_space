@@ -41,11 +41,11 @@
 
     @each $theme in $themes {
         &-checked-#{$theme} {
-            background-color: $color-white; //jony有 (checked點點)
+            background-color: $color-white;
             border-color: getThemeColor($mode, $theme, 'default');
-            border-width: 5px; //jony有 (checked點點)
+            border-width: 5px;
             color: $color-white;
-            transition: border-width 0.1s; //jony有 (checked點點)
+            transition: border-width 0.1s;
 
             &:hover {
                 border-color: getThemeColor($mode, $theme, 'default');

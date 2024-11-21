@@ -4,9 +4,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-
-    // jony沒有
-    //margin-inline: 8px;
+    margin-inline: 8px;
 
     padding: 8px;
     border-bottom: 1px solid #ccc;
@@ -55,7 +53,7 @@
         transition: width 0.3s ease-in-out;
         overflow: hidden;
         height: 100%;
-        width: 100%; //jony有 學長設定在 inline style
+        width: 100%;
 
         &-menu {
             list-style: none;
