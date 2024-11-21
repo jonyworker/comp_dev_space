@@ -20,12 +20,6 @@ export default {
 			table: {
 				type: {
 					summary: '{ label: string; value: string; }[]',
-//                     detail: `{
-//     label: string,
-//     id: string,
-//     value: string,
-//     name: string
-// }`
 				}
 			}
 		},
@@ -84,7 +78,7 @@ export const DropdownDefault = {
 			}
 		],
 		label: "Label",
-		placeholder: "PLease Select",
+		placeholder: "Placeholder...",
 		size: "medium",
 		maxHeight: "",
 		className: ""

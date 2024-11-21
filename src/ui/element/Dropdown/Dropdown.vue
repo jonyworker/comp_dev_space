@@ -15,9 +15,12 @@ const props = defineProps({
 	},
 	label: {
 		type: String,
+		default: "",
+
 	},
 	placeholder: {
 		type: String,
+		default: "Placeholder...",
 	},
 	size: {
 		type: String,
