@@ -10,21 +10,6 @@ export default {
 			description: "圖片來源",
 			control: { type: "text" },
 		},
-		//DED VUE 用程式碼
-		// src: {
-		//   description: "圖片來源",
-		//   table: {
-		//      defaultValue: { summary: '01' }
-		//   },
-		//   control: { type: 'select' },
-		//   options: ['01', '02', '03', '04'],
-		//   mapping: {
-		//     '01': 'libs/src/assets/fakeImg/avatar_01.jpg',
-		//     '02': 'libs/src/assets/fakeImg/avatar_02.jpg',
-		//     '03': 'libs/src/assets/fakeImg/avatar_03.jpg',
-		//     '04': 'libs/src/assets/fakeImg/avatar_04.jpg',
-		//   },
-		// },
 		alt: {
 			description: "圖片替代文字",
 			control: { type: 'text' },
@@ -48,8 +33,11 @@ export default {
 				'5/4': '54',
 				'16/9': '169',
 			},
-		}
-
+		},
+		className: {
+			description: "客製化樣式",
+			control: { type: "text" },
+		},
 	},
 	parameters: {
 		// 自動文件
@@ -73,6 +61,7 @@ export const ImageDefault = {
 		alt: 'User Photo',
 		objectFit: 'cover',
 		ratio: '11',
+		className: '',
 	},
 	render: (args) => ({
 		components: { Image },
@@ -88,7 +77,9 @@ export const ImageDefault = {
 					:ratio="args.ratio"
 					:objectFit="args.objectFit"
 					:src="args.src"
-					:alt="args.alt"></Image>
+					:alt="args.alt"
+					:className="args.className"
+				></Image>
 			</div>
 		`,
 	}),
@@ -108,6 +99,7 @@ export const ImageDefault = {
 						`    objectFit="${args.objectFit}"`,
 						`    src="${args.src}"`,
 						`    alt="${args.alt}"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
 						'</div>',
 					].join('\n').trim();
@@ -122,7 +114,9 @@ export const ImageRatio = {
 	name: '圖片比例總覽',
 	args: {
 		src: 'https://picsum.photos/300/300',
-		objectFit: 'cover'
+		alt: '',
+		objectFit: 'cover',
+		className: ''
 	},
 	render: (args) => ({
 		components: { Image },
@@ -199,25 +193,33 @@ export const ImageRatio = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'  <Image ratio="11"',
-						`         objectFit="${args.objectFit}"`,
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="${args.objectFit}"`,
+						`    ratio="11"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
-						'  <Image ratio="43"',
-						`         objectFit="${args.objectFit}"`,
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="${args.objectFit}"`,
+						`    ratio="43"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
-						'  <Image ratio="54"',
-						`         objectFit="${args.objectFit}"`,
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="${args.objectFit}"`,
+						`    ratio="54"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
-						'  <Image ratio="169"',
-						`         objectFit="${args.objectFit}"`,
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="${args.objectFit}"`,
+						`    ratio="169"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
 					].join('\n').trim();
 
@@ -232,8 +234,10 @@ export const ImageFit = {
 	name: '圖片自適應',
 	args: {
 		src: 'https://picsum.photos/300/300',
+		alt: '',
 		objectFit: 'cover',
-		ratio: '169'
+		ratio: '169',
+		className: ''
 	},
 	render: (args) => ({
 		components: { Image },
@@ -246,9 +250,11 @@ export const ImageFit = {
 		template: `
 			<div style="display:flex; gap: 24px;">
 				<div style="position: relative; width: fit-content; height: fit-content;">
-					<Image :ratio="args.ratio"
-					       objectFit="cover"
+					<Image 
 					       :src="args.src"
+					       objectFit="cover"
+					       :ratio="args.ratio"
+					       class="${args.className}"
 					       style="width: 250px"
 					></Image>
 					<p
@@ -259,9 +265,11 @@ export const ImageFit = {
                     color:white">cover</p>
 				</div>
 				<div style="position: relative; width: fit-content; height: fit-content;">
-					<Image :ratio="args.ratio"
-					       objectFit="contain"
+					<Image 
 					       :src="args.src"
+					       objectFit="contain"
+					       :ratio="args.ratio"
+					       class="${args.className}"
 					       style="width: 250px"
 					></Image>
 					<p
@@ -272,9 +280,11 @@ export const ImageFit = {
                       color:white">contain</p>
 				</div>
 				<div style="position: relative; width: fit-content; height: fit-content;">
-					<Image :ratio="args.ratio"
-					       objectFit="fill"
+					<Image 
 					       :src="args.src"
+					       objectFit="fill"
+					       :ratio="args.ratio"
+					       class="${args.className}"
 					       style="width: 250px"
 					></Image>
 					<p
@@ -285,9 +295,11 @@ export const ImageFit = {
                         color:white">fill</p>
 				</div>
 				<div style="position: relative; width: fit-content; height: fit-content;">
-					<Image :ratio="args.ratio"
-					       objectFit="none"
+					<Image 
 					       :src="args.src"
+					       objectFit="none"
+					       :ratio="args.ratio"
+					       class="${args.className}"
 					       style="width: 250px"
 					></Image>
 					<p
@@ -310,25 +322,33 @@ export const ImageFit = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`  <Image ratio="${args.ratio}"`,
-						'         objectFit="cover"',
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="cover"`,
+						`    ratio="${args.ratio}"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
-						`  <Image ratio="${args.ratio}"`,
-						'         objectFit="contain"',
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="contain"`,
+						`    ratio="${args.ratio}"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
-						`  <Image ratio="${args.ratio}"`,
-						'         objectFit="fill"',
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="fill"`,
+						`    ratio="${args.ratio}"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
-						`  <Image ratio="${args.ratio}"`,
-						'         objectFit="none"',
-						`         src="${args.src}"`,
-						'         style="width: 250px"',
+						'  <Image',
+						`    src="${args.src}"`,
+						`    alt="${args.alt}"`,
+						`    objectFit="none"`,
+						`    ratio="${args.ratio}"`,
+						`    className="${args.className}"`,
 						'  ></Image>',
 					].join('\n').trim();
 				}
