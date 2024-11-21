@@ -39,10 +39,9 @@ export const AccordionDefault = {
 	args: {
 		dataSource: [
 			{
-				title: "這個產品跟我的設備能兼容嗎？",
+				title: "Accordion title",
 				contents: [
-					"使用前先確保這個產品和你的設備是能搭配的，特別是在連接和設置上。",
-					"例如，如果你是用舊款設備，建議查看一下產品手冊，確保一切正常！"
+					"Accordion content"
 				],
 			},
 		],
@@ -91,24 +90,21 @@ export const AccordionGroup = {
 	args: {
 		dataSource: [
 			{
-				title: "怎麼保養我的產品？",
+				title: "Accordion title 1",
 				contents: [
-					"要讓你的產品保持最佳狀態，建議定期清理，並避免放在太熱或太冷的地方。",
-					"比如說，用柔軟的布輕輕擦拭，不要用化學清潔劑哦！"
+					"Accordion content 1"
 				],
 			},
 			{
-				title: "保修政策是什麼？",
+				title: "Accordion title 2",
 				contents: [
-					"我們的產品提供一年保修，涵蓋材料和製作上的問題。",
-					"記得保留購買憑證，如果需要維修，隨時聯繫我們的客服！"
+					"Accordion content 2"
 				],
 			},
 			{
-				title: "這個產品跟我的設備能兼容嗎？",
+				title: "Accordion title 3",
 				contents: [
-					"使用前先確保這個產品和你的設備是能搭配的，特別是在連接和設置上。",
-					"例如，如果你是用舊款設備，建議查看一下產品手冊，確保一切正常！"
+					"Accordion content 3"
 				],
 			},
 		],
