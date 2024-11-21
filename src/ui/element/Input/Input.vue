@@ -17,7 +17,7 @@ const props = defineProps({
 	},
 	placeholder: {
 		type: String,
-		default: "請輸入...",
+		default: "Placeholder...",
 	},
 	prefix: {
 		type: String,
