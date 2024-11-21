@@ -86,12 +86,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<div
-		:class="{
-            'ded-avatar-group': true,
-            [props.className]: !!props.className,
-        }"
-	>
+	<div :class="{'ded-avatar-group': true,[props.className]: !!props.className,}">
 		<!-- avatar group - 渲染 avatar -->
 		<Avatar
 			v-for="(avatar, index) in currList"
@@ -102,26 +97,18 @@ onBeforeUnmount(() => {
 			:userName="avatar.userName"
 		></Avatar>
 
-		<div
-			class="rest-container"
-			ref="restContainerRef"
-			v-if="restList.length > 0"
-		>
+		<div class="rest-container" ref="restContainerRef" v-if="restList.length > 0">
+
 			<!-- avatar group - 剩餘未顯示總數表示 -->
-			<div class="">
+			<div v-if="restList.length > 0" :class="[ 'ded-avatar-container', props.size ?
+			`ded-avatar-container-${props.size}` : 'ded-avatar-container-medium' ]">
 				<button
-					:class="[ 'ded-avatar-container', props.size ? `ded-avatar-container-${props.size}` : 'ded-avatar-container-medium' ]"
+					:class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
 					@click.prevent="handleClick"
 					style="cursor: pointer"
 				>
-                    <span
-	                    :class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
-                    >
-                        <span
-	                        :class="[ 'ded-avatar-text', props.size ? `text-${props.size}` : 'text-medium' ]"
-                        >
-                            {{ `+${restCount}` }}
-                        </span>
+                    <span :class="[ 'ded-avatar-text', props.size ? `text-${props.size}` : 'text-medium' ]">
+                        {{ `+${restCount}` }}
                     </span>
 				</button>
 			</div>
