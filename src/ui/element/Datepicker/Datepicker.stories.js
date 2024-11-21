@@ -7,27 +7,37 @@ export default {
 	tags: ["autodocs"],
 	argTypes: {
 		label: {
-			description: "設定 Datepicker 的標題文字",
+			description: "標題",
 			control: { type: "text" },
 		},
 		placeholder: {
-			description: "設定 Datepicker 的輸入提示文字，指引用戶輸入日期",
+			description: "輸入提示",
 			control: { type: "text" },
 		},
 		size: {
-			description: "選擇 Datepicker 的大小",
+			description: "尺寸",
 			control: { type: "select" },
 			options: ["small", "medium", "large"],
 		},
 		language: {
-			description: "設定 Datepicker 月曆的語言 (需重整頁面)",
-			control: { type: "select" },
-			options: ["en", "zh-TW"],
+			description: "語系",
+			control: {
+				type: "select",
+				labels: {
+					"": "系統語系",
+					en: "en",
+					"zh-TW": "zh-TW",
+					"fr": "fr",
+					"ja": "ja",
+				}
+			},
+			options: ["", "en", "zh-TW", "ja"],
 		},
 		range: {
 			description: "啟用範圍選擇功能，允許選擇起始日期和結束日期",
 			control: { type: "boolean" },
 		},
+
 		rangeStartLabel: {
 			description: "範圍選擇的起始日期標題文字",
 			control: { type: "text" },
@@ -65,10 +75,10 @@ export default {
 export const DatepickerSingle = {
 	name: "預設項目",
 	args: {
-		label: "預約剪髮日期",
-		placeholder: "請輸入日期",
+		label: "Label",
+		placeholder: "YYYY-MM-DD",
 		size: "large",
-		language:"zh-TW",
+		language:"",
 		className:""
 	},
 	render: (args) => ({
@@ -202,6 +212,14 @@ export const DatepickerLanguage = {
 					placeholder="選擇取貨日期"
 					:size="args.size"
 					language="zh-TW"
+					:className="args.className"
+				></Datepicker>
+
+				<Datepicker
+					label="受け取り日(日本語)"
+					placeholder="受け取り日を選択ください"
+					:size="args.size"
+					language="ja"
 					:className="args.className"
 				></Datepicker>
 			</div>

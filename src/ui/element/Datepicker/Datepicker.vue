@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, useTemplateRef } from "vue";
+import { computed, onMounted, watch, useTemplateRef } from "vue";
 import { Datepicker, DateRangePicker } from "vanillajs-datepicker";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
@@ -7,11 +7,11 @@ import Icon from "@/ui/element/Icon/Icon.vue";
 const props = defineProps({
 	label: {
 		type: String,
-		default: "請輸入日期",
+		default: "",
 	},
 	placeholder: {
 		type: String,
-		default: "請輸入日期",
+		default: "",
 	},
 	size: {
 		type: String,
@@ -20,8 +20,7 @@ const props = defineProps({
 	},
 	language: {
 		type: String,
-		default: "zh-TW",
-		validator: (value) => ["en", "zh-TW"].includes(value),
+		default: "zh-TW", // 空字串表示使用系統語言
 	},
 	range: {
 		type: Boolean,
@@ -53,25 +52,66 @@ const datepickerRef = useTemplateRef("datepicker");
 const dateRangeRef = useTemplateRef("dateRange");
 const calendarWrapperRef = useTemplateRef("calendarWrapper");
 
-// 掛載時載入
-onMounted(() => {
+// 取得系統語言
+const userLanguage = navigator.language || navigator.languages[0];
+const supportedLanguages = ["en", "zh-TW", "fr", "ja"];
+
+// 判斷語言，預設使用系統語言
+const language = computed(() => {
+	if (props.language.trim() === "") {
+		return supportedLanguages.includes(userLanguage) ? userLanguage : "en";
+	}
+	return supportedLanguages.includes(props.language) ? props.language : "en";
+});
+
+// 初始化和更新日曆
+let datepickerInstance = null;
+let dateRangeInstance = null;
+
+const initializeDatepicker = () => {
 	if (props.range) {
-		const dateRangeInstance = new DateRangePicker(dateRangeRef.value, {
+		dateRangeInstance = new DateRangePicker(dateRangeRef.value, {
 			format: "yyyy/mm/dd",
-			language: props.language,
+			language: language.value,
 			container: calendarWrapperRef.value,
 		});
 	} else {
-		const datepickerInstance = new Datepicker(datepickerRef.value, {
+		datepickerInstance = new Datepicker(datepickerRef.value, {
 			format: "yyyy/mm/dd",
-			language: props.language,
+			language: language.value,
 			container: calendarWrapperRef.value,
 		});
 	}
+};
+
+const updateDatepickerLanguage = () => {
+	if (props.range && dateRangeInstance) {
+		dateRangeInstance.setOptions({
+			language: language.value,
+		});
+	} else if (!props.range && datepickerInstance) {
+		datepickerInstance.setOptions({
+			language: language.value,
+		});
+	}
+};
+
+// 掛載時初始化
+onMounted(() => {
+	initializeDatepicker();
 });
 
-// 中文日曆設定
+// 監聽 props.language 變化
+watch(
+	() => props.language,
+	() => {
+		updateDatepickerLanguage();
+	}
+);
+
+
 (function () {
+	// 中文日曆設定
 	Datepicker.locales["zh-TW"] = {
 		days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
 		daysShort: ["日", "一", "二", "三", "四", "五", "六"],
@@ -110,15 +150,73 @@ onMounted(() => {
 		format: "yyyy/mm/dd",
 		weekStart: 0,
 	};
+	// 法文日曆設定
+	Datepicker.locales["fr"] = {
+		days: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+		daysShort: ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
+		daysMin: ["D", "L", "M", "M", "J", "V", "S"],
+		months: [
+			"janvier",
+			"février",
+			"mars",
+			"avril",
+			"mai",
+			"juin",
+			"juillet",
+			"août",
+			"septembre",
+			"octobre",
+			"novembre",
+			"décembre",
+		],
+		monthsShort: [
+			"janv.",
+			"févr.",
+			"mars",
+			"avr.",
+			"mai",
+			"juin",
+			"juil.",
+			"août",
+			"sept.",
+			"oct.",
+			"nov.",
+			"déc.",
+		],
+		today: "Aujourd'hui",
+		clear: "Effacer",
+		titleFormat: "MM yyyy",
+		format: "dd/mm/yyyy",
+		weekStart: 1,
+	};
+	// 註冊日文語系
+	Datepicker.locales["ja"] = {
+		days: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+		daysShort: ["日", "月", "火", "水", "木", "金", "土"],
+		daysMin: ["日", "月", "火", "水", "木", "金", "土"],
+		months: [
+			"1月", "2月", "3月", "4月", "5月", "6月",
+			"7月", "8月", "9月", "10月", "11月", "12月",
+		],
+		monthsShort: [
+			"1月", "2月", "3月", "4月", "5月", "6月",
+			"7月", "8月", "9月", "10月", "11月", "12月",
+		],
+		today: "今日",
+		clear: "クリア",
+		titleFormat: "yyyy年MM月",
+		format: "yyyy/mm/dd",
+		weekStart: 0,
+	};
 })();
 </script>
 
 <template>
 	<div
 		:class="[
-			'input-container',
-			...props.className.split(' ').filter(c => c), // 分割並過濾空白
-		]"
+      'input-container',
+      ...props.className.split(' ').filter((c) => c), // 分割並過濾空白
+    ]"
 	>
 		<template v-if="range">
 			<div ref="dateRange">
