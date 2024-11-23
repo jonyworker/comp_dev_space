@@ -20,17 +20,17 @@
 }
 
 // position-default - 顯示數字
-.ded-badge__content.ded-badge__position-default {
-    margin-left: 4px;
-}
+//.ded-badge__content.ded-badge__position-default {
+//    margin-left: 4px;
+//}
 
 // position-default - 顯示點點
-.ded-badge__content.ded-badge__position-default.ded-badge__content-isDot {
-    width: 8px;
-    height: 8px;
-    margin-left: 4px;
-    padding: 0;
-}
+//.ded-badge__content.ded-badge__position-default.ded-badge__content-isDot {
+//    width: 8px;
+//    height: 8px;
+//    margin-left: 4px;
+//    padding: 0;
+//}
 
 // position-top-right - 顯示數字
 .ded-badge__content.ded-badge__position-top-right {
@@ -39,11 +39,11 @@
     left: calc(100% - 10%);
 }
 
-// position-top-right - 顯示數字 (withIcon)
-.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon {
-    bottom: calc(100% - 38%);
-    left: calc(100% - 15%);
-}
+//// position-top-right - 顯示數字 (withIcon)
+//.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon {
+//    bottom: calc(100% - 38%);
+//    left: calc(100% - 15%);
+//}
 
 
 // position-top-right - 顯示點點
@@ -57,14 +57,14 @@
 }
 
 // position-top-right - 顯示點點 (withIcon)
-.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon.ded-badge__content-isDot {
-    width: 8px;
-    height: 8px;
-    margin-left: 4px;
-    padding: 0;
-    bottom: calc(100% - 35%);
-    left: calc(100% - 30%);
-}
+//.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon.ded-badge__content-isDot {
+//    width: 8px;
+//    height: 8px;
+//    margin-left: 4px;
+//    padding: 0;
+//    bottom: calc(100% - 35%);
+//    left: calc(100% - 30%);
+//}
 
 @each $theme in $themes {
     .ded-badge__content.ded-badge-color-#{$theme} {

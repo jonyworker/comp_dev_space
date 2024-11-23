@@ -1,15 +1,6 @@
 import Badge from "./Badge.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-function formatDataSource(dataSource) {
-	return `[
-    ${dataSource.map(item => `{
-        label: '${item.label}',
-           id: '${item.id}',
-        value: '${item.value}',
-        name: '${item.name}'
-    }`).join(',\n    ')}
-  ]`;
-}
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -18,35 +9,8 @@ export default {
 	components: {Icon},
 	tags: ["autodocs"],
 	argTypes: {
-		isDot: {
-			description: "啟用點狀 Badge，無文字內容，僅顯示圓點",
-			control: { type: "boolean" },
-		},
-		value: {
-			description: "Badge 上顯示的文字內容，啟用點狀時無法作用",
-			control: { type: "range",
-				min:0,
-				max:1000,
-				step: 1 },
-		},
-		maxValue: {
-			description: "Badge 的最大顯示值，超過此值時，Badge 右側顯示加號（+），啟用點狀時無法作用",
-			control: { type: "range",
-				min:0,
-				max:999,
-				step: 1 },
-		},
-		withIcon: {
-			description: "當啟用時，調整圖標接近 Badge 旁邊的顯示位置",
-			control: { type: "boolean" },
-		},
-		position: {
-			description: "選擇 Badge 的位置顯示方式",
-			control: { type: "radio" },
-			options: ["default", "top-right"],
-		},
 		themeColor: {
-			description: "設定 Badge 主題顏色",
+			description: "主題顏色",
 			control: { type: "select" },
 			options: [
 				"primary",
@@ -57,7 +21,48 @@ export default {
 				"error",
 				"info",
 			],
+			table: {
+				type: {
+					summary: "primary | secondary | tertiary | success | warning | error | info"
+				}
+			}
 		},
+		type: {
+			description: "顯示方式",
+			control: { type: "select" },
+			options: [ "dot", "number" ],
+			table: {
+				type: {
+					summary: "dot | number "
+				}
+			}
+		},
+		value: {
+			description: "數值",
+			control: { type: "number" },
+		},
+		limit: {
+			description: "數值上限",
+			control: { type: "number" },
+		},
+		// withIcon: {
+		// 	description: "當啟用時，調整圖標接近 Badge 旁邊的顯示位置",
+		// 	control: { type: "boolean" },
+		// },
+		// position: {
+		// 	description: "選擇 Badge 的位置顯示方式",
+		// 	control: { type: "radio" },
+		// 	options: ["default", "top-right"],
+		// },
+		default: {
+			description: '圖標插槽',
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				}
+			},
+			control: false,
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -67,28 +72,17 @@ export default {
 				component: "Badge 組件的呈現及說明。",
 			},
 		},
-		slots: {
-			default: {
-				description: '用於插入 Badge 內容，例如：圖標或文字',
-				template: `{{ args.default }}`,
-			},
-		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
 export const BadgeDefault = {
 	name: "預設項目",
 	args: {
-		isDot: true,
-		value: 100,
-		maxValue: 99,
-		withIcon: true,
-		position: "top-right",
 		themeColor: "error",
+		type: "number",
+		value: 100,
+		limit: 99,
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -99,12 +93,10 @@ export const BadgeDefault = {
 		},
 		template: `
 			<Badge 
-				:isDot="args.isDot"
-				:value="args.value"
-				:maxValue="args.maxValue"
-				:withIcon="args.withIcon" 
-				:position="args.position" 
 				:themeColor="args.themeColor"
+				:type="args.type"
+				:value="args.value"
+				:limit="args.limit"
 			>
 				<Icon name="notification" size="26"></Icon>
 			</Badge>
@@ -121,12 +113,10 @@ export const BadgeDefault = {
 					const { args } = storyContext;
 					return [
 						'<Badge',
-						`  :isDot="${args.isDot}"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="${args.themeColor}"`,
+						`  type="${args.type}"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
@@ -141,12 +131,10 @@ export const BadgeDefault = {
 export const BadgeStyle = {
 	name: "類型選擇",
 	args: {
-		// isDot: true,
-		value: 999,
-		maxValue: 99,
-		withIcon: true,
-		position: "top-right",
 		themeColor: "error",
+		type: "number",
+		value: 999,
+		limit: 99,
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -158,22 +146,18 @@ export const BadgeStyle = {
 		template: `
 			<div style="display:flex; gap:24px;">
 				<Badge
-					:isDot=true
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					:themeColor="args.themeColor"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot=false
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					:themeColor="args.themeColor"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
@@ -192,137 +176,20 @@ export const BadgeStyle = {
 					const { args } = storyContext;
 					return [
 						'<Badge',
-						`  :isDot=true`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="${args.themeColor}"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot=false`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="${args.themeColor}"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-					].join('\n').trim();
-				}
-			}
-		}
-	},
-};
-
-//==== 顯示位置 ====//
-export const BadgePosition = {
-	name: "顯示位置",
-	args: {
-		value: 100,
-		maxValue: 99,
-		withIcon: true,
-		themeColor: "error",
-	},
-	render: (args) => ({
-		components: { Badge, Icon },
-		setup() {
-			return {
-				args,
-			};
-		},
-		template: `
-			<div style="display:flex; gap:60px; margin-bottom: 24px;">
-				<Badge 
-					:isDot="true"
-					:withIcon="args.withIcon" 
-					position="top-right"
-					:themeColor="args.themeColor"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					position="top-right"
-					:themeColor="args.themeColor"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-			</div>
-			<div style="display:flex; gap:24px">
-				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					position="default"
-					:themeColor="args.themeColor"
-				>
-					<p>value</p>
-				</Badge>
-				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					position="default"
-					:themeColor="args.themeColor"
-				>
-					<p>value</p>
-				</Badge>
-				
-			</div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			include: [ 'value', 'maxValue', 'withIcon', 'themeColor' ],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="top-right"`,
-						`  themeColor="${args.themeColor}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="top-right"`,
-						`  themeColor="${args.themeColor}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="default"`,
-						`  themeColor="${args.themeColor}"`,
-						'>',
-						'  <p>value</p>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="default"`,
-						`  themeColor="${args.themeColor}"`,
-						'>',
-						'  <p>value</p>',
 						'</Badge>',
 					].join('\n').trim();
 				}
@@ -332,15 +199,13 @@ export const BadgePosition = {
 };
 
 //==== 最大值設定 ====//
-export const BadgeMaxValue = {
+export const BadgeLimit = {
 	name: "最大值設定",
 	args: {
-		isDot: false,
-		value: 100,
-		maxValue: 99,
-		withIcon: true,
-		position: "top-right",
 		themeColor: "error",
+		type: "number",
+		value: 999,
+		limit: 99,
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -352,21 +217,18 @@ export const BadgeMaxValue = {
 		template: `
 			<div style="display:flex; gap:60px; margin-bottom: 24px;">
 				<Badge
-					:isDot="args.isDot"
-					:value="args.value"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					:themeColor="args.themeColor"
+					type="number"
+					:value="98"
+					:limit="99"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="args.isDot"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					:themeColor="args.themeColor"
+					type="number"
+					:value="100"
+					:limit="99"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
@@ -384,25 +246,23 @@ export const BadgeMaxValue = {
 					const { args } = storyContext;
 					return [
 						'<Badge',
-						`  :isDot="${args.isDot}"`,
-						`  :value="${args.value}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="${args.themeColor}"`,
+						`  :themeColor="${args.themeColor}"`,
+						`  type="number"`,
+						`  :value="98"`,
+						`  :limit="99"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="${args.isDot}"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="${args.themeColor}"`,
+						`  :themeColor="${args.themeColor}"`,
+						`  type="number"`,
+						`  :value="100"`,
+						`  :limit="99"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 					].join('\n').trim();
+
 				}
 			}
 		}
@@ -413,12 +273,10 @@ export const BadgeMaxValue = {
 export const BadgeThemeColor = {
 	name: "顏色設定",
 	args: {
-		isDot: false,
-		value: 100,
-		maxValue: 99,
-		withIcon: true,
-		position: "top-right",
-		// themeColor: "error",
+		themeColor: "error",
+		type: "number",
+		value: 999,
+		limit: 99,
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -430,130 +288,116 @@ export const BadgeThemeColor = {
 		template: `
 			<div style="display:flex; gap:56px; margin-bottom: 24px;">
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="primary"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="secondary"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="tertiary"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="success"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="warning"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="error"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="true"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="info"
+					type="dot"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 			</div>
 			<div style="display:flex; gap:56px">
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="primary"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="secondary"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="tertiary"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="success"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="warning"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="error"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					:isDot="false"
-					:value="args.value"
-					:maxValue="args.maxValue"
-					:withIcon="args.withIcon"
-					:position="args.position"
 					themeColor="info"
+					type="number"
+					:value="args.value"
+					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
@@ -572,128 +416,114 @@ export const BadgeThemeColor = {
 					const { args } = storyContext;
 					return [
 						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="primary"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="secondary"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="tertiary"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="success"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="warning"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="error"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="true"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
-						`  themeColor="info"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  :isDot="false"`,
+						`  type="dot"`,
 						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="secondary"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="tertiary"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="success"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="warning"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="error"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="info"`,
+						`  type="dot"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
 						`  themeColor="primary"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="secondary"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="tertiary"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="success"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="warning"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="error"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  :isDot="false"`,
-						`  :value="${args.value}"`,
-						`  :maxValue="${args.maxValue}"`,
-						`  :withIcon="${args.withIcon}"`,
-						`  position="${args.position}"`,
 						`  themeColor="info"`,
+						`  type="number"`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
@@ -704,7 +534,118 @@ export const BadgeThemeColor = {
 	},
 };
 
-
+//==== 顯示位置 ====//
+// export const BadgePosition = {
+// 	name: "顯示位置",
+// 	args: {
+// 		themeColor: "error",
+// 		type: "number",
+// 		value: 999,
+// 		limit: 99,
+// 	},
+// 	render: (args) => ({
+// 		components: { Badge, Icon },
+// 		setup() {
+// 			return {
+// 				args,
+// 			};
+// 		},
+// 		template: `
+// 			<div style="display:flex; gap:60px; margin-bottom: 24px;">
+// 				<Badge
+// 					:isDot="true"
+// 					:withIcon="args.withIcon"
+// 					position="top-right"
+// 					:themeColor="args.themeColor"
+// 				>
+// 					<Icon name="notification" size="26"></Icon>
+// 				</Badge>
+// 				<Badge
+// 					:isDot="false"
+// 					:value="args.value"
+// 					:limit="args.limit"
+// 					:withIcon="args.withIcon"
+// 					position="top-right"
+// 					:themeColor="args.themeColor"
+// 				>
+// 					<Icon name="notification" size="26"></Icon>
+// 				</Badge>
+// 			</div>
+// 			<div style="display:flex; gap:24px">
+// 				<Badge
+// 					:isDot="true"
+// 					:withIcon="args.withIcon"
+// 					position="default"
+// 					:themeColor="args.themeColor"
+// 				>
+// 					<p>value</p>
+// 				</Badge>
+// 				<Badge
+// 					:isDot="false"
+// 					:value="args.value"
+// 					:limit="args.limit"
+// 					:withIcon="args.withIcon"
+// 					position="default"
+// 					:themeColor="args.themeColor"
+// 				>
+// 					<p>value</p>
+// 				</Badge>
+//
+// 			</div>
+//         `,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			include: [ 'value', 'limit', 'withIcon', 'themeColor' ],
+// 		},
+// 		docs: {
+// 			source: {
+// 				transform: (src, storyContext) => {
+// 					const { args } = storyContext;
+// 					return [
+// 						'<Badge',
+// 						`  :isDot="true"`,
+// 						`  :withIcon="${args.withIcon}"`,
+// 						`  position="top-right"`,
+// 						`  themeColor="${args.themeColor}"`,
+// 						'>',
+// 						'  <Icon name="notification" size="26"></Icon>',
+// 						'</Badge>',
+// 						'<Badge',
+// 						`  :isDot="false"`,
+// 						`  :value="${args.value}"`,
+// 						`  :limit="${args.limit}"`,
+// 						`  :withIcon="${args.withIcon}"`,
+// 						`  position="top-right"`,
+// 						`  themeColor="${args.themeColor}"`,
+// 						'>',
+// 						'  <Icon name="notification" size="26"></Icon>',
+// 						'</Badge>',
+// 						'<Badge',
+// 						`  :isDot="true"`,
+// 						`  :withIcon="${args.withIcon}"`,
+// 						`  position="default"`,
+// 						`  themeColor="${args.themeColor}"`,
+// 						'>',
+// 						'  <p>value</p>',
+// 						'</Badge>',
+// 						'<Badge',
+// 						`  :isDot="false"`,
+// 						`  :value="${args.value}"`,
+// 						`  :limit="${args.limit}"`,
+// 						`  :withIcon="${args.withIcon}"`,
+// 						`  position="default"`,
+// 						`  themeColor="${args.themeColor}"`,
+// 						'>',
+// 						'  <p>value</p>',
+// 						'</Badge>',
+// 					].join('\n').trim();
+// 				}
+// 			}
+// 		}
+// 	},
+// };
 
 
 //--- JONY VERSION START ---//
@@ -726,7 +667,7 @@ export const BadgeThemeColor = {
 // 				max:1000,
 // 				step: 1 },
 // 		},
-// 		maxValue: {
+// 		limit: {
 // 			description: "Badge 的最大顯示值，超過此值時，Badge 右側顯示加號（+），啟用點狀時無法作用",
 // 			control: { type: "range",
 // 				min:0,
@@ -782,7 +723,7 @@ export const BadgeThemeColor = {
 // 	args: {
 // 		isDot: true,
 // 		value: 100,
-// 		maxValue: 99,
+// 		limit: 99,
 // 		withIcon: true,
 // 		position: "top-right",
 // 		themeColor: "error",
@@ -799,7 +740,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="args.isDot"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					:themeColor="args.themeColor"
@@ -823,7 +764,7 @@ export const BadgeThemeColor = {
 // 	args: {
 // 		// isDot: true,
 // 		value: 999,
-// 		maxValue: 99,
+// 		limit: 99,
 // 		withIcon: true,
 // 		position: "top-right",
 // 		themeColor: "error",
@@ -840,7 +781,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="true"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					:themeColor="args.themeColor"
@@ -850,7 +791,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					:themeColor="args.themeColor"
@@ -874,7 +815,7 @@ export const BadgeThemeColor = {
 // 	name: "Badge 顯示位置",
 // 	args: {
 // 		value: 100,
-// 		maxValue: 99,
+// 		limit: 99,
 // 		withIcon: true,
 // 		themeColor: "error",
 // 	},
@@ -898,7 +839,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					position="top-right"
 // 					:themeColor="args.themeColor"
@@ -918,7 +859,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					position="default"
 // 					:themeColor="args.themeColor"
@@ -932,18 +873,18 @@ export const BadgeThemeColor = {
 // 	// 控制 controls 中能控制的參數
 // 	parameters: {
 // 		controls: {
-// 			include: [ 'value', 'maxValue', 'withIcon', 'themeColor' ],
+// 			include: [ 'value', 'limit', 'withIcon', 'themeColor' ],
 // 		},
 // 	},
 // };
 //
 // //==== Badge 最大值設定 ====//
-// export const BadgeMaxValue = {
+// export const BadgeLimit = {
 // 	name: "Badge 最大值設定",
 // 	args: {
 // 		isDot: false,
 // 		value: 100,
-// 		maxValue: 99,
+// 		limit: 99,
 // 		withIcon: true,
 // 		position: "top-right",
 // 		themeColor: "error",
@@ -969,7 +910,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="args.isDot"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					:themeColor="args.themeColor"
@@ -993,7 +934,7 @@ export const BadgeThemeColor = {
 // 	args: {
 // 		isDot: false,
 // 		value: 100,
-// 		maxValue: 99,
+// 		limit: 99,
 // 		withIcon: true,
 // 		position: "top-right",
 // 		// themeColor: "error",
@@ -1068,7 +1009,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="primary"
@@ -1078,7 +1019,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="secondary"
@@ -1088,7 +1029,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="tertiary"
@@ -1098,7 +1039,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="success"
@@ -1108,7 +1049,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="warning"
@@ -1118,7 +1059,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="error"
@@ -1128,7 +1069,7 @@ export const BadgeThemeColor = {
 // 				<Badge
 // 					:isDot="false"
 // 					:value="args.value"
-// 					:maxValue="args.maxValue"
+// 					:limit="args.limit"
 // 					:withIcon="args.withIcon"
 // 					:position="args.position"
 // 					themeColor="info"
