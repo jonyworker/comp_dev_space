@@ -7,23 +7,27 @@ const emit = defineEmits(['close']);
 
 // 定義 Props
 const props = defineProps({
+	themeColor: {
+		type: String,
+		default: "success",
+		validator: (value) =>
+			["success", "warning", "error", "info"].includes(value),
+	},
 	title: {
 		type: String,
 	},
 	message: {
 		type: String,
 	},
-	severity: {
-		type: String,
-		default: "success",
-		validator: (value) =>
-			["success", "warning", "error", "info"].includes(value),
-	},
 	duration: {
 		type: Number,
 		default: 3000,
 	},
 	icon: {
+		type: String,
+		default: "",
+	},
+	className: {
 		type: String,
 		default: "",
 	},
@@ -57,16 +61,16 @@ onUnmounted(() => {
 
 <template>
 	<teleport to="#toast">
-		<div class="ded-toast" :class="`ded-toast-border-${props.severity}`">
+		<div class="ded-toast" :class="[`ded-toast-border-${props.themeColor}`, props.className]">
 			<!-- toast - 關閉按鈕 -->
 			<button class="ded-close-button" style="cursor: pointer" @click="handleClose">
 				<Icon name="close" size="20"></Icon>
 			</button>
 			<!-- toast - 標題及說明文字 -->
 			<p class="ded-message">
-				<span class="ded-icon-wrapper" :class="`ded-toast-${props.severity}`">
+				<span class="ded-icon-wrapper" :class="`ded-toast-${props.themeColor}`">
 					<Icon
-						:name="props.icon || getDefaultIcon(props.severity)"
+						:name="props.icon || getDefaultIcon(props.themeColor)"
 						size="14"
 					></Icon>
 				</span>
@@ -79,8 +83,8 @@ onUnmounted(() => {
 
 <script>
 // 返回默認的 icon 名稱
-function getDefaultIcon(severity) {
-	switch (severity) {
+function getDefaultIcon(themeColor) {
+	switch (themeColor) {
 		case 'success':
 			return 'check';
 		case 'error':

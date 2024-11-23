@@ -11,21 +11,22 @@ export default {
 	component: Toast,
 	tags: ["autodocs"],
 	argTypes: {
-		title: {
-			description: "Toast 標題",
-			control: { type: "text" },
-		},
-		message: {
-			description: "Toast 說明文字",
-			control: { type: "text" },
-		},
-		severity: {
-			description: "用於指示 Toast 信息的性質",
+		themeColor: {
+			description: "主題顏色",
 			control: { type: "select" },
 			options: ['success', 'warning', 'error','info'],
 		},
+		title: {
+			description: "標題",
+			control: { type: "text" },
+		},
+		message: {
+			description: "說明文字",
+			control: { type: "text" },
+		},
+
 		duration: {
-			description: "Toast 顯示的持續時間（毫秒）",
+			description: "顯示的持續時間（毫秒）",
 			control: { type: "range",
 						min: 500,
 						max: 10000,
@@ -46,7 +47,11 @@ export default {
 				}
 			},
 			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
-		}
+		},
+		className: {
+			description: "客製化樣式",
+			control: { type: "text" },
+		},
 	},
 	parameters: {
 		// 自動文件
@@ -66,9 +71,9 @@ export default {
 export const ToastType = {
 	name: "預設項目",
 	args: {
+		themeColor: "success",
 		title: "Toast Message",
 		message: "Hello, world! This is a toast message.",
-		severity: "success",
 		show: true,
 		icon: "",
 	},
@@ -85,14 +90,14 @@ export const ToastType = {
 		},
 		template: `
 			<div style="width: 30rem; ">
-				<div class="ded-toast" :class="\`ded-toast-border-${args.severity}\`"  v-if="args.show">
+				<div class="ded-toast" :class="\`ded-toast-border-${args.themeColor}\`"  v-if="args.show">
 					<!-- toast - 關閉按鈕 -->
 					<button class="ded-close-button cursor-pointer" @click="closeToast">
 						<Icon name="close" size="20"></Icon>
 					</button>
 					<!-- toast - 標題及說明文字 -->
 					<p class="ded-message">
-					<span class="ded-icon-wrapper" :class="\`ded-toast-${args.severity}\`">
+					<span class="ded-icon-wrapper" :class="\`ded-toast-${args.themeColor}\`">
 						<Icon name="check" size="14"></Icon>
 					</span>
 						<span>{{ args.title }}</span>
@@ -160,9 +165,9 @@ export const ToastType = {
 						'<Toast',
 						`  v-for="toast in toasts"`,
 						`  :key="toast.id"`,
+						`  themeColor="success"`,
 						`  title="${args.title}"`,
 						`  message="${args.message}"`,
-						`  severity="success"`,
 						`  :duration="${args.duration}"`,
 						`  icon=""`,
 						`  @close="remove(toast.id)"`,
@@ -170,9 +175,9 @@ export const ToastType = {
 						'<Toast',
 						`  v-for="toast in toasts"`,
 						`  :key="toast.id"`,
+						`  themeColor="error"`,
 						`  title="${args.title}"`,
 						`  message="${args.message}"`,
-						`  severity="error"`,
 						`  :duration="${args.duration}"`,
 						`  icon=""`,
 						`  @close="remove(toast.id)"`,
@@ -180,9 +185,9 @@ export const ToastType = {
 						'<Toast',
 						`  v-for="toast in toasts"`,
 						`  :key="toast.id"`,
+						`  themeColor="warning"`,
 						`  title="${args.title}"`,
 						`  message="${args.message}"`,
-						`  severity="warning"`,
 						`  :duration="${args.duration}"`,
 						`  icon=""`,
 						`  @close="remove(toast.id)"`,
@@ -190,9 +195,9 @@ export const ToastType = {
 						'<Toast',
 						`  v-for="toast in toasts"`,
 						`  :key="toast.id"`,
+						`  themeColor="info"`,
 						`  title="${args.title}"`,
 						`  message="${args.message}"`,
-						`  severity="info"`,
 						`  :duration="${args.duration}"`,
 						`  icon=""`,
 						`  @close="remove(toast.id)"`,
@@ -208,11 +213,12 @@ export const ToastType = {
 export const ToastDefaultNew = {
 	name: "觸發示意",
 	args: {
+		themeColor: "success",
 		title: "Toast Title",
 		message: "Hello, world! This is a toast message.",
-		severity: "success",
 		duration: 11100,
 		icon: "",
+		className: "",
 	},
 	render: (args) => ({
 		components: { Toast, Button },
@@ -222,7 +228,7 @@ export const ToastDefaultNew = {
 				add({
 					title: args.title,
 					message: args.message,
-					severity: args.severity,
+					themeColor: args.themeColor,
 				});
 			};
 			return {
@@ -236,11 +242,12 @@ export const ToastDefaultNew = {
 			<Toast
 				v-for="toast in toasts"
 				:key="toast.id"
+				:themeColor="toast.themeColor"
 				:title="toast.title"
 				:message="toast.message"
-				:severity="toast.severity"
 				:duration="args.duration"
 				:icon="args.icon"
+				:className="args.className"
 				@close="remove(toast.id)"
 			></Toast>
 
@@ -266,11 +273,12 @@ export const ToastDefaultNew = {
 							<Toast
 								v-for="toast in toasts"
 								:key="toast.id"
-								:title="${args.title}"
-								:message="${args.message}"
-								:severity="${args.severity}"
+								themeColor="${args.themeColor}"
+								title="${args.title}"
+								message="${args.message}"
 								:duration="${args.duration}"
-								:icon="${args.icon}"
+								icon="${args.icon}"
+								className="${args.className}"
 								@close="remove(toast.id)"
 							></Toast>
 						
@@ -292,12 +300,11 @@ export const ToastDefaultNew = {
 							add({
 								title: "${args.title}",
 								message: "${args.message}",
-								severity: "${args.severity}",
+								themeColor: "${args.themeColor}",
 							});
 						};
 						</script>
 					`.trim();
-					// options: ['success', 'warning', 'error','info'],
 				}
 			}
 		}
@@ -327,7 +334,7 @@ export const ToastDefaultNew = {
 // 			description: "Toast 說明文字",
 // 			control: { type: "text" },
 // 		},
-// 		severity: {
+// 		themeColor: {
 // 			description: "用於指示 Toast 信息的性質",
 // 			control: { type: "select" },
 // 			options: ['success', 'warning', 'error','info'],
@@ -361,7 +368,7 @@ export const ToastDefaultNew = {
 // 	args: {
 // 		title: "Toast Message",
 // 		message: "Hello, world! This is a toast message.",
-// 		severity: "success",
+// 		themeColor: "success",
 // 		show: true
 // 	},
 // 	render: (args) => ({
@@ -377,14 +384,14 @@ export const ToastDefaultNew = {
 // 		},
 // 		template: `
 // 			<div style="width: 30rem; ">
-// 				<div class="toast" :class="\`toast-border-${args.severity}\`"  v-if="args.show">
+// 				<div class="toast" :class="\`toast-border-${args.themeColor}\`"  v-if="args.show">
 // 					<!-- toast - 關閉按鈕 -->
 // 					<button class="close-button cursor-pointer" @click="closeToast">
 // 						<Icon name="close" size="20"></Icon>
 // 					</button>
 // 					<!-- toast - 標題及說明文字 -->
 // 					<p class="message">
-// 					<span class="icon-wrapper" :class="\`toast-${args.severity}\`">
+// 					<span class="icon-wrapper" :class="\`toast-${args.themeColor}\`">
 // 						<Icon name="check" size="14"></Icon>
 // 					</span>
 // 						<span>{{ args.title }}</span>
@@ -453,7 +460,7 @@ export const ToastDefaultNew = {
 // 	args: {
 // 		title: "Toast Title",
 // 		message: "Hello, world! This is a toast message.",
-// 		severity: "success",
+// 		themeColor: "success",
 // 		duration: 1100,
 // 	},
 // 	render: (args) => ({
@@ -464,7 +471,7 @@ export const ToastDefaultNew = {
 // 				add({
 // 					title: args.title,
 // 					message: args.message,
-// 					severity: args.severity,
+// 					themeColor: args.themeColor,
 // 				});
 // 			};
 // 			return {
@@ -480,7 +487,7 @@ export const ToastDefaultNew = {
 // 				:key="toast.id"
 // 				:title="toast.title"
 // 				:message="toast.message"
-// 				:severity="toast.severity"
+// 				:themeColor="toast.themeColor"
 // 				:duration="args.duration"
 // 				@close="remove(toast.id)"
 // 			></Toast>
@@ -513,28 +520,28 @@ export const ToastDefaultNew = {
 // // 				add({
 // // 					title: "Success Message",
 // // 					message: "Hello, world! This is a toast message.",
-// // 					severity: "success",
+// // 					themeColor: "success",
 // // 				});
 // // 			};
 // // 			const showError = () => {
 // // 				add({
 // // 					title: "Error Message",
 // // 					message: "Hello, world! This is a toast message.",
-// // 					severity: "error",
+// // 					themeColor: "error",
 // // 				});
 // // 			};
 // // 			const showWarning = () => {
 // // 				add({
 // // 					title: "Warning Message",
 // // 					message: "Hello, world! This is a toast message.",
-// // 					severity: "warning",
+// // 					themeColor: "warning",
 // // 				});
 // // 			};
 // // 			const showInfo = () => {
 // // 				add({
 // // 					title: "Info Message",
 // // 					message: "Hello, world! This is a toast message.",
-// // 					severity: "info",
+// // 					themeColor: "info",
 // // 				});
 // // 			};
 // // 			return {
@@ -553,7 +560,7 @@ export const ToastDefaultNew = {
 // // 				:key="toast.id"
 // // 				:title="toast.title"
 // // 				:message="toast.message"
-// // 				:severity="toast.severity"
+// // 				:themeColor="toast.themeColor"
 // // 				:duration="args.duration"
 // // 				@close="remove(toast.id)"
 // // 			></Toast>
