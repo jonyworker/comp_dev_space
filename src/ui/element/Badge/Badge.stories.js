@@ -45,15 +45,6 @@ export default {
 			description: "數值上限",
 			control: { type: "number" },
 		},
-		// withIcon: {
-		// 	description: "當啟用時，調整圖標接近 Badge 旁邊的顯示位置",
-		// 	control: { type: "boolean" },
-		// },
-		// position: {
-		// 	description: "選擇 Badge 的位置顯示方式",
-		// 	control: { type: "radio" },
-		// 	options: ["default", "top-right"],
-		// },
 		default: {
 			description: '圖標插槽',
 			table: {
@@ -63,6 +54,15 @@ export default {
 			},
 			control: false,
 		}
+		// withIcon: {
+		// 	description: "當啟用時，調整圖標接近 Badge 旁邊的顯示位置",
+		// 	control: { type: "boolean" },
+		// },
+		// position: {
+		// 	description: "選擇 Badge 的位置顯示方式",
+		// 	control: { type: "radio" },
+		// 	options: ["default", "top-right"],
+		// },
 	},
 	parameters: {
 		// 自動文件

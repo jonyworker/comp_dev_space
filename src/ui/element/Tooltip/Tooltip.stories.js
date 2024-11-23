@@ -1,5 +1,6 @@
 import Button from "@/ui/element/Button/Button.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
+import { sanitizeHtml } from '@/composables/sanitizeHtml.js';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -36,8 +37,13 @@ export default {
 			control: { type: 'text' },
 		},
 		default: {
-			description: 'tooltip 觸發器',
+			description: '觸發器插槽',
 			control: { type: 'text' },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				}
+			},
 		},
 
 	},
@@ -76,6 +82,7 @@ export const DefaultTooltip = {
 		setup() {
 			return {
 				args,
+				sanitizeHtml
 			};
 		},
 		template: `
@@ -87,7 +94,7 @@ export const DefaultTooltip = {
 					:className="args.className"
 				>
 					<template #default>
-						<div v-html="args.default"></div>
+						<div v-html="sanitizeHtml(args.default)"></div>
 					</template>
 				</Tooltip>
 			</div>
@@ -103,7 +110,6 @@ export const DefaultTooltip = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<div style="text-align: center">',
 						'  <Tooltip',
 						`    content="${args.content}"`,
 						`    placement="${args.placement}"`,
@@ -112,7 +118,6 @@ export const DefaultTooltip = {
 						'  >',
 						'    <Button variant="contained" size="large" prefix="face">Hover Me</Button>',
 						'  </Tooltip>',
-						'</div>',
 					].join('\n').trim();
 				}
 			}

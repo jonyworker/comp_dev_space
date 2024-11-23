@@ -18,6 +18,11 @@ export default {
 			description: "尺寸",
 			control: { type: "select" },
 			options: ["small", "medium", "large"],
+			table: {
+				type: {
+					summary: "small | medium | large"
+				}
+			}
 		},
 		language: {
 			description: "語系",
@@ -32,6 +37,11 @@ export default {
 				}
 			},
 			options: ["", "en", "zh-TW", "ja"],
+			table: {
+				type: {
+					summary: "en | zh-TW | ja",
+				}
+			}
 		},
 		range: {
 			description: "啟用範圍選擇功能，允許選擇起始日期和結束日期",

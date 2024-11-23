@@ -34,14 +34,29 @@ export default {
 		dialogHeader: {
 			description: "header 插槽",
 			control: { type: "text" },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				}
+			},
 		},
 		dialogBody: {
 			description: "body 插槽",
 			control: { type: "text" },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				}
+			},
 		},
 		dialogFooter: {
 			description: "footer 插槽",
 			control: { type: "text" },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				}
+			},
 		},
 	},
 	parameters: {

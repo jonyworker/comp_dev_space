@@ -97,6 +97,11 @@ export default {
 		default: {
 			description: "按鈕內容",
 			control: { type: "text" },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				}
+			},
 		},
 	},
 	parameters: {

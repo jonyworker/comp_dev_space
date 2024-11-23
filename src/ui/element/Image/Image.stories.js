@@ -18,21 +18,28 @@ export default {
 			description: '調整圖片適合其容器',
 			control: { type: 'select' },
 			options: ['cover', 'contain', 'fill', 'none'],
+			table: {
+				type: {
+					summary: "cover | contain | fill | none",
+				}
+			}
 		},
 		ratio: {
 			description: '調整圖片比例',
-			//控制 argType Control default 顯示
-			table: {
-				defaultValue: { summary: '1/1' }
-			},
 			control: { type: 'select' },
-			options: ['1/1', '4/3', '5/4', '16/9'],
-			mapping: {
-				'1/1': '11',
-				'4/3': '43',
-				'5/4': '54',
-				'16/9': '169',
-			},
+			options: ['11', '43', '54', '169'],
+			// mapping: {
+			// 	'1/1': '11',
+			// 	'4/3': '43',
+			// 	'5/4': '54',
+			// 	'16/9': '169',
+			// },
+			table: {
+				defaultValue: { summary: '11' },
+				type: {
+					summary: "11 | 43 | 54 | 169",
+				}
+			}
 		},
 		className: {
 			description: "客製化樣式",
