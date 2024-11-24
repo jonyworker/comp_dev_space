@@ -60,9 +60,11 @@ const props = defineProps({
         ]"
     >
         <!-- divider - 分隔線文字 -->
-        <div v-if="$slots.default?.()" class="ded-divider-content">
-            <slot></slot>
-        </div>
+	    <template v-if="$slots.default && $slots.default().some(vnode => vnode.children?.trim())">
+		    <div class="ded-divider-content">
+			    <slot></slot>
+		    </div>
+	    </template>
     </div>
 </template>
 
