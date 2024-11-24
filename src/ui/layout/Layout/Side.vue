@@ -1,6 +1,6 @@
 <script setup>
 	// 定義 Props
-	const defineProps = defineProps({
+	const props = defineProps({
 		className: {
 			type: String,
 			default: "",
