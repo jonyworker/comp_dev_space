@@ -68,7 +68,7 @@ const value = ref(
 // thumb 位置
 const thumbPosition = ref(0);
 const thumbWidth = 20;
-const tooltipWidth = 40;
+const tooltipWidth = 0;
 
 // 更新 thumb 位置
 const updateThumbPosition = (val) => {
@@ -132,12 +132,10 @@ let resizeObserver = null;
 onMounted(() => {
     nextTick(() => {
         updateWidth();
-
         // 創建 ResizeObserver
         resizeObserver = new ResizeObserver(() => {
             updateWidth();
         });
-
         if (rangeRef.value) {
             resizeObserver.observe(rangeRef.value);
         }
@@ -155,26 +153,27 @@ defineExpose({ updateWidth });
 
 <template>
     <div :class="{ 'ded-slider-container': true, [props.className]: !!props.className }" ref="containerRef">
-        <input
-            ref="rangeRef"
-            type="range"
-            :min="props.min"
-            :max="props.max"
-            :step="props.step"
-            :disabled="props.isDisabled"
-            @input="handleChange"
-            v-model="value"
-            :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
-        />
+	    <input
+		    ref="rangeRef"
+		    type="range"
+		    :min="props.min"
+		    :max="props.max"
+		    :step="props.step"
+		    :disabled="props.isDisabled"
+		    @input="handleChange"
+		    v-model="value"
+		    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
+	    />
+
         <div
             :class="['ded-slider-tooltip', props.isDisabled ? 'ded-slider-tooltip-disable' :
             `ded-slider-tooltip-${props.themeColor}`]"
             :style="{ left: tooltipPosition }"
         >
-            <span>{{ value }}</span>
-            <span v-if="props.label">{{ props.label }}</span>
-
+            <span>
+	            {{value}}
+	            <span v-if="props.label">{{ props.label }}</span>
+            </span>
         </div>
     </div>
-
 </template>

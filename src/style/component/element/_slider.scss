@@ -19,18 +19,14 @@
 .ded-slider-tooltip {
     position: absolute;
     top: -20px;
-    width: 40px; //here
     height: 30px;
     display: flex;
-    justify-content: center; //here
+    justify-content: center;
     align-items: center;
     border-radius: 4px;
     font-size: 14px;
     white-space: nowrap;
-
-    //&-center {
-    //    justify-content: center;
-    //}
+    transform: translateX(-50%)
 }
 
 /* remove default style */
@@ -115,7 +111,6 @@ input[type="range"].ded-slider-disable::-webkit-slider-thumb {
     cursor: not-allowed;
 }
 
-//jony有學長沒有 為避免與 tooltip 相衝 改 slider-tooltip-disable
 .ded-slider-tooltip-disable {
     color: $color-gray20;
     pointer-events: none;
