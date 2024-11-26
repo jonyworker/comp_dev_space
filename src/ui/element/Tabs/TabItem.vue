@@ -59,7 +59,7 @@ const handleClick = (event) => {
 <template>
     <!-- Tabs - 按鈕 -->
     <button
-        :class="['ded-tab', 'ded-button', 'ded-component-medium', 'ded-tab',
+        :class="['ded-tab', 'ded-button', 'ded-component-medium',
                 props.type === 'default'
 	                ? props.isActive ? `ded-tab-${props.themeColor}-active` : `ded-tab-${props.themeColor}`
 	                : props.isActive ? `ded-tab-card-${props.themeColor}-active` : `ded-tab-card-${props.themeColor}`,
@@ -70,7 +70,7 @@ const handleClick = (event) => {
         :data-index="props.index"
     >
      <!-- Tabs - 按鈕文字 -->
-     <div class="text-medium"> {{ props.title }}</div>
+     <div class="ded-text-medium"> {{ props.title }}</div>
     </button>
 
 </template>
