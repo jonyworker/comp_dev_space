@@ -26,19 +26,19 @@ $image-ratios: (
         height: 100%;
         vertical-align: bottom;
 
-        &.cover {
+        &-cover {
             object-fit: cover;
         }
 
-        &.contain {
+        &-contain {
             object-fit: contain;
         }
 
-        &.fill {
+        &-fill {
             object-fit: fill;
         }
 
-        &.none {
+        &-none {
             object-fit: none;
         }
     }

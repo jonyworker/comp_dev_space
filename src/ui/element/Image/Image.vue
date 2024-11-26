@@ -46,10 +46,10 @@ const imageObjectFitCVAClass = computed(() => {
 	return cva("ded-image", {
 		variants: {
 			objectFit: {
-				cover: "cover",
-				contain: "contain",
-				fill: "fill",
-				none: "none",
+				cover: "ded-image-cover",
+				contain: "ded-image-contain",
+				fill: "ded-image-fill",
+				none: "ded-image-none",
 			},
 		},
 	})({
