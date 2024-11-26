@@ -42,17 +42,19 @@ const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 1
 </script>
 
 <template>
-    <!-- LineProgress - 文字顯示 -->
-    <div class="ded-progress-line-label">{{props.label}}</div>
-    <!-- LineProgress - 圖表 -->
-	<div :class="{'ded-progress-line':true, [props.className]:!!props.className}">
-        <div class="ded-progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
-            <div :class="`ded-progress-line-percent-${props.themeColor}`" :style="{ width: `${normalizedProgress}%` }">
-            </div>
-        </div>
-        <!-- LineProgress - 進度 -->
-        <div class="ded-progress-line-percent">{{`${normalizedProgress}%`}}</div>
-    </div>
+	<div class="ded-progress-line-container ">
+		<!-- LineProgress - 文字顯示 -->
+		<div class="ded-progress-line-label">{{props.label}}</div>
+		<!-- LineProgress - 圖表 -->
+		<div :class="{'ded-progress-line':true, [props.className]:!!props.className}">
+			<div class="ded-progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
+				<div :class="`ded-progress-line-percent-${props.themeColor}`" :style="{ width: `${normalizedProgress}%` }">
+				</div>
+			</div>
+			<!-- LineProgress - 進度 -->
+			<div class="ded-progress-line-percent">{{`${normalizedProgress}%`}}</div>
+		</div>
+	</div>
 </template>
 
 <style scoped lang="scss">
