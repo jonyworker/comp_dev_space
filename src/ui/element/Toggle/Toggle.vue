@@ -67,7 +67,7 @@ const handleToggle = () => {
 
 <template>
 	<div :class="[finalToggleClass, {'ded-toggle-on': isToggle, 'ded-toggle-off': !isToggle}]"
-	   @click.prevent="handleToggle" style="cursor: pointer">
+	   @click.prevent="handleToggle">
 
 		<!-- Toggle 按鈕 -->
 		<div class="ded-toggle-thumb" :class="{'ded-toggle-thumb-on': isToggle, 'ded-toggle-thumb-off': !isToggle}"></div>
