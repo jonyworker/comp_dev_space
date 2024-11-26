@@ -19,11 +19,11 @@ const props = defineProps({
 	},
 	confirmText: {
 		type: String,
-		default: "確認",
+		default: "OK",
 	},
 	cancelText: {
 		type: String,
-		default: "取消",
+		default: "Cancel",
 	},
 	className: {
 		type: String,
@@ -37,7 +37,7 @@ const props = defineProps({
 <template>
 	<Teleport to="#dialog">
 		<transition name="dialog">
-			<div class="ded-dialog-overlay" v-if="dialog.showDialogStatus.value" @click="dialog.closeDialog()">
+			<div class="ded-dialog-overlay" v-if="dialog.showDialogStatus.value" @click.self="dialog.closeDialog()">
 
 				<div :class="{'ded-dialog-content': true, [props.className]: !!props.className}" >
 

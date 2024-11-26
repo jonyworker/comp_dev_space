@@ -78,12 +78,12 @@ export default {
 export const DialogClick = {
 	name: "預設項目",
 	args: {
-		title: '標題',
-		content: '點擊「全部覆蓋」，即所有名稱相同的檔案皆以新檔案覆蓋',
-		confirmText: '確認',
-		cancelText: '取消',
+		title: 'Title',
+		content: 'Content',
+		confirmText: 'OK',
+		cancelText: 'Cancel',
 		className: '',
-		dialogHeader: `<script>alert('Hacked!')</script><h1 class="ded-dialog-title">安全內容</h1>`,
+		dialogHeader: '',
 		dialogBody: ``,
 		dialogFooter: ``,
 	},
