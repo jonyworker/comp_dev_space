@@ -68,9 +68,9 @@ export const TextareaDefault = {
     name: "預設項目",
     args: {
         label: "Label",
-        placeholder: "Type something...",
-        limit: null,
-        initValue: "",
+        placeholder: "Placeholder...",
+        limit: 500,
+        initValue: "Type something...",
         hint: { error: "", description: "Prompt message" },
         isDisabled: false,
         className: ""

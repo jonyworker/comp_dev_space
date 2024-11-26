@@ -11,11 +11,11 @@ const props = defineProps({
 	},
 	placeholder: {
 		type: String,
-		default: "請輸入...",
+		default: "Placeholder...",
 	},
 	limit: {
 		type: Number,
-		default: 500,
+		default: 0,
 	},
 	initValue: {
 		type: String,
