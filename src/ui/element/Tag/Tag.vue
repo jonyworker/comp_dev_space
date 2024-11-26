@@ -1,5 +1,6 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue";
+import Button from "@/ui/element/Button/Button.vue";
 
 const emits = defineEmits(['onClose']);
 
@@ -59,19 +60,17 @@ const closeTag = () => {
         ]"
     >
         <template v-if="props.prefix">
-            <span class="ded-tag-icon">
+            <div class="ded-tag-icon">
                 <Icon :name="props.prefix" size="18" />
-            </span>
+            </div>
         </template>
+
         <span class="ded-tag-text">{{ props.label }}</span>
+
         <template v-if="props.closable">
-            <span
-	            class="ded-tag-close"
-	            :class="{ 'ded-tag-close-disabled': props.isDisabled }"
-	            @click="closeTag"
-            >
-                <Icon name="close" size="18" />
-            </span>
+	        <Button variant="text" themeColor="primary" @click="closeTag">
+				<Icon name="close" class="ded-tag-close"/>
+			</Button>
         </template>
     </span>
 </template>
