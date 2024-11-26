@@ -155,7 +155,7 @@ export const AvatarShape = {
 				<Avatar
 					shape="circle"
 					:size="args.size"
-					:status="args.status"
+					status="online"
 					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
@@ -164,7 +164,7 @@ export const AvatarShape = {
 				<Avatar
 					shape="square"
 					:size="args.size"
-					:status="args.status"
+					status="idle"
 					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
