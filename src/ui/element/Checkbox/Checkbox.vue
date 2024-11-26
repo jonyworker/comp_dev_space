@@ -95,7 +95,7 @@ const handleCheck = (item, index) => {
 						: `ded-checkbox-unchecked-${props.themeColor}`,
 				]"
 			>
-				<Icon v-if="isCheck[index]" name="check" color="#fff"></Icon>
+				<Icon v-if="isCheck[index]" name="check"></Icon>
 			</div>
 			<!-- checkbox - 選項文字 -->
 			<span class="ded-checkbox-text">{{ item.label }}</span>
