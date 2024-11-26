@@ -86,11 +86,13 @@ const updateRangeBackground = (val) => {
 };
 
 const tooltipPosition = computed(() => {
-    if (rangeWidth.value === 0) return '0px';
-    const calculatedWidth = rangeWidth.value - thumbWidth;
-    const position = ((value.value - props.min) / (props.max - props.min)) * calculatedWidth;
-    return `calc(${position}px + ${thumbWidth / 2}px - ${tooltipWidth / 2}px)`;
+	if (rangeWidth.value === 0) return '0px';
+	const calculatedWidth = rangeWidth.value - thumbWidth;
+	const position = ((value.value - props.min) / (props.max - props.min)) * calculatedWidth;
+	const finalPosition = position + thumbWidth / 2 - tooltipWidth / 2;
+	return `${finalPosition}px`;
 });
+
 
 // thumb 拖動時處裡事件
 const handleChange = (e) => {
@@ -153,27 +155,30 @@ defineExpose({ updateWidth });
 
 <template>
     <div :class="{ 'ded-slider-container': true, [props.className]: !!props.className }" ref="containerRef">
-	    <input
-		    ref="rangeRef"
-		    type="range"
-		    :min="props.min"
-		    :max="props.max"
-		    :step="props.step"
-		    :disabled="props.isDisabled"
-		    @input="handleChange"
-		    v-model="value"
-		    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
-	    />
-
-        <div
-            :class="['ded-slider-tooltip', props.isDisabled ? 'ded-slider-tooltip-disable' :
-            `ded-slider-tooltip-${props.themeColor}`]"
-            :style="{ left: tooltipPosition }"
-        >
+	    <div class="ded-slider-wrapper">
+		    <input
+			    ref="rangeRef"
+			    type="range"
+			    :min="props.min"
+			    :max="props.max"
+			    :step="props.step"
+			    :disabled="props.isDisabled"
+			    @input="handleChange"
+			    v-model="value"
+			    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
+		    />
+		    <div
+			    :class="['ded-slider-tooltip', props.isDisabled ?
+				    'ded-slider-tooltip-disable' :
+	                `ded-slider-tooltip-${props.themeColor}`]"
+			    :style="{ left: tooltipPosition, transform: `translate(-50%)` }"
+		    >
             <span>
-	            {{value}}
+	            {{ value }}
 	            <span v-if="props.label">{{ props.label }}</span>
             </span>
-        </div>
+		    </div>
+	    </div>
+
     </div>
 </template>

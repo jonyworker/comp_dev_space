@@ -102,8 +102,6 @@ export const SliderDefault = {
 				:className="sliderValue"
 				v-model="sliderValue"
 			></slider>
-			
-			ModelValue: {{sliderValue}}
         `,
 	}),
 	// 控制 controls 中能控制的參數

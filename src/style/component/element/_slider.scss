@@ -9,24 +9,28 @@
     margin-block: 16px;
 }
 
+.ded-slider-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
 .ded-slider {
     position: relative;
     width: 100%;
     border-radius: 8px;
 }
 
-
 .ded-slider-tooltip {
     position: absolute;
     top: -20px;
     height: 30px;
     display: flex;
-    justify-content: center;
     align-items: center;
     border-radius: 4px;
     font-size: 14px;
     white-space: nowrap;
-    transform: translateX(-50%)
 }
 
 /* remove default style */
