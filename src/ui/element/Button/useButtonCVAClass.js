@@ -17,7 +17,7 @@ export function useButtonCVAClass(props) {
                 },
                 width: {
                     fit: 'ded-button-fit',
-                    fluid: 'ded-button-full',
+                    fluid: 'ded-button-fluid',
                 },
             },
             compoundVariants: [

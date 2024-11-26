@@ -54,11 +54,6 @@ const props = defineProps({
 // 引入 CVA Class
 const buttonCVAClass = useButtonCVAClass(props);
 
-// 計算各尺寸 icon class
-const iconSizeClass = computed(() => {
-	return `ded-icon-${props.size}`;
-})
-
 // 計算包括 CVA Class 與自定義 className 的按鈕樣式
 const finalButtonClass = computed(() => {
 	return [buttonCVAClass.value, props.className].filter(Boolean).join(' ');
@@ -68,11 +63,17 @@ const finalButtonClass = computed(() => {
 <template>
 	<button :class="finalButtonClass">
 		<template v-if="prefix">
-			<Icon :class="iconSizeClass" :name="props.prefix"></Icon>
+			<div :class="`ded-icon-${props.size}`">
+				<Icon :name="props.prefix"></Icon>
+			</div>
 		</template>
-		<slot></slot>
+		<div :class="`ded-text-${props.size}`">
+			<slot></slot>
+		</div>
 		<template v-if="suffix">
-			<Icon :class="iconSizeClass" :name="props.suffix"></Icon>
+			<div :class="`ded-icon-${props.size}`">
+				<Icon :name="props.suffix"></Icon>
+			</div>
 		</template>
 	</button>
 </template>

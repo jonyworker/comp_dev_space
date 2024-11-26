@@ -8,12 +8,11 @@
     cursor: pointer;
     transition: background-color 0.3s;
 
-    //jony有學長沒有
     &-fit {
         width: fit-content;
     }
-    //jony有學長沒有
-    &-full {
+
+    &-fluid {
         width: 100%;
     }
 
