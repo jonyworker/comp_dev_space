@@ -100,22 +100,19 @@ const togglePasswordVisibility = () => {
 				:placeholder="props.placeholder"
 				v-model="modelValue">
 
-			<!-- 輸入框 suffix icon -->
-<!--			<template v-if="suffix">-->
-<!--				<Icon :class="`icon-${size}`" :name="props.suffix" ></Icon>-->
-<!--			</template>-->
-
 			<!-- Suffix Icons -->
 			<template v-if=" modelValue || props.type === 'password'">
 				<!-- input type 等於 text -->
-				<button v-if="modelValue && props.type === 'text'" class="ded-clear-button" @click="clearInput">
-					<Icon name="close" :class="`ded-icon-${props.size}`" />
-				</button>
+				<div v-if="modelValue && props.type === 'text'" :class="`ded-icon-${props.size}`"
+				     @click="clearInput">
+					<Icon name="close" />
+				</div>
 
 				<!-- input type 等於 password -->
-				<button v-if="props.type === 'password'" class="ded-clear-button" @click="togglePasswordVisibility">
-					<Icon :name="showPassword ? 'visibility' : 'visibility_off'" :class="`ded-icon-${props.size}`" />
-				</button>
+				<div v-if="props.type === 'password'" :class="`ded-icon-${props.size}`"
+				     @click="togglePasswordVisibility" >
+					<Icon :name="showPassword ? 'visibility' : 'visibility_off'" />
+				</div>
 			</template>
 		</div>
 
