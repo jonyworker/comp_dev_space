@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
 
 <template>
 	<nav :class="['ded-breadcrumb-container', props.className]">
-		<ul class="ded-breadcrumb">
+		<ol class="ded-breadcrumb">
 			<li class="ded-breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs" :key="index">
 				<template v-if="item.label === '...'">
 					<div class="ded-rest">
@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
 					/>
 				</template>
 			</li>
-		</ul>
+		</ol>
 	</nav>
 </template>
 
