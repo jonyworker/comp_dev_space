@@ -1,5 +1,6 @@
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
+import { getTargetPosition } from '@/utils/positionUtils';
 
 // 定義 Props
 const props = defineProps({
@@ -52,73 +53,20 @@ const updateTooltipPosition = async () => {
 	await nextTick();
 
 	const triggerElement = tooltipTriggerRef.value.getBoundingClientRect();
-	const tooltipElement = tooltipContentRef.value.getBoundingClientRect();
 
-	let top, left;
-
-	switch (props.placement) {
-		//-- [ top ] --//
-		case 'top-right':
-			top = (triggerElement.top - tooltipElement.height - 8);
-			left = triggerElement.right - tooltipElement.width;
-			break;
-		case 'top':
-			top = (triggerElement.top - tooltipElement.height - 8);
-			left = triggerElement.left + (triggerElement.width / 2) - (tooltipElement.width / 2);
-			break;
-		case 'top-left':
-			top = (triggerElement.top - tooltipElement.height - 8);
-			left = triggerElement.left;
-			break;
-
-		//-- [ right ] --//
-		case 'right-top':
-			top = triggerElement.top;
-			left = (triggerElement.right + 8);
-			break;
-		case 'right':
-			top = triggerElement.top + (triggerElement.height / 2) - (tooltipElement.height / 2);
-			left = (triggerElement.right + 8);
-			break;
-		case 'right-bottom':
-			top = (triggerElement.bottom - tooltipElement.height);
-			left = (triggerElement.right + 8);
-			break;
-
-		//-- [ bottom ] --//
-		case 'bottom-right':
-			top = (triggerElement.bottom + 8);
-			left = triggerElement.right - tooltipElement.width;
-			break;
-		case 'bottom':
-			top = (triggerElement.bottom + 8);
-			left = triggerElement.left + (triggerElement.width / 2) - (tooltipElement.width / 2);
-			break;
-		case 'bottom-left':
-			top = (triggerElement.bottom + 8);
-			left = triggerElement.left;
-			break;
-
-		//-- [ left ] --//
-		case 'left-top':
-			top = triggerElement.top;
-			left = (triggerElement.left - tooltipElement.width - 8);
-			break;
-		case 'left':
-			top = triggerElement.top + (triggerElement.height / 2) - (tooltipElement.height / 2);
-			left = (triggerElement.left - tooltipElement.width - 8);
-			break;
-		case 'left-bottom':
-			top = (triggerElement.bottom - tooltipElement.height);
-			left = (triggerElement.left - tooltipElement.width - 8);
-			break;
-	}
-
-	tooltipStyles.value = {
-		top: `${top}px`,
-		left: `${left}px`,
-		position: 'fixed'
+	const position = {
+		top: triggerElement.top,
+		left: triggerElement.left,
 	};
+
+	const childrenSize = {
+		width: triggerElement.width,
+		height: triggerElement.height,
+	};
+
+	const gap ='6px';
+	//觸發器位置 觸發器長寬 placement 與觸發器之間間距
+	tooltipStyles.value = getTargetPosition(position, childrenSize, props.placement, gap, false);
 };
 
 onMounted(() => {
@@ -143,23 +91,45 @@ onBeforeUnmount(() => {
 		<slot></slot>
 	</div>
 	<Teleport to="body">
+<!--		<Transition name="fade">-->
+<!--			<div-->
+<!--				v-if="visible"-->
+<!--				:id="tooltipId"-->
+<!--				ref="tooltipContentRef"-->
+<!--				:style="tooltipStyles"-->
+<!--				class="ded-tooltip ded-tooltip-content"-->
+<!--				:class="`ded-tooltip-${props.placement}`"-->
+<!--			>-->
+<!--				{{ props.content }}-->
+<!--				<div-->
+<!--					v-if="props.showArrow"-->
+<!--					class="ded-tooltip-arrow"-->
+<!--					:class="`ded-tooltip-arrow-${props.placement}`"-->
+<!--				>-->
+<!--					<div class="ded-tooltip-arrow-shape"></div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</Transition>-->
 		<Transition name="fade">
 			<div
 				v-if="visible"
 				:id="tooltipId"
 				ref="tooltipContentRef"
 				:style="tooltipStyles"
-				class="ded-tooltip ded-tooltip-content"
+				class="ded-tooltip"
 				:class="`ded-tooltip-${props.placement}`"
 			>
-				{{ props.content }}
-				<div
-					v-if="props.showArrow"
-					class="ded-tooltip-arrow"
-					:class="`ded-tooltip-arrow-${props.placement}`"
-				>
-					<div class="ded-tooltip-arrow-shape"></div>
+				<div class="ded-tooltip-content">
+					{{ props.content }}
+					<div
+						v-if="props.showArrow"
+						class="ded-tooltip-arrow"
+						:class="`ded-tooltip-arrow-${props.placement}`"
+					>
+						<div class="ded-tooltip-arrow-shape"></div>
+					</div>
 				</div>
+
 			</div>
 		</Transition>
 	</Teleport>
