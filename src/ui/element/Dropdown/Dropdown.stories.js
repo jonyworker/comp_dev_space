@@ -41,10 +41,6 @@ export default {
 				}
 			}
 		},
-		maxHeight: {
-			description: "最大高度，自動顯示卷軸 (px)",
-			control: { type: 'text' },
-		},
 		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
@@ -85,7 +81,6 @@ export const DropdownDefault = {
 		label: "Label",
 		placeholder: "Placeholder...",
 		size: "medium",
-		maxHeight: "",
 		className: ""
 	},
 	render: (args) => ({

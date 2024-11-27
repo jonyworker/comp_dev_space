@@ -2,13 +2,15 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap:4px;
+    gap: 4px;
     font-size: $text-size-large;
+    width: auto;
 }
 
 .ded-dropdown {
     display: flex;
     align-items: center;
+    padding-inline: 4px;
     color: $color-gray40;
     border-width: $input-border-width;
     border-style: solid;
@@ -38,6 +40,16 @@
         font-size: $text-size-large;
         height: $component-size-large ;
     }
+
+    &-open {
+        transition: transform 0.3s;
+        transform: rotate(180deg);
+    }
+
+    &-close {
+        transition: transform 0.3s;
+        transform: rotate(0deg);
+    }
 }
 
 .ded-dropdown:hover {
@@ -53,6 +65,25 @@
 .ded-dropdown-selectValue-unselect {
     color: $text-color-placeholder;
 }
+
 .ded-dropdown-selectValue-select {
     color: $color-black;
+}
+
+.ded-dropdown-input {
+    width: 100%;
+
+    .ded-input-group {
+        border: none;
+
+        &:focus-within {
+            box-shadow: none;
+            border: none;
+        }
+
+        &:hover {
+            box-shadow: none;
+            border: none;
+        }
+    }
 }
