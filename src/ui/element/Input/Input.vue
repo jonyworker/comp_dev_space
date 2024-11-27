@@ -90,7 +90,9 @@ const togglePasswordVisibility = () => {
 		props.isDisabled }, ]">
 			<!-- 輸入框 prefix icon -->
 			<template v-if="prefix">
-				<Icon :class="`ded-icon-${size}`" :name="props.prefix" ></Icon>
+				<div :class="`ded-icon-${props.size}`">
+					<Icon :name="props.prefix" ></Icon>
+				</div>
 			</template>
 
 			<!-- 輸入框 -->
