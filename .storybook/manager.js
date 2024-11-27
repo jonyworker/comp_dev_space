@@ -8,7 +8,7 @@ addons.setConfig({
 		base: 'dark',
 		brandTitle: 'DED WDS Storybook',
 		brandUrl:
-			'https://uedteam.github.io/DED-WDS_REACT/?path=/docs/changelog--docs',
+			'https://uedteam.github.io/DED-WDS_REACT/?path=/docs/introduction/changelog--docs',
 		brandImage:
 			'https://storage.googleapis.com/ded-wds-bucket/AUO-wds-logo-vue.png',
 		brandTarget: '_self',
