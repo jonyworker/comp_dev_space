@@ -1,8 +1,7 @@
 import LineProgress from "./LineProgress.vue";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-    title: "Design System/Progress-Line",
+    title: "Component/Progress-Line",
     component: LineProgress,
     tags: ["autodocs"],
     argTypes: {
