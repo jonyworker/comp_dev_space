@@ -15,9 +15,8 @@ function formatDataSource(dataSource) {
 ]`;
 }
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Menu",
+	title: "Component/Menu",
 	component: Menu,
 	tags: ["autodocs"],
 	argTypes: {
@@ -53,8 +52,6 @@ export default {
 		},
 	},
 };
-
-
 
 //==== 預設項目 ====//
 export const MenuDefault = {
