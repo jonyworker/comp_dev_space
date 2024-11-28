@@ -1,10 +1,8 @@
-
 import Layout, { Header, Content, Side, Footer } from '@/ui/layout/Layout'
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
 	components: { Layout, Header, Content, Side, Footer },
-	title: 'Design System/Layout',
+	title: 'Component/Layout',
 	tags: ["autodocs"],
 	argTypes: {
 		className: {
@@ -905,7 +903,6 @@ export const LayoutOfficialStory = {
 						'  </div>',
 						'</Layout>',
 					].join('\n').trim();
-
 				},
 			}
 		}
