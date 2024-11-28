@@ -6,20 +6,21 @@ import { cva } from "class-variance-authority";
 const props = defineProps({
 	src: {
 		type: String,
+		required: true,
 	},
 	alt: {
 		type: String,
-		default: "",
-	},
-	objectFit: {
-		type: String,
-		default: "cover",
-		validator: (value) => ["cover", "contain", "fill", "none"].includes(value),
+		required: true,
 	},
 	ratio: {
 		type: String,
-		default: "11",
+		required: true,
 		validator: (value) => ["11", "43", "54", "169"].includes(value),
+	},
+	objectFit: {
+		type: String,
+		required: true,
+		validator: (value) => ["cover", "contain", "fill", "none"].includes(value),
 	},
 	className: {
 		type: String,
