@@ -5,7 +5,7 @@ import Button from "@/ui/element/Button/Button.vue";
 
 export default {
 	components: {Icon, Toast},
-	title: "Component/Toast*",
+	title: "Component/Toast",
 	component: Toast,
 	tags: ["autodocs"],
 	argTypes: {

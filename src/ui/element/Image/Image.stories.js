@@ -1,7 +1,7 @@
 import Image from './Image.vue';
 
 export default {
-	title: 'Component/Image*',
+	title: 'Component/Image',
 	component: Image,
 	tags: ["autodocs"],
 	argTypes: {

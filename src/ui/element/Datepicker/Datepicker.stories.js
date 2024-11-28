@@ -1,7 +1,7 @@
 import Datepicker from "./Datepicker.vue";
 
 export default {
-	title: "Component/Datepicker*",
+	title: "Component/Datepicker",
 	component: Datepicker,
 	tags: ["autodocs"],
 	argTypes: {

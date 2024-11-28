@@ -2,7 +2,7 @@ import Badge from "./Badge.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 export default {
-	title: "Component/Badge*",
+	title: "Component/Badge",
 	component: Badge,
 	components: {Icon},
 	tags: ["autodocs"],

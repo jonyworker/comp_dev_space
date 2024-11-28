@@ -5,7 +5,7 @@ import Button from "@/ui/element/Button/Button.vue";
 
 export default {
 	components: { Dialog },
-	title: "Component/Dialog*",
+	title: "Component/Dialog",
 	component: Dialog,
 	tags: ["autodocs"],
 	argTypes: {

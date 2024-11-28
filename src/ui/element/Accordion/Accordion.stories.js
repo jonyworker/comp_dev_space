@@ -1,7 +1,7 @@
 import Accordion from "./Accordion.vue";
 
 export default {
-	title: "Component/Accordion*",
+	title: "Component/Accordion",
 	component: Accordion,
 	tags: ["autodocs"],
 	argTypes: {
