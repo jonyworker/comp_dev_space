@@ -1,13 +1,12 @@
 import CardBody from "@/ui/element/Card/CardBody.vue";
-import Heading from "@/ui/element/Title/Heading.vue";
+import Title from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	components: {Icon, Heading},
-	title: "Design System/Card/子元件/03_CardBody",
+	components: {Icon, Title},
+	title: "Component/Card/子元件/03_CardBody",
 	component: CardBody,
 	tags: ["autodocs"],
 	argTypes: {
@@ -41,9 +40,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== CardBody 預設樣式 ====//
@@ -86,7 +82,7 @@ export const CardBodySlot = {
 	args: {
 	},
 	render: (args) => ({
-		components: { CardBody,  Button ,Heading },
+		components: { CardBody,  Button ,Title },
 		setup() {
 			return {
 				args,
@@ -95,7 +91,7 @@ export const CardBodySlot = {
 		template: `
 			<CardBody>
 				<div style="display:flex; flex-direction: column; align-items: center">
-					<Heading class="card__title" level="2">Add your first image</Heading>
+					<Title class="card__title" level="2">Add your first image</Title>
 					<p class="card__subtitle" style="margin-bottom: 16px;">Choose the images that will be included in this album.</p>
 					<Button
 						variant="text"

@@ -1,12 +1,11 @@
 import CardHeader from "@/ui/element/Card/CardHeader.vue";
-import Heading from "@/ui/element/Title/Heading.vue";
+import Title from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	components: {Heading},
-	title: "Design System/Card/子元件/01_CardHeader",
+	components: {Title},
+	title: "Component/Card/子元件/01_CardHeader",
 	component: CardHeader,
 	tags: ["autodocs"],
 	argTypes: {
@@ -28,9 +27,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== CardHeader 預設樣式 ====//
@@ -79,7 +75,7 @@ export const CardHeaderSlot = {
 			<CardHeader :divider="args.divider">
 				<div style="display:flex; align-items: flex-start; justify-content: space-between">
 					<div style="display:flex; flex-direction: column; gap: 8px">
-						<Heading class="card__title" level="3">Staff availability</Heading>
+						<Title class="card__title" level="3">Staff availability</Title>
 						<p class="card__subtitle" style="margin-bottom: 16px;">See the days, times & locations this staff member is available to take appointments.</p>
 					</div>
 					<Button

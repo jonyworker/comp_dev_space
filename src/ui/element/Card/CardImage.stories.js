@@ -2,9 +2,8 @@ import CardImage from "@/ui/element/Card/CardImage.vue";
 import Image from "@/ui/element/Image/Image.vue";
 
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Card/子元件/02_CardImage",
+	title: "Component/Card/子元件/02_CardImage",
 	component: CardImage,
 	components: { Image },
 	tags: ["autodocs"],
@@ -50,9 +49,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== CardImage 預設樣式 ====//

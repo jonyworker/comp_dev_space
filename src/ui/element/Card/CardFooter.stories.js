@@ -2,9 +2,8 @@ import CardFooter from "@/ui/element/Card/CardFooter.vue";
 import Avatar from "@/ui/element/Avatar/Avatar.vue";
 
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/Card/子元件/04_CardFooter",
+	title: "Component/Card/子元件/04_CardFooter",
 	component: CardFooter,
 	tags: ["autodocs"],
 	argTypes: {
@@ -26,9 +25,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== CardFooter 預設樣式 ====//

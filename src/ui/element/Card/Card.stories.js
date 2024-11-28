@@ -1,5 +1,4 @@
 import Card from "@/ui/element/Card/Card.vue";
-import Heading from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import CardHeader from "@/ui/element/Card/CardHeader.vue";
 import CardImage from "@/ui/element/Card/CardImage.vue";
@@ -7,10 +6,8 @@ import CardBody from "@/ui/element/Card/CardBody.vue";
 import CardFooter from "@/ui/element/Card/CardFooter.vue";
 
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-
-	title: "Design System/Card/Card",
+	title: "Component/Card/Card",
 	component: Card,
 	subcomponents: { CardHeader, CardBody, CardImage, CardFooter},
 	tags: ["autodocs"],
@@ -35,9 +32,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== Card 預設樣式 ====//
