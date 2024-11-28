@@ -1,8 +1,7 @@
 import SideNav from "./SideNav.vue";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-	title: "Design System/SideNav",
+	title: "Component/SideNav",
 	component: SideNav,
 	tags: ["autodocs"],
 	argTypes: {
@@ -28,9 +27,6 @@ export default {
 			},
 		},
 	},
-
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	// args: { onClick: fn() },
 };
 
 //==== 預設項目 ====//
