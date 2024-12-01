@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
 			<Teleport to="body">
 				<div
 					v-if="isOpen"
-					class="rest-container-menu"
+					class="ded-dropdown-menu"
 					:style="{
                         position: 'absolute',
                         top: menuStyles.top,
@@ -125,18 +125,24 @@ onBeforeUnmount(() => {
                         zIndex: 9999,
                     }"
 				>
-					<List>
-						<li class="ded-menu-item" v-for="(menu) in restList" :key="menu.userName" style="border-bottom:
+
+					<List :hasOutline="true">
+						<li class="ded-list-item" v-for="(menu) in restList" :key="menu.userName" style="border-bottom:
 						none">
-							<Avatar
-								size="xsmall"
-								:src="menu.src"
-								alt="alt text"
-								:userName="menu.userName"
-							></Avatar>
-							<div style="margin-right: auto;">{{ menu.userName }}</div>
+							<div class="ded-list-item-text">
+								<Avatar
+									size="xsmall"
+									:src="menu.src"
+									alt="alt text"
+									:userName="menu.userName"
+								></Avatar>
+								<div data-v-2ddf7f21="" class="ded-list-item-label">
+									{{ menu.userName }}
+								</div>
+							</div>
 						</li>
 					</List>
+
 				</div>
 			</Teleport>
 		</div>
