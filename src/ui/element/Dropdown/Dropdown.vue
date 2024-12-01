@@ -109,7 +109,9 @@ onUnmounted(() => {
 		<!-- Teleport 將 List 插入 body -->
 		<Teleport to="body">
 			<div class="ded-tooltip" :style="dropdownPosition" v-if="isDropdownVisible">
-				<List>
+				<List
+					:hasOutline="true"
+				>
 					<ListItem
 						v-for="(item, index) in props.dataSource"
 						:key="index"
@@ -119,6 +121,7 @@ onUnmounted(() => {
 						@selectedItem="(value) => handleSelect(value)"
 					/>
 				</List>
+
 			</div>
 
 		</Teleport>
