@@ -1,28 +1,41 @@
 <script setup>
+import ListItem from "@/ui/element/List/ListItem.vue";
 // 定義 Props
 const props = defineProps({
-	isMenu: {
+    dataSource: {
+        type: Object,
+    },
+    hasOutline: {
 		type: Boolean,
-		default: true,
+		default: false,
 	},
 	className: {
 		type: String,
 	},
-	maxHeight: {
-		type: String,
-	}
 })
 </script>
 
 <template>
 	<ul
 	    :class="{
-		list: true,
-		menu: props.isMenu,
+		'ded-list': true,
+		'ded-list-outline': props.hasOutline,
 		[props.className]: !!props.className }"
-	    :style="{'max-height': props.maxHeight ? `${props.maxHeight}px`: null }"
 	>
-		<slot></slot>
+		<template v-if="props.dataSource">
+			<ListItem
+				v-for="(item, index) in props.dataSource"
+				:key="index"
+				:label="item.label"
+				:value="item.value"
+				:href="item.href"
+				:prefix="item.prefix"
+			>
+			</ListItem>
+		</template>
+		<template v-else>
+			<slot></slot>
+		</template>
 	</ul>
 </template>
 

@@ -1,11 +1,13 @@
 <script setup>
+import Icon from "@/ui/element/Icon/Icon.vue";
+
 const emits = defineEmits(['selectedItem']);
 
 // 定義 Props
 const props = defineProps({
 	label: {
 		type: String,
-		default: "標題一"
+		default: ""
 	},
 	value: {
 		type: String,
@@ -14,6 +16,10 @@ const props = defineProps({
 	href: {
 		type: String,
 	},
+    prefix: {
+        type: String,
+        default: "",
+    },
 	className: {
 		type: String,
 	},
@@ -42,17 +48,32 @@ const handleClick = () => {
 <template>
 	<div
 		:class="{
-			item: true,
-			'menu-link': props.href,
+			'ded-list-item': true,
 			[props.className]: !!props.className
 		}"
 		@click="handleClick">
 
-		<slot name="listPrefix"></slot>
+        <template v-if="props.href !== ''">
+            <a :href="props.href" class="ded-list-item-link">
+                <template v-if="props.prefix !== undefined && props.prefix !== ''">
+                    <div class="ded-list-icon">
+                        <Icon :name="props.prefix"></Icon>
+                    </div>
+                </template>
+                <div class="item-label">{{ props.label }}</div>
+            </a>
+        </template>
 
-		<div class="item-label">{{ props.label }}</div>
-
-		<slot name="listSuffix"></slot>
+        <template v-else>
+            <div class="ded-list-item-text">
+                <template v-if="props.prefix !== undefined && props.prefix !== ''">
+                    <div class="ded-list-icon">
+                        <Icon :name="props.prefix"></Icon>
+                    </div>
+                </template>
+                <div class="ded-list-item-label">{{ props.label }}</div>
+            </div>
+        </template>
 	</div>
 </template>
 
