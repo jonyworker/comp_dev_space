@@ -1,18 +1,19 @@
 import Menu from "@/ui/element/Menu/Menu.vue";
 function formatDataSource(dataSource) {
 	return `[
-    ${dataSource.map(item => `{
-        icon: '${item.icon}',
-        label: '${item.label}',
-        path: '${item.path}',
-        ${item.children ? `children: [
-            ${item.children.map(child => `{
-                label: '${child.label}',
-                path: '${child.path}'
-            }`).join(',\n            ')}
-        ]` : ''}
-    }`).join(',\n    ')}
-]`;
+	    ${dataSource.map(item => `{
+	        title: '${item.title}',
+	        prefix: '${item.prefix}',
+	        path: '${item.path}',
+	        ${item.children ? `children: [
+	            ${item.children.map(child => `{
+	                title: '${child.title}',
+	                prefix: '${child.prefix}',
+	                path: '${child.path}'
+	            }`).join(',\n            ')}
+	        ]` : ''}
+	    }`).join(',\n    ')}
+	]`;
 }
 
 export default {
@@ -25,7 +26,8 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ icon: string; label: string; path: string; children?: [ label: string; path: string;] }[]",
+					summary: "{ title: string; prefix: string; path: string; children?: [ title: string; prefix:" +
+						" string; path:string;] }[]"
 				}
 			}
 		},
@@ -59,36 +61,22 @@ export const MenuDefault = {
 	args: {
 		dataSource: [
 			{
-				icon: "home",
-				label: "Dashboard",
+				title: "Dashboard",
+				prefix: "home",
 				path: "/",
 			},
 			{
-				icon: "users",
-				label: "Profile",
+				title: "Profile",
+				prefix: "users",
 				path: "/users",
 				children: [
-					{ label: "Edit Info", path: "/users/list" },
-					{ label: "Password", path: "/users/settings" },
+					{ title: "Contact", prefix: "mail", path: "/users/Contact" },
+					{ title: "Password", prefix: "lock", path: "/users/Password" },
 				],
 			},
-			// {
-			// 	icon: "file",
-			// 	label: "文件管理",
-			// 	path: "/files",
-			// 	children: [
-			// 		{ label: "所有文件", path: "/files/all" },
-			// 		{ label: "已分享", path: "/files/shared" },
-			// 	],
-			// },
-			// {
-			// 	icon: "mail",
-			// 	label: "訊息中心",
-			// 	path: "/messages",
-			// },
 			{
-				icon: "setting",
-				label: "Setting",
+				title: "Setting",
+				prefix: "setting",
 				path: "/settings",
 			},
 		],
