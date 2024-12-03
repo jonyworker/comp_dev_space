@@ -54,7 +54,7 @@ const handleClick = () => {
 		@click="handleClick">
 
         <template v-if="props.href !== ''">
-            <a :href="props.href" class="ded-list-item-link">
+            <a :href="props.href" class="ded-list-item-text ded-list-item-link">
                 <template v-if="props.prefix !== undefined && props.prefix !== ''">
                     <div class="ded-list-icon">
                         <Icon :name="props.prefix"></Icon>

@@ -19,23 +19,10 @@ const props = defineProps({
 	<ul
 	    :class="{
 		'ded-list': true,
-		'ded-list-outline': props.hasOutline,
+		'ded-outline': props.hasOutline,
 		[props.className]: !!props.className }"
 	>
-		<template v-if="props.dataSource">
-			<ListItem
-				v-for="(item, index) in props.dataSource"
-				:key="index"
-				:label="item.label"
-				:value="item.value"
-				:href="item.href"
-				:prefix="item.prefix"
-			>
-			</ListItem>
-		</template>
-		<template v-else>
-			<slot></slot>
-		</template>
+		<slot></slot>
 	</ul>
 </template>
 

@@ -1,4 +1,5 @@
 import List from "@/ui/element/List/List.vue";
+import ListItem from "@/ui/element/List/ListItem.vue";
 function formatDataSource(dataSource) {
 	return `[
 	    ${dataSource.map(item => `{
@@ -55,13 +56,13 @@ export const ListDefaultStory = {
 			{
 				"label": "Option2",
 				"value": "option2",
-				"href": "",
+				"href": "#",
 				"prefix": "users"
 			},
 			{
 				"label": "Option3",
 				"value": "option3",
-				"href": "",
+				"href": "#",
 				"prefix": "folder"
 			},
 		],
@@ -69,7 +70,7 @@ export const ListDefaultStory = {
 		className: '',
 	},
 	render: (args) => ({
-		components: { List },
+		components: { List, ListItem },
 		setup() {
 			return {
 				args,
@@ -77,10 +78,17 @@ export const ListDefaultStory = {
 		},
 		template: `
 			<List
-				:dataSource="args.dataSource"
 				:hasOutline="args.hasOutline"
 				:className="args.className"
 			>
+				<ListItem
+					v-for="(item, index) in args.dataSource"
+					:key="index"
+					:label="item.label"
+					:value="item.value"
+					:href="item.href"
+					:prefix="item.prefix"
+				></ListItem>
 			</List>
         `,
 	}),
