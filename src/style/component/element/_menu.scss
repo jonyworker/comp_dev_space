@@ -1,3 +1,62 @@
+.ded-nav-item {
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 8px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &-link {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        gap: 8px;
+        text-decoration: none;
+    }
+
+    &-icon {
+        min-width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-label {
+        flex: 1;
+        transition: opacity 0.3s;
+    }
+
+    &-arrow {
+        padding: 8px;
+    }
+}
+
+.ded-nav-subitem {
+    position: relative;
+    // margin-left: 24px;
+    width: 100%;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+
+    .ded-nav-item {
+        &-link {
+            padding-left: 24px;
+        }
+
+        &:first-child {
+            border-top: 1px solid #ccc;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
 
 .ded-nav-container {
     display: flex;
@@ -10,48 +69,10 @@
         transition: width 0.3s ease-in-out;
         overflow: hidden;
         height: 100%;
-        width: 100%;
 
         &-list {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
     }
-}
-
-.ded-nav-item {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    border-bottom: 1px solid #ccc;
-    overflow: hidden;
-
-    .ded-list-item-link {
-        padding: 8px;
-        justify-content: center;
-    }
-}
-
-.ded-nav-subitem {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-
-    .ded-nav-item {
-        padding-left: 24px;
-        border-top: 1px solid #ccc;
-        border-bottom: none;
-
-        .ded-list-item-link {
-            padding: 8px;
-        }
-    }
-}
-
-.ded-list-icon {
-    width: 18px;
-    height: 18px;
 }

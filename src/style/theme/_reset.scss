@@ -8,3 +8,23 @@
   line-height: 1.5;
   font-family: 'Noto Sans', Arial, sans-serif;
 }
+
+.ded-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  vertical-align: middle;
+}
+
+.ded-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: -50%;
+  min-width: 200px;
+  border-radius: 4px;
+}
