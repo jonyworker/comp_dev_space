@@ -43,6 +43,10 @@ export default {
 			description: "數值上限",
 			control: { type: "number" },
 		},
+		className: {
+			description: "客製化樣式",
+			control: { type: "text" },
+		},
 		default: {
 			description: '圖標插槽',
 			table: {
@@ -72,6 +76,7 @@ export const BadgeDefault = {
 		type: "number",
 		value: 100,
 		limit: 99,
+		className: ""
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -86,7 +91,8 @@ export const BadgeDefault = {
 				:type="args.type"
 				:value="args.value"
 				:limit="args.limit"
-			>
+				:className="args.className"
+			>   
 				<Icon name="notification" size="26"></Icon>
 			</Badge>
         `,
@@ -106,6 +112,7 @@ export const BadgeDefault = {
 						`  type="${args.type}"`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',

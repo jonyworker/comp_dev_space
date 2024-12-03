@@ -6,7 +6,8 @@
 }
 
 // 基礎設定
-.ded-badge__content{
+.ded-badge__content {
+    min-width: calc(1em + 4px);
     margin: auto 0;
     background-color: #FF4C51;
     border-radius: 999px;
@@ -15,56 +16,32 @@
     white-space: nowrap;
     font-size: 12px;
     line-height: 1;
-    padding: 2px 6px;
+    padding: 2px 4px;
     z-index: 5;
 }
-
-// position-default - 顯示數字
-//.ded-badge__content.ded-badge__position-default {
-//    margin-left: 4px;
-//}
-
-// position-default - 顯示點點
-//.ded-badge__content.ded-badge__position-default.ded-badge__content-isDot {
-//    width: 8px;
-//    height: 8px;
-//    margin-left: 4px;
-//    padding: 0;
-//}
 
 // position-top-right - 顯示數字
 .ded-badge__content.ded-badge__position-top-right {
     position: absolute;
     bottom: calc(100% - 20%);
     left: calc(100% - 10%);
+
+    .ded-badge-text {
+        line-height: 1;
+        font-size: 12px;
+    }
 }
-
-//// position-top-right - 顯示數字 (withIcon)
-//.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon {
-//    bottom: calc(100% - 38%);
-//    left: calc(100% - 15%);
-//}
-
 
 // position-top-right - 顯示點點
 .ded-badge__content.ded-badge__position-top-right.ded-badge__content-isDot {
+    min-width: 0px;
     width: 8px;
     height: 8px;
     margin-left: 4px;
     padding: 0;
     bottom: calc(100% - 20%);
-    left: calc(100% - 10%);
+    left: calc(100% - 30%);
 }
-
-// position-top-right - 顯示點點 (withIcon)
-//.ded-badge__content.ded-badge__position-top-right.ded-badge__content-withIcon.ded-badge__content-isDot {
-//    width: 8px;
-//    height: 8px;
-//    margin-left: 4px;
-//    padding: 0;
-//    bottom: calc(100% - 35%);
-//    left: calc(100% - 30%);
-//}
 
 @each $theme in $themes {
     .ded-badge__content.ded-badge-color-#{$theme} {

@@ -28,16 +28,10 @@ const props = defineProps({
 		type: Number,
 		default: Infinity,
 	},
-	// withIcon: { //先移除
-	// 	type: Boolean,
-	// 	default: false,
-	// },
-	// position:{ //固定右上角
-	// 	type: String,
-	// 	default: "default",
-	// 	validator: (value) =>
-	// 		["default", "top-right"].includes(value),
-	// },
+	className: {
+		type: String,
+		default: "",
+	},
 });
 
 
@@ -45,28 +39,29 @@ const props = defineProps({
 const computedValue = computed(() => {
 	const isNumBadgeLabel = typeof(+props.value) === 'number' || !isNaN(+props.value);
 	if (isNumBadgeLabel) {
-		const badgeValue = props.value;
-		return (badgeValue > props.limit) ? `${props.limit}+` : props.value
+		return (props.value > props.limit) ? props.limit : props.value
 	}
 	return props.value
 })
 </script>
 
 <template>
-	<span class="ded-badge__container">
+	<div :class="{'ded-badge__container': true,[props.className]: !!props.className,}">
 		<!-- Badge - slot -->
 		<slot></slot>
-
 		<!-- Badge - 實體 -->
-	    <span
+	    <div
 		    class="ded-badge__content ded-badge__position-top-right"
 		    :class="[
 			  `ded-badge-color-${props.themeColor}`,
 			  props.type === 'dot' ? 'ded-badge__content-isDot': '']"
 	    >
-            {{ props.type === 'number' ? computedValue : '' }}
-	    </span>
-    </span>
+		    <template v-if="props.type !== 'dot'">
+			    <span class="ded-badge-text">{{ computedValue }}</span>
+			    <span v-if="props.value > props.limit" class="ded-badge-text">+</span>
+		    </template>
+	    </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
