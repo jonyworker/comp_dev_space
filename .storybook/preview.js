@@ -47,7 +47,7 @@ const preview = {
 		options: {
 			storySort: {
 				method: 'alphabetical', // 可選擇 'alphabetical', 'configure', 或其他自定義方法
-				order: ['Components', 'Intro'], // 可根據需求調整順序
+				order: ['Introduction', 'Components'], // 可根據需求調整順序
 			},
 		},
 		html: {
