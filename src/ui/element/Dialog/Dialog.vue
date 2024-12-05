@@ -3,27 +3,22 @@ import Button from '@/ui/element/Button/Button.vue'
 
 // 調用 composable
 import {useDialog} from "@/ui/element/Dialog/useDialog.js";
+import Icon from "@/ui/element/Icon/Icon.vue";
 const dialog = useDialog();
 
 // 定義 Props
 const props = defineProps({
+	hasClose: {
+		type: Boolean,
+		default: false,
+	},
 	title: {
 		type: String,
-		required: true,
-		default: "",
+		default: "Title",
 	},
 	content: {
 		type: String,
-		required: true,
-		default: "",
-	},
-	confirmText: {
-		type: String,
-		default: "OK",
-	},
-	cancelText: {
-		type: String,
-		default: "Cancel",
+		default: "Content",
 	},
 	className: {
 		type: String,
@@ -37,29 +32,35 @@ const props = defineProps({
 <template>
 	<Teleport to="#dialog">
 		<transition name="dialog">
-			<div class="ded-dialog-overlay" v-if="dialog.showDialogStatus.value" @click.self="dialog.closeDialog()">
+			<div class="mask-overlay" v-if="dialog.showDialogStatus.value" @click.self="dialog.closeDialog()">
 
 				<div :class="{'ded-dialog-content': true, [props.className]: !!props.className}" >
 
+					<template v-if="props.hasClose === true">
+						<button class="ded-dialog-close-btn" @click="dialog.closeDialog()">
+							<Icon name="close" size="20"></Icon>
+						</button>
+					</template>
+
 					<div class="ded-dialog-header">
-						<slot name="dialogHeader">
-							<h2 class="ded-dialog-title">{{ props.title }}</h2>
+						<slot name="titleSlot">
+							{{ props.title }}
 						</slot>
 					</div>
 
 					<div class="ded-dialog-body">
-						<slot name="dialogBody">
-							<p>{{ props.content }}</p>
+						<slot name="contentSlot">
+							{{ props.content }}
 						</slot>
 					</div>
 
 					<div class="ded-dialog-footer">
-						<slot name="dialogFooter">
-							<Button variant="contained" themeColor="primary" size="medium" className="ded-cancel-btn">
-								{{ props.cancelText }}
+						<slot name="footerSlot">
+							<Button variant="contained" size="medium" className="ded-cancel-btn">
+								Cancel
 							</Button>
-							<Button variant="contained" themeColor="error" size="medium">
-								{{ props.confirmText }}
+							<Button variant="contained" themeColor="primary" size="medium">
+								OK
 							</Button>
 						</slot>
 					</div>

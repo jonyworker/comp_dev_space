@@ -1,10 +1,11 @@
 import { useDialog } from "@/ui/element/Dialog/useDialog.js";
-import { sanitizeHtml } from '@/composables/sanitizeHtml.js';
 import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Button from "@/ui/element/Button/Button.vue";
+import Icon from "@/ui/element/Icon/Icon.vue";
+import Title from "@/ui/element/Title/Title.vue";
 
 export default {
-	components: { Dialog },
+	components: {Title, Dialog },
 	title: "Component/Dialog",
 	component: Dialog,
 	tags: ["autodocs"],
@@ -14,42 +15,38 @@ export default {
 			control: { type: "text" },
 		},
 		content: {
-			description: "內文",
+			description: "內容",
 			control: { type: "text" },
 		},
-		confirmText: {
-			description: "確認按鈕",
-			control: { type: "text" },
-		},
-		cancelText: {
-			description: "取消按鈕",
-			control: { type: "text" },
+		hasClose: {
+			description:"是否有關閉按鈕",
+			control: { type: "boolean" },
 		},
 		className: {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		dialogHeader: {
-			description: "header 插槽",
-			control: { type: "text" },
+		titleSlot: {
+			description: "title 插槽",
+			control: false,
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
 				}
 			},
 		},
-		dialogBody: {
-			description: "body 插槽",
-			control: { type: "text" },
+		contentSlot: {
+			description: "content 插槽",
+			control: false,
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
 				}
 			},
 		},
-		dialogFooter: {
+		footerSlot: {
 			description: "footer 插槽",
-			control: { type: "text" },
+			control: false,
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
@@ -70,49 +67,152 @@ export default {
 };
 
 //==== 預設項目 ====//
-export const DialogClick = {
+export const DialogDefault = {
 	name: "預設項目",
 	args: {
 		title: 'Title',
 		content: 'Content',
-		confirmText: 'OK',
-		cancelText: 'Cancel',
+		hasClose: false,
 		className: '',
-		dialogHeader: '',
-		dialogBody: ``,
-		dialogFooter: ``,
 	},
 	render: (args) => ({
-		components: { Dialog, Button },
+		components: { Dialog, Button, Icon },
 		setup() {
 			const dialog = useDialog();
+			const onClose = () => {
+				window.alert('Close');
+				dialog.closeDialog(); // 關閉對話框
+			};
+			const onConfirm = () => {
+				window.alert('OK');
+				dialog.closeDialog(); // 關閉對話框
+			};
+			const onCancel = () => {
+				window.alert('Cancel');
+				dialog.closeDialog(); // 關閉對話框
+			};
 			return {
 				args,
 				dialog,
-				sanitizeHtml
+				onClose,
+				onConfirm,
+				onCancel
+			}
+		},
+		template: `
+			<div :class="['ded-dialog-content', ...args.className.split(' ')]">
+				<button v-if="args.hasClose" class="ded-dialog-close-btn" @click="onClose">
+					<Icon name="close" size="20"></Icon>
+				</button>
+				<div class="ded-dialog-header">
+					{{ args.title }}
+				</div>
+				<div class="ded-dialog-body">
+					{{ args.content }}
+				</div>
+				<div class="ded-dialog-footer">
+					<Button variant="contained" size="medium" class="ded-cancel-btn"
+					        @click="onCancel">
+						Cancel
+					</Button>
+					<Button variant="contained" themeColor="primary" size="medium" @click="onConfirm">
+						OK
+					</Button>
+				</div>
+			</div>
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Dialog',
+						`  title="${args.title}"`,
+						`  content="${args.content}"`,
+						`  :hasClose="${args.hasClose}"`,
+						'  className=""',
+						'>',
+						'  <template #footerSlot>',
+						'    <Button',
+						'      variant="contained"',
+						'      size="medium"',
+						'      class="ded-cancel-btn"',
+						'      @click="onCancel"',
+						'    >',
+						'      Cancel',
+						'    </Button>',
+						'    <Button',
+						'      variant="contained"',
+						'      themeColor="error"',
+						'      size="medium"',
+						'      @click="onConfirm"',
+						'    >',
+						'      OK',
+						'    </Button>',
+						'  </template>',
+						'</Dialog>',
+					].join("\n").trim();
+				}
+			}
+		}
+	},
+};
+
+
+//==== Demo ====//
+export const DialogDemo = {
+	name: "Demo",
+	args: {
+		title: 'Title',
+		content: 'Content',
+		hasClose: true,
+		className: '',
+		titleSlot: '',
+		contentSlot: '',
+		footerSlot: '',
+	},
+	render: (args) => ({
+		components: { Dialog, Button, Title },
+		setup() {
+			const dialog = useDialog();
+			const onConfirm = () => {
+				window.alert('OK');
+				dialog.closeDialog(); // 關閉對話框
+			};
+			const onCancel = () => {
+				window.alert('Cancel');
+				dialog.closeDialog(); // 關閉對話框
+			};
+			return {
+				args,
+				dialog,
+				onConfirm,
+				onCancel
 			}
 		},
 		template: `
 			<Dialog
-				:title="args.title"
+				title=""
 				:content="args.content"
-				:confirmText="args.confirmText"
-				:cancelText="args.cancelText"
+				:hasClose="args.hasClose"
+				className=""
 			>
-				<template #dialogHeader>
-					<template v-if="args.dialogHeader">
-						<div v-html="sanitizeHtml(args.dialogHeader)"></div>
-					</template>
+				<template #titleSlot>
+					<Title level="3">Title</Title>
 				</template>
-				<template #dialogBody>
-					<template v-if="args.dialogBody">
-						<div v-html="sanitizeHtml(args.dialogBody)"></div>
-					</template>
-				</template>
-				<template #dialogFooter>
-					<template v-if="args.dialogFooter">
-						<div v-html="sanitizeHtml(args.dialogFooter)"></div>
-					</template>
+				<template #footerSlot>
+					<Button variant="contained" size="medium" class="ded-cancel-btn" @click="onCancel">
+						Cancel
+					</Button>
+					<Button variant="contained" themeColor="primary" size="medium" @click="onConfirm">
+						OK
+					</Button>
 				</template>
 			</Dialog>
 
@@ -120,7 +220,6 @@ export const DialogClick = {
 			<Button themeColor="primary"
 			        variant="contained"
 			        size="medium"
-			        prefix="replace"
 			        @click="dialog.showDialog">
 				Open Dialog
 			</Button>
@@ -137,30 +236,50 @@ export const DialogClick = {
 					const { args } = storyContext;
 					// const dataSourceString = formatDataSource(args.dataSource);
 					return [
+						`import { useDialog } from "@/ui/element/Dialog/useDialog.js";`,
+						`const dialog = useDialog();`,
+						'',
 						'<Dialog',
-						`  :title="${args.title}"`,
-						`  :content="${args.content}"`,
-						`  :confirmText="${args.confirmText}"`,
-						`  :cancelText="${args.cancelText}"`,
+						'  title=""',
+						'  :content="${args.content}"',
+						'  :hasClose="${args.hasClose}"',
+						'  className=""',
 						'>',
-						'  <template #dialogHeader>',
-						'    <template v-if="${args.dialogHeader}">',
-						`      {{ ${args.dialogHeader} }}`,
-						'    </template>',
-
+						'  <template #titleSlot>',
+						'    <Title level="3">Title</Title>',
 						'  </template>',
-						'  <template #dialogBody>',
-						'    <template v-if="${args.dialogBody}">',
-						`      {{ ${args.dialogBody} }}`,
-						'    </template>',
-						'  </template>',
-						'  <template #dialogFooter>',
-						'    <template v-if="${args.dialogFooter}">',
-						`      {{ ${args.dialogFooter} }}`,
-						'    </template>',
+						'  <template #footerSlot>',
+						'    <Button',
+						'      variant="contained"',
+						'      size="medium"',
+						'      class="ded-cancel-btn"',
+						'      @click="onCancel"',
+						'    >',
+						'      Cancel',
+						'    </Button>',
+						'    <Button',
+						'      variant="contained"',
+						'      themeColor="primary"',
+						'      size="medium"',
+						'      @click="onConfirm"',
+						'    >',
+						'      OK',
+						'    </Button>',
 						'  </template>',
 						'</Dialog>',
-					].join('\n').trim();
+						'',
+						'<!-- Dialog 觸發器 -->',
+						'<Button',
+						'  themeColor="primary"',
+						'  variant="contained"',
+						'  size="medium"',
+						'  prefix="replace"',
+						'  @click="dialog.showDialog"',
+						'>',
+						'  Open Dialog',
+						'</Button>',
+					].join("\\n").trim();
+
 				}
 			}
 		}

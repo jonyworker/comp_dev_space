@@ -5,7 +5,6 @@ import { computed } from 'vue';
 const props = defineProps({
 	themeColor: {
 		type: String,
-		default: "primary",
 		validator: (value) =>
 			[
 				"primary",
@@ -30,7 +29,11 @@ const props = defineProps({
 
 
 const headingCVAClass = computed(() => {
-	return [`ded-title ded-title-level-${props.level} ded-title-${props.themeColor}`];
+	return [
+		`ded-title`,
+		`ded-title-level-${props.level}`,
+		props.themeColor ? `ded-title-${props.themeColor}` : ''
+	].filter(Boolean).join(' ');
 });
 
 // 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
