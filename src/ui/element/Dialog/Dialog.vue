@@ -12,14 +12,14 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	title: {
-		type: String,
-		default: "Title",
-	},
-	content: {
-		type: String,
-		default: "Content",
-	},
+	// title: {
+	// 	type: String,
+	// 	default: "Title",
+	// },
+	// content: {
+	// 	type: String,
+	// 	default: "Content",
+	// },
 	className: {
 		type: String,
 		default: "",
@@ -43,19 +43,19 @@ const props = defineProps({
 					</template>
 
 					<div class="ded-dialog-header">
-						<slot name="titleSlot">
+						<slot name="title">
 							{{ props.title }}
 						</slot>
 					</div>
 
 					<div class="ded-dialog-body">
-						<slot name="contentSlot">
+						<slot name="content">
 							{{ props.content }}
 						</slot>
 					</div>
 
 					<div class="ded-dialog-footer">
-						<slot name="footerSlot">
+						<slot name="footer">
 							<Button variant="contained" size="medium" className="ded-cancel-btn">
 								Cancel
 							</Button>

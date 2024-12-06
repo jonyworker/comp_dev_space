@@ -10,14 +10,14 @@ export default {
 	component: Dialog,
 	tags: ["autodocs"],
 	argTypes: {
-		title: {
-			description: "標題",
-			control: { type: "text" },
-		},
-		content: {
-			description: "內容",
-			control: { type: "text" },
-		},
+		// title: {
+		// 	description: "標題",
+		// 	control: { type: "text" },
+		// },
+		// content: {
+		// 	description: "內容",
+		// 	control: { type: "text" },
+		// },
 		hasClose: {
 			description:"是否有關閉按鈕",
 			control: { type: "boolean" },
@@ -26,31 +26,38 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		titleSlot: {
-			description: "title 插槽",
-			control: false,
+		title: {
+			description: "標題",
+			control: { type: "text" },
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
-				}
+				},
+				defaultValue: {
+					summary: "Title",
+				},
 			},
 		},
-		contentSlot: {
-			description: "content 插槽",
-			control: false,
+		content: {
+			description: "內容",
+			control: { type: "text" },
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
-				}
+				},
+				defaultValue: {
+					summary: "Content",
+				},
 			},
 		},
-		footerSlot: {
+		footer: {
 			description: "footer 插槽",
-			control: false,
+			control: { type: "text" },
+
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
-				}
+				},
 			},
 		},
 	},
@@ -70,10 +77,10 @@ export default {
 export const DialogDefault = {
 	name: "預設項目",
 	args: {
-		title: 'Title',
-		content: 'Content',
 		hasClose: false,
 		className: '',
+		title: 'Title',
+		content: 'Content',
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Icon },
@@ -133,12 +140,10 @@ export const DialogDefault = {
 					const { args } = storyContext;
 					return [
 						'<Dialog',
-						`  title="${args.title}"`,
-						`  content="${args.content}"`,
 						`  :hasClose="${args.hasClose}"`,
 						'  className=""',
 						'>',
-						'  <template #footerSlot>',
+						'  <template #footer>',
 						'    <Button',
 						'      variant="contained"',
 						'      size="medium"',
@@ -169,13 +174,8 @@ export const DialogDefault = {
 export const DialogDemo = {
 	name: "Demo",
 	args: {
-		title: 'Title',
-		content: 'Content',
 		hasClose: true,
 		className: '',
-		titleSlot: '',
-		contentSlot: '',
-		footerSlot: '',
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Title },
@@ -203,10 +203,10 @@ export const DialogDemo = {
 				:hasClose="args.hasClose"
 				className=""
 			>
-				<template #titleSlot>
+				<template #title>
 					<Title level="3">Title</Title>
 				</template>
-				<template #footerSlot>
+				<template #footert>
 					<Button variant="contained" size="medium" class="ded-cancel-btn" @click="onCancel">
 						Cancel
 					</Button>
@@ -245,10 +245,10 @@ export const DialogDemo = {
 						'  :hasClose="${args.hasClose}"',
 						'  className=""',
 						'>',
-						'  <template #titleSlot>',
+						'  <template #title>',
 						'    <Title level="3">Title</Title>',
 						'  </template>',
-						'  <template #footerSlot>',
+						'  <template #footer>',
 						'    <Button',
 						'      variant="contained"',
 						'      size="medium"',
