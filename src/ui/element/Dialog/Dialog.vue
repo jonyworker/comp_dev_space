@@ -12,14 +12,6 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	// title: {
-	// 	type: String,
-	// 	default: "Title",
-	// },
-	// content: {
-	// 	type: String,
-	// 	default: "Content",
-	// },
 	className: {
 		type: String,
 		default: "",

@@ -10,14 +10,6 @@ export default {
 	component: Dialog,
 	tags: ["autodocs"],
 	argTypes: {
-		// title: {
-		// 	description: "標題",
-		// 	control: { type: "text" },
-		// },
-		// content: {
-		// 	description: "內容",
-		// 	control: { type: "text" },
-		// },
 		hasClose: {
 			description:"是否有關閉按鈕",
 			control: { type: "boolean" },
@@ -240,8 +232,6 @@ export const DialogDemo = {
 						`const dialog = useDialog();`,
 						'',
 						'<Dialog',
-						'  title=""',
-						'  :content="${args.content}"',
 						'  :hasClose="${args.hasClose}"',
 						'  className=""',
 						'>',
