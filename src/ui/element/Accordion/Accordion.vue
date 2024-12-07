@@ -1,63 +1,39 @@
 <script setup>
-import { ref, watch } from "vue";
-import Icon from '@/ui/element/Icon/Icon.vue';
+import { computed } from "vue";
+import AccordionItem from "@/ui/element/Accordion/AccordionItem.vue";
 
 const props = defineProps({
 	dataSource: {
 		type: Array,
-		default: () => []
+		required: true,
+		default: () => [],
+	},
+	isOpenAll: {
+		type: Boolean,
+		default: false,
 	},
 	className: {
 		type: String,
 		default: "",
 	},
-})
-
-const accordionItems = ref([
-	...props.dataSource
-]);
-
-
-watch(() => props.dataSource, (newValue) => {
-	accordionItems.value = newValue.map(item => ({
-		...item,
-		expanded: false // 確保每個項目都有 expanded 屬性
-	}));
 });
 
-
-const accordionToggle = (index) => {
-	accordionItems.value[index].expanded = !accordionItems.value[index].expanded;
-};
+// 用於全局控制每個 AccordionItem 的打開狀態
+const allOpen = computed(() => props.isOpenAll);
 </script>
 
 <template>
-	<div :class="{'ded-accordion__container': true, [props.className]: !!props.className}">
-		<ul aria-label="Accordion" class="ded-accordion__list">
-			<li v-for="(item, index) in accordionItems" :key="index" class="ded-accordion__item" @click="accordionToggle(index)">
-				<button class="ded-accordion-header">
-					<span>{{item.title}}</span>
-					<!-- 箭頭 - 下 -->
-					<template v-if="item.expanded">
-						<Icon name="chevronDown" size="24"></Icon>
-					</template>
-
-					<!-- 箭頭 - 上 -->
-					<template v-else>
-						<Icon name="chevronUp" size="24"></Icon>
-					</template>
-				</button>
-				<!--	            v-show="item.expanded"-->
-				<div class="ded-accordion-content" :class="{'expanded': item.expanded}">
-					<p v-for="(content, i) in item.contents" :key="i">
-						{{ content }}
-					</p>
-				</div>
-			</li>
-		</ul>
-	</div>
+	<ul :class="{'ded-accordion': true, [props.className]: !!props.className}">
+		<AccordionItem
+			v-for="item in dataSource"
+			:key="item.id"
+			:label="item.label"
+			:detail="item.detail"
+			:isOpen="allOpen"
+		/>
+	</ul>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 
 </style>
