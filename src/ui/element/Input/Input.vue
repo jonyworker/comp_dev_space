@@ -23,10 +23,6 @@ const props = defineProps({
 		type: String,
 		default: "",
 	},
-	// suffix: {
-	// 	type: String,
-	// 	default: "",
-	// },
 	size: {
 		type: String,
 		default: "medium",
@@ -105,7 +101,7 @@ const togglePasswordVisibility = () => {
 			<!-- Suffix Icons -->
 			<template v-if=" modelValue || props.type === 'password'">
 				<!-- input type 等於 text -->
-				<div v-if="modelValue && props.type === 'text'" :class="`ded-icon-${props.size}`"
+				<div v-if="modelValue && props.type !== 'password'" :class="`ded-icon-${props.size}`"
 				     @click="clearInput">
 					<Icon name="close" />
 				</div>
