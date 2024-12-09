@@ -65,29 +65,47 @@ const handleClick = () => {
 		updateMenuPosition();
 		window.addEventListener('resize', updateMenuPosition);
 		window.addEventListener('scroll', updateMenuPosition, true);
+		document.addEventListener('click', handleOutsideClick); // 新增
 	} else {
 		window.removeEventListener('resize', updateMenuPosition);
 		window.removeEventListener('scroll', updateMenuPosition, true);
+		document.removeEventListener('click', handleOutsideClick); // 新增
 	}
 };
+
+// 點擊外部時關閉菜單
+const handleOutsideClick = (event) => {
+	const menuElement = document.querySelector('.ded-dropdown-menu');
+	if (
+		restContainerRef.value &&
+		!restContainerRef.value.contains(event.target) &&
+		(!menuElement || !menuElement.contains(event.target))
+	) {
+		isOpen.value = false;
+		document.removeEventListener('click', handleOutsideClick);
+	}
+};
+
 
 // 清理事件監聽器
 onMounted(() => {
 	if (isOpen.value) {
 		window.addEventListener('resize', updateMenuPosition);
 		window.addEventListener('scroll', updateMenuPosition, true);
+		document.addEventListener('click', handleOutsideClick); // 確保 Mounted 時的事件監聽
 	}
 });
 
 onBeforeUnmount(() => {
 	window.removeEventListener('resize', updateMenuPosition);
 	window.removeEventListener('scroll', updateMenuPosition, true);
+	document.removeEventListener('click', handleOutsideClick); // 確保清理
 });
 </script>
 
+
 <template>
 	<div :class="{'ded-avatar-group': true,[props.className]: !!props.className,}">
-		<!-- avatar group - 渲染 avatar -->
 		<Avatar
 			v-for="(avatar, index) in currList"
 			:key="index"
@@ -97,23 +115,19 @@ onBeforeUnmount(() => {
 			:userName="avatar.userName"
 		></Avatar>
 
-		<div class="rest-container" ref="restContainerRef" v-if="restList.length > 0">
-
-			<!-- avatar group - 剩餘未顯示總數表示 -->
-			<div v-if="restList.length > 0" :class="[ 'ded-avatar-container', props.size ?
+		<template  v-if="restList.length > 0">
+			<div ref="restContainerRef" v-if="restList.length > 0" :class="[ 'ded-avatar-container', props.size ?
 			`ded-avatar-container-${props.size}` : 'ded-avatar-container-medium' ]">
 				<button
 					:class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
 					@click.prevent="handleClick"
-					style="cursor: pointer"
 				>
-                    <span :class="[ 'ded-avatar-text', props.size ? `text-${props.size}` : 'text-medium' ]">
+                    <span class="ded-avatar-text">
                         {{ `+${restCount}` }}
                     </span>
 				</button>
 			</div>
 
-			<!-- 使用 Teleport 將 rest-container-menu 傳送到 body -->
 			<Teleport to="body">
 				<div
 					v-if="isOpen"
@@ -122,20 +136,21 @@ onBeforeUnmount(() => {
                         position: 'absolute',
                         top: menuStyles.top,
                         left: menuStyles.left,
-                        zIndex: 9999,
+                        'z-index': 9999
                     }"
 				>
 
 					<List :hasOutline="true">
-						<li class="ded-list-item" v-for="(menu) in restList" :key="menu.userName" style="border-bottom:
-						none">
+						<li class="ded-list-item" v-for="(menu) in restList" :key="menu.userName">
 							<div class="ded-list-item-text">
-								<Avatar
-									size="xsmall"
-									:src="menu.src"
-									alt="alt text"
-									:userName="menu.userName"
-								></Avatar>
+								<div class="ded-list-icon">
+									<Avatar
+										size="xsmall"
+										:src="menu.src"
+										alt="alt text"
+										:userName="menu.userName"
+									></Avatar>
+								</div>
 								<div data-v-2ddf7f21="" class="ded-list-item-label">
 									{{ menu.userName }}
 								</div>
@@ -145,7 +160,7 @@ onBeforeUnmount(() => {
 
 				</div>
 			</Teleport>
-		</div>
+		</template>
 	</div>
 </template>
 
