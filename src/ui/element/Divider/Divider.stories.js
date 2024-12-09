@@ -10,7 +10,7 @@ export default {
             control: {
                 type: "select",
                 labels: {
-                    "": "None",
+                    "": "none",
                     primary: "primary",
                     secondary: "secondary",
                     tertiary: "tertiary",
@@ -118,8 +118,6 @@ export const DividerDefault = {
             };
         },
         template: `
-			<div style="display:flex;  justify-content:center; gap: 16px; height: 200px"
-                :style="args.direction === 'horizontal'? 'flex-direction: column;': ''">
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
@@ -128,7 +126,6 @@ export const DividerDefault = {
 					:align="args.align"
                     :className="args.className"
 				>{{args.default}}</Divider>
-			</div>
 		`,
     }),
     // 控制 controls 中能控制的參數

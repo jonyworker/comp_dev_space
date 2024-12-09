@@ -5,11 +5,14 @@
     --line-weight: 2px;
     --line-style: solid;
     display: flex;
+    min-height: 5em;
 }
+
 /*--- Divider 方向 ---*/
 .ded-divider-horizontal {
     align-items: center;
 }
+
 .ded-divider-vertical {
     flex-direction: column;
     align-items: center;
@@ -38,15 +41,19 @@
 .ded-divider-width-xsmall {
     --line-weight: 1px;
 }
+
 .ded-divider-width-small {
     --line-weight: 2px;
 }
+
 .ded-divider-width-medium {
     --line-weight: 4px;
 }
+
 .ded-divider-width-large {
     --line-weight: 6px;
 }
+
 .ded-divider-width-xlarge {
     --line-weight: 8px;
 }
@@ -55,9 +62,11 @@
 .ded-divider-solid {
     --line-style: solid;
 }
+
 .ded-divider-dashed {
     --line-style: dashed;
 }
+
 .ded-divider-dotted {
     --line-style: dotted;
 }
@@ -73,6 +82,7 @@
     flex-grow: 0;
     width: 1rem;
 }
+
 .ded-divider-end.ded-divider-horizontal::after {
     flex-grow: 0;
     width: 1rem;
@@ -83,6 +93,7 @@
     flex-grow: 0;
     height: 1rem;
 }
+
 .ded-divider-end.ded-divider-vertical::after {
     flex-grow: 0;
     height: 1rem;
@@ -92,14 +103,17 @@
     .ded-divider-#{$theme}.ded-divider-vertical::before {
         border-left-color: getThemeColor($mode, $theme, "default");
     }
+
     .ded-divider-#{$theme}.ded-divider-vertical::after {
         border-left-color: getThemeColor($mode, $theme, "default");
     }
 }
+
 @each $theme in $themes {
     .ded-divider-#{$theme}.ded-divider-horizontal::before {
         border-top-color: getThemeColor($mode, $theme, "default");
     }
+
     .ded-divider-#{$theme}.ded-divider-horizontal::after {
         border-top-color: getThemeColor($mode, $theme, "default");
     }

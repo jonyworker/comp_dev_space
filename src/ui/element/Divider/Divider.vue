@@ -60,7 +60,7 @@ const props = defineProps({
         ]"
     >
         <!-- divider - 分隔線文字 -->
-	    <template v-if="$slots.default && $slots.default().some(vnode => vnode.children?.trim())">
+	    <template v-if="$slots.default && $slots.default().some(node => node.children?.trim())">
 		    <div class="ded-divider-content">
 			    <slot></slot>
 		    </div>
