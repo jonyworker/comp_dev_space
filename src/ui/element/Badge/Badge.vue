@@ -37,8 +37,7 @@ const props = defineProps({
 
 // 計算是否大於對大設定值
 const computedValue = computed(() => {
-	const isNumBadgeLabel = typeof(+props.value) === 'number' || !isNaN(+props.value);
-	if (isNumBadgeLabel) {
+	if (props.value > props.limit) {
 		return (props.value > props.limit) ? props.limit : props.value
 	}
 	return props.value
