@@ -6,7 +6,6 @@ const props = defineProps({
 	dataSource: {
 		type: Array,
 		required: true,
-		default: () => [],
 	},
 	isOpenAll: {
 		type: Boolean,
@@ -23,15 +22,18 @@ const allOpen = computed(() => props.isOpenAll);
 </script>
 
 <template>
-	<ul :class="{'ded-accordion': true, [props.className]: !!props.className}">
-		<AccordionItem
-			v-for="item in dataSource"
-			:key="item.id"
-			:label="item.label"
-			:detail="item.detail"
-			:isOpen="allOpen"
-		/>
-	</ul>
+	<div class="ded-accordion-container">
+		<ul :class="{'ded-accordion': true, [props.className]: !!props.className}">
+			<AccordionItem
+				v-for="item in dataSource"
+				:key="item.id"
+				:label="item.label"
+				:detail="item.detail"
+				:isOpen="allOpen"
+			/>
+		</ul>
+	</div>
+
 </template>
 
 <style scoped lang="scss">

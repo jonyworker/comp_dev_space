@@ -70,14 +70,14 @@ onBeforeUnmount(() => {
 
 <template>
 	<li class="ded-accordion-item">
-		<details :open="isItemOpen" :class="{'detail': true, [props.className]: !!props.className}" @toggle="handleToggle">
-			<summary class="ded-detail-title">
+		<details :open="isItemOpen" :class="{'ded-accordion-detail ': true, [props.className]: !!props.className}" @toggle="handleToggle">
+			<summary class="ded-accordion-title">
 				<span>{{ label }}</span>
-				<div :class="isItemOpen ? 'accordion-item-open' : 'accordion-item-close'">
+				<div :class="isItemOpen ? 'ded-accordion-item-open' : 'ded-accordion-item-close'" class="ded-icon-medium">
 					<Icon size="24" name="arrow_down"/>
 				</div>
 			</summary>
-			<div class="detail-content">
+			<div class="ded-detail-content">
 				<p>{{ detail }}</p>
 			</div>
 		</details>
