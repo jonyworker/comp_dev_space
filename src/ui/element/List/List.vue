@@ -4,6 +4,7 @@ import ListItem from "@/ui/element/List/ListItem.vue";
 const props = defineProps({
     dataSource: {
         type: Object,
+	    required: true,
     },
     hasOutline: {
 		type: Boolean,
@@ -11,6 +12,7 @@ const props = defineProps({
 	},
 	className: {
 		type: String,
+		default: "",
 	},
 })
 </script>
@@ -22,7 +24,14 @@ const props = defineProps({
 		'ded-outline': props.hasOutline,
 		[props.className]: !!props.className }"
 	>
-		<slot></slot>
+		<ListItem
+			v-for="(item, index) in props.dataSource"
+			:key="index"
+			:label="item.label"
+			:value="item.value"
+			:href="item.href"
+			:prefix="item.prefix"
+		></ListItem>
 	</ul>
 </template>
 

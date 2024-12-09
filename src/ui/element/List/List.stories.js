@@ -20,6 +20,11 @@ export default {
 		dataSource: {
 			description: "資料來源",
 			control: { type: 'object' },
+			table: {
+				type: {
+					summary: '{ label: string; value: string; href: string; prefix: string;}[]',
+				}
+			}
 		},
 		hasOutline: {
 			description: "是否為選單",
@@ -78,17 +83,11 @@ export const ListDefaultStory = {
 		},
 		template: `
 			<List
+				:dataSource="args.dataSource"
 				:hasOutline="args.hasOutline"
 				:className="args.className"
 			>
-				<ListItem
-					v-for="(item, index) in args.dataSource"
-					:key="index"
-					:label="item.label"
-					:value="item.value"
-					:href="item.href"
-					:prefix="item.prefix"
-				></ListItem>
+				
 			</List>
         `,
 	}),
@@ -122,28 +121,22 @@ export const ListTypeStory = {
 	args: {
 		dataSource:[
 			{
-				"content": {
-					"label": "選項一",
-					"value": "option1",
-					"href": "",
-					"prefix": "folder"
-				}
+				"label": "Option1",
+				"value": "option1",
+				"href": "",
+				"prefix": "home"
 			},
 			{
-				"content": {
-					"label": "選項二",
-					"value": "option2",
-					"href": "",
-					"prefix": "home"
-				}
+				"label": "Option2",
+				"value": "option2",
+				"href": "#",
+				"prefix": "users"
 			},
 			{
-				"content": {
-					"label": "選項三",
-					"value": "option3",
-					"href": "www.google.com",
-					"prefix": "folder"
-				}
+				"label": "Option3",
+				"value": "option3",
+				"href": "#",
+				"prefix": "folder"
 			},
 		],
 		className: 'col-5',
@@ -158,7 +151,7 @@ export const ListTypeStory = {
 		template: `
 			<List
 				:dataSource="args.dataSource"
-				:hasOutline="true"
+				:hasOutline=true
 				:className="args.className"
 			>
 			</List>
