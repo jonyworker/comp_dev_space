@@ -44,7 +44,7 @@ const toggleExpand = (path) => {
 
 // 處理菜單項點擊
 const handleNavItemClick = (item) => {
-    console.log("菜單點擊：", item);
+    // console.log("菜單點擊：", item);
 };
 </script>
 

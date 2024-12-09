@@ -54,7 +54,7 @@ const copyColumnCellData = ref([...props.columnCellData]);
 
 // 功能 - row 被點擊時該做的事
 function rowSelected(item) {
-	console.log("child>>>", item);
+	// console.log("child>>>", item);
 	emits("rowSelected", item);
 }
 
