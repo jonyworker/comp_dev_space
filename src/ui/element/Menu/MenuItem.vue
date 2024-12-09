@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 定義 Props
@@ -37,17 +36,24 @@ const getComponentType = (item) => {
 const handleItemClick = (item, event) => {
 	emit("itemClick", { item, event });
 };
+
+// 切換展開/收起狀態
+const toggleExpand = (item) => {
+	// 切換當前項目的展開狀態
+	props.expandedItems[item.path] = !props.expandedItems[item.path];
+};
 </script>
+
 
 <template>
 	<li class="ded-nav-item">
 		<!-- 動態組件切換 router-link 或 a -->
+		<!--@click.stop="handleItemClick(props.item, $event)"-->
 		<component
 			:is="getComponentType(props.item)"
 			:to="props.useRouter ? props.item.path : undefined"
 			:href="!props.useRouter ? props.item.path : undefined"
 			class="ded-nav-item-link"
-			@click.stop="handleItemClick(props.item, $event)"
 			:style="`color:${props.color}`"
 		>
 			<!-- 圖標 -->
@@ -68,7 +74,10 @@ const handleItemClick = (item, event) => {
 
 		<!-- 展開圖標 -->
 		<template v-if="!props.isCollapsed && props.item.children">
-			<div class="ded-nav-item-arrow">
+			<div
+				class="ded-nav-item-arrow"
+				@click.stop="toggleExpand(props.item)"
+			>
 				<Icon
 					size="24"
 					name="arrow_down"

@@ -1,6 +1,5 @@
 <script setup>
 import MenuItem from "./MenuItem.vue";
-import Icon from "@/ui/element/Icon/Icon.vue";
 import { ref } from "vue";
 
 let router;
