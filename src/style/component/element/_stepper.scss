@@ -1,0 +1,146 @@
+.ded-stepper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &.horizontal {
+        .ded-stepper-header {
+            display: flex;
+            margin-bottom: 1rem;
+
+            .ded-stepper-step {
+                width: 0;
+                text-align: center;
+                justify-content: center;
+                flex-grow: 1;
+                position: relative;
+                display: grid;
+
+                .ded-step-circle {
+                    width: 40px;
+                    height: 40px;
+                    color: #fff;
+                    background-color: #ccc;
+                    border-radius: 50%;
+                    display: grid;
+                    place-items: center;
+                }
+
+                .ded-step-title {
+                    margin-top: 0.5rem;
+                    font-size: 0.875rem;
+                    color: #333;
+                }
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 18px;
+                    height: 4px;
+                    background-color: #ccc;
+                }
+
+                &::before {
+                    left: 0%;
+                    right: 50%;
+                    margin-right: 24px;
+                }
+
+                &::after {
+                    left: 50%;
+                    right: 0;
+                    margin-left: 24px;
+                }
+
+                &.completed .ded-step-circle,
+                &.completed:before,
+                &.completed:after,
+                &.active::before {
+                    background-color: #28a745;
+                }
+
+                &.active .ded-step-circle {
+                    background-color: #007bff;
+                }
+
+                &:first-child::before,
+                &:last-child::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.vertical {
+        flex-direction: row;
+
+        .ded-stepper-header {
+            display: flex;
+            flex-direction: column;
+            margin-right: 1rem;
+
+            .ded-stepper-step {
+                display: flex;
+                align-items: center;
+                position: relative;
+                margin-bottom: 3rem;
+
+                .ded-step-circle {
+                    margin-right: 1rem;
+                }
+
+                .ded-step-title {
+                    flex-grow: 1;
+                }
+
+                .ded-step-connector {
+                    width: 2px;
+                    height: 3rem;
+                    background-color: #ccc;
+                    position: absolute;
+                    left: 20px;
+                    top: 100%;
+                }
+
+                &.completed .ded-step-connector {
+                    background-color: #28a745;
+                }
+            }
+        }
+    }
+
+    .ded-step-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ccc;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    & .active .ded-step-circle {
+        background-color: #007bff;
+    }
+
+    & .completed .ded-step-circle {
+        background-color: #28a745;
+    }
+
+    & .completed.ded-stepper-step .ded-step-group .ded-step-title {
+        color: #28a745;
+    }
+
+    .ded-stepper-content {
+        flex: 1;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+}
