@@ -1,8 +1,6 @@
 <script setup>
 import { computed, ref, watch, onMounted, onBeforeUnmount } from "vue";
 import BreadcrumbItem from "@/ui/element/Breadcrumb/BreadcrumbItem.vue";
-import List from "@/ui/element/List/List.vue";
-import ListItem from "@/ui/element/List/ListItem.vue";
 
 const props = defineProps({
 	dataSource: {
@@ -50,8 +48,8 @@ const handleClick = (event) => {
 
 // 點擊外部時關閉下拉選單
 const handleClickOutside = (event) => {
-	const dropdownElement = document.querySelector('.rest');
-	const triggerElement = document.querySelector('.rest-label');
+	const dropdownElement = document.querySelector('.ded-rest');
+	const triggerElement = document.querySelector('.ded-rest-label');
 
 	if (dropdownElement && triggerElement && !dropdownElement.contains(event.target) && !triggerElement.contains(event.target)) {
 		isOpen.value = false;
@@ -62,7 +60,7 @@ const handleClickOutside = (event) => {
 // 監聽視窗大小變化，重新計算下拉選單位置
 const updatePositionOnResize = () => {
 	if (isOpen.value) {
-		const restLabelElement = document.querySelector('.rest-label');
+		const restLabelElement = document.querySelector('.ded-rest-label');
 		if (restLabelElement) {
 			const rect = restLabelElement.getBoundingClientRect();
 			dropdownPosition.value = {
@@ -84,7 +82,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<nav :class="['ded-breadcrumb-container', props.className]">
+	<nav :class="{'ded-breadcrumb-container':true, [ props.className ]: !!props.className}">
 		<ol class="ded-breadcrumb">
 			<li class="ded-breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs" :key="index">
 				<template v-if="item.label === '...'">
@@ -92,19 +90,21 @@ onBeforeUnmount(() => {
 						<span class="ded-rest-label" @click="handleClick">...</span>
 						<teleport to="body">
 
-                            <List v-if="isOpen" :dataSource="restBreadcrumbs" :hasOutline="true" :style="{ top: `${dropdownPosition.top}px`,
-							left:
-							`${dropdownPosition.left}px`, position: 'absolute' }"></List>
-
-                            <!--							<List v-if="isOpen" class="ded-col-3 ded-rest" >-->
-                            <!--								<ListItem-->
-                            <!--									v-for="(restItem, index) in restBreadcrumbs"-->
-                            <!--									:key="index"-->
-                            <!--									:label="restItem.label"-->
-                            <!--									:href="restItem.href"-->
-                            <!--									:openInNewTab="false"-->
-                            <!--								/>-->
-                            <!--							</List>-->
+							<div v-if="isOpen"
+							     class="ded-dropdown-menu"
+							     :style="{
+									  top: `${dropdownPosition.top}px`,
+                                      left:`${dropdownPosition.left}px`,
+                                      position: 'absolute'
+								 }">
+								<ul class="ded-rest-dropdown-menu">
+									<li class="ded-drop-item" v-for="(item, index) of restBreadcrumbs" :key="index">
+										<a class="ded-drop-item-link" :href="item.href">
+											{{ item.label }}
+										</a>
+									</li>
+								</ul>
+							</div>
 
 						</teleport>
 					</div>
