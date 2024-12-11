@@ -21,9 +21,7 @@ const props = defineProps({
 
 <template>
 	<template v-if="props.avatarStatus !== 'none'">
-		<div  :class="['ded-avatar-icon', `ded-avatar-icon-${props.avatarSize}`, `ded-avatar-icon-${props.avatarStatus}`]">
-			<Icon :name="props.avatarStatus"></Icon>
-		</div>
+		<Icon :name="props.avatarStatus" :class="['ded-avatar-icon', `ded-avatar-icon-${props.avatarSize}`, `ded-avatar-icon-${props.avatarStatus}`]"></Icon>
 	</template>
 
 </template>
