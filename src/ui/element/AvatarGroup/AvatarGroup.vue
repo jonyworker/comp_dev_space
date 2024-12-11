@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import Avatar from "@/ui/element/Avatar/Avatar.vue";
-import List from "@/ui/element/List/List.vue";
 
 // 定義 Props
 const props = defineProps({
@@ -71,7 +70,6 @@ const handleClick = () => {
         window.removeEventListener('scroll', updateMenuPosition, true);
         document.removeEventListener('click', handleOutsideClick);
     }
-    console.log("Menu open state:", isOpen.value); // 調試
 };
 
 
@@ -84,7 +82,6 @@ const handleOutsideClick = (event) => {
     ) {
         isOpen.value = false;
         document.removeEventListener('click', handleOutsideClick);
-        console.log("Menu closed by outside click"); // 調試
     }
 };
 
