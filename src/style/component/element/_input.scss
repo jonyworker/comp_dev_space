@@ -1,9 +1,10 @@
 .ded-input-group {
+  position: relative;
   display: flex;
   gap: 8px;
   align-items: center;
   color: $color-gray40;
-  padding-inline: 8px;
+  // padding-inline: 8px;
   border-width: $input-border-width;
   border-style: solid;
   border-color: $border-color-default;
@@ -51,11 +52,39 @@
   }
 }
 
+/* one icon */
+.ded-input-group:has(.ded-input-feat-icon :only-child) .ded-input {
+  padding-right: 2em;
+}
+
+/* two icon */
+.ded-input-group:has(.ded-input-feat-icon :nth-of-type(2)) .ded-input {
+  padding-right: 3.5em;
+}
+
 .ded-input {
   height: 100%;
   width: 100%;
-  padding-block: 4px;
+  padding-inline: 8px;
 }
+
+.ded-input-prefix {
+  padding-left: 32px;
+}
+
+.ded-input-icon {
+  position: absolute;
+  left: 8px;
+}
+
+.ded-input-feat-icon {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+
 
 .ded-input-border-error {
   border-color: getBorderColor($mode, 'error', 'default') !important;
@@ -87,4 +116,17 @@
   &::placeholder {
     color: $color-gray20 !important;
   }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
