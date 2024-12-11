@@ -91,17 +91,21 @@ onBeforeUnmount(() => {
 					<div class="ded-rest">
 						<span class="ded-rest-label" @click="handleClick">...</span>
 						<teleport to="body">
-							<List v-if="isOpen" class="ded-col-3 ded-rest" :style="{ top: `${dropdownPosition.top}px`,
+
+                            <List v-if="isOpen" :dataSource="restBreadcrumbs" :hasOutline="true" :style="{ top: `${dropdownPosition.top}px`,
 							left:
-							`${dropdownPosition.left}px`, position: 'absolute' }">
-								<ListItem
-									v-for="(restItem, index) in restBreadcrumbs"
-									:key="index"
-									:label="restItem.label"
-									:href="restItem.href"
-									:openInNewTab="false"
-								/>
-							</List>
+							`${dropdownPosition.left}px`, position: 'absolute' }"></List>
+
+                            <!--							<List v-if="isOpen" class="ded-col-3 ded-rest" >-->
+                            <!--								<ListItem-->
+                            <!--									v-for="(restItem, index) in restBreadcrumbs"-->
+                            <!--									:key="index"-->
+                            <!--									:label="restItem.label"-->
+                            <!--									:href="restItem.href"-->
+                            <!--									:openInNewTab="false"-->
+                            <!--								/>-->
+                            <!--							</List>-->
+
 						</teleport>
 					</div>
 				</template>
