@@ -1,5 +1,8 @@
 <script setup>
 import ListItem from "@/ui/element/List/ListItem.vue";
+
+const emits = defineEmits(["selectedItem"]);
+
 // 定義 Props
 const props = defineProps({
     dataSource: {
@@ -15,6 +18,11 @@ const props = defineProps({
 		default: "",
 	},
 })
+
+
+const handleItemClick = (value) => {
+	emits("selectedItem", value); // 冒泡子元件的值
+};
 </script>
 
 <template>
@@ -31,6 +39,7 @@ const props = defineProps({
 			:value="item.value"
 			:href="item.href"
 			:prefix="item.prefix"
+			@selectedItem="handleItemClick"
 		></ListItem>
 	</ul>
 </template>
