@@ -130,7 +130,7 @@ const toggleDropdown = () => {
 			<div class="ded-input-feat-icon">
 				<!-- 清除按鈕 -->
 				<div
-					v-if="modelValue && props.type !== 'password'"
+					v-if="modelValue"
 					:class="`ded-icon-${props.size}`"
 					@click="clearInput"
 					style="cursor: pointer"
