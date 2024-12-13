@@ -10,6 +10,7 @@ function formatDataSource(dataSource) {
     ]`;
 }
 
+
 export default {
 	title: "Component/Stepper",
 	component: Stepper,
@@ -28,7 +29,12 @@ export default {
 		},
 		currentStep: {
 			description: "當前步驟（從 0 開始）",
-			control: { type: "number" },
+			control: {
+				type: "number",
+				min:0,
+				max:2,
+				step: 1
+			},
 		},
 		direction: {
 			description: "方向",
