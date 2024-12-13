@@ -1,6 +1,8 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import Avatar from "@/ui/element/Avatar/Avatar.vue";
+import List from "@/ui/element/List/List.vue";
+import ListItem from "@/ui/element/List/ListItem.vue";
 
 // 定義 Props
 const props = defineProps({
@@ -138,23 +140,26 @@ onBeforeUnmount(() => {
                         'z-index': 9999
                     }"
 				>
-					<ul class="ded-list ded-outline">
-						<li class="ded-list-item" v-for="(menu) in restList" :key="menu.userName">
-							<div class="ded-list-item-text">
-								<div class="ded-list-icon">
-									<Avatar
-										size="xsmall"
-										:src="menu.src"
-										alt="alt text"
-										:userName="menu.userName"
-									></Avatar>
-								</div>
-								<div data-v-2ddf7f21="" class="ded-list-item-label">
-									{{ menu.userName }}
-								</div>
-							</div>
-						</li>
-					</ul>
+                    <List
+                        :dataSource="restList"
+                        :hasOutline="true"
+                    >
+                        <ListItem
+                            v-for="(menu) in restList"
+                            :key="menu.userName"
+                            :label="menu.userName"
+                            :value="menu.userName"
+                            :href="menu.src"
+                            :prefix="menu.prefix"
+                        >
+                            <Avatar
+                                size="xsmall"
+                                :src="menu.src"
+                                alt="alt text"
+                                :userName="menu.userName"
+                            ></Avatar>
+                        </ListItem>
+                    </List>
 				</div>
 			</Teleport>
 		</template>
