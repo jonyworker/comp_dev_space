@@ -1,5 +1,6 @@
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
+import { debounce } from 'lodash';
 import { getTargetPosition } from '@/utils/positionUtils';
 
 // 定義 Props
@@ -54,10 +55,10 @@ const updateTooltipPosition = async () => {
 
 	const triggerElement = tooltipTriggerRef.value.getBoundingClientRect();
 
-	const position = {
-		top: triggerElement.top,
-		left: triggerElement.left,
-	};
+    const position = {
+        top: triggerElement.top + window.scrollY,
+        left: triggerElement.left + window.scrollX,
+    };
 
 	const childrenSize = {
 		width: triggerElement.width,
@@ -70,8 +71,9 @@ const updateTooltipPosition = async () => {
 };
 
 onMounted(() => {
-	window.addEventListener('scroll', updateTooltipPosition);
-	window.addEventListener('resize', updateTooltipPosition);
+    const debouncedUpdate = debounce(updateTooltipPosition, 100);
+    window.addEventListener('scroll', debouncedUpdate);
+    window.addEventListener('resize', debouncedUpdate);
 });
 
 onBeforeUnmount(() => {
