@@ -59,7 +59,10 @@ const updateDropdownPosition = () => {
 	if (dropdown.value) {
 		const triggerRect = dropdown.value.getBoundingClientRect();
 		dropdownPosition.value = getTargetPosition(
-			{ top: triggerRect.top, left: triggerRect.left },
+            {
+                top: triggerRect.top + window.scrollY, // 考慮垂直滾動偏移
+                left: triggerRect.left + window.scrollX // 考慮水平滾動偏移
+            },
 			{ width: triggerRect.width, height: triggerRect.height },
 			placement,
 			`${gap}px`,
@@ -72,6 +75,7 @@ const updateDropdownPosition = () => {
 onMounted(() => {
 	document.addEventListener("click", handleClickOutside);
 	window.addEventListener("resize", updateDropdownPosition);
+    window.addEventListener("scroll", updateDropdownPosition);
 	nextTick(() => updateDropdownPosition());
 });
 
@@ -79,6 +83,7 @@ onMounted(() => {
 onUnmounted(() => {
 	document.removeEventListener("click", handleClickOutside);
 	window.removeEventListener("resize", updateDropdownPosition);
+    window.removeEventListener("scroll", updateDropdownPosition);
 });
 </script>
 
