@@ -32,15 +32,17 @@ const handleItemClick = (value) => {
 		'ded-outline': props.hasOutline,
 		[props.className]: !!props.className }"
 	>
-		<ListItem
-			v-for="(item, index) in props.dataSource"
-			:key="index"
-			:label="item.label"
-			:value="item.value"
-			:href="item.href"
-			:prefix="item.prefix"
-			@selectedItem="handleItemClick"
-		></ListItem>
+        <slot>
+            <ListItem
+                v-for="(item, index) in props.dataSource"
+                :key="index"
+                :label="item.label"
+                :value="item.value"
+                :href="item.href"
+                :prefix="item.prefix"
+                @selectedItem="handleItemClick"
+            ></ListItem>
+        </slot>
 	</ul>
 </template>
 
