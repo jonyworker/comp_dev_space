@@ -101,12 +101,20 @@ export const CheckboxMultiStory = {
         },
         template: `
             <Checkbox
-                :themeColor="args.themeColor"
+              
                 :dataSource="args.dataSource"
                 :initValue="args.initValue"
-                :direction="args.direction"
-                :className="args.className"
-                v-model="checkedCheckboxOptions"></Checkbox>
+         
+            
+            ></Checkbox>
+
+<!--            <Checkbox-->
+<!--                :themeColor="args.themeColor"-->
+<!--                :dataSource="args.dataSource"-->
+<!--                :initValue="args.initValue"-->
+<!--                :direction="args.direction"-->
+<!--                :className="args.className"-->
+<!--                v-model="checkedCheckboxOptions"></Checkbox>-->
         `,
     }),
     // 控制 controls 中能控制的參數
