@@ -43,6 +43,11 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
+		useRouter: {
+			description: "使用 VueRouter",
+			control: { type: "boolean" },
+			table: { disable: true },
+		}
 	},
 	parameters: {
 		// 自動文件
