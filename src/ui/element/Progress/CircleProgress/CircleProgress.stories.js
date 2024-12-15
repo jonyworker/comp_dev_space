@@ -12,15 +12,15 @@ export default {
             options: [
                 "primary",
                 "secondary",
-                "tertiary",
+                "neutral",
+                "info",
                 "success",
                 "warning",
                 "error",
-                "info",
             ],
             table: {
                 type: {
-                    summary: "primary | secondary | tertiary | success | warning | error | info"
+                    summary: "primary | secondary | neutral | info | success | warning | error"
                 }
             }
         },
@@ -207,7 +207,7 @@ export const CircleProgressColorStory = {
     name: "主題色彩",
     args: {
         label: "Label",
-        size: 120,
+        size: 100,
         strokeWidth: 10,
         className: '',
     },
@@ -238,7 +238,7 @@ export const CircleProgressColorStory = {
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
-                    themeColor="tertiary"
+                    themeColor="neutral"
                     :label="args.label"
                     :percent=60
                     :size="args.size"
@@ -246,7 +246,7 @@ export const CircleProgressColorStory = {
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
-                    themeColor="success"
+                    themeColor="info"
                     :label="args.label"
                     :percent=70
                     :size="args.size"
@@ -254,7 +254,7 @@ export const CircleProgressColorStory = {
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
-                    themeColor="warning"
+                    themeColor="success"
                     :label="args.label"
                     :percent=80
                     :size="args.size"
@@ -262,7 +262,7 @@ export const CircleProgressColorStory = {
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
-                    themeColor="error"
+                    themeColor="warning"
                     :label="args.label"
                     :percent=90
                     :size="args.size"
@@ -270,7 +270,7 @@ export const CircleProgressColorStory = {
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
-                    themeColor="info"
+                    themeColor="error"
                     :label="args.label"
                     :percent=100
                     :size="args.size"

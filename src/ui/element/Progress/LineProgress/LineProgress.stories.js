@@ -11,15 +11,15 @@ export default {
             options: [
                 "primary",
                 "secondary",
-                "tertiary",
+                "neutral",
+                "info",
                 "success",
                 "warning",
                 "error",
-                "info",
             ],
             table: {
                 type: {
-                    summary: "primary | secondary | tertiary | success | warning | error | info"
+                    summary: "primary | secondary | neutral | info | success | warning | error"
                 }
             }
         },
@@ -198,35 +198,35 @@ export const LineProgressColorStory = {
                     :className="args.className"
                 ></LineProgress>
                 <LineProgress
-                    themeColor="tertiary"
+                    themeColor="neutral"
                     :label="args.label"
                     :percent=60
                     :strokeWidth="args.strokeWidth"
                     :className="args.className"
                 ></LineProgress>
                 <LineProgress
-                    themeColor="success"
+                    themeColor="info"
                     :label="args.label"
                     :percent=70
                     :strokeWidth="args.strokeWidth"
                     :className="args.className"
                 ></LineProgress>
                 <LineProgress
-                    themeColor="warning"
+                    themeColor="success"
                     :label="args.label"
                     :percent=80
                     :strokeWidth="args.strokeWidth"
                     :className="args.className"
                 ></LineProgress>
                 <LineProgress
-                    themeColor="error"
+                    themeColor="warning"
                     :label="args.label"
                     :percent=90
                     :strokeWidth="args.strokeWidth"
                     :className="args.className"
                 ></LineProgress>
                 <LineProgress
-                    themeColor="info"
+                    themeColor="error"
                     :label="args.label"
                     :percent=100
                     :strokeWidth="args.strokeWidth"
