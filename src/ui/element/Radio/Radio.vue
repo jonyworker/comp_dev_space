@@ -13,11 +13,11 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
 	},
 	dataSource: {
@@ -70,7 +70,8 @@ const isChecked = (value) => modelValue.value === value;
 		<label
 			v-for="(item, index) in props.dataSource"
 			:key="index"
-			:class="['ded-radio', props.className || '']"
+			class="ded-radio"
+			:class="item.isDisabled?'ded-radio-input-disabled':''"
 		>
 			<input
 				class="ded-radio-input"
@@ -83,15 +84,19 @@ const isChecked = (value) => modelValue.value === value;
 			<!-- radio - 選擇框樣式 -->
 			<div
 				:class="[
-          'ded-radio-icon',
-          isChecked(item.value)
-            ? `ded-radio-checked-${props.themeColor}`
-            : `ded-radio-unchecked-${props.themeColor}`,
-        ]"
+					'ded-radio-icon',
+					isChecked(item.value)
+					? `ded-radio-checked-${props.themeColor}`
+					: `ded-radio-unchecked-${props.themeColor}`,
+				]"
 			>
 			</div>
 			<!-- radio - 選項文字 -->
-			<span class="ded-radio-text">{{ item.label }}</span>
+			<span
+				class="ded-radio-text"
+				:class="item.isDisabled?'ded-radio-text-disabled':''"
+			>
+				{{ item.label }}</span>
 		</label>
 	</div>
 </template>

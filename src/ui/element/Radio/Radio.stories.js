@@ -5,6 +5,7 @@ function formatDataSource(dataSource) {
     ${dataSource.map(item => `{
         label: '${item.label}',
         value: '${item.value}'
+        isDisabled: '${item.isDisabled}'
     }`).join(',\n    ')}
   ]`;
 }
@@ -20,15 +21,15 @@ export default {
 			options: [
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			],
 			table: {
 				type: {
-					summary: "primary | secondary | tertiary | success | warning | error | info"
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -77,9 +78,21 @@ export const RadioDefaultStory = {
 	args: {
 		themeColor: 'primary',
 		dataSource: [
-			{ label: "Option1", value: "option1" },
-			{ label: "Option2", value: "option2" },
-			{ label: "Option3", value: "option3" },
+			{
+				"label": "Option1",
+				"value": "option1",
+				"isDisabled": false
+			},
+			{
+				"label": "Option2",
+				"value": "option2",
+				"isDisabled": false
+			},
+			{
+				"label": "Option3",
+				"value": "option3",
+				"isDisabled": true
+			}
 		],
 		initValue: "option1",
 		direction: "row",
@@ -138,9 +151,9 @@ export const RadioColorDefault = {
 	args: {
 		// themeColor: '',
 		dataSource: [
-			{ label: "Option1", value: "option1" },
-			{ label: "Option2", value: "option2" },
-			{ label: "Option3", value: "option3" },
+			{ label: "Option1", value: "option1", isDisabled: false },
+			{ label: "Option2", value: "option2", isDisabled: false },
+			{ label: "Option3", value: "option3", isDisabled: false },
 		],
 		initValue: "option1",
 		direction: "row",
@@ -174,7 +187,15 @@ export const RadioColorDefault = {
 					v-model="modelValue">
 				</Radio>
 				<Radio
-					themeColor="tertiary"
+					themeColor="neutral"
+					:dataSource="args.dataSource"
+					:initValue="args.initValue"
+					:direction="args.direction"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					themeColor="info"
 					:dataSource="args.dataSource"
 					:initValue="args.initValue"
 					:direction="args.direction"
@@ -205,14 +226,7 @@ export const RadioColorDefault = {
 					:className="args.className"
 					v-model="modelValue">
 				</Radio>
-				<Radio
-					themeColor="info"
-					:dataSource="args.dataSource"
-					:initValue="args.initValue"
-					:direction="args.direction"
-					:className="args.className"
-					v-model="modelValue">
-				</Radio>
+				
 			</div>
 		`,
 	}),
@@ -245,7 +259,15 @@ export const RadioColorDefault = {
 						`  v-model="modelValue"`,
 						'></Radio>',
 						'<Radio',
-						`  themeColor="tertiary"`,
+						`  themeColor="neutral"`,
+						`  :dataSource="${dataSourceString}"`,
+						`  :initValue="${args.initValue}"`,
+						`  direction="${args.direction}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  themeColor="info"`,
 						`  :dataSource="${dataSourceString}"`,
 						`  :initValue="${args.initValue}"`,
 						`  direction="${args.direction}"`,
@@ -270,14 +292,6 @@ export const RadioColorDefault = {
 						'></Radio>',
 						'<Radio',
 						`  themeColor="error"`,
-						`  :dataSource="${dataSourceString}"`,
-						`  :initValue="${args.initValue}"`,
-						`  direction="${args.direction}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></Radio>',
-						'<Radio',
-						`  themeColor="info"`,
 						`  :dataSource="${dataSourceString}"`,
 						`  :initValue="${args.initValue}"`,
 						`  direction="${args.direction}"`,
