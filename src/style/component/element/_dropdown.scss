@@ -52,13 +52,13 @@
 }
 
 .ded-dropdown:hover {
-    border: 1px solid getBorderColor($mode, 'primary', 'hover');
-    box-shadow: 0 0 0 2px getBorderColor($mode, 'primary', 'hover');
+    border: 1px solid getBorderColor('primary', 'hover');
+    box-shadow: 0 0 0 2px getBorderColor('primary', 'hover');
 }
 
 .ded-dropdown:focus-within {
-    border: 1px solid getBorderColor($mode, 'primary', 'focus');
-    box-shadow: 0 0 0 3px getBorderColor($mode, 'primary', 'focus');
+    border: 1px solid getBorderColor('primary', 'focus');
+    box-shadow: 0 0 0 3px getBorderColor('primary', 'focus');
 }
 
 .ded-dropdown-selectValue-unselect {
@@ -67,22 +67,4 @@
 
 .ded-dropdown-selectValue-select {
     color: $color-black;
-}
-
-.ded-dropdown-input {
-    width: 100%;
-
-    .ded-input-group {
-        border: none;
-
-        &:focus-within {
-            box-shadow: none;
-            border: none;
-        }
-
-        &:hover {
-            box-shadow: none;
-            border: none;
-        }
-    }
 }
