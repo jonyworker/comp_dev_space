@@ -7,32 +7,19 @@ export default {
 	argTypes: {
 		themeColor: {
 			description: "主題顏色",
-			control: {
-				type: "select",
-				labels: {
-					"": "None",
-					primary: "primary",
-					secondary: "secondary",
-					tertiary: "tertiary",
-					success: "success",
-					warning: "warning",
-					error: "error",
-					info: "info",
-				}
-			},
+			control: { type: "select" },
 			options: [
-				"",
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			],
 			table: {
 				type: {
-					summary: 'primary | secondary | tertiary | success | warning | error | info'
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -70,7 +57,7 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "primary",
+		themeColor: "neutral",
 		level: 1,
 		className: "",
 		default: "Title",
@@ -225,7 +212,7 @@ export const HeadingSizeDefault = {
 export const HeadingColorDefault = {
 	name: "主題色彩",
 	args: {
-		level: 1,
+		level: 3,
 		className: "",
 		default: "Title",
 	},
@@ -248,7 +235,12 @@ export const HeadingColorDefault = {
 	            :className="args.className"
             >{{ args.default }}</Title>
             <Title
-	            themeColor="tertiary"
+	            themeColor="neutral"
+	            :level="args.level"
+	            :className="args.className"
+            >{{ args.default }}</Title>
+            <Title
+	            themeColor="info"
 	            :level="args.level"
 	            :className="args.className"
             >{{ args.default }}</Title>
@@ -267,11 +259,7 @@ export const HeadingColorDefault = {
 	            :level="args.level"
 	            :className="args.className"
             >{{ args.default }}</Title>
-            <Title
-	            themeColor="info"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
+            
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -296,7 +284,12 @@ export const HeadingColorDefault = {
 						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
 						'<Title',
-						`  themeColor="tertiary"`,
+						`  themeColor="neutral"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="info"`,
 						`  :level="${args.level}"`,
 						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
@@ -315,11 +308,7 @@ export const HeadingColorDefault = {
 						`  :level="${args.level}"`,
 						`  className="${args.className}"`,
 						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="info"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
+
 					].join('\n').trim();
 				}
 			}
