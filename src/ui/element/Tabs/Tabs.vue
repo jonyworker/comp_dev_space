@@ -32,9 +32,9 @@ const props = defineProps({
 	},
 	type: {
 		type: String,
-		default: "default",
+		default: "basic",
 		validator: (value) =>
-			["card", "default"].includes(value),
+			[ "basic", "outline"].includes(value),
 	},
 	isDisabled: {
 		type: Boolean,

@@ -21,7 +21,7 @@ const props = defineProps({
 	type: {
 		type: String,
 		validator: (value) =>
-			[ "default", "card"].includes(value),
+			[ "basic", "outline"].includes(value),
 	},
 	// --  內容接口 -- //
 	title: {
@@ -66,10 +66,10 @@ const handleClick = (event) => {
         :isDisabled="props.isDisabled"
         :class="{
 			'ded-tab ': true,
-			[`ded-tab-${props.themeColor}`]: props.themeColor && props.type === 'default',
-			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'default',
-			[`ded-tab-card-${props.themeColor}`]: props.themeColor && props.type === 'card',
-			[`ded-tab-card-${props.themeColor}-active`]: props.isActive && props.type === 'card',
+			[`ded-tab-${props.themeColor}`]: props.themeColor && props.type === 'basic',
+			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'basic',
+			[`ded-tab-card-${props.themeColor}`]: props.themeColor && props.type === 'outline',
+			[`ded-tab-card-${props.themeColor}-active`]: props.isActive && props.type === 'outline',
         }"
         @click="handleClick"
         :data-index="props.index"

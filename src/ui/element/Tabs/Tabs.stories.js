@@ -47,10 +47,10 @@ export default {
         type: {
             description: "頁籤樣式",
             control: { type: "select" },
-            options: ["default", "card"],
+            options: ["basic", "outline"],
             table: {
                 type: {
-                    summary: "default | card "
+                    summary: "basic | outline "
                 }
             }
         },
@@ -94,7 +94,7 @@ export const DefaultTabs = {
             }
         ],
         activeIndex: 0,
-        type: "default",
+        type: "basic",
         isDisabled: false,
         className: ''
     },
@@ -162,7 +162,7 @@ export const CardTabs = {
             }
         ],
         activeIndex: 0,
-        type: "card",
+        type: "outline",
         isDisabled: false,
         className: ''
     },
