@@ -19,15 +19,15 @@ export default {
             options: [
                 "primary",
                 "secondary",
-                "tertiary",
+                "neutral",
+                "info",
                 "success",
                 "warning",
                 "error",
-                "info",
             ],
             table: {
                 type: {
-                    summary: "primary | secondary | tertiary | success | warning | error | info"
+                    summary: "primary | secondary | neutral | info | success | warning | error"
                 }
             }
         },

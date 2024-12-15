@@ -1,4 +1,6 @@
 <script setup>
+import Button from "@/ui/element/Button/Button.vue";
+import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
 const props = defineProps({
@@ -9,17 +11,17 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
 	},
 	type: {
 		type: String,
 		validator: (value) =>
-			["card", "default"].includes(value),
+			[ "default", "card"].includes(value),
 	},
 	// --  內容接口 -- //
 	title: {
@@ -58,20 +60,25 @@ const handleClick = (event) => {
 
 <template>
     <!-- Tabs - 按鈕 -->
-    <button
-        :class="['ded-tab', 'ded-button', 'ded-component-medium',
-                props.type === 'default'
-	                ? props.isActive ? `ded-tab-${props.themeColor}-active` : `ded-tab-${props.themeColor}`
-	                : props.isActive ? `ded-tab-card-${props.themeColor}-active` : `ded-tab-card-${props.themeColor}`,
-                props.isDisabled && 'ded-tab-disable',
-                props.className || '']"
-        :disabled="props.isDisabled"
+    <Button
+        :themeColor="props.themeColor"
+        variant="text"
+        :isDisabled="props.isDisabled"
+        :class="{
+			'ded-tab ': true,
+			[`ded-tab-${props.themeColor}`]: props.themeColor && props.type === 'default',
+			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'default',
+			[`ded-tab-card-${props.themeColor}`]: props.themeColor && props.type === 'card',
+			[`ded-tab-card-${props.themeColor}-active`]: props.isActive && props.type === 'card',
+        }"
         @click="handleClick"
         :data-index="props.index"
     >
-     <!-- Tabs - 按鈕文字 -->
-     <div class="ded-text-medium"> {{ props.title }}</div>
-    </button>
+		<div class="ded-icon">
+			<Icon name="arrow_down"></Icon>
+		</div>
+		<div class="ded-text-medium"> {{ props.title }}</div>
+    </Button>
 
 </template>
 
