@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 :root {
     interpolate-size: allow-keywords;
 }
@@ -6,8 +8,8 @@
     list-style: none;
 
     &-item {
-        background-color: $color-white;
-        border-bottom: 1px solid #ccc;
+        background-color: list.nth($neutral-0, $site);
+        border-bottom: 1px solid list.nth($neutral-50, $site);
 
         &:hover {
             background-color: $accordion-colors;
