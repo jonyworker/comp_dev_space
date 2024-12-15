@@ -2,18 +2,26 @@
 import { ref, defineModel, onMounted, watch } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
-// 使用 defineModel 正确定义模型值
+// 使用 defineModel 正確定義模型值
 const modelValue = defineModel({
 	default: []
 });
 
-// 定义 Props
+// 定義 Props
 const props = defineProps({
 	themeColor: {
 		type: String,
 		default: "primary",
 		validator: (value) =>
-			["primary", "secondary", "tertiary", "success", "warning", "error", "info"].includes(value),
+			[
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
+			].includes(value),
 	},
 	dataSource: {
 		type: Array,
@@ -21,7 +29,7 @@ const props = defineProps({
 	},
 	initValue: {
 		type: Array,
-		default: () => [],
+		required: true,
 	},
 	direction: {
 		type: String,
@@ -35,19 +43,17 @@ const props = defineProps({
 	}
 });
 
-// Use a unique identifier generation method
+// 使用唯一識別碼生成方法
 const generateId = (value) => {
 	return `checkbox-${value}`;
 };
 
-// 初始化选中状态
+// 初始化選取狀態
 const isCheck = ref(
 	props.dataSource.map((item) =>
 		props.initValue.includes(item.value)
 	)
 );
-
-
 
 // 監聽 modelValue
 watch(
@@ -61,24 +67,22 @@ watch(
 	{ immediate: true }
 );
 
-
-
-// 初始化时同步 modelValue
+// 初始化時同步 modelValue
 onMounted(() => {
 	modelValue.value = props.initValue;
 });
 
-// 切换选中状态
+// 切換選取狀態
 const handleCheck = (item, index) => {
-	// 切换当前项的选中状态
+	// 切換當前項的選取狀態
 	isCheck.value[index] = !isCheck.value[index];
 
 	// 更新 modelValue
 	if (isCheck.value[index]) {
-		// 如果选中，添加到 modelValue
+		// 如果選取，加入到 modelValue
 		modelValue.value = [...modelValue.value, item.value];
 	} else {
-		// 如果取消选中，从 modelValue 移除
+		// 如果取消選取，從 modelValue 移除
 		modelValue.value = modelValue.value.filter(
 			(value) => value !== item.value
 		);
@@ -99,6 +103,7 @@ const handleCheck = (item, index) => {
 			:key="item.value"
 			:for="generateId(item.value)"
 			class="ded-checkbox"
+			:class="item.isDisabled?'ded-checkbox-input-disabled':''"
 		>
 			<input
 				class="ded-checkbox-input"
@@ -109,19 +114,27 @@ const handleCheck = (item, index) => {
 				:checked="isCheck[index]"
 				@change="handleCheck(item, index)"
 			/>
-			<!-- checkbox 选择框样式 -->
+			<!-- checkbox 選擇框樣式 -->
 			<div
 				:class="[
-          'ded-checkbox-icon',
-          isCheck[index]
-            ? `ded-checkbox-checked-${themeColor}`
-            : `ded-checkbox-unchecked-${themeColor}`,
-        ]"
+					'ded-checkbox-icon',
+					item.isDisabled?'ded-checkbox-icon-disabled':'',
+					isCheck[index]
+					? `ded-checkbox-checked-${themeColor}`
+					: `ded-checkbox-unchecked-${themeColor}`,
+				]"
 			>
 				<Icon v-if="isCheck[index]" name="check"></Icon>
 			</div>
-			<!-- checkbox 选项文字 -->
-			<span class="ded-checkbox-text">{{ item.label }}</span>
+			<!-- checkbox 選項文字 -->
+			<span class="ded-checkbox-text"
+			      :class="item.isDisabled?'ded-checkbox-text-disabled':''"
+			>
+				{{ item.label }}
+			</span>
 		</label>
 	</div>
 </template>
+
+<style lang="scss" scoped>
+</style>

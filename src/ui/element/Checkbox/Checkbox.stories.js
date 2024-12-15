@@ -20,11 +20,11 @@ export default {
             options: [
                 "primary",
                 "secondary",
-                "tertiary",
+                "neutral",
+                "info",
                 "success",
                 "warning",
                 "error",
-                "info",
             ],
             table: {
                 type: {
@@ -82,9 +82,21 @@ export const CheckboxMultiStory = {
     args: {
         themeColor: "primary",
         dataSource: [
-            { label: "Option1", value: "option1" },
-            { label: "Option2", value: "option2" },
-            { label: "Option3", value: "option3" },
+            {
+                "label": "Option1",
+                "value": "option1",
+                "isDisabled": false
+            },
+            {
+                "label": "Option2",
+                "value": "option2",
+                "isDisabled": false
+            },
+            {
+                "label": "Option3",
+                "value": "option3",
+                "isDisabled": true
+            }
         ],
         initValue: ["option1", "option3"],
         direction: "row",
@@ -101,20 +113,12 @@ export const CheckboxMultiStory = {
         },
         template: `
             <Checkbox
-              
+                :themeColor="args.themeColor"
                 :dataSource="args.dataSource"
                 :initValue="args.initValue"
-         
-            
+                :direction="args.direction"
+                :className="args.className"
             ></Checkbox>
-
-<!--            <Checkbox-->
-<!--                :themeColor="args.themeColor"-->
-<!--                :dataSource="args.dataSource"-->
-<!--                :initValue="args.initValue"-->
-<!--                :direction="args.direction"-->
-<!--                :className="args.className"-->
-<!--                v-model="checkedCheckboxOptions"></Checkbox>-->
         `,
     }),
     // 控制 controls 中能控制的參數
@@ -143,44 +147,115 @@ export const CheckboxMultiStory = {
     },
 };
 
+//==== 排列方向 ====//
+export const CheckboxDirection = {
+    name: "排列方向",
+    args: {
+        themeColor: "primary",
+        dataSource: [
+            {
+                "label": "Option1",
+                "value": "option1",
+                "isDisabled": false
+            },
+            {
+                "label": "Option2",
+                "value": "option2",
+                "isDisabled": false
+            },
+            {
+                "label": "Option3",
+                "value": "option3",
+                "isDisabled": false
+            }
+        ],
+        initValue: ["option1", "option3"],
+        direction: "row",
+        className: "",
+    },
+    render: (args) => ({
+        components: { Checkbox },
+        setup() {
+            const checkedCheckboxOptions = ref([]);
+            return {
+                args,
+                checkedCheckboxOptions,
+            };
+        },
+        template: `
+            <Checkbox
+                :themeColor="args.themeColor"
+                :dataSource="args.dataSource"
+                :initValue="args.initValue"
+                direction="column"
+                :className="args.className"
+            ></Checkbox>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
+        },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Checkbox',
+                        `  themeColor="${args.themeColor}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="column"`,
+                        `  className="${args.className}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                    ].join('\n').trim();
+                }
+            }
+        }
+    },
+};
+
 //==== 主題色彩 ====//
 export const CheckboxColorStory = {
     name: "主題色彩",
     args: {
         datasourcePrimary: [
-            { label: "Option1", value: "option01" },
-            { label: "Option2", value: "option02" },
-            { label: "Option3", value: "option03" },
+            { label: "Option1", value: "option01", "isDisabled": false },
+            { label: "Option2", value: "option02", "isDisabled": false },
+            { label: "Option3", value: "option03", "isDisabled": false },
         ],
         datasourceSecondary: [
-            { label: "Option1", value: "option4" },
-            { label: "Option2", value: "option5" },
-            { label: "Option3", value: "option6" },
+            { label: "Option1", value: "option4", "isDisabled": false },
+            { label: "Option2", value: "option5", "isDisabled": false },
+            { label: "Option3", value: "option6", "isDisabled": false },
         ],
         datasourceTertiary: [
-            { label: "Option1", value: "option7" },
-            { label: "Option2", value: "option8" },
-            { label: "Option3", value: "option9" },
+            { label: "Option1", value: "option7", "isDisabled": false },
+            { label: "Option2", value: "option8", "isDisabled": false },
+            { label: "Option3", value: "option9", "isDisabled": false },
         ],
         datasourceSuccess: [
-            { label: "Option1", value: "option10" },
-            { label: "Option2", value: "option11" },
-            { label: "Option3", value: "option12" },
+            { label: "Option1", value: "option10", "isDisabled": false },
+            { label: "Option2", value: "option11", "isDisabled": false },
+            { label: "Option3", value: "option12", "isDisabled": false },
         ],
         datasourceWarning: [
-            { label: "Option1", value: "option13" },
-            { label: "Option2", value: "option14" },
-            { label: "Option3", value: "option15" },
+            { label: "Option1", value: "option13", "isDisabled": false },
+            { label: "Option2", value: "option14", "isDisabled": false },
+            { label: "Option3", value: "option15", "isDisabled": false },
         ],
         datasourceError: [
-            { label: "Option1", value: "option16" },
-            { label: "Option2", value: "option17" },
-            { label: "Option3", value: "option18" },
+            { label: "Option1", value: "option16", "isDisabled": false },
+            { label: "Option2", value: "option17", "isDisabled": false },
+            { label: "Option3", value: "option18", "isDisabled": false },
         ],
         datasourceInfo: [
-            { label: "Option1", value: "option19" },
-            { label: "Option2", value: "option20" },
-            { label: "Option3", value: "option21" },
+            { label: "Option1", value: "option19", "isDisabled": false },
+            { label: "Option2", value: "option20", "isDisabled": false },
+            { label: "Option3", value: "option21", "isDisabled": false },
         ],
         initValue: ["option01","option4","option7","option10","option13","option16","option19"],
         direction: "row",
@@ -212,8 +287,16 @@ export const CheckboxColorStory = {
                     :className="args.className"
                     v-model="checkedCheckboxOptions"></Checkbox>
                 <Checkbox
-                    themeColor="tertiary"
+                    themeColor="neutral"
                     :dataSource="args.datasourceTertiary"
+                    :initValue="args.initValue"
+                    :direction="args.direction"
+                    :className="args.className"
+                    v-model="checkedCheckboxOptions"></Checkbox>
+
+                <Checkbox
+                    themeColor="info"
+                    :dataSource="args.datasourceInfo"
                     :initValue="args.initValue"
                     :direction="args.direction"
                     :className="args.className"
@@ -238,14 +321,6 @@ export const CheckboxColorStory = {
                 <Checkbox
                     themeColor="error"
                     :dataSource="args.datasourceError"
-                    :initValue="args.initValue"
-                    :direction="args.direction"
-                    :className="args.className"
-                    v-model="checkedCheckboxOptions"></Checkbox>
-                
-                <Checkbox
-                    themeColor="info"
-                    :dataSource="args.datasourceInfo"
                     :initValue="args.initValue"
                     :direction="args.direction"
                     :className="args.className"
@@ -287,9 +362,17 @@ export const CheckboxColorStory = {
                         '  v-model="vModelData">',
                         '</Checkbox>',
                         '<Checkbox',
-                        `  themeColor="tertiary"`,
+                        `  themeColor="neutral"`,
                         `  :dataSource="${datasourceTertiary}"`,
                         `  :initValue="[${args.initValue[2]}]"`,
+                        `  direction="${args.direction}"`,
+                        `  className="${args.className}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="info"`,
+                        `  :dataSource="${datasourceInfo}"`,
+                        `  :initValue="[${args.initValue[6]}]"`,
                         `  direction="${args.direction}"`,
                         `  className="${args.className}"`,
                         '  v-model="vModelData">',
@@ -317,14 +400,7 @@ export const CheckboxColorStory = {
                         `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
-                        '<Checkbox',
-                        `  themeColor="info"`,
-                        `  :dataSource="${datasourceInfo}"`,
-                        `  :initValue="[${args.initValue[6]}]"`,
-                        `  direction="${args.direction}"`,
-                        `  className="${args.className}"`,
-                        '  v-model="vModelData">',
-                        '</Checkbox>',
+
                     ].join('\n').trim();
                 }
             }
