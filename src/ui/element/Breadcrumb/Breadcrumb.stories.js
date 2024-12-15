@@ -46,24 +46,24 @@ export const BreadcrumbMany = {
     args: {
         dataSource: [
             {
-                label: "Home",
-                href: "/",
+                "label": "Home",
+                "href": "/"
             },
             {
-                label: "Level1",
-                href: "/1st",
+                "label": "Level1",
+                "href": "/first"
             },
             {
-                label: "Level2",
-                href: "/2nd",
+                "label": "Level2",
+                "href": "https://tw.yahoo.com"
             },
             {
-                label: "Level3",
-                href: "/3rd",
+                "label": "Level3",
+                "href": "/first/second/third/n"
             },
             {
-                label: "Current",
-            },
+                "label": "Current"
+            }
         ],
         className: ""
     },
