@@ -13,27 +13,21 @@ export default {
 			options: [
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			],
 			table: {
 				type: {
-					summary: "primary | secondary | tertiary | success | warning | error | info"
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
-		type: {
-			description: "顯示方式",
-			control: { type: "select" },
-			options: [ "dot", "number" ],
-			table: {
-				type: {
-					summary: "dot | number "
-				}
-			}
+		isShowDot: {
+			description: "是否顯示圓點",
+			control: { type: "boolean" },
 		},
 		value: {
 			description: "數值",
@@ -73,7 +67,7 @@ export const BadgeDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "error",
-		type: "number",
+		isShowDot: false,
 		value: 100,
 		limit: 99,
 		className: ""
@@ -88,7 +82,7 @@ export const BadgeDefault = {
 		template: `
 			<Badge 
 				:themeColor="args.themeColor"
-				:type="args.type"
+				:isShowDot="args.isShowDot"
 				:value="args.value"
 				:limit="args.limit"
 				:className="args.className"
@@ -109,7 +103,7 @@ export const BadgeDefault = {
 					return [
 						'<Badge',
 						`  themeColor="${args.themeColor}"`,
-						`  type="${args.type}"`,
+						`  isShowDot="${args.isShowDot}"`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						`  className="${args.className}"`,
@@ -128,7 +122,7 @@ export const BadgeStyle = {
 	name: "類型選擇",
 	args: {
 		themeColor: "error",
-		type: "number",
+		isShowDot: false,
 		value: 999,
 		limit: 99,
 	},
@@ -143,7 +137,7 @@ export const BadgeStyle = {
 			<div style="display:flex; gap:24px;">
 				<Badge
 					:themeColor="args.themeColor"
-					type="dot"
+					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -151,7 +145,7 @@ export const BadgeStyle = {
 				</Badge>
 				<Badge
 					:themeColor="args.themeColor"
-					type="number"
+					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -173,7 +167,7 @@ export const BadgeStyle = {
 					return [
 						'<Badge',
 						`  themeColor="${args.themeColor}"`,
-						`  type="dot"`,
+						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -181,7 +175,7 @@ export const BadgeStyle = {
 						'</Badge>',
 						'<Badge',
 						`  themeColor="${args.themeColor}"`,
-						`  type="number"`,
+						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -199,7 +193,7 @@ export const BadgeLimit = {
 	name: "最大值設定",
 	args: {
 		themeColor: "error",
-		type: "number",
+		isShowDot: false,
 		value: 999,
 		limit: 99,
 	},
@@ -214,7 +208,7 @@ export const BadgeLimit = {
 			<div style="display:flex; gap:60px; margin-bottom: 24px;">
 				<Badge
 					:themeColor="args.themeColor"
-					type="number"
+					:isShowDot="args.isShowDot"
 					:value="98"
 					:limit="99"
 				>
@@ -222,7 +216,7 @@ export const BadgeLimit = {
 				</Badge>
 				<Badge
 					:themeColor="args.themeColor"
-					type="number"
+					:isShowDot="args.isShowDot"
 					:value="100"
 					:limit="99"
 				>
@@ -243,7 +237,7 @@ export const BadgeLimit = {
 					return [
 						'<Badge',
 						`  :themeColor="${args.themeColor}"`,
-						`  type="number"`,
+						`  :isShowDot= false`,
 						`  :value="98"`,
 						`  :limit="99"`,
 						'>',
@@ -251,7 +245,7 @@ export const BadgeLimit = {
 						'</Badge>',
 						'<Badge',
 						`  :themeColor="${args.themeColor}"`,
-						`  type="number"`,
+						`  :isShowDot= false`,
 						`  :value="100"`,
 						`  :limit="99"`,
 						'>',
@@ -269,7 +263,7 @@ export const BadgeThemeColor = {
 	name: "顏色設定",
 	args: {
 		themeColor: "error",
-		type: "number",
+		isShowDot: false,
 		value: 999,
 		limit: 99,
 	},
@@ -284,7 +278,7 @@ export const BadgeThemeColor = {
 			<div style="display:flex; gap:56px; margin-bottom: 24px;">
 				<Badge
 					themeColor="primary"
-					type="dot"
+					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -292,39 +286,15 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					themeColor="secondary"
-					type="dot"
+					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					themeColor="tertiary"
-					type="dot"
-					:value="args.value"
-					:limit="args.limit"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					themeColor="success"
-					type="dot"
-					:value="args.value"
-					:limit="args.limit"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					themeColor="warning"
-					type="dot"
-					:value="args.value"
-					:limit="args.limit"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					themeColor="error"
-					type="dot"
+					themeColor="neutral"
+					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -332,7 +302,31 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					themeColor="info"
-					type="dot"
+					:isShowDot= true
+					:value="args.value"
+					:limit="args.limit"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					themeColor="success"
+					:isShowDot= true
+					:value="args.value"
+					:limit="args.limit"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					themeColor="warning"
+					:isShowDot= true
+					:value="args.value"
+					:limit="args.limit"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					themeColor="error"
+					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -342,7 +336,7 @@ export const BadgeThemeColor = {
 			<div style="display:flex; gap:56px">
 				<Badge
 					themeColor="primary"
-					type="number"
+					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -350,39 +344,15 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					themeColor="secondary"
-					type="number"
+					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
 				>
 					<Icon name="notification" size="26"></Icon>
 				</Badge>
 				<Badge
-					themeColor="tertiary"
-					type="number"
-					:value="args.value"
-					:limit="args.limit"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					themeColor="success"
-					type="number"
-					:value="args.value"
-					:limit="args.limit"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					themeColor="warning"
-					type="number"
-					:value="args.value"
-					:limit="args.limit"
-				>
-					<Icon name="notification" size="26"></Icon>
-				</Badge>
-				<Badge
-					themeColor="error"
-					type="number"
+					themeColor="neutral"
+					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -390,7 +360,31 @@ export const BadgeThemeColor = {
 				</Badge>
 				<Badge
 					themeColor="info"
-					type="number"
+					:isShowDot= false
+					:value="args.value"
+					:limit="args.limit"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					themeColor="success"
+					:isShowDot= false
+					:value="args.value"
+					:limit="args.limit"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					themeColor="warning"
+					:isShowDot= false
+					:value="args.value"
+					:limit="args.limit"
+				>
+					<Icon name="notification" size="26"></Icon>
+				</Badge>
+				<Badge
+					themeColor="error"
+					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
 				>
@@ -412,7 +406,7 @@ export const BadgeThemeColor = {
 					return [
 						'<Badge',
 						`  themeColor="primary"`,
-						`  type="dot"`,
+						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -420,39 +414,15 @@ export const BadgeThemeColor = {
 						'</Badge>',
 						'<Badge',
 						`  themeColor="secondary"`,
-						`  type="dot"`,
+						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  themeColor="tertiary"`,
-						`  type="dot"`,
-						`  :value="${args.value}"`,
-						`  :limit="${args.limit}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  themeColor="success"`,
-						`  type="dot"`,
-						`  :value="${args.value}"`,
-						`  :limit="${args.limit}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  themeColor="warning"`,
-						`  type="dot"`,
-						`  :value="${args.value}"`,
-						`  :limit="${args.limit}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  themeColor="error"`,
-						`  type="dot"`,
+						`  themeColor="neutral"`,
+						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -460,7 +430,31 @@ export const BadgeThemeColor = {
 						'</Badge>',
 						'<Badge',
 						`  themeColor="info"`,
-						`  type="dot"`,
+						`  :isShowDot= true`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="success"`,
+						`  :isShowDot= true`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="warning"`,
+						`  :isShowDot= true`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="error"`,
+						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -468,7 +462,7 @@ export const BadgeThemeColor = {
 						'</Badge>',
 						'<Badge',
 						`  themeColor="primary"`,
-						`  type="number"`,
+						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -476,39 +470,15 @@ export const BadgeThemeColor = {
 						'</Badge>',
 						'<Badge',
 						`  themeColor="secondary"`,
-						`  type="number"`,
+						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
-						`  themeColor="tertiary"`,
-						`  type="number"`,
-						`  :value="${args.value}"`,
-						`  :limit="${args.limit}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  themeColor="success"`,
-						`  type="number"`,
-						`  :value="${args.value}"`,
-						`  :limit="${args.limit}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  themeColor="warning"`,
-						`  type="number"`,
-						`  :value="${args.value}"`,
-						`  :limit="${args.limit}"`,
-						'>',
-						'  <Icon name="notification" size="26"></Icon>',
-						'</Badge>',
-						'<Badge',
-						`  themeColor="error"`,
-						`  type="number"`,
+						`  themeColor="neutral"`,
+						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
@@ -516,12 +486,37 @@ export const BadgeThemeColor = {
 						'</Badge>',
 						'<Badge',
 						`  themeColor="info"`,
-						`  type="number"`,
+						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
 						'  <Icon name="notification" size="26"></Icon>',
 						'</Badge>',
+						'<Badge',
+						`  themeColor="success"`,
+						`  :isShowDot= false`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="warning"`,
+						`  :isShowDot= false`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+						'<Badge',
+						`  themeColor="error"`,
+						`  :isShowDot= false`,
+						`  :value="${args.value}"`,
+						`  :limit="${args.limit}"`,
+						'>',
+						'  <Icon name="notification" size="26"></Icon>',
+						'</Badge>',
+
 					].join('\n').trim();
 				}
 			}

@@ -9,24 +9,24 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
 	},
-	type: {
-		type: String,
-		default: "dot",
-		validator: (value) => ["dot", "number"].includes(value),
+	isShowDot: {
+		type: Boolean,
+		default: "false",
 	},
 	value: {
 		type: Number,
+		default: 0,
 	},
 	limit: {
 		type: Number,
-		default: Infinity,
+		default: 0,
 	},
 	className: {
 		type: String,
@@ -45,24 +45,25 @@ const computedValue = computed(() => {
 </script>
 
 <template>
-	<div :class="{'ded-badge__container': true,[props.className]: !!props.className,}">
+	<div :class="{'ded-badge-container': true,[props.className]: !!props.className,}">
 		<!-- Badge - slot -->
 		<slot></slot>
 		<!-- Badge - 實體 -->
 	    <div
-		    class="ded-badge__content ded-badge__position-top-right"
+		    class="ded-badge"
 		    :class="[
 			  `ded-badge-color-${props.themeColor}`,
-			  props.type === 'dot' ? 'ded-badge__content-isDot': '']"
+			  props.isShowDot ? 'ded-badge-dot': '']"
 	    >
-		    <template v-if="props.type !== 'dot'">
-			    <span class="ded-badge-text">{{ computedValue }}</span>
-			    <span v-if="props.value > props.limit" class="ded-badge-text">+</span>
+		    <template v-if="props.isShowDot === false && props.value > 0">
+			    <div class="ded-badge-content">
+				    <span class="ded-badge-content-text">{{ computedValue }}</span>
+				    <span v-if="props.value > props.limit" class="ded-badge-content-text">+</span>
+			    </div>
 		    </template>
 	    </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-
 </style>
