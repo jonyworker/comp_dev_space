@@ -122,6 +122,7 @@ onBeforeUnmount(() => {
 				<button
 					:class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
 					@click="handleClick"
+					style="cursor: pointer;"
 				>
                     <span class="ded-avatar-text">
                         {{ `+${restCount}` }}
