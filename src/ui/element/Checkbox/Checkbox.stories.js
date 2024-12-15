@@ -5,6 +5,7 @@ function formatDataSource(dataSource) {
     ${dataSource.map(item => `{
         label: '${item.label}',
         value: '${item.value}',
+        isDisabled: '${item.isDisabled}'
     }`).join(',\n    ')}
   ]`;
 }
