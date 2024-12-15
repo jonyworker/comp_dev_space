@@ -140,7 +140,7 @@ const toggleDropdown = () => {
 
 				<!-- 密碼顯示/隱藏 -->
 				<div
-					v-if="props.type === 'password'"
+					v-if="props.type === 'password' && modelValue"
 					:class="`ded-icon-${props.size}`"
 					@click="togglePasswordVisibility"
 					style="cursor: pointer"
@@ -166,10 +166,10 @@ const toggleDropdown = () => {
 		<!-- 提示文字 -->
 		<small
 			:class="[
-        'ded-input-hint',
-        `ded-input-hint-${hintClass}`,
-        { 'ded-input-disable': props.isDisabled }
-      ]"
+				'ded-input-hint',
+				`ded-input-hint-${hintClass}`,
+				{ 'ded-input-disable': props.isDisabled }
+			]"
 		>
 			{{ hint.error || hint.description }}
 		</small>

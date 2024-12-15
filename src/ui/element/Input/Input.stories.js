@@ -74,6 +74,11 @@ export default {
             description: "是否禁用",
             control: { type: "boolean" },
         },
+        isOpen: {
+            description: "下拉控制",
+            control: { type: "boolean" },
+            table: { disable: true }
+        },
         className: {
             description: "客製化樣式",
             control: { type: "text" },
