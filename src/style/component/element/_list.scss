@@ -1,16 +1,18 @@
+@use 'sass:list';
+
 .ded-list {
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    border-radius: 8px;
     list-style: none;
+    overflow: hidden;
 }
 
 .ded-outline {
-    box-shadow: $shadow-light2;
+    box-shadow: $shadow-light-200;
     list-style: none;
-    background-color: $color-white;
-    overflow: hidden;
+    background-color: list.nth($neutral-0, $site);
+    border-radius: $radius;
 }
 
 .ded-list-item-text {
