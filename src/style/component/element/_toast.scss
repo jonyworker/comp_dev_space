@@ -1,9 +1,10 @@
 @use "sass:color";
+
 .ded-toast-container {
     position: fixed;
     top: 0;
     right: 0;
-    width:min(23rem, 27rem);
+    width: min(23rem, 27rem);
 }
 
 .ded-toast {
@@ -28,6 +29,8 @@
 
     .ded-message {
         position: relative;
+        display: flex;
+        align-items: center;
         margin-bottom: 4px;
         font-size: 14px;
         font-weight: 500;
@@ -54,14 +57,16 @@
         white-space: normal; // 確保正常換行
     }
 }
+
 @each $theme in $themes {
     .ded-toast-#{$theme} {
         // border-top-width: 1px;
-        background-color: getThemeColor($mode, $theme, "default");
+        background-color: getThemeColor($theme, "default");
     }
 }
+
 @each $theme in $themes {
     .ded-toast-border-#{$theme} {
-        border-left-color: getThemeColor($mode, $theme, "default");
+        border-left-color: getThemeColor($theme, "default");
     }
 }

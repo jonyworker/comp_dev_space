@@ -12,10 +12,15 @@ export default {
 		themeColor: {
 			description: "主題顏色",
 			control: { type: "select" },
-			options: ['success', 'warning', 'error','info'],
+			options: [
+				"info",
+				"success",
+				"warning",
+				"error",
+			],
 			table: {
 				type: {
-					summary: "success | warning | error | info"
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -107,7 +112,7 @@ export const ToastDefaultNew = {
 				:className="args.className"
 				@close="remove(toast.id)"
 			></Toast>
-			<Button width="full" themeColor="primary" variant="contained" @click="showToast">
+			<Button themeColor="primary" variant="filled" radius="md" @click="showToast">
 				Toast Trigger
 			</Button>
         `,
