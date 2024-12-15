@@ -16,11 +16,11 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
 	},
 	min: {
@@ -97,7 +97,7 @@ watch(() => props.initValue, (newValue) => {
 </script>
 
 <template>
-	<div :class="{'ded-button-slider': true, [props.className]: !!props.className}">
+	<div :class="{'ded-slider-control': true, [props.className]: !!props.className}">
 		<Button
 			variant="text"
 			:themeColor="props.themeColor"

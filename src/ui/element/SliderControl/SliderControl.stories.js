@@ -7,20 +7,20 @@ export default {
 	tags: ["autodocs"],
 	argTypes: {
 		themeColor: {
-			description: '主題顏色',
-			control: { type: 'select' },
+			description: "主題顏色",
+			control: { type: "select" },
 			options: [
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
 			],
 			table: {
 				type: {
-					summary: 'primary | secondary | tertiary | success | warning | error | info'
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -92,7 +92,7 @@ export default {
 export const SliderButton = {
 	name: "預設項目",
 	args: {
-		themeColor: "primary",
+		themeColor: "neutral",
 		min: -100,
 		max: 100,
 		step: 1,
@@ -207,7 +207,7 @@ export const SliderButtonColors = {
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
-					themeColor="tertiary"
+					themeColor="neutral"
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					:isDisabled="args.isDisabled"
@@ -220,7 +220,7 @@ export const SliderButtonColors = {
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
-					themeColor="success"
+					themeColor="info"
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					:isDisabled="args.isDisabled"
@@ -233,7 +233,7 @@ export const SliderButtonColors = {
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
-					themeColor="warning"
+					themeColor="success"
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					:isDisabled="args.isDisabled"
@@ -246,7 +246,7 @@ export const SliderButtonColors = {
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
-					themeColor="error"
+					themeColor="warning"
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					:isDisabled="args.isDisabled"
@@ -259,7 +259,7 @@ export const SliderButtonColors = {
 					v-model="sliderValue"
 				></SliderControl>
 				<SliderControl
-					themeColor="info"
+					themeColor="error"
 					:prefix="args.prefix"
 					:suffix="args.suffix"
 					:isDisabled="args.isDisabled"
@@ -312,7 +312,7 @@ export const SliderButtonColors = {
 						`  v-model="sliderValue"`,
 						'></SliderControl>',
 						'<SliderControl',
-						`  themeColor="tertiary"`,
+						`  themeColor="neutral"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -325,7 +325,7 @@ export const SliderButtonColors = {
 						`  v-model="sliderValue"`,
 						'></SliderControl>',
 						'<SliderControl',
-						`  themeColor="success"`,
+						`  themeColor="info"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -338,7 +338,7 @@ export const SliderButtonColors = {
 						`  v-model="sliderValue"`,
 						'></SliderControl>',
 						'<SliderControl',
-						`  themeColor="warning"`,
+						`  themeColor="success"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -351,7 +351,7 @@ export const SliderButtonColors = {
 						`  v-model="sliderValue"`,
 						'></SliderControl>',
 						'<SliderControl',
-						`  themeColor="error"`,
+						`  themeColor="warning"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -364,7 +364,7 @@ export const SliderButtonColors = {
 						`  v-model="sliderValue"`,
 						'></SliderControl>',
 						'<SliderControl',
-						`  themeColor="info"`,
+						`  themeColor="error"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -376,6 +376,7 @@ export const SliderButtonColors = {
 						`  className="${args.className}"`,
 						`  v-model="sliderValue"`,
 						'></SliderControl>',
+
 					].join('\n').trim();
 				}
 			}
