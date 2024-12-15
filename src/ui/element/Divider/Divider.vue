@@ -1,20 +1,6 @@
 <script setup>
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		//線條顏色
-		type: String,
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
-			].includes(value),
-	},
 	width: {
 		//線條粗細
 		type: String,
@@ -54,7 +40,6 @@ const props = defineProps({
             `ded-divider-${props.direction}`,
             `ded-divider-width-${props.width}`,
             `ded-divider-${props.type}`,
-            props.themeColor ? `ded-divider-${props.themeColor}` : '',
             $slots.default ? `ded-divider-${props.align}` : '',
             ...props.className.split(' ')
         ]"
