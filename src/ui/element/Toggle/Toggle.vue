@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watch, computed } from 'vue';
-import { useToggleCVAClass } from './useToggleCVAClass';
+import { ref, watch } from 'vue';
+
 // 定義 Emit
 const emit = defineEmits(['toggleIsChecked']);
 
@@ -13,11 +13,11 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
 	},
 	checkLabel: {
@@ -42,15 +42,6 @@ const props = defineProps({
 	},
 });
 
-
-// 引入 CVA Class
-const toggleCVAClass = useToggleCVAClass(props);
-
-// 計算包括 CVA Class 與自定義 customClass 的按鈕樣式
-const finalToggleClass = computed(() => {
-  return [toggleCVAClass.value, props.className].filter(Boolean).join(' ');
-});
-
 // 監聽 isChecked 的值，有改動即觸發 isToggle
 const isToggle = ref(props.isChecked);
 watch(() => props.isChecked, (newValue) => {
@@ -66,8 +57,14 @@ const handleToggle = () => {
 </script>
 
 <template>
-	<div :class="[finalToggleClass, {'ded-toggle-on': isToggle, 'ded-toggle-off': !isToggle}]"
-	   @click.prevent="handleToggle">
+	<div :class="{
+			'ded-toggle': true,
+			[`ded-toggle-${props.themeColor}`]: props.themeColor,
+			'ded-toggle-on': isToggle,
+		    'ded-toggle-off': !isToggle,
+		    [props.className]: !!props.className
+		}"
+	    @click.prevent="handleToggle">
 
 		<!-- Toggle 按鈕 -->
 		<div class="ded-toggle-thumb" :class="{'ded-toggle-thumb-on': isToggle, 'ded-toggle-thumb-off': !isToggle}"></div>

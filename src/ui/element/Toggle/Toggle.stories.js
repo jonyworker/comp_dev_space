@@ -11,15 +11,15 @@ export default {
 			options: [
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			],
 			table: {
 				type: {
-					summary: 'primary | secondary | tertiary | success | warning | error | info'
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -59,7 +59,7 @@ export default {
 export const ToggleDefault = {
 	name: '預設項目',
 	args: {
-		themeColor: 'primary',
+		themeColor: 'success',
 		checkLabel: 'on',
 		unCheckLabel: 'off',
 		isChecked: true,
@@ -147,7 +147,15 @@ export const ToggleColor = {
 					:className="args.className">
 				</Toggle>
 				<Toggle
-					themeColor="tertiary"
+					themeColor="neutral"
+					:checkLabel="args.checkLabel"
+					:unCheckLabel="args.unCheckLabel"
+					:isChecked="args.isChecked"
+					:isDisabled="args.isDisabled"
+					:className="args.className">
+				</Toggle>
+				<Toggle
+					themeColor="info"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
 					:isChecked="args.isChecked"
@@ -178,14 +186,7 @@ export const ToggleColor = {
 					:isDisabled="args.isDisabled"
 					:className="args.className">
 				</Toggle>
-				<Toggle
-					themeColor="info"
-					:checkLabel="args.checkLabel"
-					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
-					:isDisabled="args.isDisabled"
-					:className="args.className">
-				</Toggle>
+				
 			</div>
 			`,
 	}),
