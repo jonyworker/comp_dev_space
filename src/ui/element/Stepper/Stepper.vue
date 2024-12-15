@@ -24,8 +24,8 @@ const props = defineProps({
 
 const getStepClass = computed(() => {
 	return (index) => {
-		if (index === props.currentStep) return "active";
-		if (index < props.currentStep) return "completed";
+		if (index === props.currentStep) return "ded-step-active";
+		if (index < props.currentStep) return "ded-step-completed";
 		return "";
 	};
 });
@@ -36,7 +36,7 @@ const getStepClass = computed(() => {
 	<div
 		:class="{
 			'ded-stepper': true,
-			[props.direction]: true,
+			[`ded-stepper-${props.direction}`]: props.direction,
 			[props.className]: !!props.className
 		}"
 	>
@@ -44,7 +44,7 @@ const getStepClass = computed(() => {
 			<div
 				v-for="(step, index) in props.steps"
 				:key="index"
-				:class="['ded-stepper-step', getStepClass(index)]"
+				:class="['ded-step', getStepClass(index)]"
 			>
 				<div class="ded-step-circle">{{ index + 1 }}</div>
 				<div class="ded-step-group">
@@ -58,9 +58,7 @@ const getStepClass = computed(() => {
 			</div>
 		</div>
 		<div class="ded-stepper-content">
-			<slot name="ded-step-content" :step="steps[props.currentStep]">
-				{{ steps[props.currentStep]?.content || 'No content available for this step.' }}
-			</slot>
+			{{ steps[currentStep]?.content || 'No content available for this step.' }}
 		</div>
 	</div>
 </template>
