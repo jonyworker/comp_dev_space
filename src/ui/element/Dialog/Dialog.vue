@@ -18,7 +18,6 @@ const props = defineProps({
 	},
 });
 
-
 </script>
 
 <template>
@@ -36,13 +35,11 @@ const props = defineProps({
 
 					<div class="ded-dialog-header">
 						<slot name="header">
-<!--							{{ props.title }}-->
 						</slot>
 					</div>
 
 					<div class="ded-dialog-body">
 						<slot name="content">
-<!--							{{ props.content }}-->
 						</slot>
 					</div>
 
@@ -64,5 +61,4 @@ const props = defineProps({
 </template>
 
 <style scoped lang="scss">
-
 </style>

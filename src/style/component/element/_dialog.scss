@@ -1,7 +1,9 @@
+@use 'sass:list';
+
 .ded-dialog-content {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: list.nth($neutral-0, $site);
+    border-radius: 16px;
+    box-shadow: $shadow-light-400;
     max-width: 500px;
     width: 100%;
     padding: 20px;
@@ -26,7 +28,7 @@
     border: none;
     cursor: pointer;
     padding: 4px;
-    border-radius: 50%;
+    border-radius: $radius-4;
     transition: background-color 0.3s ease;
 }
 
