@@ -15,12 +15,12 @@ const props = defineProps({
 	ratio: {
 		type: String,
 		required: true,
-		validator: (value) => ["11", "43", "54", "169"].includes(value),
+		validator: (value) => ["1x1", "4x3", "5x4", "16x9"].includes(value),
 	},
 	objectFit: {
 		type: String,
 		required: true,
-		validator: (value) => ["cover", "contain", "fill", "none"].includes(value),
+		validator: (value) => ["none", "cover", "contain", "fill" ].includes(value),
 	},
 	className: {
 		type: String,
@@ -29,13 +29,13 @@ const props = defineProps({
 });
 
 const imageContainerCVAClass = computed(() => {
-	return cva("ded-image-container", {
+	return cva("ded-image-cover-container", {
 		variants: {
 			ratio: {
-				11: "ratio-1x1",
-				43: "ratio-4x3",
-				54: "ratio-5x4",
-				169: "ratio-16x9",
+				'1x1': "ratio-1x1",
+				'4x3': "ratio-4x3",
+				'5x4': "ratio-5x4",
+				'16x9': "ratio-16x9",
 			},
 		},
 	})({
@@ -44,13 +44,13 @@ const imageContainerCVAClass = computed(() => {
 });
 
 const imageObjectFitCVAClass = computed(() => {
-	return cva("ded-image", {
+	return cva("ded-image-cover", {
 		variants: {
 			objectFit: {
-				cover: "ded-image-cover",
-				contain: "ded-image-contain",
-				fill: "ded-image-fill",
-				none: "ded-image-none",
+				cover: "cover",
+				contain: "contain",
+				fill: "fill",
+				none: "none",
 			},
 		},
 	})({

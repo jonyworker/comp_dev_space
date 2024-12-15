@@ -17,12 +17,12 @@ export default {
 			description: '圖片比例',
 			control: {
 				type: 'select',
-				labels: {
-					'11': "1x1",
-					'43': "4x3",
-					'54': "5x4",
-					'169': "16x9",
-				}
+				// labels: {
+				// 	'11': "1x1",
+				// 	'43': "4x3",
+				// 	'54': "5x4",
+				// 	'169': "16x9",
+				// }
 			},
 			options: ['11', '43', '54', '169'],
 			table: {
@@ -63,7 +63,7 @@ export const ImageDefault = {
 	args: {
 		src: 'https://picsum.photos/300/300',
 		alt: 'placeholder',
-		ratio: '11',
+		ratio: '1x1',
 		objectFit: 'cover',
 		className: '',
 	},
@@ -136,7 +136,7 @@ export const ImageRatio = {
 					<Image 
 				       :src="args.src"
 				       :alt="args.alt"
-				       ratio="11"
+				       ratio="1x1"
 				       :objectFit="args.objectFit"
 				       style="width: 250px"
 					></Image>
@@ -151,7 +151,7 @@ export const ImageRatio = {
 					<Image
 						:src="args.src"
 						:alt="args.alt"
-						ratio="43"
+						ratio="4x3"
 						:objectFit="args.objectFit"
 						style="width: 250px"
 					></Image>
@@ -166,7 +166,7 @@ export const ImageRatio = {
 					<Image
 						:src="args.src"
 						:alt="args.alt"
-						ratio="54"
+						ratio="5x4"
 						:objectFit="args.objectFit"
 						style="width: 250px"
 					></Image>
@@ -181,7 +181,7 @@ export const ImageRatio = {
 					<Image
 						:src="args.src"
 						:alt="args.alt"
-						ratio="169"
+						ratio="16x9"
 						:objectFit="args.objectFit"
 						style="width: 250px"
 					></Image>
@@ -208,28 +208,28 @@ export const ImageRatio = {
 						'  <Image',
 						`    src="${args.src}"`,
 						`    alt="${args.alt}"`,
-						`    ratio="11"`,
+						`    ratio="1x1"`,
 						`    objectFit="${args.objectFit}"`,
 						`    className="${args.className}"`,
 						'  ></Image>',
 						'  <Image',
 						`    src="${args.src}"`,
 						`    alt="${args.alt}"`,
-						`    ratio="43"`,
+						`    ratio="4x3"`,
 						`    objectFit="${args.objectFit}"`,
 						`    className="${args.className}"`,
 						'  ></Image>',
 						'  <Image',
 						`    src="${args.src}"`,
 						`    alt="${args.alt}"`,
-						`    ratio="54"`,
+						`    ratio="5x4"`,
 						`    objectFit="${args.objectFit}"`,
 						`    className="${args.className}"`,
 						'  ></Image>',
 						'  <Image',
 						`    src="${args.src}"`,
 						`    alt="${args.alt}"`,
-						`    ratio="169"`,
+						`    ratio="16x9"`,
 						`    objectFit="${args.objectFit}"`,
 						`    className="${args.className}"`,
 						'  ></Image>',
@@ -247,7 +247,7 @@ export const ImageFit = {
 	args: {
 		src: 'https://picsum.photos/300/300',
 		alt: '',
-		ratio: '169',
+		ratio: '16x9',
 		objectFit: 'cover',
 		className: ''
 	},
