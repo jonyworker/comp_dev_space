@@ -79,8 +79,8 @@ export const DefaultAvatar = {
 		shape: "circle",
 		size: "large",
 		status: "none",
-		src: "https://picsum.photos/320/240",
-		alt: "alt text",
+		src: "https://picsum.photos/200/300",
+		alt: "無圖顯示",
 		userName: "JonyWu",
 		className: ""
 	},
@@ -135,8 +135,8 @@ export const AvatarShape = {
 	args: {
 		size: "large",
 		status: "none",
-		src: "https://picsum.photos/320/240",
-		alt: "alt text",
+		src: "https://picsum.photos/200/300",
+		alt: "無圖顯示",
 		userName: "JonyWu",
 		className: ""
 	},
@@ -212,8 +212,8 @@ export const AvatarStatus = {
 	args: {
 		shape: "circle",
 		size: "large",
-		src: "https://picsum.photos/320/240",
-		alt: "alt text",
+		src: "https://picsum.photos/200/300",
+		alt: "無圖顯示",
 		userName: "JonyWu",
 		className: ""
 	},
