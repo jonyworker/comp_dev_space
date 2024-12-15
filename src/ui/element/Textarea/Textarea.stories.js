@@ -123,69 +123,6 @@ export const TextareaDefault = {
     },
 };
 
-//==== 顯示標籤 ====//
-export const TextareaLabelDefault = {
-    name: "顯示標籤",
-    args: {
-        label: "Label",
-        placeholder: "Type something...",
-        limit: 50,
-        initValue: "",
-        hint: { error: '', description: '' },
-        isDisabled: false,
-        className: ''
-    },
-    render: (args) => ({
-        components: { Textarea },
-        setup() {
-            const textareaModelValue =ref("");
-            return {
-                args,
-                textareaModelValue
-            };
-        },
-        template: `
-            <Textarea
-                :label="args.label"
-                :placeholder="args.placeholder"
-                :limit="args.limit"
-                :initValue="args.initValue"
-                :hint="args.hint"
-                :isDisabled="args.isDisabled"
-                :className="args.className"
-                v-model="textareaModelValue"
-            ></Textarea>
-        `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ['modelValue', 'customClass'],
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    const dataSourceString = formatDataSource(args.hint);
-                    return [
-                        '<Textarea',
-                        `  label="${args.label}"`,
-                        `  placeholder="${args.placeholder}"`,
-                        `  :limit="${args.limit}"`,
-                        `  :initValue="${args.initValue}"`,
-                        `  :hint="${dataSourceString}"`,
-                        `  :isDisabled="${args.isDisabled}"`,
-                        `  className="${args.className}"`,
-                        `  v-model="textareaModelValue"`,
-                        '></Textarea>',
-                    ].join('\n').trim();
-                }
-            }
-        }
-    },
-};
-
 //==== 字數限制 ====//
 export const TextareaLimit = {
     name: "字數限制",
@@ -255,7 +192,7 @@ export const TextareaStatus = {
     args: {
         label: "Label",
         placeholder: "Type something...",
-        initValue: "",
+        initValue: "Type something...",
         limit: 50,
         isDisabled: false,
     },
