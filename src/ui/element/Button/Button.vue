@@ -1,6 +1,4 @@
 <script setup>
-import { computed } from 'vue';
-import { useButtonCVAClass } from './useButtonCVAClass';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
@@ -12,17 +10,17 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
 	},
 	variant: {
 		type: String,
 		required: true,
-		validator: (value) => ["contained", "outlined", "text"].includes(value),
+		validator: (value) => ["text", "filled", "ghost", "soft"].includes(value),
 	},
 	prefix: {
 		type: String,
@@ -38,7 +36,17 @@ const props = defineProps({
 	width: {
 		type: String,
 		default: "fit",
-		validator: (value) => ["fit", "fluid"].includes(value),
+		validator: (value) => ["fluid", "fit"].includes(value),
+	},
+	borderWidth: {
+		type: String,
+		default: "none",
+		validator: (value) => ["none", "xs", "sm", "md", "lg", "xl"].includes(value),
+	},
+	radius: {
+		type: String,
+		default: "none",
+		validator: (value) => ["none", "xs", "sm", "md", "lg", "xl", "full"].includes(value),
 	},
 	isDisabled: {
 		type: Boolean,
@@ -50,18 +58,21 @@ const props = defineProps({
 	},
 });
 
-
-// 引入 CVA Class
-const buttonCVAClass = useButtonCVAClass(props);
-
-// 計算包括 CVA Class 與自定義 className 的按鈕樣式
-const finalButtonClass = computed(() => {
-	return [buttonCVAClass.value, props.className].filter(Boolean).join(' ');
-});
 </script>
 
 <template>
-	<button :class="finalButtonClass">
+<!--	<button :class="finalButtonClass">-->
+	<button :class="{
+  'ded-button': true,
+  [`ded-button-${props.width}`]: props.width,
+  [`ded-component-${props.size}`]: props.size,
+  [`ded-button-${props.variant}`]: props.variant,
+  [`ded-button-${props.variant}-${props.themeColor}`]: props.variant && props.themeColor,
+  [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
+  [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
+  [`ded-button-radius-${props.radius}`]: props.radius,
+  [props.className]: !!props.className
+}">
 		<template v-if="prefix">
 			<div :class="`ded-icon-${props.size}`">
 				<Icon :name="props.prefix"></Icon>

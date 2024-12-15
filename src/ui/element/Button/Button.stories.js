@@ -11,15 +11,15 @@ export default {
 			options: [
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			],
 			table: {
 				type: {
-					summary: "primary | secondary | tertiary | success | warning | error | info"
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -27,10 +27,10 @@ export default {
 			description: "按鈕樣式",
 			required: true,
 			control: { type: "select" },
-			options: ["contained", "outlined", "text"],
+			options: ["text", "filled", "ghost", "soft"],
 			table: {
 				type: {
-					summary: "contained | outlined | text",
+					summary: "text | filled | ghost | soft",
 				}
 			}
 		},
@@ -39,7 +39,7 @@ export default {
 			control: {
 				type: "select",
 				labels: {
-					"": "None",
+					"": "none",
 					home: "home",
 					folder: "folder",
 					academy: "academy",
@@ -54,7 +54,7 @@ export default {
 			control: {
 				type: "select",
 				labels: {
-					"": "None",
+					"": "none",
 					home: "home",
 					folder: "folder",
 					academy: "academy",
@@ -77,10 +77,30 @@ export default {
 		width: {
 			description: "按鈕寬度",
 			control: { type: "select" },
-			options: ["fit", "fluid"],
+			options: ["fluid", "fit"],
 			table: {
 				type: {
-					summary: "fit | fluid",
+					summary: "fluid | fit",
+				}
+			}
+		},
+		borderWidth: {
+			description: "按鈕邊框寬度",
+			control: { type: "select" },
+			options: ["none", "xs", "sm", "md", "lg", "xl"],
+			table: {
+				type: {
+					summary: "none | xs | sm | md | lg | xl",
+				}
+			}
+		},
+		radius: {
+			description: "按鈕圓角大小",
+			control: { type: "select" },
+			options: ["none", "xs", "sm", "md", "lg", "xl", "full"],
+			table: {
+				type: {
+					summary: "none | xs | sm | md | lg | xl | full",
 				}
 			}
 		},
@@ -88,7 +108,6 @@ export default {
 			description: "是否禁用",
 			control: { type: "boolean" },
 		},
-
 		className: {
 			description: "客製化樣式",
 			control: { type: "text" },
@@ -119,11 +138,13 @@ export const DefaultButtonStory = {
 	name: '預設項目',
 	args: {
 		themeColor: 'primary',
-		variant: 'contained',
+		variant: 'filled',
 		prefix: '',
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
+		borderWidth: 'sm',
+		radius: 'sm',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
@@ -137,12 +158,14 @@ export const DefaultButtonStory = {
 		},
 		template: `
 			<Button
-				:variant="args.variant"
 				:themeColor="args.themeColor"
-				:size="args.size"
-				:width="args.width"
+				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -160,19 +183,21 @@ export const DefaultButtonStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Button',
-						`  themeColor="${args.themeColor}"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
-						`  isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>'
-					].join('\n').trim();
+						`</Button>`,
+					].join("\n").trim();
 				}
 			}
 		}
@@ -184,12 +209,16 @@ export const ButtonPrefixSuffixStory = {
 	name: '附加元素',
 	args: {
 		themeColor: 'primary',
-		variant: 'contained',
+		variant: 'ghost',
+		prefix: '',
+		suffix: '',
 		size: 'medium',
 		width: 'fit',
+		borderWidth: 'sm',
+		radius: 'sm',
 		isDisabled: false,
 		className: "",
-		default: 'Button'
+		default: 'Button',
 	},
 	render: (args) => ({
 		components: { Button },
@@ -206,6 +235,8 @@ export const ButtonPrefixSuffixStory = {
 				suffix=""
 				:size="args.size"
 				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -218,6 +249,8 @@ export const ButtonPrefixSuffixStory = {
 				suffix="folder"
 				:size="args.size"
 				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -236,31 +269,36 @@ export const ButtonPrefixSuffixStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Button',
-						`  themeColor="${args.themeColor}"`,
-						`  variant="${args.variant}"`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :variant="${args.variant}"`,
 						`  prefix="folder"`,
 						`  suffix=""`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="${args.themeColor}"`,
-						`  variant="${args.variant}"`,
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :variant="${args.variant}"`,
 						`  prefix=""`,
 						`  suffix="folder"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-					].join('\n').trim();
+						`</Button>`,
+					].join("\n").trim();
+
 				}
 			}
 		}
@@ -272,11 +310,13 @@ export const ButtonTypeStory = {
 	name: '按鈕樣式',
 	args: {
 		themeColor: 'primary',
-		variant: 'contained',
-		prefix: 'folder',
+		variant: 'filled',
+		prefix: '',
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
+		borderWidth: 'sm',
+		radius: 'sm',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
@@ -291,35 +331,55 @@ export const ButtonTypeStory = {
 		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
 			<Button
 				:themeColor="args.themeColor"
-				variant="contained"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				:size="args.size"
-				:width="args.width"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				:themeColor="args.themeColor"
-				variant="outlined"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				:size="args.size"
-				:width="args.width"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				:themeColor="args.themeColor"
 				variant="text"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:themeColor="args.themeColor"
+				variant="filled"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:themeColor="args.themeColor"
+				variant="ghost"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:themeColor="args.themeColor"
+				variant="soft"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -338,43 +398,63 @@ export const ButtonTypeStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Button',
-						`  themeColor="${args.themeColor}"`,
-						`  variant="contained"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
-						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="${args.themeColor}"`,
-						`  variant="outlined"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						` className="${args.className}"`,
-						'>',
-						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="${args.themeColor}"`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
 						`  variant="text"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-					].join('\n').trim();
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  variant="filled"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  variant="ghost"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  variant="soft"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+					].join("\n").trim();
 				}
 			}
 		}
@@ -385,12 +465,13 @@ export const ButtonTypeStory = {
 export const ButtonColorStory = {
 	name: '主題色彩',
 	args: {
-		themeColor: 'primary',
-		variant: 'contained',
+		variant: 'filled',
 		prefix: 'folder',
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
+		borderWidth: 'sm',
+		radius: 'sm',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
@@ -410,6 +491,8 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -422,54 +505,22 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
 				{{ args.default }}
 			</Button>
 			<Button
-				themeColor="tertiary"
+				themeColor="neutral"
 				:variant="args.variant"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				themeColor="success"
-				:variant="args.variant"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				:size="args.size"
-				:width="args.width"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				themeColor="warning"
-				:variant="args.variant"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				:size="args.size"
-				:width="args.width"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				themeColor="error"
-				:variant="args.variant"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				:size="args.size"
-				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -482,6 +533,50 @@ export const ButtonColorStory = {
 				:suffix="args.suffix"
 				:size="args.size"
 				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				themeColor="success"
+				:variant="args.variant"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				themeColor="warning"
+				:variant="args.variant"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				themeColor="error"
+				:variant="args.variant"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
 			>
@@ -500,91 +595,105 @@ export const ButtonColorStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Button',
+						`<Button`,
 						`  themeColor="primary"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-						'<Button',
+						`</Button>`,
+						`<Button`,
 						`  themeColor="secondary"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="tertiary"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`</Button>`,
+						`<Button`,
+						`  themeColor="neutral"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="success"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
-						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="warning"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
-						`  ${args.default}`,
-						'</Button>',
-						'<Button',
-						`  themeColor="error"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
-						`  ${args.default}`,
-						'</Button>',
-						'<Button',
+						`</Button>`,
+						`<Button`,
 						`  themeColor="info"`,
-						`  variant="${args.variant}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  size="${args.size}"`,
-						`  width="${args.width}"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
 						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						'>',
+						`  :className="${args.className}"`,
+						`>`,
 						`  ${args.default}`,
-						'</Button>',
-					].join('\n').trim();
+						`</Button>`,
+						`<Button`,
+						`  themeColor="success"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  themeColor="warning"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  themeColor="error"`,
+						`  :variant="${args.variant}"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+					].join("\n").trim();
 				}
 			}
 		}
