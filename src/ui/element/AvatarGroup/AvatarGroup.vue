@@ -12,7 +12,7 @@ const props = defineProps({
 	},
 	size: {
 		type: String,
-		default: "medium",
+		default: "large",
 		validator: (value) =>
 			["xsmall", "small", "medium", "large"].includes(value),
 	},

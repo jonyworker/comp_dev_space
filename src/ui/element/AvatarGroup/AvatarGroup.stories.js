@@ -15,9 +15,7 @@ export default {
 	argTypes: {
 		dataSource: {
 			description: "資料來源",
-			control: {
-				type: "object",
-			},
+			control: { type: "object" },
 			table: {
 				type: {
 					summary: '{ userName: string; src: string; }[]',
@@ -25,9 +23,14 @@ export default {
 			}
 		},
 		size: {
-			description: "Avatar 尺寸",
+			description: "尺寸",
 			control: { type: "select" },
 			options: ["xsmall", "small", "medium", "large"],
+			table: {
+				type: {
+					summary: "xsmall | small | medium | large"
+				}
+			}
 		},
 		limit: {
 			description: "展開數量上限",
@@ -58,24 +61,22 @@ export const MultiAvatar = {
 	args: {
 		dataSource:[
 			{
-				userName: "Eason",
-				src: "",
+				"userName": "eason"
 			},
 			{
-				userName: "KevinYang",
-				src: "",
+				"userName": "KevinYang"
 			},
 			{
-				userName: "AmosLee",
-				src: "",
+				"userName": "AmosLee",
+				"src": "https://picsum.photos/200/300"
 			},
 			{
-				userName: "JohnWu",
-				src: "",
+				"userName": "JohnWu",
+				"src": "https://picsum.photos/200/300"
 			},
 			{
-				userName: "PeterLiao",
-				src: "",
+				"userName": "Peter",
+				"src": "https://picsum.photos/200/300"
 			}
 		],
 		size: "large",
