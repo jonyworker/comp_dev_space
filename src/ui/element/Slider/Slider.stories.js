@@ -12,15 +12,15 @@ export default {
 			options: [
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			],
 			table: {
 				type: {
-					summary: "primary | secondary | tertiary | success | warning | error | info"
+					summary: "primary | secondary | neutral | info | success | warning | error"
 				}
 			}
 		},
@@ -71,7 +71,7 @@ export default {
 export const SliderDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "primary",
+		themeColor: "neutral",
 		min: -100,
 		max: 100,
 		step: 1,
@@ -176,7 +176,7 @@ export const SliderColors = {
 					:className="sliderValue"
 				></slider>
 				<slider
-					themeColor="tertiary"
+					themeColor="neutral"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
@@ -185,7 +185,7 @@ export const SliderColors = {
 					:isDisabled="args.isDisabled"
 				></slider>
 				<slider
-					themeColor="success"
+					themeColor="info"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
@@ -195,7 +195,7 @@ export const SliderColors = {
 					:className="sliderValue"
 				></slider>
 				<slider
-					themeColor="warning"
+					themeColor="success"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
@@ -205,7 +205,7 @@ export const SliderColors = {
 					:className="sliderValue"
 				></slider>
 				<slider
-					themeColor="error"
+					themeColor="warning"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
@@ -215,7 +215,7 @@ export const SliderColors = {
 					:className="sliderValue"
 				></slider>
 				<slider
-					themeColor="info"
+					themeColor="error"
 					:min="args.min"
 					:max="args.max"
 					:step="args.step"
@@ -224,6 +224,7 @@ export const SliderColors = {
 					:isDisabled="args.isDisabled"
 					:className="sliderValue"
 				></slider>
+				
 			</div>
         `,
 	}),
@@ -261,7 +262,7 @@ export const SliderColors = {
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
-						`  themeColor="tertiary"`,
+						`  themeColor="neutral"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -272,7 +273,7 @@ export const SliderColors = {
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
-						`  themeColor="success"`,
+						`  themeColor="info"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -283,7 +284,7 @@ export const SliderColors = {
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
-						`  themeColor="warning"`,
+						`  themeColor="success"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -294,7 +295,7 @@ export const SliderColors = {
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
-						`  themeColor="error"`,
+						`  themeColor="warning"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
@@ -305,7 +306,7 @@ export const SliderColors = {
 						`  v-model="sliderValue"`,
 						'></slider>',
 						'<slider',
-						`  themeColor="info"`,
+						`  themeColor="error"`,
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,

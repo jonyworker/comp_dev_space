@@ -81,15 +81,15 @@ input[type="range"].ded-slider::-webkit-slider-runnable-track {
 
 @each $theme in $themes {
     input[type="range"].ded-slider-#{$theme}::-webkit-slider-thumb {
-        background-color: getThemeColor($mode, $theme, 'default');
+        background-color: getThemeColor($theme, 'default');
     }
 
     input[type="range"].ded-slider-#{$theme}::-webkit-slider-runnable-track {
-        background: linear-gradient(to right, getThemeColor($mode, $theme, 'default') 0%, getThemeColor($mode, $theme, 'default') var(--progress), $color-gray20 var(--progress), $color-gray20 100%);
+        background: linear-gradient(to right, getThemeColor($theme, 'default') 0%, getThemeColor($theme, 'default') var(--progress), $color-gray20 var(--progress), $color-gray20 100%);
     }
 
     .ded-slider-tooltip-#{$theme} {
-        color: getThemeColor($mode, $theme, 'default');
+        color: getThemeColor($theme, 'default');
     }
 }
 
