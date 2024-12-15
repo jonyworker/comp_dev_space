@@ -17,8 +17,48 @@
 
   .ded-component-#{$size} {
     height: map.get($component-size, $size);
+    width: map.get($component-size, $size);
   }
 }
+
+// Loop: 邊框樣式
+@each $style in $borderStyles {
+  .#{$style}-border {
+    @if($style =='line') {
+      border-width: getBorderStyle($style, 'width');
+      border-style: getBorderStyle($style, 'style');
+      border-color: getBorderStyle($style, 'color');
+    }
+
+    @else {
+      box-shadow: getBorderStyle($style, 'fill');
+    }
+  }
+}
+
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+.ded-dropdown-input {
+  width: 100%;
+
+  .ded-input-group {
+    border: none;
+
+    &:focus-within {
+      box-shadow: none;
+      border: none;
+    }
+
+    &:hover {
+      box-shadow: none;
+      border: none;
+    }
+  }
+}
+
 .mask-overlay {
   position: fixed;
   top: 0;
@@ -30,24 +70,4 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
-
-// Loop: 邊框樣式
-@each $style in $borderStyles {
-  .#{$style}-border {
-    @if($style =='line') {
-      border-width: getBorderStyle($mode, $style, 'width');
-      border-style: getBorderStyle($mode, $style, 'style');
-      border-color: getBorderStyle($mode, $style, 'color');
-    }
-
-    @else {
-      box-shadow: getBorderStyle($mode, $style, 'fill');
-    }
-  }
-}
-
-img {
-  width: 100%;
-  vertical-align: middle;
 }

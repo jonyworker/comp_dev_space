@@ -1,10 +1,13 @@
 
 //基礎設定
-@import "./theme/_reset";
 @import "./theme/_variable";
 @import "./theme/_function";
+@import "./theme/_default_variable";
+@import "./theme/_color_schema";
+@import "./theme/_reset";
 @import "./theme/_map";
 @import "./theme/_base";
+@import "./theme/_dark_light";
 
 //基礎設定
 @import "./component/element/_accordion";
@@ -29,7 +32,7 @@
 @import "./component/element/_search";
 @import "./component/element/_sidenav";
 @import "./component/element/_slider";
-@import "./component/element/_sliderWithButton";
+@import "./component/element/_slider_control";
 @import "./component/element/_stepper";
 @import "./component/element/_table"; //(未完成)
 @import "./component/element/_tabs";

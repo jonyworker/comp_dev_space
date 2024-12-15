@@ -1,4 +1,14 @@
 @use 'sass:math';
+@use 'sass:list';
+
+// 主題色名稱
+$theme-color: ['AUO-BLUE', 'AUO-DARK', 'AUO-PURPLE', 'AUO-YELLOW'];
+// 主題色索引
+$site: list.index($theme-color, 'AUO-BLUE');
+
+$font-family: 'Mabry Pro', Verdana, 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans JP', 'Microsoft JhengHei', 'sans-serif',
+'新細明體', '細明體';
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 // 模式
 $mode: 'light';
@@ -6,9 +16,9 @@ $mode: 'light';
 $separate: '/';
 
 // 按鈕樣式清單
-$variants: ['contained', 'outlined', 'text'];
+$variants: [filled, 'soft', 'ghost', 'text'];
 // 主題清單
-$themes: ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info'];
+$themes: ['neutral', 'primary', 'secondary', 'success', 'warning', 'error', 'info'];
 // 尺寸清單
 $sizes: ['xsmall', 'small', 'medium', 'large'];
 // 形狀清單
@@ -18,7 +28,7 @@ $avatarStatus: ['online', 'idle', 'busy', 'offline'];
 // Avatar 外型樣式清單
 $avatarShape: ['circle', 'square'];
 // 圖示比例清單
-$aspectRatio: ['11', '43', '54', '169'];
+$aspectRatio: ['1x1', '4x3', '5x4', '16x9'];
 // Tooltip Arrow 位置擺放清單
 $arrowPosition: ['top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right', 'left-top', 'left-bottom', 'right-top', 'right-bottom'];
 
@@ -84,25 +94,6 @@ $text-size-small: 14px;
 $text-size-medium: 16px;
 $text-size-large: 18px;
 
-
-// table 尺寸
-$table-size-xsmall: 25%;
-$table-size-small: 50%;
-$table-size-medium: 70%;
-$table-size-large: 100%;
-
-// table-cell padding
-$table-cell-xsmall: 2px;
-$table-cell-small: 4px;
-$table-cell-medium: 6px;
-$table-cell-large: 8px;
-
-// table-text
-$table-text-xsmall: 12px;
-$table-text-small: 14px;
-$table-text-medium: 18px;
-$table-text-large: 24px;
-
 // 輸入框尺寸
 $component-size-small: 32px;
 $component-size-medium: 38px;
@@ -116,7 +107,7 @@ $light-color-tertiary: #F96CC0FF;
 
 // 主題色票
 // dark
-$dark-color-primary: #533BD4FF;
+$dark-color-primary: #00467CFF;
 $dark-color-secondary: #68E1FEFF;
 $dark-color-tertiary: #EF68FFFF;
 
@@ -189,16 +180,19 @@ $space-size-gap6: 48px;
 $space-size-gap7: 56px;
 $space-size-gap8: 64px;
 
-
+// 斷點設定
+// 裝置: 依照需求填入樣式參數
+$breakpoint-size-mobile: 375px;
+$breakpoint-size-desktop: 1440px;
+$breakpoint-size-large-desktop: 1920px;
 
 // 字體設定
 // 語系: 依照需求填入字型
-
 $text-cn: 'Noto Sans, sans-serif';
 $text-en: 'Arial, sans-serif';
 
 // 字體設定
-// 字重: 依照需求填入字重 
+// 字重: 依照需求填入字重
 $text-regular: 400;
 $text-bold: 700;
 
@@ -299,39 +293,3 @@ $layout-max-width-large-desktop: 1140px;
 
 // 格線系統間距設定
 $grid-gap: 8px;
-
-// 標題顏色設定
-// Primary
-$title-color-primary: getDarkLightColor($mode, $light-color-primary, $dark-color-primary);
-
-// 標題顏色設定
-// Secondary
-$title-color-secondary: getDarkLightColor($mode, $light-color-secondary, $dark-color-secondary);
-
-// 標題顏色設定
-// Tertiary
-$title-color-tertiary: getDarkLightColor($mode, $light-color-tertiary, $dark-color-tertiary);
-
-// 標題顏色設定
-// Success
-$title-color-success: getDarkLightColor($mode, $light-color-success, $dark-color-success);
-
-// 標題顏色設定
-// Warning
-$title-color-warning: getDarkLightColor($mode, $light-color-warning, $dark-color-warning);
-
-// 標題顏色設定
-// Error
-$title-color-error: getDarkLightColor($mode, $light-color-error, $dark-color-error);
-
-// 標題顏色設定
-// Info
-$title-color-info: getDarkLightColor($mode, $light-color-info, $dark-color-info);
-
-// 提示顏色設定
-// Description
-$hint-color-desc: getDarkLightColor($mode, $color-gray40, $color-gray40);
-
-// 提示顏色設定
-// Error
-$hint-color-error: getDarkLightColor($mode, $light-color-error, $dark-color-error);
