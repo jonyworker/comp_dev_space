@@ -15,7 +15,36 @@ dialogContainer.id = 'dialog';
 document.body.appendChild(dialogContainer);
 
 const preview = {
+	initialGlobals: {
+		styles: {
+			body: {
+				margin: 0,
+				padding: 0,
+				fontFamily: 'Arial, sans-serif',
+			},
+		},
+	},
 	parameters: {
+		backgrounds: {
+			values: [
+				{ name: 'light', value: '#fff' },
+				{ name: 'dark', value: '#333' },
+				{ name: 'gray', value: '#f0f0f0' },
+			],
+		},
+		options: {
+			storySort: {
+				method: 'alphabetical', // 可選擇 'alphabetical', 'configure', 或其他自定義方法
+				order: ['Introduction', 'Components'], // 可根據需求調整順序
+				locales: 'en-US',
+			},
+		},
+		html: {
+			prettier: {
+				tabWidth: 4,
+				useTabs: true,
+			},
+		},
 		viewport: {
 			viewports: INITIAL_VIEWPORTS, // 開啟更多 viewport 選擇
 		},
@@ -37,40 +66,10 @@ const preview = {
 		//     },
 		//   }, // 👈 Enables the table of contents
 		// },
-		backgrounds: {
-			values: [
-				{ name: 'light', value: '#fff' },
-				{ name: 'dark', value: '#333' },
-				{ name: 'gray', value: '#f0f0f0' },
-			],
-		},
-		options: {
-			storySort: {
-				method: 'alphabetical', // 可選擇 'alphabetical', 'configure', 或其他自定義方法
-				order: ['Introduction', 'Components'], // 可根據需求調整順序
-			},
-		},
-		html: {
-			prettier: {
-				tabWidth: 4,
-				useTabs: true,
-			},
-		},
-	},
-
-	initialGlobals: {
-		styles: {
-			body: {
-				margin: 0,
-				padding: 0,
-				fontFamily: 'Arial, sans-serif',
-			},
-		},
 	},
 
 	tags: ['autodocs'],
 };
-
 
 export default preview;
 
