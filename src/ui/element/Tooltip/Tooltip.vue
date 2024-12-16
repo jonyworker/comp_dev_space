@@ -1,6 +1,5 @@
 <script setup>
 import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue';
-import { debounce } from 'lodash';
 import { getTargetPosition } from '@/utils/positionUtils';
 
 // 定義 Props
@@ -29,7 +28,6 @@ const props = defineProps({
 	},
 });
 
-
 const tooltipTriggerRef = ref(null);
 const tooltipContentRef = ref(null);
 const tooltipStyles = ref({});
@@ -47,7 +45,7 @@ const hideTooltip = () => {
 	visible.value = false;
 };
 
-// 功能 計算位置
+// 功能 - 計算位置
 const updateTooltipPosition = async () => {
 	if (!tooltipTriggerRef.value || !tooltipContentRef.value || !visible.value) return;
 
@@ -55,28 +53,41 @@ const updateTooltipPosition = async () => {
 
 	const triggerElement = tooltipTriggerRef.value.getBoundingClientRect();
 
-    const position = {
-        top: triggerElement.top + window.scrollY,
-        left: triggerElement.left + window.scrollX,
-    };
+	const position = {
+		top: triggerElement.top + window.scrollY,
+		left: triggerElement.left + window.scrollX,
+	};
 
 	const childrenSize = {
 		width: triggerElement.width,
 		height: triggerElement.height,
 	};
 
-	const gap ='6px';
-	//觸發器位置 觸發器長寬 placement 與觸發器之間間距
+	const gap = '6px';
 	tooltipStyles.value = getTargetPosition(position, childrenSize, props.placement, gap, false);
 };
 
+// 自定義節流函數
+function throttle(func, limit) {
+	let inThrottle;
+	return function(...args) {
+		const context = this;
+		if (!inThrottle) {
+			func.apply(context, args);
+			inThrottle = true;
+			setTimeout(() => inThrottle = false, limit);
+		}
+	};
+}
+
 onMounted(() => {
-    const debouncedUpdate = debounce(updateTooltipPosition, 100);
-    window.addEventListener('scroll', debouncedUpdate);
-    window.addEventListener('resize', debouncedUpdate);
+	const throttledUpdate = throttle(updateTooltipPosition, 100);
+	window.addEventListener('scroll', throttledUpdate);
+	window.addEventListener('resize', throttledUpdate);
 });
 
 onBeforeUnmount(() => {
+	// 移除事件監聽器
 	window.removeEventListener('scroll', updateTooltipPosition);
 	window.removeEventListener('resize', updateTooltipPosition);
 });
@@ -92,6 +103,7 @@ onBeforeUnmount(() => {
 	>
 		<slot></slot>
 	</div>
+
 	<Teleport to="body">
 		<Transition name="fade">
 			<div
