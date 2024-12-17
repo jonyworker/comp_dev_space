@@ -1,0 +1,86 @@
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff
+}
+
+.status-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #fff
+}
+
+.status-indicator-text {
+    font-size: 16px
+}
+
+.status-indicator-text-neutral,
+.status-indicator-text-primary,
+.status-indicator-text-secondary,
+.status-indicator-text-success,
+.status-indicator-text-warning,
+.status-indicator-text-error,
+.status-indicator-text-info {
+    color: #fff
+}
+
+.status-indicator-text-neutral {
+    color: #7f7f82
+}
+
+.status-indicator-text-primary {
+    color: #305ec3
+}
+
+.status-indicator-text-secondary {
+    color: #bc9cdb
+}
+
+.status-indicator-text-success {
+    color: #209f59
+}
+
+.status-indicator-text-warning {
+    color: #cc7f36
+}
+
+.status-indicator-text-error {
+    color: #cc3d41
+}
+
+.status-indicator-text-info {
+    color: #0095a7
+}
+
+.status-indicator-filled-neutral {
+    background-color: #7f7f82
+}
+
+.status-indicator-filled-primary {
+    background-color: #305ec3
+}
+
+.status-indicator-filled-secondary {
+    background-color: #bc9cdb
+}
+
+.status-indicator-filled-success {
+    background-color: #209f59
+}
+
+.status-indicator-filled-warning {
+    background-color: #cc7f36
+}
+
+.status-indicator-filled-error {
+    background-color: #cc3d41
+}
+
+.status-indicator-filled-info {
+    background-color: #0095a7
+}
