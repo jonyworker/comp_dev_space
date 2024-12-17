@@ -24,7 +24,6 @@ const props = defineProps({
 	prefix: {
 		type: String,
 		required: true,
-		default: "InfoCircleIcon",
 	},
 	size: {
 		type: String,
