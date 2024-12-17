@@ -81,7 +81,7 @@ export default {
 export const StatusIndicatorDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "neutral",
+		themeColor: "primary",
 		variant: "text",
 		prefix: "InfoCircleIcon",
 		size: "medium",
