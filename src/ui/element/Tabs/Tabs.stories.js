@@ -42,12 +42,17 @@ export default {
         },
         activeIndex: {
             description: "活動頁籤索引",
-            control: { type: "number" },
+            control: {
+                type: "number",
+                min:0,
+                max:2,
+                step: 1
+            },
         },
         type: {
             description: "頁籤樣式",
             control: { type: "select" },
-            options: ["basic", "outline"],
+            options: ["basic", "outline", "button"],
             table: {
                 type: {
                     summary: "basic | outline "
