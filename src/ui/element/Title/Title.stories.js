@@ -7,19 +7,26 @@ export default {
 	argTypes: {
 		themeColor: {
 			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			],
+			control: {
+				type: "select",
+				labels: {
+					"": "none",
+					primary: "primary",
+					secondary: "secondary",
+					neutral: "neutral",
+					info: "info",
+					success: "success",
+					warning: "warning",
+					error: "error",
+				}
+			},
+			options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error" ],
 			table: {
 				type: {
 					summary: "primary | secondary | neutral | info | success | warning | error"
+				},
+				defaultValue: {
+					summary: "none"
 				}
 			}
 		},
