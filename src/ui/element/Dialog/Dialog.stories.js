@@ -111,12 +111,12 @@ export const DialogDefault = {
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
 				</div>
 				<div class="ded-dialog-footer">
+					<Button variant="filled" radius="md" @click="onConfirm">
+						OK
+					</Button>
 					<Button variant="filled" radius="md" class="ded-cancel-btn"
 					        @click="onCancel">
 						Cancel
-					</Button>
-					<Button variant="filled" radius="md" @click="onConfirm">
-						OK
 					</Button>
 				</div>
 			</div>
@@ -146,17 +146,17 @@ export const DialogDefault = {
 						`    <Button`,
 						`      variant="filled"`,
 						`      radius="md"`,
-						`      class="ded-cancel-btn"`,
-						`      @click="onCancel"`,
+						`      @click="onConfirm"`,
 						`    >`,
-						`      Cancel`,
+						`      OK`,
 						`    </Button>`,
 						`    <Button`,
 						`      variant="filled"`,
 						`      radius="md"`,
-						`      @click="onConfirm"`,
+						`      class="ded-cancel-btn"`,
+						`      @click="onCancel"`,
 						`    >`,
-						`      OK`,
+						`      Cancel`,
 						`    </Button>`,
 						`  </template>`,
 						`</Dialog>`,
@@ -219,12 +219,12 @@ export const DialogDemo = {
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
 				</template>
 				<template #footer>
+					<Button variant="filled" radius="md" @click="onConfirm">
+						OK
+					</Button>
 					<Button variant="filled" radius="md" class="ded-cancel-btn"
 					        @click="onCancel">
 						Cancel
-					</Button>
-					<Button variant="filled" radius="md" @click="onConfirm">
-						OK
 					</Button>
 				</template>
 			</Dialog>
@@ -261,17 +261,17 @@ export const DialogDemo = {
 						`    <Button`,
 						`      variant="filled"`,
 						`      radius="md"`,
-						`      class="ded-cancel-btn"`,
-						`      @click="onCancel"`,
+						`      @click="onConfirm"`,
 						`    >`,
-						`      Cancel`,
+						`      OK`,
 						`    </Button>`,
 						`    <Button`,
 						`      variant="filled"`,
 						`      radius="md"`,
-						`      @click="onConfirm"`,
+						`      class="ded-cancel-btn"`,
+						`      @click="onCancel"`,
 						`    >`,
-						`      OK`,
+						`      Cancel`,
 						`    </Button>`,
 						`  </template>`,
 						`</Dialog>`,

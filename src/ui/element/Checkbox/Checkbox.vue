@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineModel, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 使用 defineModel 正確定義模型值
