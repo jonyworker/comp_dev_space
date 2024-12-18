@@ -3,11 +3,17 @@ import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 const props = defineProps({
-	label: {
+	prefix: {
 		type: String,
 	},
-	detail: {
+	borderStyle: {
 		type: String,
+		default: "",
+		validator: (value) => ["solid", "highlight",].includes(value),
+	},
+	isSmallSize: {
+		type: Boolean,
+		default: true,
 	},
 	isOpen: {
 		type: Boolean,
@@ -17,6 +23,7 @@ const props = defineProps({
 		type: String,
 		default: "",
 	},
+
 });
 
 // 本地狀態控制
@@ -69,16 +76,22 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-	<li class="ded-accordion-item">
+	<li class="ded-accordion-item" :class="`ded-accordion-item-${props.borderStyle}`">
 		<details :open="isItemOpen" :class="{'ded-accordion-detail ': true, [props.className]: !!props.className}" @toggle="handleToggle">
-			<summary class="ded-accordion-title">
-				<span>{{ label }}</span>
+			<summary class="ded-accordion-title"
+			         :class="props.isSmallSize ? 'ded-accordion-title-small':'ded-accordion-title-default'">
+				<div class="ded-accordion-title-content">
+					<div class="ded-accordion-title-icon">
+						<Icon :name="props.prefix"></Icon>
+					</div>
+					<slot name="label"></slot>
+				</div>
 				<div :class="isItemOpen ? 'ded-accordion-item-open' : 'ded-accordion-item-close'" class="ded-icon-medium">
 					<Icon size="24" name="arrow_down"/>
 				</div>
 			</summary>
-			<div class="ded-detail-content">
-				<p>{{ detail }}</p>
+			<div class="ded-accordion-detail-content">
+				<slot name="detail"></slot>
 			</div>
 		</details>
 	</li>
