@@ -20,7 +20,6 @@ $text-levels: (
   font-weight: $text-regular;
   color: currentColor;
   word-break: keep-all;
-  line-height: 1;
 
   @each $theme in $themes {
     &-#{$theme} {
@@ -31,6 +30,7 @@ $text-levels: (
   @each $level in $levels {
     &-#{$level} {
       font-size: getTextLevel('size', $level);
+      font-weight: getTextLevel('weight', $level);
     }
   }
 }
