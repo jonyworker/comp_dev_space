@@ -40,13 +40,11 @@ const props = defineProps({
 	},
 	borderWidth: {
 		type: String,
-		default: "none",
-		validator: (value) => ["none", "xs", "sm", "md", "lg", "xl"].includes(value),
+		validator: (value) => ["none", "1px", "2px", "3px", "4px", "5px"].includes(value),
 	},
 	radius: {
 		type: String,
-		default: "none",
-		validator: (value) => ["none", "xs", "sm", "md", "lg", "xl", "full"].includes(value),
+		validator: (value) => ["none", "2px", "4px", "8px", "12px", "16px", "32px", "full"].includes(value),
 	},
 	isDisabled: {
 		type: Boolean,

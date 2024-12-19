@@ -87,20 +87,20 @@ export default {
 		borderWidth: {
 			description: "按鈕邊框寬度",
 			control: { type: "select" },
-			options: ["none", "xs", "sm", "md", "lg", "xl"],
+			options: ["none", "1px", "2px", "3px", "4px", "5px"],
 			table: {
 				type: {
-					summary: "none | xs | sm | md | lg | xl",
+					summary: "none | 1px | 2px | 3px | 4px | 5px",
 				}
 			}
 		},
 		radius: {
 			description: "按鈕圓角大小",
 			control: { type: "select" },
-			options: ["none", "xs", "sm", "md", "lg", "xl", "full"],
+			options: ["none", "2px", "4px", "8px", "12px", "16px", "32px", "full"],
 			table: {
 				type: {
-					summary: "none | xs | sm | md | lg | xl | full",
+					summary: "none | 2px | 4px | 8px | 12px | 16px | 32px |full",
 				}
 			}
 		},
@@ -143,8 +143,8 @@ export const DefaultButtonStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		borderWidth: 'sm',
-		radius: 'sm',
+		borderWidth: '',
+		radius: '',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
@@ -214,8 +214,8 @@ export const ButtonPrefixSuffixStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		borderWidth: 'sm',
-		radius: 'sm',
+		borderWidth: '',
+		radius: '',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
@@ -315,8 +315,8 @@ export const ButtonTypeStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		borderWidth: 'sm',
-		radius: 'sm',
+		borderWidth: '',
+		radius: '',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
@@ -470,8 +470,8 @@ export const ButtonColorStory = {
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
-		borderWidth: 'sm',
-		radius: 'sm',
+		borderWidth: '',
+		radius: '',
 		isDisabled: false,
 		className: "",
 		default: 'Button',
