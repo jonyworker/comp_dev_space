@@ -1,148 +1,77 @@
-// 變量
-$primary-bg-color: #fff;
-$secondary-bg-color: #f2f2f2;
-$border-color: #f5f5f5;
-$text-color: #333;
-$header-text-color: #666;
+@use 'sass:list';
 
-// 混合
-@mixin box-shadow($shadow...) {
-    -webkit-box-shadow: $shadow;
-    -moz-box-shadow: $shadow;
-    box-shadow: $shadow;
-}
-
-@mixin ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-// 表格容器
-.table-container {
-    border-radius: 4px;
-    overflow: hidden;
-    @include box-shadow(
-        0 1px 3px 0 rgba(0, 0, 0, 0.1),
-        0 1px 2px 0 rgba(0, 0, 0, 0.06)
-    );
+.ded-table-container {
+    width: 100%;
     overflow-x: auto;
-}
+    -webkit-overflow-scrolling: touch; // 觸控設備優化
 
-// 表格
-.table {
-    min-width: 100%;
-    border-collapse: collapse;
-    background-color: $primary-bg-color;
+    .ded-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 16px;
+        color: list.nth($text-secondary, $site);
+        table-layout: fixed;
 
-    &__header,
-    &__cell {
-        border-bottom: 1px solid $border-color;
-        vertical-align: middle;
+        &-thead,
+        &-tbody {
+            &-tr {
 
-    }
+                &-th,
+                &-td {
+                    padding: 0.75em;
+                    text-align: left;
+                    border-top-width: $border-width-1;
+                    border-top-style: solid;
+                    border-top-color: list.nth($neutral-100, $site);
+                    border-bottom-width: $border-width-1;
+                    border-bottom-style: solid;
+                    border-bottom-color: list.nth($neutral-100, $site);
+                    word-wrap: break-word;
+                    // overflow: hidden;
+                    // text-overflow: ellipsis;
 
-    &__header {
-        background-color: $secondary-bg-color;
-        font-size: 12px;
-        padding: 12px 24px;
-
-        &.sticky_byHead {
-            position: sticky;
-            top: 0px;
-            z-index: 1;
-
-            &:first-child {
-                position: sticky;
-                left: -1px;
-                z-index: 2;
+                    &-border {
+                        border-left-width: $border-width-1;
+                        border-left-style: solid;
+                        border-left-color: list.nth($neutral-100, $site);
+                        border-right-width: $border-width-1;
+                        border-right-style: solid;
+                        border-right-color: list.nth($neutral-100, $site);
+                    }
+                }
             }
         }
 
-        &:first-child {
-            position: sticky;
+        &-thead {
+            background-color: list.nth($neutral-50, $site);
 
-            left: -1px;
-            z-index: 2;
-        }
-    }
-    &__row {
-        &:nth-child(even) {
-                background-color: #f2f2f2;
-        }
-    }
-    &__cell {
-        padding: 16px 24px;
-        transition: background-color 0.2s ease;
-
-        &:first-child {
-            position: sticky;
-            // box-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
-            left: -1px;
-            z-index: 1;
-
-            // &:after {
-            //     content: "";
-            //     position: absolute;
-            //     right: -6px;
-            //     top: 0;
-            //     bottom: -1px;
-            //     width: 10px;
-            //     border-left: 1px solid var(--borderColor);
-            //     background: linear-gradient(
-            //         90deg,
-            //         rgba(0, 0, 0, 0.08) 0%,
-            //         rgba(0, 0, 0, 0) 100%
-            //     );
-            // }
+            &-tr {
+                &-th {
+                    font-weight: bold;
+                    color: list.nth($text-primary, $site);
+                }
+            }
         }
 
-        //&:nth-child(even) {
-        //    background-color: #f2f2f2;
-        //}
-    }
-}
+        &-tbody {
+            &-tr {
+                &-td {
+                    padding: 0.75em;
+                    text-align: left;
 
-// 文本對齊
-.text {
-    &--left {
-        text-align: left;
-    }
+                    &:first-child {
+                        font-weight: bold;
+                    }
+                }
 
-    &--ellipsis {
-        @include ellipsis;
-        max-width: 200px;
-
-        &:hover {
-            overflow: visible;
-            white-space: normal;
+                &:hover {
+                    background-color: list.nth($neutral-50, $site);
+                }
+            }
         }
     }
 }
 
-// 斑馬條紋
-.zebra {
-    //background-color: $secondary-bg-color;
-    //background-color: red;
-}
-
-// 排序按鈕
-.sort-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-// 表格標題
-#table-header {
-    h2 {
-        margin-bottom: 0;
-    }
-
-    p {
-        margin-top: 5px;
-        color: $header-text-color;
-    }
+.ded-table-checkbox {
+    width: 32px;
 }

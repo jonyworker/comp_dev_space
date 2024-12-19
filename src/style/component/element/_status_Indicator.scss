@@ -1,86 +1,82 @@
+@use 'sass:list';
+
 .status-indicator {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 4px 8px;
     border-radius: 4px;
-    color: #fff
-}
+    color: list.nth($neutral-0, $site);
 
-.status-indicator-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-    background-color: #fff
-}
+    &-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: list.nth($neutral-0, $site);
+    }
 
-.status-indicator-text {
-    font-size: 16px
-}
+    &-text {
+        font-size: 16px;
 
-.status-indicator-text-neutral,
-.status-indicator-text-primary,
-.status-indicator-text-secondary,
-.status-indicator-text-success,
-.status-indicator-text-warning,
-.status-indicator-text-error,
-.status-indicator-text-info {
-    color: #fff
-}
+        @each $variant in $variants {
+            @each $theme in $themes {
+                &-#{$theme} {
 
-.status-indicator-text-neutral {
-    color: #7f7f82
-}
+                    @if($variant =='filled') {
+                        color: list.nth($neutral-0, $site);
+                    }
 
-.status-indicator-text-primary {
-    color: #305ec3
-}
+                    @if($variant =='text') {
+                        color: getStatusColor($theme, 'dark');
+                    }
+                }
+            }
+        }
+    }
 
-.status-indicator-text-secondary {
-    color: #bc9cdb
-}
+    /* 大小設定 */
+    // &-small {
+    //   .status-indicator-dot {
+    //     width: 6px;
+    //     height: 6px;
+    //   }
 
-.status-indicator-text-success {
-    color: #209f59
-}
+    //   .status-indicator-text {
+    //     font-size: 12px;
+    //   }
+    // }
 
-.status-indicator-text-warning {
-    color: #cc7f36
-}
+    // &-medium {
+    //   .status-indicator-dot {
+    //     width: 8px;
+    //     height: 8px;
+    //   }
 
-.status-indicator-text-error {
-    color: #cc3d41
-}
+    //   .status-indicator-text {
+    //     font-size: 14px;
+    //   }
+    // }
 
-.status-indicator-text-info {
-    color: #0095a7
-}
+    // &-large {
+    //   .status-indicator-dot {
+    //     width: 12px;
+    //     height: 12px;
+    //   }
 
-.status-indicator-filled-neutral {
-    background-color: #7f7f82
-}
+    //   .status-indicator-text {
+    //     font-size: 16px;
+    //   }
+    // }
 
-.status-indicator-filled-primary {
-    background-color: #305ec3
-}
+    @each $variant in $variants {
+        @each $theme in $themes {
+            &-#{$variant}-#{$theme} {
 
-.status-indicator-filled-secondary {
-    background-color: #bc9cdb
-}
-
-.status-indicator-filled-success {
-    background-color: #209f59
-}
-
-.status-indicator-filled-warning {
-    background-color: #cc7f36
-}
-
-.status-indicator-filled-error {
-    background-color: #cc3d41
-}
-
-.status-indicator-filled-info {
-    background-color: #0095a7
+                @if($variant =='filled') {
+                    background-color: getStatusColor($theme, 'dark');
+                }
+            }
+        }
+    }
 }

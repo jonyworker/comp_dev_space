@@ -62,7 +62,7 @@
 .ded-input {
   height: 100%;
   width: 100%;
-  padding-inline: 8px;
+  padding-inline: 8px 2em;
   color: list.nth($text-secondary, $site);
 
   &::placeholder {

@@ -102,7 +102,7 @@ $link-outline: blend-rgba($link-default, $alpha-light-80);
 
 // AUO-From
 $form-default: list.nth($form-default, $site);
-$form-hover: blend-rgba($form-default, $alpha-light-80);
+$form-hover: blend-rgba($form-default, $alpha-light-30);
 $form-focus: blend-rgba($form-default, $alpha-light-20);
 $form-active: blend-rgba($form-default, $alpha-light-90);
 $form-outline: blend-rgba($form-default, $alpha-light-80);
