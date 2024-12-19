@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
 			<li class="ded-breadcrumb-item" v-for="(item, index) in truncatedBreadcrumbs" :key="index">
 				<template v-if="item.label === '...'">
 					<div class="ded-rest">
-						<span class="ded-rest-label" @click="handleClick">...</span>
+						<div class="ded-rest-label" @click="handleClick">...</div>
 						<teleport to="body">
 
 							<div v-if="isOpen"
