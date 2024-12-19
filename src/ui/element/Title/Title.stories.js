@@ -64,7 +64,7 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "neutral",
+		themeColor: "primary",
 		level: 1,
 		className: "",
 		default: "Title",
@@ -125,41 +125,43 @@ export const HeadingSizeDefault = {
 			};
 		},
 		template: `
-            <Title 
-                :themeColor="args.themeColor"
-                level="1"
-                :className="args.className"
-            >Level:1 {{ args.default }}</Title>
-            <Title
-	            :themeColor="args.themeColor"
-	            level="2"
-	            :className="args.className"
-            >Level:2 {{ args.default }}</Title>
-            <Title
-	            :themeColor="args.themeColor"
-	            level="3"
-	            :className="args.className"
-            >Level:3 {{ args.default }}</Title>
-            <Title
-	            :themeColor="args.themeColor"
-	            level="4"
-	            :className="args.className"
-            >Level:4 {{ args.default }}</Title>
-            <Title
-	            :themeColor="args.themeColor"
-	            level="5"
-	            :className="args.className"
-            >Level:5 {{ args.default }}</Title>
-            <Title
-	            :themeColor="args.themeColor"
-	            level="6"
-	            :className="args.className"
-            >Level:6 {{ args.default }}</Title>
-            <Title
-	            :themeColor="args.themeColor"
-	            level="0"
-	            :className="args.className"
-            >Level:0 {{ args.default }}</Title>
+			<div style="display:flex; flex-direction: column; gap:8px">
+				<Title
+					:themeColor="args.themeColor"
+					level="1"
+					:className="args.className"
+				>Level:1 {{ args.default }}</Title>
+				<Title
+					:themeColor="args.themeColor"
+					level="2"
+					:className="args.className"
+				>Level:2 {{ args.default }}</Title>
+				<Title
+					:themeColor="args.themeColor"
+					level="3"
+					:className="args.className"
+				>Level:3 {{ args.default }}</Title>
+				<Title
+					:themeColor="args.themeColor"
+					level="4"
+					:className="args.className"
+				>Level:4 {{ args.default }}</Title>
+				<Title
+					:themeColor="args.themeColor"
+					level="5"
+					:className="args.className"
+				>Level:5 {{ args.default }}</Title>
+				<Title
+					:themeColor="args.themeColor"
+					level="6"
+					:className="args.className"
+				>Level:6 {{ args.default }}</Title>
+				<Title
+					:themeColor="args.themeColor"
+					level="0"
+					:className="args.className"
+				>Level:0 {{ args.default }}</Title>
+			</div>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -231,42 +233,43 @@ export const HeadingColorDefault = {
 			};
 		},
 		template: `
-            <Title
-                themeColor="primary"
-                :level="args.level"
-                :className="args.className"
-            >{{ args.default }}</Title>
-            <Title
-	            themeColor="secondary"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
-            <Title
-	            themeColor="neutral"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
-            <Title
-	            themeColor="info"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
-            <Title
-	            themeColor="success"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
-            <Title
-	            themeColor="warning"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
-            <Title
-	            themeColor="error"
-	            :level="args.level"
-	            :className="args.className"
-            >{{ args.default }}</Title>
-            
+            <div style="display:flex; gap:8px">
+	            <Title
+		            themeColor="primary"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="secondary"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="neutral"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="info"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="success"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="warning"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="error"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title> 
+            </div>
         `,
 	}),
 	// 控制 controls 中能控制的參數
