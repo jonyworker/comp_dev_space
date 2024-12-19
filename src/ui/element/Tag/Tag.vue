@@ -1,6 +1,5 @@
 <script setup>
 import Icon from "@/ui/element/Icon/Icon.vue";
-import Button from "@/ui/element/Button/Button.vue";
 
 const emits = defineEmits(['onClose']);
 
@@ -12,16 +11,23 @@ const props = defineProps({
 			[
 				"primary",
 				"secondary",
-				"tertiary",
+				"neutral",
+				"info",
 				"success",
 				"warning",
 				"error",
-				"info",
 			].includes(value),
+	},
+	variable: {
+		type: String,
+		validator: (value) => ["filled", "ghost",].includes(value),
 	},
 	label: {
 		type: String,
 		required: true,
+	},
+	href: {
+		type: String,
 		default: "",
 	},
 	prefix: {
@@ -47,32 +53,30 @@ const closeTag = () => {
 </script>
 
 <template>
-    <span
+    <div
 	    :class="[
             'ded-tag',
-            { 'ded-tag-contained': props.themeColor && !props.isDisabled },
-            { 'ded-tag-outlined': props.themeColor && props.isDisabled },
-            { [`ded-tag-contained-${props.themeColor}`]: props.themeColor && !props.isDisabled },
-            { [`ded-tag-outlined-${props.themeColor}`]: props.themeColor && props.isDisabled },
-            { 'ded-tag-contained-disabled': props.isDisabled },
-            { 'ded-tag-outlined-disabled': props.isDisabled },
+            { [`ded-tag-${props.variable}`]: props.variable },
+            { [`ded-tag-${props.variable}-${props.themeColor}`]: props.variable && props.themeColor &&
+            !props.isDisabled },
+            { [`ded-tag-${props.variable}-disabled`]: props.isDisabled },
+			{'ded-tag-closable': props.closable},
             props.className && props.className.split(' '),
         ]"
     >
-        <template v-if="props.prefix">
-            <div class="ded-tag-icon">
-                <Icon :name="props.prefix" size="18" />
-            </div>
-        </template>
+        <div class="ded-tag-text">
+			<template v-if="props.prefix">
+				<div class="ded-tag-icon">
+					<Icon :name="props.prefix"/>
+				</div>
+			</template>
+			{{ props.label }}
+		</div>
+		<template v-if="props.closable">
+			<Icon name="close" class="ded-tag-close" @click="closeTag"/>
 
-        <span class="ded-tag-text">{{ props.label }}</span>
-
-        <template v-if="props.closable">
-	        <Button variant="text" themeColor="primary" @click="closeTag">
-				<Icon name="close" class="ded-tag-close"/>
-			</Button>
-        </template>
-    </span>
+		</template>
+    </div>
 </template>
 
 <style lang="scss" scoped>
