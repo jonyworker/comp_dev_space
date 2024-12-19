@@ -90,28 +90,29 @@ const toggleDropdown = () => {
 		<label
 			v-if="label"
 			:for="inputId"
-			:class="isDisabled ? 'ded-input-disable' : 'ded-input-label'"
+			:class="props.isDisabled ? 'ded-input-disable' : 'ded-input-label'"
 		>
 			{{ label }}
 		</label>
 
 		<!-- 輸入框組 -->
 		<div
-			:class="[
-		        'ded-input-group',
-		        `ded-component-${props.size}`,
-		        `ded-input-border-${hintClass}`,
-		        { 'ded-input-disable': props.isDisabled }
-	        ]"
+			:class="{
+		        'ded-input-group':true,
+		        [`ded-component-${props.size}`]: props.size,
+		        [`ded-input-border-${hintClass}`]:hintClass,
+	            'ded-input-disable': props.isDisabled
+	        }"
 		>
 			<!-- Prefix Icon -->
 			<label
 				v-if="prefix"
 				:for="inputId"
-				:class="[
-		          `ded-icon-${props.size}`,
-		          'ded-input-icon'
-		        ]"
+				:class="{
+		            'ded-input-icon':true,
+					[`ded-icon-${props.size}`]:props.size,
+					'ded-input-icon-disable': props.isDisabled,
+				}"
 					>
 				<Icon :name="props.prefix" />
 			</label>
@@ -122,15 +123,19 @@ const toggleDropdown = () => {
 				:type="showPassword && props.type === 'password' ? 'text' : props.type"
 				v-model="modelValue"
 				:placeholder="props.placeholder"
-				:class="['ded-input', `text-${props.size}`, props.prefix ? 'ded-input-prefix' : '']"
-				:disabled="props.isDisabled"
+				:class="{
+					'ded-input':true,
+					[`text-${props.size}`]: props.size,
+					'ded-input-prefix': props.prefix,
+					'ded-input-disable': props.isDisabled,
+				}"
 			/>
 
 			<!-- 功能圖示 -->
 			<div class="ded-input-feat-icon">
 				<!-- 清除按鈕 -->
 				<div
-					v-if="modelValue"
+					v-if="modelValue && !props.isDisabled"
 					:class="`ded-icon-${props.size}`"
 					@click="clearInput"
 					style="cursor: pointer"
@@ -165,11 +170,11 @@ const toggleDropdown = () => {
 
 		<!-- 提示文字 -->
 		<small
-			:class="[
-				'ded-input-hint',
-				`ded-input-hint-${hintClass}`,
-				{ 'ded-input-disable': props.isDisabled }
-			]"
+			:class="{
+				'ded-input-hint': true,
+				[`ded-input-hint-${hintClass}`]: hintClass && !props.isDisabled,
+				'ded-input-disable': props.isDisabled
+			}"
 		>
 			{{ hint.error || hint.description }}
 		</small>
