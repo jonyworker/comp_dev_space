@@ -60,7 +60,7 @@ export default {
 			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
 		},
 		closable: {
-			description: "是否可關閉",
+			description: "摸到時顯示關閉",
 			control: { type: "boolean" },
 		},
 		isDisabled: {
