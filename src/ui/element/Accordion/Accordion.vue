@@ -92,5 +92,4 @@ const sanitizedDataSource = computed(() => {
 </template>
 
 <style scoped lang="scss">
-/* Add your styles here */
 </style>
