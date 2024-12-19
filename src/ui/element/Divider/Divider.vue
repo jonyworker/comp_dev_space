@@ -4,9 +4,9 @@ const props = defineProps({
 	width: {
 		//線條粗細
 		type: String,
-		default: "xsmall",
+		default: "",
 		validator: (value) =>
-			["xsmall", "small", "medium", "large", "xlarge"].includes(value),
+			["1px", "2px", "3px", "4px", "5px"].includes(value),
 	},
 	type: {
 		//線條種類
@@ -38,7 +38,7 @@ const props = defineProps({
         :class="[
             'ded-divider',
             `ded-divider-${props.direction}`,
-            `ded-divider-width-${props.width}`,
+            `ded-divider-${props.width}`,
             `ded-divider-${props.type}`,
             $slots.default ? `ded-divider-${props.align}` : '',
             ...props.className.split(' ')

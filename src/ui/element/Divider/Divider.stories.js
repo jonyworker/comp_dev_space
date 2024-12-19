@@ -10,16 +10,10 @@ export default {
             control: {
                 type: "select",
             },
-            options: [
-                "xsmall",
-                "small",
-                "medium",
-                "large",
-                "xlarge",
-            ],
+            options: ["1px", "2px", "3px", "4px", "5px"],
             table: {
                 type: {
-                    summary: "xsmall | small | medium | large | xlarge"
+                    summary: "1px | 2px | 3px | 4px | 5px"
                 }
             }
         },
@@ -79,7 +73,7 @@ export default {
 export const DividerDefault = {
     name: "預設項目",
     args: {
-        width: "small",
+        width:"1px",
         type: "solid",
         direction: "horizontal",
         align: "center",
@@ -134,7 +128,7 @@ export const DividerDefault = {
 export const DividerContent = {
     name: "文字對齊",
     args: {
-        width: "small",
+        width:"1px",
         type: "solid",
         className: ""
     },
@@ -216,7 +210,7 @@ export const DividerContent = {
 export const DividerWidth = {
     name: "線條粗細",
     args: {
-        width: "small",
+        width:"1px",
         type: "solid",
         direction: "horizontal",
         align: "center",
@@ -234,39 +228,39 @@ export const DividerWidth = {
 			<div :style="{ flexDirection: args.direction === 'horizontal' ? 'column' : 'row' }"
 					style="display:flex; gap: 16px; height: 400px">
 				<Divider
-					width="xsmall"
+					width="1px"
 					:type="args.type"
 					:direction="args.direction"
 					:align="args.align"
                     :className="args.className"
-				>xsmall / 1px</Divider>
+				>1px</Divider>
 				<Divider
-					width="small"
+					width="2px"
 					:type="args.type"
 					:direction="args.direction"
 					:align="args.align"
                     :className="args.className"
-				>small / 2px</Divider>
+				>2px</Divider>
 				<Divider
-					width="medium"
+					width="3px"
 					:type="args.type"
 					:direction="args.direction"
 					:align="args.align"
                     :className="args.className"
-				>medium / 4px</Divider>
+				>3px</Divider>
 				<Divider
-					width="large"
+					width="4px"
 					:type="args.type"
 					:direction="args.direction"
 					:align="args.align"
-				>large / 6px</Divider>
+				>4px</Divider>
 				<Divider
-					width="xlarge"
+					width="5px"
 					:type="args.type"
 					:direction="args.direction"
 					:align="args.align"
                     :className="args.className"
-				>xlarge / 8px</Divider>
+				>5px</Divider>
 			</div>
 		`,
     }),
@@ -328,7 +322,7 @@ export const DividerWidth = {
 export const DividerTypes = {
     name: "線條類型",
     args: {
-        width: "small",
+        width:"1px",
         direction: "horizontal",
         align: "center",
         className: "",
@@ -413,7 +407,7 @@ export const DividerDirection = {
     name: "線條方向",
     args: {
         themeColor: "",
-        width: "small",
+        width:"1px",
         type: "solid",
         className: "",
     },
