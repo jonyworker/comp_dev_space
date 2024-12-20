@@ -18,10 +18,10 @@ export default {
 		size: {
 			description: "尺寸",
 			control: { type: "select" },
-			options: ["xsmall", "small", "medium", "large"],
+			options: [ "small", "medium", "large"],
 			table: {
 				type: {
-					summary: "xsmall | small | medium | large"
+					summary: "small | medium | large"
 				}
 			}
 		},
@@ -35,11 +35,10 @@ export default {
 				}
 			}
 		},
-		userName: {
-			description: "使用者名稱",
-			control: { type: "text" },
+		isShowInfo: {
+			description: "是否顯示資訊",
+			control: { type: "boolean" },
 		},
-		
 		src: {
 			description: "圖片連結",
 			control: { type: "text" },
@@ -48,13 +47,13 @@ export default {
 			description: "圖片描述",
 			control: { type: "text" },
 		},
-
-		limit: {
-			description: "在 AvatarGroup 中控制顯示的 Avatar 數量上限",
-			control: { type: "number",
-						min:0,
-						max:5,
-						step: 1 },
+		userName: {
+			description: "使用者名稱",
+			control: { type: "text" },
+		},
+		caption: {
+			description: "使用者描述",
+			control: { type: "text" },
 		},
 		className: {
 			description: "客製化樣式",
@@ -79,9 +78,11 @@ export const DefaultAvatar = {
 		shape: "circle",
 		size: "large",
 		status: "none",
-		src: "https://picsum.photos/200/300",
+		isShowInfo: true,
+		src: "https://storage.googleapis.com/ded-wds-bucket/monkey.png",
 		alt: "無圖顯示",
-		userName: "JonyWu",
+		userName: "Name",
+		caption:'Caption',
 		className: ""
 	},
 	render: (args) => ({
@@ -95,10 +96,12 @@ export const DefaultAvatar = {
             <Avatar
 	            :shape="args.shape"
 	            :size="args.size"
-	            :userName="args.userName"
 	            :status="args.status"
+				:isShowInfo="args.isShowInfo"
 	            :src="args.src"
 	            :alt="args.alt"
+	            :userName="args.userName"
+				:caption="args.caption"
 	            :className="args.className"
             ></Avatar>
         `,
@@ -106,7 +109,6 @@ export const DefaultAvatar = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ['limit']
 		},
 		docs: {
 			source: {
@@ -117,9 +119,11 @@ export const DefaultAvatar = {
 						`  shape="${args.shape}"`,
 						`  size="${args.size}"`,
 						`  status="${args.status}"`,
+						`  isShowInfo="${args.isShowInfo}"`,
 						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 					].join('\n').trim();
@@ -134,10 +138,10 @@ export const AvatarShape = {
 	name: "頭像形狀",
 	args: {
 		size: "large",
-		status: "none",
-		src: "https://picsum.photos/200/300",
+		isShowInfo: true,
 		alt: "無圖顯示",
-		userName: "JonyWu",
+		userName: "Name",
+		caption:'Caption',
 		className: ""
 	},
 	render: (args) => ({
@@ -153,18 +157,22 @@ export const AvatarShape = {
 					shape="circle"
 					:size="args.size"
 					status="online"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
 					:className="args.className"
 				></Avatar>
 				<Avatar
 					shape="square"
 					:size="args.size"
 					status="idle"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/tigger.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
 					:className="args.className"
 				></Avatar>
 			</div>
@@ -174,7 +182,7 @@ export const AvatarShape = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ['shape', 'limit']
+			exclude: ['shape', 'status', 'src'],
 		},
 		docs: {
 			source: {
@@ -184,19 +192,23 @@ export const AvatarShape = {
 						'<Avatar',
 						`  shape="circle"`,
 						`  size="${args.size}"`,
-						`  status="${args.status}"`,
-						`  src="${args.src}"`,
+						`  status="online"`,
+						`  isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/fox.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
 						`  shape="square"`,
 						`  size="${args.size}"`,
-						`  status="${args.status}"`,
-						`  src="${args.src}"`,
+						`  status="idle"`,
+						`  isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/tigger.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 					].join('\n').trim();
@@ -212,9 +224,12 @@ export const AvatarStatus = {
 	args: {
 		shape: "circle",
 		size: "large",
-		src: "https://picsum.photos/200/300",
+		// status: "none",
+		isShowInfo: true,
+		// src: "https://storage.googleapis.com/ded-wds-bucket/monkey.png",
 		alt: "無圖顯示",
-		userName: "JonyWu",
+		userName: "Name",
+		caption:'Caption',
 		className: ""
 	},
 	render: (args) => ({
@@ -230,44 +245,58 @@ export const AvatarStatus = {
 					:shape="args.shape"
 					:size="args.size"
 					status="none"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
+					:className="args.className"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
 					:size="args.size"
 					status="online"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/lion.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
+					:className="args.className"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
 					:size="args.size"
 					status="idle"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/koala.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
+					:className="args.className"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
 					:size="args.size"
 					status="busy"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/dog.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
+					:className="args.className"
 				></Avatar>
 				<Avatar
 					:shape="args.shape"
 					:size="args.size"
 					status="offline"
-					:src="args.src"
+					:isShowInfo="args.isShowInfo"
+					src="https://storage.googleapis.com/ded-wds-bucket/pig.png"
 					:alt="args.alt"
 					:userName="args.userName"
+					:caption="args.caption"
+					:className="args.className"
 				></Avatar>
 			</div>
-            
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -285,45 +314,55 @@ export const AvatarStatus = {
 						`  shape="${args.shape}"`,
 						`  size="${args.size}"`,
 						`  status="none"`,
-						`  src="${args.src}"`,
+						`  :isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/fox.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
 						`  shape="square"`,
 						`  size="${args.size}"`,
 						`  status="online"`,
-						`  src="${args.src}"`,
+						`  :isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/lion.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
 						`  shape="square"`,
 						`  size="${args.size}"`,
 						`  status="idle"`,
-						`  src="${args.src}"`,
+						`  :isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/koala.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
 						`  shape="square"`,
 						`  size="${args.size}"`,
 						`  status="busy"`,
-						`  src="${args.src}"`,
+						`  :isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/dog.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 						'<Avatar',
 						`  shape="square"`,
 						`  size="${args.size}"`,
 						`  status="offline"`,
-						`  src="${args.src}"`,
+						`  :isShowInfo="${args.isShowInfo}"`,
+						`  src="https://storage.googleapis.com/ded-wds-bucket/pig.png"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
+						`  caption="${args.caption}"`,
 						`  className="${args.className}"`,
 						'></Avatar>',
 					].join('\n').trim();

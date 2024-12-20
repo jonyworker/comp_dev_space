@@ -14,7 +14,7 @@ const props = defineProps({
 		type: String,
 		default: "medium",
 		validator: (value) =>
-			["xsmall", "small", "medium", "large"].includes(value),
+			["small", "medium", "large"].includes(value),
 	},
 	status: {
 		type: String,
@@ -22,6 +22,10 @@ const props = defineProps({
 		validator: (value) =>
 			["none", "online", "idle", "busy", "offline"].includes(value),
 	},
+    isShowInfo: {
+        type: Boolean,
+        default: false,
+    },
 	src: {
 		type: String,
 		default: "",
@@ -34,6 +38,10 @@ const props = defineProps({
 		type: String,
 		required: true,
 	},
+    caption: {
+        type: String,
+        required: true,
+    },
 	className: {
 		type: String,
 		default: "",
@@ -57,23 +65,32 @@ const getInitialsOrDefault = (string, count) => {
 </script>
 
 <template>
-	<div :class="{
-		'ded-avatar-container': true,
-		 [`ded-avatar-container-${props.size}`]: true,
-		 [ props.className ]: !!props.className
-	}">
-		<div :class="['ded-avatar', `ded-avatar-${props.shape}`]">
-			<template v-if="props.src">
-				<Image :src="props.src" :alt="props.alt" ratio="11" objectFit="cover"></Image>
-			</template>
-			<template v-else>
+    <div class="ded-avatar-wrapper">
+        <div :class="{
+            'ded-avatar-container': true,
+             [`ded-avatar-container-${props.size}`]: true,
+             [ props.className ]: !!props.className
+        }">
+            <div :class="['ded-avatar', `ded-avatar-${props.shape}`]">
+                <template v-if="props.src">
+                    <Image :src="props.src" :alt="props.alt" ratio="11" objectFit="cover"></Image>
+                </template>
+                <template v-else>
 				<span
-					:class="['ded-avatar-text', `ded-text-${props.size}`]">{{ getInitialsOrDefault(props.userName, 2)
-					}}</span>
-			</template>
-		</div>
-		<AvatarStatus :avatarStatus="props.status" :avatarSize="props.size"></AvatarStatus>
-	</div>
+                    :class="['ded-avatar-text', `ded-text-${props.size}`]">{{ getInitialsOrDefault(props.userName, 2)
+                    }}</span>
+                </template>
+            </div>
+            <AvatarStatus :avatarStatus="props.status" :avatarSize="props.size"></AvatarStatus>
+        </div>
+        <template v-if="props.isShowInfo">
+            <div class="ded-avatar-info">
+                <div class="ded-avatar-info-name">{{ props.userName }}</div>
+                <div class="ded-avatar-info-caption">{{ props.caption }}</div>
+            </div>
+        </template>
+    </div>
+
 </template>
 
 <style scoped lang="scss">
