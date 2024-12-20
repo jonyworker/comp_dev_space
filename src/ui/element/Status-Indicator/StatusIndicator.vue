@@ -45,14 +45,22 @@ const props = defineProps({
 			[props.className]: !!props.className
 		}"
 		role="status">
-		<template v-if="props.variant === 'text'">
+		<template v-if="props.prefix">
 			<div style="line-height: 1;">
 				<Icon :name="props.prefix" size="20"></Icon>
 			</div>
 		</template>
-		<template v-else>
-			<span class="status-indicator-dot" :class="`status-indicator-${props.themeColor}`"></span>
-		</template>
+
+        <template v-else>
+            <div class="status-indicator-content">
+			    <span :class="{
+                    'status-indicator-dot': true,
+                    'status-indicator-dot-white': props.variant=== 'filled',
+			        [`status-indicator-dot-${props.themeColor}`]:props.variant=== 'text' && props.themeColor
+                }"></span>
+            </div>
+        </template>
+
 
 		<div class="status-indicator-text" :class="`status-indicator-text-${props.variant}`">
 			<slot></slot>
