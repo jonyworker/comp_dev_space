@@ -61,16 +61,16 @@ const props = defineProps({
 <template>
 <!--	<button :class="finalButtonClass">-->
 	<button :class="{
-  'ded-button': true,
-  [`ded-button-${props.width}`]: props.width,
-  [`ded-component-${props.size}`]: props.size,
-  [`ded-button-${props.variant}`]: props.variant,
-  [`ded-button-${props.variant}-${props.themeColor}`]: props.variant && props.themeColor,
-  [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
-  [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
-  [`ded-button-radius-${props.radius}`]: props.radius,
-  [props.className]: !!props.className
-}">
+        'ded-button': true,
+        [`ded-button-${props.width}`]: props.width,
+        [`ded-component-${props.size}`]: props.size,
+        [`ded-button-${props.variant}`]: props.variant,
+        [`ded-button-${props.variant}-${props.themeColor}`]: props.variant && props.themeColor,
+        [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
+        [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
+        [`ded-button-radius-${props.radius}`]: props.radius,
+        [props.className]: !!props.className
+    }">
 		<template v-if="prefix">
 			<div :class="`ded-icon-${props.size}`">
 				<Icon :name="props.prefix"></Icon>
