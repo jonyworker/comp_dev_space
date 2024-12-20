@@ -7,36 +7,26 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-	btnVariant: {
-		type: String,
-		default: 'contained',
-		validator: (value) => ['contained', 'outlined', 'text'].includes(value),
-	},
-	btnColor: {
-		type: String,
-		default: 'primary',
-		validator: (value) =>
-			[
-				'primary',
-				'secondary',
-				'tertiary',
-				'success',
-				'warning',
-				'error',
-				'info',
-			].includes(value),
-	},
+    themeColor: {
+        type: String,
+        validator: (value) =>
+            [
+                "primary",
+                "secondary",
+                "neutral",
+                "info",
+                "success",
+                "warning",
+                "error",
+            ].includes(value),
+    },
 	placeholder: {
 		type: String,
 	},
 	size: {
 		type: String,
-		default: 'medium',
+		default: "medium",
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
-	},
-	hint: {
-		type: Object,
-		default: () => ({ error: '', description: '' }),
 	},
 	isDisable: {
 		type: Boolean,
@@ -44,29 +34,35 @@ const props = defineProps({
 	},
 	customClass: {
 		type: String,
-		default: '',
+		default: "",
 	},
 });
 </script>
 
 <template>
-	<!-- 輸入框標題 -->
-	<label v-if="props.inputLabel" class="input-label">{{props.inputLabel}}</label>
-	<div class="search">
-		<Input
-			prefix="search"
-			:placeholder="props.placeholder"
-			:size="props.size"
-			:hint="props.hint"
-			:isDisable="props.isDisable"
-			v-model="modelValue"
-		></Input>
-		<Button
-			:themeColor="props.btnColor"
-			:size="props.size"
-			:variant="props.btnVariant"
-			:isDisable="props.isDisable"
-		>搜尋</Button>
+
+	<div class="ded-search">
+        <Input
+            type="text"
+            :placeholder="props.placeholder"
+            prefix="search"
+            :size="props.size"
+            initValue=""
+            :isDisable="props.isDisable"
+            v-model="modelValue"
+            className="ded-search-input"
+        />
+        <Button
+            :themeColor="props.themeColor"
+            variant="filled"
+            :size="props.size"
+            width="fit"
+            borderWidth="1px"
+            radius="4px"
+            :isDisabled="props.isDisable"
+        >
+            Search
+        </Button>
 	</div>
 </template>
 
