@@ -18,17 +18,17 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: '{ userName: string; src: string; }[]',
+					summary: '{ userName: string; caption: string; src: string; }[]',
 				}
 			}
 		},
 		size: {
 			description: "尺寸",
 			control: { type: "select" },
-			options: ["xsmall", "small", "medium", "large"],
+			options: [ "small", "medium", "large" ],
 			table: {
 				type: {
-					summary: "xsmall | small | medium | large"
+					summary: " small | medium | large"
 				}
 			}
 		},
@@ -61,23 +61,28 @@ export const MultiAvatar = {
 	args: {
 		dataSource:[
 			{
-				"userName": "eason"
+				userName: 'eason',
+				caption: 'Eason',
 			},
 			{
-				"userName": "KevinYang"
+				userName: 'KevinYang',
+				caption: 'Kevin',
 			},
 			{
-				"userName": "AmosLee",
-				"src": "https://picsum.photos/200/300"
+				userName: 'AmosLee',
+				caption: 'Amos',
+				src: 'https://picsum.photos/320/240',
 			},
 			{
-				"userName": "JohnWu",
-				"src": "https://picsum.photos/200/300"
+				userName: 'JohnWu',
+				caption: 'John',
+				src: 'https://picsum.photos/320/340',
 			},
 			{
-				"userName": "Peter",
-				"src": "https://picsum.photos/200/300"
-			}
+				userName: 'Peter',
+				caption: 'Peter',
+				src: 'https://picsum.photos/320/340',
+			},
 		],
 		size: "large",
 		limit: 2,

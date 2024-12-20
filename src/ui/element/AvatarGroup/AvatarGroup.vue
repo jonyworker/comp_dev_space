@@ -14,7 +14,7 @@ const props = defineProps({
 		type: String,
 		default: "large",
 		validator: (value) =>
-			["xsmall", "small", "medium", "large"].includes(value),
+			[ "small", "medium", "large" ].includes(value),
 	},
 	limit: {
 		type: Number,
@@ -107,40 +107,43 @@ onBeforeUnmount(() => {
 
 <template>
 	<div :class="{'ded-avatar-group': true,[props.className]: !!props.className,}">
-		<Avatar
-			v-for="(avatar, index) in currList"
-			:key="index"
-			:size="props.size"
-			:src="avatar.src"
-			alt="alt text"
-			:userName="avatar.userName"
-		></Avatar>
-
-		<template  v-if="restList.length > 0">
-			<div ref="restContainerRef" v-if="restList.length > 0" :class="[ 'ded-avatar-container', props.size ?
-			`ded-avatar-container-${props.size}` : 'ded-avatar-container-medium' ]">
-				<button
-					:class="[ 'ded-avatar', props.shape ? `ded-avatar-${props.shape}` : 'ded-avatar-circle' ]"
-					@click="handleClick"
-					style="cursor: pointer;"
-				>
+		<div class="ded-avatar-overlay" v-for="(avatar, index) in currList" :key="index">
+            <Avatar
+                :shape="props.shape"
+                :size="props.size"
+                :src="avatar.src"
+                :userName="avatar.userName"
+                :caption="avatar.caption"
+            ></Avatar>
+        </div>
+        <template  v-if="restList.length > 0">
+            <div class="ded-avatar-overlay">
+                <div ref="restContainerRef" v-if="restList.length > 0"
+                     :class="['ded-avatar-container',`ded-avatar-container-${props.size}`]">
+                    <button
+                        class="ded-avatar ded-avatar-circle"
+                        @click="handleClick"
+                        style="cursor: pointer;"
+                    >
                     <span class="ded-avatar-text">
                         {{ `+${restCount}` }}
                     </span>
-				</button>
-			</div>
+                    </button>
+                </div>
+            </div>
 
-			<Teleport to="body">
-				<div
-					v-if="isOpen"
-					class="ded-dropdown-menu"
-					:style="{
+
+            <Teleport to="body">
+                <div
+                    v-if="isOpen"
+                    class="ded-dropdown-menu"
+                    :style="{
                         position: 'absolute',
                         top: menuStyles.top,
                         left: menuStyles.left,
                         'z-index': 9999
                     }"
-				>
+                >
                     <List
                         :dataSource="restList"
                         :hasOutline="true"
@@ -154,16 +157,18 @@ onBeforeUnmount(() => {
                             :prefix="menu.prefix"
                         >
                             <Avatar
-                                size="xsmall"
-                                :src="menu.src"
-                                alt="alt text"
+                                shape="circle"
+                                size="medium"
+
                                 :userName="menu.userName"
+                                :caption="menu.caption"
                             ></Avatar>
                         </ListItem>
                     </List>
-				</div>
-			</Teleport>
-		</template>
+                </div>
+            </Teleport>
+        </template>
+
 	</div>
 </template>
 
