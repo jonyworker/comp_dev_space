@@ -71,7 +71,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 2px solid list.nth($icon-default, $site);
+                border: 2px solid $icon-default;
                 border-radius: $radius-999;
             }
         }

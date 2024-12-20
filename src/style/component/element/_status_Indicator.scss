@@ -8,12 +8,41 @@
     border-radius: 4px;
     color: list.nth($neutral-0, $site);
 
+    &-content {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &-prefix {
+        display: inline-flex;
+        align-items: center;
+    }
+
     &-dot {
+        margin: 6px;
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        display: inline-block;
-        background-color: list.nth($neutral-0, $site);
+
+        &-white {
+            background-color: list.nth($neutral-0, $site);
+        }
+
+        @each $variant in $variants {
+            @each $theme in $themes {
+                &-#{$theme} {
+
+                    @if($variant =='filled') {
+                        background-color: list.nth($neutral-0, $site);
+                    }
+
+                    @else {
+                        background-color: getStatusColor($theme, 'dark');
+                    }
+                }
+            }
+        }
     }
 
     &-text {
