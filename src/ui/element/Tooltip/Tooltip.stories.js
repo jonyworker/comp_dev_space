@@ -93,7 +93,6 @@ export const DefaultTooltip = {
 						themeColor="primary"
 						variant="filled"
 						prefix="face"
-						radius="md"
 					>
 						Hover Me
 					</Button>
@@ -117,7 +116,7 @@ export const DefaultTooltip = {
 						`    :showArrow="${args.showArrow}"`,
 						`    className="${args.className}"`,
 						'  >',
-						'    <Button variant="contained" size="large" prefix="face">Hover Me</Button>',
+						'    <Button themeColor="primary" variant="filled" prefix="face">Hover Me</Button>',
 						'  </Tooltip>',
 					].join('\n').trim();
 				}
