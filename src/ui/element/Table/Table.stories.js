@@ -27,7 +27,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ head: string; column1: string; column2: string; column3: string; column4: string; column5: string }[]",
+					summary: "{ head: string; key1: string; key2: string; ..., keyX: string }[]",
 				},
 			},
 		},
