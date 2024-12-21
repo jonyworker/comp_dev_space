@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 import Image from "@/ui/element/Image/Image.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
-import Column from "@/ui/layout/Grid/Column.vue";
+import Column from "@/ui/layout/Grid/old/Column.vue";
 import Title from "@/ui/element/Title/Title.vue";
 
 

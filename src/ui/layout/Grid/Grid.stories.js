@@ -2,7 +2,6 @@ import Grid from "@/ui/layout/Grid/Grid.vue"
 import Row from "@/ui/layout/Grid/Row.vue"
 import Column from "@/ui/layout/Grid/Column.vue"
 
-
 export default {
 	components: {Grid, Row, Column},
 	title: 'Component/Grid',
@@ -13,8 +12,9 @@ export default {
 	},
 	tags: ["autodocs"],
 	argTypes: {
+		// Grid 設定
 		fluid: {
-			description: "將元件寬度設置為 100%，以填滿父級容器",
+			description: "是否使用 100% 寬度",
 			control: { type: "boolean" },
 			table: {
 				category: 'Grid',
@@ -27,132 +27,110 @@ export default {
 				category: 'Grid',
 			},
 		},
-
-		//響應式 align-items 設定，控制 column 內容對齊方式
-		align: {
-			description: 'align-items 設定',
-			control: { type: "select" },
-			options: ['start', 'end', 'center', 'baseline', 'stretch'],
-			table: {
-				category: 'ROW',
-			},
-		},
-
-		//響應式 justify-content 設定，讓內容在水平方向上分配空間
+		// Row 設定
 		justify: {
-			description: 'justify-content 設定',
+			description: '垂直對齊方式',
 			control: { type: "select" },
-			options: ['start', 'end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly',],
+			options: ['flex-start', 'center', 'flex-end', 'space-between', 'space-around',
+				'space-evenly'],
+			table: {
+				category: 'ROW',
+				type: {
+					summary: "flex-start | center | flex-end | space-between | space-around | space-evenly "
+				}
+			},
+		},
+		alignItem: {
+			description: '水平對齊方式',
+			control: { type: "select" },
+			options: ['flex-start', 'center', 'flex-end', 'baseline', 'stretch'],
+			table: {
+				category: 'ROW',
+				type: {
+					summary: "flex-start | center | flex-end | baseline | stretch "
+				}
+			},
+		},
+		hasGap: {
+			description:"是否有間距",
+			control: { type: "boolean" },
 			table: {
 				category: 'ROW',
 			},
 		},
-
-		// column row gap 設定
-		g: {
-			description: '間距設定',
-			control: {
-				type: "select",
-				// 使用 labels 來定義顯示文字
-				labels: {
-					'0': "0 (0rem)",
-					'1': "1 (0.25rem)",
-					'2': "2 (0.5rem)",
-					'3': "3 (1rem)",
-					'4': "4 (1.5rem)",
-					'5': "5 (3rem)",
-				}},
-			options: ['0', '1', '2', '3', '4', '5',],
-			table: {
-				category: 'ROW',
-			},
-		},
-		gx: {
-			description: '水平間距設定',
-			control: {
-				type: "select",
-				// 使用 labels 來定義顯示文字
-				labels: {
-					'0': "0 (0rem)",
-					'1': "1 (0.25rem)",
-					'2': "2 (0.5rem)",
-					'3': "3 (1rem)",
-					'4': "4 (1.5rem)",
-					'5': "5 (3rem)",
-				}},
-			options: ['0', '1', '2', '3', '4', '5',],
-			table: {
-				category: 'ROW',
-			},
-		},
-		gy: {
-			description: '垂直間距設定',
-			control: {
-				type: "select",
-				// 使用 labels 來定義顯示文字
-				labels: {
-					'0': "0 (0rem)",
-					'1': "1 (0.25rem)",
-					'2': "2 (0.5rem)",
-					'3': "3 (1rem)",
-					'4': "4 (1.5rem)",
-					'5': "5 (3rem)",
-				}},
-			options: ['0', '1', '2', '3', '4', '5',],
-			table: {
-				category: 'ROW',
-			},
-		},
-
 		// column 設定
-		col: {
-			description: 'column 長度',
+		align: {
+			description: '對齊方式',
 			control: { type: "select" },
-			options: ['1', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
+			options: ['start', 'center', 'end'],
 			table: {
 				category: 'COLUMN',
+			},
+		},
+		// col: {
+		// 	description: 'column 長度',
+		// 	control: { type: "select" },
+		// 	options: ['1', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
+		// 	table: {
+		// 		category: 'COLUMN',
+		// 	},
+		// },
+		xs: {
+			description: '手機尺寸',
+			control: { type: "select" },
+			options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+			table: {
+				category: 'COLUMN',
+				type: {
+					summary: " 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12",
+				}
 			},
 		},
 		sm: {
-			description: 'column 長度斷點 sm 設定',
+			description: '平板尺寸',
 			control: { type: "select" },
-			options: ['1 ', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
+			options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			table: {
 				category: 'COLUMN',
+				type: {
+					summary: " 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12",
+				}
 			},
 		},
 		md: {
-			description: 'column 長度斷點 md 設定',
+			description: '桌機尺寸',
 			control: { type: "select" },
-			options: ['1 ', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
+			options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			table: {
 				category: 'COLUMN',
+				type: {
+					summary: " 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12",
+				}
 			},
 		},
 		lg: {
-			description: 'column 長度斷點 lg 設定',
+			description: '大桌機尺寸',
 			control: { type: "select" },
-			options: ['1 ', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
+			options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			table: {
 				category: 'COLUMN',
+				type: {
+					summary: " 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12",
+				}
 			},
 		},
 		xl: {
-			description: 'column 長度斷點 xl 設定',
+			description: '超大桌機尺寸',
 			control: { type: "select" },
-			options: ['1 ', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
+			options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			table: {
 				category: 'COLUMN',
+				type: {
+					summary: " 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12",
+				}
 			},
 		},
-		xxl: {
-			description: 'column 長度斷點 xxl 設定',
-			control: { type: "select" },
-			options: ['1 ', '2', '3 ', '4', '5', '6 ', '7', '8 ', '9', '10', '11', '12'],
-			table: {
-				category: 'COLUMN',
-			},
-		},
+
 	},
 	parameters: {
 		// 自動文件
@@ -174,19 +152,17 @@ export const GridDefaultStory = {
 		className: '',
 
 		//Row
-		g: '0',
-		gx: '',
-		gy: '3',
-		align: 'stretch',
-		justify: 'start',
+		justify: 'flex-start',
+		alignItem: 'stretch',
+		hasGap: false,
 
 		//Column
-		col: '12',
-		sm: '6',
-		md: '4',
-		lg: '3',
-		xl: '2',
-		xxl: '',
+		align: "center",
+		xs: 12,
+		sm: 6,
+		md: 4,
+		lg: 3,
+		xl: 2,
 	},
 	render: (args) => ({
 		components: { Grid, Row, Column},
@@ -197,9 +173,261 @@ export const GridDefaultStory = {
 		},
 		template: `
 			<Grid :fluid="args.fluid" :className="args.className">
-				<Row :g="args.g" :gx="args.gx" :gy="args.gy" :justify="args.start" :align="args.align">
+				<Row :justify="args.justify" :alignItem="args.alignItem" :hasGap="args.hasGap">
 					<Column v-for="(index) in 12" :key="index" 
-						:col="args.col" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl" :xxl="args.xxl">
+						:align="args.align" :xs="args.xs" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl">
+						<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
+							Column {{index}}
+						</div>
+					</Column>
+				</Row>
+			</Grid>
+			`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Grid`,
+						`  :fluid="${args.fluid}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  <Row`,
+						`    :justify="${args.justify}"`,
+						`    :alignItem="${args.alignItem}"`,
+						`    :hasGap="${args.hasGap}"`,
+						`  >`,
+						`    <Column`,
+						`      v-for="(index) in 12"`,
+						`      :key="index"`,
+						`      :align="${args.align}"`,
+						`      :xs="${args.xs}"`,
+						`      :sm="${args.sm}"`,
+						`      :md="${args.md}"`,
+						`      :lg="${args.lg}"`,
+						`      :xl="${args.xl}"`,
+						`    >`,
+						`      <div`,
+						`        class="diagonal-background"`,
+						`        style="border:1px solid #ccc; padding:8px 16px;"`,
+						`      >`,
+						`        Column {{index}}`,
+						`      </div>`,
+						`    </Column>`,
+						`  </Row>`,
+						`</Grid>`,
+					].join("\n").trim();
+				}
+			}
+		}
+	},
+};
+
+//==== 格線系統-4欄 ====//
+export const Grid4ColumnsStory = {
+	name: '格線系統-4欄',
+	args: {
+		//Grid
+		fluid: false,
+		className: '',
+
+		//Row
+		justify: 'flex-start',
+		alignItem: 'stretch',
+		hasGap: false,
+
+		//Column
+		align: "center",
+		xs: 12,
+		sm: 6,
+		md: 4,
+		lg: 3,
+	},
+	render: (args) => ({
+		components: { Grid, Row, Column},
+		setup() {
+			return {
+				args,
+			};
+		},
+
+		template: `
+			<Grid :fluid="args.fluid" :className="args.className">
+				<Row :justify="args.justify" :alignItem="args.alignItem" :hasGap="args.hasGap">
+					<Column v-for="(index) in 12" :key="index"
+					        :align="args.align" :xs="args.xs" :sm="args.sm" :md="args.md" :lg="args.lg">
+						<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
+							Column {{index}}
+						</div>
+					</Column>
+				</Row>
+			</Grid>
+			`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Grid`,
+						`  :fluid="${args.fluid}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  <Row`,
+						`    :justify="${args.justify}"`,
+						`    :alignItem="${args.alignItem}"`,
+						`    :hasGap="${args.hasGap}"`,
+						`  >`,
+						`    <Column`,
+						`      v-for="(index) in 12"`,
+						`      :key="index"`,
+						`      :align="${args.align}"`,
+						`      :xs="${args.xs}"`,
+						`      :sm="${args.sm}"`,
+						`      :md="${args.md}"`,
+						`      :lg="${args.lg}"`,
+						`    >`,
+						`      <div`,
+						`        class="diagonal-background"`,
+						`        style="border:1px solid #ccc; padding:8px 16px;"`,
+						`      >`,
+						`        Column {{index}}`,
+						`      </div>`,
+						`    </Column>`,
+						`  </Row>`,
+						`</Grid>`,
+					].join("\n").trim();
+				}
+			}
+		}
+	},
+};
+
+//==== 格線系統-3欄 ====//
+export const Grid3ColumnsStory = {
+	name: '格線系統-3欄',
+	args: {
+		//Grid
+		fluid: false,
+		className: '',
+
+		//Row
+		justify: 'flex-start',
+		alignItem: 'stretch',
+		hasGap: false,
+
+		//Column
+		align: "center",
+		xs: 12,
+		sm: 6,
+		md: 4,
+	},
+	render: (args) => ({
+		components: { Grid, Row, Column},
+		setup() {
+			return {
+				args,
+			};
+		},
+
+		template: `
+			<Grid :fluid="args.fluid" :className="args.className">
+				<Row :justify="args.justify" :alignItem="args.alignItem" :hasGap="args.hasGap">
+					<Column v-for="(index) in 12" :key="index"
+					        :align="args.align" :xs="args.xs" :sm="args.sm" :md="args.md">
+						<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
+							Column {{index}}
+						</div>
+					</Column>
+				</Row>
+			</Grid>
+			`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Grid`,
+						`  :fluid="${args.fluid}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  <Row`,
+						`    :justify="${args.justify}"`,
+						`    :alignItem="${args.alignItem}"`,
+						`    :hasGap="${args.hasGap}"`,
+						`  >`,
+						`    <Column`,
+						`      v-for="(index) in 12"`,
+						`      :key="index"`,
+						`      :align="${args.align}"`,
+						`      :xs="${args.xs}"`,
+						`      :sm="${args.sm}"`,
+						`      :md="${args.md}"`,
+						`    >`,
+						`      <div`,
+						`        class="diagonal-background"`,
+						`        style="border:1px solid #ccc; padding:8px 16px;"`,
+						`      >`,
+						`        Column {{index}}`,
+						`      </div>`,
+						`    </Column>`,
+						`  </Row>`,
+						`</Grid>`,
+					].join("\n").trim();
+				}
+			}
+		}
+	},
+};
+
+//==== 格線系統-2欄 ====//
+export const Grid2ColumnsStory = {
+	name: '格線系統-2欄',
+	args: {
+		//Grid
+		fluid: false,
+		className: '',
+
+		//Row
+		justify: 'flex-start',
+		alignItem: 'stretch',
+		hasGap: false,
+
+		//Column
+		align: "center",
+		xs: 12,
+		sm: 6,
+	},
+	render: (args) => ({
+		components: { Grid, Row, Column},
+		setup() {
+			return {
+				args,
+			};
+		},
+
+		template: `
+			<Grid :fluid="args.fluid" :className="args.className">
+				<Row :justify="args.justify" :alignItem="args.alignItem" :hasGap="args.hasGap">
+					<Column v-for="(index) in 12" :key="index"
+					        :align="args.align" :xs="args.xs" :sm="args.sm">
 						<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
 							Column {{index}}
 						</div>
@@ -218,291 +446,32 @@ export const GridDefaultStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Grid',
+						`<Grid`,
 						`  :fluid="${args.fluid}"`,
-						`  className="${args.className}"`,
-						'>',
-						'  <Row',
-						`    g="${args.g}"`,
-						`    gx="${args.gx}"`,
-						`    gy="${args.gy}"`,
-						`    justify="${args.start}"`,
-						`    align="${args.align}"`,
-						'  >',
-						'    <Column v-for="(index) in 12" :key="index"',
-						`      col="${args.col}"`,
-						`      sm="${args.sm}"`,
-						`      md="${args.md}"`,
-						`      lg="${args.lg}"`,
-						`      xl="${args.xl}"`,
-						`      xxl="${args.xxl}"`,
-						'    >',
-						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
-						'        Column {{index}}',
-						'      </div>',
-						'    </Column>',
-						'  </Row>',
-						'</Grid>',
-					].join('\n').trim();
-
-				}
-			}
-		}
-	},
-};
-
-//==== 格線系統-4欄 ====//
-export const Grid4ColumnsStory = {
-	name: '格線系統-4欄',
-	args: {
-		//Grid
-		fluid: false,
-		className: '',
-
-		//Row
-		g: '3',
-		gx: '',
-		gy: '0',
-		align: 'stretch',
-		justify: 'start',
-
-		//Column
-		col: '12',
-		sm: '6',
-		md: '4',
-		lg: '3',
-		xl: '',
-		xxl: '',
-	},
-	render: (args) => ({
-		components: { Grid, Row, Column},
-		setup() {
-			return {
-				args,
-			};
-		},
-
-		template: `
-				<Grid :fluid="args.fluid" :className="args.className">
-					<Row :g="args.g" :gx="args.gx" :gy="args.gy" :justify="args.start" :align="args.align">
-						<Column v-for="(index) in 12" :key="index" 
-							:col="args.col" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl" :xxl="args.xxl">
-							<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
-								Column {{ index }}
-							</div>
-						</Column>
-					</Row>
-				</Grid>
-			`,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<Grid',
-						`  :fluid="${args.fluid}"`,
-						`  className="${args.className}"`,
-						'>',
-						'  <Row',
-						`    g="${args.g}"`,
-						`    gx="${args.gx}"`,
-						`    gy="${args.gy}"`,
-						`    justify="${args.start}"`,
-						`    align="${args.align}"`,
-						'  >',
-						'    <Column v-for="(index) in 12" :key="index"',
-						`      col="${args.col}"`,
-						`      sm="${args.sm}"`,
-						`      md="${args.md}"`,
-						`      lg="${args.lg}"`,
-						`      xl="${args.xl}"`,
-						`      xxl="${args.xxl}"`,
-						'    >',
-						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
-						'        Column {{index}}',
-						'      </div>',
-						'    </Column>',
-						'  </Row>',
-						'</Grid>',
-					].join('\n').trim();
-				}
-			}
-		}
-	},
-};
-
-//==== 格線系統-3欄 ====//
-export const Grid3ColumnsStory = {
-	name: '格線系統-3欄',
-	args: {
-		//Grid
-		fluid: false,
-		className: '',
-
-		//Row
-		g: '3',
-		gx: '',
-		gy: '0',
-		align: 'stretch',
-		justify: 'start',
-
-		//Column
-		col: '12',
-		sm: '6',
-		md: '4',
-		lg: '',
-		xl: '',
-		xxl: '',
-	},
-	render: (args) => ({
-		components: { Grid, Row, Column},
-		setup() {
-			return {
-				args,
-			};
-		},
-
-		template: `
-				<Grid :fluid="args.fluid" :className="args.className">
-					<Row :g="args.g" :gx="args.gx" :gy="args.gy" :justify="args.start" :align="args.align">
-						<Column v-for="(index) in 12" :key="index" 
-							:col="args.col" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl" :xxl="args.xxl">
-							<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
-								Column {{ index }}
-							</div>
-						</Column>
-					</Row>
-				</Grid>
-			`,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<Grid',
-						`  :fluid="${args.fluid}"`,
-						`  className="${args.className}"`,
-						'>',
-						'  <Row',
-						`    g="${args.g}"`,
-						`    gx="${args.gx}"`,
-						`    gy="${args.gy}"`,
-						`    justify="${args.start}"`,
-						`    align="${args.align}"`,
-						'  >',
-						'    <Column v-for="(index) in 12" :key="index"',
-						`      col="${args.col}"`,
-						`      sm="${args.sm}"`,
-						`      md="${args.md}"`,
-						`      lg="${args.lg}"`,
-						`      xl="${args.xl}"`,
-						`      xxl="${args.xxl}"`,
-						'    >',
-						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
-						'        Column {{index}}',
-						'      </div>',
-						'    </Column>',
-						'  </Row>',
-						'</Grid>',
-					].join('\n').trim();
-				}
-			}
-		}
-	},
-};
-
-//==== 格線系統-2欄 ====//
-export const Grid2ColumnsStory = {
-	name: '格線系統-2欄',
-	args: {
-		//Grid
-		fluid: false,
-		className: '',
-
-		//Row
-		g: '3',
-		gx: '',
-		gy: '0',
-		align: 'stretch',
-		justify: 'start',
-
-		//Column
-		col: '12',
-		sm: '6',
-		md: '',
-		lg: '',
-		xl: '',
-		xxl: '',
-	},
-	render: (args) => ({
-		components: { Grid, Row, Column},
-		setup() {
-			return {
-				args,
-			};
-		},
-
-		template: `
-				<Grid :fluid="args.fluid" :className="args.className">
-					<Row :g="args.g" :gx="args.gx" :gy="args.gy" :justify="args.start" :align="args.align">
-						<Column v-for="(index) in 12" :key="index" 
-							:col="args.col" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl" :xxl="args.xxl">
-							<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
-								Column {{ index }}
-							</div>
-						</Column>
-					</Row>
-				</Grid>
-			`,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<Grid',
-						`  :fluid="${args.fluid}"`,
-						`  className="${args.className}"`,
-						'>',
-						'  <Row',
-						`    g="${args.g}"`,
-						`    gx="${args.gx}"`,
-						`    gy="${args.gy}"`,
-						`    justify="${args.start}"`,
-						`    align="${args.align}"`,
-						'  >',
-						'    <Column v-for="(index) in 12" :key="index"',
-						`      col="${args.col}"`,
-						`      sm="${args.sm}"`,
-						`      md="${args.md}"`,
-						`      lg="${args.lg}"`,
-						`      xl="${args.xl}"`,
-						`      xxl="${args.xxl}"`,
-						'    >',
-						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
-						'        Column {{index}}',
-						'      </div>',
-						'    </Column>',
-						'  </Row>',
-						'</Grid>',
-					].join('\n').trim();
+						`  :className="${args.className}"`,
+						`>`,
+						`  <Row`,
+						`    :justify="${args.justify}"`,
+						`    :alignItem="${args.alignItem}"`,
+						`    :hasGap="${args.hasGap}"`,
+						`  >`,
+						`    <Column`,
+						`      v-for="(index) in 12"`,
+						`      :key="index"`,
+						`      :align="${args.align}"`,
+						`      :xs="${args.xs}"`,
+						`      :sm="${args.sm}"`,
+						`    >`,
+						`      <div`,
+						`        class="diagonal-background"`,
+						`        style="border:1px solid #ccc; padding:8px 16px;"`,
+						`      >`,
+						`        Column {{index}}`,
+						`      </div>`,
+						`    </Column>`,
+						`  </Row>`,
+						`</Grid>`,
+					].join("\n").trim();
 				}
 			}
 		}
@@ -518,19 +487,13 @@ export const Grid1ColumnsStory = {
 		className: '',
 
 		//Row
-		g: '3',
-		gx: '',
-		gy: '0',
-		align: 'stretch',
-		justify: 'start',
+		justify: 'flex-start',
+		alignItem: 'stretch',
+		hasGap: false,
 
 		//Column
-		col: '12',
-		sm: '',
-		md: '',
-		lg: '',
-		xl: '',
-		xxl: '',
+		align: "center",
+		xs: 12,
 	},
 	render: (args) => ({
 		components: { Grid, Row, Column},
@@ -540,16 +503,16 @@ export const Grid1ColumnsStory = {
 			};
 		},
 		template: `
-				<Grid :fluid="args.fluid" :className="args.className">
-					<Row :g="args.g" :gx="args.gx" :gy="args.gy" :justify="args.start" :align="args.align">
-						<Column v-for="(index) in 12" :key="index" 
-							:col="args.col" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl" :xxl="args.xxl">
-							<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
-								Column {{ index }}
-							</div>
-						</Column>
-					</Row>
-				</Grid>
+			<Grid :fluid="args.fluid" :className="args.className">
+				<Row :justify="args.justify" :alignItem="args.alignItem" :hasGap="args.hasGap">
+					<Column v-for="(index) in 12" :key="index"
+					        :align="args.align" :xs="args.xs">
+						<div class="diagonal-background"  style="border:1px solid #ccc; padding:8px 16px;" >
+							Column {{index}}
+						</div>
+					</Column>
+				</Row>
+			</Grid>
 			`,
 	}),
 	// 控制 controls 中能控制的參數
@@ -562,32 +525,32 @@ export const Grid1ColumnsStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Grid',
+						`<Grid`,
 						`  :fluid="${args.fluid}"`,
-						`  className="${args.className}"`,
-						'>',
-						'  <Row',
-						`    g="${args.g}"`,
-						`    gx="${args.gx}"`,
-						`    gy="${args.gy}"`,
-						`    justify="${args.start}"`,
-						`    align="${args.align}"`,
-						'  >',
-						'    <Column v-for="(index) in 12" :key="index"',
-						`      col="${args.col}"`,
-						`      sm="${args.sm}"`,
-						`      md="${args.md}"`,
-						`      lg="${args.lg}"`,
-						`      xl="${args.xl}"`,
-						`      xxl="${args.xxl}"`,
-						'    >',
-						'      <div class="diagonal-background" style="border:1px solid #ccc; padding:8px 16px;">',
-						'        Column {{index}}',
-						'      </div>',
-						'    </Column>',
-						'  </Row>',
-						'</Grid>',
-					].join('\n').trim();
+						`  :className="${args.className}"`,
+						`>`,
+						`  <Row`,
+						`    :justify="${args.justify}"`,
+						`    :alignItem="${args.alignItem}"`,
+						`    :hasGap="${args.hasGap}"`,
+						`  >`,
+						`    <Column`,
+						`      v-for="(index) in 12"`,
+						`      :key="index"`,
+						`      :align="${args.align}"`,
+						`      :xs="${args.xs}"`,
+						`      :sm="${args.sm}"`,
+						`    >`,
+						`      <div`,
+						`        class="diagonal-background"`,
+						`        style="border:1px solid #ccc; padding:8px 16px;"`,
+						`      >`,
+						`        Column {{index}}`,
+						`      </div>`,
+						`    </Column>`,
+						`  </Row>`,
+						`</Grid>`,
+					].join("\n").trim();
 				}
 			}
 		}

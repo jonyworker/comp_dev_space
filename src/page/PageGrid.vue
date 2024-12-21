@@ -1,7 +1,7 @@
 <script setup>
 import Container from "@/ui/layout/Grid/Container.vue"
-import Row from "@/ui/layout/Grid/Row.vue"
-import Col from "@/ui/layout/Grid/Column.vue"
+import Row from "@/ui/layout/Grid/old/Row.vue"
+import Col from "@/ui/layout/Grid/old/Column.vue"
 import FakeContent from "@/ui/utility/FakeContent/FakeContent.vue";
 </script>
 

@@ -3,6 +3,14 @@ import { computed } from "vue";
 
 // 定義 props
 const props = defineProps({
+	// 最大寬度限制
+	size: {
+		type: String,
+		required: false,
+		default: "",
+		validator: (value) =>
+			["sm", "md", "lg", "xl", "xxl"].includes(value),
+	},
 	fluid: {
 		type: Boolean,
 		required: false,
@@ -10,16 +18,14 @@ const props = defineProps({
 	},
 	className: {
 		type: String,
-		default: "",
+		default: '',
 	}
 })
-
+const prefix =  "ded-"
 const containerClass = computed(() => {
-	const prefix = "ded-";
-	const fluid = props.fluid;
-
 	return {
-		[fluid ? `${prefix}container-fluid` : `${prefix}container`]: true,
+		[`${prefix}container${props.size ? '-' + props.size : ''}`]: !props.fluid,
+		[`${prefix}container-fluid`]: props.fluid,
 		[props.className]: !!props.className
 	};
 });
