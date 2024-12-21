@@ -43,8 +43,8 @@ import ModalConfirm from "@/ui/element/Dialog/test/ModalConfirm.vue";
 import ModalOverview from "@/ui/element/Dialog/test/ModalOverview.vue";
 
 
-import Table from "@/ui/element/Table/Table.vue";
-import TablePeter from "@/ui/element/Table/TablePeter.vue";
+import Table from "@/ui/element/Table/old/Table.vue";
+import TablePeter from "@/ui/element/Table/old/TablePeter.vue";
 import Tag from "@/ui/element/Tag/Tag.vue";
 import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";

@@ -1,6 +1,6 @@
 <script setup>
 
-import Table from '@/ui/element/Table/Table.vue';
+import Table from '@/ui/element/Table/old/Table.vue';
 
 const columnHeadData = [
 	{ key: "id", label: "ID", sort: true },
