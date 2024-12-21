@@ -3,9 +3,13 @@ import Dialog from "@/ui/element/Dialog/Dialog.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Title from "@/ui/element/Title/Title.vue";
+import Grid from "@/ui/layout/Grid/Grid.vue";
+import Row from "@/ui/layout/Grid/Row.vue";
+import Column from "@/ui/layout/Grid/Column.vue";
+
 
 export default {
-	components: {Title, Dialog },
+	components: {Column, Title, Dialog },
 	title: "Component/Dialog",
 	component: Dialog,
 	tags: ["autodocs"],
@@ -73,10 +77,10 @@ export const DialogDefault = {
 		className: '',
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-		footer: `<Button variant="filled" radius="md" class="ded-cancel-btn" v-on:click="onCancel">Cancel</Button><Button variant="filled" radius="md" @click="onConfirm">OK</Button>`,
+		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
 	render: (args) => ({
-		components: { Dialog, Button, Icon,Title },
+		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
 		setup() {
 			const dialog = useDialog();
 			const onClose = () => {
@@ -111,13 +115,20 @@ export const DialogDefault = {
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
 				</div>
 				<div class="ded-dialog-footer">
-					<Button variant="filled" radius="md" @click="onConfirm">
-						OK
-					</Button>
-					<Button variant="filled" radius="md" class="ded-cancel-btn"
-					        @click="onCancel">
-						Cancel
-					</Button>
+					<Grid>
+						<Row :hasGap="true">
+							<Column :sm="4">
+								<Button variant="filled" radius="md" width="fluid" @click="onConfirm">
+									OK
+								</Button>
+							</Column>
+							<Column :sm="4">
+								<Button variant="soft" radius="md" width="fluid" @click="onCancel">
+									Cancel
+								</Button>
+							</Column>
+						</Row>
+					</Grid>
 				</div>
 			</div>
 		`,
@@ -184,7 +195,7 @@ export const DialogDemo = {
 		className: '',
 	},
 	render: (args) => ({
-		components: { Dialog, Button, Title },
+		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
 		setup() {
 			const dialog = useDialog();
 			const onClose = () => {
@@ -219,19 +230,26 @@ export const DialogDemo = {
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
 				</template>
 				<template #footer>
-					<Button variant="filled" radius="md" @click="onConfirm">
-						OK
-					</Button>
-					<Button variant="filled" radius="md" class="ded-cancel-btn"
-					        @click="onCancel">
-						Cancel
-					</Button>
+					<Grid>
+						<Row :hasGap="true">
+							<Column :sm="4">
+								<Button variant="filled" radius="md" width="fluid" @click="onConfirm">
+									OK
+								</Button>
+							</Column>
+							<Column :sm="4">
+								<Button variant="soft" radius="md" width="fluid" @click="onCancel">
+									Cancel
+								</Button>
+							</Column>
+						</Row>
+					</Grid>
 				</template>
 			</Dialog>
 			
 			<Button
 		        variant="filled"
-		        radius="md"
+		        radius="4px"
 		        @click="dialog.showDialog">
 				Open Dialog
 			</Button>
@@ -258,27 +276,36 @@ export const DialogDemo = {
 						`    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
 						`  </template>`,
 						`  <template #footer>`,
-						`    <Button`,
-						`      variant="filled"`,
-						`      radius="md"`,
-						`      @click="onConfirm"`,
-						`    >`,
-						`      OK`,
-						`    </Button>`,
-						`    <Button`,
-						`      variant="filled"`,
-						`      radius="md"`,
-						`      class="ded-cancel-btn"`,
-						`      @click="onCancel"`,
-						`    >`,
-						`      Cancel`,
-						`    </Button>`,
+						`    <Grid>`,
+						`      <Row :hasGap="true">`,
+						`        <Column :sm="4">`,
+						`          <Button`,
+						`            variant="filled"`,
+						`            radius="md"`,
+						`            width="fluid"`,
+						`            @click="onConfirm"`,
+						`          >`,
+						`            OK`,
+						`          </Button>`,
+						`        </Column>`,
+						`        <Column :sm="4">`,
+						`          <Button`,
+						`            variant="soft"`,
+						`            radius="md"`,
+						`            width="fluid"`,
+						`            @click="onCancel"`,
+						`          >`,
+						`            Cancel`,
+						`          </Button>`,
+						`        </Column>`,
+						`      </Row>`,
+						`    </Grid>`,
 						`  </template>`,
 						`</Dialog>`,
 						``,
 						`<Button`,
 						`  variant="filled"`,
-						`  radius="md"`,
+						`  radius="4px"`,
 						`  @click="dialog.showDialog"`,
 						`>`,
 						`  Open Dialog`,
