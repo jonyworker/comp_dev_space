@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue';
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 const emits = defineEmits(['onClose']);
@@ -50,6 +51,14 @@ const props = defineProps({
 const closeTag = () => {
 	if (!props.isDisabled) emits('onClose');
 };
+
+const isValidHref = computed(() => {
+	try {
+		return !!props.href && new URL(props.href);
+	} catch {
+		return false;
+	}
+});
 </script>
 
 <template>
@@ -64,14 +73,30 @@ const closeTag = () => {
             props.className && props.className.split(' '),
         ]"
     >
-        <div class="ded-tag-text">
-			<template v-if="props.prefix">
-				<div class="ded-tag-icon">
-					<Icon :name="props.prefix"/>
-				</div>
-			</template>
-			{{ props.label }}
-		</div>
+	    <template v-if="props.href && isValidHref">
+		    <a :href="props.href" class="ded-tag-text">
+			    <template v-if="props.prefix">
+				    <span class="ded-tag-icon">
+					    <Icon :name="props.prefix"/>
+				    </span>
+			    </template>
+			    {{ props.label }}
+		    </a>
+	    </template>
+
+	    <template v-else>
+		    <div class="ded-tag-text">
+			    <template v-if="props.prefix">
+				    <span class="ded-tag-icon">
+					    <Icon :name="props.prefix"/>
+				    </span>
+			    </template>
+			    {{ props.label }}
+		    </div>
+	    </template>
+
+
+
 		<template v-if="props.closable">
 			<Icon name="close" class="ded-tag-close" @click="closeTag"/>
 
