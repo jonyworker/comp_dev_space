@@ -70,6 +70,16 @@ export default {
 				type: { summary: 'emits' },
 			},
 		},
+		action: {
+			description: "Action slot",
+			control: { type: "text" },
+
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				},
+			},
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -89,9 +99,10 @@ export const ToastDefault = {
 		themeColor: "success",
 		title: "Title",
 		content: "Content",
-		prefix:'SuccessCircleIcon',
+		prefix:'ErrorCircleIcon',
 		duration: 5000,
 		className: "",
+		action: `<div @click="onAction">Action</div>`,
 	},
 	render: (args) => ({
 		components: { Toast, Button, Title, StatusIndicator, Icon },
@@ -103,10 +114,14 @@ export const ToastDefault = {
 				const color = args.themeColor;
 				return `ded-toast-border-${color}`;
 			});
+			const onAction = () => {
+				window.alert('Action');
+			};
 			return {
 				args,
 				onClose,
-				toastBorderClass
+				toastBorderClass,
+				onAction
 			};
 		},
 		template: `
@@ -115,15 +130,18 @@ export const ToastDefault = {
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
 					<Icon name="close" size="20"></Icon>
 				</Button>
-				<!-- toast - 標題及說明文字 -->
-				<div class="ded-message">
-					<StatusIndicator
-						:themeColor="args.themeColor"
-						variant="text"
-						:prefix="args.prefix"
-					>
-						<Title>{{ args.title }}</Title>
-					</StatusIndicator>
+				<div class="ded-toast-header">
+					<div class="ded-toast-header-message">
+						<Icon :name="args.prefix" size="20"></Icon>
+						<Title :themeColor="args.themeColor" level="5">
+							{{ args.title }}
+						</Title>
+					</div>
+					<div class="ded-toast-header-action">
+						<div @click="onAction">
+							Action
+						</div>
+					</div>
 				</div>
 				<p class="ded-description">{{ args.content }}</p>
 			</div>
@@ -149,7 +167,11 @@ export const ToastDefault = {
 						`    :duration="${args.duration}"`,
 						`    :className="${args.className}"`,
 						`    @close="remove(toast.id)"`,
-						`  ></Toast>`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`  </Toast>`,
 						`  <Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
@@ -195,9 +217,13 @@ export const ToastTotal = {
 			const onClose = () => {
 				window.alert('Close');
 			};
+			const onAction = () => {
+				window.alert('Action');
+			};
 			return {
 				args,
 				onClose,
+				onAction
 			};
 		},
 		template: `
@@ -207,14 +233,18 @@ export const ToastTotal = {
 					<Icon name="close" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
-				<div class="ded-message">
-					<StatusIndicator
-						themeColor="success"
-						variant="text"
-						prefix="SuccessCircleIcon"
-					>
-						<Title>{{ args.title }}</Title>
-					</StatusIndicator>
+				<div class="ded-toast-header">
+					<div class="ded-toast-header-message">
+						<Icon name="SuccessCircleIcon" size="20"></Icon>
+						<Title themeColor="success" level="5">
+							{{ args.title }}
+						</Title>
+					</div>
+					<div class="ded-toast-header-action">
+						<div @click="onAction">
+							Action
+						</div>
+					</div>
 				</div>
 				<p class="ded-description">{{ args.content }}</p>
 			</div>
@@ -225,14 +255,18 @@ export const ToastTotal = {
 					<Icon name="close" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
-				<div class="ded-message">
-					<StatusIndicator
-						themeColor="warning"
-						variant="text"
-						prefix="WarningCircleIcon"
-					>
-						<Title>{{ args.title }}</Title>
-					</StatusIndicator>
+				<div class="ded-toast-header">
+					<div class="ded-toast-header-message">
+						<Icon name="WarningCircleIcon" size="20"></Icon>
+						<Title themeColor="warning" level="5">
+							{{ args.title }}
+						</Title>
+					</div>
+					<div class="ded-toast-header-action">
+						<div @click="onAction">
+							Action
+						</div>
+					</div>
 				</div>
 				<p class="ded-description">{{ args.content }}</p>
 			</div>
@@ -243,14 +277,18 @@ export const ToastTotal = {
 					<Icon name="close" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
-				<div class="ded-message">
-					<StatusIndicator
-						themeColor="error"
-						variant="text"
-						prefix="ErrorCircleIcon"
-					>
-						<Title>{{ args.title }}</Title>
-					</StatusIndicator>
+				<div class="ded-toast-header">
+					<div class="ded-toast-header-message">
+						<Icon name="ErrorCircleIcon" size="20"></Icon>
+						<Title themeColor="error" level="5">
+							{{ args.title }}
+						</Title>
+					</div>
+					<div class="ded-toast-header-action">
+						<div @click="onAction">
+							Action
+						</div>
+					</div>
 				</div>
 				<p class="ded-description">{{ args.content }}</p>
 			</div>
@@ -261,14 +299,18 @@ export const ToastTotal = {
 					<Icon name="close" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
-				<div class="ded-message">
-					<StatusIndicator
-						themeColor="info"
-						variant="text"
-						prefix="InfoCircleIcon"
-					>
-						<Title>{{ args.title }}</Title>
-					</StatusIndicator>
+				<div class="ded-toast-header">
+					<div class="ded-toast-header-message">
+						<Icon name="InfoCircleIcon" size="20"></Icon>
+						<Title themeColor="info" level="5">
+							{{ args.title }}
+						</Title>
+					</div>
+					<div class="ded-toast-header-action">
+						<div @click="onAction">
+							Action
+						</div>
+					</div>
 				</div>
 				<p class="ded-description">{{ args.content }}</p>
 			</div>
@@ -293,7 +335,11 @@ export const ToastTotal = {
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
 						`    @close="remove(toast.id)"`,
-						`></Toast>`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`</Toast>`,
 						`<Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
@@ -313,7 +359,11 @@ export const ToastTotal = {
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
 						`    @close="remove(toast.id)"`,
-						`></Toast>`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`</Toast>`,
 						`<Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
@@ -333,7 +383,11 @@ export const ToastTotal = {
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
 						`    @close="remove(toast.id)"`,
-						`></Toast>`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`</Toast>`,
 						`<Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
@@ -353,7 +407,11 @@ export const ToastTotal = {
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
 						`    @close="remove(toast.id)"`,
-						`></Toast>`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`</Toast>`,
 						`<Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
@@ -405,11 +463,15 @@ export const ToastInterAction = {
 					content: args.content,
 				});
 			};
+			const onAction = () => {
+				window.alert('Action');
+			};
 			return {
 				args,
 				toasts,
 				remove,
 				showToast,
+				onAction
 			};
 		},
 		template: `
@@ -423,7 +485,11 @@ export const ToastInterAction = {
 				:duration="args.duration"
 				:className="args.className"
 				@close="remove(toast.id)"
-			></Toast>
+			>
+				<template #action>
+					<div @click="onAction">Action</div>
+				</template>
+			</Toast>
 			<Button themeColor="primary" variant="filled" radius="4px" @click="showToast">
 				Toast Trigger
 			</Button>
@@ -449,7 +515,11 @@ export const ToastInterAction = {
 						`    :duration="${args.duration}"`,
 						`    :className="${args.className}"`,
 						`    @close="remove(toast.id)"`,
-						`  ></Toast>`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`  </Toast>`,
 						`  <Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,

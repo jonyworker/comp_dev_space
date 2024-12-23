@@ -3,7 +3,6 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 import Button from '@/ui/element/Button/Button.vue';
 import Title from '@/ui/element/Title/Title.vue';
-import StatusIndicator from '@/ui/element/Status-Indicator/StatusIndicator.vue';
 
 // 定義 Emits
 const emit = defineEmits(['close']);
@@ -77,15 +76,26 @@ onUnmounted(() => {
 				<Icon name="close" size="20"></Icon>
 			</Button>
 			<!-- toast - 標題及說明文字 -->
-			<div class="ded-message">
-                <StatusIndicator
-                    :themeColor="props.themeColor"
-                    variant="text"
-                    :prefix="props.prefix"
-                >
-                    <Title>{{ props.title }}</Title>
-                </StatusIndicator>
-			</div>
+<!--			<div class="ded-message">-->
+<!--                <StatusIndicator-->
+<!--                    :themeColor="props.themeColor"-->
+<!--                    variant="text"-->
+<!--                    :prefix="props.prefix"-->
+<!--                >-->
+<!--                    <Title>{{ props.title }}</Title>-->
+<!--                </StatusIndicator>-->
+<!--			</div>-->
+            <div class="ded-toast-header">
+                <div class="ded-toast-header-message">
+                    <Icon :name="props.prefix" size="20"></Icon>
+                    <Title :themeColor="props.themeColor" level="5">
+                        {{ props.title }}
+                    </Title>
+                </div>
+                <div class="ded-toast-header-action">
+                    <slot name="action"></slot>
+                </div>
+            </div>
 			<p class="ded-description">{{ props.content }}</p>
 		</div>
 	</teleport>
