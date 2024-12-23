@@ -9,20 +9,20 @@ const modelValue = defineModel({
 
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		type: String,
-		default: "primary",
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			].includes(value),
-	},
+	// themeColor: {
+	// 	type: String,
+	// 	default: "primary",
+	// 	validator: (value) =>
+	// 		[
+	// 			"primary",
+	// 			"secondary",
+	// 			"neutral",
+	// 			"info",
+	// 			"success",
+	// 			"warning",
+	// 			"error",
+	// 		].includes(value),
+	// },
 	dataSource: {
 		type: Array,
 		required: true,
@@ -37,6 +37,12 @@ const props = defineProps({
 		validator: (value) =>
 			["row", "column"].includes(value),
 	},
+    size: {
+        type: String,
+        default: "medium",
+        validator: (value) =>
+            ["small", "medium", "large"].includes(value),
+    },
 	className: {
 		type: String,
 		default: "",
@@ -93,17 +99,20 @@ const handleCheck = (item, index) => {
 <template>
 	<div
 		:class="{
-      'ded-checkbox-container': true,
-      [`ded-checkbox-container-${direction}`]: direction,
-      [className]: !!className
-    }"
+            'ded-checkbox-container': true,
+            [`ded-checkbox-container-${direction}`]: direction,
+            [className]: !!className
+        }"
 	>
 		<label
 			v-for="(item, index) in dataSource"
 			:key="item.value"
 			:for="generateId(item.value)"
 			class="ded-checkbox"
-			:class="item.isDisabled?'ded-checkbox-input-disabled':''"
+            :class="{
+                'ded-checkbox-input-disabled': item.isDisabled,
+                [`ded-text-${props.size}`]: props.size
+            }"
 		>
 			<input
 				class="ded-checkbox-input"
@@ -118,10 +127,11 @@ const handleCheck = (item, index) => {
 			<div
 				:class="[
 					'ded-checkbox-icon',
+					`ded-icon-${props.size}`,
 					item.isDisabled?'ded-checkbox-icon-disabled':'',
 					isCheck[index]
-					? `ded-checkbox-checked-${themeColor}`
-					: `ded-checkbox-unchecked-${themeColor}`,
+					? `ded-checkbox-checked`
+					: `ded-checkbox-unchecked`,
 				]"
 			>
 				<Icon v-if="isCheck[index]" name="check"></Icon>
