@@ -1,4 +1,7 @@
 import Image from './Image.vue';
+import Grid from '@/ui/layout/Grid/Grid.vue';
+import Row from '@/ui/layout/Grid/Row.vue';
+import Column from '@/ui/layout/Grid/Column.vue';
 
 export default {
 	title: 'Component/Image',
@@ -17,12 +20,12 @@ export default {
 			description: '圖片比例',
 			control: {
 				type: 'select',
-				// labels: {
-				// 	'11': "1x1",
-				// 	'43': "4x3",
-				// 	'54': "5x4",
-				// 	'169': "16x9",
-				// }
+				labels: {
+					'11': "1x1",
+					'43': "4x3",
+					'54': "5x4",
+					'169': "16x9",
+				}
 			},
 			options: ['11', '43', '54', '169'],
 			table: {
@@ -61,14 +64,14 @@ export default {
 export const ImageDefault = {
 	name: '預設項目',
 	args: {
-		src: 'https://picsum.photos/300/300',
+		src: 'https://picsum.photos/300/300?random=1',
 		alt: 'placeholder',
 		ratio: '1x1',
 		objectFit: 'cover',
 		className: '',
 	},
 	render: (args) => ({
-		components: { Image },
+		components: { Image, Grid, Row, Column },
 		setup() {
 			// Create a ref for modelValue to be used with v-model
 			return {
@@ -76,15 +79,19 @@ export const ImageDefault = {
 			};
 		},
 		template: `
-			<div style="width: 250px; height: 250px;">
-				<Image
-					:src="args.src"
-					:alt="args.alt"
-					:ratio="args.ratio"
-					:objectFit="args.objectFit"
-					:className="args.className"
-				></Image>
-			</div>
+			<Grid fluid>
+				<Row hasGap>
+					<Column xs="12" sm="6" md="3">
+						<Image
+							:src="args.src"
+							:alt="args.alt"
+							:ratio="args.ratio"
+							:objectFit="args.objectFit"
+							:className="args.className"
+						></Image>
+					</Column>
+				</Row>
+			</Grid>
 		`,
 	}),
 	// 控制 controls 中能控制的參數
@@ -97,7 +104,7 @@ export const ImageDefault = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<div style="width: 250px; height: 250px;">',
+						'<div class="ded-col-xs-12 ded-col-sm-6 ded-col-md-3">',
 						'  <Image',
 						`    src="${args.src}"`,
 						`    alt="${args.alt}"`,
@@ -117,7 +124,7 @@ export const ImageDefault = {
 export const ImageRatio = {
 	name: '圖片比例總覽',
 	args: {
-		src: 'https://picsum.photos/300/300',
+		src: 'https://picsum.photos/300/300?random=1',
 		alt: '',
 		objectFit: 'cover',
 		className: ''
@@ -245,7 +252,7 @@ export const ImageRatio = {
 export const ImageFit = {
 	name: '圖片自適應',
 	args: {
-		src: 'https://picsum.photos/300/300',
+		src: 'https://picsum.photos/300/300?random=1',
 		alt: '',
 		ratio: '16x9',
 		objectFit: 'cover',
@@ -254,7 +261,6 @@ export const ImageFit = {
 	render: (args) => ({
 		components: { Image },
 		setup() {
-			// Create a ref for modelValue to be used with v-model
 			return {
 				args,
 			};
