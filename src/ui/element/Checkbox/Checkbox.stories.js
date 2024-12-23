@@ -38,7 +38,7 @@ export default {
             control: { type: "object" },
             table: {
                 type: {
-                    summary: "{ label: string; value: string; }[]",
+                    summary: "{ label: string; value: string; isDisabled: boolean; }[]",
                 }
             }
         },
