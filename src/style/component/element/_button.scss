@@ -6,11 +6,18 @@
     gap: $spacing-8;
     align-items: center;
     justify-content: center;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.75em;
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: $radius;
     border-width: $border-width;
+
+    &-content {
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+        font-size: inherit;
+    }
 
     &-only-icon {
         padding: 0.5em;
@@ -103,8 +110,6 @@
     }
 
     &-text {
-        // padding: 0;
-        // height: auto;
         background-color: transparent;
         color: list.nth($text-primary, $site);
 

@@ -9,11 +9,7 @@
     border-width: $border-width;
     border-style: solid;
     border-radius: $radius;
-    padding-inline: 8px;
-
-    &-closable {
-        padding-right: 24px;
-    }
+    padding-inline: 24px;
 
     &-text {
         display: flex;

@@ -28,18 +28,42 @@
         background-color: transparent;
     }
 
-    .ded-message {
-        position: relative;
+    .ded-toast-header {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        padding: 4px 0 0;
-        font-size: 14px;
-        font-weight: 500;
+        padding: 4px 0 0 12px;
+
+        &-message {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: $spacing-4;
+            font-size: 14px;
+            font-weight: 500;
+            color: $support-success;
+
+            @each $theme in $themes {
+                &-#{$theme} {
+                    color: getThemeColor($theme, "default");
+                }
+            }
+        }
+
+        &-action {
+            display: flex;
+            align-items: center;
+            padding-right: 40px;
+            font-size: 14px;
+            text-decoration: none;
+            color: list.nth($link-default, $site);
+            cursor: pointer;
+        }
     }
 
     .ded-description {
         font-size: 14px;
-        padding: 0 36px 4px;
+        padding: 0 2.5em 4px;
         color: list.nth($text-helper, $site);
         word-wrap: break-word;
         word-break: break-word;
