@@ -63,7 +63,7 @@ const props = defineProps({
 	<button :class="{
         'ded-button': true,
         [`ded-button-${props.width}`]: props.width,
-        [`ded-component-${props.size}`]: props.size,
+        [`ded-text-${props.size}`]: props.size,
         [`ded-button-${props.variant}`]: props.variant,
         [`ded-button-${props.variant}-${props.themeColor}`]: props.variant && props.themeColor,
         [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
@@ -76,7 +76,7 @@ const props = defineProps({
 				<Icon :name="props.prefix"></Icon>
 			</div>
 		</template>
-		<div :class="`ded-text-${props.size}`">
+		<div class="ded-button-content">
 			<slot></slot>
 		</div>
 		<template v-if="suffix">
