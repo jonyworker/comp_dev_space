@@ -99,7 +99,7 @@ const toggleDropdown = () => {
 		<div
 			:class="{
 		        'ded-input-group':true,
-		        [`ded-component-${props.size}`]: props.size,
+		        [`ded-text-${props.size}`]: props.size,
 		        [`ded-input-border-${hintClass}`]:hintClass,
 	            'ded-input-disable': props.isDisabled
 	        }"
