@@ -6,20 +6,20 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		type: String,
-		default: "primary",
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
-			].includes(value),
-	},
+	// themeColor: {
+	// 	type: String,
+	// 	default: "primary",
+	// 	validator: (value) =>
+	// 		[
+	// 			"primary",
+	// 			"secondary",
+	// 			"tertiary",
+	// 			"success",
+	// 			"warning",
+	// 			"error",
+	// 			"info",
+	// 		].includes(value),
+	// },
 	min: {
 		type: Number,
 		default: 0,
@@ -40,6 +40,14 @@ const props = defineProps({
 		type: String,
 		default: "",
 	},
+    isShowRange: {
+        type: Boolean,
+        default: false,
+    },
+    isShowCurrValue: {
+        type: Boolean,
+        default: false,
+    },
 	isDisabled: {
 		type: Boolean,
 		default: false,
@@ -153,8 +161,26 @@ defineExpose({ updateWidth });
 </script>
 
 <template>
-    <div :class="{ 'ded-slider-container': true, [props.className]: !!props.className }" ref="containerRef">
+    <div :class="{
+            'ded-slider-container': true,
+             [props.className]: !!props.className,
+             'ded-slider-container-range': props.isShowRange,
+             'ded-slider-container-fluid': !props.isShowRange,
+        }"
+        ref="containerRef"
+    >
 	    <div class="ded-slider-wrapper">
+            <!-- min Value -->
+            <template v-if="props.isShowRange">
+                <div :class="{
+                'ded-slider-range':true,
+                'ded-slider-range-start': true,
+                'ded-slider-range-disable': props.isDisabled, }"
+                >
+                    {{props.min}}
+                </div>
+            </template>
+
 		    <input
 			    ref="rangeRef"
 			    type="range"
@@ -164,20 +190,35 @@ defineExpose({ updateWidth });
 			    :disabled="props.isDisabled"
 			    @input="handleChange"
 			    v-model="value"
-			    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
+			    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : '']"
 		    />
-		    <div
-			    :class="['ded-slider-tooltip', props.isDisabled ?
-				    'ded-slider-tooltip-disable' :
-	                `ded-slider-tooltip-${props.themeColor}`]"
-			    :style="{ left: tooltipPosition, transform: `translate(-50%)` }"
-		    >
-            <span>
-	            {{ value }}
-	            <span v-if="props.label">{{ props.label }}</span>
-            </span>
-		    </div>
+            <!-- max Value -->
+            <template v-if="props.isShowRange">
+                <div :class="{
+                'ded-slider-range':true,
+                'ded-slider-range-end': true,
+                'ded-slider-range-disable': props.isDisabled, }"
+                >
+                    {{props.max}}
+                </div>
+            </template>
 	    </div>
+        <!-- 提示 -->
+        <div
+            id="tooltip"
+            :class="{
+                    'ded-slider-tooltip': true,
+				    'ded-slider-tooltip-disable': props.isDisabled
+			    }"
+            :style="{ left: tooltipPosition, transform: `translate(-50%)` }"
+        >
+            <template v-if="props.isShowCurrValue">
+                <div>
+                    {{ value }}
+                    <span v-if="props.label">{{ props.label }}</span>
+                </div>
+            </template>
+        </div>
 
     </div>
 </template>
