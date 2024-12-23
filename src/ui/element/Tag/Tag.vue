@@ -69,7 +69,6 @@ const isValidHref = computed(() => {
             { [`ded-tag-${props.variable}-${props.themeColor}`]: props.variable && props.themeColor &&
             !props.isDisabled },
             { [`ded-tag-${props.variable}-disabled`]: props.isDisabled },
-			{'ded-tag-closable': props.closable},
             props.className && props.className.split(' '),
         ]"
     >
