@@ -214,8 +214,7 @@ defineExpose({ updateWidth });
         >
             <template v-if="props.isShowCurrValue">
                 <div>
-                    {{ value }}
-                    <span v-if="props.label">{{ props.label }}</span>
+                    {{ value }}<span v-if="props.label">{{ props.label }}</span>
                 </div>
             </template>
         </div>
