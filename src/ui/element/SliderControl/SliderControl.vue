@@ -9,20 +9,20 @@ const modelValue = defineModel('modelValue');
 
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		type: String,
-		default: "primary",
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			].includes(value),
-	},
+	// themeColor: {
+	// 	type: String,
+	// 	default: "primary",
+	// 	validator: (value) =>
+	// 		[
+	// 			"primary",
+	// 			"secondary",
+	// 			"neutral",
+	// 			"info",
+	// 			"success",
+	// 			"warning",
+	// 			"error",
+	// 		].includes(value),
+	// },
 	min: {
 		type: Number,
 		default: 0,
@@ -100,7 +100,7 @@ watch(() => props.initValue, (newValue) => {
 	<div :class="{'ded-slider-control': true, [props.className]: !!props.className}">
 		<Button
 			variant="text"
-			:themeColor="props.themeColor"
+			themeColor="primary"
 			:isDisabled="props.isDisabled"
 			@click="handleDecreaseClick"
 		>
@@ -115,6 +115,8 @@ watch(() => props.initValue, (newValue) => {
 			:max="props.max"
 			:step="props.step"
 			:label="props.label"
+            :isShowRange="false"
+            :isShowCurrValue="true"
 			:initValue="props.initValue"
 			:isDisabled="props.isDisabled"
 			v-model="computedValue"
@@ -122,7 +124,7 @@ watch(() => props.initValue, (newValue) => {
 
 		<Button
 			variant="text"
-			:themeColor="props.themeColor"
+            themeColor="primary"
 			:isDisabled="props.isDisabled"
 			@click="handleIncreaseClick"
 		>
