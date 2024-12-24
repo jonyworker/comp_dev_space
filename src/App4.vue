@@ -4,11 +4,17 @@ import { ref } from 'vue'
 import DatePicker from '@/ui/element/Date-Picker/DatePicker.vue'
 // 上面這行請依實際路徑匯入「支援單日 / 區間」的 DatePicker
 
+const options = {
+	format: 'yyyy-mm-dd',
+	todayHighlight: true,
+	autohide: true,
+};
+
 // 單日模式 => 字串
-const singleDate = ref('2024-01-05')
+const singleDate = ref("")
 
 // 區間模式 => 陣列 [開始日期, 結束日期]
-const rangeDate = ref(['2024-01-10', '2024-01-20'])
+const rangeDate = ref(["",""])
 </script>
 
 <template>
@@ -17,7 +23,14 @@ const rangeDate = ref(['2024-01-10', '2024-01-20'])
 
         <!-- 單日模式 -->
         <h2>單日模式</h2>
-        <DatePicker v-model="singleDate" />
+        <DatePicker
+	        :isRange="false"
+	        placeholder="plalalalalla"
+	        :options="options"
+	        className=""
+	        v-model="singleDate"
+			@clearSingleDate="()=> console.log('fuck')"
+        />
         <p>單日選擇結果：{{ singleDate }}</p>
 
         <hr />
@@ -25,7 +38,13 @@ const rangeDate = ref(['2024-01-10', '2024-01-20'])
         <!-- 區間模式 -->
         <h2>區間模式</h2>
         <!-- 傳入 :range="true" 使之進入區間模式 -->
-        <DatePicker v-model="rangeDate" :range="true" />
+        <DatePicker
+	        :isRange="true"
+	        placeholder="plalalalalla"
+	        :options="options"
+	        className=""
+	        v-model="rangeDate"
+        />
         <p>區間選擇結果：{{ rangeDate }}</p>
     </div>
 </template>

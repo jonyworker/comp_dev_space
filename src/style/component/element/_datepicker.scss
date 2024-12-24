@@ -1,63 +1,62 @@
-@use 'sass:list';
-
 .datepicker {
-    margin-top: $spacing-4;
-
-    &-picker {
-        border-radius: $radius !important;
-        box-shadow: $shadow-dark-400 !important;
-
-        .datepicker-header {
-            .datepicker-controls {
-
-                padding: 10px;
-
-                .prev-button,
-                .next-button {
-                    color: list.nth($neutral-300, $site) !important;
-                }
-
-                .view-switch {
-                    color: list.nth($primary-default, $site) !important;
-                }
-            }
-        }
-
-
-    }
-
-    &-main {
-        padding: 10px !important;
-
-        .dow {
-            color: list.nth($primary-default, $site) !important;
-            font-size: 16px !important;
-        }
-
-        .datepicker-cell {
-            color: list.nth($neutral-500, $site) !important;
-
-            &.prev:not(.disabled),
-            &.next:not(.disabled) {
-                color: list.nth($neutral-100, $site) !important;
-            }
-
-            &.selected,
-            &.selected:hover {
-                border-radius: $radius !important;
-                background-color: list.nth($form-default, $site) !important;
-                color: list.nth($neutral-0, $site) !important;
-            }
-
-            &.today:not(.selected) {
-                border-radius: $radius !important;
-                background-color: list.nth($form-active, $site) !important;
-                color: list.nth($form-default, $site) !important;
-            }
-        }
-    }
+    margin-top: 4px
 }
 
-// .ded-input {
-//   color: list.nth($text-helper, $site) !important;
-// }
+.datepicker-picker {
+    border-radius: 4px!important;
+    box-shadow: 0 4px 6px -2px #0003,0 3px 20px -5px #0000004d!important
+}
+
+.datepicker-picker .datepicker-header .datepicker-controls {
+    padding: 10px
+}
+
+.datepicker-picker .datepicker-header .datepicker-controls .prev-button,.datepicker-picker .datepicker-header .datepicker-controls .next-button {
+    color: #c0c0c5!important
+}
+
+.datepicker-picker .datepicker-header .datepicker-controls .view-switch {
+    color: #184cbc!important
+}
+
+.datepicker-main {
+    padding: 10px!important
+}
+
+.datepicker-main .dow {
+    color: #184cbc!important;
+    font-size: 16px!important
+}
+
+.datepicker-main .datepicker-cell {
+    color: #9d9da2!important
+}
+
+.datepicker-main .datepicker-cell.prev:not(.disabled),.datepicker-main .datepicker-cell.next:not(.disabled) {
+    color: #e1e1e2!important
+}
+
+.datepicker-main .datepicker-cell.selected,.datepicker-main .datepicker-cell.selected:hover {
+    border-radius: 4px!important;
+    background-color: #0d64fb!important;
+    color: #fff!important
+}
+
+.datepicker-main .datepicker-cell.today:not(.selected) {
+    border-radius: 4px!important;
+    background-color: #e7f0ff!important;
+    color: #0d64fb!important
+}
+
+.datepicker-main .datepicker-cell.range-start:not(.range-end) {
+    border-radius: 4px 0 0!important
+}
+
+.datepicker-main .datepicker-cell.range-end:not(.range-start) {
+    border-radius: 0 0 4px!important
+}
+
+.ded-date-pick-range {
+    display: flex;
+    gap: 8px
+}

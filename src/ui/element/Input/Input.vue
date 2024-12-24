@@ -4,6 +4,7 @@ import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Model
 const modelValue = defineModel();
+const emit = defineEmits(['clearInput', 'update:initValue']);
 
 // 定義 Props
 const props = defineProps({
@@ -76,6 +77,8 @@ watch(() => props.initValue, (newValue) => {
 // 功能: 清除輸入框
 const clearInput = () => {
 	modelValue.value = "";
+	emit('clearInput');
+	emit('update:initValue', '');
 };
 
 // 功能: 控制密碼顯示/隱藏
