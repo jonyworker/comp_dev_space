@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, defineExpose  } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Model
@@ -49,6 +49,14 @@ const props = defineProps({
 		default: "",
 	},
 });
+
+// 暴露內部的 <input> 節點
+const inputRef = ref(null);
+defineExpose({
+    input:inputRef
+});
+// 或其他唯一ID生成方式
+const inputId = ref(crypto.randomUUID());
 
 // 計算屬性
 const hintClass = computed(() => {
@@ -103,6 +111,7 @@ const toggleDropdown = () => {
 		        [`ded-input-border-${hintClass}`]:hintClass,
 	            'ded-input-disable': props.isDisabled
 	        }"
+            style="overflow: visible"
 		>
 			<!-- Prefix Icon -->
 			<label
@@ -119,6 +128,7 @@ const toggleDropdown = () => {
 
 			<!-- Input -->
 			<input
+                ref="inputRef"
 				:id="inputId"
 				:type="showPassword && props.type === 'password' ? 'text' : props.type"
 				v-model="modelValue"
