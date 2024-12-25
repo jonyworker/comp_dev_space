@@ -1,62 +1,84 @@
+@use 'sass:list';
+
 .datepicker {
-    margin-top: 4px
-}
+    margin-top: $spacing-4;
 
-.datepicker-picker {
-    border-radius: 4px!important;
-    box-shadow: 0 4px 6px -2px #0003,0 3px 20px -5px #0000004d!important
-}
+    &-picker {
+        border-radius: $radius !important;
+        box-shadow: $shadow-dark-400 !important;
 
-.datepicker-picker .datepicker-header .datepicker-controls {
-    padding: 10px
-}
+        .datepicker-header {
+            .datepicker-controls {
 
-.datepicker-picker .datepicker-header .datepicker-controls .prev-button,.datepicker-picker .datepicker-header .datepicker-controls .next-button {
-    color: #c0c0c5!important
-}
+                padding: 10px;
 
-.datepicker-picker .datepicker-header .datepicker-controls .view-switch {
-    color: #184cbc!important
-}
+                .prev-button,
+                .next-button {
+                    color: list.nth($neutral-300, $site) !important;
+                }
 
-.datepicker-main {
-    padding: 10px!important
-}
+                .view-switch {
+                    color: $primary-default !important;
+                }
+            }
+        }
 
-.datepicker-main .dow {
-    color: #184cbc!important;
-    font-size: 16px!important
-}
 
-.datepicker-main .datepicker-cell {
-    color: #9d9da2!important
-}
+    }
 
-.datepicker-main .datepicker-cell.prev:not(.disabled),.datepicker-main .datepicker-cell.next:not(.disabled) {
-    color: #e1e1e2!important
-}
+    &-main {
+        padding: 10px !important;
 
-.datepicker-main .datepicker-cell.selected,.datepicker-main .datepicker-cell.selected:hover {
-    border-radius: 4px!important;
-    background-color: #0d64fb!important;
-    color: #fff!important
-}
+        .dow {
+            color: $primary-default !important;
+            font-size: 16px !important;
+        }
 
-.datepicker-main .datepicker-cell.today:not(.selected) {
-    border-radius: 4px!important;
-    background-color: #e7f0ff!important;
-    color: #0d64fb!important
-}
+        .datepicker-cell {
+            color: list.nth($neutral-500, $site) !important;
 
-.datepicker-main .datepicker-cell.range-start:not(.range-end) {
-    border-radius: 4px 0 0!important
-}
+            &.prev:not(.disabled),
+            &.next:not(.disabled) {
+                color: list.nth($neutral-100, $site) !important;
+            }
 
-.datepicker-main .datepicker-cell.range-end:not(.range-start) {
-    border-radius: 0 0 4px!important
+            &.selected,
+            &.selected:hover {
+                border-radius: $radius !important;
+                background-color: $auo-form-default !important;
+                color: list.nth($neutral-0, $site) !important;
+            }
+
+            &.today:not(.selected) {
+                border-radius: $radius !important;
+                background-color: $auo-form-active !important;
+                color: list.nth($form-default, $site) !important;
+            }
+        }
+
+        .datepicker-cell.range {
+            // background-color: list.nth($form-active, $site) !important;
+        }
+
+        .datepicker-cell.range-start:not(.range-end) {
+            border-radius: $radius 0 0 0 !important;
+            // background-color: list.nth($form-default, $site) !important;
+            // color: list.nth($neutral-0, $site) !important;
+        }
+
+        .datepicker-cell.range-end:not(.range-start) {
+            border-radius: 0 0 $radius 0 !important;
+            // background-color: list.nth($form-default, $site) !important;
+            // color: list.nth($neutral-0, $site) !important;
+        }
+    }
 }
 
 .ded-date-pick-range {
     display: flex;
-    gap: 8px
+    gap: $spacing-8;
 }
+
+// .ded-input {
+//   color: list.nth($text-helper, $site) !important;
+// }

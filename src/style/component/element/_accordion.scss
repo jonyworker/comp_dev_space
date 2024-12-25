@@ -19,18 +19,18 @@
         &-highlight {
             border-bottom-width: $border-width;
             border-bottom-style: solid;
-            border-bottom-color: $form-border;
+            border-bottom-color: $auo-form-border;
         }
 
         &-solid {
             border-width: $border-width;
             border-style: solid;
-            border-color: $form-border;
+            border-color: $auo-form-border;
             border-radius: $radius-4;
         }
 
         &:hover {
-            border-width: $form-border;
+            border-width: $auo-form-border;
             border-color: list.nth($link-hover, $site);
         }
 
@@ -71,7 +71,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 2px solid $icon-default;
+                border: 2px solid $auo-icon-default;
                 border-radius: $radius-999;
             }
         }

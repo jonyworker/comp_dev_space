@@ -43,16 +43,16 @@
 
     &-checked {
         background-color: list.nth($neutral-0, $site);
-        border-color: $form-default;
+        border-color: $auo-form-default;
         border-width: 5px;
         transition: border-width 0.1s;
 
         &:hover {
-            border-color: $form-hover;
+            border-color: $auo-form-hover;
         }
 
         &:focus {
-            box-shadow: 0 0 0 3px $form-outline;
+            box-shadow: 0 0 0 3px $auo-form-outline;
         }
     }
 
@@ -60,12 +60,12 @@
         background-color: transparent;
 
         &:hover {
-            border-color: $form-hover;
+            border-color: $auo-form-hover;
         }
 
         &:focus {
-            border-color: $form-default;
-            box-shadow: 0 0 0 3px $form-outline;
+            border-color: $auo-form-default;
+            box-shadow: 0 0 0 3px $auo-form-outline;
         }
     }
 }

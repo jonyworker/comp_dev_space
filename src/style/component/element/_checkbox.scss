@@ -41,16 +41,16 @@
     }
 
     &-checked {
-        background-color: $form-default;
-        border-color: $form-default;
+        background-color: $auo-form-default;
+        border-color: $auo-form-default;
         color: $color-white;
 
         &:hover {
-            border-color: $form-hover;
+            border-color: $auo-form-hover;
         }
 
         &:focus {
-            box-shadow: 0 0 0 3px $form-outline;
+            box-shadow: 0 0 0 3px $auo-form-outline;
         }
     }
 
@@ -58,11 +58,11 @@
         background-color: transparent;
 
         &:hover {
-            border-color: $form-hover;
+            border-color: $auo-form-hover;
         }
 
         &:focus {
-            box-shadow: 0 0 0 3px $form-outline;
+            box-shadow: 0 0 0 3px $auo-form-outline;
         }
     }
 

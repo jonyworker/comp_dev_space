@@ -69,3 +69,18 @@ img {
   align-items: center;
   z-index: 1000;
 }
+
+.ded-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ded-multiline-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  overflow-wrap: break-word;
+}

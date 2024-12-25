@@ -113,15 +113,15 @@ input[type="range"].ded-slider::-webkit-slider-runnable-track {
 }
 
 input[type="range"].ded-slider::-webkit-slider-thumb {
-    background-color: list.nth($form-default, $site);
+    background-color: $auo-form-default;
 }
 
 input[type="range"].ded-slider::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, list.nth($form-outline, $site) 0%, list.nth($form-outline, $site) var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
+    background: linear-gradient(to right, $auo-form-outline 0%, $auo-form-outline var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
 }
 
 .ded-slider-tooltip {
-    color: list.nth($form-default, $site);
+    color: $auo-form-default
 }
 
 // @each $theme in $themes {
