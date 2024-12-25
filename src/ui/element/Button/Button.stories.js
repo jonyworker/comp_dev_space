@@ -305,9 +305,9 @@ export const ButtonPrefixSuffixStory = {
 	},
 };
 
-//==== 按鈕樣式 ====//
+//==== 外觀樣式 ====//
 export const ButtonTypeStory = {
-	name: '按鈕樣式',
+	name: '外觀樣式',
 	args: {
 		themeColor: 'primary',
 		variant: 'filled',
@@ -331,20 +331,6 @@ export const ButtonTypeStory = {
 		template: `<div style="display:flex; flex-wrap: wrap; gap: 16px">
 			<Button
 				:themeColor="args.themeColor"
-				variant="text"
-				:prefix="args.prefix"
-				:suffix="args.suffix"
-				:size="args.size"
-				:width="args.width"
-				:borderWidth="args.borderWidth"
-				:radius="args.radius"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				:themeColor="args.themeColor"
 				variant="filled"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
@@ -360,6 +346,20 @@ export const ButtonTypeStory = {
 			<Button
 				:themeColor="args.themeColor"
 				variant="ghost"
+				:prefix="args.prefix"
+				:suffix="args.suffix"
+				:size="args.size"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:themeColor="args.themeColor"
+				variant="text"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
 				:size="args.size"
@@ -400,20 +400,6 @@ export const ButtonTypeStory = {
 					return [
 						`<Button`,
 						`  :themeColor="${args.themeColor}"`,
-						`  variant="text"`,
-						`  :prefix="${args.prefix}"`,
-						`  :suffix="${args.suffix}"`,
-						`  :size="${args.size}"`,
-						`  :width="${args.width}"`,
-						`  :borderWidth="${args.borderWidth}"`,
-						`  :radius="${args.radius}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  ${args.default}`,
-						`</Button>`,
-						`<Button`,
-						`  :themeColor="${args.themeColor}"`,
 						`  variant="filled"`,
 						`  :prefix="${args.prefix}"`,
 						`  :suffix="${args.suffix}"`,
@@ -429,6 +415,20 @@ export const ButtonTypeStory = {
 						`<Button`,
 						`  :themeColor="${args.themeColor}"`,
 						`  variant="ghost"`,
+						`  :prefix="${args.prefix}"`,
+						`  :suffix="${args.suffix}"`,
+						`  :size="${args.size}"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  variant="text"`,
 						`  :prefix="${args.prefix}"`,
 						`  :suffix="${args.suffix}"`,
 						`  :size="${args.size}"`,
@@ -694,6 +694,137 @@ export const ButtonColorStory = {
 						`  ${args.default}`,
 						`</Button>`,
 					].join("\n").trim();
+				}
+			}
+		}
+	},
+};
+
+//==== 尺寸 ====//
+export const ButtonSizeStory = {
+	name: '尺寸',
+	args: {
+		themeColor: 'primary',
+		variant: 'ghost',
+		prefix: '',
+		suffix: '',
+		size: '',
+		width: 'fit',
+		borderWidth: '1px',
+		radius: '4px',
+		isDisabled: false,
+		className: "",
+		default: 'Button',
+	},
+	render: (args) => ({
+		components: { Button },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+		<div style="display:flex; align-items: baseline; flex-wrap: wrap; gap: 16px">
+			<Button
+				:themeColor="args.themeColor"
+				:variant="args.variant"
+				prefix="folder"
+				suffix=""
+				size="large"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:themeColor="args.themeColor"
+				:variant="args.variant"
+				prefix="folder"
+				suffix=""
+				size="medium"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+			<Button
+				:themeColor="args.themeColor"
+				:variant="args.variant"
+				prefix="folder"
+				suffix=""
+				size="small"
+				:width="args.width"
+				:borderWidth="args.borderWidth"
+				:radius="args.radius"
+				:isDisabled="args.isDisabled"
+				:className="args.className"
+			>
+				{{ args.default }}
+			</Button>
+		</div>
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			exclude: ['prefix','suffix'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :variant="${args.variant}"`,
+						`  prefix="folder"`,
+						`  suffix=""`,
+						`  size="large"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :variant="${args.variant}"`,
+						`  prefix="folder"`,
+						`  suffix=""`,
+						`  size="medium"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+						`<Button`,
+						`  :themeColor="${args.themeColor}"`,
+						`  :variant="${args.variant}"`,
+						`  prefix="folder"`,
+						`  suffix=""`,
+						`  size="small"`,
+						`  :width="${args.width}"`,
+						`  :borderWidth="${args.borderWidth}"`,
+						`  :radius="${args.radius}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`>`,
+						`  ${args.default}`,
+						`</Button>`,
+
+					].join("\n").trim();
+
 				}
 			}
 		}
