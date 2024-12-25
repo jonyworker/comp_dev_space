@@ -114,7 +114,7 @@ const toggleDropdown = () => {
 		        [`ded-input-border-${hintClass}`]:hintClass,
 	            'ded-input-disable': props.isDisabled
 	        }"
-            style="overflow: visible"
+            style="overflow: auto"
 		>
 			<!-- Prefix Icon -->
 			<label

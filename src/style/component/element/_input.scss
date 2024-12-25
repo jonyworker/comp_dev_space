@@ -1,122 +1,114 @@
-@use 'sass:list';
-
 .ded-input-container {
-  width: 100%
+  width: 100%;
+  min-width: 240px
 }
 
 .ded-input-group {
   width: 100%;
   position: relative;
   display: flex;
-  gap: $spacing-8;
+  gap: 8px;
   align-items: center;
-  padding: 0.5em 0.75em;
-  border-width: $input-border-width;
+  border-width: 1px;
   border-style: solid;
-  border-color: $form-border;
-  border-radius: $radius;
-  background-color: $form-background;
-  overflow: hidden;
-
-  &:hover {
-    border-width: $border-width-1;
-    border-style: solid;
-    border-color: $form-hover;
-  }
-
-  &:focus-within {
-    box-shadow: 0 0 0 3px $form-hover;
-  }
+  border-color: #c0c0c5;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden
 }
 
-/* one icon */
+.ded-input-group:hover {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #5693fc
+}
+
+.ded-input-group:focus-within {
+  box-shadow: 0 0 0 3px #5693fc
+}
+
 .ded-input-group:has(.ded-input-feat-icon :only-child) .ded-input {
-  padding-right: 1.25em;
+  padding-right: 1.25em
 }
 
-/* two icon */
 .ded-input-group:has(.ded-input-feat-icon :nth-of-type(2)) .ded-input {
-  padding-right: 2.5em;
+  padding-right: 2.5em
 }
 
 .ded-input {
   height: 100%;
   width: 100%;
-  // padding-inline: 8px 2em;
-  color: list.nth($text-secondary, $site);
+  padding: .5em .75em;
+  color: #59595d
+}
 
-  &::placeholder {
-    color: list.nth($text-placeholder, $site);
-  }
+.ded-input::placeholder {
+  color: #e1e1e2
+}
 
-  &-prefix {
-    padding-left: 1.25em;
-  }
+.ded-input-prefix {
+  padding-left: 2.25em
+}
 
-  &-icon {
-    position: absolute;
-    left: 0.75em;
-    color: $icon-default;
+.ded-input-icon {
+  position: absolute;
+  left: .75em;
+  color: #59595d
+}
 
-    &-error {
-      color: getThemeColor('error', 'default');
-    }
+.ded-input-icon-error {
+  color: #ff4c51
+}
 
-    &-disable {
-      color: list.nth($disabled-text, $site) !important;
-    }
-  }
+.ded-input-icon-disable {
+  color: #c0c0c5!important
 }
 
 .ded-input-feat-icon {
   position: absolute;
-  right: 0.75em;
+  right: .75em;
   display: flex;
-  gap: $spacing-4;
-  color: $icon-default;
+  gap: 4px;
+  color: #59595d
 }
 
 .ded-input-border-error {
-  border-color: getThemeColor('error', 'default') !important;
+  border-color: #ff4c51!important
 }
 
 .ded-input-label {
-  font-size: $text-size-caption1;
-  color: $text-color-secondary;
+  font-size: 14px;
+  color: #59595d
 }
 
 .ded-input-hint {
   display: block;
-  font-size: $text-size-caption2;
+  font-size: 13px
 }
 
 .ded-input-hint-desc {
-  color: $color-gray60;
+  color: #666
 }
 
 .ded-input-hint-error {
-  color: getThemeColor('error', 'default') !important;
+  color: #ff4c51!important
 }
 
 .ded-input-disable {
-  pointer-events: none !important;
-  color: list.nth($disabled-text, $site) !important;
-  border-color: list.nth($disabled-border, $site) !important;
-
-  &::placeholder {
-    color: list.nth($text-placeholder, $site) !important;
-  }
+  pointer-events: none!important;
+  color: #c0c0c5!important;
+  border-color: #c0c0c5!important
 }
 
-/* Chrome, Safari, Edge, Opera */
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+.ded-input-disable::placeholder {
+  color: #e1e1e2!important
+}
+
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
+  margin: 0
 }
 
-
-/* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+  -moz-appearance: textfield
 }
