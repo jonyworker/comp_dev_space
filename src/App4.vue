@@ -1,7 +1,7 @@
 <!-- DemoPage.vue (範例父層) -->
 <script setup>
 import { ref } from 'vue'
-import DatePicker from '@/ui/element/Date-Picker/DatePicker.vue'
+import DatePicker from '@/ui/element/DatePicker/DatePicker.vue'
 // 上面這行請依實際路徑匯入「支援單日 / 區間」的 DatePicker
 
 const options = {
@@ -25,11 +25,10 @@ const rangeDate = ref(["",""])
         <h2>單日模式</h2>
         <DatePicker
 	        :isRange="false"
-	        placeholder="plalalalalla"
+	        placeholder="Placeholder"
 	        :options="options"
 	        className=""
 	        v-model="singleDate"
-			@clearSingleDate="()=> console.log('fuck')"
         />
         <p>單日選擇結果：{{ singleDate }}</p>
 
@@ -40,7 +39,6 @@ const rangeDate = ref(["",""])
         <!-- 傳入 :range="true" 使之進入區間模式 -->
         <DatePicker
 	        :isRange="true"
-	        placeholder="plalalalalla"
 	        :options="options"
 	        className=""
 	        v-model="rangeDate"
@@ -52,5 +50,5 @@ const rangeDate = ref(["",""])
 
 
 <style scoped>
-/* 可自行添加樣式 */
+
 </style>

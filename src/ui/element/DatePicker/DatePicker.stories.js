@@ -1,4 +1,4 @@
-import DatePicker from '@/ui/element/Date-Picker/DatePicker.vue'
+import DatePicker from '@/ui/element/DatePicker/DatePicker.vue'
 import Input from "@/ui/element/Input/Input.vue";
 
 export default {
@@ -71,22 +71,24 @@ export const DatepickerSingle = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// exclude: ['range', 'rangeStartLabel', 'rangeStartPlaceholder', 'rangeEndLabel', 'rangeEndPlaceholder' ],
+			include: ['isRange', 'placeholder', 'options', 'className' ],
 		},
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					// return [
-					// 	'<Datepicker',
-					// 	`  label="${args.label}"`,
-					// 	`  placeholder="${args.placeholder}"`,
-					// 	`  size="${args.size}"`,
-					// 	`  language="${args.language}"`,
-					// 	`  className="${args.className}"`,
-					// 	'></Datepicker>',
-					// ].join('\n').trim();
-
+					return [
+						`<DatePicker`,
+						`  :isRange="${args.isRange}"`,
+						`  :placeholder="${args.placeholder}"`,
+						`  :options=" {
+		format: 'yyyy-mm-dd',
+		todayHighlight: true,
+		autohide: true
+	},"`,
+						`  :className="${args.className}"`,
+						`></DatePicker>`,
+					].join("\n").trim();
 				}
 			}
 		}
@@ -125,22 +127,24 @@ export const DatepickerRange = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// exclude: ['range', 'rangeStartLabel', 'rangeStartPlaceholder', 'rangeEndLabel', 'rangeEndPlaceholder' ],
+			include: ['isRange', 'placeholder', 'options', 'className' ],
 		},
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					// return [
-					// 	'<Datepicker',
-					// 	`  label="${args.label}"`,
-					// 	`  placeholder="${args.placeholder}"`,
-					// 	`  size="${args.size}"`,
-					// 	`  language="${args.language}"`,
-					// 	`  className="${args.className}"`,
-					// 	'></Datepicker>',
-					// ].join('\n').trim();
-
+					return [
+						`<DatePicker`,
+						`  :isRange="${args.isRange}"`,
+						`  :placeholder="${args.placeholder}"`,
+						`  :options=" {
+		format: 'yyyy-mm-dd',
+		todayHighlight: true,
+		autohide: true
+	},"`,
+						`  :className="${args.className}"`,
+						`></DatePicker>`,
+					].join("\n").trim();
 				}
 			}
 		}
