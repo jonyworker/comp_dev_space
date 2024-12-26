@@ -3,20 +3,20 @@ import { ref, computed, onMounted, watch } from "vue";
 
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		type: String,
-		default: "primary",
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			].includes(value),
-	},
+	// themeColor: {
+	// 	type: String,
+	// 	default: "primary",
+	// 	validator: (value) =>
+	// 		[
+	// 			"primary",
+	// 			"secondary",
+	// 			"neutral",
+	// 			"info",
+	// 			"success",
+	// 			"warning",
+	// 			"error",
+	// 		].includes(value),
+	// },
 	label: {
 		type: String,
 		default: ""
@@ -87,7 +87,7 @@ const getLimitBorder = computed(() => {
                     :cx="props.size / 2"
                     :cy="props.size / 2">
             </circle>
-            <circle :class="`ded-progress-circle-percent-${props.themeColor}`"
+            <circle class="ded-progress-circle-percent-form"
                     fill="transparent"
                     :stroke-width="props.strokeWidth"
                     :stroke-dasharray="circumference"
@@ -102,28 +102,30 @@ const getLimitBorder = computed(() => {
 
             <!-- CircleProgress - 文字顯示 -->
             <text
+                class="ded-progress-label"
                 v-if="props.size >= getLimitBorder"
                 ref="textRef"
                 x="50%"
                 y="45%"
                 text-anchor="middle"
                 font-size="1em"
-                fill="black">{{props.label}}</text>
+                >{{props.label}}</text>
             <text
                 v-if="props.size >= getLimitBorder"
+                class="ded-progress-percent-text"
                 x="50%"
                 :y="label ? '60%' : '50%'"
                 text-anchor="middle"
                 dy=".3em"
                 font-size="1.5em"
-                fill="black">{{ `${normalizedProgress}%` }}</text>
+                >{{ `${normalizedProgress}%` }}</text>
         </svg>
 
         <!-- CircleProgress - 文字顯示（空間不夠時顯示） -->
         <template v-if="size < getLimitBorder">
             <div class="ded-progress-circle-label">
-                <span>{{ props.label }}</span>
-                <span>{{ `${normalizedProgress}%` }}</span>
+                <span class="ded-progress-label">{{ props.label }}</span>
+                <span class="ded-progress-percent">{{ `${normalizedProgress}%` }}</span>
             </div>
         </template>
     </div>
