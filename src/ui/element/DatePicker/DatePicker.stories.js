@@ -19,7 +19,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ id: string; label: string | Function; detail: string | Function; }[]",
+					summary: '{ format: string | todayHighlight: boolean | autohide: boolean; }[]',
 				}
 			}
 		},
@@ -48,7 +48,6 @@ export const DatepickerSingle = {
 		options: {
 			format: 'yyyy-mm-dd',
 			todayHighlight: true,
-			autohide: true
 		},
 		className:""
 	},
@@ -104,7 +103,6 @@ export const DatepickerRange = {
 		options: {
 			format: 'yyyy-mm-dd',
 			todayHighlight: true,
-			autohide: true
 		},
 		className:""
 	},

@@ -147,6 +147,7 @@ watch(modelValue, (newValue) => {
 		? datepickerRef.value.setDates(...(Array.isArray(newValue) ? newValue : [null, null]))
 		: datepickerRef.value.setDate(newValue)
 }, { immediate: true })
+
 </script>
 
 <template>
