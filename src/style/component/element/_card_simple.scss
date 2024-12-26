@@ -1,120 +1,63 @@
-.ded-card-container {
+.ded-card-simple {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: column
+}
 
-    &:has(:first-child) {
-        padding-top: 16px;
-    }
+.ded-card-simple-horizontal {
+    flex-direction: row
+}
 
-    &:has(:last-child) {
-        padding-bottom: 16px;
+@media screen and (max-width: 765px) {
+    .ded-card-simple-horizontal {
+        flex-direction:column
     }
 }
 
-.ded-card {
-    position: relative;
+.ded-card-simple-image {
+    flex: 1
+}
+
+.ded-card-simple-content {
+    flex: 1;
     display: flex;
-    flex-wrap: wrap;
-    box-shadow: $shadow-light-200;
-    background-color: $color-white;
-    border-radius: $card-size-rounded;
-    overflow: hidden;
-    // background: linear-gradient(125deg, rgba(53, 53, 53, 0.60) 29.59%, rgba(96, 96, 96, 0.60) 86.88%);
+    flex-direction: column
+}
 
-    .ded-card-simple {
-        gap: 16px;
-        border-radius: $radius;
-    }
+.ded-card-simple-content-button-group {
+    padding-inline:1em;padding-block:0 1em}
 
-    .ded-card-simple-text {
-        padding: 0;
-    }
+.ded-card-simple-content-button-group-left {
+    text-align: left
+}
 
-    .ded-card-simple-image {
-        border-radius: $radius;
-        border-radius: $radius;
-        overflow: hidden;
-    }
+.ded-card-simple-content-button-group-right {
+    text-align: right
+}
 
-    &-pic {
+.ded-card-simple-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 1.125em
+}
 
-        @media screen and (max-width: 768px) {
-            width: 100%;
+.ded-card-simple-text-subtitle {
+    font-size: 14px;
+    color: #c0c0c5
+}
 
-            &-padding {
-                padding-inline: 16px;
-                padding-top: 16px;
-            }
-        }
+.ded-card-simple-text-desc {
+    font-size: 15px;
+    color: #59595d
+}
 
-        &-padding {
-            padding-block: 16px;
-            padding-left: 16px;
-        }
+.ded-card-simple-text-horizontal {
+    flex-direction: column
+}
 
-        img {
-            vertical-align: middle;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .ded-image-rounded {
-            border-radius: $image-size-rounded;
-        }
-
-        @each $ratio in $aspectRatio {
-            &-#{$ratio} {
-                aspect-ratio: getAspectRatio($ratio);
-            }
-        }
-    }
-
-    &-header {
-        padding-inline: 16px;
-        // padding-bottom: 12px;
-
-        &-divider {
-            border-bottom: 1px solid $color-gray20;
-        }
-
-        .ded-subtitle {
-            color: $text-color-helper;
-            padding-top: 16px;
-        }
-
-        &-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .ded-card-icon {
-                width: 24px;
-                height: 24px;
-                color: $color-gray40;
-            }
-        }
-    }
-
-    &-body {
-        padding-inline: 16px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 24px;
-
-        .ded-card-desc {
-            padding-inline: 16px;
-            color: $text-color-primary;
-        }
-    }
-
-    &-footer {
-        width: 100%;
-        // padding-top: 12px;
-        padding-inline: 16px;
-        margin-top: auto;
-    }
+.ded-card-simple-border {
+    box-shadow: 0 1px 4px #0000001a,0 1px 2px #00000026
 }

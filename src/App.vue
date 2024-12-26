@@ -50,12 +50,12 @@ import Chart from "@/ui/element/Chart/Chart.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
 import Datepicker from "@/ui/element/Datepicker/Datepicker.vue";
 import Accordion from "@/ui/element/Accordion/Accordion.vue";
-import CardOld from "@/ui/element/Card/CardOld.vue";
-import Card from "@/ui/element/Card/Card.vue";
-import CardHeader from "@/ui/element/Card/CardHeader.vue";
-import CardBody from "@/ui/element/Card/CardBody.vue";
-import CardFooter from "@/ui/element/Card/CardFooter.vue";
-import CardImage from "@/ui/element/Card/CardImage.vue";
+import CardOld from "@/ui/element/Card/old/CardOld.vue";
+import Card from "@/ui/element/Card/old/Card.vue";
+import CardHeader from "@/ui/element/Card/old/CardHeader.vue";
+import CardBody from "@/ui/element/Card/old/CardBody.vue";
+import CardFooter from "@/ui/element/Card/old/CardFooter.vue";
+import CardImage from "@/ui/element/Card/old/CardImage.vue";
 import Title from "@/ui/element/Title/Title.vue";
 import PageDialog from "@/page/PageDialog.vue";
 
