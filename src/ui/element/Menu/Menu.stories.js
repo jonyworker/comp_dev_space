@@ -39,6 +39,10 @@ export default {
 			description: "顏色",
 			control: { type: "color" },
 		},
+		isSideNavLink: {
+			description: '是否為側邊導航',
+			control: { type: "boolean" },
+		},
 		className: {
 			description: "客製化樣式",
 			control: { type: "text" },
@@ -87,6 +91,7 @@ export const MenuDefault = {
 		],
 		isCollapsed: false,
 		color:'#000000',
+		isSideNavLink: false,
 		className: ""
 	},
 	render: (args) => ({
@@ -97,14 +102,13 @@ export const MenuDefault = {
 			};
 		},
 		template: `
-			<div :style="args.isCollapsed ? 'width:40px' : 'width:auto'">
 				<Menu
 					:dataSource="args.dataSource"
 					:isCollapsed="args.isCollapsed"
 					:color="args.color"
+					:isSideNavLink="args.isSideNavLink"
 					:className="args.className"
 				></Menu>
-			</div>
 		`,
 	}),
 	// 控制 controls 中能控制的參數
@@ -126,6 +130,7 @@ export const MenuDefault = {
 						`    :dataSource="${dataSourceString}"`,
 						`    :isCollapsed="${args.isCollapsed}"`,
 						`    color="${args.color}"`,
+						`    :isSideNavLink="${args.isSideNavLink}"`,
 						`    className="${args.className}"`,
 						'  ></Menu>',
 						'</div>',

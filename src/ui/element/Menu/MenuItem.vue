@@ -23,6 +23,10 @@ const props = defineProps({
 		type: Object,
 		required: true,
 	},
+    isSideNavLink: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 const emit = defineEmits(["itemClick"]);
@@ -30,11 +34,6 @@ const emit = defineEmits(["itemClick"]);
 // 獲取導航組件類型
 const getComponentType = (item) => {
 	return props.useRouter && item.path ? "router-link" : "a";
-};
-
-// 項目點擊處理
-const handleItemClick = (item, event) => {
-	emit("itemClick", { item, event });
 };
 
 // 切換展開/收起狀態
@@ -46,9 +45,8 @@ const toggleExpand = (item) => {
 
 
 <template>
-	<li class="ded-nav-item">
+	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.isSideNavLink }">
 		<!-- 動態組件切換 router-link 或 a -->
-		<!--@click.stop="handleItemClick(props.item, $event)"-->
 		<component
 			:is="getComponentType(props.item)"
 			:to="props.useRouter ? props.item.path : undefined"
@@ -64,12 +62,11 @@ const toggleExpand = (item) => {
 			</template>
 
 			<!-- 標題 -->
-			<span
-				class="ded-nav-item-label"
-				:style="!props.isCollapsed ? 'opacity: 1; display: block' : 'opacity: 0; display: none'"
-			>
-        {{ props.item.title }}
-      </span>
+            <template v-if="!props.isCollapsed">
+                <span class="ded-nav-item-label">
+                    {{ props.item.title }}
+                </span>
+            </template>
 		</component>
 
 		<!-- 展開圖標 -->
@@ -95,11 +92,11 @@ const toggleExpand = (item) => {
 			class="ded-nav-subitem"
 			:class="{ 'expanded': props.expandedItems[props.item.path] }"
 			v-show="
-        !props.isCollapsed &&
-        props.item.children &&
-        props.expandedItems[props.item.path]
-      "
-		>
+                    !props.isCollapsed &&
+                    props.item.children &&
+                    props.expandedItems[props.item.path]
+                  "
+        >
 			<MenuItem
 				v-for="child in props.item.children"
 				:key="child.path"

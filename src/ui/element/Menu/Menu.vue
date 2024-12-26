@@ -1,6 +1,6 @@
 <script setup>
 import MenuItem from "./MenuItem.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 let router;
 try {
@@ -22,6 +22,10 @@ const props = defineProps({
 		type: String,
 		default: "#000000",
 	},
+    isSideNavLink: {
+        type: Boolean,
+        default: false,
+    },
 	className: {
 		type: String,
 		default: "",
@@ -35,6 +39,8 @@ const props = defineProps({
 const emit = defineEmits(["navItemClick", "expandedNav"]);
 
 const expandedItems = ref({});
+
+const computedWidth = computed(() => (props.isCollapsed ? '60px' : '100%'));
 
 const handleItemClick = ({item, event}) => {
 	emit("navItemClick", item);
@@ -56,10 +62,7 @@ const handleItemClick = ({item, event}) => {
       [props.className]: !!props.className,
     }"
 	>
-		<nav
-			class="ded-nav"
-			:style="props.isCollapsed ? 'width:60px' : 'width:100%'"
-		>
+		<nav class="ded-nav" :style="{ width: computedWidth }">
 			<ul class="ded-nav-list">
 				<MenuItem
 					v-for="item in props.dataSource"
@@ -68,6 +71,7 @@ const handleItemClick = ({item, event}) => {
 					:is-collapsed="props.isCollapsed"
 					:use-router="props.useRouter"
 					:color="props.color"
+                    :isSideNavLink="props.isSideNavLink"
 					:expanded-items="expandedItems"
 					@itemClick="handleItemClick"
 				/>
