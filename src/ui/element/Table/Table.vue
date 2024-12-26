@@ -18,6 +18,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+    isSprite: {
+        type: Boolean,
+        default: false,
+    },
 	className: {
 		type: String,
 		default: "",
@@ -69,10 +73,10 @@ const handleSelectAll = (event) => {
 			<thead class="ded-table-thead">
 				<tr class="ded-table-thead-tr">
 					<th
-						v-if="showCheckbox"
+						v-if="props.showCheckbox"
 						style="width: 30px; align-items: center"
 						class="ded-table-thead-tr-th"
-						:class="{ 'ded-table-thead-tr-th-border': showVerticalBorders }"
+						:class="{ 'ded-table-thead-tr-th-border': props.showVerticalBorders }"
 					>
 						<input
 							type="checkbox"
@@ -87,7 +91,7 @@ const handleSelectAll = (event) => {
 						:key="col.key"
 						:style="{ width: col.width, textAlign: col.align || 'left' }"
 						class="ded-table-thead-tr-th"
-						:class="{ 'ded-table-thead-tr-th-border': showVerticalBorders }"
+						:class="{ 'ded-table-thead-tr-th-border': props.showVerticalBorders }"
 					>
 						{{ col.title }}
 					</th>
@@ -98,13 +102,14 @@ const handleSelectAll = (event) => {
 					v-for="(item, rowIndex) in props.dataSource"
 					:key="rowIndex"
 					class="ded-table-tbody-tr"
+                    :class="{'ded-table-tbody-tr-sprite': props.isSprite}"
 					@click="() => handleClick(item)"
 				>
 					<td
-						v-if="showCheckbox"
+						v-if="props.showCheckbox"
 						style="width: 30px; align-items: center"
 						class="ded-table-tbody-tr-td"
-						:class="{ 'ded-table-tbody-tr-td-border': showVerticalBorders }"
+						:class="{ 'ded-table-tbody-tr-td-border': props.showVerticalBorders }"
 					>
 						<input
 							type="checkbox"
@@ -118,7 +123,7 @@ const handleSelectAll = (event) => {
 						:key="col.key"
 						:style="{ width: col.width, textAlign: col.align || 'left' }"
 						class="ded-table-tbody-tr-td"
-						:class="{ 'ded-table-tbody-tr-td-border': showVerticalBorders }"
+						:class="{ 'ded-table-tbody-tr-td-border': props.showVerticalBorders }"
 					>
 						<slot :name="col.key" :item="item">
 							{{ item[col.key] }}

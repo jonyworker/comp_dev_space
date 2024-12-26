@@ -39,6 +39,10 @@ export default {
 			description: "是否顯示垂直線條",
 			control: { type: "boolean" },
 		},
+		isSprite: {
+			description: "是否顯示垂直線條",
+			control: { type: "boolean" },
+		},
 		className: {
 			description: "客製化樣式",
 			control: { type: "text" },
@@ -84,6 +88,7 @@ export const TableDefault = {
 		],
 		showCheckbox: false,
 		showVerticalBorders: false,
+		isSprite: false,
 		className: "",
 	},
 	render: (args) => ({
@@ -97,6 +102,7 @@ export const TableDefault = {
 			:dataSource="args.dataSource"
 			:showCheckbox="args.showCheckbox"
 			:showVerticalBorders="args.showVerticalBorders"
+			:isSprite="args.isSprite"
 			:className="args.className"
 			/>
     `,
@@ -108,13 +114,13 @@ export const TableDefault = {
 					const { args } = storyContext;
 					const columnsString = formatColumns(args.columns);
 					const dataSourceString = formatDataSource(args.dataSource);
-
 					return [
 						`<Table`,
 						`  :columns='${columnsString}'`,
 						`  :dataSource='${dataSourceString}'`,
 						`  :showCheckbox="${args.showCheckbox}"`,
 						`  :showVerticalBorders="${args.showVerticalBorders}"`,
+						`  :isSprite="${args.isSprite}"`,
 						`  :className="${args.className}"`,
 						`/>`,
 					].join("\n");
@@ -143,6 +149,7 @@ export const TableBorder = {
 		],
 		showCheckbox: false,
 		showVerticalBorders: true,
+		isSprite: false,
 		className: "",
 	},
 	render: (args) => ({
@@ -156,6 +163,7 @@ export const TableBorder = {
 			:dataSource="args.dataSource"
 			:showCheckbox="args.showCheckbox"
 			:showVerticalBorders="args.showVerticalBorders"
+			:isSprite="args.isSprite"
 			:className="args.className"
 			/>
     `,
@@ -174,6 +182,7 @@ export const TableBorder = {
 						`  :dataSource='${dataSourceString}'`,
 						`  :showCheckbox="${args.showCheckbox}"`,
 						`  :showVerticalBorders="${args.showVerticalBorders}"`,
+						`  :isSprite="${args.isSprite}"`,
 						`  :className="${args.className}"`,
 						`/>`,
 					].join("\n");
@@ -202,6 +211,7 @@ export const TableSlot = {
 		],
 		showCheckbox: false,
 		showVerticalBorders: false,
+		isSprite: false,
 		className: "",
 	},
 	render: (args) => ({
@@ -218,6 +228,7 @@ export const TableSlot = {
 			:dataSource="args.dataSource"
 			:showCheckbox="args.showCheckbox"
 			:showVerticalBorders="args.showVerticalBorders"
+			:isSprite="args.isSprite"
 			:className="args.className"
 			>
 				<template #column5="{item}">
@@ -249,6 +260,7 @@ export const TableSlot = {
 						`  :dataSource='${dataSourceString}'`,
 						`  :showCheckbox="${args.showCheckbox}"`,
 						`  :showVerticalBorders="${args.showVerticalBorders}"`,
+						`  :isSprite="${args.isSprite}"`,
 						`  :className="${args.className}"`,
 						`>`,
 						`  <template #column5="{item}">`,
@@ -292,6 +304,7 @@ export const TableCheck = {
 		],
 		showCheckbox: true,
 		showVerticalBorders: true,
+		isSprite: false,
 		className: "",
 	},
 	render: (args) => ({
@@ -305,6 +318,7 @@ export const TableCheck = {
 			:dataSource="args.dataSource"
 			:showCheckbox="args.showCheckbox"
 			:showVerticalBorders="args.showVerticalBorders"
+			:isSprite="args.isSprite"
 			:className="args.className"
 			/>
     `,
@@ -323,6 +337,7 @@ export const TableCheck = {
 						`  :dataSource='${dataSourceString}'`,
 						`  :showCheckbox="${args.showCheckbox}"`,
 						`  :showVerticalBorders="${args.showVerticalBorders}"`,
+						`  :isSprite="${args.isSprite}"`,
 						`  :className="${args.className}"`,
 						`/>`,
 					].join("\n");
