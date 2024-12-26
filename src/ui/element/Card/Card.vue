@@ -1,46 +1,38 @@
 <script setup>
-import { computed } from "vue";
-import {cva} from "class-variance-authority";
-
-// 定義 props
+// 定義 Props
 const props = defineProps({
-	//卡片樣式接口
-	elevation: {
-		type: String,
-		default: "none",
-		validator: (value) => ['none', 'low', 'high'].includes(value),
+	hasHeaderDivider: {
+		type: Boolean,
+		default: false
 	},
-	direction: {
+	className: {
 		type: String,
-		default: "row",
-		validator: (value) => ['row', 'col'].includes(value),
+		default: "",
 	},
-})
-
-const cardContainerCVAClass = computed(()=>{
-	return cva ("card__container",{
-		variants: {
-			elevation: {
-				'none': "",
-				'low': "shadow_2",
-				'high': "shadow_5",
-			},
-			direction: {
-				'row': "card__direction-row",
-				'col': "card__direction-column",
-			},
-		},
-	})({
-		//這裡設定 variants名稱接收 props的值
-		elevation: props.elevation,
-		direction: props.direction
-	})
 })
 </script>
 
 <template>
-	<div :class="cardContainerCVAClass">
-		<slot></slot>
+	<div :class="{
+		'ded-card':true,
+		'ded-card-container': true,
+		 [props.className]: !!props.className}
+	">
+		<div :class="{'ded-card-header': true, 'ded-card-header-divider': props.hasHeaderDivider }">
+			<slot name="cardHeader">
+			</slot>
+		</div>
+
+		<div class="ded-card-body">
+			<slot>
+			</slot>
+		</div>
+
+		<div class="ded-card-footer">
+			<slot name="cardFooter">
+			</slot>
+		</div>
+
 	</div>
 </template>
 

@@ -1,26 +1,52 @@
 import Card from "@/ui/element/Card/Card.vue";
+import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";
 import Button from "@/ui/element/Button/Button.vue";
-import CardHeader from "@/ui/element/Card/CardHeader.vue";
-import CardImage from "@/ui/element/Card/CardImage.vue";
-import CardBody from "@/ui/element/Card/CardBody.vue";
-import CardFooter from "@/ui/element/Card/CardFooter.vue";
-
+import Title from "@/ui/element/Title/Title.vue";
+import Grid from "@/ui/layout/Grid/Grid.vue";
+import Row from "@/ui/layout/Grid/Row.vue";
+import Column from "@/ui/layout/Grid/Column.vue";
 
 export default {
-	title: "Component/Card/Card",
+	components: {Grid},
+	title: "Component/Card",
 	component: Card,
-	subcomponents: { CardHeader, CardBody, CardImage, CardFooter},
 	tags: ["autodocs"],
 	argTypes: {
-		elevation: {
-			description: '設定 Card 浮動高度',
-			control: 'select',
-			options: ['none', 'low', 'high']
+		hasHeaderDivider: {
+			description:"是否有標題分隔線",
+			control: { type: "boolean" },
 		},
-		direction: {
-			description: "設定 Card 對齊方向",
-			control: 'select',
-			options: ['row', 'col']
+		className: {
+			description: "客製化樣式",
+			control: { type: "text" },
+		},
+		cardHeader: {
+			description: "卡片標題",
+			control: { type: "text" },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				},
+			},
+		},
+		default: {
+			description: "卡片內容",
+			control: { type: "text" },
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				},
+			},
+		},
+		cardFooter: {
+			description: "卡片底部",
+			control: { type: "text" },
+
+			table: {
+				type: {
+					summary: "Vue Component | HTML"
+				},
+			},
 		},
 	},
 	parameters: {
@@ -28,82 +54,212 @@ export default {
 		docs: {
 			title: "Card",
 			description: {
-				component: "Card組件的呈現及說明。",
+				component: "Card 組件的呈現及說明。",
 			},
 		},
+		actions: { disabled: true },
 	},
 };
 
-//==== Card 預設樣式 ====//
+//==== 預設項目 ====//
 export const CardDefault = {
-	name: "Card 預設樣式",
+	name: "預設項目",
 	args: {
-		elevation: 'high',
-		direction: 'col',
+		hasHeaderDivider: false,
+		className: '',
+		cardHeader: `<Title :level="2" >Header Title</Title>`,
+		default: `<CardSimple imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png" align="left" :hasBorder="false" title="Card Title" subtitle="Subtitle" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."></CardSimple>`,
+		cardFooter: `<Button themeColor="primary" variant="filled" suffix="chevronDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
 	},
 	render: (args) => ({
-		components: { Card, CardHeader,CardImage, CardBody, CardFooter },
+		components: { Card, Grid, Row, Column, Button, Title, CardSimple },
 		setup() {
 			return {
 				args,
-			};
+			}
 		},
 		template: `
-			<div style="width: 300px;">
-				<Card :elevation="args.elevation" :direction="args.direction">
-					<CardImage fullImg>
-					</CardImage>
+			<Grid>
+				<Row>
+					<Column :xs="4" :md="6" :lg="4">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title :level="2" >Header Title</Title>
+							</template>
 
-					<CardBody clamp="3">
-					</CardBody>
-				</Card>
-			</div>
-        `,
+							<CardSimple
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="chevronDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+						
+					</Column>
+				</Row>
+			</Grid>
+			
+		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
+
 	},
 };
 
-//==== Card 自訂樣式(slot) ====//
-export const CardSlot = {
-	name: "Card 自訂樣式(slot)",
+//==== 垂直佈局 ====//
+export const CardVerticalDefault = {
+	name: "垂直佈局",
 	args: {
-		divider: true,
+		hasHeaderDivider: false,
+		className: '',
+		cardHeader: `<Title :level="2" >Header Title</Title>`,
+		default: `<CardSimple imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png" align="left" :hasBorder="false" title="Card Title" subtitle="Subtitle" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."></CardSimple>`,
+		cardFooter: `<Button themeColor="primary" variant="filled" suffix="chevronDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
 	},
 	render: (args) => ({
-		components: { Card,  Button },
+		components: { Card, Grid, Row, Column, Button, Title, CardSimple },
 		setup() {
 			return {
 				args,
-			};
+			}
 		},
 		template: `
-			<CardHeader :divider="args.divider">
-				<div style="display:flex; align-items: flex-start; justify-content: space-between">
-					<div style="display:flex; flex-direction: column; gap: 8px">
-						<Heading class="card__title" level="3">Staff availability</Heading>
-						<p class="card__subtitle" style="margin-bottom: 16px;">See the days, times & locations this staff member is available to take appointments.</p>
-					</div>
-					<Button
-						variant="outlined"
-						size="small"
-						width="fit"
-						prefix="lock"
-					>
-						LOCK
-					</Button>
-				</div>
-			</CardHeader>
-        `,
+			<Grid>
+				<Row>
+					<Column :xs="4" :md="6" :lg="4">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="chevronDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+				</Row>
+			</Grid>
+			
+		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
+
+	},
+};
+
+//==== 水平佈局 ====//
+export const CardHorizontalDefault = {
+	name: "水平佈局",
+	args: {
+		hasHeaderDivider: false,
+		className: '',
+		cardHeader: `<Title :level="2" >Header Title</Title>`,
+		default: `<CardSimple imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png" align="left" :hasBorder="false" title="Card Title" subtitle="Subtitle" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."></CardSimple>`,
+		cardFooter: `<Button themeColor="primary" variant="filled" suffix="chevronDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
+	},
+	render: (args) => ({
+		components: { Card, Grid, Row, Column, Button, Title, CardSimple },
+		setup() {
+			return {
+				args,
+			}
+		},
+		template: `
+			<Grid>
+				<Row>
+					<Column :xs="4" :md="6" :lg="4">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								layout="horizontal"
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="chevronDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+				</Row>
+			</Grid>
+			
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+		},
+
 	},
 };
