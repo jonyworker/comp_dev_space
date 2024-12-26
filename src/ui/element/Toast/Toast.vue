@@ -76,17 +76,8 @@ onUnmounted(() => {
 				<Icon name="close" size="20"></Icon>
 			</Button>
 			<!-- toast - 標題及說明文字 -->
-<!--			<div class="ded-message">-->
-<!--                <StatusIndicator-->
-<!--                    :themeColor="props.themeColor"-->
-<!--                    variant="text"-->
-<!--                    :prefix="props.prefix"-->
-<!--                >-->
-<!--                    <Title>{{ props.title }}</Title>-->
-<!--                </StatusIndicator>-->
-<!--			</div>-->
             <div class="ded-toast-header">
-                <div class="ded-toast-header-message">
+                <div :class="['ded-toast-header-message', `ded-toast-header-message-${props.themeColor}`]">
                     <Icon :name="props.prefix" size="20"></Icon>
                     <Title :themeColor="props.themeColor" level="5">
                         {{ props.title }}

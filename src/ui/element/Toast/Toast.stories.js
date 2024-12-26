@@ -97,7 +97,7 @@ export const ToastDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "success",
-		title: "Title",
+		title: "Notification Title ",
 		content: "Content",
 		prefix:'ErrorCircleIcon',
 		duration: 5000,
@@ -114,6 +114,10 @@ export const ToastDefault = {
 				const color = args.themeColor;
 				return `ded-toast-border-${color}`;
 			});
+			const toastHeaderMsgThemeClass = computed(() => {
+				const color = args.themeColor;
+				return `ded-toast-header-message-${color}`;
+			});
 			const onAction = () => {
 				window.alert('Action');
 			};
@@ -121,6 +125,7 @@ export const ToastDefault = {
 				args,
 				onClose,
 				toastBorderClass,
+				toastHeaderMsgThemeClass,
 				onAction
 			};
 		},
@@ -131,7 +136,7 @@ export const ToastDefault = {
 					<Icon name="close" size="20"></Icon>
 				</Button>
 				<div class="ded-toast-header">
-					<div class="ded-toast-header-message">
+					<div class="ded-toast-header-message" :class="toastHeaderMsgThemeClass">
 						<Icon :name="args.prefix" size="20"></Icon>
 						<Title :themeColor="args.themeColor" level="5">
 							{{ args.title }}
@@ -206,7 +211,7 @@ export const ToastDefault = {
 export const ToastTotal = {
 	name: "預設項目",
 	args: {
-		title: "Title",
+		title: "Notification Title ",
 		content: "Content",
 		duration: 5000,
 		className: "",
@@ -234,7 +239,7 @@ export const ToastTotal = {
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
-					<div class="ded-toast-header-message">
+					<div class="ded-toast-header-message ded-toast-header-message-success">
 						<Icon name="SuccessCircleIcon" size="20"></Icon>
 						<Title themeColor="success" level="5">
 							{{ args.title }}
@@ -256,7 +261,7 @@ export const ToastTotal = {
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
-					<div class="ded-toast-header-message">
+					<div class="ded-toast-header-message ded-toast-header-message-warning">
 						<Icon name="WarningCircleIcon" size="20"></Icon>
 						<Title themeColor="warning" level="5">
 							{{ args.title }}
@@ -278,7 +283,7 @@ export const ToastTotal = {
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
-					<div class="ded-toast-header-message">
+					<div class="ded-toast-header-message ded-toast-header-message-error">
 						<Icon name="ErrorCircleIcon" size="20"></Icon>
 						<Title themeColor="error" level="5">
 							{{ args.title }}
@@ -300,9 +305,31 @@ export const ToastTotal = {
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
-					<div class="ded-toast-header-message">
+					<div class="ded-toast-header-message ded-toast-header-message-info">
 						<Icon name="InfoCircleIcon" size="20"></Icon>
 						<Title themeColor="info" level="5">
+							{{ args.title }}
+						</Title>
+					</div>
+					<div class="ded-toast-header-action">
+						<div @click="onAction">
+							Action
+						</div>
+					</div>
+				</div>
+				<p class="ded-description">{{ args.content }}</p>
+			</div>
+
+			<div class="ded-toast ded-toast-border-neutral">
+				<!-- toast - 關閉按鈕 -->
+				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
+					<Icon name="close" size="20"></Icon>
+				</Button>
+				<!-- toast - 標題及說明文字 -->
+				<div class="ded-toast-header">
+					<div class="ded-toast-header-message ded-toast-header-message-neutral">
+						<Icon name="DisableCircleIcon" size="20"></Icon>
+						<Title themeColor="neutral" level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -420,6 +447,29 @@ export const ToastTotal = {
 						`>`,
 						`    Toast Trigger`,
 						`</Button>`,
+						`<Toast`,
+						`    v-for="toast in toasts"`,
+						`    :key="toast.id"`,
+						`    themeColor="neutral"`,
+						`    :title="${args.title}"`,
+						`    :content="${args.content}"`,
+						`    prefix="DisableCircleIcon"`,
+						`    :duration="${args.duration}"`,
+						`    className="${args.className}"`,
+						`    @close="remove(toast.id)"`,
+						`  >`,
+						`    <template #action>`,
+						`       <div>Action</div>`,
+						`    </template>`,
+						`</Toast>`,
+						`<Button`,
+						`    themeColor="primary"`,
+						`    variant="filled"`,
+						`    radius="4px"`,
+						`    @click="showToast"`,
+						`>`,
+						`    Toast Trigger`,
+						`</Button>`,
 						'',
 						'<script setup>',
 						'  import { useToast } from "@/path/to/useToast";',
@@ -446,7 +496,7 @@ export const ToastInterAction = {
 	name: "互動模式",
 	args: {
 		themeColor: "success",
-		title: "Title",
+		title: "Notification Title ",
 		content: "Content",
 		prefix:'SuccessCircleIcon',
 		duration: 5000,
