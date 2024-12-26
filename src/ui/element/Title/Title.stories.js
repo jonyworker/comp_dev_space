@@ -5,35 +5,35 @@ export default {
 	component: Title,
 	tags: ["autodocs"],
 	argTypes: {
-		themeColor: {
-			description: "主題顏色",
-			control: {
-				type: "select",
-				labels: {
-					"": "none",
-					primary: "primary",
-					secondary: "secondary",
-					neutral: "neutral",
-					info: "info",
-					success: "success",
-					warning: "warning",
-					error: "error",
-				}
-			},
-			options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error" ],
-			table: {
-				type: {
-					summary: "primary | secondary | neutral | info | success | warning | error"
-				},
-				defaultValue: {
-					summary: "none"
-				}
-			}
-		},
+		// themeColor: {
+		// 	description: "主題顏色",
+		// 	control: {
+		// 		type: "select",
+		// 		labels: {
+		// 			"": "none",
+		// 			primary: "primary",
+		// 			secondary: "secondary",
+		// 			neutral: "neutral",
+		// 			info: "info",
+		// 			success: "success",
+		// 			warning: "warning",
+		// 			error: "error",
+		// 		}
+		// 	},
+		// 	options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error" ],
+		// 	table: {
+		// 		type: {
+		// 			summary: "primary | secondary | neutral | info | success | warning | error"
+		// 		},
+		// 		defaultValue: {
+		// 			summary: "none"
+		// 		}
+		// 	}
+		// },
 		level: {
 			description: "標題等級",
 			control: { type: "select" },
-			options: ['0', '1', '2', '3', '4', '5', '6'],
+			options: [0, 1, 2, 3, 4, 5, 6],
 			table: {
 				type: {
 					summary: '0 | 1 | 2 | 3 | 4 | 5 | 6'
@@ -64,7 +64,7 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "primary",
+		// themeColor: "primary",
 		level: 1,
 		className: "",
 		default: "Title",
@@ -78,7 +78,6 @@ export const HeadingDefault = {
 		},
 		template: `
             <Title
-                :themeColor="args.themeColor"
                 :level="args.level"
                 :className="args.className"
             >{{ args.default }}</Title>
@@ -96,7 +95,6 @@ export const HeadingDefault = {
 					const { args } = storyContext;
 					return [
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="${args.level}"`,
 						`  className="${args.className}"`,
 						`>`,
@@ -113,7 +111,6 @@ export const HeadingDefault = {
 export const HeadingSizeDefault = {
 	name: "標題大小",
 	args: {
-		themeColor: "",
 		className: "",
 		default: "Title",
 	},
@@ -127,38 +124,31 @@ export const HeadingSizeDefault = {
 		template: `
 			<div style="display:flex; flex-direction: column; gap:8px">
 				<Title
-					:themeColor="args.themeColor"
-					level="1"
+					:level=1
 					:className="args.className"
 				>Level:1 {{ args.default }}</Title>
 				<Title
-					:themeColor="args.themeColor"
-					level="2"
+					:level=2
 					:className="args.className"
 				>Level:2 {{ args.default }}</Title>
 				<Title
-					:themeColor="args.themeColor"
-					level="3"
+					:level=3
 					:className="args.className"
 				>Level:3 {{ args.default }}</Title>
 				<Title
-					:themeColor="args.themeColor"
-					level="4"
+					:level=4
 					:className="args.className"
 				>Level:4 {{ args.default }}</Title>
 				<Title
-					:themeColor="args.themeColor"
-					level="5"
+					:level=5
 					:className="args.className"
 				>Level:5 {{ args.default }}</Title>
 				<Title
-					:themeColor="args.themeColor"
-					level="6"
+					:level=6
 					:className="args.className"
 				>Level:6 {{ args.default }}</Title>
 				<Title
-					:themeColor="args.themeColor"
-					level="0"
+					:level=0
 					:className="args.className"
 				>Level:0 {{ args.default }}</Title>
 			</div>
@@ -176,37 +166,30 @@ export const HeadingSizeDefault = {
 					const { args } = storyContext;
 					return [
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="1"`,
 						`  className="${args.className}"`,
 						`>Level:1 ${args.default}</Title>`,
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="2"`,
 						`  className="${args.className}"`,
 						`>Level:2 ${args.default}</Title>`,
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="3"`,
 						`  className="${args.className}"`,
 						`>Level:3 ${args.default}</Title>`,
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="4"`,
 						`  className="${args.className}"`,
 						`>Level:4 ${args.default}</Title>`,
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="5"`,
 						`  :className="${args.className}"`,
 						`>Level:5 ${args.default}</Title>`,
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="6"`,
 						`  className="${args.className}"`,
 						`>Level:6 ${args.default}</Title>`,
 						'<Title',
-						`  themeColor="${args.themeColor}"`,
 						`  :level="0"`,
 						`  className="${args.className}"`,
 						`>Level:0 ${args.default}</Title>`,
@@ -218,110 +201,110 @@ export const HeadingSizeDefault = {
 };
 
 //==== 主題色彩 ====//
-export const HeadingColorDefault = {
-	name: "主題色彩",
-	args: {
-		level: 3,
-		className: "",
-		default: "Title",
-	},
-	render: (args) => ({
-		components: { Title },
-		setup() {
-			return {
-				args,
-			};
-		},
-		template: `
-            <div style="display:flex; gap:8px">
-	            <Title
-		            themeColor="primary"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title>
-	            <Title
-		            themeColor="secondary"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title>
-	            <Title
-		            themeColor="neutral"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title>
-	            <Title
-		            themeColor="info"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title>
-	            <Title
-		            themeColor="success"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title>
-	            <Title
-		            themeColor="warning"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title>
-	            <Title
-		            themeColor="error"
-		            :level="args.level"
-		            :className="args.className"
-	            >{{ args.default }}</Title> 
-            </div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['default', 'themeColor'],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<Title',
-						`  themeColor="primary"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="secondary"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="neutral"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="info"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="success"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="warning"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-						'<Title',
-						`  themeColor="error"`,
-						`  :level="${args.level}"`,
-						`  className="${args.className}"`,
-						`>${args.default}</Title>`,
-
-					].join('\n').trim();
-				}
-			}
-		}
-	},
-};
+// export const HeadingColorDefault = {
+// 	name: "主題色彩",
+// 	args: {
+// 		level: 3,
+// 		className: "",
+// 		default: "Title",
+// 	},
+// 	render: (args) => ({
+// 		components: { Title },
+// 		setup() {
+// 			return {
+// 				args,
+// 			};
+// 		},
+// 		template: `
+//             <div style="display:flex; gap:8px">
+// 	            <Title
+// 		            themeColor="primary"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+// 	            <Title
+// 		            themeColor="secondary"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+// 	            <Title
+// 		            themeColor="neutral"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+// 	            <Title
+// 		            themeColor="info"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+// 	            <Title
+// 		            themeColor="success"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+// 	            <Title
+// 		            themeColor="warning"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+// 	            <Title
+// 		            themeColor="error"
+// 		            :level="args.level"
+// 		            :className="args.className"
+// 	            >{{ args.default }}</Title>
+//             </div>
+//         `,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			// include: ['themeColor', 'label', 'value', 'name' ],
+// 			exclude:['default', 'themeColor'],
+// 		},
+// 		docs: {
+// 			source: {
+// 				transform: (src, storyContext) => {
+// 					const { args } = storyContext;
+// 					return [
+// 						'<Title',
+// 						`  themeColor="primary"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+// 						'<Title',
+// 						`  themeColor="secondary"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+// 						'<Title',
+// 						`  themeColor="neutral"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+// 						'<Title',
+// 						`  themeColor="info"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+// 						'<Title',
+// 						`  themeColor="success"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+// 						'<Title',
+// 						`  themeColor="warning"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+// 						'<Title',
+// 						`  themeColor="error"`,
+// 						`  :level="${args.level}"`,
+// 						`  className="${args.className}"`,
+// 						`>${args.default}</Title>`,
+//
+// 					].join('\n').trim();
+// 				}
+// 			}
+// 		}
+// 	},
+// };
