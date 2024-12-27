@@ -1,41 +1,58 @@
 <script setup>
 import { watch, ref, defineAsyncComponent, markRaw } from 'vue';
 const props = defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: String,
-  },
-  color: {
-    type: String,
-  },
+    name: {
+        type: String,
+    },
+    size: {
+        type: String,
+    },
+    color: {
+        type: String,
+    },
+    src: {
+        type: String,
+    },
 });
 
 const iconComponent = ref(null);
 
-// 加上 markRaw 防止被響應式轉換
+// 動態載入本地的 SVG 檔案
 const loadIconComponent = async () => {
-  iconComponent.value = markRaw(defineAsyncComponent(() =>
-      import(`../../../assets/icons/${props.name}.svg`)
-  ));
+    if (props.name) {
+        iconComponent.value = markRaw(
+            defineAsyncComponent(() =>
+                import(`../../../assets/icons/${props.name}.svg`)
+            )
+        );
+    } else {
+        iconComponent.value = null;
+    }
 };
 
-// 監聽 name一有改變調用 loadIconComponent
+// 監聽 name 改變並載入本地的 SVG
 watch(() => props.name, loadIconComponent, { immediate: true });
 
-// 載入初始 icon
+// 載入初始本地 icon
 loadIconComponent();
 </script>
 
 <template>
-  <component
-    :is="iconComponent"
-    :width="props.size"
-    :height="props.size"
-    :style="{ color: props.color }"
-  />
+    <component
+        v-if="props.src"
+        :is="'img'"
+        :src="props.src"
+        :width="props.size"
+        :height="props.size"
+        :style="{ color: props.color }"
+    />
+    <component
+        v-else
+        :is="iconComponent"
+        :width="props.size"
+        :height="props.size"
+        :style="{ color: props.color }"
+    />
 </template>
 
 <style lang="scss" scoped></style>
