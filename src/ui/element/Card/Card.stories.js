@@ -113,7 +113,6 @@ export const CardDefault = {
 								</Button>
 							</template>
 						</Card>
-						
 					</Column>
 				</Row>
 			</Grid>
@@ -125,6 +124,46 @@ export const CardDefault = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Card`,
+						`  :hasHeaderDivider="${args.hasHeaderDivider}"`,
+						`  className="${args.cardHeader}"`,
+						`>`,
+						`  <template #cardHeader>`,
+						`    <Title :level="2">Header Title</Title>`,
+						`  </template>`,
+						``,
+						`  <CardSimple`,
+						`    imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"`,
+						`    align="left"`,
+						`    :hasBorder="false"`,
+						`    title="Card Title"`,
+						`    subtitle="Subtitle"`,
+						`    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."`,
+						`  ></CardSimple>`,
+						``,
+						`  <template #cardFooter>`,
+						`    <Button`,
+						`      themeColor="primary"`,
+						`      variant="filled"`,
+						`      suffix="chevronDown"`,
+						`      size="medium"`,
+						`      width="fit"`,
+						`      borderWidth="1px"`,
+						`      radius="4px"`,
+						`    >`,
+						`      Button`,
+						`    </Button>`,
+						`  </template>`,
+						`</Card>`,
+					].join("\n").trim();
+				}
+			}
+		}
 
 	},
 };
@@ -192,7 +231,46 @@ export const CardVerticalDefault = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
-
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Card`,
+						`  :hasHeaderDivider="${args.hasHeaderDivider}"`,
+						`  className="${args.cardHeader}"`,
+						`>`,
+						`  <template #cardHeader>`,
+						`    <Title :level="2">Header Title</Title>`,
+						`  </template>`,
+						``,
+						`  <CardSimple`,
+						`    imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"`,
+						`    align="left"`,
+						`    :hasBorder="false"`,
+						`    title="Card Title"`,
+						`    subtitle="Subtitle"`,
+						`    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."`,
+						`  ></CardSimple>`,
+						``,
+						`  <template #cardFooter>`,
+						`    <Button`,
+						`      themeColor="primary"`,
+						`      variant="filled"`,
+						`      suffix="chevronDown"`,
+						`      size="medium"`,
+						`      width="fit"`,
+						`      borderWidth="1px"`,
+						`      radius="4px"`,
+						`    >`,
+						`      Button`,
+						`    </Button>`,
+						`  </template>`,
+						`</Card>`,
+					].join("\n").trim();
+				}
+			}
+		}
 	},
 };
 
@@ -260,6 +338,46 @@ export const CardHorizontalDefault = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
-
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<Card`,
+						`  :hasHeaderDivider="${args.hasHeaderDivider}"`,
+						`  className="${args.cardHeader}"`,
+						`>`,
+						`  <template #cardHeader>`,
+						`    <Title :level="2">Header Title</Title>`,
+						`  </template>`,
+						``,
+						`  <CardSimple`,
+						`    layout="horizontal"`,
+						`    imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"`,
+						`    align="left"`,
+						`    :hasBorder="false"`,
+						`    title="Card Title"`,
+						`    subtitle="Subtitle"`,
+						`    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."`,
+						`  ></CardSimple>`,
+						``,
+						`  <template #cardFooter>`,
+						`    <Button`,
+						`      themeColor="primary"`,
+						`      variant="filled"`,
+						`      suffix="chevronDown"`,
+						`      size="medium"`,
+						`      width="fit"`,
+						`      borderWidth="1px"`,
+						`      radius="4px"`,
+						`    >`,
+						`      Button`,
+						`    </Button>`,
+						`  </template>`,
+						`</Card>`,
+					].join("\n").trim();
+				}
+			}
+		}
 	},
 };
