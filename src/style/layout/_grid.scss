@@ -1,4 +1,6 @@
 .ded-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
@@ -6,6 +8,8 @@
     padding-left: $grid-gap;
 
     &-fluid {
+        display: flex;
+        flex-direction: column;
         width: 100%;
         max-width: 100%;
     }
@@ -27,9 +31,28 @@
     }
 }
 
+.ded-gap-4 {
+    gap: 4px;
+}
+
+.ded-gap-8 {
+    gap: 8px;
+}
+
+.ded-gap-16 {
+    gap: 16px;
+}
+
+.ded-gap-24 {
+    gap: 24px;
+}
+
 .ded-row {
+    display: flex;
+    flex-wrap: wrap;
     margin-right: -$grid-gap;
     margin-left: -$grid-gap;
+    // height: 100%;
 }
 
 .ded-row.ded-gap-0>[class*='col-'] {
@@ -433,14 +456,14 @@
     }
 }
 
-//.diagonal-background {
-//    background: linear-gradient(315deg,
-//            #e0e0e0 25%,
-//            transparent 25%,
-//            transparent 50%,
-//            #e0e0e0 50%,
-//            #e0e0e0 75%,
-//            transparent 75%,
-//            transparent);
-//    background-size: 8px 8px;
-//}
+.diagonal-background {
+    background: linear-gradient(315deg,
+            #e0e0e0 25%,
+            transparent 25%,
+            transparent 50%,
+            #e0e0e0 50%,
+            #e0e0e0 75%,
+            transparent 75%,
+            transparent);
+    background-size: 8px 8px;
+}

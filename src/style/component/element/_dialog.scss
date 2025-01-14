@@ -1,6 +1,6 @@
 @use 'sass:list';
 
-.ded-dialog-content {
+.dialog-content {
     background: list.nth($neutral-0, $site);
     border-radius: $radius-16;
     box-shadow: $shadow-light-400;
@@ -10,16 +10,16 @@
     position: relative;
 }
 
-.ded-dialog-header {
+.dialog-header {
     margin-bottom: 16px;
 }
 
-.ded-dialog-body {
+.dialog-body {
     font-size: 1rem;
-    color: #333;
+    color: list.nth($text-secondary, $site);
 }
 
-.ded-dialog-close-btn {
+.dialog-close-btn {
     line-height: 1;
     position: absolute;
     top: 16px;
@@ -32,27 +32,27 @@
     transition: background-color 0.3s ease;
 }
 
-.ded-dialog-close-btn:hover {
+.dialog-close-btn:hover {
     background-color: list.nth($neutral-100, $site);
 }
 
-.ded-dialog-trigger {
+.dialog-trigger {
     cursor: pointer;
     color: #007bff;
     text-decoration: underline;
 }
 
-.ded-dialog-footer {
+.dialog-footer {
     display: flex;
     justify-content: flex-end;
     margin-top: 24px;
     gap: 10px;
 }
 
-.ded-cancel-btn {
-    background-color: #ccc;
+.cancel-btn {
+    background-color: $auo-icon-default;
 
     &:hover {
-        background-color: #999;
+        background-color: list.nth($neutral-100, $site);
     }
 }
