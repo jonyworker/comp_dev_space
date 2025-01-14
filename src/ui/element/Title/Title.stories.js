@@ -1,35 +1,35 @@
 import Title from "./Title.vue";
 
 export default {
-	title: "Component/Title",
+	title: "Component/Typgraphy/Title",
 	component: Title,
 	tags: ["autodocs"],
 	argTypes: {
-		// themeColor: {
-		// 	description: "主題顏色",
-		// 	control: {
-		// 		type: "select",
-		// 		labels: {
-		// 			"": "none",
-		// 			primary: "primary",
-		// 			secondary: "secondary",
-		// 			neutral: "neutral",
-		// 			info: "info",
-		// 			success: "success",
-		// 			warning: "warning",
-		// 			error: "error",
-		// 		}
-		// 	},
-		// 	options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error" ],
-		// 	table: {
-		// 		type: {
-		// 			summary: "primary | secondary | neutral | info | success | warning | error"
-		// 		},
-		// 		defaultValue: {
-		// 			summary: "none"
-		// 		}
-		// 	}
-		// },
+		themeColor: {
+			description: "主題顏色",
+			control: {
+				type: "select",
+				labels: {
+					"": "none",
+					primary: "primary",
+					secondary: "secondary",
+					neutral: "neutral",
+					info: "info",
+					success: "success",
+					warning: "warning",
+					error: "error",
+				}
+			},
+			options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error" ],
+			table: {
+				type: {
+					summary: "primary | secondary | neutral | info | success | warning | error"
+				},
+				defaultValue: {
+					summary: "none"
+				}
+			}
+		},
 		level: {
 			description: "標題等級",
 			control: { type: "select" },
@@ -54,7 +54,7 @@ export default {
 		docs: {
 			title: "Title",
 			description: {
-				component: "Title 組件的呈現及說明。",
+				component: "標題組件的呈現及說明。",
 			},
 		},
 	},
@@ -64,7 +64,7 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		// themeColor: "primary",
+		themeColor: "none",
 		level: 1,
 		className: "",
 		default: "Title",
@@ -201,110 +201,110 @@ export const HeadingSizeDefault = {
 };
 
 //==== 主題色彩 ====//
-// export const HeadingColorDefault = {
-// 	name: "主題色彩",
-// 	args: {
-// 		level: 3,
-// 		className: "",
-// 		default: "Title",
-// 	},
-// 	render: (args) => ({
-// 		components: { Title },
-// 		setup() {
-// 			return {
-// 				args,
-// 			};
-// 		},
-// 		template: `
-//             <div style="display:flex; gap:8px">
-// 	            <Title
-// 		            themeColor="primary"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-// 	            <Title
-// 		            themeColor="secondary"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-// 	            <Title
-// 		            themeColor="neutral"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-// 	            <Title
-// 		            themeColor="info"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-// 	            <Title
-// 		            themeColor="success"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-// 	            <Title
-// 		            themeColor="warning"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-// 	            <Title
-// 		            themeColor="error"
-// 		            :level="args.level"
-// 		            :className="args.className"
-// 	            >{{ args.default }}</Title>
-//             </div>
-//         `,
-// 	}),
-// 	// 控制 controls 中能控制的參數
-// 	parameters: {
-// 		controls: {
-// 			// include: ['themeColor', 'label', 'value', 'name' ],
-// 			exclude:['default', 'themeColor'],
-// 		},
-// 		docs: {
-// 			source: {
-// 				transform: (src, storyContext) => {
-// 					const { args } = storyContext;
-// 					return [
-// 						'<Title',
-// 						`  themeColor="primary"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-// 						'<Title',
-// 						`  themeColor="secondary"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-// 						'<Title',
-// 						`  themeColor="neutral"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-// 						'<Title',
-// 						`  themeColor="info"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-// 						'<Title',
-// 						`  themeColor="success"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-// 						'<Title',
-// 						`  themeColor="warning"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-// 						'<Title',
-// 						`  themeColor="error"`,
-// 						`  :level="${args.level}"`,
-// 						`  className="${args.className}"`,
-// 						`>${args.default}</Title>`,
-//
-// 					].join('\n').trim();
-// 				}
-// 			}
-// 		}
-// 	},
-// };
+export const HeadingColorDefault = {
+	name: "主題色彩",
+	args: {
+		level: 3,
+		className: "",
+		default: "Title",
+	},
+	render: (args) => ({
+		components: { Title },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+            <div style="display:flex; gap:8px">
+	            <Title
+		            themeColor="primary"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="secondary"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="neutral"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="info"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="success"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="warning"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+	            <Title
+		            themeColor="error"
+		            :level="args.level"
+		            :className="args.className"
+	            >{{ args.default }}</Title>
+            </div>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['default', 'themeColor'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Title',
+						`  themeColor="primary"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="secondary"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="neutral"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="info"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="success"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="warning"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+						'<Title',
+						`  themeColor="error"`,
+						`  :level="${args.level}"`,
+						`  className="${args.className}"`,
+						`>${args.default}</Title>`,
+
+					].join('\n').trim();
+				}
+			}
+		}
+	},
+};

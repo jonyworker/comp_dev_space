@@ -3,19 +3,19 @@ import { computed } from 'vue';
 
 // 定義 Props
 const props = defineProps({
-	// themeColor: {
-	// 	type: String,
-	// 	validator: (value) =>
-	// 		[
-	// 			"primary",
-	// 			"secondary",
-	// 			"neutral",
-	// 			"info",
-	// 			"success",
-	// 			"warning",
-	// 			"error",
-	// 		].includes(value),
-	// },
+	themeColor: {
+		type: String,
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
+			].includes(value),
+	},
 	level: {
 		type: Number,
 		default: 0,
@@ -32,7 +32,7 @@ const headingCVAClass = computed(() => {
 	return [
 		`ded-title`,
 		`ded-title-level-${props.level}`,
-		// props.themeColor ? `ded-title-${props.themeColor}` : ''
+		props.themeColor ? `ded-title-${props.themeColor}` : ''
 	].filter(Boolean).join(' ');
 });
 
