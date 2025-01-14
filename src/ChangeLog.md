@@ -9,11 +9,16 @@
 
 ### **Accordion**
 - 修改 Vue
-  1. 修改 ICON 名稱
+  1. 修改 ICON 名稱 (#75)
 - 修改 Storybook
   1. 統一 dataSource 來源
-  2. 修改 ICON 名稱
-  3. 修改元件說明小字
+  2. 修改 ICON 名稱 (#75)
+  3. 修改元件說明小字 (#75)
+
+### **Avatar**
+- 修改 Vue
+  1. 修改 ICON 名稱 (#75)
+  2. 增加 computed 計算 icon
 
 ### **Icon**
 - 修改 Vue

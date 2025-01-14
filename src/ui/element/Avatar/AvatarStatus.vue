@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Props
@@ -17,11 +18,20 @@ const props = defineProps({
             ["none", "online", "idle", "busy", "offline"].includes(value),
     },
 })
+const statusIcon = computed(() => {
+    const statusMap = {
+        online: "SvgOnline",
+        idle: "SvgIdle",
+        busy: "SvgBusy",
+        offline: "SvgOffline"
+    };
+    return statusMap[props.avatarStatus] || null;
+});
 </script>
 
 <template>
 	<template v-if="props.avatarStatus !== 'none'">
-		<Icon :name="props.avatarStatus" :class="['ded-avatar-icon', `ded-avatar-icon-${props.avatarSize}`, `ded-avatar-icon-${props.avatarStatus}`]"></Icon>
+		<Icon :name="statusIcon" :class="['ded-avatar-icon', `ded-avatar-icon-${props.avatarSize}`, `ded-avatar-icon-${props.avatarStatus}`]"></Icon>
 	</template>
 
 </template>
