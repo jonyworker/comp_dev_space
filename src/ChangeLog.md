@@ -20,6 +20,11 @@
   1. 修改 ICON 名稱 (#75)
   2. 增加 computed 計算 icon\
 
+### **Badge**
+- 修改 Storybook
+  1. 修改 ICON 名稱 (#75)
+  2. 修改元件說明小字
+
 ### **Button**
 - 修改 Storybook
   1. 修改 ICON 名稱 (#75)

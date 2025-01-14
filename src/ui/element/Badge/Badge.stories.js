@@ -56,7 +56,7 @@ export default {
 		docs: {
 			title: "Badge",
 			description: {
-				component: "Badge 組件的呈現及說明。",
+				component: "徽章組件的呈現及說明。",
 			},
 		},
 	},
@@ -87,7 +87,7 @@ export const BadgeDefault = {
 				:limit="args.limit"
 				:className="args.className"
 			>   
-				<Icon name="notification" size="26"></Icon>
+				<Icon name="SvgNotification" size="26"></Icon>
 			</Badge>
         `,
 	}),
@@ -108,7 +108,7 @@ export const BadgeDefault = {
 						`  :limit="${args.limit}"`,
 						`  className="${args.className}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 					].join('\n').trim();
 				}
@@ -141,7 +141,7 @@ export const BadgeStyle = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					:themeColor="args.themeColor"
@@ -149,7 +149,7 @@ export const BadgeStyle = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 			</div>
         `,
@@ -171,7 +171,7 @@ export const BadgeStyle = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="${args.themeColor}"`,
@@ -179,7 +179,7 @@ export const BadgeStyle = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 					].join('\n').trim();
 				}
@@ -212,7 +212,7 @@ export const BadgeLimit = {
 					:value="98"
 					:limit="99"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					:themeColor="args.themeColor"
@@ -220,7 +220,7 @@ export const BadgeLimit = {
 					:value="100"
 					:limit="99"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 			</div>
         `,
@@ -241,7 +241,7 @@ export const BadgeLimit = {
 						`  :value="98"`,
 						`  :limit="99"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  :themeColor="${args.themeColor}"`,
@@ -249,7 +249,7 @@ export const BadgeLimit = {
 						`  :value="100"`,
 						`  :limit="99"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 					].join('\n').trim();
 				}
@@ -282,7 +282,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="secondary"
@@ -290,7 +290,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="neutral"
@@ -298,7 +298,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="info"
@@ -306,7 +306,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="success"
@@ -314,7 +314,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="warning"
@@ -322,7 +322,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="error"
@@ -330,7 +330,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 			</div>
 			<div style="display:flex; gap:56px">
@@ -340,7 +340,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="secondary"
@@ -348,7 +348,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="neutral"
@@ -356,7 +356,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="info"
@@ -364,7 +364,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="success"
@@ -372,7 +372,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="warning"
@@ -380,7 +380,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 				<Badge
 					themeColor="error"
@@ -388,7 +388,7 @@ export const BadgeThemeColor = {
 					:value="args.value"
 					:limit="args.limit"
 				>
-					<Icon name="notification" size="26"></Icon>
+					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
 			</div>
 		`,
@@ -410,7 +410,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="secondary"`,
@@ -418,7 +418,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="neutral"`,
@@ -426,7 +426,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="info"`,
@@ -434,7 +434,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="success"`,
@@ -442,7 +442,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="warning"`,
@@ -450,7 +450,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="error"`,
@@ -458,7 +458,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="primary"`,
@@ -466,7 +466,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="secondary"`,
@@ -474,7 +474,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="neutral"`,
@@ -482,7 +482,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="info"`,
@@ -490,7 +490,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="success"`,
@@ -498,7 +498,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="warning"`,
@@ -506,7 +506,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 						'<Badge',
 						`  themeColor="error"`,
@@ -514,7 +514,7 @@ export const BadgeThemeColor = {
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
 						'>',
-						'  <Icon name="notification" size="26"></Icon>',
+						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
 
 					].join('\n').trim();
