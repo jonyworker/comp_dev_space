@@ -22,7 +22,7 @@ const loadIconComponent = async () => {
     if (props.name) {
         iconComponent.value = markRaw(
             defineAsyncComponent(() =>
-                import(`../../../assets/icons/${props.name}.svg`)
+                import(`../../../assets/icon/${props.name}.svg`)
             )
         );
     } else {
