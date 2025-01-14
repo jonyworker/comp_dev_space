@@ -6,24 +6,24 @@ export default {
 	component: Slider,
 	tags: ["autodocs"],
 	argTypes: {
-		// themeColor: {
-		// 	description: "主題顏色",
-		// 	control: { type: "select" },
-		// 	options: [
-		// 		"primary",
-		// 		"secondary",
-		// 		"neutral",
-		// 		"info",
-		// 		"success",
-		// 		"warning",
-		// 		"error",
-		// 	],
-		// 	table: {
-		// 		type: {
-		// 			summary: "primary | secondary | neutral | info | success | warning | error"
-		// 		}
-		// 	}
-		// },
+		themeColor: {
+			description: "主題顏色",
+			control: { type: "select" },
+			options: [
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
+			],
+			table: {
+				type: {
+					summary: "primary | secondary | neutral | info | success | warning | error"
+				}
+			}
+		},
 		min: {
 			description: "最小值",
 			control: { type: "number" },
@@ -79,7 +79,7 @@ export default {
 export const SliderDefault = {
 	name: "預設項目",
 	args: {
-
+		themeColor: 'primary',
 		min: -100,
 		max: 100,
 		step: 1,
@@ -149,6 +149,7 @@ export const SliderDefault = {
 export const SliderCurrent = {
 	name: "顯示目前值",
 	args: {
+		themeColor: 'primary',
 		min: -100,
 		max: 100,
 		step: 1,
@@ -217,6 +218,7 @@ export const SliderCurrent = {
 export const SliderAround = {
 	name: "顯示範圍",
 	args: {
+		themeColor: 'primary',
 		min: -100,
 		max: 100,
 		step: 1,

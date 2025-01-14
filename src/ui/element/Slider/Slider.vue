@@ -6,20 +6,20 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-	// themeColor: {
-	// 	type: String,
-	// 	default: "primary",
-	// 	validator: (value) =>
-	// 		[
-	// 			"primary",
-	// 			"secondary",
-	// 			"tertiary",
-	// 			"success",
-	// 			"warning",
-	// 			"error",
-	// 			"info",
-	// 		].includes(value),
-	// },
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"tertiary",
+				"success",
+				"warning",
+				"error",
+				"info",
+			].includes(value),
+	},
 	min: {
 		type: Number,
 		default: 0,
@@ -190,7 +190,7 @@ defineExpose({ updateWidth });
 			    :disabled="props.isDisabled"
 			    @input="handleChange"
 			    v-model="value"
-			    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : '']"
+			    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
 		    />
             <!-- max Value -->
             <template v-if="props.isShowRange">
@@ -206,10 +206,9 @@ defineExpose({ updateWidth });
         <!-- 提示 -->
         <div
             id="tooltip"
-            :class="{
-                    'ded-slider-tooltip': true,
-				    'ded-slider-tooltip-disable': props.isDisabled
-			    }"
+            :class="['ded-slider-tooltip', props.isDisabled ?
+				    'ded-slider-tooltip-disable' :
+	                `ded-slider-tooltip-${props.themeColor}`]"
             :style="{ left: tooltipPosition, transform: `translate(-50%)` }"
         >
             <template v-if="props.isShowCurrValue">
