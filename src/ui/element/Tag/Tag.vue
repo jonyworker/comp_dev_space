@@ -97,7 +97,7 @@ const isValidHref = computed(() => {
 
 
 		<template v-if="props.closable">
-			<Icon name="close" class="ded-tag-close" @click="closeTag"/>
+			<Icon name="SvgClose" class="ded-tag-close" @click="closeTag"/>
 
 		</template>
     </div>

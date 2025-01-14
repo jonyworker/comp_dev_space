@@ -49,15 +49,14 @@ export default {
 			control: {
 				type: "select",
 				labels: {
-					"": "None",
-					home: "home",
-					folder: "folder",
-					academy: "academy",
-					"arrow-forward": "arrow-forward",
-					"finger-print": "finger-print",
+					"": "none",
+					SvgAccount: "SvgAccount",
+					SvgSearch: "SvgSearch",
+					SvgVisibility: "SvgVisibility",
+					SvgVisibilityOff: "SvgVisibilityOff",
 				}
 			},
-			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
+			options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
 		},
 		closable: {
 			description: "摸到時顯示關閉",
@@ -80,7 +79,7 @@ export default {
 		docs: {
 			title: "Tag",
 			description: {
-				component: "Tag 組件的呈現及說明。",
+				component: "標籤組件的呈現及說明。",
 			},
 		},
 	},
@@ -160,7 +159,7 @@ export const TagPrefixStory = {
 		variable: "filled",
 		label:'Tag',
 		href: '',
-		prefix: 'academy',
+		prefix: 'SvgAccount',
 		closable: true,
 		isDisabled: false,
 		className: ''
@@ -224,7 +223,7 @@ export const TagVariableStory = {
 	args: {
 		themeColor: 'primary',
 		variable: "",
-		label:'Tag',
+		label:'Primary',
 		href: '',
 		prefix: '',
 		closable: true,
@@ -311,151 +310,151 @@ export const TagVariableStory = {
 };
 
 //==== 主題色彩 ====//
-// export const TagMultiple = {
-// 	name: "主題色彩",
-// 	args: {
-// 		variable: "filled",
-// 		prefix: '',
-// 		closable: true,
-// 		isDisabled: false,
-// 		className: ''
-// 	},
-// 	render: (args) => ({
-// 		components: { Tag },
-// 		setup() {
-// 			const tagsData = ref([
-// 				{ id: 1, themeColor: 'primary', label: 'Primary' },
-// 				{ id: 2, themeColor: 'secondary', label: 'Secondary' },
-// 				{ id: 3, themeColor: 'neutral', label: 'Neutral' },
-// 				{ id: 4, themeColor: 'info', label: 'Info' },
-// 				{ id: 5, themeColor: 'success', label: 'Success' },
-// 				{ id: 6, themeColor: 'warning', label: 'Warning' },
-// 				{ id: 7, themeColor: 'error', label: 'Error' },
-//
-// 			]);
-// 			const removeTag = (id) => {
-// 				tagsData.value = tagsData.value.filter(tag => tag.id !== id);
-// 			};
-// 			return {
-// 				args,
-// 				tagsData,
-// 				removeTag,
-// 			};
-// 		},
-// 		template: `
-// 			<div style="display:flex; gap: 8px; flex-wrap: wrap">
-// 				<Tag v-for="tag in tagsData"
-// 				     :key="tag.id"
-// 					 :themeColor="tag.themeColor"
-// 				     :variable="args.variable"
-// 					 :label="tag.label"
-// 					 :prefix="args.prefix"
-// 					 :closable="args.closable"
-// 					 :isDisabled="args.isDisabled"
-// 					 :className="args.className"
-// 				     @onClose="removeTag(tag.id)"
-// 				>
-// 				</Tag>
-// 			</div>
-//         `,
-// 	}),
-// 	// 控制 controls 中能控制的參數
-// 	parameters: {
-// 		controls: {
-// 			// include: ['themeColor', 'removable' ],
-// 		},
-// 		docs: {
-// 			source: {
-// 				transform: (src, storyContext) => {
-// 					const { args } = storyContext;
-// 					return [
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="primary"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="secondary"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="neutral"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="info"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="success"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="warning"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 						'<Tag',
-// 						`  v-if="showTag"`,
-// 						`  themeColor="error"`,
-// 						`  variable="${args.variable}"`,
-// 						`  label="${args.label}"`,
-// 						`  href="${args.href}"`,
-// 						`  prefix="${args.prefix}"`,
-// 						`  :closable="${args.closable}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  className="${args.className}"`,
-// 						`  @onClose="() => showTag = false">`,
-// 						'</Tag>',
-// 					].join('\n').trim();
-// 				}
-// 			}
-// 		}
-// 	},
-// };
+export const TagMultiple = {
+	name: "主題色彩",
+	args: {
+		variable: "filled",
+		prefix: '',
+		closable: true,
+		isDisabled: false,
+		className: ''
+	},
+	render: (args) => ({
+		components: { Tag },
+		setup() {
+			const tagsData = ref([
+				{ id: 1, themeColor: 'primary', label: 'Primary' },
+				{ id: 2, themeColor: 'secondary', label: 'Secondary' },
+				{ id: 3, themeColor: 'neutral', label: 'Neutral' },
+				{ id: 4, themeColor: 'info', label: 'Info' },
+				{ id: 5, themeColor: 'success', label: 'Success' },
+				{ id: 6, themeColor: 'warning', label: 'Warning' },
+				{ id: 7, themeColor: 'error', label: 'Error' },
+
+			]);
+			const removeTag = (id) => {
+				tagsData.value = tagsData.value.filter(tag => tag.id !== id);
+			};
+			return {
+				args,
+				tagsData,
+				removeTag,
+			};
+		},
+		template: `
+			<div style="display:flex; gap: 8px; flex-wrap: wrap">
+				<Tag v-for="tag in tagsData"
+				     :key="tag.id"
+					 :themeColor="tag.themeColor"
+				     :variable="args.variable"
+					 :label="tag.label"
+					 :prefix="args.prefix"
+					 :closable="args.closable"
+					 :isDisabled="args.isDisabled"
+					 :className="args.className"
+				     @onClose="removeTag(tag.id)"
+				>
+				</Tag>
+			</div>
+        `,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['themeColor', 'removable' ],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="primary"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="secondary"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="neutral"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="info"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="success"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="warning"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+						'<Tag',
+						`  v-if="showTag"`,
+						`  themeColor="error"`,
+						`  variable="${args.variable}"`,
+						`  label="${args.label}"`,
+						`  href="${args.href}"`,
+						`  prefix="${args.prefix}"`,
+						`  :closable="${args.closable}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
+						`  @onClose="() => showTag = false">`,
+						'</Tag>',
+					].join('\n').trim();
+				}
+			}
+		}
+	},
+};
