@@ -81,7 +81,7 @@ export default {
         docs: {
             title: "Checkbox",
             description: {
-                component: "Checkbox 組件的呈現及說明。",
+                component: "複選框組件的呈現及說明。",
             },
         },
     },

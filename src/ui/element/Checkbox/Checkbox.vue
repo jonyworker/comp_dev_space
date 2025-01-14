@@ -134,7 +134,7 @@ const handleCheck = (item, index) => {
 					: `ded-checkbox-unchecked`,
 				]"
 			>
-				<Icon v-if="isCheck[index]" name="check"></Icon>
+				<Icon v-if="isCheck[index]" name="SvgCheck"></Icon>
 			</div>
 			<!-- checkbox 選項文字 -->
 			<span class="ded-checkbox-text"
