@@ -3,20 +3,20 @@ import { ref, computed, onMounted, watch } from "vue";
 
 // 定義 Props
 const props = defineProps({
-	// themeColor: {
-	// 	type: String,
-	// 	default: "primary",
-	// 	validator: (value) =>
-	// 		[
-	// 			"primary",
-	// 			"secondary",
-	// 			"neutral",
-	// 			"info",
-	// 			"success",
-	// 			"warning",
-	// 			"error",
-	// 		].includes(value),
-	// },
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
+			].includes(value),
+	},
 	label: {
 		type: String,
 		default: ""
@@ -88,6 +88,7 @@ const getLimitBorder = computed(() => {
                     :cy="props.size / 2">
             </circle>
             <circle class="ded-progress-circle-percent-form"
+                    :class="`ded-progress-circle-percent-form-${props.themeColor}`"
                     fill="transparent"
                     :stroke-width="props.strokeWidth"
                     :stroke-dasharray="circumference"
@@ -113,6 +114,7 @@ const getLimitBorder = computed(() => {
             <text
                 v-if="props.size >= getLimitBorder"
                 class="ded-progress-percent-text"
+                :class="`ded-progress-percent-text-${props.themeColor}`"
                 x="50%"
                 :y="label ? '60%' : '50%'"
                 text-anchor="middle"
@@ -125,7 +127,7 @@ const getLimitBorder = computed(() => {
         <template v-if="size < getLimitBorder">
             <div class="ded-progress-circle-label">
                 <span class="ded-progress-label">{{ props.label }}</span>
-                <span class="ded-progress-percent">{{ `${normalizedProgress}%` }}</span>
+                <span class="ded-progress-percent" :class="`ded-progress-percent-${props.themeColor}`">{{ `${normalizedProgress}%` }}</span>
             </div>
         </template>
     </div>
