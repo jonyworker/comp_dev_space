@@ -42,6 +42,24 @@
 - 修改 Storybook
   1. 修改元件說明小字 (#75)
 
+### **Progress Circle**
+- 修改 Vue
+  1. 還原themeColor (#75)
+- 修改 Storybook
+  1. 還原themeColor (#75)
+  2. 修改 args 設定 (#75)
+  3. 還原主題色彩 story (#75)
+  4. 修改元件說明小字 (#75)
+
+### **Progress Line**
+- 修改 Vue
+  1. 還原themeColor (#75)
+- 修改 Storybook
+  1. 還原themeColor (#75)
+  2. 修改 args 設定 (#75)
+  3. 還原主題色彩 story (#75)
+  4. 修改元件說明小字 (#75)
+
 ### **Slider**
 - 修改 Vue
   1. 還原themeColor (#75)

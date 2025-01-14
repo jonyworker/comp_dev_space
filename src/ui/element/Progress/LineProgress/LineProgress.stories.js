@@ -5,24 +5,24 @@ export default {
     component: LineProgress,
     tags: ["autodocs"],
     argTypes: {
-        // themeColor: {
-        //     description: "主題顏色",
-        //     control: { type: "select" },
-        //     options: [
-        //         "primary",
-        //         "secondary",
-        //         "neutral",
-        //         "info",
-        //         "success",
-        //         "warning",
-        //         "error",
-        //     ],
-        //     table: {
-        //         type: {
-        //             summary: "primary | secondary | neutral | info | success | warning | error"
-        //         }
-        //     }
-        // },
+        themeColor: {
+            description: "主題顏色",
+            control: { type: "select" },
+            options: [
+                "primary",
+                "secondary",
+                "neutral",
+                "info",
+                "success",
+                "warning",
+                "error",
+            ],
+            table: {
+                type: {
+                    summary: "primary | secondary | neutral | info | success | warning | error"
+                }
+            }
+        },
         label: {
             description: "進度指示標籤",
             control: { type: "text" },
@@ -54,7 +54,7 @@ export default {
         docs: {
             title: "LineProgress",
             description: {
-                component: "LineProgress 組件的呈現及說明。",
+                component: "長條進度指示組件的呈現及說明。",
             },
         },
     },
@@ -64,6 +64,7 @@ export default {
 export const DefaultLineProgress = {
     name: "預設項目",
     args: {
+        themeColor: "primary",
         label: "Label",
         percent: 65,
         strokeWidth: 10,
@@ -79,6 +80,7 @@ export const DefaultLineProgress = {
         },
         template: `
             <LineProgress
+                :themeColor="args.themeColor"
                 :label="args.label"
                 :percent="args.percent"
                 :strokeWidth="args.strokeWidth"
@@ -97,6 +99,7 @@ export const DefaultLineProgress = {
                     const { args } = storyContext;
                     return [
                         '<LineProgress',
+                        `  :themeColor="${args.themeColor}"`,
                         `  :label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
@@ -113,6 +116,7 @@ export const DefaultLineProgress = {
 export const LineProgressLabelStory = {
     name: "顯示標籤",
     args: {
+        themeColor: "primary",
         label: "Label",
         percent: 65,
         strokeWidth: 10,
@@ -128,6 +132,7 @@ export const LineProgressLabelStory = {
         },
         template: `
             <LineProgress
+                :themeColor="args.themeColor"
                 :label="args.label"
                 :percent="args.percent"
                 :strokeWidth="args.strokeWidth"
@@ -146,6 +151,7 @@ export const LineProgressLabelStory = {
                     const { args } = storyContext;
                     return [
                         '<LineProgress',
+                        `  :themeColor="${args.themeColor}"`,
                         `  :label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :strokeWidth="${args.strokeWidth}"`,
@@ -160,137 +166,137 @@ export const LineProgressLabelStory = {
 };
 
 //==== 主題色彩 ====//
-// export const LineProgressColorStory = {
-//     name: "主題色彩",
-//     args: {
-//         label: "",
-//         strokeWidth: 10,
-//         className: '',
-//     },
-//     render: (args) => ({
-//         components: { LineProgress },
-//         setup() {
-//             // Create a ref for modelValue to be used with v-model
-//             return {
-//                 args,
-//             };
-//         },
-//         template: `
-//             <div style="display:flex; flex-direction: column; gap:8px">
-//                 <LineProgress
-//                     themeColor="primary"
-//                     :label="args.label"
-//                     :percent=40
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//                 <LineProgress
-//                     themeColor="secondary"
-//                     :label="args.label"
-//                     :percent=50
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//                 <LineProgress
-//                     themeColor="neutral"
-//                     :label="args.label"
-//                     :percent=60
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//                 <LineProgress
-//                     themeColor="info"
-//                     :label="args.label"
-//                     :percent=70
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//                 <LineProgress
-//                     themeColor="success"
-//                     :label="args.label"
-//                     :percent=80
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//                 <LineProgress
-//                     themeColor="warning"
-//                     :label="args.label"
-//                     :percent=90
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//                 <LineProgress
-//                     themeColor="error"
-//                     :label="args.label"
-//                     :percent=100
-//                     :strokeWidth="args.strokeWidth"
-//                     :className="args.className"
-//                 ></LineProgress>
-//             </div>
-//         `,
-//     }),
-//     // 控制 controls 中能控制的參數
-//     parameters: {
-//         controls: {
-//             exclude: ['themeColor', 'percent' ],
-//         },
-//         docs: {
-//             source: {
-//                 transform: (src, storyContext) => {
-//                     const { args } = storyContext;
-//                     return [
-//                         '<LineProgress',
-//                         `  themeColor="primary"`,
-//                         `  label="${args.label}"`,
-//                         `  :percent="40"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                         '<LineProgress',
-//                         `  themeColor="secondary"`,
-//                         `  label="${args.label}"`,
-//                         `  :percent="50"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                         '<LineProgress',
-//                         `  themeColor="tertiary"`,
-//                         `  label="${args.label}"`,
-//                         `  :percent="60"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                         '<LineProgress',
-//                         `  themeColor="success"`,
-//                         `  label="${args.label}"`,
-//                         `  :percent="70"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                         '<LineProgress',
-//                         `  themeColor="warning"`,
-//                         `  :percent="80"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  label="${args.label}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                         '<LineProgress',
-//                         `  themeColor="error"`,
-//                         `  label="${args.label}"`,
-//                         `  :percent="90"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                         '<LineProgress',
-//                         `  themeColor="info"`,
-//                         `  label="${args.label}"`,
-//                         `  :percent="100"`,
-//                         `  :strokeWidth="${args.strokeWidth}"`,
-//                         `  className="${args.className}"`,
-//                         '></LineProgress>',
-//                     ].join('\n').trim();
-//                 }
-//             }
-//         }
-//     },
-// };
+export const LineProgressColorStory = {
+    name: "主題色彩",
+    args: {
+        label: "Label",
+        strokeWidth: 10,
+        className: '',
+    },
+    render: (args) => ({
+        components: { LineProgress },
+        setup() {
+            // Create a ref for modelValue to be used with v-model
+            return {
+                args,
+            };
+        },
+        template: `
+            <div style="display:flex; flex-direction: column; gap:8px">
+                <LineProgress
+                    themeColor="primary"
+                    :label="args.label"
+                    :percent=40
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+                <LineProgress
+                    themeColor="secondary"
+                    :label="args.label"
+                    :percent=50
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+                <LineProgress
+                    themeColor="neutral"
+                    :label="args.label"
+                    :percent=60
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+                <LineProgress
+                    themeColor="info"
+                    :label="args.label"
+                    :percent=70
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+                <LineProgress
+                    themeColor="success"
+                    :label="args.label"
+                    :percent=80
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+                <LineProgress
+                    themeColor="warning"
+                    :label="args.label"
+                    :percent=90
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+                <LineProgress
+                    themeColor="error"
+                    :label="args.label"
+                    :percent=100
+                    :strokeWidth="args.strokeWidth"
+                    :className="args.className"
+                ></LineProgress>
+            </div>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            exclude: ['themeColor', 'percent' ],
+        },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<LineProgress',
+                        `  themeColor="primary"`,
+                        `  label="${args.label}"`,
+                        `  :percent="40"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  themeColor="secondary"`,
+                        `  label="${args.label}"`,
+                        `  :percent="50"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  themeColor="tertiary"`,
+                        `  label="${args.label}"`,
+                        `  :percent="60"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  themeColor="success"`,
+                        `  label="${args.label}"`,
+                        `  :percent="70"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  themeColor="warning"`,
+                        `  :percent="80"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  label="${args.label}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  themeColor="error"`,
+                        `  label="${args.label}"`,
+                        `  :percent="90"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                        '<LineProgress',
+                        `  themeColor="info"`,
+                        `  label="${args.label}"`,
+                        `  :percent="100"`,
+                        `  :strokeWidth="${args.strokeWidth}"`,
+                        `  className="${args.className}"`,
+                        '></LineProgress>',
+                    ].join('\n').trim();
+                }
+            }
+        }
+    },
+};
