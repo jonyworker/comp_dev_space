@@ -73,6 +73,11 @@ export default {
 export const TableDefault = {
 	name: "預設項目",
 	args: {
+		dataSource: [
+			{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+			{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+			{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+		],
 		columns: [
 			{ key: "head", title: "TH", width: "50px" },
 			{ key: "column1", title: "TH", width: "100px" },
@@ -81,14 +86,9 @@ export const TableDefault = {
 			{ key: "column4", title: "TH", width: "50px" },
 			{ key: "column5", title: "TH", width: "50px", align: "center" },
 		],
-		dataSource: [
-			{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-		],
 		showCheckbox: false,
 		showVerticalBorders: false,
-		isSprite: false,
+		isSprite: true,
 		className: "",
 	},
 	render: (args) => ({

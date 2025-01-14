@@ -50,6 +50,10 @@
 - 修改 SCSS
   1. 還原themeColor (#75)
 
+### **Table**
+- 修改 Storybook
+  1. 修改 args 設定 (#75)
+
 ### **Icon**
 - 修改 Vue
     1. 修改SVG取用路徑
