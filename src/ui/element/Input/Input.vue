@@ -16,6 +16,10 @@ const props = defineProps({
 		type: String,
 		default: "text",
 	},
+    hasClear: {
+        type: Boolean,
+        default: true,
+    },
 	placeholder: {
 		type: String,
 		default: "Placeholder...",
@@ -33,6 +37,9 @@ const props = defineProps({
 		type: String,
 		required: true,
 	},
+    maxLimit: {
+        type: Number,
+    },
 	hint: {
 		type: Object,
 		default: () => ({ error: "", description: "" }),
@@ -136,6 +143,7 @@ const toggleDropdown = () => {
 				:type="showPassword && props.type === 'password' ? 'text' : props.type"
 				v-model="modelValue"
 				:placeholder="props.placeholder"
+                :maxlength="props.maxLimit"
 				:class="{
 					'ded-input':true,
 					[`text-${props.size}`]: props.size,
@@ -148,12 +156,12 @@ const toggleDropdown = () => {
 			<div class="ded-input-feat-icon">
 				<!-- 清除按鈕 -->
 				<div
-					v-if="modelValue && !props.isDisabled"
+					v-if="modelValue && props.hasClear && !props.isDisabled"
 					:class="`ded-icon-${props.size}`"
 					@click="clearInput"
 					style="cursor: pointer"
 				>
-					<Icon name="close" />
+					<Icon name="SvgClose" />
 				</div>
 
 				<!-- 密碼顯示/隱藏 -->
@@ -163,7 +171,7 @@ const toggleDropdown = () => {
 					@click="togglePasswordVisibility"
 					style="cursor: pointer"
 				>
-					<Icon :name="showPassword ? 'visibility' : 'visibility_off'" />
+					<Icon :name="showPassword ? 'SvgVisibility' : 'SvgVisibilityOff'" />
 				</div>
 
 				<!-- 下拉箭頭 -->
@@ -174,8 +182,9 @@ const toggleDropdown = () => {
 					style="cursor: pointer"
 				>
 					<Icon
-						:name="props.isOpen ? 'chevronUp' : 'chevronDown'"
+						name="SvgArrowDown"
 						class="ded-dropdown-arrow"
+                        :class="props.isOpen ? 'ded-dropdown-open' : 'ded-dropdown-close'"
 					/>
 				</div>
 			</div>

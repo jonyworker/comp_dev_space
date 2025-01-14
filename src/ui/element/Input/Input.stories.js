@@ -25,6 +25,10 @@ export default {
                 }
             }
         },
+        hasClear: {
+            description: "是否顯示清除按鈕",
+            control: { type: "boolean" },
+        },
         placeholder: {
             description: "輸入提示",
             control: { type: "text" },
@@ -34,16 +38,14 @@ export default {
             control: {
                 type: "select",
                 labels: {
-                    "": "None",
-                    home: "home",
-                    folder: "folder",
-                    lock: "lock",
-                    "arrow-forward": "arrow-forward",
-                    "finger-print": "finger-print",
-                    "account_circle": "account_circle",
+                    "": "none",
+                    SvgAccount: "SvgAccount",
+                    SvgSearch: "SvgSearch",
+                    SvgVisibility: "SvgVisibility",
+                    SvgVisibilityOff: "SvgVisibilityOff",
                 }
             },
-            options: ["", "home", "folder", "lock", "arrow-forward", "finger-print", "account_circle"],
+            options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
         },
         size: {
             description: "輸入框尺寸",
@@ -58,6 +60,10 @@ export default {
         initValue: {
             description: "初始值",
             control: { type: "text" },
+        },
+        maxLimit: {
+            description: "最長輸入限制",
+            control: { type: "number" },
         },
         hint: {
             description: "提示訊息",
@@ -89,7 +95,7 @@ export default {
         docs: {
             title: "Input",
             description: {
-                component: "Input 組件的呈現及說明。。",
+                component: "輸入框組件的呈現及說明。。",
             },
         },
     },
@@ -101,10 +107,12 @@ export const InputDefault = {
     args: {
         label: 'Label',
         type: 'text',
+        hasClear: true,
         placeholder:'Placeholder...',
-        prefix: 'account_circle',
+        prefix: 'SvgAccount',
         size: 'medium',
         initValue: '',
+        maxLimit: Infinity,
         hint: { error: '', description: 'Prompt message' },
         isDisabled: false,
         className: ''
@@ -120,10 +128,12 @@ export const InputDefault = {
             <Input
                 :label="args.label"
                 :type="args.type"
+                :hasClear="args.hasClear"
                 :placeholder="args.placeholder"
                 :prefix="args.prefix"
                 :size="args.size"
                 :initValue="args.initValue"
+                :maxLimit="args.maxLimit"
                 :hint="args.hint"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
@@ -145,10 +155,12 @@ export const InputDefault = {
                         '<Input',
                         `  label="${args.label}"`,
                         `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
+                        `  maxLimit="${args.maxLimit}"`,
                         `  :hint="${dataSourceString}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -166,10 +178,12 @@ export const InputStatus = {
     args: {
         label: 'Account',
         type: 'text',
+        hasClear: true,
         placeholder:'Placeholder...',
-        prefix: 'account_circle',
+        prefix: 'SvgAccount',
         size: 'medium',
         initValue: '',
+        maxLimit: Infinity,
         isDisabled: false,
         className: ''
     },
@@ -185,10 +199,12 @@ export const InputStatus = {
                 <Input
                     :label="args.label"
                     :type="args.type"
+                    :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
                     :initValue="args.initValue"
+                    :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -196,10 +212,12 @@ export const InputStatus = {
                 <Input
                     label="Password"
                     type="password"
+                    :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
-                    prefix="lock"
+                    prefix="SvgLock"
                     :size="args.size"
                     :initValue="args.initValue"
+                    :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -207,10 +225,12 @@ export const InputStatus = {
                 <Input
                     :label="args.label"
                     :type="args.type"
+                    :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
                     :initValue="args.initValue"
+                    :maxLimit="args.maxLimit"
                     :hint="{ error: 'Error message', description: '' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -218,10 +238,12 @@ export const InputStatus = {
                 <Input
                     :label="args.label"
                     :type="args.type"
+                    :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
                     :initValue="args.initValue"
+                    :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -243,10 +265,12 @@ export const InputStatus = {
                         '<Input',
                         `  label="${args.label}"`,
                         `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
+                        `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -254,10 +278,12 @@ export const InputStatus = {
                         '<Input',
                         `  label="密碼"`,
                         `  type="password"`,
+                        `  hasClear="${args.hasClear}"`,
                         `  placeholder="請輸入密碼"`,
                         `  prefix="lock"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
+                        `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -265,10 +291,12 @@ export const InputStatus = {
                         '<Input',
                         `  label="${args.label}"`,
                         `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
+                        `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: 'Error message', description: '' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -276,10 +304,12 @@ export const InputStatus = {
                         '<Input',
                         `  label="${args.label}"`,
                         `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
                         `  initValue="${args.initValue}"`,
+                        `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
