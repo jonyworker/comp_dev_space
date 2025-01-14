@@ -36,6 +36,13 @@
 - 修改 Storybook
   1. 修改元件說明小字 (#75)
 
+### **DatePicker**
+- 修改 Vue
+  1. 修改 ICON 名稱 (#75)
+  2. 增加 initValue props (#75)
+- 修改 Storybook
+  1. 修改元件說明小字 (#75)
+
 ### **Input**
 - 修改 Vue
   1. 修改 ICON 名稱 (#75)

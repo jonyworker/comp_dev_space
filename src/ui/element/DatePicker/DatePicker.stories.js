@@ -1,11 +1,16 @@
 import DatePicker from '@/ui/element/DatePicker/DatePicker.vue'
 import Input from "@/ui/element/Input/Input.vue";
+import {ref} from "vue";
 
 export default {
 	title: "Component/Date-Picker",
 	component: DatePicker,
 	tags: ["autodocs"],
 	argTypes: {
+		initValue: {
+			description: "日期",
+			control: { type: "text" },
+		},
 		isRange: {
 			description: "日期區間",
 			control: { type: "boolean" },
@@ -33,7 +38,7 @@ export default {
 		docs: {
 			title: "DatePicker",
 			description: {
-				component: "DatePicker 組件的呈現及說明。",
+				component: "日期組件的呈現及說明。",
 			},
 		},
 	},
@@ -43,6 +48,7 @@ export default {
 export const DatepickerSingle = {
 	name: "預設項目",
 	args: {
+		initValue: "2012-12-21",
 		isRange: false,
 		placeholder: "YYYY/MM/DD",
 		options: {
@@ -54,23 +60,28 @@ export const DatepickerSingle = {
 	render: (args) => ({
 		components: { DatePicker, Input },
 		setup() {
+			const singleDate = ref("");
 			return {
 				args,
+				singleDate
 			};
 		},
 		template: `
+			{{singleDate}}
 			<DatePicker
+				:initValue="args.initValue"
 				:isRange="args.isRange"
 				:placeholder="args.placeholder"
 				:options="args.options"
 				:className="args.className"
+				v-model="singleDate"
 			></DatePicker>
 		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['isRange', 'placeholder', 'options', 'className' ],
+			include: ['initValue', 'isRange', 'placeholder', 'options', 'className' ],
 		},
 		docs: {
 			source: {
@@ -78,6 +89,7 @@ export const DatepickerSingle = {
 					const { args } = storyContext;
 					return [
 						`<DatePicker`,
+						`  :initValue="${args.initValue}"`,
 						`  :isRange="${args.isRange}"`,
 						`  :placeholder="${args.placeholder}"`,
 						`  :options=" {
@@ -98,6 +110,7 @@ export const DatepickerSingle = {
 export const DatepickerRange = {
 	name: "日期區間",
 	args: {
+		initValue:['', ''],
 		isRange: true,
 		placeholder: "YYYY/MM/DD",
 		options: {
@@ -109,16 +122,20 @@ export const DatepickerRange = {
 	render: (args) => ({
 		components: { DatePicker, Input },
 		setup() {
+			const rangeDate = ref("");
 			return {
 				args,
+				rangeDate
 			};
 		},
 		template: `
 			<DatePicker
+				:initValue="args.initValue"
 				:isRange="args.isRange"
 				:placeholder="args.placeholder"
 				:options="args.options"
 				:className="args.className"
+				v-model="rangeDate"
 			></DatePicker>
 		`,
 	}),

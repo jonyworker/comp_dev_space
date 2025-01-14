@@ -5,6 +5,10 @@ import 'vanillajs-datepicker/css/datepicker-foundation.css'
 import Input from '@/ui/element/Input/Input.vue'
 
 const props = defineProps({
+    initValue: { // 修改名稱為 initValue
+        type: [String, Array],
+        default: () => null, // 預設為 null 或空
+    },
 	isRange: {
 		type: Boolean,
 	},
@@ -148,6 +152,23 @@ watch(modelValue, (newValue) => {
 		: datepickerRef.value.setDate(newValue)
 }, { immediate: true })
 
+watch(
+    () => props.initValue,
+    (newInitValue) => {
+        // 確保 initValue 的變化更新到 modelValue
+        modelValue.value = newInitValue;
+    },
+    { immediate: true } // 在初始化時也立即執行
+);
+
+
+onMounted(() => {
+    if (!modelValue.value && props.initValue) {
+        modelValue.value = props.initValue
+    }
+    initDatepicker()
+})
+
 </script>
 
 <template>
@@ -157,7 +178,7 @@ watch(modelValue, (newValue) => {
 			ref="singleInputRef"
 			:placeholder="props.placeholder"
 			:initValue="modelValue"
-			prefix="calendar"
+			prefix="SvgCalendar"
 			type="text"
 			@clearInput="clearSingleDate"
 		/>
@@ -165,7 +186,7 @@ watch(modelValue, (newValue) => {
 			<Input
 				ref="startInputRef"
 				placeholder="Start Date"
-				prefix="calendar"
+				prefix="SvgCalendar"
 				type="text"
 				:initValue="modelValue?.[0]"
 				@clearInput="clearRangeStart"
@@ -173,7 +194,7 @@ watch(modelValue, (newValue) => {
 			<Input
 				ref="endInputRef"
 				placeholder="End Date"
-				prefix="calendar"
+				prefix="SvgCalendar"
 				type="text"
 				:initValue="modelValue?.[1]"
 				@clearInput="clearRangeEnd"
