@@ -40,14 +40,13 @@ export default {
 				type: "select",
 				labels: {
 					"": "none",
-					home: "home",
-					folder: "folder",
-					academy: "academy",
-					"arrow-forward": "arrow-forward",
-					"finger-print": "finger-print",
+					SvgAccount: "SvgAccount",
+					SvgSearch: "SvgSearch",
+					SvgVisibility: "SvgVisibility",
+					SvgVisibilityOff: "SvgVisibilityOff",
 				}
 			},
-			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
+			options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
 		},
 		suffix: {
 			description: "後置元素",
@@ -55,14 +54,13 @@ export default {
 				type: "select",
 				labels: {
 					"": "none",
-					home: "home",
-					folder: "folder",
-					academy: "academy",
-					"arrow-forward": "arrow-forward",
-					"finger-print": "finger-print",
+					SvgAccount: "SvgAccount",
+					SvgSearch: "SvgSearch",
+					SvgVisibility: "SvgVisibility",
+					SvgVisibilityOff: "SvgVisibilityOff",
 				}
 			},
-			options: [ "", "home", "folder", "academy", "arrow-forward", "finger-print" ],
+			options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
 		},
 		size: {
 			description: "按鈕尺寸",
@@ -231,7 +229,7 @@ export const ButtonPrefixSuffixStory = {
 			<Button
 				:themeColor="args.themeColor"
 				:variant="args.variant"
-				prefix="folder"
+				prefix="SvgAccount"
 				suffix=""
 				:size="args.size"
 				:width="args.width"
@@ -246,7 +244,7 @@ export const ButtonPrefixSuffixStory = {
 				:themeColor="args.themeColor"
 				:variant="args.variant"
 				prefix=""
-				suffix="folder"
+				suffix="SvgSearch"
 				:size="args.size"
 				:width="args.width"
 				:borderWidth="args.borderWidth"
@@ -272,7 +270,7 @@ export const ButtonPrefixSuffixStory = {
 						`<Button`,
 						`  :themeColor="${args.themeColor}"`,
 						`  :variant="${args.variant}"`,
-						`  prefix="folder"`,
+						`  prefix="SvgAccount"`,
 						`  suffix=""`,
 						`  :size="${args.size}"`,
 						`  :width="${args.width}"`,
@@ -287,7 +285,7 @@ export const ButtonPrefixSuffixStory = {
 						`  :themeColor="${args.themeColor}"`,
 						`  :variant="${args.variant}"`,
 						`  prefix=""`,
-						`  suffix="folder"`,
+						`  suffix="SvgSearch"`,
 						`  :size="${args.size}"`,
 						`  :width="${args.width}"`,
 						`  :borderWidth="${args.borderWidth}"`,
@@ -466,7 +464,7 @@ export const ButtonColorStory = {
 	name: '主題色彩',
 	args: {
 		variant: 'filled',
-		prefix: 'folder',
+		prefix: 'SvgAccount',
 		suffix: '',
 		size: 'medium',
 		width: 'fit',
@@ -700,133 +698,133 @@ export const ButtonColorStory = {
 	},
 };
 
-//==== 尺寸 ====//
-export const ButtonSizeStory = {
-	name: '尺寸',
-	args: {
-		themeColor: 'primary',
-		variant: 'ghost',
-		prefix: '',
-		suffix: '',
-		size: '',
-		width: 'fit',
-		borderWidth: '1px',
-		radius: '4px',
-		isDisabled: false,
-		className: "",
-		default: 'Button',
-	},
-	render: (args) => ({
-		components: { Button },
-		setup() {
-			return {
-				args,
-			};
-		},
-		template: `
-		<div style="display:flex; align-items: baseline; flex-wrap: wrap; gap: 16px">
-			<Button
-				:themeColor="args.themeColor"
-				:variant="args.variant"
-				prefix="folder"
-				suffix=""
-				size="large"
-				:width="args.width"
-				:borderWidth="args.borderWidth"
-				:radius="args.radius"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				:themeColor="args.themeColor"
-				:variant="args.variant"
-				prefix="folder"
-				suffix=""
-				size="medium"
-				:width="args.width"
-				:borderWidth="args.borderWidth"
-				:radius="args.radius"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-			<Button
-				:themeColor="args.themeColor"
-				:variant="args.variant"
-				prefix="folder"
-				suffix=""
-				size="small"
-				:width="args.width"
-				:borderWidth="args.borderWidth"
-				:radius="args.radius"
-				:isDisabled="args.isDisabled"
-				:className="args.className"
-			>
-				{{ args.default }}
-			</Button>
-		</div>
-		`,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			exclude: ['prefix','suffix'],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						`<Button`,
-						`  :themeColor="${args.themeColor}"`,
-						`  :variant="${args.variant}"`,
-						`  prefix="folder"`,
-						`  suffix=""`,
-						`  size="large"`,
-						`  :width="${args.width}"`,
-						`  :borderWidth="${args.borderWidth}"`,
-						`  :radius="${args.radius}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  ${args.default}`,
-						`</Button>`,
-						`<Button`,
-						`  :themeColor="${args.themeColor}"`,
-						`  :variant="${args.variant}"`,
-						`  prefix="folder"`,
-						`  suffix=""`,
-						`  size="medium"`,
-						`  :width="${args.width}"`,
-						`  :borderWidth="${args.borderWidth}"`,
-						`  :radius="${args.radius}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  ${args.default}`,
-						`</Button>`,
-						`<Button`,
-						`  :themeColor="${args.themeColor}"`,
-						`  :variant="${args.variant}"`,
-						`  prefix="folder"`,
-						`  suffix=""`,
-						`  size="small"`,
-						`  :width="${args.width}"`,
-						`  :borderWidth="${args.borderWidth}"`,
-						`  :radius="${args.radius}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  ${args.default}`,
-						`</Button>`,
-
-					].join("\n").trim();
-
-				}
-			}
-		}
-	},
-};
+// //==== 尺寸 ====//
+// export const ButtonSizeStory = {
+// 	name: '尺寸',
+// 	args: {
+// 		themeColor: 'primary',
+// 		variant: 'ghost',
+// 		prefix: '',
+// 		suffix: '',
+// 		size: '',
+// 		width: 'fit',
+// 		borderWidth: '1px',
+// 		radius: '4px',
+// 		isDisabled: false,
+// 		className: "",
+// 		default: 'Button',
+// 	},
+// 	render: (args) => ({
+// 		components: { Button },
+// 		setup() {
+// 			return {
+// 				args,
+// 			};
+// 		},
+// 		template: `
+// 		<div style="display:flex; align-items: baseline; flex-wrap: wrap; gap: 16px">
+// 			<Button
+// 				:themeColor="args.themeColor"
+// 				:variant="args.variant"
+// 				prefix="folder"
+// 				suffix=""
+// 				size="large"
+// 				:width="args.width"
+// 				:borderWidth="args.borderWidth"
+// 				:radius="args.radius"
+// 				:isDisabled="args.isDisabled"
+// 				:className="args.className"
+// 			>
+// 				{{ args.default }}
+// 			</Button>
+// 			<Button
+// 				:themeColor="args.themeColor"
+// 				:variant="args.variant"
+// 				prefix="folder"
+// 				suffix=""
+// 				size="medium"
+// 				:width="args.width"
+// 				:borderWidth="args.borderWidth"
+// 				:radius="args.radius"
+// 				:isDisabled="args.isDisabled"
+// 				:className="args.className"
+// 			>
+// 				{{ args.default }}
+// 			</Button>
+// 			<Button
+// 				:themeColor="args.themeColor"
+// 				:variant="args.variant"
+// 				prefix="folder"
+// 				suffix=""
+// 				size="small"
+// 				:width="args.width"
+// 				:borderWidth="args.borderWidth"
+// 				:radius="args.radius"
+// 				:isDisabled="args.isDisabled"
+// 				:className="args.className"
+// 			>
+// 				{{ args.default }}
+// 			</Button>
+// 		</div>
+// 		`,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			exclude: ['prefix','suffix'],
+// 		},
+// 		docs: {
+// 			source: {
+// 				transform: (src, storyContext) => {
+// 					const { args } = storyContext;
+// 					return [
+// 						`<Button`,
+// 						`  :themeColor="${args.themeColor}"`,
+// 						`  :variant="${args.variant}"`,
+// 						`  prefix="folder"`,
+// 						`  suffix=""`,
+// 						`  size="large"`,
+// 						`  :width="${args.width}"`,
+// 						`  :borderWidth="${args.borderWidth}"`,
+// 						`  :radius="${args.radius}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  :className="${args.className}"`,
+// 						`>`,
+// 						`  ${args.default}`,
+// 						`</Button>`,
+// 						`<Button`,
+// 						`  :themeColor="${args.themeColor}"`,
+// 						`  :variant="${args.variant}"`,
+// 						`  prefix="folder"`,
+// 						`  suffix=""`,
+// 						`  size="medium"`,
+// 						`  :width="${args.width}"`,
+// 						`  :borderWidth="${args.borderWidth}"`,
+// 						`  :radius="${args.radius}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  :className="${args.className}"`,
+// 						`>`,
+// 						`  ${args.default}`,
+// 						`</Button>`,
+// 						`<Button`,
+// 						`  :themeColor="${args.themeColor}"`,
+// 						`  :variant="${args.variant}"`,
+// 						`  prefix="folder"`,
+// 						`  suffix=""`,
+// 						`  size="small"`,
+// 						`  :width="${args.width}"`,
+// 						`  :borderWidth="${args.borderWidth}"`,
+// 						`  :radius="${args.radius}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  :className="${args.className}"`,
+// 						`>`,
+// 						`  ${args.default}`,
+// 						`</Button>`,
+//
+// 					].join("\n").trim();
+//
+// 				}
+// 			}
+// 		}
+// 	},
+// };

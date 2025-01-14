@@ -18,7 +18,12 @@
 ### **Avatar**
 - 修改 Vue
   1. 修改 ICON 名稱 (#75)
-  2. 增加 computed 計算 icon
+  2. 增加 computed 計算 icon\
+
+### **Button**
+- 修改 Storybook
+  1. 修改 ICON 名稱 (#75)
+  2. 隱藏 尺寸 story
 
 ### **Icon**
 - 修改 Vue
