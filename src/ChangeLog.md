@@ -36,6 +36,12 @@
 - 修改 Storybook
   1. 修改元件說明小字 (#75)
 
+### **Pagination**
+- 修改 Vue
+  1. 修改 ICON 名稱 (#75)
+- 修改 Storybook
+  1. 修改元件說明小字 (#75)
+
 ### **Icon**
 - 修改 Vue
     1. 修改SVG取用路徑

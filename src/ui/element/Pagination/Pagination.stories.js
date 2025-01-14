@@ -42,7 +42,7 @@ export default {
 		docs: {
 			title: "Pagination",
 			description: {
-				component: "Pagination 組件的呈現及說明。",
+				component: "頁碼組件的呈現及說明。",
 			},
 		},
 	},

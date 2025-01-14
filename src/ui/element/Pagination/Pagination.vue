@@ -131,7 +131,7 @@ watch(() => props.itemsPerPageOptions, (newVal) => {
 				class="ded-pagination-button"
 				@click="() => handlePageChange(1)"
 			>
-				<Icon name="first-last-page" size="18" class="ded-pagination-button-first"/>
+				<Icon name="SvgFirstLastPage" size="18" class="ded-pagination-button-first"/>
 			</Button>
 
 			<Button
@@ -141,7 +141,7 @@ watch(() => props.itemsPerPageOptions, (newVal) => {
 				class="ded-pagination-button"
 				@click="() => handlePageChange(currPage - 1)"
 			>
-				<Icon name="navigate-arrow" size="18" class="ded-pagination-button-first"/>
+				<Icon name="SvgNavigateArrow" size="18" class="ded-pagination-button-first"/>
 			</Button>
 
 			<Button
@@ -153,7 +153,9 @@ watch(() => props.itemsPerPageOptions, (newVal) => {
 				:class="{ 'ded-pagination-active': currPage === number }"
 				@click="() => handlePageChange(number)"
 			>
-				<div class="ded-pagination-number">{{ number }}</div>
+                <div class="ded-button-content">
+                    <div class="ded-pagination-number">{{ number }}</div>
+                </div>
 			</Button>
 
 			<Button
@@ -163,7 +165,7 @@ watch(() => props.itemsPerPageOptions, (newVal) => {
 				class="ded-pagination-button"
 				@click="() => handlePageChange(currPage + 1)"
 			>
-				<Icon name="navigate-arrow" size="18"/>
+				<Icon name="SvgNavigateArrow" size="18"/>
 			</Button>
 
 			<Button
@@ -173,7 +175,7 @@ watch(() => props.itemsPerPageOptions, (newVal) => {
 				class="ded-pagination-button"
 				@click="() => handlePageChange(totalPages)"
 			>
-				<Icon name="first-last-page" size="18"/>
+				<Icon name="SvgFirstLastPage" size="18"/>
 			</Button>
 		</div>
 	</div>
