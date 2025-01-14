@@ -9,6 +9,48 @@ function formatDataSource(dataSource) {
 		detail: ${typeof item.detail === "function" ? '"[h Function]"' : `"${item.detail}"`}
 	}`).join(",\n")}]`;
 }
+const dataSource = [
+	{
+		id: "1",
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What is Vue?"),
+		detail: () => [
+			h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
+			h(Button, {
+				themeColor: 'primary',
+				variant: 'soft',
+				suffix: 'SvgArrowDown',
+				size: 'small',
+				width: 'fit',
+				borderWidth: 'sm',
+				radius: 'sm',
+				onClick: () => {
+					alert('Button clicked!');
+				}
+			}, 'Button')
+		],
+	},
+	{
+		id: "2",
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q2. What are the features of Vue?"),
+		detail: () => [
+			h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
+		],
+	},
+	{
+		id: "3",
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q3. What is included in the Vue ecosystem?"),
+		detail: () => [
+			h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
+		],
+	},
+	{
+		id: "4",
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q4. What are the advantages of using Vue?"),
+		detail: () => [
+			h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
+		],
+	},
+]
 
 export default {
 	title: "Component/Accordion",
@@ -58,7 +100,7 @@ export default {
 		docs: {
 			title: "Accordion",
 			description: {
-				component: "Accordion 組件的呈現及說明。",
+				component: "折疊選單組件的呈現及說明。",
 			},
 		},
 	},
@@ -68,46 +110,8 @@ export default {
 export const AccordionDefault = {
 	name: "預設項目",
 	args: {
-		dataSource: [
-			{
-				id: "1",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "What is Vue?"),
-				detail: () => [
-					h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
-					h(Button, {
-						themeColor: 'primary',
-						variant: 'soft',
-						suffix: 'arrow_down',
-						size: 'small',
-						width: 'fit',
-						borderWidth: 'sm',
-						radius: 'sm'
-					}, 'Button')
-				],
-			},
-			{
-				id: "2",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "Q2. What are the features of Vue?"),
-				detail: () => [
-					h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
-				],
-			},
-			{
-				id: "3",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "Q3. What is included in the Vue ecosystem?"),
-				detail: () => [
-					h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
-				],
-			},
-			{
-				id: "4",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "Q4. What are the advantages of using Vue?"),
-				detail: () => [
-					h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
-				],
-			},
-		],
-		prefix:"info",
+		dataSource: dataSource,
+		prefix:"SvgInfo",
 		borderStyle:"highlight",
 		isSmallSize: false,
 		isOpenAll: false,
@@ -140,7 +144,6 @@ export const AccordionDefault = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
-					console.log(">>>",dataSourceString)
 					return [
 						'<Accordion',
 						`  :dataSource='${dataSourceString}'`,
@@ -161,46 +164,8 @@ export const AccordionDefault = {
 export const AccordionBorderStyle = {
 	name: "邊框樣式",
 	args: {
-		dataSource: [
-			{
-				id: "1",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "What is Vue?"),
-				detail: () => [
-					h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
-					h(Button, {
-						themeColor: 'primary',
-						variant: 'soft',
-						suffix: 'arrow_down',
-						size: 'small',
-						width: 'fit',
-						borderWidth: 'sm',
-						radius: 'sm'
-					}, 'Button')
-				],
-			},
-			{
-				id: "2",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "Q2. What are the features of Vue?"),
-				detail: () => [
-					h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
-				],
-			},
-			{
-				id: "3",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "Q3. What is included in the Vue ecosystem?"),
-				detail: () => [
-					h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
-				],
-			},
-			{
-				id: "4",
-				label: () => h(Title, { level: 3, themeColor: 'primary' }, "Q4. What are the advantages of using Vue?"),
-				detail: () => [
-					h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
-				],
-			},
-		],
-		prefix:"info",
+		dataSource: dataSource,
+		prefix:"SvgInfo",
 		borderStyle:"solid",
 		isSmallSize: false,
 		isOpenAll: false,
@@ -253,47 +218,9 @@ export const AccordionBorderStyle = {
 export const AccordionSmall = {
 	name: "小尺寸",
 	args: {
-		dataSource: [
-			{
-				id: "1",
-				label: () => h(Title, { level: 4, themeColor: 'primary' }, "What is Vue?"),
-				detail: () => [
-					h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
-					h(Button, {
-						themeColor: 'primary',
-						variant: 'soft',
-						suffix: 'arrow_down',
-						size: 'small',
-						width: 'fit',
-						borderWidth: 'sm',
-						radius: 'sm'
-					}, 'Button')
-				],
-			},
-			{
-				id: "2",
-				label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q2. What are the features of Vue?"),
-				detail: () => [
-					h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
-				],
-			},
-			{
-				id: "3",
-				label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q3. What is included in the Vue ecosystem?"),
-				detail: () => [
-					h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
-				],
-			},
-			{
-				id: "4",
-				label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q4. What are the advantages of using Vue?"),
-				detail: () => [
-					h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
-				],
-			},
-		],
-		prefix:"info",
-		borderStyle:"highlight",
+		dataSource: dataSource,
+		prefix:"SvgInfo",
+		borderStyle:"solid",
 		isSmallSize: true,
 		isOpenAll: false,
 		className: ""

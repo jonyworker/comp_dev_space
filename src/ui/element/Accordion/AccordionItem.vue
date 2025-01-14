@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
 					<slot name="label"></slot>
 				</span >
 				<span  :class="isItemOpen ? 'ded-accordion-item-open' : 'ded-accordion-item-close'" class="ded-icon-medium">
-					<Icon size="24" name="arrow_down"/>
+					<Icon size="24" name="SvgArrowDown"/>
 				</span >
 			</summary>
 			<div class="ded-accordion-detail-content">
