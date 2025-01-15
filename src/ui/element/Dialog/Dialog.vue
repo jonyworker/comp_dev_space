@@ -1,9 +1,8 @@
 <script setup>
 import Button from '@/ui/element/Button/Button.vue'
-
+import Icon from "@/ui/element/Icon/Icon.vue";
 // 調用 composable
 import {useDialog} from "@/ui/element/Dialog/useDialog.js";
-import Icon from "@/ui/element/Icon/Icon.vue";
 const dialog = useDialog();
 
 // 定義 Props
@@ -29,7 +28,7 @@ const props = defineProps({
 
 					<template v-if="props.hasClose === true">
 						<button class="ded-dialog-close-btn" @click="dialog.closeDialog()">
-							<Icon name="close" size="20"></Icon>
+							<Icon name="SvgClose" size="20"></Icon>
 						</button>
 					</template>
 

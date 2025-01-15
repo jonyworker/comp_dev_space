@@ -62,7 +62,7 @@ export default {
 		docs: {
 			title: "Dialog",
 			description: {
-				component: "Dialog 組件的呈現及說明。",
+				component: "彈窗組件的呈現及說明。",
 			},
 		},
 		actions: { disabled: true },
@@ -75,7 +75,7 @@ export const DialogDefault = {
 	args: {
 		hasClose: true,
 		className: '',
-		header: `<Title :level="2" >Title</Title>`,
+		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
 		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
@@ -106,10 +106,10 @@ export const DialogDefault = {
 		template: `
 			<div :class="['ded-dialog-content', ...args.className.split(' ')]">
 				<button v-if="args.hasClose" class="ded-dialog-close-btn" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</button>
 				<div class="ded-dialog-header">
-					<Title :level="2" >Title</Title>
+					<Title themeColor="primary" :level="2" >Title</Title>
 				</div>
 				<div class="ded-dialog-body">
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
@@ -224,7 +224,7 @@ export const DialogDemo = {
 				className=""
 			>
 				<template #header>
-					<Title :level="2" >Title</Title>
+					<Title themeColor="primary" :level="2" >Title</Title>
 				</template>
 				<template #content>
 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
