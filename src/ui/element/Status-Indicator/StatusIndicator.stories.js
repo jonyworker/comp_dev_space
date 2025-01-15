@@ -40,15 +40,15 @@ export default {
 				type: "select",
 				labels: {
 					"": "none",
-					InfoCircleIcon: "InfoCircleIcon",
-					SuccessCircleIcon: "SuccessCircleIcon",
-					WarningCircleIcon: "WarningCircleIcon",
-					ErrorCircleIcon: "ErrorCircleIcon",
-					QuestionCircleIcon: "QuestionCircleIcon",
-					DisableCircleIcon: "DisableCircleIcon",
+					SvgInfoCircle: "SvgInfoCircle",
+					SvgSuccessCircle: "SvgSuccessCircle",
+					SvgWarningTri: "SvgWarningTri",
+					SvgErrorCircle: "SvgErrorCircle",
+					SvgQuestionCircle: "SvgQuestionCircle",
+					SvgDisableCircle: "SvgDisableCircle",
 				}
 			},
-			options: ['', 'InfoCircleIcon', 'SuccessCircleIcon', 'WarningCircleIcon', 'ErrorCircleIcon', 'QuestionCircleIcon', 'DisableCircleIcon'],
+			options: ['', 'SvgInfoCircle', 'SvgSuccessCircle', 'SvgWarningTri', 'SvgErrorCircle', 'SvgQuestionCircle', 'SvgDisableCircle'],
 		},
 		size: {
 			description: "尺寸",
@@ -79,7 +79,7 @@ export default {
 		docs: {
 			title: "StatusIndicator",
 			description: {
-				component: "StatusIndicator 組件的呈現及說明。",
+				component: "狀態指示組件的呈現及說明。",
 			},
 		},
 	},
@@ -90,7 +90,7 @@ export const StatusIndicatorDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "success",
-		variant: "filled",
+		variant: "text",
 		prefix: "",
 		size: "medium",
 		className: '',
@@ -159,10 +159,58 @@ export const StatusIndicatorColors = {
 		},
 		template: `
 			<div style="width: 600px; display: flex; gap: 10px; flex-wrap: wrap;">
+<!--				<div style="display:flex; gap: 8px">-->
+<!--					<StatusIndicator-->
+<!--						themeColor="info"-->
+<!--						variant="filled"-->
+<!--						:prefix="args.prefix"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Information-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="success"-->
+<!--						variant="filled"-->
+<!--						:prefix="args.prefix"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Success-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="warning"-->
+<!--						variant="filled"-->
+<!--						:prefix="args.prefix"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Warning-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="error"-->
+<!--						variant="filled"-->
+<!--						:prefix="args.prefix"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Error-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="neutral"-->
+<!--						variant="filled"-->
+<!--						:prefix="args.prefix"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Disable-->
+<!--					</StatusIndicator>-->
+<!--				</div>-->
+				
 				<div style="display:flex; gap: 8px">
 					<StatusIndicator
 						themeColor="info"
-						variant="filled"
+						variant="text"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -171,7 +219,7 @@ export const StatusIndicatorColors = {
 					</StatusIndicator>
 					<StatusIndicator
 						themeColor="success"
-						variant="filled"
+						variant="text"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -180,7 +228,7 @@ export const StatusIndicatorColors = {
 					</StatusIndicator>
 					<StatusIndicator
 						themeColor="warning"
-						variant="filled"
+						variant="text"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -189,7 +237,7 @@ export const StatusIndicatorColors = {
 					</StatusIndicator>
 					<StatusIndicator
 						themeColor="error"
-						variant="filled"
+						variant="text"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -198,7 +246,7 @@ export const StatusIndicatorColors = {
 					</StatusIndicator>
 					<StatusIndicator
 						themeColor="neutral"
-						variant="filled"
+						variant="text"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -206,11 +254,60 @@ export const StatusIndicatorColors = {
 						Disable
 					</StatusIndicator>
 				</div>
+				
+<!--				<div style="display:flex; gap: 8px">-->
+<!--					<StatusIndicator-->
+<!--						themeColor="info"-->
+<!--						variant="filled"-->
+<!--						prefix="InfoCircleIcon"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Information-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="success"-->
+<!--						variant="filled"-->
+<!--						prefix="SuccessCircleIcon"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Success-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="warning"-->
+<!--						variant="filled"-->
+<!--						prefix="WarningCircleIcon"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Warning-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="error"-->
+<!--						variant="filled"-->
+<!--						prefix="ErrorCircleIcon"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Error-->
+<!--					</StatusIndicator>-->
+<!--					<StatusIndicator-->
+<!--						themeColor="neutral"-->
+<!--						variant="filled"-->
+<!--						prefix="DisableCircleIcon"-->
+<!--						:size="args.size"-->
+<!--						:className="args.className"-->
+<!--					>-->
+<!--						Disable-->
+<!--					</StatusIndicator>-->
+<!--				</div>-->
+				
 				<div style="display:flex; gap: 8px">
 					<StatusIndicator
 						themeColor="info"
 						variant="text"
-						:prefix="args.prefix"
+						prefix="SvgInfoCircle"
 						:size="args.size"
 						:className="args.className"
 					>
@@ -219,7 +316,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="success"
 						variant="text"
-						:prefix="args.prefix"
+						prefix="SvgSuccessCircle"
 						:size="args.size"
 						:className="args.className"
 					>
@@ -228,7 +325,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="warning"
 						variant="text"
-						:prefix="args.prefix"
+						prefix="SvgWarningTri"
 						:size="args.size"
 						:className="args.className"
 					>
@@ -237,7 +334,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="error"
 						variant="text"
-						:prefix="args.prefix"
+						prefix="SvgErrorCircle"
 						:size="args.size"
 						:className="args.className"
 					>
@@ -246,101 +343,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="neutral"
 						variant="text"
-						:prefix="args.prefix"
-						:size="args.size"
-						:className="args.className"
-					>
-						Disable
-					</StatusIndicator>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<StatusIndicator
-						themeColor="info"
-						variant="filled"
-						prefix="InfoCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Information
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="success"
-						variant="filled"
-						prefix="SuccessCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Success
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="warning"
-						variant="filled"
-						prefix="WarningCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Warning
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="error"
-						variant="filled"
-						prefix="ErrorCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Error
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="neutral"
-						variant="filled"
-						prefix="DisableCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Disable
-					</StatusIndicator>
-				</div>
-				<div style="display:flex; gap: 8px">
-					<StatusIndicator
-						themeColor="info"
-						variant="text"
-						prefix="InfoCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Information
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="success"
-						variant="text"
-						prefix="SuccessCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Success
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="warning"
-						variant="text"
-						prefix="WarningCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Warning
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="error"
-						variant="text"
-						prefix="ErrorCircleIcon"
-						:size="args.size"
-						:className="args.className"
-					>
-						Error
-					</StatusIndicator>
-					<StatusIndicator
-						themeColor="neutral"
-						variant="text"
-						prefix="DisableCircleIcon"
+						prefix="SvgDisableCircle"
 						:size="args.size"
 						:className="args.className"
 					>
@@ -361,51 +364,6 @@ export const StatusIndicatorColors = {
 					return [
 						`<StatusIndicator`,
 						`  themeColor="info"`,
-						`  variant="filled"`,
-						`  :prefix="${args.prefix}"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Information`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="success"`,
-						`  variant="filled"`,
-						`  :prefix="${args.prefix}"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Success`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="warning"`,
-						`  variant="filled"`,
-						`  :prefix="${args.prefix}"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Warning`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="error"`,
-						`  variant="filled"`,
-						`  :prefix="${args.prefix}"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Error`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="neutral"`,
-						`  variant="filled"`,
-						`  :prefix="${args.prefix}"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Disable`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="info"`,
 						`  variant="text"`,
 						`  :prefix="${args.prefix}"`,
 						`  :size="${args.size}"`,
@@ -449,55 +407,11 @@ export const StatusIndicatorColors = {
 						`>`,
 						`  Disable`,
 						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="info"`,
-						`  variant="filled"`,
-						`  prefix="InfoCircleIcon"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Information`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="success"`,
-						`  variant="filled"`,
-						`  prefix="SuccessCircleIcon"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Success`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="warning"`,
-						`  variant="filled"`,
-						`  prefix="WarningCircleIcon"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Warning`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="error"`,
-						`  variant="filled"`,
-						`  prefix="ErrorCircleIcon"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Error`,
-						`</StatusIndicator>`,
-						`<StatusIndicator`,
-						`  themeColor="neutral"`,
-						`  variant="filled"`,
-						`  prefix="DisableCircleIcon"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  Disable`,
-						`</StatusIndicator>`,
+
 						`<StatusIndicator`,
 						`  themeColor="info"`,
 						`  variant="text"`,
-						`  prefix="InfoCircleIcon"`,
+						`  prefix="SvgInfoCircle"`,
 						`  :size="${args.size}"`,
 						`  :className="${args.className}"`,
 						`>`,
@@ -506,7 +420,7 @@ export const StatusIndicatorColors = {
 						`<StatusIndicator`,
 						`  themeColor="success"`,
 						`  variant="text"`,
-						`  prefix="SuccessCircleIcon"`,
+						`  prefix="SvgSuccessCircle"`,
 						`  :size="${args.size}"`,
 						`  :className="${args.className}"`,
 						`>`,
@@ -515,7 +429,7 @@ export const StatusIndicatorColors = {
 						`<StatusIndicator`,
 						`  themeColor="warning"`,
 						`  variant="text"`,
-						`  prefix="WarningCircleIcon"`,
+						`  prefix="SvgWarningTri"`,
 						`  :size="${args.size}"`,
 						`  :className="${args.className}"`,
 						`>`,
@@ -524,7 +438,7 @@ export const StatusIndicatorColors = {
 						`<StatusIndicator`,
 						`  themeColor="error"`,
 						`  variant="text"`,
-						`  prefix="ErrorCircleIcon"`,
+						`  prefix="SvgErrorCircle"`,
 						`  :size="${args.size}"`,
 						`  :className="${args.className}"`,
 						`>`,
@@ -533,7 +447,7 @@ export const StatusIndicatorColors = {
 						`<StatusIndicator`,
 						`  themeColor="neutral"`,
 						`  variant="text"`,
-						`  prefix="DisableCircleIcon"`,
+						`  prefix="SvgDisableCircle"`,
 						`  :size="${args.size}"`,
 						`  :className="${args.className}"`,
 						`>`,
