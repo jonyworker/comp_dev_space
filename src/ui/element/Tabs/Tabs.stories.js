@@ -52,12 +52,23 @@ export default {
         type: {
             description: "頁籤樣式",
             control: { type: "select" },
-            options: ["basic", "outline", "button"],
+            options: ["default", "card"],
             table: {
                 type: {
-                    summary: "basic | outline "
+                    summary: "default | card "
                 }
             }
+        },
+        prefix: {
+            description: "前綴元素",
+            control: {
+                type: "select",
+                labels: {
+                    "": "none",
+                    SvgArrowDown: "SvgArrowDown",
+                }
+            },
+            options: [ "", "SvgArrowDown" ],
         },
         isDisabled: {
             description: "是否禁用",
@@ -73,7 +84,7 @@ export default {
         docs: {
             title: "Tabs",
             description: {
-                component: "Tabs 組件的呈現及說明。",
+                component: "頁籤組件的呈現及說明。",
             },
         },
     },
@@ -99,7 +110,8 @@ export const DefaultTabs = {
             }
         ],
         activeIndex: 0,
-        type: "basic",
+        type: "default",
+        prefix: 'SvgArrowDown',
         isDisabled: false,
         className: ''
     },
@@ -116,6 +128,7 @@ export const DefaultTabs = {
                 :dataSource="args.dataSource"
                 :activeIndex="args.activeIndex"
                 :type="args.type"
+                :prefix="args.prefix"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
             ></Tabs>
@@ -137,6 +150,7 @@ export const DefaultTabs = {
                         `  :dataSource="${dataSourceString}"`,
                         `  :activeIndex="${args.activeIndex}"`,
                         `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '></Tabs>',
@@ -167,7 +181,8 @@ export const CardTabs = {
             }
         ],
         activeIndex: 0,
-        type: "outline",
+        type: "card",
+        prefix: 'SvgArrowDown',
         isDisabled: false,
         className: ''
     },
@@ -184,6 +199,7 @@ export const CardTabs = {
                 :dataSource="args.dataSource"
                 :activeIndex="args.activeIndex"
                 :type="args.type"
+                :prefix="args.prefix"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
             ></Tabs>
@@ -205,6 +221,7 @@ export const CardTabs = {
                         `  :dataSource="${dataSourceString}"`,
                         `  :activeIndex="${args.activeIndex}"`,
                         `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
                         '></Tabs>',

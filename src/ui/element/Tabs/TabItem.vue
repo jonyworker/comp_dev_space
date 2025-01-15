@@ -21,8 +21,11 @@ const props = defineProps({
 	type: {
 		type: String,
 		validator: (value) =>
-			[ "basic", "outline"].includes(value),
+			[ "default", "card"].includes(value),
 	},
+    prefix: {
+        type: String,
+    },
 	// --  內容接口 -- //
 	title: {
 		type: String,
@@ -66,17 +69,20 @@ const handleClick = (event) => {
         :isDisabled="props.isDisabled"
         :class="{
 			'ded-tab ': true,
-			[`ded-tab-${props.themeColor}`]: props.themeColor && props.type === 'basic',
-			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'basic',
-			[`ded-tab-card-${props.themeColor}`]: props.themeColor && props.type === 'outline',
-			[`ded-tab-card-${props.themeColor}-active`]: props.isActive && props.type === 'outline',
+			[`ded-tab-${props.themeColor}`]: props.themeColor && props.type === 'default',
+			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'default',
+			[`ded-tab-card-${props.themeColor}`]: props.themeColor && props.type === 'card',
+			[`ded-tab-card-${props.themeColor}-active`]: props.isActive && props.type === 'card',
         }"
         @click="handleClick"
         :data-index="props.index"
     >
-		<div class="ded-icon">
-			<Icon name="arrow_down"></Icon>
-		</div>
+        <template v-if="props.prefix">
+            <div class="ded-icon">
+                <Icon name="SvgArrowDown"></Icon>
+            </div>
+        </template>
+
 		<div class="ded-text-medium"> {{ props.title }}</div>
     </Button>
 

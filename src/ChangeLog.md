@@ -107,6 +107,15 @@
 - 修改 Storybook
   1. 修改 args 設定 (#75)
 
+### **Tabs**
+- 修改 Vue
+  1. 修改 ICON 名稱 (#75)
+  2. 修改 props.type 屬性 (#75)
+  3. 增加 prefix 控制顯示箭頭 (#75)
+- 修改 Storybook
+  1. 修改 ICON 名稱 (#75)
+  2. 修改元件說明小字 (#75)
+
 ### **Tag**
 - 修改 Vue
   1. 修改 ICON 名稱 (#75)

@@ -32,10 +32,13 @@ const props = defineProps({
 	},
 	type: {
 		type: String,
-		default: "basic",
+		default: "default",
 		validator: (value) =>
-			[ "basic", "outline"].includes(value),
+			[ "default", "card"].includes(value),
 	},
+    prefix: {
+        type: String,
+    },
 	isDisabled: {
 		type: Boolean,
 		default: false
@@ -68,6 +71,7 @@ watch(() => props.activeIndex, (newIndex) => {
                 :themeColor="props.themeColor"
                 :title="item.title"
                 :type="props.type"
+                :prefix="props.prefix"
                 :index="index"
                 :isActive="index === activeTabIndex"
                 :isDisabled="props.isDisabled || item.isDisabled"
