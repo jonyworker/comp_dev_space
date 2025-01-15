@@ -45,7 +45,7 @@ const props = defineProps({
         <Input
             type="text"
             :placeholder="props.placeholder"
-            prefix="search"
+            prefix="SvgSearch"
             :size="props.size"
             initValue=""
             :isDisable="props.isDisable"

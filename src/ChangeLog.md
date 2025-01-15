@@ -86,6 +86,10 @@
   3. 還原主題色彩 story (#75)
   4. 修改元件說明小字 (#75)
 
+### **Search**
+- 修改 Vue
+  1. 還原themeColor (#75)
+
 ### **Slider**
 - 修改 Vue
   1. 還原themeColor (#75)
