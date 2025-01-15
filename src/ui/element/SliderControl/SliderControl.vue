@@ -9,20 +9,20 @@ const modelValue = defineModel('modelValue');
 
 // 定義 Props
 const props = defineProps({
-	// themeColor: {
-	// 	type: String,
-	// 	default: "primary",
-	// 	validator: (value) =>
-	// 		[
-	// 			"primary",
-	// 			"secondary",
-	// 			"neutral",
-	// 			"info",
-	// 			"success",
-	// 			"warning",
-	// 			"error",
-	// 		].includes(value),
-	// },
+	themeColor: {
+		type: String,
+		default: "primary",
+		validator: (value) =>
+			[
+				"primary",
+				"secondary",
+				"neutral",
+				"info",
+				"success",
+				"warning",
+				"error",
+			].includes(value),
+	},
 	min: {
 		type: Number,
 		default: 0,
@@ -94,18 +94,33 @@ watch(() => props.initValue, (newValue) => {
 		computedValue.value = newValue;
 	}
 });
+
+const prefixIcon = computed(() => {
+    if (props.prefix === 'increase') {
+        return 'SvgPlus';
+    } else if (props.prefix === 'decrease') {
+        return 'SvgMinus';
+    }
+})
+const suffixIcon = computed(() => {
+    if (props.suffix === 'increase') {
+        return 'SvgPlus';
+    } else if (props.suffix === 'decrease') {
+        return 'SvgMinus';
+    }
+})
 </script>
 
 <template>
 	<div :class="{'ded-slider-control': true, [props.className]: !!props.className}">
 		<Button
 			variant="text"
-			themeColor="primary"
+			:themeColor="props.themeColor"
 			:isDisabled="props.isDisabled"
 			@click="handleDecreaseClick"
 		>
 			<slot name="prefix">
-				<Icon v-if="props.prefix" :name="props.prefix" size="32"/>
+				<Icon v-if="props.prefix" :name="prefixIcon" size="32"/>
 			</slot>
 		</Button>
 
@@ -124,12 +139,12 @@ watch(() => props.initValue, (newValue) => {
 
 		<Button
 			variant="text"
-            themeColor="primary"
+            :themeColor="props.themeColor"
 			:isDisabled="props.isDisabled"
 			@click="handleIncreaseClick"
 		>
 			<slot name="suffix">
-				<Icon v-if="props.suffix" :name="props.suffix" size="32"/>
+				<Icon v-if="props.suffix" :name="suffixIcon" size="32"/>
 			</slot>
 		</Button>
 	</div>
