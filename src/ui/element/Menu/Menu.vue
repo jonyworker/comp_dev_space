@@ -22,9 +22,13 @@ const props = defineProps({
 		type: String,
 		default: "#000000",
 	},
-    isSideNavLink: {
-        type: Boolean,
-        default: false,
+    // isSideNavLink: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    hasDivider: {
+       type: Boolean,
+       default: false,
     },
 	className: {
 		type: String,
@@ -71,7 +75,7 @@ const handleItemClick = ({item, event}) => {
 					:is-collapsed="props.isCollapsed"
 					:use-router="props.useRouter"
 					:color="props.color"
-                    :isSideNavLink="props.isSideNavLink"
+                    :hasDivider="props.hasDivider"
 					:expanded-items="expandedItems"
 					@itemClick="handleItemClick"
 				/>

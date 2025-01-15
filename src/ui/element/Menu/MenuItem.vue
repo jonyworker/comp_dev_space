@@ -11,6 +11,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+    hasDivider: {
+        type: Boolean,
+        default: false,
+    },
 	useRouter: {
 		type: Boolean,
 		default: false,
@@ -23,10 +27,10 @@ const props = defineProps({
 		type: Object,
 		required: true,
 	},
-    isSideNavLink: {
-        type: Boolean,
-        default: false,
-    }
+    // isSideNavLink: {
+    //     type: Boolean,
+    //     default: false,
+    // }
 });
 
 const emit = defineEmits(["itemClick"]);
@@ -45,7 +49,7 @@ const toggleExpand = (item) => {
 
 
 <template>
-	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.isSideNavLink }">
+	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.hasDivider }">
 		<!-- 動態組件切換 router-link 或 a -->
 		<component
 			:is="getComponentType(props.item)"
@@ -77,7 +81,7 @@ const toggleExpand = (item) => {
 			>
 				<Icon
 					size="24"
-					name="arrow_down"
+					name="SvgArrowDown"
 					:style="{
 						verticalAlign: 'middle',
 			            transition: 'transform 0.3s',

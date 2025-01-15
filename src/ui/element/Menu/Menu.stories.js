@@ -39,8 +39,8 @@ export default {
 			description: "顏色",
 			control: { type: "color" },
 		},
-		isSideNavLink: {
-			description: '是否為側邊導航',
+		hasDivider: {
+			description: '是否有分隔線',
 			control: { type: "boolean" },
 		},
 		className: {
@@ -58,7 +58,7 @@ export default {
 		docs: {
 			title: "Menu",
 			description: {
-				component: "Menu 組件的呈現及說明。",
+				component: "選單組件的呈現及說明。",
 			},
 		},
 	},
@@ -71,27 +71,27 @@ export const MenuDefault = {
 		dataSource: [
 			{
 				title: "Dashboard",
-				prefix: "home",
+				prefix: "SvgHome",
 				path: "/",
 			},
 			{
 				title: "Profile",
-				prefix: "users",
+				prefix: "SvgUser",
 				path: "/users",
 				children: [
-					{ title: "Contact", prefix: "mail", path: "/users/Contact" },
-					{ title: "Password", prefix: "lock", path: "/users/Password" },
+					{ title: "Contact", prefix: "SvgMail", path: "/users/Contact" },
+					{ title: "Password", prefix: "SvgLock", path: "/users/Password" },
 				],
 			},
 			{
 				title: "Setting",
-				prefix: "setting",
+				prefix: "SvgSettings",
 				path: "/settings",
 			},
 		],
 		isCollapsed: false,
 		color:'#000000',
-		isSideNavLink: false,
+		hasDivider: false,
 		className: ""
 	},
 	render: (args) => ({
@@ -106,7 +106,7 @@ export const MenuDefault = {
 					:dataSource="args.dataSource"
 					:isCollapsed="args.isCollapsed"
 					:color="args.color"
-					:isSideNavLink="args.isSideNavLink"
+					:hasDivider="args.hasDivider"
 					:className="args.className"
 				></Menu>
 		`,
@@ -130,7 +130,7 @@ export const MenuDefault = {
 						`    :dataSource="${dataSourceString}"`,
 						`    :isCollapsed="${args.isCollapsed}"`,
 						`    color="${args.color}"`,
-						`    :isSideNavLink="${args.isSideNavLink}"`,
+						`    :hasDivider="${args.hasDivider}"`,
 						`    className="${args.className}"`,
 						'  ></Menu>',
 						'</div>',
