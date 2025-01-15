@@ -51,13 +51,7 @@ export default {
 		docs: {
 			title: "Tooltip",
 			description: {
-				component: "Tooltip組件的呈現及說明。",
-			},
-		},
-		slots: {
-			default: {
-				description: '任何被包裝的物件都會成為 tooltip 的觸發器',
-				template: `{{ args.default }}`,
+				component: "提示工具組件的呈現及說明。",
 			},
 		},
 	},
@@ -71,7 +65,7 @@ export const DefaultTooltip = {
 		placement: "top",
 		showArrow: true,
 		className: '',
-		default: `<Button variant="contained" size="large" prefix="face">Hover Me</Button>`,
+		default: `<Button variant="contained" size="large" prefix="SvgAccount">Hover Me</Button>`,
 	},
 	render: (args) => ({
 		components: { Tooltip, Button },
@@ -92,7 +86,7 @@ export const DefaultTooltip = {
 					<Button 
 						themeColor="primary"
 						variant="filled"
-						prefix="face"
+						prefix="SvgAccount"
 					>
 						Hover Me
 					</Button>
@@ -116,7 +110,7 @@ export const DefaultTooltip = {
 						`    :showArrow="${args.showArrow}"`,
 						`    className="${args.className}"`,
 						'  >',
-						'    <Button themeColor="primary" variant="filled" prefix="face">Hover Me</Button>',
+						'    <Button themeColor="primary" variant="filled" prefix="SvgAccount">Hover Me</Button>',
 						'  </Tooltip>',
 					].join('\n').trim();
 				}
