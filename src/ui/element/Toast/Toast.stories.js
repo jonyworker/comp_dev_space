@@ -39,18 +39,19 @@ export default {
 			control: { type: "text" },
 		},
 		prefix: {
-			description: "前綴",
+			description: "前綴元素",
 			control: {
 				type: "select",
 				labels: {
 					"": "none",
-					InfoCircleIcon: "InfoCircleIcon",
-					SuccessCircleIcon: "SuccessCircleIcon",
-					WarningCircleIcon: "WarningCircleIcon",
-					ErrorCircleIcon: "ErrorCircleIcon",
+					SvgInfoCircle: "SvgInfoCircle",
+					SvgSuccessCircle: "SvgSuccessCircle",
+					SvgWarningTri: "SvgWarningTri",
+					SvgErrorCircle: "SvgErrorCircle",
+					SvgDisableCircle: "SvgDisableCircle",
 				}
 			},
-			options: [ '', 'InfoCircleIcon', 'SuccessCircleIcon', 'WarningCircleIcon', 'ErrorCircleIcon' ],
+			options: ['', 'SvgInfoCircle', 'SvgSuccessCircle', 'SvgWarningTri', 'SvgErrorCircle', 'SvgDisableCircle'],
 		},
 		duration: {
 			description: "持續時間",
@@ -86,7 +87,7 @@ export default {
 		docs: {
 			title: "Toast",
 			description: {
-				component: "Toast 組件的呈現及說明。",
+				component: "通知訊息組件的呈現及說明。",
 			},
 		},
 	},
@@ -99,7 +100,7 @@ export const ToastDefault = {
 		themeColor: "success",
 		title: "Notification Title ",
 		content: "Content",
-		prefix:'ErrorCircleIcon',
+		prefix:'SvgSuccessCircle',
 		duration: 5000,
 		className: "",
 		action: `<div @click="onAction">Action</div>`,
@@ -133,7 +134,7 @@ export const ToastDefault = {
 			<div class="ded-toast" :class="toastBorderClass">
 				<!-- toast - 關閉按鈕 -->
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</Button>
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message" :class="toastHeaderMsgThemeClass">
@@ -235,12 +236,12 @@ export const ToastTotal = {
 			<div class="ded-toast ded-toast-border-success">
 				<!-- toast - 關閉按鈕 -->
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-success">
-						<Icon name="SuccessCircleIcon" size="20"></Icon>
+						<Icon name="SvgSuccessCircle" size="20"></Icon>
 						<Title themeColor="success" level="5">
 							{{ args.title }}
 						</Title>
@@ -257,12 +258,12 @@ export const ToastTotal = {
 			<div class="ded-toast ded-toast-border-warning">
 				<!-- toast - 關閉按鈕 -->
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-warning">
-						<Icon name="WarningCircleIcon" size="20"></Icon>
+						<Icon name="SvgWarningTri" size="20"></Icon>
 						<Title themeColor="warning" level="5">
 							{{ args.title }}
 						</Title>
@@ -279,12 +280,12 @@ export const ToastTotal = {
 			<div class="ded-toast ded-toast-border-error">
 				<!-- toast - 關閉按鈕 -->
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-error">
-						<Icon name="ErrorCircleIcon" size="20"></Icon>
+						<Icon name="SvgErrorCircle" size="20"></Icon>
 						<Title themeColor="error" level="5">
 							{{ args.title }}
 						</Title>
@@ -301,12 +302,12 @@ export const ToastTotal = {
 			<div class="ded-toast ded-toast-border-info">
 				<!-- toast - 關閉按鈕 -->
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-info">
-						<Icon name="InfoCircleIcon" size="20"></Icon>
+						<Icon name="SvgInfoCircle" size="20"></Icon>
 						<Title themeColor="info" level="5">
 							{{ args.title }}
 						</Title>
@@ -323,12 +324,12 @@ export const ToastTotal = {
 			<div class="ded-toast ded-toast-border-neutral">
 				<!-- toast - 關閉按鈕 -->
 				<Button class="ded-close-button" variant="text" themeColor="neutral" @click="onClose">
-					<Icon name="close" size="20"></Icon>
+					<Icon name="SvgClose" size="20"></Icon>
 				</Button>
 				<!-- toast - 標題及說明文字 -->
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-neutral">
-						<Icon name="DisableCircleIcon" size="20"></Icon>
+						<Icon name="SvgDisableCircle" size="20"></Icon>
 						<Title themeColor="neutral" level="5">
 							{{ args.title }}
 						</Title>
@@ -498,7 +499,7 @@ export const ToastInterAction = {
 		themeColor: "success",
 		title: "Notification Title ",
 		content: "Content",
-		prefix:'SuccessCircleIcon',
+		prefix:'SvgSuccessCircle',
 		duration: 5000,
 		className: "",
 	},

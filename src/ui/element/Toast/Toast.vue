@@ -73,7 +73,7 @@ onUnmounted(() => {
 		<div class="ded-toast" :class="[`ded-toast-border-${props.themeColor}`, props.className]">
 			<!-- toast - 關閉按鈕 -->
 			<Button class="ded-close-button" variant="text" themeColor="neutral" @click="handleClose">
-				<Icon name="close" size="20"></Icon>
+				<Icon name="SvgClose" size="20"></Icon>
 			</Button>
 			<!-- toast - 標題及說明文字 -->
             <div class="ded-toast-header">
