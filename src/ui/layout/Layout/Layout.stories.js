@@ -15,7 +15,7 @@ export default {
 		docs: {
 			title: 'Layout',
 			description: {
-				component: 'Layout 組件的呈現及說明。',
+				component: '佈局組件的呈現及說明。',
 			},
 		},
 	},

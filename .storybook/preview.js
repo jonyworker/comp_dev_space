@@ -2,6 +2,8 @@
 import '@/style/globals.scss';
 // import { Preview } from '@storybook/vue3';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+// import '../index.css';
+import './preview.scss';
 
 // 創建 Toast 容器
 const toastContainer = document.createElement('div');
