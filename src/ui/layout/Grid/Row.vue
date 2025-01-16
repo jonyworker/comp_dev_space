@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from "vue";
 
 // 定義 props
 const props = defineProps({
@@ -52,11 +51,9 @@ const props = defineProps({
 		class="ded-row"
 		:class="props.hasGap ? '' : 'ded-gap-0'"
 		:style="{
-			display: 'flex',
-			flexWrap: 'wrap',
 			justifyContent: props.justify,
 			alignItems: props.alignItems,
-			rowGap: props.rowGap,
+			rowGap: props.rowGap
 		}">
 		<slot></slot>
 	</div>

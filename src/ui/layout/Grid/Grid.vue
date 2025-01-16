@@ -8,6 +8,10 @@ const props = defineProps({
 		required: false,
 		default: false,
 	},
+	gap: {
+		type: Number,
+		default: 0,
+	},
 	className: {
 		type: String,
 		default: "",
@@ -20,6 +24,7 @@ const containerClass = computed(() => {
 
 	return {
 		[fluid ? `${prefix}container-fluid` : `${prefix}container`]: true,
+		[`ded-gap-${props.gap}`]: props.gap,
 		[props.className]: !!props.className
 	};
 });

@@ -66,6 +66,13 @@
   3. 增加兩個屬性 hasClear, maxLimit (#75)
   4. 修改元件說明小字 (#75)
 
+### **Grid**
+- 修改 Vue
+  1. 增加 props gap (#75)
+- 修改 Storybook
+  1. 增加 props gap (#75)
+  2. 修改元件說明小字 (#75)
+
 ### **Layout**
 - 修改 Storybook
   1. 修改元件說明小字 (#75)

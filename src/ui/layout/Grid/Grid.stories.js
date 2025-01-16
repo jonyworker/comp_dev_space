@@ -20,6 +20,16 @@ export default {
 				category: 'Grid',
 			},
 		},
+		gap: {
+			description: "間距",
+			control: { type: "number" },
+			table: {
+				category: 'Grid',
+				type: {
+					summary: "4 | 8 | 16 | 24"
+				}
+			},
+		},
 		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
@@ -137,7 +147,7 @@ export default {
 		docs: {
 			title: 'Grid',
 			description: {
-				component: 'Grid 組件的呈現及說明。',
+				component: '隔線系統組件的呈現及說明。',
 			},
 		},
 	},
@@ -149,6 +159,7 @@ export const GridDefaultStory = {
 	args: {
 		//Grid
 		fluid: false,
+		gap: 0,
 		className: '',
 
 		//Row
@@ -172,7 +183,7 @@ export const GridDefaultStory = {
 			};
 		},
 		template: `
-			<Grid :fluid="args.fluid" :className="args.className">
+			<Grid :fluid="args.fluid" :className="args.className" :gap="args.gap">
 				<Row :justify="args.justify" :alignItem="args.alignItem" :hasGap="args.hasGap">
 					<Column v-for="(index) in 12" :key="index" 
 						:align="args.align" :xs="args.xs" :sm="args.sm" :md="args.md" :lg="args.lg" :xl="args.xl">
@@ -196,6 +207,7 @@ export const GridDefaultStory = {
 					return [
 						`<Grid`,
 						`  :fluid="${args.fluid}"`,
+						`  :gap="${args.gap}"`,
 						`  :className="${args.className}"`,
 						`>`,
 						`  <Row`,
