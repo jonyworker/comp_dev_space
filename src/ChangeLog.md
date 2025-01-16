@@ -66,6 +66,14 @@
   3. 增加兩個屬性 hasClear, maxLimit (#75)
   4. 修改元件說明小字 (#75)
 
+### **List**
+- 修改 Vue
+  1. 增加 hasDivider (#75)
+- 修改 Storybook
+  1. 修改 ICON 名稱 (#75)
+  2. 修改元件說明小字 (#75)
+  3. 增加 hasDivider (#75)
+
 ### **Menu**
 - 修改 Vue
   1. 修改 ICON 名稱 (#75)

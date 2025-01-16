@@ -13,6 +13,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	hasDivider: {
+		type: Boolean,
+		default: false,
+	},
 	className: {
 		type: String,
 		default: "",
@@ -40,6 +44,7 @@ const handleItemClick = (value) => {
                 :value="item.value"
                 :href="item.href"
                 :prefix="item.prefix"
+                :hasDivider="props.hasDivider"
                 @selectedItem="handleItemClick"
             ></ListItem>
         </slot>

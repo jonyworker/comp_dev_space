@@ -20,6 +20,10 @@ const props = defineProps({
         type: String,
         default: "",
     },
+	hasDivider: {
+		type: Boolean,
+		default: false,
+	},
     className: {
         type: String,
     },
@@ -49,6 +53,7 @@ const handleClick = () => {
     <div
         :class="{
 			'ded-list-item': true,
+			'ded-list-item-side': props.hasDivider,
 			[props.className]: !!props.className
 		}"
         @click="handleClick">

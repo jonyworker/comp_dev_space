@@ -10,6 +10,26 @@ function formatDataSource(dataSource) {
 	    }`).join(',\n    ')}
 	]`;
 }
+const dataSource = [
+	{
+		"label": "Option1",
+		"value": "option1",
+		"href": "",
+		"prefix": "SvgHome"
+	},
+	{
+		"label": "Option2",
+		"value": "option2",
+		"href": "#",
+		"prefix": "SvgAccount"
+	},
+	{
+		"label": "Option3",
+		"value": "option3",
+		"href": "#",
+		"prefix": "SvgCalendar"
+	},
+]
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -30,6 +50,10 @@ export default {
 			description: "是否為選單",
 			control: { type: 'boolean' },
 		},
+		hasDivider: {
+			description: '是否有分隔線',
+			control: { type: "boolean" },
+		},
 		className: {
 			description: "客製化樣式",
 			control: { type: 'text' },
@@ -40,7 +64,7 @@ export default {
 		docs: {
 			title: "List",
 			description: {
-				component: "List 組件的呈現及說明。",
+				component: "清單組件的呈現及說明。",
 			},
 		},
 	},
@@ -51,27 +75,9 @@ export default {
 export const ListDefaultStory = {
 	name: "預設項目",
 	args: {
-		dataSource:[
-			{
-				"label": "Option1",
-				"value": "option1",
-				"href": "",
-				"prefix": "home"
-			},
-			{
-				"label": "Option2",
-				"value": "option2",
-				"href": "#",
-				"prefix": "users"
-			},
-			{
-				"label": "Option3",
-				"value": "option3",
-				"href": "#",
-				"prefix": "folder"
-			},
-		],
+		dataSource: dataSource,
 		hasOutline: false,
+		hasDivider: false,
 		className: '',
 	},
 	render: (args) => ({
@@ -85,6 +91,7 @@ export const ListDefaultStory = {
 			<List
 				:dataSource="args.dataSource"
 				:hasOutline="args.hasOutline"
+				:hasDivider="args.hasDivider"
 				:className="args.className"
 			>
 				
@@ -105,6 +112,7 @@ export const ListDefaultStory = {
 						'<List',
 						`    :dataSource="${dataSourceString}"`,
 						`    :hasOutline="${args.hasOutline}"`,
+						`    :hasDivider="${args.hasDivider}"`,
 						`    className="${args.className}"`,
 						'>',
 						'</List>',
@@ -119,26 +127,8 @@ export const ListDefaultStory = {
 export const ListTypeStory = {
 	name: "選單樣式",
 	args: {
-		dataSource:[
-			{
-				"label": "Option1",
-				"value": "option1",
-				"href": "",
-				"prefix": "home"
-			},
-			{
-				"label": "Option2",
-				"value": "option2",
-				"href": "#",
-				"prefix": "users"
-			},
-			{
-				"label": "Option3",
-				"value": "option3",
-				"href": "#",
-				"prefix": "folder"
-			},
-		],
+		dataSource:dataSource,
+		hasDivider: false,
 		className: 'col-5',
 	},
 	render: (args) => ({
@@ -152,6 +142,7 @@ export const ListTypeStory = {
 			<List
 				:dataSource="args.dataSource"
 				:hasOutline=true
+				:hasDivider="args.hasDivider"
 				:className="args.className"
 			>
 			</List>
@@ -171,6 +162,7 @@ export const ListTypeStory = {
 						'<List',
 						`    :dataSource="${dataSourceString}"`,
 						`    :hasOutline="true"`,
+						`    :hasDivider="${args.hasDivider}"`,
 						`    className="${args.className}"`,
 						'>',
 						'</List>',
