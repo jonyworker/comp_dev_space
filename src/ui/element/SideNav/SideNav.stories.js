@@ -1,21 +1,125 @@
 import SideNav from "./SideNav.vue";
+const dataSource = [
+	{
+		title: 'Home',
+		prefix: 'SvgHome',
+		path: '/Home',
+
+	},
+	{
+		title: 'User',
+		prefix: 'SvgUser',
+		path: '/users',
+		children: [
+			{
+				title: 'Profile',
+				path: '/user/profile'
+			},
+			{
+				title: 'Account',
+				path: '/user/account'
+			}
+		]
+	},
+	{
+		title: 'Chart',
+		prefix: 'SvgBarChart',
+		path: '/chart',
+		children: [
+			{
+				title: 'Profile',
+				path: '/chart/profile'
+			},
+			{
+				title: 'Account',
+				path: '/chart/account'
+			},
+			{
+				title: 'Account',
+				path: '/chart/account'
+			},
+			{
+				title: 'Account',
+				path: '/chart/account'
+			}
+		]
+	},
+	{
+		title: 'Database',
+		prefix: 'SvgDatabase',
+		path: '/database',
+	},
+	{
+		title: 'Favorite',
+		prefix: 'SvgFavorite',
+		path: '/favorite',
+	},
+	{
+		title: 'Calendar',
+		prefix: 'SvgCalendar',
+		path: '/calendar',
+	},
+	{
+		title: 'Notification',
+		prefix: 'SvgNotification',
+		path: '/notification',
+	},
+	{
+		title: 'Language',
+		prefix: 'SvgLanguage',
+		path: '/language',
+	},
+]
 
 export default {
 	title: "Component/SideNav",
 	component: SideNav,
 	tags: ["autodocs"],
 	argTypes: {
-		navItems: {
-			description: "SideNav 對應的資料陣列",
-			control: { type: "object" },
-		},
 		themeColor: {
-			description: '主題顏色',
+			description: '背景顏色',
 			control: { type: 'select' },
 			options: ['None', 'blue', 'yellow', 'grape', 'black'],
 			// mapping: {
 			// 	'None': null,
 			// },
+		},
+		logoSrc: {
+			description: "Logo 圖片",
+			control: { type: "text" },
+		},
+		logo: {
+			description: "Logo 圖示",
+			control: { type: "text" },
+		},
+		logoLink: {
+			description: "Logo 連結",
+			control: { type: "text" },
+		},
+		hasRWD: {
+			description: "是否有側邊導覽",
+			control: { type: "boolean" },
+		},
+		hasLogo: {
+			description: "是否有 Logo",
+			control: { type: "boolean" },
+		},
+		hasSearch: {
+			description: "是否有搜尋欄",
+			control: { type: "boolean" },
+		},
+		dataSource: {
+			description: "資料來源",
+			control: { type: "object" },
+			table: {
+				type: {
+					summary: "{ title: string; prefix: string; path: string; children?: [ title: string; prefix: string; path:string;] }[]",
+				}
+			}
+		},
+		className: {
+			description: "客製化樣式",
+			control: { type: "text" },
 		},
 	},
 	parameters: {
@@ -33,42 +137,15 @@ export default {
 export const SideNavDefault = {
 	name: "預設項目",
 	args: {
-		navItems: [
-			{
-				icon: "home",
-				label: "首頁",
-				path: "/",
-			},
-			{
-				icon: "users",
-				label: "用戶管理",
-				path: "/users",
-				children: [
-					{ label: "用戶列表 ", path: "/users/list" },
-					{ label: "用戶設置", path: "/users/settings" },
-				],
-			},
-			{
-				icon: "file",
-				label: "文件管理",
-				path: "/files",
-				children: [
-					{ label: "所有文件", path: "/files/all" },
-					{ label: "已分享", path: "/files/shared" },
-				],
-			},
-			{
-				icon: "mail",
-				label: "訊息中心",
-				path: "/messages",
-			},
-			{
-				icon: "setting",
-				label: "系統設置",
-				path: "/settings",
-			},
-		],
-		themeColor: "blue"
+		themeColor: "yellow",
+		logoSrc: "",
+		logo: "",
+		logoLink: "",
+		hasRWD: false,
+		hasLogo: false,
+		hasSearch: false,
+		dataSource: dataSource,
+		className: ""
 	},
 	render: (args) => ({
 		components: { SideNav },
@@ -78,12 +155,17 @@ export const SideNavDefault = {
 			};
 		},
 		template: `
-			<div style="height: 480px; overflow: hidden">
-				<SideNav
-					:navItems="args.navItems"
-					:themeColor="args.themeColor"
-				></SideNav>
-			</div>
+			<SideNav
+				:themeColor="args.themeColor"
+				:logoSrc="args.logoSrc"
+				:logo="args.logo"
+				:logoLink="args.logoLink"
+				:hasRWD="args.hasRWD"
+				:hasLogo="args.hasLogo"
+				:hasSearch="args.hasSearch"
+				:dataSource="args.dataSource"
+				:className="args.className"
+			></SideNav>
         `,
 	}),
 	// 控制 controls 中能控制的參數
