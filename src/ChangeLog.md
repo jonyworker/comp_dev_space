@@ -30,6 +30,11 @@
   1. 修改 ICON 名稱 (#75)
   2. 隱藏 尺寸 story
 
+### **Card**
+- 修改 Storybook
+  1. 調整 story 顯示方式 (#75)
+  2. 修改元件說明小字 (#75)
+
 ### **Card Simple**
 - 修改 Vue
   1. 修改 hadBorder 位置 (#75)

@@ -54,7 +54,7 @@ export default {
 		docs: {
 			title: "Card",
 			description: {
-				component: "Card 組件的呈現及說明。",
+				component: "卡片組件的呈現及說明。",
 			},
 		},
 		actions: { disabled: true },
@@ -67,9 +67,9 @@ export const CardDefault = {
 	args: {
 		hasHeaderDivider: false,
 		className: '',
-		cardHeader: `<Title :level="2" >Header Title</Title>`,
+		cardHeader: `<Title themeColor="primary" :level="2" >Header Title</Title>`,
 		default: `<CardSimple imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png" align="left" :hasBorder="false" title="Card Title" subtitle="Subtitle" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."></CardSimple>`,
-		cardFooter: `<Button themeColor="primary" variant="filled" suffix="chevronDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
+		cardFooter: `<Button themeColor="primary" variant="filled" suffix="SvgArrowDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
 	},
 	render: (args) => ({
 		components: { Card, Grid, Row, Column, Button, Title, CardSimple },
@@ -87,7 +87,7 @@ export const CardDefault = {
 							:className="args.cardHeader"
 						>
 							<template #cardHeader>
-								<Title :level="2" >Header Title</Title>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
 							</template>
 
 							<CardSimple
@@ -103,7 +103,7 @@ export const CardDefault = {
 								<Button
 									themeColor="primary"
 									variant="filled"
-									suffix="chevronDown"
+									suffix="SvgArrowDown"
 									size="medium"
 									width="fit"
 									borderWidth="1px"
@@ -134,7 +134,7 @@ export const CardDefault = {
 						`  className="${args.cardHeader}"`,
 						`>`,
 						`  <template #cardHeader>`,
-						`    <Title :level="2">Header Title</Title>`,
+						`    <Title themeColor="primary" :level="2">Header Title</Title>`,
 						`  </template>`,
 						``,
 						`  <CardSimple`,
@@ -150,7 +150,7 @@ export const CardDefault = {
 						`    <Button`,
 						`      themeColor="primary"`,
 						`      variant="filled"`,
-						`      suffix="chevronDown"`,
+						`      suffix="SvgArrowDown"`,
 						`      size="medium"`,
 						`      width="fit"`,
 						`      borderWidth="1px"`,
@@ -174,9 +174,9 @@ export const CardVerticalDefault = {
 	args: {
 		hasHeaderDivider: false,
 		className: '',
-		cardHeader: `<Title :level="2" >Header Title</Title>`,
+		cardHeader: `<Title themeColor="primary" :level="2" >Header Title</Title>`,
 		default: `<CardSimple imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png" align="left" :hasBorder="false" title="Card Title" subtitle="Subtitle" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."></CardSimple>`,
-		cardFooter: `<Button themeColor="primary" variant="filled" suffix="chevronDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
+		cardFooter: `<Button themeColor="primary" variant="filled" suffix="SvgArrowDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
 	},
 	render: (args) => ({
 		components: { Card, Grid, Row, Column, Button, Title, CardSimple },
@@ -187,14 +187,14 @@ export const CardVerticalDefault = {
 		},
 		template: `
 			<Grid>
-				<Row>
-					<Column :xs="4" :md="6" :lg="4">
+				<Row hasGap>
+					<Column :xs="12" :md="6" :lg="3">
 						<Card
 							:hasHeaderDivider="args.hasHeaderDivider"
 							:className="args.cardHeader"
 						>
 							<template #cardHeader>
-								<Title :level="2" >Header Title</Title>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
 							</template>
 
 							<CardSimple
@@ -210,7 +210,106 @@ export const CardVerticalDefault = {
 								<Button
 									themeColor="primary"
 									variant="filled"
-									suffix="chevronDown"
+									suffix="SvgArrowDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+					<Column :xs="12" :md="6" :lg="3">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="SvgArrowDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+					<Column :xs="12" :md="6" :lg="3">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="SvgArrowDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+					<Column :xs="12" :md="6" :lg="3">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="SvgArrowDown"
 									size="medium"
 									width="fit"
 									borderWidth="1px"
@@ -241,7 +340,7 @@ export const CardVerticalDefault = {
 						`  className="${args.cardHeader}"`,
 						`>`,
 						`  <template #cardHeader>`,
-						`    <Title :level="2">Header Title</Title>`,
+						`    <Title themeColor="primary" :level="2">Header Title</Title>`,
 						`  </template>`,
 						``,
 						`  <CardSimple`,
@@ -257,7 +356,7 @@ export const CardVerticalDefault = {
 						`    <Button`,
 						`      themeColor="primary"`,
 						`      variant="filled"`,
-						`      suffix="chevronDown"`,
+						`      suffix="SvgArrowDown"`,
 						`      size="medium"`,
 						`      width="fit"`,
 						`      borderWidth="1px"`,
@@ -280,9 +379,9 @@ export const CardHorizontalDefault = {
 	args: {
 		hasHeaderDivider: false,
 		className: '',
-		cardHeader: `<Title :level="2" >Header Title</Title>`,
+		cardHeader: `<Title themeColor="primary" :level="2" >Header Title</Title>`,
 		default: `<CardSimple imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png" align="left" :hasBorder="false" title="Card Title" subtitle="Subtitle" description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."></CardSimple>`,
-		cardFooter: `<Button themeColor="primary" variant="filled" suffix="chevronDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
+		cardFooter: `<Button themeColor="primary" variant="filled" suffix="SvgArrowDown" size="medium" width="fit" borderWidth="1px" radius="4px">Button</Button>`,
 	},
 	render: (args) => ({
 		components: { Card, Grid, Row, Column, Button, Title, CardSimple },
@@ -293,14 +392,14 @@ export const CardHorizontalDefault = {
 		},
 		template: `
 			<Grid>
-				<Row>
-					<Column :xs="4" :md="6" :lg="4">
+				<Row hasGap>
+					<Column :xs="6">
 						<Card
 							:hasHeaderDivider="args.hasHeaderDivider"
 							:className="args.cardHeader"
 						>
 							<template #cardHeader>
-								<Title :level="2" >Header Title</Title>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
 							</template>
 
 							<CardSimple
@@ -317,7 +416,109 @@ export const CardHorizontalDefault = {
 								<Button
 									themeColor="primary"
 									variant="filled"
-									suffix="chevronDown"
+									suffix="SvgArrowDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+					<Column :xs="6">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								layout="horizontal"
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="SvgArrowDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+					<Column :xs="6">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								layout="horizontal"
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="SvgArrowDown"
+									size="medium"
+									width="fit"
+									borderWidth="1px"
+									radius="4px"
+								>
+									Button
+								</Button>
+							</template>
+						</Card>
+					</Column>
+					<Column :xs="6">
+						<Card
+							:hasHeaderDivider="args.hasHeaderDivider"
+							:className="args.cardHeader"
+						>
+							<template #cardHeader>
+								<Title themeColor="primary" :level="2" >Header Title</Title>
+							</template>
+
+							<CardSimple
+								layout="horizontal"
+								imgSrc="https://storage.googleapis.com/ded-wds-bucket/card_bg.png"
+								align="left"
+								:hasBorder="false"
+								title="Card Title"
+								subtitle="Subtitle"
+								description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s..."
+							></CardSimple>
+
+							<template #cardFooter>
+								<Button
+									themeColor="primary"
+									variant="filled"
+									suffix="SvgArrowDown"
 									size="medium"
 									width="fit"
 									borderWidth="1px"
@@ -365,7 +566,7 @@ export const CardHorizontalDefault = {
 						`    <Button`,
 						`      themeColor="primary"`,
 						`      variant="filled"`,
-						`      suffix="chevronDown"`,
+						`      suffix="SvgArrowDown"`,
 						`      size="medium"`,
 						`      width="fit"`,
 						`      borderWidth="1px"`,
