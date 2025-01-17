@@ -19,6 +19,10 @@ export default {
 				}
 			}
 		},
+		hasBorder: {
+			description: '是否有邊框',
+			control: { type: "boolean" },
+		},
 		imgSrc: {
 			description: '圖片來源',
 			control: { type: "text" },
@@ -26,10 +30,6 @@ export default {
 		buttonName: {
 			description: '按鈕名稱',
 			control: { type: "text" },
-		},
-		hasBorder: {
-			description: '卡片外框',
-			control: { type: "boolean" },
 		},
 		align: {
 			description: "對齊方式",
@@ -59,7 +59,7 @@ export default {
 		docs: {
 			title: "CardSimple",
 			description: {
-				component: "CardSimple 組件的呈現及說明。",
+				component: "卡片組件的呈現及說明。",
 			},
 		},
 		actions: { disabled: true },
@@ -71,10 +71,10 @@ export const CardSimpleDefault = {
 	name: "預設項目",
 	args: {
 		layout: "vertical",
+		hasBorder: true,
 		imgSrc: "https://storage.googleapis.com/ded-wds-bucket/card_bg.png",
 		buttonName: "Button",
 		align: "left",
-		hasBorder: true,
 		title: "Card Title",
 		subtitle: "Subtitle",
 		description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s...",
@@ -93,10 +93,10 @@ export const CardSimpleDefault = {
 					<Column :xs="12" :sm="6" :md="4">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							:align="args.align"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -118,10 +118,10 @@ export const CardSimpleDefault = {
 					return [
 						`<CardSimple`,
 						`  layout="${args.layout}"`,
+						`  :hasBorder="${args.hasBorder}"`,
 						`  imgSrc="${args.imgSrc}"`,
 						`  buttonName="${args.buttonName}"`,
 						`  align="${args.align}"`,
-						`  :hasBorder="${args.hasBorder}"`,
 						`  title="${args.title}"`,
 						`  subtitle="${args.subtitle}"`,
 						`  description="${args.description}"`,
@@ -138,9 +138,9 @@ export const CardSimpleAlign = {
 	name: "按鈕對齊方式",
 	args: {
 		layout: "vertical",
+		hasBorder: true,
 		imgSrc: "https://storage.googleapis.com/ded-wds-bucket/card_bg.png",
 		buttonName: "Button",
-		hasBorder: true,
 		title: "Card Title",
 		subtitle: "Subtitle",
 		description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500sis simply dummy text of the printing",
@@ -159,10 +159,10 @@ export const CardSimpleAlign = {
 					<Column :xs="12" :sm="6" :md="4">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							align="left"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -171,10 +171,10 @@ export const CardSimpleAlign = {
 					<Column :xs="12" :sm="6" :md="4">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							align="center"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -183,10 +183,10 @@ export const CardSimpleAlign = {
 					<Column :xs="12" :sm="6" :md="4">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							align="right"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -208,30 +208,30 @@ export const CardSimpleAlign = {
 					return [
 						`<CardSimple`,
 						`  layout="${args.layout}"`,
+						`  :hasBorder="${args.hasBorder}"`,
 						`  imgSrc="${args.imgSrc}"`,
 						`  buttonName="${args.buttonName}"`,
 						`  align="left"`,
-						`  :hasBorder="${args.hasBorder}"`,
 						`  title="${args.title}"`,
 						`  subtitle="${args.subtitle}"`,
 						`  description="${args.description}"`,
 						`></CardSimple>`,
 						`<CardSimple`,
 						`  layout="${args.layout}"`,
+						`  :hasBorder="${args.hasBorder}"`,
 						`  imgSrc="${args.imgSrc}"`,
 						`  buttonName="${args.buttonName}"`,
 						`  align="center"`,
-						`  :hasBorder="${args.hasBorder}"`,
 						`  title="${args.title}"`,
 						`  subtitle="${args.subtitle}"`,
 						`  description="${args.description}"`,
 						`></CardSimple>`,
 						`<CardSimple`,
 						`  layout="${args.layout}"`,
+						`  :hasBorder="${args.hasBorder}"`,
 						`  imgSrc="${args.imgSrc}"`,
 						`  buttonName="${args.buttonName}"`,
 						`  align="right"`,
-						`  :hasBorder="${args.hasBorder}"`,
 						`  title="${args.title}"`,
 						`  subtitle="${args.subtitle}"`,
 						`  description="${args.description}"`,
@@ -248,10 +248,10 @@ export const CardHorizontalDefault = {
 	name: "水平佈局",
 	args: {
 		layout: "vertical",
+		hasBorder: true,
 		imgSrc: "https://storage.googleapis.com/ded-wds-bucket/card_bg.png",
 		buttonName: "Button",
 		align: "left",
-		hasBorder: true,
 		title: "Card Title",
 		subtitle: "Subtitle",
 		description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s...",
@@ -270,10 +270,10 @@ export const CardHorizontalDefault = {
 					<Column :xs="12" :sm="6" :md="3">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							:align="args.align"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -282,10 +282,10 @@ export const CardHorizontalDefault = {
 					<Column :xs="12" :sm="6" :md="3">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							:align="args.align"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -294,10 +294,10 @@ export const CardHorizontalDefault = {
 					<Column :xs="12" :sm="6" :md="3">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							:align="args.align"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -306,10 +306,10 @@ export const CardHorizontalDefault = {
 					<Column :xs="12" :sm="6" :md="3">
 						<CardSimple
 							:layout="args.layout"
+							:hasBorder="args.hasBorder"
 							:imgSrc="args.imgSrc"
 							:buttonName="args.buttonName"
 							:align="args.align"
-							:hasBorder="args.hasBorder"
 							:title="args.title"
 							:subtitle="args.subtitle"
 							:description="args.description"
@@ -334,10 +334,10 @@ export const CardHorizontalDefault = {
 						`    <Column :xs="12" :sm="6" :md="3">`,
 						`      <CardSimple`,
 						`        layout="${args.layout}"`,
+						`        :hasBorder="${args.hasBorder}"`,
 						`        imgSrc="${args.imgSrc}"`,
 						`        buttonName="${args.buttonName}"`,
 						`        align="${args.align}"`,
-						`        :hasBorder="${args.hasBorder}"`,
 						`        title="${args.title}"`,
 						`        subtitle="${args.subtitle}"`,
 						`        description="${args.description}"`,
@@ -346,10 +346,10 @@ export const CardHorizontalDefault = {
 						`    <Column :xs="12" :sm="6" :md="3">`,
 						`      <CardSimple`,
 						`        layout="${args.layout}"`,
+						`        :hasBorder="${args.hasBorder}"`,
 						`        imgSrc="${args.imgSrc}"`,
 						`        buttonName="${args.buttonName}"`,
 						`        align="${args.align}"`,
-						`        :hasBorder="${args.hasBorder}"`,
 						`        title="${args.title}"`,
 						`        subtitle="${args.subtitle}"`,
 						`        description="${args.description}"`,
@@ -358,10 +358,10 @@ export const CardHorizontalDefault = {
 						`    <Column :xs="12" :sm="6" :md="3">`,
 						`      <CardSimple`,
 						`        layout="${args.layout}"`,
+						`        :hasBorder="${args.hasBorder}"`,
 						`        imgSrc="${args.imgSrc}"`,
 						`        buttonName="${args.buttonName}"`,
 						`        align="${args.align}"`,
-						`        :hasBorder="${args.hasBorder}"`,
 						`        title="${args.title}"`,
 						`        subtitle="${args.subtitle}"`,
 						`        description="${args.description}"`,
@@ -370,10 +370,10 @@ export const CardHorizontalDefault = {
 						`    <Column :xs="12" :sm="6" :md="3">`,
 						`      <CardSimple`,
 						`        layout="${args.layout}"`,
+						`        :hasBorder="${args.hasBorder}"`,
 						`        imgSrc="${args.imgSrc}"`,
 						`        buttonName="${args.buttonName}"`,
 						`        align="${args.align}"`,
-						`        :hasBorder="${args.hasBorder}"`,
 						`        title="${args.title}"`,
 						`        subtitle="${args.subtitle}"`,
 						`        description="${args.description}"`,

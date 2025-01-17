@@ -10,6 +10,10 @@ const props = defineProps({
 		default: "vertical",
 		validator: (value) => ["horizontal", "vertical"].includes(value),
 	},
+    hasBorder: {
+        type: Boolean,
+        default: true,
+    },
 	imgSrc: {
 		type: String,
 		required: true,
@@ -21,10 +25,6 @@ const props = defineProps({
 		type: String,
 		default: "left",
 		validator: (value) => ["left", "center", "right"].includes(value),
-	},
-	hasBorder: {
-		type: Boolean,
-		default: true,
 	},
 	title: {
 		type: String,
@@ -59,7 +59,7 @@ const props = defineProps({
 				'ded-card-simple-text',
 				 `ded-card-simple-text-${props.layout}`]"
 			>
-				<Title :level="3" >{{ props.title }}</Title>
+				<Title themeColor="primary"  :level="3" >{{ props.title }}</Title>
 
 				<p v-if="props.subtitle" class="ded-card-simple-text-subtitle">
 					{{ props.subtitle }}
