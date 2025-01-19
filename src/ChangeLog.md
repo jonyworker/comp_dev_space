@@ -108,6 +108,13 @@
   2. 修改元件說明小字 (#75)
   3. 增加 hasDivider (#75)
 
+### **Navbar**
+- 修改 Vue (學 #75)
+  1. 修改 ICON 名稱 (#75)
+  2. 修改屬性 dataSource (#75)
+- 修改 Storybook (學 #75)
+  1. 修改屬性 dataSource (#75)
+
 ### **Pagination**
 - 修改 Vue
   1. 修改 ICON 名稱 (#75)
@@ -131,6 +138,14 @@
   2. 修改 args 設定 (#75)
   3. 還原主題色彩 story (#75)
   4. 修改元件說明小字 (#75)
+
+### **SideNav**
+- 重構 Vue (學 #75)
+  1. 還原themeColor
+- 修改 Storybook (學 #75)
+  1. 重構屬性
+- 修改 SCSS (學 #75)
+  1. ded-side-nav-mobile padding
 
 ### **Search**
 - 修改 Vue

@@ -1,9 +1,9 @@
-import { ref } from 'vue';
 import Navbar from "@/ui/element/Navbar/Navbar.vue";
 function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
         label: '${item.label}',
+        href: '${item.href}',
         value: '${item.value}',
     }`).join(',\n    ')}
   ]`;
@@ -14,17 +14,17 @@ export default {
 	component: Navbar,
 	tags: ["autodocs"],
 	argTypes: {
-		links: {
-			description: "選項",
+		dataSource: {
+			description: "連結清單",
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: '{ label: string; value: string | number; }[]',
+					summary: '{ label: string; href: string; order: number; }[]',
 				}
 			}
 		},
 		logoSrc: {
-			description: 'logo',
+			description: 'Logo 圖片連結',
 			control: { type: 'text' },
 		},
 		className: {
@@ -47,7 +47,7 @@ export default {
 export const NavbarDefault = {
 	name: '預設項目',
 	args: {
-		links: [
+		dataSource: [
 			{
 				"label": "Products",
 				"href": "#products",
@@ -81,8 +81,9 @@ export const NavbarDefault = {
 		},
 		template: `
 			<Navbar
-				:links="args.links"
+				:dataSource="args.dataSource"
 				:logoSrc="args.logoSrc"
+				:className="args.className"
 			></Navbar>
             `,
 	}),
@@ -91,24 +92,21 @@ export const NavbarDefault = {
 		controls: {
 			// include: ['objectFit', 'src', 'value', 'name' ],
 		},
-		// docs: {
-		//     source: {
-		//         transform: (src, storyContext) => {
-		//             const { args } = storyContext;
-		//             const dataSourceString = formatDataSource(args.dataSource);
-		//             return [
-		//                 '<Dropdown',
-		//                 `  :datasource="${dataSourceString}"`,
-		//                 `  :label="${args.label}"`,
-		//                 `  :placeholder="${args.placeholder}"`,
-		//                 `  :size="${args.size}"`,
-		//                 `  :maxHeight="${args.maxHeight}"`,
-		//                 `  :className="${args.className}"`,
-		//                 '>',
-		//                 '</Dropdown>',
-		//             ].join('\n').trim();
-		//         }
-		//     }
-		// }
+		docs: {
+		    source: {
+		        transform: (src, storyContext) => {
+		            const { args } = storyContext;
+		            const dataSourceString = formatDataSource(args.dataSource);
+		            return [
+		                '<Navbar',
+		                `  :datasource="${dataSourceString}"`,
+		                `  :logoSrc="${args.logoSrc}"`,
+		                `  className="${args.className}"`,
+		                '>',
+		                '</Navbar>',
+		            ].join('\n').trim();
+		        }
+		    }
+		}
 	},
 };
