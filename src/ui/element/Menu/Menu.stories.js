@@ -123,9 +123,6 @@ export const MenuDefault = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<div',
-						`  :style="${args.isCollapsed ? 'width:40px' : 'width:auto'}"`,
-						'>',
 						'  <Menu',
 						`    :dataSource="${dataSourceString}"`,
 						`    :isCollapsed="${args.isCollapsed}"`,
@@ -133,7 +130,6 @@ export const MenuDefault = {
 						`    :hasDivider="${args.hasDivider}"`,
 						`    className="${args.className}"`,
 						'  ></Menu>',
-						'</div>',
 					].join('\n').trim();
 				}
 			}

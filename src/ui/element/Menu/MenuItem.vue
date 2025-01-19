@@ -83,6 +83,7 @@ const toggleExpand = (item) => {
 					size="24"
 					name="SvgArrowDown"
 					:style="{
+						color: props.color,
 						verticalAlign: 'middle',
 			            transition: 'transform 0.3s',
 			            transform: props.expandedItems[props.item.path] ? 'rotate(180deg)' : 'rotate(0deg)'

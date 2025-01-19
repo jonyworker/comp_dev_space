@@ -44,7 +44,7 @@ const emit = defineEmits(["navItemClick", "expandedNav"]);
 
 const expandedItems = ref({});
 
-const computedWidth = computed(() => (props.isCollapsed ? '60px' : '100%'));
+const computedWidth = computed(() => (props.isCollapsed ? 'auto' : '100%'));
 
 const handleItemClick = ({item, event}) => {
 	emit("navItemClick", item);
