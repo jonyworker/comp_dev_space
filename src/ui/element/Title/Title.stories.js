@@ -78,6 +78,7 @@ export const HeadingDefault = {
 		},
 		template: `
             <Title
+				:themeColor="args.themeColor"
                 :level="args.level"
                 :className="args.className"
             >{{ args.default }}</Title>
@@ -95,6 +96,7 @@ export const HeadingDefault = {
 					const { args } = storyContext;
 					return [
 						'<Title',
+						`  :themeColor="${args.themeColor}"`,
 						`  :level="${args.level}"`,
 						`  className="${args.className}"`,
 						`>`,
