@@ -69,16 +69,21 @@ const props = defineProps({
         [`ded-button-${props.variant}-disabled`]: props.variant && props.isDisabled,
         [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
         [`ded-button-radius-${props.radius}`]: props.radius,
-        [props.className]: !!props.className
+        [props.className]: !!props.className,
+        'ded-button-only-icon' : !slot
     }">
 		<template v-if="prefix">
 			<div :class="`ded-icon-${props.size}`">
 				<Icon :name="props.prefix"></Icon>
 			</div>
 		</template>
-		<div class="ded-button-content">
-			<slot></slot>
-		</div>
+
+		<template v-if="$slots.default" >
+			<div class="ded-button-content">
+				<slot></slot>
+			</div>
+		</template>
+
 		<template v-if="suffix">
 			<div :class="`ded-icon-${props.size}`">
 				<Icon :name="props.suffix"></Icon>
