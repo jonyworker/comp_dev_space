@@ -1,4 +1,5 @@
 import SideNav from "./SideNav.vue";
+
 const dataSource = [
 	{
 		title: 'Home',
@@ -79,10 +80,12 @@ export default {
 		themeColor: {
 			description: '背景顏色',
 			control: { type: 'select' },
-			options: ['None', 'blue', 'yellow', 'grape', 'black'],
-			// mapping: {
-			// 	'None': null,
-			// },
+			options: ['blue', 'yellow', 'grape', 'black'],
+			table: {
+				type: {
+					summary: "blue | yellow | grape | black",
+				}
+			}
 		},
 		logoSrc: {
 			description: "Logo 圖片",
@@ -127,7 +130,7 @@ export default {
 		docs: {
 			title: "SideNav",
 			description: {
-				component: "SideNav 組件的呈現及說明。",
+				component: "側邊導覽組件的呈現及說明。",
 			},
 		},
 	},
@@ -138,12 +141,12 @@ export const SideNavDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "yellow",
-		logoSrc: "",
-		logo: "",
-		logoLink: "",
+		logoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
+		logo: "SvgAuo",
+		logoLink: "https://www.auo.com",
 		hasRWD: false,
-		hasLogo: false,
-		hasSearch: false,
+		hasLogo: true,
+		hasSearch: true,
 		dataSource: dataSource,
 		className: ""
 	},
