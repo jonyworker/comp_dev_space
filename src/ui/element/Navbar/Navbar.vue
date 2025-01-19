@@ -1,9 +1,9 @@
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Input from "@/ui/element/Input/Input.vue";
 import Badge from "@/ui/element/Badge/Badge.vue";
+import Avatar from "@/ui/element/Avatar/Avatar.vue";
 
 // 定義 Model
 const modelValue = defineModel();
@@ -17,7 +17,7 @@ const props = defineProps({
     },
     logoSrc: {
         type: String,
-        default: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
+        default: "",
     },
     className: {
         type: String,
@@ -66,7 +66,7 @@ const props = defineProps({
                 <div class="navbar-icons-icon">
                     <Badge
                         themeColor="error"
-                        isShowDot="true"
+                        :isShowDot="true"
                         :value="100"
                         :limit="99"
                         className=""
@@ -74,7 +74,23 @@ const props = defineProps({
                         <Icon name="notification" size="26"></Icon>
                     </Badge>
                 </div>
+	            <div class="navbar-icons-icon">
+		            <Avatar
+			            shape="circle"
+			            size="small"
+			            status="online"
+			            src="https://storage.googleapis.com/ded-wds-bucket/lion.png"
+			            userName="Name"
+			            caption="Caption"
+		            ></Avatar>
+	            </div>
             </div>
+	        <button class="navbar-switch">
+		        <div class="navbar-switch-bar"></div>
+		        <div class="navbar-switch-bar"></div>
+		        <div class="navbar-switch-bar"></div>
+		        <span class="navbar-switch-sr-only">切換選單</span>
+	        </button>
         </div>
 
     </nav>

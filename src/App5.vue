@@ -2,7 +2,7 @@
 <script setup>
 import { ref } from 'vue'
 import Navbar from '@/ui/element/Navbar/Navbar.vue'
-
+const logoSrc = "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
 const links = ref([
     {
         "label": "Products",
@@ -31,6 +31,7 @@ const links = ref([
 <template>
     <Navbar
         :links="links"
+        :logoSrc="logoSrc"
     ></Navbar>
 </template>
 
