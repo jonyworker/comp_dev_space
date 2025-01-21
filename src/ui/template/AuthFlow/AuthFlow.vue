@@ -1,14 +1,10 @@
 <script setup>
-import { ref } from "vue";
-import Layout, { Header, Content, Side, Footer } from '@/ui/layout/Layout'
+import Layout, { Content } from '@/ui/layout/Layout'
 import Grid from "@/ui/layout/Grid/Grid.vue"
 import Row from "@/ui/layout/Grid/Row.vue"
 import Column from "@/ui/layout/Grid/Column.vue"
 import Divider from "@/ui/element/Divider/Divider.vue"
 import Title from "@/ui/element/Title/Title.vue"
-
-// 定義 Model
-// const modelValue = defineModel();
 
 // 定義 props
 const props = defineProps({
@@ -21,10 +17,6 @@ const props = defineProps({
         default: "",
     },
     title: {
-        type: String,
-        default: "",
-    },
-    description: {
         type: String,
         default: "",
     },
@@ -53,26 +45,31 @@ const props = defineProps({
 
                     <Column md="12" lg="7">
                         <div class="ded-login-content">
-                            <!--標題描述-->
+
                             <Grid fluid>
+                                <!-- 標題 -->
                                 <Row>
                                     <Column md="12">
                                         <Title :level="1">{{ props.title }}</Title>
                                     </Column>
                                 </Row>
-                                <template v-if="props.description">
-                                    <Row>
-                                        <Column md="12">
-                                            <p class="text-neutral-700">{{ props.description }}</p>
-                                        </Column>
-                                    </Row>
-                                </template>
+
+                                <!-- 描述 -->
+                                <Row v-if="$slots.description">
+                                    <Column md="12">
+                                        <slot name="description">
+                                        </slot>
+                                    </Column>
+                                </Row>
                             </Grid>
 
-                            <!--登入表單-->
+
+                            <!-- 登入表單 -->
+                            <slot name="form" />
 
                             <!-- 第三方登入? 分隔線-->
                             <Divider
+                                v-if="$slots.externalLinks"
                                 width="1px"
                                 type="solid"
                                 direction="horizontal"
@@ -82,9 +79,11 @@ const props = defineProps({
                                 Or
                             </Divider>
 
-                            <!--第三方登入-->
+                            <!-- 第三方登入 -->
+                            <slot name="externalLinks" />
 
-                            <!--註冊連結-->
+                            <!-- 註冊連結 -->
+                            <slot name="signUp" />
                         </div>
                     </Column>
                 </Row>
