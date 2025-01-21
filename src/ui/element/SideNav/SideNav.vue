@@ -9,7 +9,6 @@ import Avatar from "@/ui/element/Avatar/Avatar.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from '@/ui/element/Icon/Icon.vue';
 
-
 // 定義 props
 const props = defineProps({
     themeColor: {
@@ -91,102 +90,94 @@ const computedContentColor = computed(() => {
 </script>
 
 <template>
-    <Grid fluid>
-        <Row hasGap>
-            <Column xs="12" sm="4" md="4" style="text-align: start;">
+    <div class="ded-side-nav" :style="{ width: isCollapsed ? 'auto' : '100%', ...computedThemeColor} ">
+        <!--Logo-->
+        <template v-if="props.hasLogo">
+            <div class="ded-side-nav-header">
+                <template v-if="!isCollapsed">
+                    <div class="ded-side-nav-header-logo">
+                        <template v-if="props.logoLink">
+                            <a :href="props.logoLink">
+                                <Icon :name="props.logo" width="90" height="30"
+                                      :color="computedContentColor"></Icon>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <Icon :name="props.logo" width="90" height="30" :color="computedContentColor"></Icon>
+                        </template>
+                    </div>
+                </template>
 
-                <div class="ded-side-nav" :style="{ width: isCollapsed ? 'auto' : '100%', ...computedThemeColor} ">
-                    <!--Logo-->
-	                <template v-if="props.hasLogo">
-		                <div class="ded-side-nav-header">
-			                <template v-if="!isCollapsed">
-				                <div class="ded-side-nav-header-logo">
-					                <template v-if="props.logoLink">
-						                <a :href="props.logoLink">
-							                <Icon :name="props.logo" width="90" height="30"
-							                      :color="computedContentColor"></Icon>
-						                </a>
-					                </template>
-					                <template v-else>
-						                <Icon :name="props.logo" width="90" height="30" :color="computedContentColor"></Icon>
-					                </template>
-				                </div>
-			                </template>
+                <Button class="side-nav-toggle"
+                        themeColor="primary"
+                        variant="text"
+                        size="large"
+                        prefix="SvgArrowLeft"
+                        @click="handleCollapsed">
+                </Button>
+            </div>
+        </template>
 
-			                <Button class="side-nav-toggle"
-			                        themeColor="primary"
-			                        variant="text"
-			                        size="large"
-			                        prefix="SvgArrowLeft"
-			                        @click="handleCollapsed">
-			                </Button>
-		                </div>
-	                </template>
+        <!--personal info-->
+        <template v-if="!isCollapsed">
+            <div class="ded-side-nav-desktop">
+                <Avatar
+                    shape="circle"
+                    size="large"
+                    status="online"
+                    :isShowInfo="true"
+                    src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
+                    alt="無圖顯示"
+                    userName="Name"
+                    caption="Caption"
+                    className=""
+                ></Avatar>
 
-                    <!--personal info-->
-	                <template v-if="!isCollapsed">
-		                <div class="ded-side-nav-desktop">
-			                <Avatar
-				                shape="circle"
-				                size="large"
-				                status="online"
-				                :isShowInfo="true"
-				                src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
-				                alt="無圖顯示"
-				                userName="Name"
-				                caption="Caption"
-				                className=""
-			                ></Avatar>
+                <Button
+                    themeColor="primary"
+                    variant="text"
+                    size="large"
+                    prefix="SvgLogout"
+                ></Button>
+            </div>
+        </template>
+        <template v-else>
+            <div class="ded-side-nav-mobile">
+                <Avatar
+                    shape="circle"
+                    size="small"
+                    status="online"
+                    :isShowInfo="false"
+                    src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
+                    alt="無圖顯示"
+                    userName="Name"
+                    caption="Caption"
+                    className=""
+                ></Avatar>
+            </div>
+        </template>
 
-			                <Button
-				                themeColor="primary"
-				                variant="text"
-				                size="large"
-				                prefix="SvgLogout"
-			                ></Button>
-		                </div>
-	                </template>
-                    <template v-else>
-	                    <div class="ded-side-nav-mobile">
-		                    <Avatar
-			                    shape="circle"
-			                    size="small"
-			                    status="online"
-			                    :isShowInfo="false"
-			                    src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
-			                    alt="無圖顯示"
-			                    userName="Name"
-			                    caption="Caption"
-			                    className=""
-		                    ></Avatar>
-	                    </div>
-                    </template>
+        <!--搜尋欄-->
+        <template v-if="!isCollapsed && props.hasSearch">
+            <Input
+                type="text"
+                placeholder="Jony Search..."
+                prefix="SvgSearch"
+                size="medium"
+                initValue=""
+                @change="()=>{}"
+            />
+        </template>
 
-                    <!--搜尋欄-->
-	                <template v-if="!isCollapsed && props.hasSearch">
-		                <Input
-			                type="text"
-			                placeholder="Jony Search..."
-			                prefix="SvgSearch"
-			                size="medium"
-			                initValue=""
-			                @change="()=>{}"
-		                />
-	                </template>
-
-                    <!--選單區-->
-                    <Menu
-                        :dataSource="props.dataSource"
-                        :isCollapsed="isCollapsed"
-                        :color="computedContentColor"
-                        :hasDivider="false"
-                        className="">
-                    </Menu>
-
-                </div>
-            </Column>
-        </Row>
-    </Grid>
+        <!--選單區-->
+        <Menu
+            :dataSource="props.dataSource"
+            :isCollapsed="isCollapsed"
+            :color="computedContentColor"
+            :hasDivider="false"
+            className="">
+        </Menu>
+    </div>
 </template>
 
 <style scoped lang="scss">

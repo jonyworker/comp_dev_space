@@ -1,4 +1,23 @@
 import SideNav from "./SideNav.vue";
+import Row from "@/ui/layout/Grid/Row.vue";
+import Column from "@/ui/layout/Grid/Column.vue";
+import Grid from "@/ui/layout/Grid/Grid.vue";
+function formatDataSource(dataSource) {
+	return `[
+	    ${dataSource.map(item => `{
+	        title: '${item.title}',
+	        prefix: '${item.prefix}',
+	        path: '${item.path}',
+	        ${item.children ? `children: [
+	            ${item.children.map(child => `{
+	                title: '${child.title}',
+	                prefix: '${child.prefix}',
+	                path: '${child.path}'
+	            }`).join(',\n            ')}
+	        ]` : ''}
+	    }`).join(',\n    ')}
+	]`;
+}
 
 const dataSource = [
 	{
@@ -73,6 +92,7 @@ const dataSource = [
 ]
 
 export default {
+	components: {Grid, Column, Row},
 	title: "Component/SideNav",
 	component: SideNav,
 	tags: ["autodocs"],
@@ -151,24 +171,30 @@ export const SideNavDefault = {
 		className: ""
 	},
 	render: (args) => ({
-		components: { SideNav },
+		components: { SideNav, Grid, Column, Row },
 		setup() {
 			return {
 				args,
 			};
 		},
 		template: `
-			<SideNav
-				:themeColor="args.themeColor"
-				:logoSrc="args.logoSrc"
-				:logo="args.logo"
-				:logoLink="args.logoLink"
-				:hasRWD="args.hasRWD"
-				:hasLogo="args.hasLogo"
-				:hasSearch="args.hasSearch"
-				:dataSource="args.dataSource"
-				:className="args.className"
-			></SideNav>
+			<Grid fluid>
+				<Row hasGap>
+					<Column xs="12" sm="4" md="4" style="text-align: start;">
+						<SideNav
+							:themeColor="args.themeColor"
+							:logoSrc="args.logoSrc"
+							:logo="args.logo"
+							:logoLink="args.logoLink"
+							:hasRWD="args.hasRWD"
+							:hasLogo="args.hasLogo"
+							:hasSearch="args.hasSearch"
+							:dataSource="args.dataSource"
+							:className="args.className"
+						></SideNav>
+					</Column>
+				</Row>
+			</Grid>
         `,
 	}),
 	// 控制 controls 中能控制的參數
@@ -176,6 +202,27 @@ export const SideNavDefault = {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'  <SideNav',
+						`    themeColor="${args.themeColor}"`,
+						`    logoSrc="${args.logoSrc}"`,
+						`    logo="${args.logo}"`,
+						`    logoLink="${args.logoLink}"`,
+						`    :hasRWD="${args.hasRWD}"`,
+						`    :hasLogo="${args.hasLogo}"`,
+						`    :hasSearch="${args.hasSearch}"`,
+						`    :dataSource="${dataSourceString}"`,
+						`    className="${args.className}"`,
+						'  ></SideNav>',
+					].join('\n').trim();
+				}
+			}
+		}
 	},
 };
 
