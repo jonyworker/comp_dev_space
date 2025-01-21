@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Input from "@/ui/element/Input/Input.vue";
@@ -25,6 +26,10 @@ const props = defineProps({
         default: "",
     },
 })
+
+const sortDataSource = computed(() => {
+    return props.dataSource.sort((a, b) => a.order - b.order);
+});
 </script>
 
 <template>
@@ -39,7 +44,7 @@ const props = defineProps({
             <!-- links -->
             <ul class="navbar-links">
                 <Button
-                    v-for="link in props.dataSource"
+                    v-for="link in sortDataSource"
                     :key="link.href"
                     themeColor="primary"
                     variant="text"
