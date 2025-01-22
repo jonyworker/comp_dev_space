@@ -5,14 +5,16 @@ import Grid from "@/ui/layout/Grid/Grid.vue";
 function formatDataSource(dataSource) {
 	return `[
 	    ${dataSource.map(item => `{
-	        title: '${item.title}',
-	        prefix: '${item.prefix}',
+	        label: '${item.label}',
 	        path: '${item.path}',
+	        prefix: '${item.prefix}',
+	        order: '${item.order}',
 	        ${item.children ? `children: [
 	            ${item.children.map(child => `{
-	                title: '${child.title}',
+	                label: '${child.title}',
+	                path: '${child.path}',
 	                prefix: '${child.prefix}',
-	                path: '${child.path}'
+	                order: '${child.order}',
 	            }`).join(',\n            ')}
 	        ]` : ''}
 	    }`).join(',\n    ')}
@@ -21,73 +23,86 @@ function formatDataSource(dataSource) {
 
 const dataSource = [
 	{
-		title: 'Home',
-		prefix: 'SvgHome',
+		label: 'Home',
 		path: '/Home',
-
+		prefix: 'SvgHome',
+		order: '1',
 	},
 	{
-		title: 'User',
-		prefix: 'SvgUser',
+		label: 'User',
 		path: '/users',
+		prefix: 'SvgUser',
+		order: '2',
 		children: [
 			{
-				title: 'Profile',
-				path: '/user/profile'
+				label: 'Profile',
+				path: '/user/profile',
+				order: '1',
 			},
 			{
-				title: 'Account',
-				path: '/user/account'
+				label: 'Account',
+				path: '/user/account',
+				order: '2',
 			}
 		]
 	},
 	{
-		title: 'Chart',
-		prefix: 'SvgBarChart',
+		label: 'Chart',
 		path: '/chart',
+		prefix: 'SvgBarChart',
+		order: '3',
 		children: [
 			{
-				title: 'Profile',
-				path: '/chart/profile'
+				label: 'Profile',
+				path: '/chart/profile',
+				order: '1',
 			},
 			{
-				title: 'Account',
-				path: '/chart/account'
+				label: 'Account',
+				path: '/chart/account',
+				order: '2',
 			},
 			{
-				title: 'Account',
-				path: '/chart/account'
+				label: 'Account',
+				path: '/chart/account',
+				order: '3',
 			},
 			{
-				title: 'Account',
-				path: '/chart/account'
+				label: 'Account',
+				path: '/chart/account',
+				order: '4',
 			}
 		]
 	},
 	{
-		title: 'Database',
-		prefix: 'SvgDatabase',
+		label: 'Database',
 		path: '/database',
+		prefix: 'SvgDatabase',
+		order: '4',
 	},
 	{
-		title: 'Favorite',
-		prefix: 'SvgFavorite',
+		label: 'Favorite',
 		path: '/favorite',
+		prefix: 'SvgFavorite',
+		order: '5',
 	},
 	{
-		title: 'Calendar',
-		prefix: 'SvgCalendar',
+		label: 'Calendar',
 		path: '/calendar',
+		prefix: 'SvgCalendar',
+		order: '6',
 	},
 	{
-		title: 'Notification',
-		prefix: 'SvgNotification',
+		label: 'Notification',
 		path: '/notification',
+		prefix: 'SvgNotification',
+		order: '7',
 	},
 	{
-		title: 'Language',
-		prefix: 'SvgLanguage',
+		label: 'Language',
 		path: '/language',
+		prefix: 'SvgLanguage',
+		order: '8',
 	},
 ]
 
@@ -136,7 +151,8 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ title: string; prefix: string; path: string; children?: [ title: string; prefix: string; path:string;] }[]",
+					summary: "{ label: string; path: string; prefix: string; order: string; children?: [" +
+						" title:string; path:string; prefix:string; order: string;] }[]",
 				}
 			}
 		},
@@ -160,7 +176,7 @@ export default {
 export const SideNavDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "yellow",
+		themeColor: "blue",
 		logoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
 		logo: "SvgAuo",
 		logoLink: "https://www.auo.com",
