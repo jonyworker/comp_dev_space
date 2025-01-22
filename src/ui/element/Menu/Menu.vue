@@ -22,10 +22,6 @@ const props = defineProps({
 		type: String,
 		default: "#000000",
 	},
-    // isSideNavLink: {
-    //     type: Boolean,
-    //     default: false,
-    // },
     hasDivider: {
        type: Boolean,
        default: false,
@@ -38,6 +34,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+});
+
+const sortDataSource = computed(() => {
+	return props.dataSource.sort((a, b) => a.order - b.order);
 });
 
 const emit = defineEmits(["navItemClick", "expandedNav"]);
@@ -69,7 +69,7 @@ const handleItemClick = ({item, event}) => {
 		<nav class="ded-nav" :style="{ width: computedWidth }">
 			<ul class="ded-nav-list">
 				<MenuItem
-					v-for="item in props.dataSource"
+					v-for="item in sortDataSource"
 					:key="item.path"
 					:item="item"
 					:is-collapsed="props.isCollapsed"

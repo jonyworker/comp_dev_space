@@ -2,14 +2,16 @@ import Menu from "@/ui/element/Menu/Menu.vue";
 function formatDataSource(dataSource) {
 	return `[
 	    ${dataSource.map(item => `{
-	        title: '${item.title}',
-	        prefix: '${item.prefix}',
+	        label: '${item.label}',
 	        path: '${item.path}',
+	        prefix: '${item.prefix}',
+	        order: '${item.order}',
 	        ${item.children ? `children: [
 	            ${item.children.map(child => `{
-	                title: '${child.title}',
+	                label: '${child.title}',
+	                path: '${child.path}',
 	                prefix: '${child.prefix}',
-	                path: '${child.path}'
+	                order: '${child.order}',
 	            }`).join(',\n            ')}
 	        ]` : ''}
 	    }`).join(',\n    ')}
@@ -26,8 +28,8 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ title: string; prefix: string; path: string; children?: [ title: string; prefix:" +
-						" string; path:string;] }[]"
+					summary: "{ label: string; path: string; prefix: string; order: string; children?: [" +
+						" title:string; path:string; prefix:string; order: string;] }[]"
 				}
 			}
 		},
@@ -70,23 +72,26 @@ export const MenuDefault = {
 	args: {
 		dataSource: [
 			{
-				title: "Dashboard",
-				prefix: "SvgHome",
+				label: "Dashboard",
 				path: "/",
+				prefix: "SvgHome",
+				order: "1",
 			},
 			{
-				title: "Profile",
-				prefix: "SvgUser",
+				label: "Profile",
 				path: "/users",
+				prefix: "SvgUser",
+				order: "2",
 				children: [
-					{ title: "Contact", prefix: "SvgMail", path: "/users/Contact" },
-					{ title: "Password", prefix: "SvgLock", path: "/users/Password" },
+					{ label: "Contact", path: "/users/Contact", prefix: "SvgMail", order: "1", },
+					{ label: "Password", path: "/users/Password", prefix: "SvgLock", order: "2", },
 				],
 			},
 			{
-				title: "Setting",
-				prefix: "SvgSettings",
+				label: "Setting",
 				path: "/settings",
+				prefix: "SvgSettings",
+				order: "3",
 			},
 		],
 		isCollapsed: false,

@@ -68,7 +68,7 @@ const toggleExpand = (item) => {
 			<!-- 標題 -->
             <template v-if="!props.isCollapsed">
                 <span class="ded-nav-item-label">
-                    {{ props.item.title }}
+                    {{ props.item.label }}
                 </span>
             </template>
 		</component>

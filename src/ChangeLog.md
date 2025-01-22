@@ -14,3 +14,17 @@
 - 修改 Storybook (學 #76)
     1. 修改文字大小
     2. 增加 min-width
+
+### **Menu**
+- 修改 Vue (學 #76)
+  1. 修改 dataSource 參數
+- 修改 Storybook (學 #76)
+  1. 修改 dataSource 參數
+  2. 增加 hasLogo
+
+### **Navbar**
+- 修改 Vue (學 #76)
+  1. 增加 hasLogo
+- 修改 Storybook (學 #76)
+  1. 修改 dataSource 參數
+  2. 增加 hasLogo
