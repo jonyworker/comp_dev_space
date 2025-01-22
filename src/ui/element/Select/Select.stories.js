@@ -14,7 +14,7 @@ export default {
     component: Select,
     tags: ["autodocs"],
     argTypes: {
-        options: {
+        dataSource: {
             description: "選項",
             control: { type: "object" },
             table: {
@@ -26,6 +26,24 @@ export default {
         placeholder: {
             description: '輸入提示',
             control: { type: 'text' },
+        },
+        suffix: {
+            description: "後綴圖示",
+            control: {
+                type: "select",
+                labels: {
+                    "": "none",
+                    SvgAccount: "SvgAccount",
+                    SvgSearch: "SvgSearch",
+                    SvgVisibility: "SvgVisibility",
+                    SvgVisibilityOff: "SvgVisibilityOff",
+                }
+            },
+            options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
+        },
+        isDisabled: {
+            description: "是否禁用",
+            control: { type: 'boolean' },
         },
         className: {
             description: '客製化樣式',
@@ -47,7 +65,7 @@ export default {
 export const SelectDefault = {
     name: '預設項目',
     args: {
-        options: [
+        dataSource: [
             {
                 "label": "Option 1",
                 "value": "1"
@@ -61,7 +79,9 @@ export const SelectDefault = {
                 "value": "3"
             }
         ],
-        placeholder: "Placeholder...",
+        placeholder: "Select an option",
+        suffix: "SvgArrowDropDown",
+        isDisabled: false,
         className: ""
     },
     render: (args) => ({
@@ -75,8 +95,10 @@ export const SelectDefault = {
         },
         template: `
 			<Select 
-				:options="args.options"
+				:dataSource="args.dataSource"
 				:placeholder="args.placeholder"
+                :suffix="args.suffix"
+                :isDisabled="args.isDisabled"
 				:className="args.className"
                 v-model="selectedOption"
 			>
