@@ -3,8 +3,8 @@ function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
         label: '${item.label}',
-        href: '${item.href}',
-        value: '${item.value}',
+        path: '${item.path}',
+        order: '${item.order}',
     }`).join(',\n    ')}
   ]`;
 }
@@ -19,9 +19,13 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: '{ label: string; href: string; order: number; }[]',
+					summary: '{ label: string; path: string; order: number; }[]',
 				}
 			}
+		},
+		hasLogo: {
+			description: '是否有 Logo',
+			control: { type: 'boolean' },
 		},
 		logoSrc: {
 			description: 'Logo 圖片連結',
@@ -50,25 +54,26 @@ export const NavbarDefault = {
 		dataSource: [
 			{
 				"label": "Products",
-				"href": "#products",
+				"path": "#products",
 				"order": 1
 			},
 			{
 				"label": "Solutions",
-				"href": "#solutions",
+				"path": "#solutions",
 				"order": 2
 			},
 			{
 				"label": "About",
-				"href": "#about",
+				"path": "#about",
 				"order": 3
 			},
 			{
 				"label": "Technologies",
-				"href": "#technologies",
+				"path": "#technologies",
 				"order": 4
 			}
 		],
+		hasLogo: true,
 		logoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
 		className: ""
 	},
@@ -82,6 +87,7 @@ export const NavbarDefault = {
 		template: `
 			<Navbar
 				:dataSource="args.dataSource"
+				:hasLogo="args.hasLogo"
 				:logoSrc="args.logoSrc"
 				:className="args.className"
 			></Navbar>
@@ -100,6 +106,7 @@ export const NavbarDefault = {
 		            return [
 		                '<Navbar',
 		                `  :datasource="${dataSourceString}"`,
+			            `  :hasLogo="${args.hasLogo}"`,
 		                `  :logoSrc="${args.logoSrc}"`,
 		                `  className="${args.className}"`,
 		                '>',

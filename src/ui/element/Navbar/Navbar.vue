@@ -16,6 +16,10 @@ const props = defineProps({
         required: true,
         default: () => [],
     },
+	hasLogo: {
+		type: Boolean,
+		default: true,
+	},
     logoSrc: {
         type: String,
         required: true,
@@ -38,17 +42,20 @@ const sortDataSource = computed(() => {
 
         <div class="navbar-menu">
             <!-- 公司logo -->
-            <Button themeColor="primary" variant="text">
-                <Icon :src="props.logoSrc" alt="Logo" class="navbar-logo"  />
-            </Button>
+	        <template v-if="props.hasLogo === true">
+		        <Button themeColor="primary" variant="text">
+			        <Icon :src="props.logoSrc" alt="Logo" class="navbar-logo"  />
+		        </Button>
+	        </template>
+
             <!-- links -->
             <ul class="navbar-links">
                 <Button
                     v-for="link in sortDataSource"
-                    :key="link.href"
+                    :key="link.path"
                     themeColor="primary"
                     variant="text"
-                    @click="() => link.href && window.open(link.href, '_blank')"
+                    @click="() => link.path && window.open(link.path, '_blank')"
                 >
                     {{ link.label }}
                 </Button>
