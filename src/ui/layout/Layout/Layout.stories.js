@@ -38,13 +38,14 @@ export const LayoutDefaultStory = {
 			<Layout :className="args.className">
 				<Content :className="args.className">
 					<div style="
-					width: 100%;
-					height: 100%;
-					display:flex;
-					justify-content: center;
-					align-items: center;
-					background: #0958d9;
-					color: #fff;
+						width: 100%;
+						height: 100%;
+						display:flex;
+						justify-content: center;
+						align-items: center;
+						background: #0958d9;
+						color: #fff;
+						font-size: 24px;
 					"> Content </div>
 				</Content>
 			</Layout>
@@ -70,6 +71,7 @@ export const LayoutDefaultStory = {
 						'      align-items: center;',
 						'      background: #0958d9;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      content',
 						'    </div>',
@@ -99,35 +101,38 @@ export const LayoutThirdStory = {
 			<Layout :className="args.className">
 				<Header :className="args.className" >
 					<div style="
-					width: 100%;
-					height: 100%;
-					display:flex;
-					justify-content: center;
-					align-items: center;
-					background: #4096ff;
-					color: #fff;
+						width: 100%;
+						height: 100%;
+						display:flex;
+						justify-content: center;
+						align-items: center;
+						background: #4096ff;
+						color: #fff;
+						font-size: 24px;
 					"> Header </div>
 				</Header>
 				<Content :className="args.className">
 					<div style="
-					width: 100%;
-					height: 100%;
-					display:flex;
-					justify-content: center;
-					align-items: center;
-					background: #0958d9;
-					color: #fff;
+						width: 100%;
+						height: 100%;
+						display:flex;
+						justify-content: center;
+						align-items: center;
+						background: #0958d9;
+						color: #fff;
+						font-size: 24px;
 					"> Content </div>
 				</Content>
 				<Footer :className="args.className">
 					<div style="
-					width: 100%;
-					height: 100%;
-					display:flex;
-					justify-content: center;
-					align-items: center;
-					background: #4096ff;
-					color: #fff;
+						width: 100%;
+						height: 100%;
+						display:flex;
+						justify-content: center;
+						align-items: center;
+						background: #4096ff;
+						color: #fff;
+						font-size: 24px;
 					"> Footer </div>
 				</Footer>
 			</Layout>
@@ -153,6 +158,7 @@ export const LayoutThirdStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Header',
 						'    </div>',
@@ -166,6 +172,7 @@ export const LayoutThirdStory = {
 						'      align-items: center;',
 						'      background: #0958d9;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Content',
 						'    </div>',
@@ -179,6 +186,7 @@ export const LayoutThirdStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Footer',
 						'    </div>',
@@ -215,11 +223,13 @@ export const LayoutLeftDrawerStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Header </div>
 				</Header>
 				<Layout :className="args.className">
 					<Side :className="args.className" >
 						<div style="
+							min-width: 80px;
 							width: 100%;
 							height: 100%;
 							display:flex;
@@ -227,6 +237,7 @@ export const LayoutLeftDrawerStory = {
 							align-items: center;
 							background: #1677ff;
 							color: #fff;
+							font-size: 24px;
 						"> Side </div>
 					</Side>
 					<Content :className="args.className">
@@ -238,6 +249,7 @@ export const LayoutLeftDrawerStory = {
 							align-items: center;
 							background: #0958d9;
 							color: #fff;
+							font-size: 24px;
 						"> Content </div>
 					</Content>
 				</Layout>
@@ -250,6 +262,7 @@ export const LayoutLeftDrawerStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Footer </div>
 				</Footer>
 			</Layout>
@@ -275,6 +288,7 @@ export const LayoutLeftDrawerStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Header',
 						'    </div>',
@@ -282,6 +296,7 @@ export const LayoutLeftDrawerStory = {
 						`  <div style="display: flex; height: 100%;">`, // 包裹 Side 和 Content 的 div
 						`    <Side :className="${args.className}">`,
 						'      <div style="',
+						'        min-width: 80px;',
 						'        width: 100%;',
 						'        height: 100%;',
 						'        display: flex;',
@@ -289,6 +304,7 @@ export const LayoutLeftDrawerStory = {
 						'        align-items: center;',
 						'        background: #1677ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Side',
 						'      </div>',
@@ -302,6 +318,7 @@ export const LayoutLeftDrawerStory = {
 						'        align-items: center;',
 						'        background: #0958d9;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Content',
 						'      </div>',
@@ -316,6 +333,7 @@ export const LayoutLeftDrawerStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Footer',
 						'    </div>',
@@ -352,6 +370,7 @@ export const LayoutRightDrawerStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Header </div>
 				</Header>
 				<Layout :className="args.className">
@@ -364,10 +383,12 @@ export const LayoutRightDrawerStory = {
 							align-items: center;
 							background: #0958d9;
 							color: #fff;
+							font-size: 24px;
 						"> Content </div>
 					</Content>
 					<Side :className="args.className" >
 						<div style="
+							min-width: 80px;
 							width: 100%;
 							height: 100%;
 							display:flex;
@@ -375,6 +396,7 @@ export const LayoutRightDrawerStory = {
 							align-items: center;
 							background: #1677ff;
 							color: #fff;
+							font-size: 24px;
 						"> Side </div>
 					</Side>
 				</Layout>
@@ -387,6 +409,7 @@ export const LayoutRightDrawerStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Footer </div>
 				</Footer>
 			</Layout>
@@ -412,6 +435,7 @@ export const LayoutRightDrawerStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Header',
 						'    </div>',
@@ -426,12 +450,14 @@ export const LayoutRightDrawerStory = {
 						'        align-items: center;',
 						'        background: #0958d9;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Content',
 						'      </div>',
 						'    </Content>',
 						`    <Side :className="${args.className}">`,
 						'      <div style="',
+						'        min-width: 80px;',
 						'        width: 100%;',
 						'        height: 100%;',
 						'        display: flex;',
@@ -439,6 +465,7 @@ export const LayoutRightDrawerStory = {
 						'        align-items: center;',
 						'        background: #1677ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Side',
 						'      </div>',
@@ -453,6 +480,7 @@ export const LayoutRightDrawerStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Footer',
 						'    </div>',
@@ -482,6 +510,7 @@ export const LayoutLeftFixedStory = {
 			<Layout :className="args.className">
 				<Side :className="args.className" >
 					<div style="
+							min-width: 80px;
 							width: 100%;
 							height: 100%;
 							display:flex;
@@ -489,6 +518,7 @@ export const LayoutLeftFixedStory = {
 							align-items: center;
 							background: #1677ff;
 							color: #fff;
+							font-size: 24px;
 						"> Side </div>
 				</Side>
 				<Layout :className="args.className">
@@ -501,6 +531,7 @@ export const LayoutLeftFixedStory = {
 							align-items: center;
 							background: #4096ff;
 							color: #fff;
+							font-size: 24px;
 						"> Header </div>
 					</Header>
 					<Content :className="args.className">
@@ -512,6 +543,7 @@ export const LayoutLeftFixedStory = {
 							align-items: center;
 							background: #0958d9;
 							color: #fff;
+							font-size: 24px;
 						"> Content </div>
 					</Content>
 					<Footer :className="args.className">
@@ -523,6 +555,7 @@ export const LayoutLeftFixedStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Footer </div>
 					</Footer>
 				</Layout>
@@ -542,6 +575,7 @@ export const LayoutLeftFixedStory = {
 						`<Layout :className="${args.className}">`,
 						`  <Side :className="${args.className}">`,
 						'    <div style="',
+						'      min-width: 80px;',
 						'      width: 100%;',
 						'      height: 100%;',
 						'      display: flex;',
@@ -549,6 +583,7 @@ export const LayoutLeftFixedStory = {
 						'      align-items: center;',
 						'      background: #1677ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Side',
 						'    </div>',
@@ -563,6 +598,7 @@ export const LayoutLeftFixedStory = {
 						'        align-items: center;',
 						'        background: #4096ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Header',
 						'      </div>',
@@ -576,6 +612,7 @@ export const LayoutLeftFixedStory = {
 						'        align-items: center;',
 						'        background: #0958d9;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Content',
 						'      </div>',
@@ -589,6 +626,7 @@ export const LayoutLeftFixedStory = {
 						'        align-items: center;',
 						'        background: #4096ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Footer',
 						'      </div>',
@@ -626,11 +664,13 @@ export const LayoutLeftStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Header </div>
 				</Header>
 				<Layout :className="args.className">
 					<Side :className="args.className" >
 						<div style="
+							min-width: 80px;
 							width: 100%;
 							height: 100%;
 							display:flex;
@@ -638,6 +678,7 @@ export const LayoutLeftStory = {
 							align-items: center;
 							background: #1677ff;
 							color: #fff;
+							font-size: 24px;
 						"> Side </div>
 					</Side>
 					<Layout :className="args.className">
@@ -650,6 +691,7 @@ export const LayoutLeftStory = {
 								align-items: center;
 								background: #0958d9;
 								color: #fff;
+								font-size: 24px;
 							"> Content </div>
 						</Content>
 						<Footer :className="args.className">
@@ -661,6 +703,7 @@ export const LayoutLeftStory = {
 								align-items: center;
 								background: #4096ff;
 								color: #fff;
+								font-size: 24px;
 							"> Footer </div>
 						</Footer>
 					</Layout>
@@ -695,6 +738,7 @@ export const LayoutLeftStory = {
 						`  <div style="display: flex; height: 100%;">`,
 						`    <Side :className="${args.className}">`,
 						'      <div style="',
+						'        min-width: 80px;',
 						'        width: 100%;',
 						'        height: 100%;',
 						'        display: flex;',
@@ -702,6 +746,7 @@ export const LayoutLeftStory = {
 						'        align-items: center;',
 						'        background: #1677ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Side',
 						'      </div>',
@@ -716,6 +761,7 @@ export const LayoutLeftStory = {
 						'          align-items: center;',
 						'          background: #0958d9;',
 						'          color: #fff;',
+						'          font-size: 24px;',
 						'        ">',
 						'          Content',
 						'        </div>',
@@ -729,6 +775,7 @@ export const LayoutLeftStory = {
 						'          align-items: center;',
 						'          background: #4096ff;',
 						'          color: #fff;',
+						'          font-size: 24px;',
 						'        ">',
 						'          Footer',
 						'        </div>',
@@ -768,11 +815,13 @@ export const LayoutOfficialStory = {
 						align-items: center;
 						background: #4096ff;
 						color: #fff;
+						font-size: 24px;
 					"> Header </div>
 				</Header>
 				<Layout :className="args.className">
 					<Side :className="args.className" >
 						<div style="
+							min-width: 80px;
 							width: 100%;
 							height: 100%;
 							display:flex;
@@ -780,6 +829,7 @@ export const LayoutOfficialStory = {
 							align-items: center;
 							background: #1677ff;
 							color: #fff;
+							font-size: 24px;
 						"> Side </div>
 					</Side>
 					<Layout :className="args.className">
@@ -792,6 +842,7 @@ export const LayoutOfficialStory = {
 								align-items: center;
 								background: #0958d9;
 								color: #fff;
+								font-size: 24px;
 							"> Content </div>
 						</Content>
 						<Footer :className="args.className">
@@ -803,11 +854,13 @@ export const LayoutOfficialStory = {
 								align-items: center;
 								background: #4096ff;
 								color: #fff;
+								font-size: 24px;
 							"> Footer </div>
 						</Footer>
 					</Layout>
 					<Side :className="args.className" >
 						<div style="
+							min-width: 80px;
 							width: 100%;
 							height: 100%;
 							display:flex;
@@ -815,6 +868,7 @@ export const LayoutOfficialStory = {
 							align-items: center;
 							background: #1677ff;
 							color: #fff;
+							font-size: 24px;
 						"> Side </div>
 					</Side>
 				</Layout>
@@ -841,6 +895,7 @@ export const LayoutOfficialStory = {
 						'      align-items: center;',
 						'      background: #4096ff;',
 						'      color: #fff;',
+						'      font-size: 24px;',
 						'    ">',
 						'      Header',
 						'    </div>',
@@ -848,6 +903,7 @@ export const LayoutOfficialStory = {
 						`  <div style="display: flex; height: 100%;">`,
 						`    <Side :className="${args.className}">`,
 						'      <div style="',
+						'        min-width: 80px;',
 						'        width: 100%;',
 						'        height: 100%;',
 						'        display: flex;',
@@ -855,6 +911,7 @@ export const LayoutOfficialStory = {
 						'        align-items: center;',
 						'        background: #1677ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Side',
 						'      </div>',
@@ -869,6 +926,7 @@ export const LayoutOfficialStory = {
 						'          align-items: center;',
 						'          background: #0958d9;',
 						'          color: #fff;',
+						'          font-size: 24px;',
 						'        ">',
 						'          Content',
 						'        </div>',
@@ -882,6 +940,7 @@ export const LayoutOfficialStory = {
 						'          align-items: center;',
 						'          background: #4096ff;',
 						'          color: #fff;',
+						'          font-size: 24px;',
 						'        ">',
 						'          Footer',
 						'        </div>',
@@ -889,6 +948,7 @@ export const LayoutOfficialStory = {
 						'    </div>',
 						`    <Side :className="${args.className}">`,
 						'      <div style="',
+						'        min-width: 80px;',
 						'        width: 100%;',
 						'        height: 100%;',
 						'        display: flex;',
@@ -896,6 +956,7 @@ export const LayoutOfficialStory = {
 						'        align-items: center;',
 						'        background: #1677ff;',
 						'        color: #fff;',
+						'        font-size: 24px;',
 						'      ">',
 						'        Side',
 						'      </div>',
