@@ -1,70 +1,74 @@
 
 //基礎設定
-@import "./theme/_variable";
-@import "./theme/_function";
-@import "./theme/_default_variable";
-@import "./theme/_color_schema";
-@import "./theme/_reset";
-@import "./theme/_map";
-@import "./theme/_base";
-//@import "./theme/_dark_light";
+//@forward "./theme/_variable";
+//@forward "./theme/_function";
+@forward "./theme/_default_variable";
+@forward "./theme/_color_schema";
+@forward "./theme/_reset";
+//@forward "./theme/_map";
+//@forward "./theme/_base";
+//@forward "./theme/_dark_light";
 
 //基礎設定
-@import "./component/element/_accordion";
-@import "./component/element/_avatar";
-@import "./component/element/_avatar_group";
-@import "./component/element/_badge";
-@import "./component/element/_breadcrumb";
-@import "./component/element/_button";
-@import "./component/element/_card";
-@import "./component/element/_card_simple";
-@import "./component/element/_checkbox";
-@import "./component/element/_datepicker";
-@import "./component/element/_dialog";
-@import "./component/element/_divider";
-@import "./component/element/_dropdown";
-@import "./component/element/_image";
-@import "./component/element/_input";
-@import "./component/element/_list";
-@import "./component/element/_menu";
-@import "./component/element/_navbar";
-@import "./component/element/_pagination";
-@import "./component/element/_password";
-@import "./component/element/_progress";
-@import "./component/element/_radio";
-@import "./component/element/_search";
-@import "./component/element/_select";
-@import "./component/element/_sidenav";
-@import "./component/element/_slider";
-@import "./component/element/_slider_control";
-@import "./component/element/_status_Indicator";
-@import "./component/element/_stepper";
-@import "./component/element/_table"; //(未完成)
-@import "./component/element/_tabs";
-@import "./component/element/_tag";
-@import "./component/element/_textarea";
-@import "./component/element/_title";
-@import "./component/element/_toast";
-@import "./component/element/_toggle";
-@import "./component/element/_tooltip";
+@forward "./component/element/_accordion";
+@forward "./component/element/_avatar";
+@forward "./component/element/_avatar_group";
+@forward "./component/element/_badge";
+@forward "./component/element/_breadcrumb";
+@forward "./component/element/_button";
+@forward "./component/element/_card";
+@forward "./component/element/_card_simple";
+@forward "./component/element/_checkbox";
+@forward "./component/element/_datepicker";
+@forward "./component/element/_dialog";
+@forward "./component/element/_divider";
+@forward "./component/element/_dropdown";
+@forward "./component/element/_image";
+@forward "./component/element/_input";
+@forward "./component/element/_list";
+@forward "./component/element/_menu";
+@forward "./component/element/_navbar";
+@forward "./component/element/_pagination";
+@forward "./component/element/_password";
+@forward "./component/element/_progress";
+@forward "./component/element/_radio";
+@forward "./component/element/_search";
+@forward "./component/element/_select";
+@forward "./component/element/_sidenav";
+@forward "./component/element/_slider";
+@forward "./component/element/_slider_control";
+@forward "./component/element/_status_Indicator";
+@forward "./component/element/_stepper";
+@forward "./component/element/_table"; //(未完成)
+@forward "./component/element/_tabs";
+@forward "./component/element/_tag";
+@forward "./component/element/_textarea";
+@forward "./component/element/_title";
+@forward "./component/element/_toast";
+@forward "./component/element/_toggle";
+@forward "./component/element/_tooltip";
 
 //舊的
-@import "./component/old/_sliderJonyOldVer";
-@import "./component/old/_tablePeter";
+@forward "./component/old/_sliderJonyOldVer";
+@forward "./component/old/_tablePeter";
 
 //頁面佈局
-@import "./layout/_grid";
-//@import "./layout/_gridSystem"; //已編譯，有加 ded- 前綴的
-@import "./layout/_layout";
-//@import "./layout/_gridLayout"; //不知為何非得編譯才能解讀
-//@import "./layout/_gridUtilities"; //不知為何非得編譯才能解讀
+@forward "./layout/_grid";
+//@forward "./layout/_gridSystem"; //已編譯，有加 ded- 前綴的
+@forward "./layout/_layout";
+//@forward "./layout/_gridLayout"; //不知為何非得編譯才能解讀
+//@forward "./layout/_gridUtilities"; //不知為何非得編譯才能解讀
 
 //預製版型
-@import "./template/_auth_flow";
+@forward "./template/_auth_flow";
 
 //輔助工具
-@import "./utility/fakeContent";
+@forward "./utility/fakeContent";
 
 //客制化樣式
-@import "./custom";
+@forward "./custom";
+
+
+
+
 
