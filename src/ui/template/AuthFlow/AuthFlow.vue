@@ -48,14 +48,14 @@ const props = defineProps({
 
                             <Grid fluid>
                                 <!-- 標題 -->
-                                <Row>
+                                <Row hasGap>
                                     <Column md="12">
                                         <Title :level="1">{{ props.title }}</Title>
                                     </Column>
                                 </Row>
 
                                 <!-- 描述 -->
-                                <Row v-if="$slots.description">
+                                <Row v-if="$slots.description" hasGap>
                                     <Column md="12">
                                         <slot name="description">
                                         </slot>

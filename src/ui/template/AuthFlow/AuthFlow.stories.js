@@ -138,7 +138,7 @@ export const authFlowLoginStory = {
                 <template #form>
                     <div>
                         <Grid fluid>
-                            <Row>
+                            <Row hasGap>
                                 <Column md="12">
                                     <Input
                                         className="text-primary"
@@ -200,7 +200,7 @@ export const authFlowLoginStory = {
                 
                 <template #externalLinks>
                     <Grid fluid>
-                        <Row justify="center">
+                        <Row justify="center" hasGap>
                             <Column md="12" className="flex gap-4 justify-center">
                                 <Button
                                     className="ded-custom-icon"
@@ -224,7 +224,7 @@ export const authFlowLoginStory = {
                 
                 <template #signUp>
                     <Grid fluid>
-                        <Row>
+                        <Row hasGap>
                             <Column md="12" align="center">
                                 <span class="text-neutral-300">Don't have an account?</span>
                                 <Button class="text-link" variant="text">
@@ -314,66 +314,66 @@ export const authFlowSignUpStory = {
             >
                 <template #form>
                     <Grid fluid>
-                            <Row>
-                                <Column md="12">
-                                    <Input
-                                        className="text-primary"
-                                        type="text"
-                                        prefix="SvgMail"
-                                        initValue=""
-                                        label="Email"
-                                        placeholder="type email"
-                                    />
-                                </Column>
+                        <Row hasGap>
+                            <Column md="12">
+                                <Input
+                                    className="text-primary"
+                                    type="text"
+                                    prefix="SvgMail"
+                                    initValue=""
+                                    label="Email"
+                                    placeholder="type email"
+                                />
+                            </Column>
 
-                                <Column md="12">
-                                    <Input
-                                        className="text-primary"
-                                        type="password"
-                                        prefix="SvgLock"
-                                        initValue=""
-                                        label="Password"
-                                        placeholder="type password"
-                                    />
-                                </Column>
+                            <Column md="12">
+                                <Input
+                                    className="text-primary"
+                                    type="password"
+                                    prefix="SvgLock"
+                                    initValue=""
+                                    label="Password"
+                                    placeholder="type password"
+                                />
+                            </Column>
 
-                                <Column md="12">
-                                    <Input
-                                        className="text-primary"
-                                        type="password"
-                                        prefix="SvgLock"
-                                        initValue=""
-                                        label="Password Confirm"
-                                        placeholder="type password"
-                                    />
-                                </Column>
+                            <Column md="12">
+                                <Input
+                                    className="text-primary"
+                                    type="password"
+                                    prefix="SvgLock"
+                                    initValue=""
+                                    label="Password Confirm"
+                                    placeholder="type password"
+                                />
+                            </Column>
 
-                                <Column md="12">
-                                    <div class="flex flex-wrap items-center">
-                                        <Checkbox
-                                            :dataSource="[
-                                            {
-                                                label: '',
-                                                value: '1',
-                                                isDisabled: 'false'
-                                            },
-                                          ]"
-                                            :initValue="[]"
-                                            direction="row"
-                                            size="medium"
-                                            v-model="vModelData"
-                                        >
-                                        </Checkbox>
-                                        <span class="ml-1 text-neutral-600">I agree to all the</span>
-                                        <Button variant="text">Terms</Button>
-                                        <span class="text-neutral-600">and</span>
-                                        <Button variant="text">Privacy Policies</Button>
-                                    </div>
-                                </Column>
-                            </Row>
-                        </Grid>
+                            <Column md="12">
+                                <div class="flex flex-wrap items-center">
+                                    <Checkbox
+                                        :dataSource="[
+                                        {
+                                            label: '',
+                                            value: '1',
+                                            isDisabled: 'false'
+                                        },
+                                      ]"
+                                        :initValue="[]"
+                                        direction="row"
+                                        size="medium"
+                                        v-model="vModelData"
+                                    >
+                                    </Checkbox>
+                                    <span class="ml-1 text-neutral-600">I agree to all the</span>
+                                    <Button variant="text">Terms</Button>
+                                    <span class="text-neutral-600">and</span>
+                                    <Button variant="text">Privacy Policies</Button>
+                                </div>
+                            </Column>
+                        </Row>
+                    </Grid>
                     <Grid fluid>
-                        <Row justify="flex-end">
+                        <Row justify="flex-end" hasGap>
                             <Column md="6">
                                 <Button
                                     variant="soft"
@@ -396,7 +396,7 @@ export const authFlowSignUpStory = {
                 
                 <template #externalLinks>
                     <Grid fluid>
-                        <Row justify="center">
+                        <Row justify="center" hasGap>
                             <Column md="12" className="flex gap-4 justify-center">
                                 <Button
                                     className="ded-custom-icon"
@@ -420,7 +420,7 @@ export const authFlowSignUpStory = {
                 
                 <template #signUp>
                     <Grid fluid>
-                        <Row>
+                        <Row hasGap>
                             <Column md="12" align="center">
                                 <span class="text-neutral-300">Don't have an account?</span>
                                 <Button class="text-link" variant="text">
@@ -516,7 +516,7 @@ export const authFlowForgetPasswordStory = {
                 <template #form>
                     <div class="ded-login-content-form">
                         <Grid fluid>
-                            <Row justify="flex-end">
+                            <Row justify="flex-end" hasGap>
                                 <Column md="12">
                                     <Input
                                         className="text-primary"
@@ -627,7 +627,7 @@ export const authFlowVerifyPasswordStory = {
                 <template #form>
                     <div class="ded-login-content-form">
                         <Grid fluid>
-                            <Row justify="flex-end">
+                            <Row justify="flex-end" hasGap>
                                 <column md="12">
                                     <div class="flex item-center justify-center gap-2">
                                         <Title :level="2">A</Title>
@@ -791,7 +791,7 @@ export const authFlowSetPasswordStory = {
                 <template #form>
                     <div class="ded-login-content-form">
                         <Grid fluid>
-                            <Row justify="flex-end">
+                            <Row justify="flex-end" hasGap>
                                 <Column md="12">
                                     <Input
                                         className="text-primary"
