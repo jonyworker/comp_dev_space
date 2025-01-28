@@ -123,15 +123,15 @@ onUnmounted(() => {
 	<template v-if="isMobile && isCollapsed">
 		<Navbar
 	        :dataSource="sortDataSource"
-			:hasLogo="false"
-			logoSrc=""
+			:hasLogo="true"
+			logoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
 			className="fixed top-0 h-[60px] w-full"
 			style="position: fixed; top: 0; height: 60px; width: 100%;"
 		>
 		</Navbar>
 	</template>
 
-    <div class="ded-side-nav" :style="{ width: isCollapsed ? 'auto' : '100%', ...computedThemeColor} ">
+    <div v-else class="ded-side-nav" :style="{ width: isCollapsed ? 'auto' : '100%', ...computedThemeColor} ">
         <!--Logo-->
         <template v-if="props.hasLogo">
             <div class="ded-side-nav-header">
