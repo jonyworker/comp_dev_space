@@ -120,7 +120,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<template v-if="isMobile && isCollapsed">
+	<template v-if="isMobile && isCollapsed && hasRWD">
 		<Navbar
 	        :dataSource="sortDataSource"
 			:hasLogo="true"
@@ -130,95 +130,94 @@ onUnmounted(() => {
 		>
 		</Navbar>
 	</template>
+    <template v-if="!isMobile">
+        <div class="ded-side-nav" :style="{ width: isCollapsed ? 'auto' : '100%', ...computedThemeColor} ">
+            <!--Logo-->
+            <template v-if="props.hasLogo">
+                <div class="ded-side-nav-header">
+                    <template v-if="!isCollapsed">
+                        <div class="ded-side-nav-header-logo">
+                            <template v-if="props.logoLink">
+                                <a :href="props.logoLink">
+                                    <Icon :name="props.logo" width="90" height="30"
+                                          :color="computedContentColor"></Icon>
+                                </a>
+                            </template>
+                            <template v-else>
+                                <Icon :name="props.logo" width="90" height="30" :color="computedContentColor"></Icon>
+                            </template>
+                        </div>
+                    </template>
 
-    <div v-else class="ded-side-nav" :style="{ width: isCollapsed ? 'auto' : '100%', ...computedThemeColor} ">
-        <!--Logo-->
-        <template v-if="props.hasLogo">
-            <div class="ded-side-nav-header">
-                <template v-if="!isCollapsed">
-                    <div class="ded-side-nav-header-logo">
-                        <template v-if="props.logoLink">
-                            <a :href="props.logoLink">
-                                <Icon :name="props.logo" width="90" height="30"
-                                      :color="computedContentColor"></Icon>
-                            </a>
-                        </template>
-                        <template v-else>
-                            <Icon :name="props.logo" width="90" height="30" :color="computedContentColor"></Icon>
-                        </template>
-                    </div>
-                </template>
+                    <button class="side-nav-toggle" @click="handleCollapsed">
+                        <Icon name="SvgArrowDown" size="24" color="#fff" :style="{transform: isCollapsed? 'rotate(-90deg)': 'rotate(90deg)'} "></Icon>
+                    </button>
+                </div>
+            </template>
 
-                <Button class="side-nav-toggle"
+            <!--personal info-->
+            <template v-if="!isCollapsed">
+                <div class="ded-side-nav-desktop">
+                    <Avatar
+                        shape="circle"
+                        size="large"
+                        status="online"
+                        :isShowInfo="true"
+                        src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
+                        alt="無圖顯示"
+                        userName="Name"
+                        caption="Caption"
+                        className=""
+                    ></Avatar>
+
+                    <Button
                         themeColor="primary"
                         variant="text"
                         size="large"
-                        prefix="SvgArrowLeft"
-                        @click="handleCollapsed">
-                </Button>
-            </div>
-        </template>
+                        prefix="SvgLogout"
+                    ></Button>
+                </div>
+            </template>
 
-        <!--personal info-->
-        <template v-if="!isCollapsed">
-            <div class="ded-side-nav-desktop">
-                <Avatar
-                    shape="circle"
-                    size="large"
-                    status="online"
-                    :isShowInfo="true"
-                    src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
-                    alt="無圖顯示"
-                    userName="Name"
-                    caption="Caption"
-                    className=""
-                ></Avatar>
+            <template v-else>
+                <div class="ded-side-nav-mobile">
+                    <Avatar
+                        shape="circle"
+                        size="small"
+                        status="online"
+                        :isShowInfo="false"
+                        src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
+                        alt="無圖顯示"
+                        userName="Name"
+                        caption="Caption"
+                        className=""
+                    ></Avatar>
+                </div>
+            </template>
 
-                <Button
-                    themeColor="primary"
-                    variant="text"
-                    size="large"
-                    prefix="SvgLogout"
-                ></Button>
-            </div>
-        </template>
-        <template v-else>
-            <div class="ded-side-nav-mobile">
-                <Avatar
-                    shape="circle"
-                    size="small"
-                    status="online"
-                    :isShowInfo="false"
-                    src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
-                    alt="無圖顯示"
-                    userName="Name"
-                    caption="Caption"
-                    className=""
-                ></Avatar>
-            </div>
-        </template>
+            <!--搜尋欄-->
+            <template v-if="!isCollapsed && props.hasSearch">
+                <Input
+                    type="text"
+                    placeholder="Jony Search..."
+                    prefix="SvgSearch"
+                    size="medium"
+                    initValue=""
+                    @change="()=>{}"
+                />
+            </template>
 
-        <!--搜尋欄-->
-        <template v-if="!isCollapsed && props.hasSearch">
-            <Input
-                type="text"
-                placeholder="Jony Search..."
-                prefix="SvgSearch"
-                size="medium"
-                initValue=""
-                @change="()=>{}"
-            />
-        </template>
+            <!--選單區-->
+            <Menu
+                :dataSource="sortDataSource"
+                :isCollapsed="isCollapsed"
+                :color="computedContentColor"
+                :hasDivider="false"
+                className="">
+            </Menu>
+        </div>
+    </template>
 
-        <!--選單區-->
-        <Menu
-            :dataSource="sortDataSource"
-            :isCollapsed="isCollapsed"
-            :color="computedContentColor"
-            :hasDivider="false"
-            className="">
-        </Menu>
-    </div>
 </template>
 
 <style scoped lang="scss">
