@@ -3,10 +3,22 @@ import Title from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 import { h } from "vue";
 function formatDataSource(dataSource) {
-	return `[${dataSource.map((item) => `{
+	return `[${dataSource.map((item) => 
+		`{
 		id: "${item.id}",
-		label: ${typeof item.label === "function" ? '"[h Function]"' : `"${item.label}"`},
-		detail: ${typeof item.detail === "function" ? '"[h Function]"' : `"${item.detail}"`}
+		label: ${typeof item.label === "function" ?
+		`"()=>(h(${JSON.stringify(item.label()?.type.__name)}, ${JSON.stringify(item.label()?.props || {})}, ${JSON.stringify(item.label()?.children || '')})"`
+		: `"${item.label}"`},
+		detail: ${typeof item.detail === "function" ?
+			`"() => [\n${item.detail().map(vnode =>
+				`  h(${typeof vnode.type === 'string' ? `"${vnode.type}"` : vnode.type.__name || '"AnonymousComponent"'}, ` +
+				`${JSON.stringify(vnode.props || {})}, ` +
+				`${Array.isArray(vnode.children) ? `[\n    ${vnode.children.map(child =>
+					typeof child === 'object' ? `h("${child.type}", ${JSON.stringify(child.props || {})}, ${JSON.stringify(child.children || '')})`
+						: JSON.stringify(child)
+				).join(',\n        ')}\n  ]` : JSON.stringify(vnode.children || '')})`
+			).join(',\n')}\n]"`
+			: `"${item.detail}"`}
 	}`).join(",\n")}]`;
 }
 const dataSource = [
@@ -31,21 +43,21 @@ const dataSource = [
 	},
 	{
 		id: "2",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q2. What are the features of Vue?"),
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What are the features of Vue?"),
 		detail: () => [
 			h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
 		],
 	},
 	{
 		id: "3",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q3. What is included in the Vue ecosystem?"),
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What is included in the Vue ecosystem?"),
 		detail: () => [
 			h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
 		],
 	},
 	{
 		id: "4",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "Q4. What are the advantages of using Vue?"),
+		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What are the advantages of using Vue?"),
 		detail: () => [
 			h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
 		],
@@ -118,10 +130,11 @@ export const AccordionDefault = {
 		className: ""
 	},
 	render: (args) => ({
-		components: { Accordion, Title, Button },
+		components: { Accordion, Title, Button, h },
 		setup() {
 			return {
 				args,
+				h
 			};
 		},
 		template: `
@@ -142,7 +155,7 @@ export const AccordionDefault = {
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
-					const { args } = storyContext;
+					const { args, h } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						'<Accordion',
