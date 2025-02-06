@@ -160,9 +160,9 @@ export const CheckboxMultiStory = {
     },
 };
 
-//==== 排列方向 ====//
-export const CheckboxDirection = {
-    name: "排列方向",
+//==== 垂直排列 ====//
+export const CheckboxColumnDirection = {
+    name: "垂直排列",
     args: {
         dataSource: [
             {
@@ -182,7 +182,7 @@ export const CheckboxDirection = {
             }
         ],
         initValue: ["option4", "option6"],
-        direction: "row",
+        // direction: "column",
         size: "medium",
         className: "",
     },
@@ -197,10 +197,9 @@ export const CheckboxDirection = {
         },
         template: `
             <Checkbox
-                :themeColor="args.themeColor"
                 :dataSource="args.dataSource"
                 :initValue="args.initValue"
-                :direction="args.direction"
+                direction="column"
                 :size="args.size"
                 :className="args.className"
             ></Checkbox>
@@ -210,6 +209,171 @@ export const CheckboxDirection = {
     parameters: {
         controls: {
             // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
+            exclude: ["direction"],
+        },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Checkbox',
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="column"`,
+                        `  size="${args.size}"`,
+                        `  className="${args.className}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                    ].join('\n').trim();
+                }
+            }
+        }
+    },
+};
+
+//==== 水平排列 ====//
+export const CheckboxRowDirection = {
+    name: "水平排列",
+    args: {
+        dataSource: [
+            {
+                "label": "Option1",
+                "value": "option7",
+                "isDisabled": false
+            },
+            {
+                "label": "Option2",
+                "value": "option8",
+                "isDisabled": false
+            },
+            {
+                "label": "Option3",
+                "value": "option9",
+                "isDisabled": false
+            }
+        ],
+        initValue: ["option7", "option9"],
+        // direction: "column",
+        size: "medium",
+        className: "",
+    },
+    render: (args) => ({
+        components: { Checkbox },
+        setup() {
+            const checkedCheckboxOptions = ref([]);
+            return {
+                args,
+                checkedCheckboxOptions,
+            };
+        },
+        template: `
+            <Checkbox
+                :dataSource="args.dataSource"
+                :initValue="args.initValue"
+                direction="row"
+                :size="args.size"
+                :className="args.className"
+            ></Checkbox>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
+            exclude: ["direction"],
+        },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Checkbox',
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="column"`,
+                        `  size="${args.size}"`,
+                        `  className="${args.className}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                    ].join('\n').trim();
+                }
+            }
+        }
+    },
+};
+
+//==== 元件尺寸 ====//
+export const CheckboxSizeStory = {
+    name: "元件尺寸",
+    args: {
+        dataSource: [
+            {
+                "label": "Option1",
+                "value": "option10",
+                "isDisabled": false
+            },
+            {
+                "label": "Option2",
+                "value": "option11",
+                "isDisabled": false
+            },
+            {
+                "label": "Option3",
+                "value": "option12",
+                "isDisabled": true
+            }
+        ],
+        initValue: ["option10", "option12"],
+        direction: "row",
+        size: "medium",
+        className: "",
+    },
+    render: (args) => ({
+        components: { Checkbox },
+        setup() {
+            const checkedCheckboxOptions = ref([]);
+            return {
+                args,
+                checkedCheckboxOptions,
+            };
+        },
+        template: `
+            <div style="display:flex; flex-direction: column; gap: 24px">
+                <Checkbox
+                    :themeColor="args.themeColor"
+                    :dataSource="args.dataSource"
+                    :initValue="args.initValue"
+                    :direction="args.direction"
+                    size="large"
+                    :className="args.className"
+                ></Checkbox>
+                <Checkbox
+                    :themeColor="args.themeColor"
+                    :dataSource="args.dataSource"
+                    :initValue="args.initValue"
+                    :direction="args.direction"
+                    size="medium"
+                    :className="args.className"
+                ></Checkbox>
+                <Checkbox
+                    :themeColor="args.themeColor"
+                    :dataSource="args.dataSource"
+                    :initValue="args.initValue"
+                    :direction="args.direction"
+                    size="small"
+                    :className="args.className"
+                ></Checkbox>
+            </div>
+            
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
+            exclude: ["size"],
         },
         docs: {
             source: {
@@ -221,8 +385,26 @@ export const CheckboxDirection = {
                         `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
                         `  :initValue="[${args.initValue}]"`,
-                        `  :direction="${args.direction}"`,
-                        `  size="${args.size}"`,
+                        `  direction="${args.direction}"`,
+                        `  size="large"`,
+                        `  className="${args.className}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="${args.themeColor}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="${args.direction}"`,
+                        `  size="medium"`,
+                        `  className="${args.className}"`,
+                        '  v-model="vModelData">',
+                        '</Checkbox>',
+                        '<Checkbox',
+                        `  themeColor="${args.themeColor}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :initValue="[${args.initValue}]"`,
+                        `  direction="${args.direction}"`,
+                        `  size="small"`,
                         `  className="${args.className}"`,
                         '  v-model="vModelData">',
                         '</Checkbox>',
@@ -232,6 +414,79 @@ export const CheckboxDirection = {
         }
     },
 };
+
+//==== 排列方向 ====//
+// export const CheckboxDirection = {
+//     name: "排列方向",
+//     args: {
+//         dataSource: [
+//             {
+//                 "label": "Option1",
+//                 "value": "option4",
+//                 "isDisabled": false
+//             },
+//             {
+//                 "label": "Option2",
+//                 "value": "option5",
+//                 "isDisabled": false
+//             },
+//             {
+//                 "label": "Option3",
+//                 "value": "option6",
+//                 "isDisabled": false
+//             }
+//         ],
+//         initValue: ["option4", "option6"],
+//         direction: "row",
+//         size: "medium",
+//         className: "",
+//     },
+//     render: (args) => ({
+//         components: { Checkbox },
+//         setup() {
+//             const checkedCheckboxOptions = ref([]);
+//             return {
+//                 args,
+//                 checkedCheckboxOptions,
+//             };
+//         },
+//         template: `
+//             <Checkbox
+//                 :themeColor="args.themeColor"
+//                 :dataSource="args.dataSource"
+//                 :initValue="args.initValue"
+//                 :direction="args.direction"
+//                 :size="args.size"
+//                 :className="args.className"
+//             ></Checkbox>
+//         `,
+//     }),
+//     // 控制 controls 中能控制的參數
+//     parameters: {
+//         controls: {
+//             // include: [ 'label', 'id', 'name', 'themeColor', 'className','datasource'],
+//         },
+//         docs: {
+//             source: {
+//                 transform: (src, storyContext) => {
+//                     const { args } = storyContext;
+//                     const dataSourceString = formatDataSource(args.dataSource);
+//                     return [
+//                         '<Checkbox',
+//                         `  themeColor="${args.themeColor}"`,
+//                         `  :dataSource="${dataSourceString}"`,
+//                         `  :initValue="[${args.initValue}]"`,
+//                         `  :direction="${args.direction}"`,
+//                         `  size="${args.size}"`,
+//                         `  className="${args.className}"`,
+//                         '  v-model="vModelData">',
+//                         '</Checkbox>',
+//                     ].join('\n').trim();
+//                 }
+//             }
+//         }
+//     },
+// };
 
 //==== 主題色彩 ====//
 // export const CheckboxColorStory = {

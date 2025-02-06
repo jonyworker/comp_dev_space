@@ -34,7 +34,7 @@ export default {
 			control: { type: "number" },
 		},
 		limit: {
-			description: "數值上限",
+			description: "數值顯示上限",
 			control: { type: "number" },
 		},
 		className: {
@@ -43,12 +43,12 @@ export default {
 		},
 		default: {
 			description: '圖標插槽',
+			control: { type: "text" },
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
 				}
 			},
-			control: false,
 		}
 	},
 	parameters: {
@@ -70,7 +70,8 @@ export const BadgeDefault = {
 		isShowDot: false,
 		value: 100,
 		limit: 99,
-		className: ""
+		className: "",
+		default: `<Icon name="SvgNotification" size="26"></Icon>`
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -117,14 +118,16 @@ export const BadgeDefault = {
 	},
 };
 
-//==== 類型選擇 ====//
+//==== 外觀類型 ====//
 export const BadgeStyle = {
-	name: "類型選擇",
+	name: "外觀類型",
 	args: {
 		themeColor: "error",
-		isShowDot: false,
+		// isShowDot: false,
 		value: 999,
 		limit: 99,
+		className: "",
+		default: `<Icon name="SvgNotification" size="26"></Icon>`
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -140,6 +143,7 @@ export const BadgeStyle = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -148,6 +152,7 @@ export const BadgeStyle = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -157,8 +162,7 @@ export const BadgeStyle = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'value', 'value', 'name' ],
-			exclude: ['isDot']
+			exclude: ['isShowDot']
 		},
 		docs: {
 			source: {
@@ -170,6 +174,7 @@ export const BadgeStyle = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -178,6 +183,7 @@ export const BadgeStyle = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -188,14 +194,16 @@ export const BadgeStyle = {
 	},
 };
 
-//==== 最大值設定 ====//
+//==== 數值顯示上限 ====//
 export const BadgeLimit = {
-	name: "最大值設定",
+	name: "數值顯示上限",
 	args: {
 		themeColor: "error",
 		isShowDot: false,
 		value: 999,
 		limit: 99,
+		className: "",
+		default: `<Icon name="SvgNotification" size="26"></Icon>`
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -211,6 +219,7 @@ export const BadgeLimit = {
 					:isShowDot="args.isShowDot"
 					:value="98"
 					:limit="99"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -219,6 +228,7 @@ export const BadgeLimit = {
 					:isShowDot="args.isShowDot"
 					:value="100"
 					:limit="99"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -229,6 +239,7 @@ export const BadgeLimit = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'value', 'value', 'name' ],
+			// exclude: [ 'default' ],
 		},
 		docs: {
 			source: {
@@ -240,6 +251,7 @@ export const BadgeLimit = {
 						`  :isShowDot= false`,
 						`  :value="98"`,
 						`  :limit="99"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -248,6 +260,7 @@ export const BadgeLimit = {
 						`  :isShowDot= false`,
 						`  :value="100"`,
 						`  :limit="99"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -258,14 +271,16 @@ export const BadgeLimit = {
 	},
 };
 
-//==== 顏色設定 ====//
+//==== 主題色彩 ====//
 export const BadgeThemeColor = {
-	name: "顏色設定",
+	name: "主題色彩",
 	args: {
 		themeColor: "error",
 		isShowDot: false,
 		value: 999,
 		limit: 99,
+		className: "",
+		default: `<Icon name="SvgNotification" size="26"></Icon>`
 	},
 	render: (args) => ({
 		components: { Badge, Icon },
@@ -281,6 +296,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -289,6 +305,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -297,6 +314,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -305,6 +323,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -313,6 +332,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -321,6 +341,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -329,6 +350,7 @@ export const BadgeThemeColor = {
 					:isShowDot= true
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -339,6 +361,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -347,6 +370,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -355,6 +379,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -363,6 +388,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -371,6 +397,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -379,6 +406,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -387,6 +415,7 @@ export const BadgeThemeColor = {
 					:isShowDot= false
 					:value="args.value"
 					:limit="args.limit"
+					:className="args.className"
 				>
 					<Icon name="SvgNotification" size="26"></Icon>
 				</Badge>
@@ -397,7 +426,7 @@ export const BadgeThemeColor = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'value', 'value', 'name' ],
-			exclude: ['isDot', 'themeColor']
+			exclude: ['themeColor', 'isShowDot']
 		},
 		docs: {
 			source: {
@@ -409,6 +438,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -417,6 +447,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -425,6 +456,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -433,6 +465,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -441,6 +474,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -449,6 +483,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -457,6 +492,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= true`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -465,6 +501,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -473,6 +510,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -481,6 +519,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -489,6 +528,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -497,6 +537,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -505,6 +546,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',
@@ -513,6 +555,7 @@ export const BadgeThemeColor = {
 						`  :isShowDot= false`,
 						`  :value="${args.value}"`,
 						`  :limit="${args.limit}"`,
+						`  className="${args.className}"`,
 						'>',
 						'  <Icon name="SvgNotification" size="26"></Icon>',
 						'</Badge>',

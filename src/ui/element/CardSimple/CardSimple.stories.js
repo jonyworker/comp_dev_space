@@ -137,10 +137,12 @@ export const CardSimpleDefault = {
 export const CardSimpleAlign = {
 	name: "按鈕對齊方式",
 	args: {
+
 		layout: "vertical",
 		hasBorder: true,
 		imgSrc: "https://storage.googleapis.com/ded-wds-bucket/card_bg.png",
 		buttonName: "Button",
+		// align: "left",
 		title: "Card Title",
 		subtitle: "Subtitle",
 		description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500sis simply dummy text of the printing",
@@ -200,6 +202,7 @@ export const CardSimpleAlign = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: [ 'align' ]
 		},
 		docs: {
 			source: {
@@ -243,9 +246,9 @@ export const CardSimpleAlign = {
 	},
 };
 
-//==== 水平佈局 ====//
+//==== 垂直佈局 ====//
 export const CardHorizontalDefault = {
-	name: "水平佈局",
+	name: "垂直佈局",
 	args: {
 		layout: "vertical",
 		hasBorder: true,
@@ -323,6 +326,7 @@ export const CardHorizontalDefault = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['layout']
 		},
 		docs: {
 			source: {
@@ -389,9 +393,9 @@ export const CardHorizontalDefault = {
 	},
 };
 
-//==== 垂直佈局 ====//
+//==== 水平佈局 ====//
 export const CardVerticalDefault = {
-	name: "垂直佈局",
+	name: "水平佈局",
 	args: {
 		layout: "horizontal",
 		imgSrc: "https://storage.googleapis.com/ded-wds-bucket/card_bg.png",
@@ -445,6 +449,7 @@ export const CardVerticalDefault = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: [ 'layout' ]
 		},
 		docs: {
 			source: {

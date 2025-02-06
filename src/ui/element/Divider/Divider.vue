@@ -4,7 +4,7 @@ const props = defineProps({
 	width: {
 		//線條粗細
 		type: String,
-		default: "",
+		default: "1px",
 		validator: (value) =>
 			["1px", "2px", "3px", "4px", "5px"].includes(value),
 	},

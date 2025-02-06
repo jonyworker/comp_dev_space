@@ -138,7 +138,9 @@ export const AvatarShape = {
 	name: "頭像形狀",
 	args: {
 		size: "large",
+		status: "online",
 		isShowInfo: true,
+		src: "https://storage.googleapis.com/ded-wds-bucket/fox.png",
 		alt: "無圖顯示",
 		userName: "Name",
 		caption:'Caption',
@@ -156,9 +158,9 @@ export const AvatarShape = {
 				<Avatar
 					shape="circle"
 					:size="args.size"
-					status="online"
+					:status="args.status"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -167,9 +169,9 @@ export const AvatarShape = {
 				<Avatar
 					shape="square"
 					:size="args.size"
-					status="idle"
+					:status="args.status"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/tigger.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -182,7 +184,7 @@ export const AvatarShape = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ['shape', 'status', 'src'],
+			exclude: ['shape'],
 		},
 		docs: {
 			source: {
@@ -192,9 +194,9 @@ export const AvatarShape = {
 						'<Avatar',
 						`  shape="circle"`,
 						`  size="${args.size}"`,
-						`  status="online"`,
+						`  status="${args.status}"`,
 						`  isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/fox.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
@@ -203,9 +205,9 @@ export const AvatarShape = {
 						'<Avatar',
 						`  shape="square"`,
 						`  size="${args.size}"`,
-						`  status="idle"`,
+						`  status="${args.status}"`,
 						`  isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/tigger.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
@@ -226,7 +228,7 @@ export const AvatarStatus = {
 		size: "large",
 		// status: "none",
 		isShowInfo: true,
-		// src: "https://storage.googleapis.com/ded-wds-bucket/monkey.png",
+		src: "https://storage.googleapis.com/ded-wds-bucket/lion.png",
 		alt: "無圖顯示",
 		userName: "Name",
 		caption:'Caption',
@@ -246,7 +248,7 @@ export const AvatarStatus = {
 					:size="args.size"
 					status="none"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -257,7 +259,7 @@ export const AvatarStatus = {
 					:size="args.size"
 					status="online"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/lion.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -268,7 +270,7 @@ export const AvatarStatus = {
 					:size="args.size"
 					status="idle"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/koala.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -279,7 +281,7 @@ export const AvatarStatus = {
 					:size="args.size"
 					status="busy"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/dog.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -290,7 +292,7 @@ export const AvatarStatus = {
 					:size="args.size"
 					status="offline"
 					:isShowInfo="args.isShowInfo"
-					src="https://storage.googleapis.com/ded-wds-bucket/pig.png"
+					:src="args.src"
 					:alt="args.alt"
 					:userName="args.userName"
 					:caption="args.caption"
@@ -302,8 +304,7 @@ export const AvatarStatus = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ['status', 'limit']
+			exclude: ['status']
 		},
 		docs: {
 			source: {
@@ -315,7 +316,7 @@ export const AvatarStatus = {
 						`  size="${args.size}"`,
 						`  status="none"`,
 						`  :isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/fox.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
@@ -326,7 +327,7 @@ export const AvatarStatus = {
 						`  size="${args.size}"`,
 						`  status="online"`,
 						`  :isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/lion.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
@@ -337,7 +338,7 @@ export const AvatarStatus = {
 						`  size="${args.size}"`,
 						`  status="idle"`,
 						`  :isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/koala.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
@@ -348,7 +349,7 @@ export const AvatarStatus = {
 						`  size="${args.size}"`,
 						`  status="busy"`,
 						`  :isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/dog.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
@@ -359,7 +360,7 @@ export const AvatarStatus = {
 						`  size="${args.size}"`,
 						`  status="offline"`,
 						`  :isShowInfo="${args.isShowInfo}"`,
-						`  src="https://storage.googleapis.com/ded-wds-bucket/pig.png"`,
+						`  src="${args.src}"`,
 						`  alt="${args.alt}"`,
 						`  userName="${args.userName}"`,
 						`  caption="${args.caption}"`,
