@@ -1,14 +1,14 @@
 import DatePicker from '@/ui/element/DatePicker/DatePicker.vue'
 import Input from "@/ui/element/Input/Input.vue";
-import {ref} from "vue";
+import { ref } from "vue";
 
 export default {
 	title: "Component/Date-Picker",
 	component: DatePicker,
 	tags: ["autodocs"],
 	argTypes: {
-		initValue: {
-			description: "日期",
+		format: {
+			description: "日期格式",
 			control: { type: "text" },
 		},
 		isRange: {
@@ -16,21 +16,21 @@ export default {
 			control: { type: "boolean" },
 		},
 		placeholder: {
-			description: "提示文字",
+			description: "提示文字(請注意與format格式相符)",
 			control: { type: "text" },
-		},
-		options: {
-			description: "選項",
-			control: { type: "object" },
-			table: {
-				type: {
-					summary: '{ format: string | todayHighlight: boolean | autohide: boolean; }[]',
-				}
-			}
 		},
 		className: {
 			description: "客製化樣式",
 			default: "",
+		},
+		modelValue: {
+			description: "日期",
+			control: false,
+			table: {
+				type: { summary: 'string | string[]' },
+				category: 'v-model',
+				defaultValue: { summary: '""' },
+			}
 		}
 	},
 	parameters: {
@@ -48,40 +48,34 @@ export default {
 export const DatepickerSingle = {
 	name: "預設項目",
 	args: {
-		initValue: "2012-12-21",
+		format: "yyyy/mm/dd",
 		isRange: false,
 		placeholder: "YYYY/MM/DD",
-		options: {
-			format: 'yyyy-mm-dd',
-			todayHighlight: true,
-		},
-		className:""
+		className: "",
 	},
 	render: (args) => ({
 		components: { DatePicker, Input },
 		setup() {
-			const singleDate = ref("");
+			const modelValue = ref("");
 			return {
 				args,
-				singleDate
+				modelValue,
 			};
 		},
 		template: `
-			{{singleDate}}
 			<DatePicker
-				:initValue="args.initValue"
+				:format="args.format"
 				:isRange="args.isRange"
 				:placeholder="args.placeholder"
-				:options="args.options"
 				:className="args.className"
-				v-model="singleDate"
+				v-model="modelValue"
 			></DatePicker>
 		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['initValue', 'isRange', 'placeholder', 'options', 'className' ],
+			include: [ 'format', 'isRange', 'placeholder', 'options', 'className','modelValue' ],
 		},
 		docs: {
 			source: {
@@ -89,15 +83,11 @@ export const DatepickerSingle = {
 					const { args } = storyContext;
 					return [
 						`<DatePicker`,
-						`  :initValue="${args.initValue}"`,
+						`  :format="${args.format}"`,
 						`  :isRange="${args.isRange}"`,
 						`  :placeholder="${args.placeholder}"`,
-						`  :options=" {
-		format: 'yyyy-mm-dd',
-		todayHighlight: true,
-		autohide: true
-	},"`,
 						`  :className="${args.className}"`,
+						`  v-model="modelValue"`,
 						`></DatePicker>`,
 					].join("\n").trim();
 				}
@@ -110,39 +100,35 @@ export const DatepickerSingle = {
 export const DatepickerRange = {
 	name: "日期區間",
 	args: {
-		initValue:['', ''],
+		format: "yyyy/mm/dd",
 		isRange: true,
 		placeholder: "YYYY/MM/DD",
-		options: {
-			format: 'yyyy-mm-dd',
-			todayHighlight: true,
-		},
 		className:""
 	},
 	render: (args) => ({
 		components: { DatePicker, Input },
 		setup() {
-			const rangeDate = ref("");
+			const modelValue = ref("");
 			return {
 				args,
-				rangeDate
+				modelValue
 			};
 		},
 		template: `
 			<DatePicker
-				:initValue="args.initValue"
+				:format="args.format"
 				:isRange="args.isRange"
 				:placeholder="args.placeholder"
 				:options="args.options"
 				:className="args.className"
-				v-model="rangeDate"
+				v-model="modelValue"
 			></DatePicker>
 		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['isRange', 'placeholder', 'options', 'className' ],
+			include: [ 'className','modelValue' ],
 		},
 		docs: {
 			source: {
@@ -150,13 +136,9 @@ export const DatepickerRange = {
 					const { args } = storyContext;
 					return [
 						`<DatePicker`,
+						`  :format="${args.format}"`,
 						`  :isRange="${args.isRange}"`,
 						`  :placeholder="${args.placeholder}"`,
-						`  :options=" {
-		format: 'yyyy-mm-dd',
-		todayHighlight: true,
-		autohide: true
-	},"`,
 						`  :className="${args.className}"`,
 						`></DatePicker>`,
 					].join("\n").trim();
