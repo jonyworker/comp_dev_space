@@ -67,7 +67,7 @@ const handleClick = () => {
                         </template>
                     </slot>
                 </div>
-                <div class="item-label">{{ props.label }}</div>
+                <div class="ded-list-item-label">{{ props.label }}</div>
             </a>
         </template>
 

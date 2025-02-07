@@ -1,7 +1,7 @@
 <script setup>
 import ListItem from "@/ui/element/List/ListItem.vue";
 
-const emits = defineEmits(["selectedItem"]);
+const emits = defineEmits(["onSelect"]);
 
 // 定義 Props
 const props = defineProps({
@@ -25,7 +25,7 @@ const props = defineProps({
 
 
 const handleItemClick = (value) => {
-	emits("selectedItem", value); // 冒泡子元件的值
+	emits("onSelect", value); // 冒泡子元件的值
 };
 </script>
 
@@ -45,6 +45,7 @@ const handleItemClick = (value) => {
                 :href="item.href"
                 :prefix="item.prefix"
                 :hasDivider="props.hasDivider"
+                :openInNewTab="true"
                 @selectedItem="handleItemClick"
             ></ListItem>
         </slot>

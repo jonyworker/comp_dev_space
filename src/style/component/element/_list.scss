@@ -9,6 +9,10 @@
     overflow: hidden;
 }
 
+.ded-list-item:hover {
+    background-color: #eee
+}
+
 .ded-outline {
     box-shadow: $shadow-light-200;
     list-style: none;
