@@ -11,6 +11,7 @@ const props = defineProps({
 	alt: {
 		type: String,
 		required: true,
+		default: "",
 	},
 	ratio: {
 		type: String,

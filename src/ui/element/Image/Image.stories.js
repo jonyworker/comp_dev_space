@@ -20,14 +20,8 @@ export default {
 			description: '圖片比例',
 			control: {
 				type: 'select',
-				labels: {
-					'11': "1x1",
-					'43': "4x3",
-					'54': "5x4",
-					'169': "16x9",
-				}
 			},
-			options: ['11', '43', '54', '169'],
+			options: ['1x1', '4x3', '5x4', '16x9'],
 			table: {
 				type: {
 					summary: "1x1 | 4x3 | 5x4 | 16x9",
@@ -37,10 +31,10 @@ export default {
 		objectFit: {
 			description: '圖片填滿方式',
 			control: { type: 'select' },
-			options: ['cover', 'contain', 'fill', 'none'],
+			options: ['none', 'cover', 'contain', 'fill' ],
 			table: {
 				type: {
-					summary: "cover | contain | fill | none",
+					summary: "none | cover | contain | fill",
 				}
 			}
 		},
@@ -64,7 +58,7 @@ export default {
 export const ImageDefault = {
 	name: '預設項目',
 	args: {
-		src: 'https://picsum.photos/300/300?random=1',
+		src: 'https://picsum.photos/300/200?random=1',
 		alt: 'placeholder',
 		ratio: '1x1',
 		objectFit: 'cover',
@@ -122,10 +116,11 @@ export const ImageDefault = {
 
 //==== 圖片比例 ====//
 export const ImageRatio = {
-	name: '圖片比例總覽',
+	name: '圖片比例',
 	args: {
-		src: 'https://picsum.photos/300/300?random=1',
+		src: 'https://picsum.photos/300/200?random=1',
 		alt: '',
+		// ratio: '1x1',
 		objectFit: 'cover',
 		className: ''
 	},
@@ -205,7 +200,7 @@ export const ImageRatio = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['objectFit', 'src' ],
+			exclude: ['ratio' ],
 		},
 		docs: {
 			source: {
@@ -248,14 +243,14 @@ export const ImageRatio = {
 	},
 };
 
-//==== 圖片 object-fit ====//
+//==== 填滿方式 ====//
 export const ImageFit = {
-	name: '圖片自適應',
+	name: '填滿方式',
 	args: {
-		src: 'https://picsum.photos/300/300?random=1',
+		src: 'https://picsum.photos/300/200?random=1',
 		alt: '',
 		ratio: '16x9',
-		objectFit: 'cover',
+		// objectFit: 'cover',
 		className: ''
 	},
 	render: (args) => ({
@@ -337,7 +332,7 @@ export const ImageFit = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: ['ratio', 'src' ],
+			exclude: [ 'objectFit' ],
 		},
 		docs: {
 			source: {
