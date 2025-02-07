@@ -143,8 +143,7 @@ export const InputDefault = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['variant', 'content', 'themeColor', 'isDisable', 'prefix'],
-            exclude: ['modelValue' ],
+            include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'initValue', 'maxLimit', 'hint', 'isDisabled','className'],
         },
         docs: {
             source: {
@@ -184,7 +183,7 @@ export const InputStatus = {
         size: 'medium',
         initValue: '',
         maxLimit: Infinity,
-        isDisabled: false,
+        // isDisabled: false,
         className: ''
     },
     render: (args) => ({
@@ -195,7 +194,7 @@ export const InputStatus = {
             };
         },
         template: `
-            <div style="display: flex; flex-direction: column; gap:16px">
+            <div style="display: flex; flex-direction: column; gap:8px">
                 <Input
                     :label="args.label"
                     :type="args.type"
@@ -206,7 +205,7 @@ export const InputStatus = {
                     :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
-                    :isDisabled="args.isDisabled"
+                    :isDisabled="false"
                     :className="args.className"
                 />
                 <Input
@@ -219,7 +218,7 @@ export const InputStatus = {
                     :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
-                    :isDisabled="args.isDisabled"
+                    :isDisabled="false"
                     :className="args.className"
                 />
                 <Input
@@ -232,7 +231,7 @@ export const InputStatus = {
                     :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: 'Error message', description: '' }"
-                    :isDisabled="args.isDisabled"
+                    :isDisabled="false"
                     :className="args.className"
                 />
                 <Input
@@ -245,7 +244,20 @@ export const InputStatus = {
                     :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
-                    :isDisabled="args.isDisabled"
+                    :isDisabled="false"
+                    :className="args.className"
+                />
+                <Input
+                    :label="args.label"
+                    :type="args.type"
+                    :hasClear="args.hasClear"
+                    :placeholder="args.placeholder"
+                    :prefix="args.prefix"
+                    :size="args.size"
+                    :initValue="args.initValue"
+                    :maxLimit="args.maxLimit"
+                    :hint="{ error: '', description: 'Prompt message' }"
+                    :isDisabled="true"
                     :className="args.className"
                 />
             </div>
@@ -254,8 +266,7 @@ export const InputStatus = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
-            // exclude: ['modelValue', 'hint'],
+            include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'initValue', 'maxLimit', 'className'],
         },
         docs: {
             source: {
@@ -272,7 +283,7 @@ export const InputStatus = {
                         `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
-                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :isDisabled="false"`,
                         `  className="${args.className}"`,
                         '/>',
                         '<Input',
@@ -285,7 +296,7 @@ export const InputStatus = {
                         `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
-                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :isDisabled="false"`,
                         `  className="${args.className}"`,
                         '/>',
                         '<Input',
@@ -298,7 +309,7 @@ export const InputStatus = {
                         `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: 'Error message', description: '' }"`,
-                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :isDisabled="false"`,
                         `  className="${args.className}"`,
                         '/>',
                         '<Input',
@@ -311,7 +322,20 @@ export const InputStatus = {
                         `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
-                        `  :isDisabled="${args.isDisabled}"`,
+                        `  :isDisabled="false"`,
+                        `  className="${args.className}"`,
+                        '/>',
+                        '<Input',
+                        `  label="${args.label}"`,
+                        `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  size="${args.size}"`,
+                        `  initValue="${args.initValue}"`,
+                        `  maxLimit="${args.maxLimit}"`,
+                        `  :hint="{ error: '', description: 'Prompt message' }"`,
+                        `  :isDisabled="true"`,
                         `  className="${args.className}"`,
                         '/>',
                     ].join('\n').trim();
