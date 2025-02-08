@@ -131,7 +131,7 @@ export const CardDefault = {
 					return [
 						`<Card`,
 						`  :hasHeaderDivider="${args.hasHeaderDivider}"`,
-						`  className="${args.cardHeader}"`,
+						`  className="${args.className}"`,
 						`>`,
 						`  <template #cardHeader>`,
 						`    <Title themeColor="primary" :level="2">Header Title</Title>`,
@@ -164,7 +164,6 @@ export const CardDefault = {
 				}
 			}
 		}
-
 	},
 };
 
@@ -322,7 +321,7 @@ export const CardVerticalDefault = {
 					</Column>
 				</Row>
 			</Grid>
-			
+
 		`,
 	}),
 	// 控制 controls 中能控制的參數
@@ -337,7 +336,7 @@ export const CardVerticalDefault = {
 					return [
 						`<Card`,
 						`  :hasHeaderDivider="${args.hasHeaderDivider}"`,
-						`  className="${args.cardHeader}"`,
+						`  className="${args.className}"`,
 						`>`,
 						`  <template #cardHeader>`,
 						`    <Title themeColor="primary" :level="2">Header Title</Title>`,
@@ -531,7 +530,7 @@ export const CardHorizontalDefault = {
 					</Column>
 				</Row>
 			</Grid>
-			
+
 		`,
 	}),
 	// 控制 controls 中能控制的參數
@@ -546,7 +545,7 @@ export const CardHorizontalDefault = {
 					return [
 						`<Card`,
 						`  :hasHeaderDivider="${args.hasHeaderDivider}"`,
-						`  className="${args.cardHeader}"`,
+						`  className="${args.className}"`,
 						`>`,
 						`  <template #cardHeader>`,
 						`    <Title :level="2">Header Title</Title>`,
