@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch  } from "vue";
 
 // 定義 Props
 const props = defineProps({
@@ -44,16 +44,16 @@ const contentLength = ref(0);
 
 // 取得 <text> 寬度
 onMounted(() => {
-  if (textRef.value) {
-    contentLength.value = textRef.value.getComputedTextLength();
-  }
+    if (textRef.value) {
+        contentLength.value = textRef.value.getComputedTextLength();
+    }
 });
 
 // 監聽 label 長度即時更新 <text> 寬度
 watch(() => props.label, () => {
-  if (textRef.value) {
-    contentLength.value = textRef.value.getComputedTextLength();
-  }
+    if (textRef.value) {
+        contentLength.value = textRef.value.getComputedTextLength();
+    }
 });
 
 // 計算屬性 - 計算進度條半徑
@@ -70,8 +70,8 @@ const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 1
 
 // 計算屬性 - 計算 [ label ] 及 [ 進度顯示 ]
 const getLimitBorder = computed(() => {
-  if (!contentLength.value) return 64;
-  return contentLength.value + props.strokeWidth + 30;
+    if (!props.label) return 64;
+    return props.label.length * 10 + props.strokeWidth + 30; // 估算寬度
 });
 
 </script>
