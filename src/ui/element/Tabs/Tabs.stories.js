@@ -161,9 +161,9 @@ export const DefaultTabs = {
     },
 };
 
-//==== 卡片式頁籤 ====//
-export const CardTabs = {
-    name: "卡片式頁籤",
+//==== 頁籤類型 ====//
+export const TabsTypesStory = {
+    name: "頁籤類型",
     args: {
         themeColor: "primary",
         dataSource: [
@@ -181,7 +181,7 @@ export const CardTabs = {
             }
         ],
         activeIndex: 0,
-        type: "card",
+        // type: "default",
         prefix: 'SvgArrowDown',
         isDisabled: false,
         className: ''
@@ -194,21 +194,33 @@ export const CardTabs = {
             };
         },
         template: `
-            <Tabs
-                :themeColor="args.themeColor"
-                :dataSource="args.dataSource"
-                :activeIndex="args.activeIndex"
-                :type="args.type"
-                :prefix="args.prefix"
-                :isDisabled="args.isDisabled"
-                :className="args.className"
-            ></Tabs>
+            <div style="display:flex; flex-direction: column; gap:24px">
+                <Tabs
+                    :themeColor="args.themeColor"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    type="default"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    :themeColor="args.themeColor"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    type="card"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+            </div>
         `,
     }),
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
+            exclude: [ 'type' ]
         },
         docs: {
             source: {
@@ -218,6 +230,197 @@ export const CardTabs = {
                     return [
                         '<Tabs',
                         `  themeColor="${args.themeColor}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="default"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="${args.themeColor}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="card"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                    ].join('\n').trim();
+                }
+            }
+        }
+    },
+};
+
+//==== 主題色彩 ====//
+export const TabsColorStory = {
+    name: "主題色彩",
+    args: {
+        // themeColor: "primary",
+        dataSource: [
+            {
+                "title": "Tab 1",
+                "content": "Content 1",
+            },
+            {
+                "title": "Tab 2",
+                "content": "Content 2"
+            },
+            {
+                "title": "Tab 3",
+                "content": "Content 3",
+            }
+        ],
+        activeIndex: 0,
+        type: "default",
+        prefix: 'SvgArrowDown',
+        isDisabled: false,
+        className: ''
+    },
+    render: (args) => ({
+        components: { Tabs },
+        setup() {
+            return {
+                args,
+            };
+        },
+        template: `
+            <div style="display:flex; flex-direction: column; gap:16px">
+                <Tabs
+                    themeColor="primary"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    themeColor="secondary"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    themeColor="neutral"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    themeColor="info"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    themeColor="success"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    themeColor="warning"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    themeColor="error"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    :type="args.type"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+            </div>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['themeColor', 'label', 'value', 'name' ],
+            exclude: [ 'themeColor' ]
+        },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    const dataSourceString = formatDataSource(args.dataSource);
+                    return [
+                        '<Tabs',
+                        `  themeColor="primary"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="secondary"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="neutral"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="info"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="success"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="warning"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="${args.type}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="error"`,
                         `  :dataSource="${dataSourceString}"`,
                         `  :activeIndex="${args.activeIndex}"`,
                         `  type="${args.type}"`,
@@ -231,3 +434,4 @@ export const CardTabs = {
         }
     },
 };
+
