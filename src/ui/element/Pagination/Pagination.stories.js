@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import Pagination from "./Pagination.vue";
 
 export default {
@@ -16,7 +17,7 @@ export default {
 		},
 
 		itemsPerPageOptions: {
-			description: "總筆數",
+			description: "每頁顯示筆數選項",
 			control: { type: "object" },
 			table: {
 				type: {
@@ -36,6 +37,13 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
+		onPageChange: {
+			description: "頁碼變更事件",
+			control: false,
+			table: {
+				category: 'emits',
+			}
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -64,6 +72,7 @@ export const PaginationDefault = {
 		setup() {
 			return {
 				args,
+				handlePageChange: action('onPageChange')
 			}
 		},
 		template: `
@@ -74,6 +83,7 @@ export const PaginationDefault = {
 				:defaultItemsPerPage="args.defaultItemsPerPage"
 				:isShowPageInfo="args.isShowPageInfo"
 				:className="args.className"
+				@onPageChange="handlePageChange"
 			>
 			</Pagination>
         `,
@@ -95,10 +105,10 @@ export const PaginationDefault = {
 						`  :defaultItemsPerPage="${args.defaultItemsPerPage}"`,
 						`  :isShowPageInfo="${args.isShowPageInfo}"`,
 						`  className="${args.className}"`,
+						`  @onPageChange="handlePageChange"`,
 						`>`,
 						`</Pagination>`,
 					].join("\n").trim();
-
 				}
 			}
 		}
@@ -121,6 +131,7 @@ export const PaginationDetail = {
 		setup() {
 			return {
 				args,
+				handlePageChange: action('onPageChange')
 			}
 		},
 		template: `
@@ -131,6 +142,7 @@ export const PaginationDetail = {
 				:defaultItemsPerPage="args.defaultItemsPerPage"
 				:isShowPageInfo="args.isShowPageInfo"
 				:className="args.className"
+				@onPageChange="handlePageChange"
 			>
 			</Pagination>
         `,
@@ -138,7 +150,7 @@ export const PaginationDetail = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// exclude: ['default' ],
+			exclude: [ 'isShowPageInfo' ],
 		},
 		docs: {
 			source: {
@@ -152,6 +164,7 @@ export const PaginationDetail = {
 						`  :defaultItemsPerPage="${args.defaultItemsPerPage}"`,
 						`  :isShowPageInfo="${args.isShowPageInfo}"`,
 						`  className="${args.className}"`,
+						`  @onPageChange="handlePageChange"`,
 						`>`,
 						`</Pagination>`,
 					].join("\n").trim();

@@ -3,7 +3,7 @@ import { ref, computed, watch } from 'vue';
 import Button from "@/ui/element/Button/Button.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
-const emit = defineEmits(['pageChange']);
+const emit = defineEmits(['onPageChange']);
 
 // 定義 Props
 const props = defineProps({
@@ -63,7 +63,7 @@ const pageNumbers = computed(() =>
 const handlePageChange = (page) => {
 	if (page < 1 || page > totalPages.value) return;
 	currPage.value = page;
-	emit('pageChange', page, itemsPerPage.value);
+	emit('onPageChange', page, itemsPerPage.value);
 };
 
 // 處理每頁資料數變更
@@ -71,7 +71,7 @@ const handleItemsPerPageChange = (e) => {
 	const newItemsPerPage = parseInt(e.target.value, 10);
 	itemsPerPage.value = newItemsPerPage;
 	currPage.value = 1; // 當變更每頁資料數時，重置到第1頁
-	emit('pageChange', 1, newItemsPerPage);
+	emit('onPageChange', 1, newItemsPerPage);
 };
 
 // 監聽 Props 當前頁碼變更
