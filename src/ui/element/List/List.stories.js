@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import List from "@/ui/element/List/List.vue";
 import ListItem from "@/ui/element/List/ListItem.vue";
 function formatDataSource(dataSource) {
@@ -63,7 +64,6 @@ export default {
 			control: false,
 			table: {
 				category: 'emits',
-
 			}
 		}
 	},
@@ -90,12 +90,9 @@ export const ListDefaultStory = {
 	render: (args) => ({
 		components: { List, ListItem },
 		setup() {
-			const handleItemClick = (value) => {
-				alert(value)
-			};
 			return {
 				args,
-				handleItemClick
+				handleItemClick: action("onSelect"),
 			}
 		},
 		template: `
@@ -149,6 +146,7 @@ export const ListOutLineStory = {
 		setup() {
 			return {
 				args,
+				handleItemClick: action("onSelect"),
 			}
 		},
 		template: `
@@ -202,6 +200,7 @@ export const ListDividerStory = {
 		setup() {
 			return {
 				args,
+				handleItemClick: action("onSelect"),
 			}
 		},
 		template: `
