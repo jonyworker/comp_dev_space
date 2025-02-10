@@ -156,9 +156,9 @@ export const RadioDefaultStory = {
 	},
 };
 
-//==== 直向排列 ====//
-export const RadioVertical = {
-	name: "直向排列",
+//==== 垂直排列 ====//
+export const RadioVerticalStory = {
+	name: "垂直排列",
 	args: {
 		// themeColor: 'primary',
 		dataSource: [
@@ -175,7 +175,7 @@ export const RadioVertical = {
 			{
 				"label": "Option3",
 				"value": "option3",
-				"isDisabled": true
+				"isDisabled": false
 			}
 		],
 		direction: "column",
@@ -208,6 +208,7 @@ export const RadioVertical = {
 		controls: {
 			expanded: true,
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: [ 'direction' ]
 		},
 		docs: {
 			source: {
@@ -229,6 +230,193 @@ export const RadioVertical = {
 		}
 	},
 };
+
+//==== 水平排列 ====//
+export const RadioRowStory = {
+	name: "水平排列",
+	args: {
+		// themeColor: 'primary',
+		dataSource: [
+			{
+				"label": "Option1",
+				"value": "option1",
+				"isDisabled": false
+			},
+			{
+				"label": "Option2",
+				"value": "option2",
+				"isDisabled": false
+			},
+			{
+				"label": "Option3",
+				"value": "option3",
+				"isDisabled": false
+			}
+		],
+		direction: "row",
+		initValue: "option1",
+		size: "medium",
+		className: "",
+	},
+	render: (args) => ({
+		components: { Radio },
+		setup() {
+			const modelValue = ref("");
+			return {
+				args,
+				modelValue,
+			};
+		},
+		template: `
+			<Radio
+				:dataSource="args.dataSource"
+				:direction="args.direction"
+				:initValue="args.initValue"
+				:size="args.size"
+				:className="args.className"
+				v-model="modelValue">
+			</Radio>
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			expanded: true,
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: [ 'direction' ]
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<Radio',
+						`  :dataSource="${dataSourceString}"`,
+						`  direction="${args.direction}"`,
+						`  initValue="${args.initValue}"`,
+						`  size="${args.size}"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+					].join('\n').trim();
+				}
+			}
+		}
+	},
+};
+
+//==== 元件尺寸 ====//
+export const RadioSizeStory = {
+	name: "元件尺寸",
+	args: {
+		// themeColor: 'primary',
+		dataSource: [
+			{
+				"label": "Option1",
+				"value": "option1",
+				"isDisabled": false
+			},
+			{
+				"label": "Option2",
+				"value": "option2",
+				"isDisabled": false
+			},
+			{
+				"label": "Option3",
+				"value": "option3",
+				"isDisabled": false
+			}
+		],
+		direction: "row",
+		initValue: "option1",
+		// size: "medium",
+		className: "",
+	},
+	render: (args) => ({
+		components: { Radio },
+		setup() {
+			const modelValue = ref("");
+			return {
+				args,
+				modelValue,
+			};
+		},
+		template: `
+			<div style="display:flex; flex-direction: column; gap: 24px">
+				<Radio
+					:dataSource="args.dataSource"
+					:direction="args.direction"
+					:initValue="args.initValue"
+					size="large"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					:dataSource="args.dataSource"
+					:direction="args.direction"
+					:initValue="args.initValue"
+					size="medium"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+				<Radio
+					:dataSource="args.dataSource"
+					:direction="args.direction"
+					:initValue="args.initValue"
+					size="small"
+					:className="args.className"
+					v-model="modelValue">
+				</Radio>
+			</div>
+			
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			expanded: true,
+			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: [ 'size' ]
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					const dataSourceString = formatDataSource(args.dataSource);
+					return [
+						'<Radio',
+						`  :dataSource="${dataSourceString}"`,
+						`  direction="${args.direction}"`,
+						`  initValue="${args.initValue}"`,
+						`  size="large"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  :dataSource="${dataSourceString}"`,
+						`  direction="${args.direction}"`,
+						`  initValue="${args.initValue}"`,
+						`  size="medium"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+						'<Radio',
+						`  :dataSource="${dataSourceString}"`,
+						`  direction="${args.direction}"`,
+						`  initValue="${args.initValue}"`,
+						`  size="small"`,
+						`  className="${args.className}"`,
+						`  v-model="modelValue"`,
+						'></Radio>',
+					].join('\n').trim();
+				}
+			}
+		}
+	},
+};
+
+
 
 // // ==== 主題色彩 ==== //
 // export const RadioColorDefault = {
