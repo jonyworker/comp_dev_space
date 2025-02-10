@@ -7,19 +7,19 @@ const modelValue = defineModel()
 
 // 定義 Props
 const props = defineProps({
-    themeColor: {
-        type: String,
-        validator: (value) =>
-            [
-                "primary",
-                "secondary",
-                "neutral",
-                "info",
-                "success",
-                "warning",
-                "error",
-            ].includes(value),
-    },
+    // themeColor: {
+    //     type: String,
+    //     validator: (value) =>
+    //         [
+    //             "primary",
+    //             "secondary",
+    //             "neutral",
+    //             "info",
+    //             "success",
+    //             "warning",
+    //             "error",
+    //         ].includes(value),
+    // },
 	placeholder: {
 		type: String,
 	},
@@ -28,11 +28,11 @@ const props = defineProps({
 		default: "medium",
 		validator: (value) => ['small', 'medium', 'large'].includes(value),
 	},
-	isDisable: {
+	isDisabled: {
 		type: Boolean,
 		default: false,
 	},
-	customClass: {
+	className: {
 		type: String,
 		default: "",
 	},
@@ -48,18 +48,18 @@ const props = defineProps({
             prefix="SvgSearch"
             :size="props.size"
             initValue=""
-            :isDisable="props.isDisable"
+            :isDisabled="props.isDisabled"
             v-model="modelValue"
             className="ded-search-input"
         />
         <Button
-            :themeColor="props.themeColor"
+
             variant="filled"
             :size="props.size"
             width="fit"
             borderWidth="1px"
             radius="4px"
-            :isDisabled="props.isDisable"
+            :isDisabled="props.isDisabled"
         >
             Search
         </Button>

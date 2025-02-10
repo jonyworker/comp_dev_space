@@ -7,24 +7,24 @@ export default {
 	component: Search,
 	tags: ["autodocs"],
 	argTypes: {
-		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			],
-			table: {
-				type: {
-					summary: "primary | secondary | neutral | info | success | warning | error"
-				}
-			}
-		},
+		// themeColor: {
+		// 	description: "主題顏色",
+		// 	control: { type: "select" },
+		// 	options: [
+		// 		"primary",
+		// 		"secondary",
+		// 		"neutral",
+		// 		"info",
+		// 		"success",
+		// 		"warning",
+		// 		"error",
+		// 	],
+		// 	table: {
+		// 		type: {
+		// 			summary: "primary | secondary | neutral | info | success | warning | error"
+		// 		}
+		// 	}
+		// },
 		placeholder: {
 			description: '輸入提示',
 			control: { type: 'text' },
@@ -39,11 +39,11 @@ export default {
 				}
 			}
 		},
-		isDisable: {
+		isDisabled: {
 			description: '是否禁用',
 			control: { type: 'boolean' },
 		},
-		customClass: {
+		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
@@ -66,11 +66,11 @@ export default {
 export const SearchDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: 'primary',
+		// themeColor: 'primary',
 		placeholder:'Placeholder...',
 		size: "medium",
-		isDisable: false,
-		customClass:""
+		isDisabled: false,
+		className:""
 	},
 	render: (args) => ({
 		components: { Search },
@@ -83,11 +83,11 @@ export const SearchDefault = {
 		},
 		template: `
             <Search
-	            :themeColor="args.themeColor"
+	            
 	            :placeholder="args.placeholder"
 	            :size="args.size"
-	            :isDisable="args.isDisable"
-				:customClass="args.customClass"
+	            :isDisabledd="args.isDisabledd"
+				:className="args.className"
 	            v-model="searchInputData"
             ></Search>
         `,
@@ -103,11 +103,11 @@ export const SearchDefault = {
 					const { args } = storyContext;
 					return [
 						`<Search`,
-						`  themeColor="${args.themeColor}"`,
+						// `  themeColor="${args.themeColor}"`,
 						`  placeholder="${args.placeholder}"`,
 						`  size="${args.size}"`,
-						`  :isDisable="${args.isDisable}"`,
-						`  customClass="${args.customClass}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  className="${args.className}"`,
 						`  v-model="searchInputData"`,
 						`></Search>`,
 					].join("\n").trim();
@@ -117,15 +117,15 @@ export const SearchDefault = {
 	},
 };
 
-//==== 搜尋尺寸 ====//
+//==== 尺寸 ====//
 export const SearchSize = {
-	name: "搜尋尺寸",
+	name: "尺寸",
 	args: {
-		themeColor: 'primary',
+		// themeColor: 'primary',
 		placeholder:'Placeholder...',
 		size: "",
-		isDisable: false,
-		customClass:""
+		isDisabled: false,
+		className:""
 	},
 	render: (args) => ({
 		components: { Search },
@@ -139,27 +139,27 @@ export const SearchSize = {
 		template: `
 			<div style="display:flex; flex-direction: column; gap: 10px">
 				<Search
-					:themeColor="args.themeColor"
+				
 					:placeholder="args.placeholder"
 					size="small"
-					:isDisable="args.isDisable"
-					:customClass="args.customClass"
+					:isDisabled="args.isDisabled"
+					:className="args.className"
 					v-model="searchInputData"
 				></Search>
 				<Search
-					:themeColor="args.themeColor"
+				
 					:placeholder="args.placeholder"
 					size="medium"
-					:isDisable="args.isDisable"
-					:customClass="args.customClass"
+					:isDisabled="args.isDisabled"
+					:className="args.className"
 					v-model="searchInputData"
 				></Search>
 				<Search
-					:themeColor="args.themeColor"
+					
 					:placeholder="args.placeholder"
 					size="large"
-					:isDisable="args.isDisable"
-					:customClass="args.customClass"
+					:isDisabled="args.isDisabled"
+					:className="args.className"
 					v-model="searchInputData"
 				></Search>
 			</div>
@@ -169,6 +169,7 @@ export const SearchSize = {
 	parameters: {
 		controls: {
 			// include: ['variant', 'content', 'themeColor', 'isDisabled', 'prefix'],
+			exclude: ['size'],
 		},
 		docs: {
 			source: {
@@ -176,27 +177,27 @@ export const SearchSize = {
 					const { args } = storyContext;
 					return [
 						`<Search`,
-						`  :themeColor="${args.themeColor}"`,
+						// `  :themeColor="${args.themeColor}"`,
 						`  :placeholder="${args.placeholder}"`,
 						`  size="small"`,
-						`  :isDisable="${args.isDisable}"`,
-						`  :customClass="${args.customClass}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
 						`  v-model="searchInputData"`,
 						`></Search>`,
 						`<Search`,
-						`  :themeColor="${args.themeColor}"`,
+						// `  :themeColor="${args.themeColor}"`,
 						`  :placeholder="${args.placeholder}"`,
 						`  size="medium"`,
-						`  :isDisable="${args.isDisable}"`,
-						`  :customClass="${args.customClass}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
 						`  v-model="searchInputData"`,
 						`></Search>`,
 						`<Search`,
-						`  :themeColor="${args.themeColor}"`,
+						// `  :themeColor="${args.themeColor}"`,
 						`  :placeholder="${args.placeholder}"`,
 						`  size="large"`,
-						`  :isDisable="${args.isDisable}"`,
-						`  :customClass="${args.customClass}"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
 						`  v-model="searchInputData"`,
 						`></Search>`,
 					].join("\n").trim();
