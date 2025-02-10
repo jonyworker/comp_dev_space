@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-	steps: {
+	dataSource: {
 		type: Array,
 		required: true,
 	},
@@ -42,7 +42,7 @@ const getStepClass = computed(() => {
 	>
 		<div class="ded-stepper-header">
 			<div
-				v-for="(step, index) in props.steps"
+				v-for="(step, index) in props.dataSource"
 				:key="index"
 				:class="['ded-step', getStepClass(index)]"
 			>
@@ -52,13 +52,13 @@ const getStepClass = computed(() => {
 					<div v-if="step.desc" class="ded-step-description">{{ step.desc }}</div>
 				</div>
 				<div
-					v-if="direction === 'vertical' && index !== steps.length - 1"
+					v-if="direction === 'vertical' && index !== dataSource.length - 1"
 					class="ded-step-connector"
 				></div>
 			</div>
 		</div>
 		<div class="ded-stepper-content">
-			{{ steps[currentStep]?.content || 'No content available for this step.' }}
+			{{ dataSource[currentStep]?.content || 'No content available for this step.' }}
 		</div>
 	</div>
 </template>

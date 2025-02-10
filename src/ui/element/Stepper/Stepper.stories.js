@@ -9,13 +9,30 @@ function formatDataSource(dataSource) {
         }`).join(',\n        ')}
     ]`;
 }
+const dataSource =[
+		{
+			"title": "Step 1",
+			"desc": "Description",
+			"content": "Content for Step 1"
+		},
+		{
+			"title": "Step 2",
+			"desc": "Description",
+			"content": "Content for Step 2"
+		},
+		{
+			"title": "Step 3",
+			"desc": "Description",
+			"content": "Content for Step 3"
+		}
+	]
 
 export default {
 	title: "Component/Stepper",
 	component: Stepper,
 	tags: ["autodocs"],
 	argTypes: {
-		steps: {
+		dataSource: {
 			description: "步驟列表",
 			control: {
 				type: "object",
@@ -65,23 +82,7 @@ export default {
 export const StepperDefault = {
 	name: "預設項目",
 	args: {
-		steps:[
-			{
-				"title": "Step 1",
-				"desc": "Description",
-				"content": "Content for Step 1"
-			},
-			{
-				"title": "Step 2",
-				"desc": "Description",
-				"content": "Content for Step 2"
-			},
-			{
-				"title": "Step 3",
-				"desc": "Description",
-				"content": "Content for Step 3"
-			}
-		],
+		dataSource:dataSource,
 		currentStep: 1,
 		direction: "horizontal",
 		className: ""
@@ -95,7 +96,7 @@ export const StepperDefault = {
 		},
 		template: `
 			<Stepper
-				:steps="args.steps"
+				:dataSource="args.dataSource"
 				:currentStep="args.currentStep"
 				:direction="args.direction"
 				:className="args.className"
@@ -112,10 +113,10 @@ export const StepperDefault = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const dataSourceString = formatDataSource(args.steps);
+					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						'<Stepper',
-						`  :steps='${dataSourceString}'`,
+						`  :dataSource='${dataSourceString}'`,
 						`  :currentStep="${args.currentStep}"`,
 						`  direction="${args.direction}"`,
 						`  className="${args.className}"`,
@@ -131,23 +132,7 @@ export const StepperDefault = {
 export const StepperHorizontal = {
 	name: "橫向互動模式",
 	args: {
-		steps:[
-			{
-				"title": "Step 1",
-				"desc": "Description",
-				"content": "Content for Step 1"
-			},
-			{
-				"title": "Step 2",
-				"desc": "Description",
-				"content": "Content for Step 2"
-			},
-			{
-				"title": "Step 3",
-				"desc": "Description",
-				"content": "Content for Step 3"
-			}
-		],
+		dataSource:dataSource,
 		currentStep: 1,
 		direction: "horizontal",
 		className: ""
@@ -165,7 +150,7 @@ export const StepperHorizontal = {
 			};
 
 			const goToNextStep = () => {
-				const newStep = Math.min(args.steps.length - 1, args.currentStep + 1);
+				const newStep = Math.min(args.dataSource.length - 1, args.currentStep + 1);
 				updateArgs({ currentStep: newStep });
 			};
 			return {
@@ -176,7 +161,7 @@ export const StepperHorizontal = {
 		},
 		template: `
 			<Stepper
-				:steps="args.steps"
+				:dataSource="args.dataSource"
 				:currentStep="args.currentStep"
 				:direction="args.direction"
 				:className="args.className"
@@ -186,7 +171,7 @@ export const StepperHorizontal = {
 				<Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">
 					Previous
 				</Button>
-				<Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">
+				<Button variant="filled" :isDisabled="args.currentStep === args.dataSource.length - 1" @click="goToNextStep">
 					Next
 				</Button>
 			</div>
@@ -201,10 +186,10 @@ export const StepperHorizontal = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const dataSourceString = formatDataSource(args.steps);
+					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						'<Stepper',
-						`  :steps='${dataSourceString}'`,
+						`  :dataSource='${dataSourceString}'`,
 						`  :currentStep="${args.currentStep}"`,
 						`  direction="${args.direction}"`,
 						`  className="${args.className}"`,
@@ -213,7 +198,7 @@ export const StepperHorizontal = {
 						'  <Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">',
 						'    Previous',
 						'  </Button>',
-						'  <Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">',
+						'  <Button variant="filled" :isDisabled="args.currentStep === args.dataSource.length - 1" @click="goToNextStep">',
 						'    Next',
 						'  </Button>',
 						'</div>',
@@ -228,23 +213,7 @@ export const StepperHorizontal = {
 export const StepperVertical = {
 	name: "直向互動模式",
 	args: {
-		steps:[
-			{
-				"title": "Step 1",
-				"desc": "Description",
-				"content": "Content for Step 1"
-			},
-			{
-				"title": "Step 2",
-				"desc": "Description",
-				"content": "Content for Step 2"
-			},
-			{
-				"title": "Step 3",
-				"desc": "Description",
-				"content": "Content for Step 3"
-			}
-		],
+		dataSource: dataSource,
 		currentStep: 1,
 		direction: "vertical",
 		className: ""
@@ -262,7 +231,7 @@ export const StepperVertical = {
 			};
 
 			const goToNextStep = () => {
-				const newStep = Math.min(args.steps.length - 1, args.currentStep + 1);
+				const newStep = Math.min(args.dataSource.length - 1, args.currentStep + 1);
 				updateArgs({ currentStep: newStep });
 			};
 			return {
@@ -273,7 +242,7 @@ export const StepperVertical = {
 		},
 		template: `
 			<Stepper
-				:steps="args.steps"
+				:dataSource="args.dataSource"
 				:currentStep="args.currentStep"
 				:direction="args.direction"
 				:className="args.className"
@@ -283,7 +252,7 @@ export const StepperVertical = {
 				<Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">
 					Previous
 				</Button>
-				<Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">
+				<Button variant="filled" :isDisabled="args.currentStep === args.dataSource.length - 1" @click="goToNextStep">
 					Next
 				</Button>
 			</div>
@@ -298,10 +267,10 @@ export const StepperVertical = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const dataSourceString = formatDataSource(args.steps);
+					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						'<Stepper',
-						`  :steps='${dataSourceString}'`,
+						`  :dataSource='${dataSourceString}'`,
 						`  :currentStep="${args.currentStep}"`,
 						`  direction="${args.direction}"`,
 						`  className="${args.className}"`,
@@ -310,7 +279,7 @@ export const StepperVertical = {
 						'  <Button variant="filled" :isDisabled="args.currentStep === 0" @click="goToPreviousStep">',
 						'    Previous',
 						'  </Button>',
-						'  <Button variant="filled" :isDisabled="args.currentStep === args.steps.length - 1" @click="goToNextStep">',
+						'  <Button variant="filled" :isDisabled="args.currentStep === args.dataSource.length - 1" @click="goToNextStep">',
 						'    Next',
 						'  </Button>',
 						'</div>',
