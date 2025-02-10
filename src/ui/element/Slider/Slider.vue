@@ -107,6 +107,7 @@ const handleChange = (e) => {
     value.value = newValue;
 
     updateRangeBackground(newValue);
+    updateRangeBackground(newValue);
     updateThumbPosition(newValue);
 
     modelValue.value = newValue;
@@ -126,6 +127,13 @@ watch(() => props.initValue, (newValue) => {
 watch(value, (newValue) => {
     updateRangeBackground(newValue);
     updateThumbPosition(newValue);
+});
+
+// 監聽 min 和 max 變更
+watch([() => props.min, () => props.max], () => {
+	nextTick(() => {
+		updateWidth();
+	});
 });
 
 const updateWidth = () => {

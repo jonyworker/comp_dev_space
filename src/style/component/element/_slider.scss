@@ -125,19 +125,19 @@ input[type="range"].ded-slider::-webkit-slider-runnable-track {
     color: $auo-form-default
 }
 
- @each $theme in $themes {
-   input[type="range"].ded-slider-#{$theme}::-webkit-slider-thumb {
-     background-color: getThemeColor($theme, 'default');
-   }
+// @each $theme in $themes {
+//   input[type="range"].ded-slider-#{$theme}::-webkit-slider-thumb {
+//     background-color: getThemeColor($theme, 'default');
+//   }
 
-   input[type="range"].ded-slider-#{$theme}::-webkit-slider-runnable-track {
-     background: linear-gradient(to right, getThemeColor($theme, 'default') 0%, getThemeColor($theme, 'default') var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
-   }
+//   input[type="range"].ded-slider-#{$theme}::-webkit-slider-runnable-track {
+//     background: linear-gradient(to right, getThemeColor($theme, 'default') 0%, getThemeColor($theme, 'default') var(--progress), list.nth($neutral-200, $site) var(--progress), list.nth($neutral-200, $site) 100%);
+//   }
 
-   .ded-slider-tooltip-#{$theme} {
-     color: getThemeColor($theme, 'default');
-   }
- }
+//   .ded-slider-tooltip-#{$theme} {
+//     color: getThemeColor($theme, 'default');
+//   }
+// }
 
 input[type="range"].ded-slider-disable::-webkit-slider-thumb {
     background-color: list.nth($neutral-200, $site);
