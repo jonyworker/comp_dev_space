@@ -128,18 +128,30 @@ export default {
 		},
 		logo: {
 			description: "Logo 圖示",
-			control: { type: "text" },
+			control: {
+				type: "select",
+				labels: {
+					"": "none",
+					SvgAuo: "SvgAuo",
+				}
+			},
+			options: [ "", "SvgAuo" ],
+			table: {
+				type: {
+					summary: "none | SvgAuo ",
+				}
+			}
 		},
 		logoLink: {
 			description: "Logo 連結",
 			control: { type: "text" },
 		},
-		hasRWD: {
-			description: "是否有側邊導覽",
-			control: { type: "boolean" },
-		},
 		hasLogo: {
 			description: "是否有 Logo",
+			control: { type: "boolean" },
+		},
+		hasRWD: {
+			description: "是否有側邊導覽",
 			control: { type: "boolean" },
 		},
 		hasSearch: {
@@ -180,8 +192,8 @@ export const SideNavDefault = {
 		logoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
 		logo: "SvgAuo",
 		logoLink: "https://www.auo.com",
-		hasRWD: false,
 		hasLogo: true,
+		hasRWD: true,
 		hasSearch: true,
 		dataSource: dataSource,
 		className: ""
@@ -202,8 +214,8 @@ export const SideNavDefault = {
 							:logoSrc="args.logoSrc"
 							:logo="args.logo"
 							:logoLink="args.logoLink"
-							:hasRWD="args.hasRWD"
 							:hasLogo="args.hasLogo"
+							:hasRWD="args.hasRWD"
 							:hasSearch="args.hasSearch"
 							:dataSource="args.dataSource"
 							:className="args.className"
@@ -229,8 +241,8 @@ export const SideNavDefault = {
 						`    logoSrc="${args.logoSrc}"`,
 						`    logo="${args.logo}"`,
 						`    logoLink="${args.logoLink}"`,
-						`    :hasRWD="${args.hasRWD}"`,
 						`    :hasLogo="${args.hasLogo}"`,
+						`    :hasRWD="${args.hasRWD}"`,
 						`    :hasSearch="${args.hasSearch}"`,
 						`    :dataSource="${dataSourceString}"`,
 						`    className="${args.className}"`,

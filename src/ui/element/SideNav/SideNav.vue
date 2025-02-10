@@ -47,13 +47,13 @@ const props = defineProps({
     },
 })
 
-const THEME_COLOR = {
-	Blue: '#00467C',
-	Yellow: '#F4E069',
-	Grape: '#AB86D1',
-	Black: '#000000',
-	White: '#ffffff',
-};
+// const THEME_COLOR = {
+// 	Blue: '#00467C',
+// 	Yellow: '#F4E069',
+// 	Grape: '#AB86D1',
+// 	Black: '#000000',
+// 	White: '#ffffff',
+// };
 
 // 新增斷點常數
 const MOBILE_BREAKPOINT = 1024;
@@ -62,7 +62,7 @@ const isMobile = ref(false);
 const isCollapsed = ref(false);
 
 const sortDataSource = computed(() => {
-	return props.dataSource.sort((a, b) => a.order - b.order);
+	return [...props.dataSource].sort((a, b) => a.order - b.order);
 });
 
 const handleCollapsed = () => {
@@ -107,6 +107,9 @@ const computedContentColor = computed(() => {
 			return "#000000";
 	}
 })
+const hasLogo = computed(() => {
+	return props.logo !== '';
+})
 
 // 初始化及監聽
 onMounted(() => {
@@ -123,7 +126,7 @@ onUnmounted(() => {
 	<template v-if="isMobile && isCollapsed && hasRWD">
 		<Navbar
 	        :dataSource="sortDataSource"
-			:hasLogo="true"
+			:hasLogo="hasLogo"
 			logoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
 			className="fixed top-0 h-[60px] w-full"
 			style="position: fixed; top: 0; height: 60px; width: 100%;"
@@ -199,7 +202,7 @@ onUnmounted(() => {
             <template v-if="!isCollapsed && props.hasSearch">
                 <Input
                     type="text"
-                    placeholder="Jony Search..."
+                    placeholder="Search..."
                     prefix="SvgSearch"
                     size="medium"
                     initValue=""
