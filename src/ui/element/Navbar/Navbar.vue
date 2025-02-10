@@ -32,7 +32,7 @@ const props = defineProps({
 })
 
 const sortDataSource = computed(() => {
-    return props.dataSource.sort((a, b) => a.order - b.order);
+    return [...props.dataSource].sort((a, b) => a.order - b.order);
 });
 </script>
 
