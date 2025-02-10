@@ -1,0 +1,64 @@
+import { Meta, Typeset } from '@storybook/blocks';
+
+<Meta title="Token/Typography" />
+
+export const typography = {
+    type: {
+        primary: "'Mabry Pro', Verdana, 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans JP', 'Microsoft JhengHei', 'sans-serif', '新細明體', '細明體'"
+    },
+    weight: {
+        regular: '400',
+        bold: '700',
+    },
+    size: {
+        s1: 13,
+        s2: 14,
+        s3: 15,
+        s4: 16,
+        m1: 20,
+        m2: 24,
+        m3: 28,
+        l1: 32,
+        l2: 40,
+    },
+    sampleText:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+};
+
+# Regular
+
+<Typeset
+    fontSizes={[
+        Number(typography.size.s1),
+        Number(typography.size.s2),
+        Number(typography.size.s3),
+        Number(typography.size.s4),
+        Number(typography.size.m1),
+        Number(typography.size.m2),
+        Number(typography.size.m3),
+        Number(typography.size.l1),
+        Number(typography.size.l2),
+    ]}
+    fontWeight={typography.weight.regular}
+    sampleText={typography.sampleText}
+    fontFamily={typography.type.primary}
+/>
+
+# Bold
+
+<Typeset
+    fontSizes={[
+        Number(typography.size.s1),
+        Number(typography.size.s2),
+        Number(typography.size.s3),
+        Number(typography.size.s4),
+        Number(typography.size.m1),
+        Number(typography.size.m2),
+        Number(typography.size.m3),
+        Number(typography.size.l1),
+        Number(typography.size.l2),
+    ]}
+    fontWeight={typography.weight.bold}
+    sampleText={typography.sampleText}
+    fontFamily={typography.type.primary}
+/>
