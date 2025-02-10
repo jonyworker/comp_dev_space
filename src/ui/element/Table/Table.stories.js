@@ -6,6 +6,20 @@ function formatColumns(columns) {
 function formatDataSource(dataSource) {
 	return JSON.stringify(dataSource, null, 2);
 }
+const dataSource = [
+	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+	{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+	{ head: "Head-4", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
+]
+const columns = [
+	{ key: "head", title: "TH", width: "50px" },
+	{ key: "column1", title: "TH", width: "100px" },
+	{ key: "column2", title: "TH", width: "100px" },
+	{ key: "column3", title: "TH", width: "100px" },
+	{ key: "column4", title: "TH", width: "50px" },
+	{ key: "column5", title: "TH", width: "50px", align: "center" },
+]
 
 export default {
 	components: {Button},
@@ -36,11 +50,11 @@ export default {
 			control: { type: "boolean" },
 		},
 		showVerticalBorders: {
-			description: "是否顯示垂直線條",
+			description: "是否顯示垂直邊框",
 			control: { type: "boolean" },
 		},
 		isSprite: {
-			description: "是否顯示垂直線條",
+			description: "是否顯示條紋背景",
 			control: { type: "boolean" },
 		},
 		className: {
@@ -73,19 +87,8 @@ export default {
 export const TableDefault = {
 	name: "預設項目",
 	args: {
-		dataSource: [
-			{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-		],
-		columns: [
-			{ key: "head", title: "TH", width: "50px" },
-			{ key: "column1", title: "TH", width: "100px" },
-			{ key: "column2", title: "TH", width: "100px" },
-			{ key: "column3", title: "TH", width: "100px" },
-			{ key: "column4", title: "TH", width: "50px" },
-			{ key: "column5", title: "TH", width: "50px", align: "center" },
-		],
+		dataSource: dataSource,
+		columns: columns,
 		showCheckbox: false,
 		showVerticalBorders: false,
 		isSprite: true,
@@ -134,19 +137,8 @@ export const TableDefault = {
 export const TableBorder = {
 	name: "框線表格",
 	args: {
-		columns: [
-			{ key: "head", title: "TH", width: "50px" },
-			{ key: "column1", title: "TH", width: "100px" },
-			{ key: "column2", title: "TH", width: "100px" },
-			{ key: "column3", title: "TH", width: "100px" },
-			{ key: "column4", title: "TH", width: "50px" },
-			{ key: "column5", title: "TH", width: "50px", align: "center" },
-		],
-		dataSource: [
-			{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-		],
+		dataSource: dataSource,
+		columns: columns,
 		showCheckbox: false,
 		showVerticalBorders: true,
 		isSprite: false,
@@ -196,19 +188,8 @@ export const TableBorder = {
 export const TableSlot = {
 	name: "客製化欄位",
 	args: {
-		columns: [
-			{ key: "head", title: "TH", width: "50px" },
-			{ key: "column1", title: "TH", width: "100px" },
-			{ key: "column2", title: "TH", width: "100px" },
-			{ key: "column3", title: "TH", width: "100px" },
-			{ key: "column4", title: "TH", width: "50px" },
-			{ key: "column5", title: "TH", width: "50px", align: "center" },
-		],
-		dataSource: [
-			{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-		],
+		dataSource: dataSource,
+		columns: columns,
 		showCheckbox: false,
 		showVerticalBorders: false,
 		isSprite: false,
@@ -289,19 +270,8 @@ export const TableSlot = {
 export const TableCheck = {
 	name: "可勾選資料列",
 	args: {
-		columns: [
-			{ key: "head", title: "TH", width: "50px" },
-			{ key: "column1", title: "TH", width: "100px" },
-			{ key: "column2", title: "TH", width: "100px" },
-			{ key: "column3", title: "TH", width: "100px" },
-			{ key: "column4", title: "TH", width: "50px" },
-			{ key: "column5", title: "TH", width: "50px", align: "center" },
-		],
-		dataSource: [
-			{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-			{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
-		],
+		dataSource: dataSource,
+		columns: columns,
 		showCheckbox: true,
 		showVerticalBorders: true,
 		isSprite: false,
