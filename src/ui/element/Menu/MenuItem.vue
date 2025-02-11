@@ -33,20 +33,29 @@ const props = defineProps({
     // }
 });
 
-const emit = defineEmits(["itemClick"]);
+const emit = defineEmits(["itemClick", "toggleExpand"]);
 
 // 獲取導航組件類型
 const getComponentType = (item) => {
 	return props.useRouter && item.path ? "router-link" : "a";
 };
 
+// 點擊項目時觸發，傳遞 item 與 event 參數
+const onItemClick = (event) => {
+    emit("itemClick", { item: props.item, event });
+};
+
 // 切換展開/收起狀態
 const toggleExpand = (item) => {
-	// 切換當前項目的展開狀態
-	props.expandedItems[item.path] = !props.expandedItems[item.path];
+    emit("toggleExpand", item);
 };
 </script>
 
+<script>
+export default {
+    name: "MenuItem"
+};
+</script>
 
 <template>
 	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.hasDivider }">
@@ -57,6 +66,7 @@ const toggleExpand = (item) => {
 			:href="!props.useRouter ? props.item.path : undefined"
 			class="ded-nav-item-link"
 			:style="`color:${props.color}`"
+            @click="onItemClick"
 		>
 			<!-- 圖標 -->
 			<template v-if="props.item.prefix">
@@ -110,7 +120,8 @@ const toggleExpand = (item) => {
 				:use-router="props.useRouter"
 				:color="props.color"
 				:expanded-items="props.expandedItems"
-				@itemClick="emit('itemClick', $event)"
+                @itemClick="emit('itemClick', $event)"
+                @toggleExpand="emit('toggleExpand', $event)"
 			/>
 		</ul>
 	</li>

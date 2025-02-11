@@ -1,13 +1,8 @@
 <script setup>
 import MenuItem from "./MenuItem.vue";
 import { ref, computed } from "vue";
-
-let router;
-try {
-	router = require("vue-router").useRouter();
-} catch (e) {
-	router = null;
-}
+// eslint-disable-next-line vue/no-dupe-keys
+import { useRouter } from "vue-router";
 
 const props = defineProps({
 	dataSource: {
@@ -36,15 +31,19 @@ const props = defineProps({
 	},
 });
 
-const sortDataSource = computed(() => {
-	return props.dataSource.sort((a, b) => a.order - b.order);
-});
+const sortDataSource = computed(() =>
+    [...props.dataSource].sort((a, b) => (a.order || 0) - (b.order || 0))
+);
 
 const emit = defineEmits(["navItemClick", "expandedNav"]);
 
+// 在父元件中定義反應式的 expandedItems，並由事件更新
 const expandedItems = ref({});
 
 const computedWidth = computed(() => (props.isCollapsed ? 'auto' : '100%'));
+
+// 若啟用 useRouter，則取得 router 實例
+const router = props.useRouter ? useRouter() : null;
 
 const handleItemClick = ({item, event}) => {
 	emit("navItemClick", item);
@@ -57,29 +56,30 @@ const handleItemClick = ({item, event}) => {
 		router.push(item.path);
 	}
 };
+
+// 處理箭頭點擊的展開切換事件
+const handleToggleExpand = (item) => {
+    expandedItems.value[item.path] = !expandedItems.value[item.path];
+};
 </script>
 
 <template>
-	<div
-		:class="{
-      'ded-nav-container': true,
-      [props.className]: !!props.className,
-    }"
-	>
-		<nav class="ded-nav" :style="{ width: computedWidth }">
-			<ul class="ded-nav-list">
-				<MenuItem
-					v-for="item in sortDataSource"
-					:key="item.path"
-					:item="item"
-					:is-collapsed="props.isCollapsed"
-					:use-router="props.useRouter"
-					:color="props.color"
+    <div :class="{ 'ded-nav-container': true, [props.className]: !!props.className }">
+        <nav class="ded-nav" :style="{ width: computedWidth }">
+            <ul class="ded-nav-list">
+                <MenuItem
+                    v-for="item in sortDataSource"
+                    :key="item.path"
+                    :item="item"
+                    :is-collapsed="props.isCollapsed"
+                    :use-router="props.useRouter"
+                    :color="props.color"
                     :hasDivider="props.hasDivider"
-					:expanded-items="expandedItems"
-					@itemClick="handleItemClick"
-				/>
-			</ul>
-		</nav>
-	</div>
+                    :expanded-items="expandedItems"
+                    @itemClick="handleItemClick"
+                    @toggleExpand="handleToggleExpand"
+                />
+            </ul>
+        </nav>
+    </div>
 </template>
