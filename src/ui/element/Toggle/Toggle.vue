@@ -55,15 +55,24 @@ const handleToggle = () => {
 			[`ded-toggle-${props.themeColor}`]: props.themeColor,
 			'ded-toggle-on': isChecked,
 		    'ded-toggle-off': !isChecked,
+		    'ded-toggle-disabled': props.isDisabled,
 		    [props.className]: !!props.className
 		}"
 	    @click.prevent="handleToggle">
 
 		<!-- Toggle 按鈕 -->
-		<div class="ded-toggle-thumb" :class="{'ded-toggle-thumb-on': isChecked, 'ded-toggle-thumb-off': !isChecked}"></div>
+		<div class="ded-toggle-thumb"
+		     :class="{'ded-toggle-thumb-on': isChecked,
+		     'ded-toggle-thumb-off': !isChecked,
+		     'ded-toggle-thumb-disabled': props.isDisabled}"
+		></div>
 
 		<!-- Toggle 文字 -->
-		<label class="ded-toggle-label" :class="{'ded-toggle-label-on': isChecked, 'ded-toggle-label-off': !isChecked}">
+		<label class="ded-toggle-label"
+		       :class="{'ded-toggle-label-on': isChecked,
+		       'ded-toggle-label-off': !isChecked,
+			   'ded-toggle-label-disabled': props.isDisabled}"
+		>
 		  {{ isChecked === true ? props.checkLabel : props.unCheckLabel}}
 		</label>
 	</div>
