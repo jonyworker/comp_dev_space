@@ -1,7 +1,7 @@
 import Title from "./Title.vue";
 
 export default {
-	title: "Component/Typgraphy/Title",
+	title: "Component/Typography/Title",
 	component: Title,
 	tags: ["autodocs"],
 	argTypes: {
@@ -64,7 +64,7 @@ export default {
 export const HeadingDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: "none",
+		themeColor: "",
 		level: 1,
 		className: "",
 		default: "Title",
@@ -113,6 +113,8 @@ export const HeadingDefault = {
 export const HeadingSizeDefault = {
 	name: "標題大小",
 	args: {
+		themeColor: "",
+		// level: 1,
 		className: "",
 		default: "Title",
 	},
@@ -160,7 +162,7 @@ export const HeadingSizeDefault = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['default','level']
+			exclude:['level']
 		},
 		docs: {
 			source: {
@@ -206,6 +208,7 @@ export const HeadingSizeDefault = {
 export const HeadingColorDefault = {
 	name: "主題色彩",
 	args: {
+		// themeColor: "",
 		level: 3,
 		className: "",
 		default: "Title",
@@ -261,7 +264,7 @@ export const HeadingColorDefault = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:['default', 'themeColor'],
+			exclude:['themeColor'],
 		},
 		docs: {
 			source: {
