@@ -24,7 +24,7 @@ function formatDataSource(dataSource) {
 const dataSource = [
 	{
 		id: "1",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What is Vue?"),
+		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What is Vue?"),
 		detail: () => [
 			h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
 			h(Button, {
@@ -43,21 +43,21 @@ const dataSource = [
 	},
 	{
 		id: "2",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What are the features of Vue?"),
+		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What are the features of Vue?"),
 		detail: () => [
 			h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
 		],
 	},
 	{
 		id: "3",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What is included in the Vue ecosystem?"),
+		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What is included in the Vue ecosystem?"),
 		detail: () => [
 			h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
 		],
 	},
 	{
 		id: "4",
-		label: () => h(Title, { level: 4, themeColor: 'primary' }, "What are the advantages of using Vue?"),
+		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What are the advantages of using Vue?"),
 		detail: () => [
 			h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
 		],

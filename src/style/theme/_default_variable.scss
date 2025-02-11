@@ -14,7 +14,7 @@ $site: list.index($theme-color, 'AUO-BLUE');
 
 // 主題色索引
 $font-family: 'Mabry Pro', Verdana, 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans JP', 'Microsoft JhengHei', 'sans-serif',
-  '新細明體', '細明體';
+'新細明體', '細明體';
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 // 麵包屑分隔符號
@@ -99,6 +99,8 @@ $text-size-xsmall: 13px;
 $text-size-small: 14px;
 $text-size-medium: 16px;
 $text-size-large: 18px;
+$text-size-xl: 20px;
+$text-size-2xl: 24px;
 
 // 輸入框尺寸
 $component-size-small: 32px;

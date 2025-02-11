@@ -78,13 +78,17 @@ onBeforeUnmount(() => {
 <template>
 	<li class="ded-accordion-item" :class="`ded-accordion-item-${props.borderStyle}`">
 		<details :open="isItemOpen" :class="{'ded-accordion-detail ': true, [props.className]: !!props.className}" @toggle="handleToggle">
-			<summary class="ded-accordion-title"
-			         :class="props.isSmallSize ? 'ded-accordion-title-small':'ded-accordion-title-default'">
+			<summary class="ded-accordion-title" :class="props.isSmallSize ?
+					'ded-accordion-title-small':'ded-accordion-title-default'">
 				<span  class="ded-accordion-title-content">
 					<span  class="ded-accordion-title-icon">
 						<Icon :name="props.prefix"></Icon>
 					</span >
-					<slot name="label"></slot>
+					<span :class="props.isSmallSize ?
+					'ded-accordion-title-content-small':'ded-accordion-title-content-default'">
+						<slot name="label"></slot>
+					</span>
+
 				</span >
 				<span  :class="isItemOpen ? 'ded-accordion-item-open' : 'ded-accordion-item-close'" class="ded-icon-medium">
 					<Icon size="24" name="SvgArrowDown"/>
