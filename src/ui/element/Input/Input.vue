@@ -145,7 +145,7 @@ const toggleDropdown = () => {
                 :maxlength="props.maxLimit"
 				:class="{
 					'ded-input':true,
-					[`text-${props.size}`]: props.size,
+					[`ded-text-${props.size}`]: props.size,
 					'ded-input-prefix': props.prefix,
 					'ded-input-disable': props.isDisabled,
 				}"
