@@ -1,12 +1,10 @@
 import Textarea from "./Textarea.vue";
-import { ref } from "vue";
 function formatDataSource(hint) {
     return `{
         error: '${hint.error || ""}',
         description: '${hint.description || ""}'
     }`;
 }
-
 
 export default {
     title: "Component/Textarea",
@@ -25,10 +23,10 @@ export default {
             description: '字數限制',
             control: { type: 'number' },
         },
-        initValue: {
-            description: "輸入值",
-            control: { type: "text" },
-        },
+        // initValue: {
+        //     description: "輸入值",
+        //     control: { type: "text" },
+        // },
         hint: {
             description: '提示訊息',
             control: {
@@ -48,6 +46,15 @@ export default {
             description: '客製化樣式',
             control: { type: 'text' },
         },
+        modelValue: {
+            description: "輸入值",
+            control: { type: 'text' },
+            table: {
+                type: { summary: 'string' },
+                category: 'v-model',
+                // defaultValue: { summary: '""' },
+            }
+        }
     },
     parameters: {
         // 自動文件
@@ -65,20 +72,19 @@ export const TextareaDefault = {
     name: "預設項目",
     args: {
         label: "Label",
-        placeholder: "Placeholder...",
-        limit: 500,
-        initValue: "Type something...",
+        placeholder: "Placeholder",
+        limit: 0,
+        // initValue: "Type something...",
         hint: { error: "", description: "Prompt message" },
         isDisabled: false,
-        className: ""
+        className: "",
+        modelValue: "Type something"
     },
     render: (args) => ({
         components: { Textarea },
         setup() {
-            const textareaModelValue =ref("");
             return {
                 args,
-                textareaModelValue
             };
         },
         template: `
@@ -86,11 +92,10 @@ export const TextareaDefault = {
                 :label="args.label"
                 :placeholder="args.placeholder"
                 :limit="args.limit"
-                :initValue="args.initValue"
                 :hint="args.hint"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
-                v-model="textareaModelValue"
+                v-model="args.modelValue"
             ></Textarea>
         `,
     }),
@@ -98,7 +103,7 @@ export const TextareaDefault = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ['modelValue', 'customClass'],
+            // exclude: [],
         },
         docs: {
             source: {
@@ -110,11 +115,10 @@ export const TextareaDefault = {
                         `  label="${args.label}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  :limit="${args.limit}"`,
-                        `  :initValue="${args.initValue}"`,
                         `  :hint="${dataSourceString}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
-                        `  v-model="textareaModelValue"`,
+                        `  v-model="modelValue"`,
                         '></Textarea>',
                     ].join('\n').trim();
                 }
@@ -128,20 +132,19 @@ export const TextareaLimit = {
     name: "字數限制",
     args: {
         label: "Label",
-        placeholder: "Type something...",
-        limit: 50,
-        initValue: "",
+        placeholder: "Placeholder",
+        limit: 30,
+        // initValue: "",
         hint: { error: '', description: '' },
         isDisabled: false,
-        className: ''
+        className: "",
+        modelValue: "Type something"
     },
     render: (args) => ({
         components: { Textarea },
         setup() {
-            const textareaModelValue =ref("Hello World");
             return {
                 args,
-                textareaModelValue
             };
         },
         template: `
@@ -149,11 +152,10 @@ export const TextareaLimit = {
                 :label="args.label"
                 :placeholder="args.placeholder"
                 :limit="args.limit"
-                :initValue="args.initValue"
                 :hint="args.hint"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
-                v-model="textareaModelValue"
+                v-model="args.modelValue"
             ></Textarea>
         `,
     }),
@@ -161,7 +163,7 @@ export const TextareaLimit = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ['modelValue', 'customClass'],
+            // exclude: ['limit' ],
         },
         docs: {
             source: {
@@ -173,11 +175,10 @@ export const TextareaLimit = {
                         `  label="${args.label}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  :limit="${args.limit}"`,
-                        `  :initValue="${args.initValue}"`,
                         `  :hint="${dataSourceString}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
-                        `  v-model="textareaModelValue"`,
+                        `  v-model="modelValue"`,
                         '></Textarea>',
                     ].join('\n').trim();
                 }
@@ -191,23 +192,25 @@ export const TextareaStatus = {
     name: "輸入框狀態",
     args: {
         label: "Label",
-        placeholder: "Type something...",
-        initValue: "Type something...",
-        limit: 50,
+        placeholder: "Placeholder",
+        // initValue: "Type something...",
+        limit: 30,
         isDisabled: false,
+        className: "",
+        modelValue: "Type something"
     },
     render: (args) => ({
         components: { Textarea },
         setup() {
             // Create a ref for modelValue to be used with v-model
-            const textareaModelValue01 =ref("");
-            const textareaModelValue02 =ref("");
-            const textareaModelValue03 =ref("");
+            // const textareaModelValue01 =ref("");
+            // const textareaModelValue02 =ref("");
+            // const textareaModelValue03 =ref("");
             return {
                 args,
-                textareaModelValue01,
-                textareaModelValue02,
-                textareaModelValue03
+                // textareaModelValue01,
+                // textareaModelValue02,
+                // textareaModelValue03
             };
         },
         template: `
@@ -216,30 +219,30 @@ export const TextareaStatus = {
                     :label="args.label"
                     :placeholder="args.placeholder"
                     :limit="args.limit"
-                    :initValue="args.initValue"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
-                    v-model="textareaModelValue01"
+                    :className="args.className"
+                    v-model="args.modelValue"
                 ></Textarea>
                 
                 <Textarea
                     :label="args.label"
                     :placeholder="args.placeholder"
                     :limit="args.limit"
-                    :initValue="args.initValue"
-                    :hint="{ error: 'Error message', description: '' }"
+                    :hint="{ error: 'Error', description: '' }"
                     :isDisabled="args.isDisabled"
-                    v-model="textareaModelValue02"
+                    :className="args.className"
+                    v-model="args.modelValue"
                 ></Textarea>
                 
                 <Textarea
                     :label="args.label"
                     :placeholder="args.placeholder"
                     :limit="args.limit"
-                    :initValue="args.initValue"
                     :hint="{ error: '', description: 'Prompt message' }"
-                    :isDisabled="args.isDisabled"
-                    v-model="textareaModelValue03"
+                    :isDisabled="true"
+                    :className="args.className"
+                    v-model="args.modelValue"
                 ></Textarea>
             </div>
         `,
@@ -248,7 +251,7 @@ export const TextareaStatus = {
     parameters: {
         controls: {
             // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: ['modelValue', 'hint', 'customClass'],
+            exclude: ['hint', 'isDisabled'],
         },
         docs: {
             source: {
@@ -259,28 +262,28 @@ export const TextareaStatus = {
                         `  label="${args.label}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  :limit="${args.limit}"`,
-                        `  :initValue="${args.initValue}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
-                        `  v-model="textareaModelValue01"`,
+                        `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '></Textarea>',
                         '<Textarea',
                         `  label="${args.label}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  :limit="${args.limit}"`,
-                        `  :initValue="${args.initValue}"`,
-                        `  :hint="{ error: 'Error message', description: '' }"`,
+                        `  :hint="{ error: 'Error', description: '' }"`,
                         `  :isDisabled="${args.isDisabled}"`,
-                        `  v-model="textareaModelValue02"`,
+                        `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '></Textarea>',
                         '<Textarea',
                         `  label="${args.label}"`,
                         `  placeholder="${args.placeholder}"`,
                         `  :limit="${args.limit}"`,
-                        `  :initValue="${args.initValue}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
-                        `  :isDisabled="${args.isDisabled}"`,
-                        `  v-model="textareaModelValue03"`,
+                        `  :isDisabled="true"`,
+                        `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '></Textarea>',
                     ].join('\n').trim();
                 }
