@@ -25,8 +25,8 @@ export default {
 				}
 			}
 		},
-		variable: {
-			description: "變數",
+		variant: {
+			description: "外觀樣式",
 			required: true,
 			control: { type: "select" },
 			options: ["filled", "ghost"],
@@ -59,7 +59,7 @@ export default {
 			options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff"],
 		},
 		closable: {
-			description: "摸到時顯示關閉",
+			description: "摸到時顯示關閉圖示",
 			control: { type: "boolean" },
 		},
 		isDisabled: {
@@ -90,7 +90,7 @@ export const TagDefaultStory = {
 	name: "預設項目",
 	args: {
 		themeColor: 'primary',
-		variable: "filled",
+		variant: "filled",
 		label:'Tag',
 		href: '',
 		prefix: '',
@@ -111,7 +111,7 @@ export const TagDefaultStory = {
 			<Tag 
 				v-if="showTag"
 				 :themeColor="args.themeColor"
-				 :variable="args.variable"
+				 :variant="args.variant"
 				 :label="args.label"
 				 :href="args.href"
 				 :prefix="args.prefix"
@@ -135,7 +135,7 @@ export const TagDefaultStory = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="${args.themeColor}"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -156,7 +156,7 @@ export const TagPrefixStory = {
 	name: "附加元素",
 	args: {
 		themeColor: 'primary',
-		variable: "filled",
+		variant: "filled",
 		label:'Tag',
 		href: '',
 		prefix: 'SvgAccount',
@@ -177,10 +177,10 @@ export const TagPrefixStory = {
 			<Tag 
 				v-if="showTag"
 				 :themeColor="args.themeColor"
-				 :variable="args.variable"
+				 :variant="args.variant"
 				 :label="args.label"
 				 :href="args.href"
-				 :prefix="args.prefix"
+				 prefix="SvgAccount"
 				 :closable="args.closable"
 				 :isDisabled="args.isDisabled"
 				 :className="args.className"
@@ -192,6 +192,7 @@ export const TagPrefixStory = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'removable' ],
+			exclude: [ 'prefix' ]
 		},
 		docs: {
 			source: {
@@ -201,10 +202,10 @@ export const TagPrefixStory = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="${args.themeColor}"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
-						`  prefix="${args.prefix}"`,
+						`  prefix="SvgAccount"`,
 						`  :closable="${args.closable}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
@@ -218,11 +219,11 @@ export const TagPrefixStory = {
 };
 
 //==== 外觀樣式 ====//
-export const TagVariableStory = {
+export const TagVariantStory = {
 	name: "外觀樣式",
 	args: {
 		themeColor: 'primary',
-		variable: "",
+		variant: "",
 		label:'Primary',
 		href: '',
 		prefix: '',
@@ -244,7 +245,7 @@ export const TagVariableStory = {
 				<Tag
 					v-if="showTag"
 					:themeColor="args.themeColor"
-					variable="filled"
+					variant="filled"
 					:label="args.label"
 					:href="args.href"
 					:prefix="args.prefix"
@@ -256,7 +257,7 @@ export const TagVariableStory = {
 				<Tag
 					v-if="showTag"
 					:themeColor="args.themeColor"
-					variable="ghost"
+					variant="ghost"
 					:label="args.label"
 					:href="args.href"
 					:prefix="args.prefix"
@@ -272,6 +273,7 @@ export const TagVariableStory = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'removable' ],
+			exclude: ['variant']
 		},
 		docs: {
 			source: {
@@ -281,7 +283,7 @@ export const TagVariableStory = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="${args.themeColor}"`,
-						`  variable="filled"`,
+						`  variant="filled"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -293,7 +295,7 @@ export const TagVariableStory = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="${args.themeColor}"`,
-						`  variable="ghost"`,
+						`  variant="ghost"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -313,11 +315,14 @@ export const TagVariableStory = {
 export const TagMultiple = {
 	name: "主題色彩",
 	args: {
-		variable: "filled",
+		// themeColor: 'primary',
+		variant: "filled",
+		// label:'',
+		href: '',
 		prefix: '',
 		closable: true,
 		isDisabled: false,
-		className: ''
+		className:''
 	},
 	render: (args) => ({
 		components: { Tag },
@@ -346,8 +351,9 @@ export const TagMultiple = {
 				<Tag v-for="tag in tagsData"
 				     :key="tag.id"
 					 :themeColor="tag.themeColor"
-				     :variable="args.variable"
+				     :variant="args.variant"
 					 :label="tag.label"
+					 :href="args.href"
 					 :prefix="args.prefix"
 					 :closable="args.closable"
 					 :isDisabled="args.isDisabled"
@@ -362,6 +368,7 @@ export const TagMultiple = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'removable' ],
+			exclude: ['themeColor', 'label'],
 		},
 		docs: {
 			source: {
@@ -371,7 +378,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="primary"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -383,7 +390,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="secondary"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -395,7 +402,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="neutral"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -407,7 +414,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="info"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -419,7 +426,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="success"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -431,7 +438,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="warning"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,
@@ -443,7 +450,7 @@ export const TagMultiple = {
 						'<Tag',
 						`  v-if="showTag"`,
 						`  themeColor="error"`,
-						`  variable="${args.variable}"`,
+						`  variant="${args.variant}"`,
 						`  label="${args.label}"`,
 						`  href="${args.href}"`,
 						`  prefix="${args.prefix}"`,

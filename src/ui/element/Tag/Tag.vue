@@ -19,9 +19,10 @@ const props = defineProps({
 				"error",
 			].includes(value),
 	},
-	variable: {
+	variant: {
 		type: String,
 		validator: (value) => ["filled", "ghost",].includes(value),
+        default: "filled",
 	},
 	label: {
 		type: String,
@@ -65,10 +66,10 @@ const isValidHref = computed(() => {
     <div
 	    :class="[
             'ded-tag',
-            { [`ded-tag-${props.variable}`]: props.variable },
-            { [`ded-tag-${props.variable}-${props.themeColor}`]: props.variable && props.themeColor &&
+            { [`ded-tag-${props.variant}`]: props.variant },
+            { [`ded-tag-${props.variant}-${props.themeColor}`]: props.variant && props.themeColor &&
             !props.isDisabled },
-            { [`ded-tag-${props.variable}-disabled`]: props.isDisabled },
+            { [`ded-tag-${props.variant}-disabled`]: props.isDisabled },
             props.className && props.className.split(' '),
         ]"
     >
