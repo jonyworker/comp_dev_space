@@ -5,7 +5,7 @@ import Button from '@/ui/element/Button/Button.vue';
 import Title from '@/ui/element/Title/Title.vue';
 
 // 定義 Emits
-const emit = defineEmits(['close']);
+const emit = defineEmits(['onClose']);
 
 // 定義 Props
 const props = defineProps({
@@ -21,12 +21,15 @@ const props = defineProps({
                 "warning",
                 "error",
             ].includes(value),
+        default: "primary",
     },
 	title: {
 		type: String,
+        default: "Title",
 	},
 	content: {
 		type: String,
+        default: "Content",
 	},
     prefix: {
         type: String,
@@ -34,7 +37,7 @@ const props = defineProps({
     },
 	duration: {
 		type: Number,
-		default: 3000,
+		default: 1000,
 	},
 	className: {
 		type: String,
@@ -45,7 +48,7 @@ const props = defineProps({
 
 // 控制 關閉
 const handleClose = () => {
-	emit('close');
+	emit('onClose');
 };
 
 // 控制 自動關閉

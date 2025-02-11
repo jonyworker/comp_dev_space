@@ -64,17 +64,16 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		close: {
+		onClose: {
 			description: '關閉事件',
 			table: {
-				category: 'Events',
+				category: 'emits',
 				type: { summary: 'emits' },
 			},
 		},
 		action: {
-			description: "Action slot",
+			description: "操作",
 			control: { type: "text" },
-
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
@@ -98,10 +97,10 @@ export const ToastDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "success",
-		title: "Notification Title ",
+		title: "Notification Title",
 		content: "Content",
 		prefix:'SvgSuccessCircle',
-		duration: 5000,
+		duration: 500,
 		className: "",
 		action: `<div @click="onAction">Action</div>`,
 	},
@@ -122,12 +121,16 @@ export const ToastDefault = {
 			const onAction = () => {
 				window.alert('Action');
 			};
+			// const computedTitle = computed(() => {
+			// 	return args.title ? args.title : "Title";
+			// })
 			return {
 				args,
 				onClose,
 				toastBorderClass,
 				toastHeaderMsgThemeClass,
-				onAction
+				onAction,
+				// computedTitle
 			};
 		},
 		template: `
@@ -172,7 +175,7 @@ export const ToastDefault = {
 						`    :prefix="${args.prefix}"`,
 						`    :duration="${args.duration}"`,
 						`    :className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
@@ -208,9 +211,9 @@ export const ToastDefault = {
 	},
 };
 
-//==== 通知訊息類型 ====//
+//==== 訊息類型 ====//
 export const ToastTotal = {
-	name: "預設項目",
+	name: "訊息類型",
 	args: {
 		title: "Notification Title ",
 		content: "Content",
@@ -347,6 +350,7 @@ export const ToastTotal = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['themeColor','prefix','action', 'onClose'],
 		},
 		docs: {
 			source: {
@@ -362,7 +366,7 @@ export const ToastTotal = {
 						`    prefix="SuccessCircleIcon"`,
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
@@ -386,7 +390,7 @@ export const ToastTotal = {
 						`    prefix="WarningCircleIcon"`,
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
@@ -410,7 +414,7 @@ export const ToastTotal = {
 						`    prefix="ErrorCircleIcon"`,
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
@@ -434,7 +438,7 @@ export const ToastTotal = {
 						`    prefix="InfoCircleIcon"`,
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
@@ -457,7 +461,7 @@ export const ToastTotal = {
 						`    prefix="DisableCircleIcon"`,
 						`    :duration="${args.duration}"`,
 						`    className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
@@ -502,6 +506,7 @@ export const ToastInterAction = {
 		prefix:'SvgSuccessCircle',
 		duration: 5000,
 		className: "",
+		action: `<div @click="onAction">Action</div>`,
 	},
 	render: (args) => ({
 		components: { Toast, Button },
@@ -535,7 +540,7 @@ export const ToastInterAction = {
 				:prefix="args.prefix"
 				:duration="args.duration"
 				:className="args.className"
-				@close="remove(toast.id)"
+				@onClose="remove(toast.id)"
 			>
 				<template #action>
 					<div @click="onAction">Action</div>
@@ -549,6 +554,7 @@ export const ToastInterAction = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude: ['onClose']
 		},
 		docs: {
 			source: {
@@ -565,7 +571,7 @@ export const ToastInterAction = {
 						`    :prefix="${args.prefix}"`,
 						`    :duration="${args.duration}"`,
 						`    :className="${args.className}"`,
-						`    @close="remove(toast.id)"`,
+						`    @onClose="remove(toast.id)"`,
 						`  >`,
 						`    <template #action>`,
 						`       <div>Action</div>`,
