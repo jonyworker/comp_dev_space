@@ -155,7 +155,7 @@ export const AccordionDefault = {
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
-					const { args, h } = storyContext;
+					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						'<Accordion',
