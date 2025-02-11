@@ -62,7 +62,7 @@ const props = defineProps({
         </template>
 
 
-		<div class="status-indicator-text" :class="`status-indicator-text-${props.variant}`">
+		<div :class="`ded-text-${props.size}`">
 			<slot></slot>
 		</div>
 	</div>
