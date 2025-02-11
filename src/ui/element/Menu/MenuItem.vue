@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 定義 Props
@@ -49,13 +50,24 @@ const onItemClick = (event) => {
 const toggleExpand = (item) => {
     emit("toggleExpand", item);
 };
+
+// 展開狀態
+const isExpanded = computed(() => props.expandedItems[props.item.path]);
+
+// 箭頭樣式
+const arrowStyle = computed(() => ({
+    color: props.color,
+    verticalAlign: 'middle',
+    transition: 'transform 0.3s',
+    transform: isExpanded.value ? 'rotate(180deg)' : 'rotate(0deg)'
+}));
 </script>
 
-<script>
-export default {
-    name: "MenuItem"
-};
-</script>
+<!--<script>-->
+<!--export default {-->
+<!--    name: "MenuItem"-->
+<!--};-->
+<!--</script>-->
 
 <template>
 	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.hasDivider }">
@@ -65,7 +77,7 @@ export default {
 			:to="props.useRouter ? props.item.path : undefined"
 			:href="!props.useRouter ? props.item.path : undefined"
 			class="ded-nav-item-link"
-			:style="`color:${props.color}`"
+			:style="{ color: props.color }"
             @click="onItemClick"
 		>
 			<!-- 圖標 -->
@@ -92,12 +104,7 @@ export default {
 				<Icon
 					size="24"
 					name="SvgArrowDown"
-					:style="{
-						color: props.color,
-						verticalAlign: 'middle',
-			            transition: 'transform 0.3s',
-			            transform: props.expandedItems[props.item.path] ? 'rotate(180deg)' : 'rotate(0deg)'
-		            }"
+					:style="arrowStyle"
 				></Icon>
 			</div>
 		</template>
@@ -105,21 +112,21 @@ export default {
 		<!-- 子菜單 -->
 		<ul
 			class="ded-nav-subitem"
-			:class="{ 'expanded': props.expandedItems[props.item.path] }"
+			:class="{ 'expanded': isExpanded }"
 			v-show="
                     !props.isCollapsed &&
                     props.item.children &&
-                    props.expandedItems[props.item.path]
+                    isExpanded
                   "
         >
 			<MenuItem
 				v-for="child in props.item.children"
 				:key="child.path"
 				:item="child"
-				:is-collapsed="props.isCollapsed"
-				:use-router="props.useRouter"
+				:isCollapsed="props.isCollapsed"
+				:useRouter="props.useRouter"
 				:color="props.color"
-				:expanded-items="props.expandedItems"
+				:expandedItems="props.expandedItems"
                 @itemClick="emit('itemClick', $event)"
                 @toggleExpand="emit('toggleExpand', $event)"
 			/>

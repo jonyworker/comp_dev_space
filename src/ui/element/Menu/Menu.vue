@@ -51,7 +51,7 @@ const handleItemClick = ({item, event}) => {
 
 	if (item.children) {
 		event.preventDefault();
-		expandedItems.value[item.path] = !expandedItems.value[item.path];
+        handleToggleExpand(item)
 	} else if (item.path && props.useRouter && router) {
 		router.push(item.path);
 	}
@@ -71,11 +71,11 @@ const handleToggleExpand = (item) => {
                     v-for="item in sortDataSource"
                     :key="item.path"
                     :item="item"
-                    :is-collapsed="props.isCollapsed"
-                    :use-router="props.useRouter"
+                    :isCollapsed="props.isCollapsed"
+                    :useRouter="props.useRouter"
                     :color="props.color"
                     :hasDivider="props.hasDivider"
-                    :expanded-items="expandedItems"
+                    :expandedItems="expandedItems"
                     @itemClick="handleItemClick"
                     @toggleExpand="handleToggleExpand"
                 />
