@@ -31,10 +31,10 @@ export default {
 			description: '關閉文字',
 			control: { type: 'text' },
 		},
-		isChecked: {
-			description: '是否開啟',
-			control: { type: 'boolean' },
-		},
+		// isChecked: {
+		// 	description: '是否開啟',
+		// 	control: { type: 'boolean' },
+		// },
 		isDisabled: {
 			description: '是否禁用',
 			control: { type: 'boolean' },
@@ -43,6 +43,15 @@ export default {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
+		modelValue: {
+			description: "是否開啟",
+			control: { type: 'boolean' },
+			table: {
+				type: { summary: 'boolean' },
+				category: 'v-model',
+				// defaultValue: { summary: '""' },
+			}
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -62,9 +71,9 @@ export const ToggleDefault = {
 		themeColor: 'success',
 		checkLabel: 'on',
 		unCheckLabel: 'off',
-		isChecked: true,
 		isDisabled: false,
 		className: '',
+		modelValue: true,
 	},
 	render: (args) => ({
 		components: { Toggle },
@@ -79,9 +88,9 @@ export const ToggleDefault = {
 					:themeColor="args.themeColor"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className" >
+					:className="args.className" 
+					v-model="args.modelValue">
 				</Toggle>
 			</div>
 			`,
@@ -115,11 +124,12 @@ export const ToggleDefault = {
 export const ToggleColor = {
 	name: '主題色彩',
 	args: {
+		// themeColor: 'success',
 		checkLabel: 'on',
 		unCheckLabel: 'off',
-		isChecked: true,
 		isDisabled: false,
 		className: '',
+		modelValue: true,
 	},
 	render: (args) => ({
 		components: { Toggle },
@@ -134,59 +144,58 @@ export const ToggleColor = {
 					themeColor="primary"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
 				<Toggle
 					themeColor="secondary"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
 				<Toggle
 					themeColor="neutral"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
 				<Toggle
 					themeColor="info"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
 				<Toggle
 					themeColor="success"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
 				<Toggle
 					themeColor="warning"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
 				<Toggle
 					themeColor="error"
 					:checkLabel="args.checkLabel"
 					:unCheckLabel="args.unCheckLabel"
-					:isChecked="args.isChecked"
 					:isDisabled="args.isDisabled"
-					:className="args.className">
+					:className="args.className"
+					v-model="args.modelValue">
 				</Toggle>
-				
 			</div>
 			`,
 	}),
