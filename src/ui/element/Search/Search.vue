@@ -20,13 +20,14 @@ const props = defineProps({
     //             "error",
     //         ].includes(value),
     // },
-	placeholder: {
+    size: {
+        type: String,
+        default: "medium",
+        validator: (value) => ['small', 'medium', 'large'].includes(value),
+    },
+    placeholder: {
 		type: String,
-	},
-	size: {
-		type: String,
-		default: "medium",
-		validator: (value) => ['small', 'medium', 'large'].includes(value),
+        default:"Type something"
 	},
 	isDisabled: {
 		type: Boolean,
@@ -47,13 +48,11 @@ const props = defineProps({
             :placeholder="props.placeholder"
             prefix="SvgSearch"
             :size="props.size"
-            initValue=""
             :isDisabled="props.isDisabled"
             v-model="modelValue"
             className="ded-search-input"
         />
         <Button
-
             variant="filled"
             :size="props.size"
             width="fit"
@@ -67,5 +66,4 @@ const props = defineProps({
 </template>
 
 <style scoped lang="scss">
-
 </style>

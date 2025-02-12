@@ -1,5 +1,4 @@
 import Search from './Search.vue';
-import {ref} from "vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -25,10 +24,6 @@ export default {
 		// 		}
 		// 	}
 		// },
-		placeholder: {
-			description: '輸入提示',
-			control: { type: 'text' },
-		},
 		size: {
 			description: '尺寸',
 			control: { type: 'select' },
@@ -39,6 +34,10 @@ export default {
 				}
 			}
 		},
+		placeholder: {
+			description: '輸入提示',
+			control: { type: 'text' },
+		},
 		isDisabled: {
 			description: '是否禁用',
 			control: { type: 'boolean' },
@@ -47,6 +46,15 @@ export default {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
+		modelValue: {
+			description: "輸入值",
+			control: { type: 'text' },
+			table: {
+				type: { summary: 'string' },
+				category: 'v-model',
+				// defaultValue: { summary: '""' },
+			}
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -67,28 +75,26 @@ export const SearchDefault = {
 	name: "預設項目",
 	args: {
 		// themeColor: 'primary',
-		placeholder:'Placeholder...',
 		size: "medium",
+		placeholder:'Type something',
 		isDisabled: false,
-		className:""
+		className:"",
+		modelValue: "",
 	},
 	render: (args) => ({
 		components: { Search },
 		setup() {
-			const searchInputData = ref("");
 			return {
 				args,
-				searchInputData
 			};
 		},
 		template: `
             <Search
-	            
-	            :placeholder="args.placeholder"
-	            :size="args.size"
-	            :isDisabledd="args.isDisabledd"
+				:size="args.size"
+				:placeholder="args.placeholder"
+	            :isDisabledd="args.isDisabled"
 				:className="args.className"
-	            v-model="searchInputData"
+	            v-model="args.modelValue"
             ></Search>
         `,
 	}),
@@ -104,11 +110,11 @@ export const SearchDefault = {
 					return [
 						`<Search`,
 						// `  themeColor="${args.themeColor}"`,
-						`  placeholder="${args.placeholder}"`,
 						`  size="${args.size}"`,
+						`  placeholder="${args.placeholder}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
-						`  v-model="searchInputData"`,
+						`  v-model="modelValue"`,
 						`></Search>`,
 					].join("\n").trim();
 				}
@@ -117,50 +123,46 @@ export const SearchDefault = {
 	},
 };
 
-//==== 尺寸 ====//
+//==== 元件尺寸 ====//
 export const SearchSize = {
-	name: "尺寸",
+	name: "元件尺寸",
 	args: {
 		// themeColor: 'primary',
-		placeholder:'Placeholder...',
 		size: "",
+		placeholder:"Type something",
 		isDisabled: false,
-		className:""
+		className:"",
+		modelValue: "",
 	},
 	render: (args) => ({
 		components: { Search },
 		setup() {
-			const searchInputData = ref("");
 			return {
 				args,
-				searchInputData
 			};
 		},
 		template: `
 			<div style="display:flex; flex-direction: column; gap: 10px">
 				<Search
-				
-					:placeholder="args.placeholder"
-					size="small"
-					:isDisabled="args.isDisabled"
-					:className="args.className"
-					v-model="searchInputData"
-				></Search>
-				<Search
-				
-					:placeholder="args.placeholder"
-					size="medium"
-					:isDisabled="args.isDisabled"
-					:className="args.className"
-					v-model="searchInputData"
-				></Search>
-				<Search
-					
 					:placeholder="args.placeholder"
 					size="large"
 					:isDisabled="args.isDisabled"
 					:className="args.className"
-					v-model="searchInputData"
+					v-model="modelValue"
+				></Search>
+				<Search
+					:placeholder="args.placeholder"
+					size="medium"
+					:isDisabled="args.isDisabled"
+					:className="args.className"
+					v-model="modelValue"
+				></Search>
+				<Search
+					:placeholder="args.placeholder"
+					size="small"
+					:isDisabled="args.isDisabled"
+					:className="args.className"
+					v-model="modelValue"
 				></Search>
 			</div>
         `,
@@ -177,28 +179,25 @@ export const SearchSize = {
 					const { args } = storyContext;
 					return [
 						`<Search`,
-						// `  :themeColor="${args.themeColor}"`,
-						`  :placeholder="${args.placeholder}"`,
-						`  size="small"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`  v-model="searchInputData"`,
-						`></Search>`,
-						`<Search`,
-						// `  :themeColor="${args.themeColor}"`,
-						`  :placeholder="${args.placeholder}"`,
-						`  size="medium"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`  v-model="searchInputData"`,
-						`></Search>`,
-						`<Search`,
-						// `  :themeColor="${args.themeColor}"`,
 						`  :placeholder="${args.placeholder}"`,
 						`  size="large"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  :className="${args.className}"`,
-						`  v-model="searchInputData"`,
+						`  v-model="modelValue"`,
+						`></Search>`,
+						`<Search`,
+						`  :placeholder="${args.placeholder}"`,
+						`  size="medium"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`  v-model="modelValue"`,
+						`></Search>`,
+						`<Search`,
+						`  :placeholder="${args.placeholder}"`,
+						`  size="small"`,
+						`  :isDisabled="${args.isDisabled}"`,
+						`  :className="${args.className}"`,
+						`  v-model="modelValue"`,
 						`></Search>`,
 					].join("\n").trim();
 				}
