@@ -1,5 +1,4 @@
 import Slider from "./Slider.vue";
-import {ref} from "vue";
 
 export default {
 	title: "Component/Slider",
@@ -36,10 +35,10 @@ export default {
 			description: "步進值",
 			control: { type: "number" },
 		},
-		initValue: {
-			description: "初始值",
-			control: { type: "number" },
-		},
+		// initValue: {
+		// 	description: "初始值",
+		// 	control: { type: "number" },
+		// },
 		label: {
 			description: "單位",
 			control: { type: "text" },
@@ -62,6 +61,15 @@ export default {
 		},
 		updateWidth: {
 			table: { disable: true }
+		},
+		modelValue: {
+			description: "輸入值",
+			control: { type: 'number' },
+			table: {
+				type: { summary: 'number' },
+				category: 'v-model',
+				// defaultValue: { summary: '""' },
+			}
 		}
 	},
 	parameters: {
@@ -83,20 +91,19 @@ export const SliderDefault = {
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: 8,
+		// initValue: 8,
 		label: "℃",
 		isShowRange: true,
 		isShowCurrValue: true,
 		isDisabled: false,
-		className: ''
+		className: '',
+		modelValue: 8
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref(args.initValue || 0);
 			return {
 				args,
-				sliderValue
 			};
 		},
 		template: `
@@ -105,13 +112,12 @@ export const SliderDefault = {
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
-				:initValue="args.initValue"
 				:label="args.label"
 				:isShowRange="args.isShowRange"
 				:isShowCurrValue="args.isShowCurrValue"
 				:isDisabled="args.isDisabled"
-				:className="sliderValue"
-				v-model="sliderValue"
+				:className="args.className"
+				v-model="args.modelValue"
 			></slider>
         `,
 	}),
@@ -130,13 +136,12 @@ export const SliderDefault = {
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
-						`  :initValue="${args.initValue}"`,
 						`  label="${args.label}"`,
 						`  :isShowRange="${args.isShowRange}"`,
 						`  :isShowCurrValue="${args.isShowCurrValue}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
+						`  v-model="modelValue"`,
 						'></slider>',
 					].join('\n').trim();
 				}
@@ -153,19 +158,17 @@ export const SliderCurrent = {
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: 8,
 		label: "℃",
 		isShowRange: false,
 		isDisabled: false,
-		className: ''
+		className: '',
+		modelValue: 8
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref(args.initValue || 0);
 			return {
 				args,
-				sliderValue
 			};
 		},
 		template: `
@@ -174,13 +177,12 @@ export const SliderCurrent = {
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
-				:initValue="args.initValue"
 				:label="args.label"
 				:isShowRange="args.isShowRange"
 				:isShowCurrValue="true"
 				:isDisabled="args.isDisabled"
-				:className="sliderValue"
-				v-model="sliderValue"
+				:className="args.className"
+				v-model="args.modelValue"
 			></slider>
         `,
 	}),
@@ -199,13 +201,12 @@ export const SliderCurrent = {
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
-						`  :initValue="${args.initValue}"`,
 						`  label="${args.label}"`,
 						`  :isShowRange="${args.isShowRange}"`,
 						`  :isShowCurrValue="true"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
+						`  v-model="modelValue"`,
 						'></slider>',
 					].join('\n').trim();
 				}
@@ -222,19 +223,17 @@ export const SliderAround = {
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: 8,
 		label: "℃",
 		isShowCurrValue: false,
 		isDisabled: false,
-		className: ''
+		className: '',
+		modelValue: 8
 	},
 	render: (args) => ({
 		components: { Slider },
 		setup() {
-			const sliderValue = ref(args.initValue || 0);
 			return {
 				args,
-				sliderValue
 			};
 		},
 		template: `
@@ -243,13 +242,12 @@ export const SliderAround = {
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
-				:initValue="args.initValue"
 				:label="args.label"
 				:isShowRange="true"
 				:isShowCurrValue="args.isShowCurrValue"
 				:isDisabled="args.isDisabled"
-				:className="sliderValue"
-				v-model="sliderValue"
+				:className="args.className"
+				v-model="args.modelValue"
 			></slider>
         `,
 	}),
@@ -268,13 +266,12 @@ export const SliderAround = {
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
-						`  :initValue="${args.initValue}"`,
 						`  label="${args.label}"`,
 						`  :isShowRange="true"`,
 						`  :isShowCurrValue="${args.isShowCurrValue}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
+						`  v-model="modelValue"`,
 						'></slider>',
 					].join('\n').trim();
 				}

@@ -2,44 +2,40 @@
 import { ref, watch, onMounted, onBeforeUnmount, useTemplateRef, nextTick, computed } from 'vue';
 
 // 定義 Model
-const modelValue = defineModel()
+const modelValue = defineModel();
 
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		type: String,
-		default: "primary",
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"tertiary",
-				"success",
-				"warning",
-				"error",
-				"info",
-			].includes(value),
-	},
-	min: {
-		type: Number,
-		default: 0,
-	},
-	max: {
-		type: Number,
-		default: 100,
-	},
-	step: {
-		type: Number,
-		default: 1,
-	},
-	initValue: {
-		type: Number,
-		default: 0,
-	},
-	label: {
-		type: String,
-		default: "",
-	},
+    themeColor: {
+        type: String,
+        default: "primary",
+        validator: (value) =>
+            [
+                "primary",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "error",
+                "info",
+            ].includes(value),
+    },
+    min: {
+        type: Number,
+        default: 0,
+    },
+    max: {
+        type: Number,
+        default: 100,
+    },
+    step: {
+        type: Number,
+        default: 1,
+    },
+    label: {
+        type: String,
+        default: "",
+    },
     isShowRange: {
         type: Boolean,
         default: false,
@@ -48,29 +44,19 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-	isDisabled: {
-		type: Boolean,
-		default: false,
-	},
-	className: {
-		type: String,
-		default: "",
-	},
+    isDisabled: {
+        type: Boolean,
+        default: false,
+    },
+    className: {
+        type: String,
+        default: "",
+    },
 });
-
 
 const rangeRef = useTemplateRef("rangeRef");
 const containerRef = useTemplateRef("containerRef");
 const rangeWidth = ref(0);
-
-// 設定值為初始值或是最小值
-const value = ref(
-	modelValue.value !== undefined
-		? modelValue.value
-		: props.initValue !== undefined
-			? props.initValue
-			: props.min
-);
 
 // thumb 位置
 const thumbPosition = ref(0);
@@ -93,54 +79,39 @@ const updateRangeBackground = (val) => {
 };
 
 const tooltipPosition = computed(() => {
-	if (rangeWidth.value === 0) return '0px';
-	const calculatedWidth = rangeWidth.value - thumbWidth;
-	const position = ((value.value - props.min) / (props.max - props.min)) * calculatedWidth;
-	const finalPosition = position + thumbWidth / 2 - tooltipWidth / 2;
-	return `${finalPosition}px`;
+    if (rangeWidth.value === 0) return '0px';
+    const calculatedWidth = rangeWidth.value - thumbWidth;
+    const position = ((modelValue.value - props.min) / (props.max - props.min)) * calculatedWidth;
+    const finalPosition = position + thumbWidth / 2 - tooltipWidth / 2;
+    return `${finalPosition}px`;
 });
 
-
-// thumb 拖動時處裡事件
+// thumb 拖動時處理事件
 const handleChange = (e) => {
     const newValue = parseInt(e.target.value, 10);
-    value.value = newValue;
-
-    updateRangeBackground(newValue);
+    modelValue.value = newValue;
     updateRangeBackground(newValue);
     updateThumbPosition(newValue);
-
-    modelValue.value = newValue;
 };
 
 // 監聽 modelValue 的變更
-watch(() => modelValue.value, (newValue) => {
-    value.value = newValue;
-});
-
-// 監聽 props initValue 的變更
-watch(() => props.initValue, (newValue) => {
-    value.value = newValue;
-});
-
-// 監聽 value 的變更，更新 thumb 位置及 Range 顏色
-watch(value, (newValue) => {
+watch(modelValue, (newValue) => {
     updateRangeBackground(newValue);
     updateThumbPosition(newValue);
 });
 
 // 監聽 min 和 max 變更
 watch([() => props.min, () => props.max], () => {
-	nextTick(() => {
-		updateWidth();
-	});
+    nextTick(() => {
+        updateWidth();
+    });
 });
 
 const updateWidth = () => {
     if (rangeRef.value) {
         rangeWidth.value = rangeRef.value.offsetWidth;
-        updateThumbPosition(value.value);
-        updateRangeBackground(value.value);
+        updateThumbPosition(modelValue.value);
+        updateRangeBackground(modelValue.value);
     }
 };
 
@@ -149,7 +120,6 @@ let resizeObserver = null;
 onMounted(() => {
     nextTick(() => {
         updateWidth();
-        // 創建 ResizeObserver
         resizeObserver = new ResizeObserver(() => {
             updateWidth();
         });
@@ -165,66 +135,60 @@ onBeforeUnmount(() => {
         resizeObserver = null;
     }
 });
+
 defineExpose({ updateWidth });
 </script>
 
 <template>
     <div :class="{
             'ded-slider-container': true,
-             [props.className]: !!props.className,
-             'ded-slider-container-range': props.isShowRange,
-             'ded-slider-container-fluid': !props.isShowRange,
+            [props.className]: !!props.className,
+            'ded-slider-container-range': props.isShowRange,
+            'ded-slider-container-fluid': !props.isShowRange,
         }"
-        ref="containerRef"
+         ref="containerRef"
     >
-	    <div class="ded-slider-wrapper">
-            <!-- min Value -->
+        <div class="ded-slider-wrapper">
             <template v-if="props.isShowRange">
                 <div :class="{
                 'ded-slider-range':true,
                 'ded-slider-range-start': true,
-                'ded-slider-range-disable': props.isDisabled, }"
-                >
-                    {{props.min}}
+                'ded-slider-range-disable': props.isDisabled, }">
+                    {{ props.min }}
                 </div>
             </template>
-
-		    <input
-			    ref="rangeRef"
-			    type="range"
-			    :min="props.min"
-			    :max="props.max"
-			    :step="props.step"
-			    :disabled="props.isDisabled"
-			    @input="handleChange"
-			    v-model="value"
-			    :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
-		    />
-            <!-- max Value -->
+            <input
+                ref="rangeRef"
+                type="range"
+                :min="props.min"
+                :max="props.max"
+                :step="props.step"
+                :disabled="props.isDisabled"
+                @input="handleChange"
+                v-model="modelValue"
+                :class="['ded-slider', props.isDisabled ? 'ded-slider-disable' : `ded-slider-${props.themeColor}`]"
+            />
             <template v-if="props.isShowRange">
                 <div :class="{
                 'ded-slider-range':true,
                 'ded-slider-range-end': true,
-                'ded-slider-range-disable': props.isDisabled, }"
-                >
-                    {{props.max}}
+                'ded-slider-range-disable': props.isDisabled, }">
+                    {{ props.max }}
                 </div>
             </template>
-	    </div>
-        <!-- 提示 -->
+        </div>
         <div
             id="tooltip"
             :class="['ded-slider-tooltip', props.isDisabled ?
-				    'ded-slider-tooltip-disable' :
-	                `ded-slider-tooltip-${props.themeColor}`]"
+                    'ded-slider-tooltip-disable' :
+                    `ded-slider-tooltip-${props.themeColor}`]"
             :style="{ left: tooltipPosition, transform: `translate(-50%)` }"
         >
             <template v-if="props.isShowCurrValue">
                 <div>
-                    {{ value }}<span v-if="props.label">{{ props.label }}</span>
+                    {{ modelValue }}<span v-if="props.label">{{ props.label }}</span>
                 </div>
             </template>
         </div>
-
     </div>
 </template>
