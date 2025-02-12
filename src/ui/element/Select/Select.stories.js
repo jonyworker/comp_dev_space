@@ -51,13 +51,21 @@ export default {
 		},
 		modelValue: {
 			description: "值",
-			control: { type: 'text' },
+			control: {
+				type: 'select',
+				labels: {
+					"": "none",
+					"1": "1",
+					"2": "2",
+					"3": "3",
+				}
+			},
+			options: ["", "1", "2", "3" ],
 			table: {
 				type: { summary: 'string | number' },
 				category: 'v-model',
-				defaultValue: { summary: '""' },
 			}
-		}
+		},
 	},
 	parameters: {
 		// 自動文件
