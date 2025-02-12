@@ -57,10 +57,10 @@ export default {
                 }
             }
         },
-        initValue: {
-            description: "初始值",
-            control: { type: "text" },
-        },
+        // initValue: {
+        //     description: "初始值",
+        //     control: { type: "text" },
+        // },
         maxLimit: {
             description: "最長輸入限制",
             control: { type: "number" },
@@ -89,6 +89,15 @@ export default {
             description: "客製化樣式",
             control: { type: "text" },
         },
+        modelValue: {
+            description: "輸入值",
+            control: { type: 'text' },
+            table: {
+                type: { summary: 'string' },
+                category: 'v-model',
+                // defaultValue: { summary: '""' },
+            }
+        }
     },
     parameters: {
         // 自動文件
@@ -108,14 +117,14 @@ export const InputDefault = {
         label: 'Label',
         type: 'text',
         hasClear: true,
-        placeholder:'Placeholder...',
+        placeholder:'Placeholder',
         prefix: 'SvgAccount',
         size: 'medium',
-        initValue: '',
         maxLimit: Infinity,
         hint: { error: '', description: 'Prompt message' },
         isDisabled: false,
-        className: ''
+        className: '',
+        modelValue:''
     },
     render: (args) => ({
         components: { Input },
@@ -132,18 +141,18 @@ export const InputDefault = {
                 :placeholder="args.placeholder"
                 :prefix="args.prefix"
                 :size="args.size"
-                :initValue="args.initValue"
                 :maxLimit="args.maxLimit"
                 :hint="args.hint"
                 :isDisabled="args.isDisabled"
                 :className="args.className"
+                v-model="args.modelValue"
             />
             `,
     }),
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'initValue', 'maxLimit', 'hint', 'isDisabled','className'],
+            include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'maxLimit', 'hint', 'isDisabled','className','modelValue'],
         },
         docs: {
             source: {
@@ -158,11 +167,11 @@ export const InputDefault = {
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
-                        `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="${dataSourceString}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '/>',
                     ].join('\n').trim();
                 }
@@ -178,13 +187,13 @@ export const InputStatus = {
         label: 'Account',
         type: 'text',
         hasClear: true,
-        placeholder:'Placeholder...',
+        placeholder:'Placeholder',
         prefix: 'SvgAccount',
         size: 'medium',
-        initValue: '',
         maxLimit: Infinity,
         // isDisabled: false,
-        className: ''
+        className: '',
+        modelValue:''
     },
     render: (args) => ({
         components: { Input },
@@ -202,11 +211,11 @@ export const InputStatus = {
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
-                    :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="false"
                     :className="args.className"
+                    v-model="args.modelValue"
                 />
                 <Input
                     label="Password"
@@ -215,11 +224,11 @@ export const InputStatus = {
                     :placeholder="args.placeholder"
                     prefix="SvgLock"
                     :size="args.size"
-                    :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="false"
                     :className="args.className"
+                    v-model="args.modelValue"
                 />
                 <Input
                     :label="args.label"
@@ -228,11 +237,11 @@ export const InputStatus = {
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
-                    :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: 'Error message', description: '' }"
                     :isDisabled="false"
                     :className="args.className"
+                    v-model="args.modelValue"
                 />
                 <Input
                     :label="args.label"
@@ -241,11 +250,11 @@ export const InputStatus = {
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
-                    :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="false"
                     :className="args.className"
+                    v-model="args.modelValue"
                 />
                 <Input
                     :label="args.label"
@@ -254,11 +263,11 @@ export const InputStatus = {
                     :placeholder="args.placeholder"
                     :prefix="args.prefix"
                     :size="args.size"
-                    :initValue="args.initValue"
                     :maxLimit="args.maxLimit"
                     :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="true"
                     :className="args.className"
+                    v-model="args.modelValue"
                 />
             </div>
         `,
@@ -266,7 +275,7 @@ export const InputStatus = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'initValue', 'maxLimit', 'className'],
+            include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
         },
         docs: {
             source: {
@@ -280,11 +289,11 @@ export const InputStatus = {
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
-                        `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="false"`,
                         `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '/>',
                         '<Input',
                         `  label="密碼"`,
@@ -293,11 +302,11 @@ export const InputStatus = {
                         `  placeholder="請輸入密碼"`,
                         `  prefix="lock"`,
                         `  size="${args.size}"`,
-                        `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="false"`,
                         `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '/>',
                         '<Input',
                         `  label="${args.label}"`,
@@ -306,11 +315,11 @@ export const InputStatus = {
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
-                        `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: 'Error message', description: '' }"`,
                         `  :isDisabled="false"`,
                         `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '/>',
                         '<Input',
                         `  label="${args.label}"`,
@@ -319,11 +328,11 @@ export const InputStatus = {
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
-                        `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="false"`,
                         `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '/>',
                         '<Input',
                         `  label="${args.label}"`,
@@ -332,11 +341,11 @@ export const InputStatus = {
                         `  placeholder="${args.placeholder}"`,
                         `  prefix="${args.prefix}"`,
                         `  size="${args.size}"`,
-                        `  initValue="${args.initValue}"`,
                         `  maxLimit="${args.maxLimit}"`,
                         `  :hint="{ error: '', description: 'Prompt message' }"`,
                         `  :isDisabled="true"`,
                         `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
                         '/>',
                     ].join('\n').trim();
                 }
