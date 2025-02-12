@@ -62,14 +62,7 @@
 
     .ded-progress-percent {
         font-size: 14px;
-        color: $primary-default;
-
-        @each $theme in $themes {
-            &-#{$theme} {
-                fill: getThemeColor($theme, 'default');
-                color: getThemeColor($theme, 'default');
-            }
-        }
+        color: $primary-default
     }
 }
 
