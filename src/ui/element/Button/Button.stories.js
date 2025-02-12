@@ -27,10 +27,10 @@ export default {
 			description: "按鈕樣式",
 			required: true,
 			control: { type: "select" },
-			options: ["text", "filled", "ghost", "soft"],
+			options: ["filled", "ghost", "text", "soft"],
 			table: {
 				type: {
-					summary: "text | filled | ghost | soft",
+					summary: "filled | ghost | text | soft",
 				}
 			}
 		},
