@@ -44,6 +44,23 @@ export default {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
+		modelValue: {
+			description: "輸入值",
+			control: {
+				type: 'select',
+				labels: {
+					"": "none",
+					option1: "option1",
+					option2: "option2",
+					option3: "option3",
+				}
+			},
+			options: ["", "option1", "option2", "option3" ],
+			table: {
+				type: { summary: 'string' },
+				category: 'v-model',
+			}
+		},
 	},
 	parameters: {
 		// 自動文件
@@ -75,14 +92,14 @@ export const DropdownDefault = {
 			}
 		],
 		label: "Label",
-		placeholder: "Placeholder...",
+		placeholder: "Placeholder",
 		size: "medium",
-		className: ""
+		className: "",
+		modelValue: ""
 	},
 	render: (args) => ({
 		components: { Dropdown },
 		setup() {
-			// Create a ref for modelValue to be used with v-model
 			return {
 				args,
 			};
@@ -93,8 +110,8 @@ export const DropdownDefault = {
 				:label="args.label"
 				:placeholder="args.placeholder"
 				:size="args.size"
-				:maxHeight="args.maxHeight"
 				:className="args.className"
+				v-model="args.modelValue"
 			>
 			</Dropdown>
             `,
@@ -115,8 +132,8 @@ export const DropdownDefault = {
 						`  :label="${args.label}"`,
 						`  :placeholder="${args.placeholder}"`,
 						`  :size="${args.size}"`,
-						`  :maxHeight="${args.maxHeight}"`,
 						`  :className="${args.className}"`,
+						`  v-model="modelValue"`,
 						'>',
 						'</Dropdown>',
 					].join('\n').trim();
@@ -125,5 +142,3 @@ export const DropdownDefault = {
 		}
 	},
 };
-
-

@@ -20,7 +20,7 @@ const props = defineProps({
 	},
 	placeholder: {
 		type: String,
-		default: "Placeholder...",
+		default: "Placeholder",
 	},
 	size: {
 		type: String,
@@ -34,7 +34,6 @@ const props = defineProps({
 });
 
 // 狀態管理
-const selectValue = ref(""); // 選擇的值
 const isDropdownVisible = ref(false); // 下拉面板顯示控制
 const dropdown = ref(null); // 綁定元素
 const dropdownPosition = ref({}); // 儲存下拉菜單定位樣式
@@ -43,7 +42,7 @@ const placement = "bottom"; // 預設位置方向
 
 // 選擇項目處理
 const handleSelect = (value) => {
-	selectValue.value = value;
+	modelValue.value = value;
 	isDropdownVisible.value = false; // 選擇後關閉下拉菜單
 };
 
@@ -88,7 +87,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-
 	<!-- 標籤 -->
 	<label v-if="props.label" class="ded-input-label">{{ props.label }}</label>
 
@@ -105,9 +103,9 @@ onUnmounted(() => {
 			type="text"
 			:size="props.size"
 			:placeholder="props.placeholder"
-			:initValue="selectValue"
 			:isOpen="isDropdownVisible"
 			className="ded-dropdown-input"
+            v-model="modelValue"
 		/>
 	</div>
 
@@ -121,7 +119,7 @@ onUnmounted(() => {
 			<List
 				:dataSource="props.dataSource"
 				:hasOutline="true"
-				@selectedItem="handleSelect"
+				@onSelect="handleSelect"
 			/>
 		</div>
 	</Teleport>
