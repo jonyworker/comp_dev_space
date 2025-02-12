@@ -1,5 +1,4 @@
 import SliderControl from "./SliderControl.vue";
-import { ref } from "vue";
 
 export default {
 	title: "Component/Slider-Control",
@@ -36,10 +35,10 @@ export default {
 			description: '步進值',
 			control: { type: 'number' },
 		},
-		initValue: {
-			description: '初始值',
-			control: { type: 'number' },
-		},
+		// initValue: {
+		// 	description: '初始值',
+		// 	control: { type: 'number' },
+		// },
 		label: {
 			description: '單位',
 			control: { type: 'text' },
@@ -76,6 +75,15 @@ export default {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
+		modelValue: {
+			description: "輸入值",
+			control: { type: 'number' },
+			table: {
+				type: { summary: 'number' },
+				category: 'v-model',
+				// defaultValue: { summary: '""' },
+			}
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -96,20 +104,18 @@ export const SliderButton = {
 		min: -100,
 		max: 100,
 		step: 1,
-		initValue: 0,
 		label: "℃",
 		prefix: "decrease",
 		suffix: "increase",
 		isDisabled: false,
-		className: ''
+		className: '',
+		modelValue: 8,
 	},
 	render: (args) => ({
 		components: { SliderControl },
 		setup() {
-			const sliderValue = ref(args.initValue || 0);
 			return {
 				args,
-				sliderValue
 			};
 		},
 		template: `
@@ -118,13 +124,12 @@ export const SliderButton = {
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
-				:initValue="args.initValue"
 				:label="args.label"
 				:prefix="args.prefix"
 				:suffix="args.suffix"
 				:isDisabled="args.isDisabled"
 				:className="args.className"
-				v-model="sliderValue"
+				v-model="args.modelValue"
 			></SliderControl>
 		`,
 	}),
@@ -141,13 +146,12 @@ export const SliderButton = {
 						`  :min="${args.min}"`,
 						`  :max="${args.max}"`,
 						`  :step="${args.step}"`,
-						`  :initValue="${args.initValue}"`,
 						`  label="${args.label}"`,
 						`  prefix="${args.prefix}"`,
 						`  suffix="${args.suffix}"`,
 						`  :isDisabled="${args.isDisabled}"`,
 						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
+						`  v-model="modelValue"`,
 						'></SliderControl>',
 					].join('\n').trim();
 				}
@@ -157,228 +161,228 @@ export const SliderButton = {
 };
 
 //==== 主題色彩 ====//
-export const SliderButtonColors = {
-	name: "主題色彩",
-	args: {
-		themeColor: "primary",
-		min: -100,
-		max: 100,
-		step: 1,
-		label: "℃",
-		prefix: "decrease",
-		suffix: "increase",
-		isDisabled: false,
-		className: '',
-	},
-	render: (args) => ({
-		components: { SliderControl },
-		setup() {
-			return {
-				args,
-			};
-		},
-		template: `
-			<div style="display:flex; flex-direction: column;">
-				<SliderControl
-					themeColor="primary"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="40"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-				<SliderControl
-					themeColor="secondary"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="50"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-				<SliderControl
-					themeColor="neutral"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="60"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-				<SliderControl
-					themeColor="info"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="70"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-				<SliderControl
-					themeColor="success"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="80"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-				<SliderControl
-					themeColor="warning"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="90"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-				<SliderControl
-					themeColor="error"
-					:prefix="args.prefix"
-					:suffix="args.suffix"
-					:isDisabled="args.isDisabled"
-					:min="args.min"
-					:max="args.max"
-					:step="args.step"
-					:initValue="100"
-					:label="args.label"
-					:className="args.className"
-					v-model="sliderValue"
-				></SliderControl>
-			</div>
-        `,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			// include: ['themeColor', 'label', 'value', 'name' ],
-			// exclude:['range']
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<SliderControl',
-						`  themeColor="primary"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="40"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-						'<SliderControl',
-						`  themeColor="secondary"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="50"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-						'<SliderControl',
-						`  themeColor="neutral"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="60"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-						'<SliderControl',
-						`  themeColor="info"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="70"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-						'<SliderControl',
-						`  themeColor="success"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="80"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-						'<SliderControl',
-						`  themeColor="warning"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="90"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-						'<SliderControl',
-						`  themeColor="error"`,
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  :initValue="100"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="sliderValue"`,
-						'></SliderControl>',
-
-					].join('\n').trim();
-				}
-			}
-		}
-	},
-};
+// export const SliderButtonColors = {
+// 	name: "主題色彩",
+// 	args: {
+// 		themeColor: "primary",
+// 		min: -100,
+// 		max: 100,
+// 		step: 1,
+// 		label: "℃",
+// 		prefix: "decrease",
+// 		suffix: "increase",
+// 		isDisabled: false,
+// 		className: '',
+// 	},
+// 	render: (args) => ({
+// 		components: { SliderControl },
+// 		setup() {
+// 			return {
+// 				args,
+// 			};
+// 		},
+// 		template: `
+// 			<div style="display:flex; flex-direction: column;">
+// 				<SliderControl
+// 					themeColor="primary"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="40"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 				<SliderControl
+// 					themeColor="secondary"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="50"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 				<SliderControl
+// 					themeColor="neutral"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="60"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 				<SliderControl
+// 					themeColor="info"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="70"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 				<SliderControl
+// 					themeColor="success"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="80"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 				<SliderControl
+// 					themeColor="warning"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="90"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 				<SliderControl
+// 					themeColor="error"
+// 					:prefix="args.prefix"
+// 					:suffix="args.suffix"
+// 					:isDisabled="args.isDisabled"
+// 					:min="args.min"
+// 					:max="args.max"
+// 					:step="args.step"
+// 					:initValue="100"
+// 					:label="args.label"
+// 					:className="args.className"
+// 					v-model="sliderValue"
+// 				></SliderControl>
+// 			</div>
+//         `,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			// include: ['themeColor', 'label', 'value', 'name' ],
+// 			// exclude:['range']
+// 		},
+// 		docs: {
+// 			source: {
+// 				transform: (src, storyContext) => {
+// 					const { args } = storyContext;
+// 					return [
+// 						'<SliderControl',
+// 						`  themeColor="primary"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="40"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+// 						'<SliderControl',
+// 						`  themeColor="secondary"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="50"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+// 						'<SliderControl',
+// 						`  themeColor="neutral"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="60"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+// 						'<SliderControl',
+// 						`  themeColor="info"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="70"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+// 						'<SliderControl',
+// 						`  themeColor="success"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="80"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+// 						'<SliderControl',
+// 						`  themeColor="warning"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="90"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+// 						'<SliderControl',
+// 						`  themeColor="error"`,
+// 						`  :min="${args.min}"`,
+// 						`  :max="${args.max}"`,
+// 						`  :step="${args.step}"`,
+// 						`  :initValue="100"`,
+// 						`  label="${args.label}"`,
+// 						`  prefix="${args.prefix}"`,
+// 						`  suffix="${args.suffix}"`,
+// 						`  :isDisabled="${args.isDisabled}"`,
+// 						`  className="${args.className}"`,
+// 						`  v-model="sliderValue"`,
+// 						'></SliderControl>',
+//
+// 					].join('\n').trim();
+// 				}
+// 			}
+// 		}
+// 	},
+// };
