@@ -1,5 +1,4 @@
 import Checkbox from "./Checkbox.vue";
-import { ref } from "vue";
 function formatDataSource(dataSource) {
     return `[
     ${dataSource.map(item => `{
@@ -42,15 +41,15 @@ export default {
                 }
             }
         },
-        initValue: {
-            description: "選中的項目",
-            control: { type: "object" },
-            table: {
-                type: {
-                    summary: "string[]"
-                }
-            }
-        },
+        // initValue: {
+        //     description: "選中的項目",
+        //     control: { type: "object" },
+        //     table: {
+        //         type: {
+        //             summary: "string[]"
+        //         }
+        //     }
+        // },
         direction: {
             description: "排列方向",
             control: { type: "select" },
@@ -75,6 +74,15 @@ export default {
             description: "客製化樣式",
             control: { type: "text" },
         },
+        modelValue: {
+            description: "選中的項目",
+            control: { type: 'object' },
+            table: {
+                type: { summary: 'string[]' },
+                category: 'v-model',
+                // defaultValue: { summary: 'string[]' },
+            }
+        }
     },
     parameters: {
         // 自動文件
@@ -108,28 +116,25 @@ export const CheckboxMultiStory = {
                 "isDisabled": true
             }
         ],
-        initValue: ["option1", "option3"],
         direction: "row",
         size: "medium",
         className: "",
+        modelValue: ["option1", "option3"],
     },
     render: (args) => ({
         components: { Checkbox },
         setup() {
-            const checkedCheckboxOptions = ref([]);
             return {
                 args,
-                checkedCheckboxOptions,
             };
         },
         template: `
             <Checkbox
-                :themeColor="args.themeColor"
                 :dataSource="args.dataSource"
-                :initValue="args.initValue"
                 :direction="args.direction"
                 :size="args.size"
                 :className="args.className"
+                v-model="args.modelValue"
             ></Checkbox>
         `,
     }),
@@ -145,13 +150,11 @@ export const CheckboxMultiStory = {
                     const dataSourceString = formatDataSource(args.dataSource);
                     return [
                         '<Checkbox',
-                        `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  direction="${args.direction}"`,
                         `  size="${args.size}"`,
                         `  className="${args.className}"`,
-                        '  v-model="vModelData">',
+                        '  v-model="modelValue">',
                         '</Checkbox>',
                     ].join('\n').trim();
                 }
@@ -181,27 +184,25 @@ export const CheckboxColumnDirection = {
                 "isDisabled": false
             }
         ],
-        initValue: ["option4", "option6"],
         // direction: "column",
         size: "medium",
         className: "",
+        modelValue: ["option4", "option6"],
     },
     render: (args) => ({
         components: { Checkbox },
         setup() {
-            const checkedCheckboxOptions = ref([]);
             return {
                 args,
-                checkedCheckboxOptions,
             };
         },
         template: `
             <Checkbox
                 :dataSource="args.dataSource"
-                :initValue="args.initValue"
                 direction="column"
                 :size="args.size"
                 :className="args.className"
+                v-model="args.modelValue"
             ></Checkbox>
         `,
     }),
@@ -219,11 +220,10 @@ export const CheckboxColumnDirection = {
                     return [
                         '<Checkbox',
                         `  :dataSource="${dataSourceString}"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  direction="column"`,
                         `  size="${args.size}"`,
                         `  className="${args.className}"`,
-                        '  v-model="vModelData">',
+                        '  v-model="modelValue">',
                         '</Checkbox>',
                     ].join('\n').trim();
                 }
@@ -253,27 +253,25 @@ export const CheckboxRowDirection = {
                 "isDisabled": false
             }
         ],
-        initValue: ["option7", "option9"],
         // direction: "column",
         size: "medium",
         className: "",
+        modelValue: ["option7", "option9"],
     },
     render: (args) => ({
         components: { Checkbox },
         setup() {
-            const checkedCheckboxOptions = ref([]);
             return {
                 args,
-                checkedCheckboxOptions,
             };
         },
         template: `
             <Checkbox
                 :dataSource="args.dataSource"
-                :initValue="args.initValue"
                 direction="row"
                 :size="args.size"
                 :className="args.className"
+                v-model="args.modelValue"
             ></Checkbox>
         `,
     }),
@@ -291,11 +289,10 @@ export const CheckboxRowDirection = {
                     return [
                         '<Checkbox',
                         `  :dataSource="${dataSourceString}"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  direction="column"`,
                         `  size="${args.size}"`,
                         `  className="${args.className}"`,
-                        '  v-model="vModelData">',
+                        '  v-model="modelValue">',
                         '</Checkbox>',
                     ].join('\n').trim();
                 }
@@ -322,21 +319,19 @@ export const CheckboxSizeStory = {
             {
                 "label": "Option3",
                 "value": "option12",
-                "isDisabled": true
+                "isDisabled": false
             }
         ],
-        initValue: ["option10", "option12"],
         direction: "row",
         size: "medium",
         className: "",
+        modelValue: ["option10", "option12"],
     },
     render: (args) => ({
         components: { Checkbox },
         setup() {
-            const checkedCheckboxOptions = ref([]);
             return {
                 args,
-                checkedCheckboxOptions,
             };
         },
         template: `
@@ -344,26 +339,26 @@ export const CheckboxSizeStory = {
                 <Checkbox
                     :themeColor="args.themeColor"
                     :dataSource="args.dataSource"
-                    :initValue="args.initValue"
                     :direction="args.direction"
                     size="large"
                     :className="args.className"
+                    v-model="args.modelValue"
                 ></Checkbox>
                 <Checkbox
                     :themeColor="args.themeColor"
                     :dataSource="args.dataSource"
-                    :initValue="args.initValue"
                     :direction="args.direction"
                     size="medium"
                     :className="args.className"
+                    v-model="args.modelValue"
                 ></Checkbox>
                 <Checkbox
                     :themeColor="args.themeColor"
                     :dataSource="args.dataSource"
-                    :initValue="args.initValue"
                     :direction="args.direction"
                     size="small"
                     :className="args.className"
+                    v-model="args.modelValue"
                 ></Checkbox>
             </div>
             
@@ -384,29 +379,26 @@ export const CheckboxSizeStory = {
                         '<Checkbox',
                         `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  direction="${args.direction}"`,
                         `  size="large"`,
                         `  className="${args.className}"`,
-                        '  v-model="vModelData">',
+                        '  v-model="modelValue">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  direction="${args.direction}"`,
                         `  size="medium"`,
                         `  className="${args.className}"`,
-                        '  v-model="vModelData">',
+                        '  v-model="modelValue">',
                         '</Checkbox>',
                         '<Checkbox',
                         `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
-                        `  :initValue="[${args.initValue}]"`,
                         `  direction="${args.direction}"`,
                         `  size="small"`,
                         `  className="${args.className}"`,
-                        '  v-model="vModelData">',
+                        '  v-model="modelValue">',
                         '</Checkbox>',
                     ].join('\n').trim();
                 }
