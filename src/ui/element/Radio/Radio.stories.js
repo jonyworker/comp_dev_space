@@ -1,5 +1,4 @@
 import Radio from "./Radio.vue";
-import { ref } from "vue";
 function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
@@ -52,10 +51,10 @@ export default {
 				}
 			}
 		},
-		initValue: {
-			description: "預設值",
-			control: { type: "text" },
-		},
+		// initValue: {
+		// 	description: "預設值",
+		// 	control: { type: "text" },
+		// },
 		size: {
 			description: "尺寸",
 			control: { type: "select" },
@@ -70,6 +69,15 @@ export default {
 			description: '客製化樣式',
 			control: { type: 'text' },
 		},
+		modelValue: {
+			description: "選中的項目",
+			control: { type: 'text' },
+			table: {
+				type: { summary: 'string' },
+				category: 'v-model',
+				// defaultValue: { summary: 'string[]' },
+			}
+		}
 	},
 	parameters: {
 		// 自動文件
@@ -105,34 +113,31 @@ export const RadioDefaultStory = {
 			}
 		],
 		direction: "row",
-		initValue: "option1",
 		size: "medium",
 		className: "",
+		modelValue: "option1"
 	},
 	render: (args) => ({
 		components: { Radio },
 		setup() {
-			const modelValue = ref("");
 			return {
 				args,
-				modelValue,
 			};
 		},
 		template: `
             <Radio
                 :dataSource="args.dataSource"
                 :direction="args.direction"
-                :initValue="args.initValue"
 				:size="args.size"
                 :className="args.className"
-                v-model="modelValue">
+                v-model="args.modelValue">
             </Radio>
         `,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			expanded: true,
+			// expanded: true,
 			// include: ['themeColor', 'label', 'value', 'name' ],
 		},
 		docs: {
@@ -144,7 +149,6 @@ export const RadioDefaultStory = {
 						'<Radio',
 						`  :dataSource="${dataSourceString}"`,
 						`  direction="${args.direction}"`,
-						`  initValue="${args.initValue}"`,
 						`  size="${args.size}"`,
 						`  className="${args.className}"`,
 						`  v-model="modelValue"`,
@@ -179,27 +183,24 @@ export const RadioVerticalStory = {
 			}
 		],
 		direction: "column",
-		initValue: "option1",
 		size: "medium",
 		className: "",
+		modelValue: "option1"
 	},
 	render: (args) => ({
 		components: { Radio },
 		setup() {
-			const modelValue = ref("");
 			return {
 				args,
-				modelValue,
 			};
 		},
 		template: `
             <Radio
                 :dataSource="args.dataSource"
                 :direction="args.direction"
-                :initValue="args.initValue"
 				:size="args.size"
                 :className="args.className"
-                v-model="modelValue">
+                v-model="args.modelValue">
             </Radio>
         `,
 	}),
@@ -219,7 +220,6 @@ export const RadioVerticalStory = {
 						'<Radio',
 						`  :dataSource="${dataSourceString}"`,
 						`  direction="${args.direction}"`,
-						`  initValue="${args.initValue}"`,
 						`  size="${args.size}"`,
 						`  className="${args.className}"`,
 						`  v-model="modelValue"`,
@@ -254,27 +254,24 @@ export const RadioRowStory = {
 			}
 		],
 		direction: "row",
-		initValue: "option1",
 		size: "medium",
 		className: "",
+		modelValue: "option1"
 	},
 	render: (args) => ({
 		components: { Radio },
 		setup() {
-			const modelValue = ref("");
 			return {
 				args,
-				modelValue,
 			};
 		},
 		template: `
 			<Radio
 				:dataSource="args.dataSource"
 				:direction="args.direction"
-				:initValue="args.initValue"
 				:size="args.size"
 				:className="args.className"
-				v-model="modelValue">
+				v-model="args.modelValue">
 			</Radio>
 		`,
 	}),
@@ -294,7 +291,6 @@ export const RadioRowStory = {
 						'<Radio',
 						`  :dataSource="${dataSourceString}"`,
 						`  direction="${args.direction}"`,
-						`  initValue="${args.initValue}"`,
 						`  size="${args.size}"`,
 						`  className="${args.className}"`,
 						`  v-model="modelValue"`,
@@ -329,17 +325,15 @@ export const RadioSizeStory = {
 			}
 		],
 		direction: "row",
-		initValue: "option1",
 		// size: "medium",
 		className: "",
+		modelValue: "option1"
 	},
 	render: (args) => ({
 		components: { Radio },
 		setup() {
-			const modelValue = ref("");
 			return {
-				args,
-				modelValue,
+				args
 			};
 		},
 		template: `
@@ -347,29 +341,25 @@ export const RadioSizeStory = {
 				<Radio
 					:dataSource="args.dataSource"
 					:direction="args.direction"
-					:initValue="args.initValue"
 					size="large"
 					:className="args.className"
-					v-model="modelValue">
+					v-model="args.modelValue">
 				</Radio>
 				<Radio
 					:dataSource="args.dataSource"
 					:direction="args.direction"
-					:initValue="args.initValue"
 					size="medium"
 					:className="args.className"
-					v-model="modelValue">
+					v-model="args.modelValue">
 				</Radio>
 				<Radio
 					:dataSource="args.dataSource"
 					:direction="args.direction"
-					:initValue="args.initValue"
 					size="small"
 					:className="args.className"
-					v-model="modelValue">
+					v-model="args.modelValue">
 				</Radio>
 			</div>
-			
 		`,
 	}),
 	// 控制 controls 中能控制的參數
@@ -388,7 +378,6 @@ export const RadioSizeStory = {
 						'<Radio',
 						`  :dataSource="${dataSourceString}"`,
 						`  direction="${args.direction}"`,
-						`  initValue="${args.initValue}"`,
 						`  size="large"`,
 						`  className="${args.className}"`,
 						`  v-model="modelValue"`,
@@ -396,7 +385,6 @@ export const RadioSizeStory = {
 						'<Radio',
 						`  :dataSource="${dataSourceString}"`,
 						`  direction="${args.direction}"`,
-						`  initValue="${args.initValue}"`,
 						`  size="medium"`,
 						`  className="${args.className}"`,
 						`  v-model="modelValue"`,
@@ -404,7 +392,6 @@ export const RadioSizeStory = {
 						'<Radio',
 						`  :dataSource="${dataSourceString}"`,
 						`  direction="${args.direction}"`,
-						`  initValue="${args.initValue}"`,
 						`  size="small"`,
 						`  className="${args.className}"`,
 						`  v-model="modelValue"`,
@@ -415,8 +402,6 @@ export const RadioSizeStory = {
 		}
 	},
 };
-
-
 
 // // ==== 主題色彩 ==== //
 // export const RadioColorDefault = {
