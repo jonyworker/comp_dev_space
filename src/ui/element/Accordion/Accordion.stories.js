@@ -10,7 +10,7 @@ function formatDataSource(dataSource) {
 		`"()=>(h(${JSON.stringify(item.label()?.type.__name)}, ${JSON.stringify(item.label()?.props || {})}, ${JSON.stringify(item.label()?.children || '')})"`
 		: `"${item.label}"`},
 		detail: ${typeof item.detail === "function" ?
-			`"() => [\n${item.detail().map(vnode =>
+			`"() => [\n${item.detail().map( vnode =>
 				`  h(${typeof vnode.type === 'string' ? `"${vnode.type}"` : vnode.type.__name || '"AnonymousComponent"'}, ` +
 				`${JSON.stringify(vnode.props || {})}, ` +
 				`${Array.isArray(vnode.children) ? `[\n    ${vnode.children.map(child =>
@@ -24,7 +24,7 @@ function formatDataSource(dataSource) {
 const dataSource = [
 	{
 		id: "1",
-		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What is Vue?"),
+		label: () => h(Title, { themeColor: 'primary' }, "What is Vue?"),
 		detail: () => [
 			h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
 			h(Button, {
@@ -43,26 +43,47 @@ const dataSource = [
 	},
 	{
 		id: "2",
-		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What are the features of Vue?"),
+		label: () => h(Title, { themeColor: 'primary' }, "What are the features of Vue?"),
 		detail: () => [
 			h('p', {}, "The features of Vue include reactive data binding, component-based architecture, directives, and a virtual DOM."),
 		],
 	},
 	{
 		id: "3",
-		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What is included in the Vue ecosystem?"),
+		label: () => h(Title, { themeColor: 'primary' }, "What is included in the Vue ecosystem?"),
 		detail: () => [
 			h('p', {}, "The Vue ecosystem includes tools like Vue Router (for routing), Pinia (for state management), and Vite (for fast and modern development)."),
 		],
 	},
 	{
 		id: "4",
-		label: () => h(Title, { level: 0, themeColor: 'primary' }, "What are the advantages of using Vue?"),
+		label: () => h(Title, { themeColor: 'primary' }, "What are the advantages of using Vue?"),
 		detail: () => [
 			h('p', {}, "The advantages of using Vue include a gentle learning curve, high flexibility, small size, and comprehensive documentation, making it easy for developers to gradually adopt and integrate into existing projects."),
 		],
 	},
 ]
+const oneRecord = [
+	{
+		id: '1',
+		label: () => h(Title, { themeColor: 'primary' }, "What is Vue?"),
+		detail: () => [
+			h('p', {}, "Vue is a progressive JavaScript framework for building user interfaces."),
+			h(Button, {
+				themeColor: 'primary',
+				variant: 'soft',
+				suffix: 'SvgArrowDown',
+				size: 'small',
+				width: 'fit',
+				borderWidth: 'sm',
+				radius: 'sm',
+				onClick: () => {
+					alert('Button clicked!');
+				}
+			}, 'Button')
+		],
+	},
+];
 
 export default {
 	title: "Component/Accordion",
@@ -177,7 +198,7 @@ export const AccordionDefault = {
 export const AccordionBorderStyle = {
 	name: "邊框樣式",
 	args: {
-		dataSource: dataSource,
+		dataSource: oneRecord,
 		prefix:"SvgInfo",
 		borderStyle:"solid",
 		isSmallSize: false,
@@ -192,19 +213,30 @@ export const AccordionBorderStyle = {
 			};
 		},
 		template: `
-            <Accordion
-                :dataSource="args.dataSource"
-                :prefix="args.prefix"
-                :borderStyle="args.borderStyle"
-                :isSmallSize="args.isSmallSize"
-                :isOpenAll="args.isOpenAll"
-                :className="args.className"
-            ></Accordion>
+			<div style="display:flex; flex-direction: column; gap: 16px">
+				<Accordion
+					:dataSource="args.dataSource"
+					:prefix="args.prefix"
+					borderStyle="highlight"
+					:isSmallSize="args.isSmallSize"
+					:isOpenAll="args.isOpenAll"
+					:className="args.className"
+				></Accordion>
+				<Accordion
+					:dataSource="args.dataSource"
+					:prefix="args.prefix"
+					borderStyle="solid"
+					:isSmallSize="args.isSmallSize"
+					:isOpenAll="args.isOpenAll"
+					:className="args.className"
+				></Accordion>
+			</div>
         `,
 	}),
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['borderStyle']
 		},
 		docs: {
 			source: {
@@ -215,7 +247,15 @@ export const AccordionBorderStyle = {
 						'<Accordion',
 						`  :dataSource='${dataSourceString}'`,
 						`  prefix='${args.prefix}'`,
-						`  borderStyle='${args.borderStyle}'`,
+						`  borderStyle='highlight'`,
+						`  :isSmallSize='${args.isSmallSize}'`,
+						`  :isOpenAll='${args.isOpenAll}'`,
+						`  className="${args.className}"`,
+						'></Accordion>',
+						'<Accordion',
+						`  :dataSource='${dataSourceString}'`,
+						`  prefix='${args.prefix}'`,
+						`  borderStyle='solid'`,
 						`  :isSmallSize='${args.isSmallSize}'`,
 						`  :isOpenAll='${args.isOpenAll}'`,
 						`  className="${args.className}"`,
@@ -227,11 +267,11 @@ export const AccordionBorderStyle = {
 	},
 };
 
-//==== 小尺寸 ====//
-export const AccordionSmall = {
-	name: "小尺寸",
+//==== 元件尺寸 ====//
+export const AccordionSizeStory = {
+	name: "元件尺寸",
 	args: {
-		dataSource: dataSource,
+		dataSource: oneRecord,
 		prefix:"SvgInfo",
 		borderStyle:"solid",
 		isSmallSize: true,
@@ -246,19 +286,30 @@ export const AccordionSmall = {
 			};
 		},
 		template: `
-            <Accordion
-                :dataSource="args.dataSource"
-                :prefix="args.prefix"
-                :borderStyle="args.borderStyle"
-                :isSmallSize="args.isSmallSize"
-                :isOpenAll="args.isOpenAll"
-                :className="args.className"
-            ></Accordion>
+			<div style="display:flex; flex-direction: column; gap: 16px">
+				<Accordion
+					:dataSource="args.dataSource"
+					:prefix="args.prefix"
+					:borderStyle="args.borderStyle"
+					:isSmallSize="false"
+					:isOpenAll="args.isOpenAll"
+					:className="args.className"
+				></Accordion>
+				<Accordion
+					:dataSource="args.dataSource"
+					:prefix="args.prefix"
+					:borderStyle="args.borderStyle"
+					:isSmallSize="true"
+					:isOpenAll="args.isOpenAll"
+					:className="args.className"
+				></Accordion>
+			</div>
         `,
 	}),
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
+			exclude:['isSmallSize']
 		},
 		docs: {
 			source: {
@@ -270,7 +321,15 @@ export const AccordionSmall = {
 						`  :dataSource='${dataSourceString}'`,
 						`  prefix='${args.prefix}'`,
 						`  borderStyle='${args.borderStyle}'`,
-						`  :isSmallSize='${args.isSmallSize}'`,
+						`  :isSmallSize='false'`,
+						`  :isOpenAll='${args.isOpenAll}'`,
+						`  className="${args.className}"`,
+						'></Accordion>',
+						'<Accordion',
+						`  :dataSource='${dataSourceString}'`,
+						`  prefix='${args.prefix}'`,
+						`  borderStyle='${args.borderStyle}'`,
+						`  :isSmallSize='true'`,
 						`  :isOpenAll='${args.isOpenAll}'`,
 						`  className="${args.className}"`,
 						'></Accordion>',
