@@ -202,6 +202,9 @@ export const DialogDemo = {
 		hasClose: true,
 		modelIsOpen: false,
 		className: '',
+		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
+		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
+		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
@@ -230,7 +233,7 @@ export const DialogDemo = {
 		template: `
 			<Dialog
 				:hasClose="args.hasClose"
-				className=""
+				:className="args.className"
 				v-model="args.modelIsOpen"
 			>
 				<template #header>
@@ -269,7 +272,7 @@ export const DialogDemo = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude:[ 'header', 'content', 'footer' ]
+			// exclude:[ 'header', 'content', 'footer' ]
 		},
 		docs: {
 			source: {
