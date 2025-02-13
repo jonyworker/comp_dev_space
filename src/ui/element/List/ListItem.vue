@@ -24,6 +24,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
     className: {
         type: String,
     },
@@ -55,6 +59,7 @@ const handleClick = (event) => {
         :class="{
 			'ded-list-item': true,
 			'ded-list-item-side': props.hasDivider,
+			'ded-list-item-disabled': props.isDisabled,
 			[props.className]: !!props.className
 		}"
         @click="handleClick">

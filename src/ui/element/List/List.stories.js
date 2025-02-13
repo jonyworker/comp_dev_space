@@ -4,31 +4,43 @@ import ListItem from "@/ui/element/List/ListItem.vue";
 function formatDataSource(dataSource) {
 	return `[
 	    ${dataSource.map(item => `{
-	        label: '${item.label}',
-	        value: '${item.value}',
-	        href: '${item.href}',
-	        prefix: '${item.prefix}',
+	        content: {
+	            label: '${item.content.label}',
+		        value: '${item.content.value}',
+		        href: '${item.content.href}',
+		        prefix: '${item.content.prefix}',
+	        },
+	        isDisabled: '${item.isDisabled}',
 	    }`).join(',\n    ')}
 	]`;
 }
 const dataSource = [
 	{
-		"label": "Option1",
-		"value": "option1",
-		"href": "",
-		"prefix": "SvgAccount"
+		content: {
+			"label": "Option1",
+			"value": "option1",
+			"href": "",
+			"prefix": "SvgAccount"
+		},
+		isDisabled: true,
 	},
 	{
-		"label": "Option2",
-		"value": "option2",
-		"href": "#",
-		"prefix": "SvgAccount"
+		content: {
+			"label": "Option2",
+			"value": "option2",
+			"href": "#",
+			"prefix": "SvgAccount"
+		},
+		isDisabled: false,
 	},
 	{
-		"label": "Option3",
-		"value": "option3",
-		"href": "#",
-		"prefix": "SvgAccount"
+		content: {
+			"label": "Option3",
+			"value": "option3",
+			"href": "#",
+			"prefix": "SvgAccount"
+		},
+		isDisabled: false,
 	},
 ]
 
@@ -43,7 +55,7 @@ export default {
 			control: { type: 'object' },
 			table: {
 				type: {
-					summary: '{ label: string; value: string; href: string; prefix: string;}[]',
+					summary: '{ content: {label: string; value: string; href: string; prefix: string;}, isDisabled: boolean }[]',
 				}
 			}
 		},

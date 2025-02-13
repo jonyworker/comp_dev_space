@@ -40,11 +40,12 @@ const handleItemClick = (value) => {
             <ListItem
                 v-for="(item, index) in props.dataSource"
                 :key="index"
-                :label="item.label"
-                :value="item.value"
-                :href="item.href"
-                :prefix="item.prefix"
+                :label="item.content.label"
+                :value="item.content.value"
+                :href="item.content.href"
+                :prefix="item.content.prefix"
                 :hasDivider="props.hasDivider"
+                :isDisabled="item.isDisabled"
                 :openInNewTab="true"
                 @selectedItem="handleItemClick"
             ></ListItem>
