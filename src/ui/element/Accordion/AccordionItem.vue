@@ -81,9 +81,11 @@ onBeforeUnmount(() => {
 			<summary class="ded-accordion-title" :class="props.isSmallSize ?
 					'ded-accordion-title-small':'ded-accordion-title-default'">
 				<span  class="ded-accordion-title-content">
-					<span  class="ded-accordion-title-icon">
-						<Icon :name="props.prefix"></Icon>
-					</span >
+                    <template v-if="props.prefix">
+                        <span  class="ded-accordion-title-icon">
+                            <Icon :name="props.prefix"></Icon>
+                        </span >
+                    </template>
 					<span :class="props.isSmallSize ?
 					'ded-accordion-title-content-small':'ded-accordion-title-content-default'">
 						<slot name="label"></slot>

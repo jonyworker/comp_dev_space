@@ -100,8 +100,23 @@ export default {
 			}
 		},
 		prefix: {
-			description:"前置元素",
-			control: { type: 'text' },
+			description: "前置元素",
+			control: {
+				type: "select",
+				labels: {
+					"": "none",
+					primary: "SvgInfo",
+				}
+			},
+			options: ["", "SvgInfo" ],
+			table: {
+				type: {
+					summary: "string"
+				},
+				// defaultValue: {
+				// 	summary: "none"
+				// }
+			}
 		},
 		borderStyle: {
 			description: "邊框樣式",
