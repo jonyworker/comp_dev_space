@@ -416,8 +416,8 @@ export const DividerColumnDirection = {
 		width:"1px",
 		type: "solid",
 		// direction: "horizontal",
-		align: "center",
-		default: "vertical",
+		// align: "center",
+		// default: "vertical",
 		className: "",
 	},
 	render: (args) => ({
@@ -429,31 +429,31 @@ export const DividerColumnDirection = {
 			};
 		},
 		template: `
-			<div style="display:flex; gap: 16px; height: 100px">
+			<div style="display:flex; height: 100px">
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
 					direction="vertical"
-					:align="args.align"
+					align="start"
 					:className="args.className"
-				></Divider>
+				>start</Divider>
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
 					direction="vertical"
-					:align="args.align"
+					align="center"
 					:className="args.className"
-				>{{ args.default }}</Divider>
+				>center</Divider>
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
 					:type="args.type"
 					direction="vertical"
-					:align="args.align"
+					align="end"
 					:className="args.className"
-				></Divider>
+				>end</Divider>
 			</div>
 		`,
 	}),
@@ -461,7 +461,7 @@ export const DividerColumnDirection = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ["direction"],
+			exclude: ["direction", "align", "default"],
 		},
 		docs: {
 			source: {
@@ -473,25 +473,25 @@ export const DividerColumnDirection = {
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="vertical"`,
-						`  align="${args.align}"`,
+						`  align="start"`,
 						`  className="${args.className}"`,
-						'></Divider>',
+						'>start</Divider>',
 						'<Divider',
 						`  themeColor="${args.themeColor}"`,
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="vertical"`,
-						`  align="${args.align}"`,
+						`  align="center"`,
 						`  className="${args.className}"`,
-						'>vertical</Divider>',
+						'>center</Divider>',
 						'<Divider',
 						`  themeColor="${args.themeColor}"`,
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="vertical"`,
-						`  align="${args.align}"`,
+						`  align="end"`,
 						`  className="${args.className}"`,
-						'></Divider>',
+						'>end</Divider>',
 					].join('\n').trim();
 				}
 			}
@@ -506,8 +506,8 @@ export const DividerRowDirection = {
 		width:"1px",
 		type: "solid",
 		// direction: "horizontal",
-		align: "center",
-		default: "horizontal",
+		// align: "center",
+		// default: "horizontal",
 		className: "",
 	},
 	render: (args) => ({
@@ -519,28 +519,28 @@ export const DividerRowDirection = {
 			};
 		},
 		template: `
-			<div style="display: flex; flex-direction: column; gap: 16px; height: 100px;">
+			<div style="display: flex; flex-direction: column; height: 100px;">
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					direction="horizontal"
-					:align="args.align"
+					align="start"
 					:className="args.className"
-				></Divider>
+				>start</Divider>
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					direction="horizontal"
-					:align="args.align"
+					align="center"
 					:className="args.className"
-				>{{ args.default }}</Divider>
+				>center</Divider>
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					direction="horizontal"
-					:align="args.align"
+					align="end"
 					:className="args.className"
-				></Divider>
+				>end</Divider>
 			</div>
 		`,
 	}),
@@ -548,7 +548,7 @@ export const DividerRowDirection = {
 	parameters: {
 		controls: {
 			// include: ['themeColor', 'label', 'value', 'name' ],
-			exclude: ["direction"],
+			exclude: ["direction", "align", "default"],
 		},
 		docs: {
 			source: {
@@ -559,23 +559,23 @@ export const DividerRowDirection = {
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="horizontal"`,
-						`  align="${args.align}"`,
+						`  align="start"`,
 						`  className="${args.className}"`,
-						'></Divider>',
+						'>start</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="horizontal"`,
-						`  align="${args.align}"`,
+						`  align="center"`,
 						`  className="${args.className}"`,
-						'>horizontal</Divider>',
+						'>center</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="horizontal"`,
-						`  align="${args.align}"`,
+						`  align="end"`,
 						`  className="${args.className}"`,
-						'></Divider>',
+						'>end</Divider>',
 					].join('\n').trim();
 				}
 			}
