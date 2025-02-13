@@ -92,7 +92,7 @@ export const SearchDefault = {
             <Search
 				:size="args.size"
 				:placeholder="args.placeholder"
-	            :isDisabledd="args.isDisabled"
+	            :isDisabled="args.isDisabled"
 				:className="args.className"
 	            v-model="args.modelValue"
             ></Search>
