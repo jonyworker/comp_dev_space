@@ -13,15 +13,6 @@ export default {
 	component: Dialog,
 	tags: ["autodocs"],
 	argTypes: {
-		modelIsOpen:{
-			description:"是否開啟",
-			control: { type: "boolean" },
-			table: {
-				// type: { summary: 'string | string[]' },
-				category: 'v-model',
-				// defaultValue: { summary: '""' },
-			}
-		},
 		hasClose: {
 			description:"是否有關閉按鈕",
 			control: { type: "boolean" },
@@ -29,6 +20,15 @@ export default {
 		className: {
 			description: "客製化樣式",
 			control: { type: "text" },
+		},
+		modelValue:{
+			description:"是否開啟",
+			control: { type: "boolean" },
+			table: {
+				// type: { summary: 'string | string[]' },
+				category: 'v-model',
+				// defaultValue: { summary: '""' },
+			}
 		},
 		header: {
 			description: "標題",
@@ -83,7 +83,7 @@ export const DialogDefault = {
 	args: {
 		hasClose: true,
 		className: '',
-		modelIsOpen: true,
+		modelValue: true,
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
 		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
@@ -93,15 +93,15 @@ export const DialogDefault = {
 		setup() {
 			const onClose = () => {
 				window.alert('Close');
-				args.modelIsOpen = false // 關閉對話框
+				args.modelValue = false // 關閉對話框
 			};
 			const onConfirm = () => {
 				window.alert('OK');
-				args.modelIsOpen = false // 關閉對話框
+				args.modelValue = false // 關閉對話框
 			};
 			const onCancel = () => {
 				window.alert('Cancel');
-				args.modelIsOpen = false // 關閉對話框
+				args.modelValue = false // 關閉對話框
 			};
 			return {
 				args,
@@ -111,7 +111,7 @@ export const DialogDefault = {
 			}
 		},
 		template: `
-			<div :class="['ded-dialog-content', ...args.className.split(' ')]" v-if="args.modelIsOpen">
+			<div :class="['ded-dialog-content', ...args.className.split(' ')]" v-if="args.modelValue">
 				<button v-if="args.hasClose" class="ded-dialog-close-btn" @click="onClose">
 					<Icon name="SvgClose" size="20"></Icon>
 				</button>
@@ -153,7 +153,7 @@ export const DialogDefault = {
 					return [
 						`<Dialog`,
 						`  :hasClose="${args.hasClose}"`,
-						`  v-model="modelIsOpen"`,
+						`  v-model="modelValue"`,
 						`  className=""`,
 						`>`,
 						`  <template #header>`,
@@ -200,7 +200,7 @@ export const DialogDemo = {
 	name: "互動模式",
 	args: {
 		hasClose: true,
-		modelIsOpen: false,
+		modelValue: false,
 		className: '',
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
@@ -212,15 +212,15 @@ export const DialogDemo = {
 
 			const onClose = () => {
 				window.alert('Close');
-				args.modelIsOpen = false // 關閉對話框
+				args.modelValue = false // 關閉對話框
 			};
 			const onConfirm = () => {
 				window.alert('OK');
-				args.modelIsOpen = false // 關閉對話框
+				args.modelValue = false // 關閉對話框
 			};
 			const onCancel = () => {
 				window.alert('Cancel');
-				args.modelIsOpen = false // 關閉對話框
+				args.modelValue = false // 關閉對話框
 			};
 
 			return {
@@ -234,7 +234,7 @@ export const DialogDemo = {
 			<Dialog
 				:hasClose="args.hasClose"
 				:className="args.className"
-				v-model="args.modelIsOpen"
+				v-model="args.modelValue"
 			>
 				<template #header>
 					<Title themeColor="primary" :level="2" >Title</Title>
@@ -263,7 +263,7 @@ export const DialogDemo = {
 			<Button
 		        variant="filled"
 		        radius="4px"
-		        @click="args.modelIsOpen = true">
+		        @click="args.modelValue = true">
 				Open Dialog
 			</Button>
 		`,

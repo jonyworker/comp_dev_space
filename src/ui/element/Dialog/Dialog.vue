@@ -2,7 +2,7 @@
 import Button from '@/ui/element/Button/Button.vue'
 import Icon from "@/ui/element/Icon/Icon.vue";
 
-const modelIsOpen = defineModel();
+const modelValue = defineModel();
 
 defineProps({
     hasClose: {
@@ -19,11 +19,11 @@ defineProps({
 <template>
     <Teleport to="#dialog">
         <transition name="dialog">
-            <div class="mask-overlay" v-if="modelIsOpen" @click.self="modelIsOpen = false">
+            <div class="mask-overlay" v-if="modelValue" @click.self="modelValue = false">
                 <div :class="{'ded-dialog-content': true, [className]: !!className}" >
 
                     <template v-if="hasClose === true">
-                        <button class="ded-dialog-close-btn" @click="modelIsOpen = false">
+                        <button class="ded-dialog-close-btn" @click="modelValue = false">
                             <Icon name="SvgClose" size="20"></Icon>
                         </button>
                     </template>
@@ -38,7 +38,7 @@ defineProps({
 
                     <div class="ded-dialog-footer">
                         <slot name="footer">
-                            <Button variant="contained" size="medium" className="ded-cancel-btn" @click="modelIsOpen = false">
+                            <Button variant="contained" size="medium" className="ded-cancel-btn" @click="modelValue = false">
                                 Cancel
                             </Button>
                             <Button variant="contained" themeColor="primary" size="medium">
