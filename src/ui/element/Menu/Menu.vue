@@ -76,6 +76,7 @@ const handleToggleExpand = (item) => {
                     :color="props.color"
                     :hasDivider="props.hasDivider"
                     :expandedItems="expandedItems"
+                    :isDisabled="item.isDisabled"
                     @itemClick="handleItemClick"
                     @toggleExpand="handleToggleExpand"
                 />

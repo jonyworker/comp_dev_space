@@ -6,6 +6,7 @@ function formatDataSource(dataSource) {
 	        path: '${item.path}',
 	        prefix: '${item.prefix}',
 	        order: '${item.order}',
+	        isDisabled: '${item.isDisabled}',
 	        ${item.children ? `children: [
 	            ${item.children.map(child => `{
 	                label: '${child.title}',
@@ -28,8 +29,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ label: string; path: string; prefix: string; order: string; children?: [" +
-						" title:string; path:string; prefix:string; order: string;] }[]"
+					summary: "{ label: string; path: string; prefix: string; order: string; isDisabled: boolean; children?: [title:string; path:string; prefix:string; order: string;] }[]"
 				}
 			}
 		},
@@ -76,6 +76,7 @@ export const MenuDefault = {
 				path: "/",
 				prefix: "SvgHome",
 				order: "1",
+				isDisabled: true,
 			},
 			{
 				label: "Profile",

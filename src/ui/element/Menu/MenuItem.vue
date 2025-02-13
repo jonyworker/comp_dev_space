@@ -28,10 +28,10 @@ const props = defineProps({
 		type: Object,
 		required: true,
 	},
-    // isSideNavLink: {
-    //     type: Boolean,
-    //     default: false,
-    // }
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const emit = defineEmits(["itemClick", "toggleExpand"]);
@@ -70,14 +70,17 @@ const arrowStyle = computed(() => ({
 <!--</script>-->
 
 <template>
-	<li :class="{'ded-nav-item': true, 'ded-nav-item-side': props.hasDivider }">
+	<li :class="{
+		'ded-nav-item': true,
+		'ded-nav-item-side': props.hasDivider,
+		'ded-nav-item-disabled': props.isDisabled}">
 		<!-- 動態組件切換 router-link 或 a -->
 		<component
 			:is="getComponentType(props.item)"
 			:to="props.useRouter ? props.item.path : undefined"
 			:href="!props.useRouter ? props.item.path : undefined"
 			class="ded-nav-item-link"
-			:style="{ color: props.color }"
+			:style="{ color: props.isDisabled ? '' : props.color }"
             @click="onItemClick"
 		>
 			<!-- 圖標 -->
