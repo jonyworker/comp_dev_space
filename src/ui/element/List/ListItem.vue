@@ -51,7 +51,7 @@ const handleClick = (event) => {
 </script>
 
 <template>
-    <div
+    <li
         :class="{
 			'ded-list-item': true,
 			'ded-list-item-side': props.hasDivider,
@@ -84,7 +84,7 @@ const handleClick = (event) => {
                 <div class="ded-list-item-label">{{ props.label }}</div>
             </div>
         </template>
-    </div>
+    </li>
 </template>
 
 <style scoped lang="scss">

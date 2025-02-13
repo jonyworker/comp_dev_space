@@ -63,7 +63,7 @@ export default {
 			description: "選擇項目時觸發的事件",
 			control: false,
 			table: {
-				category: 'emits',
+				category: 'EVENTS',
 			}
 		}
 	},
