@@ -41,7 +41,7 @@ export default {
 			description: "頁碼變更事件",
 			control: false,
 			table: {
-				category: 'emits',
+				category: 'EVENTS',
 			}
 		}
 	},
