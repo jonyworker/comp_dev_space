@@ -52,10 +52,10 @@ export default {
         type: {
             description: "頁籤樣式",
             control: { type: "select" },
-            options: ["default", "card"],
+            options: [ "basic", "outline", "button"],
             table: {
                 type: {
-                    summary: "default | card "
+                    summary: "basic | outline | button "
                 }
             }
         },
@@ -110,7 +110,7 @@ export const DefaultTabs = {
             }
         ],
         activeIndex: 0,
-        type: "default",
+        type: "basic",
         prefix: 'SvgArrowDown',
         isDisabled: false,
         className: ''
@@ -199,7 +199,7 @@ export const TabsTypesStory = {
                     :themeColor="args.themeColor"
                     :dataSource="args.dataSource"
                     :activeIndex="args.activeIndex"
-                    type="default"
+                    type="basic"
                     :prefix="args.prefix"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -208,7 +208,16 @@ export const TabsTypesStory = {
                     :themeColor="args.themeColor"
                     :dataSource="args.dataSource"
                     :activeIndex="args.activeIndex"
-                    type="card"
+                    type="outline"
+                    :prefix="args.prefix"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                ></Tabs>
+                <Tabs
+                    :themeColor="args.themeColor"
+                    :dataSource="args.dataSource"
+                    :activeIndex="args.activeIndex"
+                    type="button"
                     :prefix="args.prefix"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
@@ -232,7 +241,7 @@ export const TabsTypesStory = {
                         `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
                         `  :activeIndex="${args.activeIndex}"`,
-                        `  type="default"`,
+                        `  type="basic"`,
                         `  prefix="${args.prefix}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -241,7 +250,16 @@ export const TabsTypesStory = {
                         `  themeColor="${args.themeColor}"`,
                         `  :dataSource="${dataSourceString}"`,
                         `  :activeIndex="${args.activeIndex}"`,
-                        `  type="card"`,
+                        `  type="outline"`,
+                        `  prefix="${args.prefix}"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        '></Tabs>',
+                        '<Tabs',
+                        `  themeColor="${args.themeColor}"`,
+                        `  :dataSource="${dataSourceString}"`,
+                        `  :activeIndex="${args.activeIndex}"`,
+                        `  type="button"`,
                         `  prefix="${args.prefix}"`,
                         `  :isDisabled="${args.isDisabled}"`,
                         `  className="${args.className}"`,
@@ -273,7 +291,7 @@ export const TabsColorStory = {
             }
         ],
         activeIndex: 0,
-        type: "default",
+        type: "basic",
         prefix: 'SvgArrowDown',
         isDisabled: false,
         className: ''

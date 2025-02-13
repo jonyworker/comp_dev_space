@@ -20,8 +20,9 @@ const props = defineProps({
 	},
 	type: {
 		type: String,
+		default: "basic",
 		validator: (value) =>
-			[ "default", "card"].includes(value),
+			[ "basic", "outline", "button"].includes(value),
 	},
     prefix: {
         type: String,
@@ -69,10 +70,17 @@ const handleClick = (event) => {
         :isDisabled="props.isDisabled"
         :class="{
 			'ded-tab ': true,
-			[`ded-tab-${props.themeColor}`]: props.themeColor && props.type === 'default',
-			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'default',
-			[`ded-tab-card-${props.themeColor}`]: props.themeColor && props.type === 'card',
-			[`ded-tab-card-${props.themeColor}-active`]: props.isActive && props.type === 'card',
+			[`ded-tab-${props.themeColor}`]: props.isActive && props.type === 'basic',
+			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'basic',
+			[`ded-tab-disable`]: props.isDisabled && props.type === 'basic',
+
+			[`ded-tab-outline-${props.themeColor}`]: props.themeColor && props.type === 'outline',
+			[`ded-tab-outline-${props.themeColor}-active`]: props.isActive && props.type === 'outline',
+			[`ded-tab-button-theme-inactive`]: props.isDisabled && props.type === 'outline',
+
+			[`ded-tab-button-${props.themeColor}`]: props.themeColor && props.type === 'button',
+			[`ded-tab-button-${props.themeColor}-active`]: props.isActive && props.type === 'button',
+			[`ded-tab-button-disable`]: props.isDisabled && props.type === 'button',
         }"
         @click="handleClick"
         :data-index="props.index"
