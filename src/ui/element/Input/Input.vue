@@ -22,7 +22,7 @@ const props = defineProps({
     },
 	placeholder: {
 		type: String,
-		default: "Placeholder...",
+		default: "Placeholder",
 	},
 	prefix: {
 		type: String,
@@ -39,6 +39,7 @@ const props = defineProps({
 	// },
     maxLimit: {
         type: Number,
+	    default: 0,
     },
 	hint: {
 		type: Object,
@@ -142,7 +143,7 @@ const toggleDropdown = () => {
 				:type="showPassword && props.type === 'password' ? 'text' : props.type"
 				v-model="modelValue"
 				:placeholder="props.placeholder"
-                :maxlength="props.maxLimit"
+                :maxlength="props.maxLimit > 0 ? props.maxLimit : undefined"
 				:class="{
 					'ded-input':true,
 					[`ded-text-${props.size}`]: props.size,
