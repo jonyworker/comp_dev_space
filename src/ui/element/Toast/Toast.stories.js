@@ -67,7 +67,7 @@ export default {
 		onClose: {
 			description: '關閉事件',
 			table: {
-				category: 'emits',
+				category: 'EVENT',
 				type: { summary: 'emits' },
 			},
 		},
