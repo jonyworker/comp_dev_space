@@ -61,15 +61,15 @@ export default {
 			description: "客製化樣式",
 			control: { type: "text" },
 		},
-		'col.key': {
-			description: "客製化內容",
+		'columns.[key]': {
+			description: "columns 中 `key` 的值可直接作為 slot 名稱，例如 `<template #[key]>`",
 			control: false,
 			table: {
 				type: {
 					summary: "Vue Component | HTML"
 				},
+				category: 'SLOTS',
 			},
-
 		}
 	},
 	parameters: {
@@ -101,16 +101,19 @@ export const TableDefault = {
 		},
 		template: `
 			<Table
-			:columns="args.columns"
-			:dataSource="args.dataSource"
-			:showCheckbox="args.showCheckbox"
-			:showVerticalBorders="args.showVerticalBorders"
-			:isSprite="args.isSprite"
-			:className="args.className"
+				:columns="args.columns"
+				:dataSource="args.dataSource"
+				:showCheckbox="args.showCheckbox"
+				:showVerticalBorders="args.showVerticalBorders"
+				:isSprite="args.isSprite"
+				:className="args.className"
 			/>
     `,
 	}),
 	parameters: {
+		controls: {
+			exclude: ["col.key"]
+		},
 		docs: {
 			source: {
 				transform: (src, storyContext) => {
@@ -259,7 +262,6 @@ export const TableSlot = {
 						`  </template>`,
 						`</Table>`,
 					].join("\n").trim();
-
 				},
 			},
 		},
