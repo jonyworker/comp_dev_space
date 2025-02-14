@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick, computed } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { Datepicker, DateRangePicker } from 'vanillajs-datepicker'
 import 'vanillajs-datepicker/css/datepicker-foundation.css'
 import Input from '@/ui/element/Input/Input.vue'
@@ -22,17 +22,18 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['update:modelValue', 'change', 'clearSingleDate', 'clearRangeStart', 'clearRangeEnd'])
+// const emit = defineEmits(['update:modelValue', 'change', 'clearSingleDate', 'clearRangeStart', 'clearRangeEnd'])
 const modelValue = defineModel()
 
-const singleInputRef = ref(null)
-const startInputRef = ref(null)
-const endInputRef = ref(null)
-const dateRangeWrapperRef = ref(null)
-const datepickerRef = ref(null)
+// const startInputRef = ref(null)
+// const endInputRef = ref(null)
 
-onMounted(() => initDatepicker())
-onUnmounted(() => datepickerRef.value?.destroy())
+const dateRangeInputRef = ref(null)
+const singleDateInputRef = ref(null)
+
+const dateSingleIns = ref(null)
+const dateRangeIns = ref(null)
+
 
 function initDatepicker() {
     if (props.isRange) {
@@ -42,91 +43,79 @@ function initDatepicker() {
     }
 }
 
-function initRangePicker() {
-    if (!dateRangeWrapperRef.value) return
-
-    const picker = new DateRangePicker(dateRangeWrapperRef.value, {
-        format: props.format, // 設定格式
-        autohide: true, // 自動關閉
-        todayHighlight: true, // 高亮當天日期
-        container: document.body,
-    })
-    datepickerRef.value = picker
-
-    dateRangeWrapperRef.value.addEventListener('changeDate', () => {
-        updateModelValue(picker.getDates()) // 直接回傳格式化後的日期陣列
-    })
-
-    if (Array.isArray(modelValue.value) && modelValue.value.length === 2) {
-        picker.setDates(...modelValue.value)
-    }
-
-    startInputRef.value?.input.addEventListener('input', updateRangeFromInput)
-    endInputRef.value?.input.addEventListener('input', updateRangeFromInput)
-}
-
+// 初始化單日期選擇
 function initSinglePicker() {
-    const inputDom = singleInputRef.value?.input
+    const inputDom = singleDateInputRef.value?.input
     if (!inputDom) return
-
     const picker = new Datepicker(inputDom, {
         format: props.format, // 設定格式
-        autohide: true, // 自動關閉
+        autohide: false, // 自動關閉
         todayHighlight: true, // 高亮當天日期
         container: document.body,
     })
-    datepickerRef.value = picker
+    dateSingleIns.value = picker
 
+    // 監聽 - 變更日期時更新 modelValue 的值
     picker.element.addEventListener('changeDate', () => {
-        updateModelValue(picker.getDate()) // 直接回傳格式化日期
+        modelValue.value = formatDate(picker.getDate())
     })
 
+    // 監聽 - 手動輸入時更新 modelValue 的值
     inputDom.addEventListener('input', (e) => {
         modelValue.value = e.target.value
+        console.log('手動更新後的 dateSingleIns:', dateSingleIns.value.getDate());
     })
 
+    // 如果 modelValue 有值，將設定為初始日期
     if (modelValue.value) {
         picker.setDate(modelValue.value)
     }
 }
 
-function updateModelValue(value) {
-    if (Array.isArray(value)) {
-        // 日期區間模式
-        modelValue.value = value.map(date => formatDate(date));
-    } else {
-        // 單日期模式
-        modelValue.value = formatDate(value);
+// 初始化範圍日期選擇
+function initRangePicker() {
+    if (!dateRangeInputRef.value) return;
+    console.log("初始前", dateRangeIns.value)
+
+    const picker = new DateRangePicker(dateRangeInputRef.value, {
+        format: props.format, // 設定格式
+        autohide: true, // 自動關閉
+        todayHighlight: true, // highlight 當天日期
+        container: document.body,
+        allowOneSidedRange: true, // 允許單邊選擇
+        clear: true
+    });
+
+    dateRangeIns.value = picker;
+    console.log("初始後", dateRangeIns.value)
+
+    // 監聽 - 變更日期時更新 modelValue 的值
+    picker.element.addEventListener('changeDate', () => {
+        const selectedDates = picker.getDates();
+
+        // 確保 selectedDates 是有效的日期陣列
+        if (Array.isArray(selectedDates)) {
+            const formattedDates = selectedDates.map(
+                date => date ? formatDate(date) : null
+            );
+
+            modelValue.value = formattedDates;
+            console.log('選擇的日期範圍mo:', formattedDates);
+            picker.setDates(...formattedDates);
+            console.log("設定中", dateRangeIns.value)
+        } else {
+            modelValue.value = [];
+            picker.setDates(...modelValue.value);
+        }
+    });
+
+    // 如果 modelValue 有值，將設定為初始日期
+    if (Array.isArray(modelValue.value)) {
+        picker.setDates(...modelValue.value);
     }
-
-    emit('update:modelValue', modelValue.value);
-    emit('change', modelValue.value);
 }
 
-function updateRangeFromInput() {
-    if (!startInputRef.value?.input || !endInputRef.value?.input) return
-
-    updateModelValue([startInputRef.value.input.value, endInputRef.value.input.value])
-}
-
-function clearSingleDate() {
-    datepickerRef.value?.setDate(null)
-    updateModelValue('')
-    emit('clearSingleDate')
-}
-
-function clearRangeStart() {
-    datepickerRef.value?.setDates(null, modelValue.value?.[1] || null)
-    updateModelValue(['', modelValue.value?.[1] || ''])
-    emit('clearRangeStart')
-}
-
-function clearRangeEnd() {
-    datepickerRef.value?.setDates(modelValue.value?.[0] || null, null)
-    updateModelValue([modelValue.value?.[0] || '', ''])
-    emit('clearRangeEnd')
-}
-
+//格式化 VanillaJS 返回的 Date 物件
 function formatDate(date) {
     if (!date) return '';
 
@@ -156,66 +145,168 @@ function formatDate(date) {
     }
 }
 
-watch(modelValue, (newValue) => {
-    if (!datepickerRef.value) return
+//
+// function handleUpdateRangePicker() {
+//     // if (!dateRangeIns.value || !modelValue.value) return;
+//
+//     const picker = dateRangeIns.value; // 取得 DateRangePicker
+//     const updatedValues = modelValue.value.map(value => value === "" ? null : value);
+//
+//     // if (JSON.stringify(updatedValues) !== JSON.stringify(modelValue.value)) {
+//     //     modelValue.value = updatedValues;
+//     // }
+//     console.log('刪除鍵的日期範圍ud:', updatedValues);
+//     console.log('刪除鍵的日期範圍mo:', modelValue.value);
+//     picker.setDates(...updatedValues); // 更新日期選擇器
+//
+//
+//
+//     console.log("刪除鍵",picker)
+// }
 
-    if (props.isRange) {
-        const validValues = Array.isArray(newValue) ? newValue : [null, null]
-        datepickerRef.value.setDates(...validValues)
-    } else {
-        datepickerRef.value.setDate(newValue)
-    }
-}, { immediate: true })
+function clearSingleDate() {
+    console.log('更新前的 dateSingleIns:', dateSingleIns.value.getDate());
+    dateSingleIns.value.refresh('picker', true)
+    console.log('更新後的 dateSingleIns:', dateSingleIns.value.pickerElement);
+}
+function clearRangeStart() {
+    if (!modelValue.value || !Array.isArray(modelValue.value) || !dateRangeIns.value) return;
 
-watch(() => props.isRange, (newIsRange) => {
-    datepickerRef.value?.destroy()
-    datepickerRef.value = null
+    // 清除起始日期
+    modelValue.value[0] = null;
 
-    modelValue.value = newIsRange ? ["", ""] : ""
+    // 強制觸發 Vue reactivity
+    modelValue.value = [...modelValue.value];
 
-    nextTick(() => {
-        initDatepicker()
-        if (!newIsRange && singleInputRef.value?.input) {
-            singleInputRef.value.input.value = "" // 清空單選輸入框的值
-        }
-    })
-}, { immediate: true })
+    // 等待 Vue 完成 DOM 更新
+    // await nextTick();
+    console.log('更新前的 DateRangePicker:', dateRangeIns.value.getDates());
+    // dateRangeIns.value.setDates(null, modelValue.value?.[1] || null)
+    dateRangeIns.value.update(modelValue.value)
+    // dateRangeIns.value.setDates(null, null);
+    // console.log('清空實例 DateRangePicker:', dateRangeIns.value.getDates());
+    // dateRangeIns.value.setDates(null, modelValue.value[1] || null);
+    console.log('更新後的 DateRangePicker:', dateRangeIns.value.getDates());
 
-const safeModelValue = computed({
-    get: () => Array.isArray(modelValue.value) ? modelValue.value : ["", ""],
-    set: (newValue) => {
-        modelValue.value = Array.isArray(newValue) ? newValue : ["", ""]
-    }
+    console.log('刪除鍵的日期範圍 mo:', modelValue.value);
+
+}
+
+
+
+
+// function updateModelValue(value) {
+//     if (Array.isArray(value)) {
+//         // 日期區間模式
+//         modelValue.value = value.map(date => formatDate(date));
+//     } else {
+//         // 單日期模式
+//         modelValue.value = formatDate(value);
+//     }
+//
+//     emit('update:modelValue', modelValue.value);
+//     emit('change', modelValue.value);
+// }
+
+// function updateRangeFromInput() {
+//     if (!startInputRef.value?.input || !endInputRef.value?.input) return
+//
+//     updateModelValue([startInputRef.value.input.value, endInputRef.value.input.value])
+// }
+
+// function clearSingleDate() {
+//     dateSingleIns.value?.setDate(null)
+//     updateModelValue('')
+//     emit('clearSingleDate')
+// }
+
+// function clearRangeStart() {
+//     dateSingleIns.value?.setDates(null, modelValue.value?.[1] || null)
+//     updateModelValue(['', modelValue.value?.[1] || ''])
+//     emit('clearRangeStart')
+// }
+
+// function clearRangeEnd() {
+//     dateSingleIns.value?.setDates(modelValue.value?.[0] || null, null)
+//     updateModelValue([modelValue.value?.[0] || '', ''])
+//     emit('clearRangeEnd')
+// }
+
+
+
+// watch(modelValue, (newValue) => {
+//     console.log("newValue",newValue)
+//
+//     dateRangeIns.value.setDates(...newValue)
+//     console.log("dateRangeIns.value",dateRangeIns.value)
+//
+//     // if (props.isRange) {
+//     //     const validValues = Array.isArray(newValue) ? newValue : [null, null]
+//     //     dateRangeIns.value.setDates(...validValues)
+//     // } else {
+//     //     dateSingleIns.value.setDate(newValue)
+//     // }
+// }, )
+
+// watch(() => props.isRange, (newIsRange) => {
+//     dateSingleIns.value?.destroy()
+//     dateSingleIns.value = null
+//
+//     modelValue.value = newIsRange ? ["", ""] : ""
+//
+//     nextTick(() => {
+//         initDatepicker()
+//         if (!newIsRange && singleDateInputRef.value?.input) {
+//             singleDateInputRef.value.input.value = "" // 清空單選輸入框的值
+//         }
+//     })
+// }, { immediate: true })
+
+// const safeModelValue = computed({
+//     get: () => Array.isArray(modelValue.value) ? modelValue.value : ["", ""],
+//     set: (newValue) => {
+//         modelValue.value = Array.isArray(newValue) ? newValue : ["", ""]
+//     }
+// })
+
+onMounted(() => initDatepicker())
+onUnmounted(() => {
+    dateSingleIns.value?.destroy();
+
+    dateRangeIns.value?.destroy();
+    console.log('銷毀 dateSingleIns:', dateSingleIns.value.getDate());
+    console.log('銷毀 dateRangeIns:', dateRangeIns.value.getDates());
 })
 </script>
 
 <template>
+    {{modelValue}}
     <div :class="className">
         <Input
             v-if="!props.isRange"
-            ref="singleInputRef"
-            :placeholder="props.placeholder"
-            v-model="modelValue"
-            prefix="SvgCalendar"
+            ref="singleDateInputRef"
             type="text"
-            @clearInput="clearSingleDate"
+            :placeholder="props.placeholder"
+            prefix="SvgCalendar"
+            v-model="modelValue"
+            @clearDatePicker="clearSingleDate()"
         />
-        <div v-else ref="dateRangeWrapperRef" class="ded-date-pick-range">
+        <div v-else ref="dateRangeInputRef" class="ded-date-pick-range">
             <Input
                 ref="startInputRef"
+                type="text"
                 placeholder="Start Date"
                 prefix="SvgCalendar"
-                type="text"
-                v-model="safeModelValue[0]"
-                @clearInput="clearRangeStart"
+                v-model="modelValue[0]"
+                @clearDatePicker="clearRangeStart()"
             />
             <Input
                 ref="endInputRef"
+                type="text"
                 placeholder="End Date"
                 prefix="SvgCalendar"
-                type="text"
-                v-model="safeModelValue[1]"
-                @clearInput="clearRangeEnd"
+                v-model="modelValue[1]"
+
             />
         </div>
     </div>

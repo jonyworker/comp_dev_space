@@ -49,7 +49,7 @@ export const DatepickerSingle = {
 	name: "預設項目",
 	args: {
 		format: "yyyy/mm/dd",
-		isRange: false,
+		isRange: true,
 		placeholder: "YYYY/MM/DD",
 		className: "",
 	},
@@ -97,53 +97,53 @@ export const DatepickerSingle = {
 };
 
 //==== 日期區間 ====//
-export const DatepickerRange = {
-	name: "日期區間",
-	args: {
-		format: "yyyy/mm/dd",
-		isRange: true,
-		placeholder: "YYYY/MM/DD",
-		className:""
-	},
-	render: (args) => ({
-		components: { DatePicker, Input },
-		setup() {
-			const modelValue = ref("");
-			return {
-				args,
-				modelValue
-			};
-		},
-		template: `
-			<DatePicker
-				:format="args.format"
-				:isRange="args.isRange"
-				:placeholder="args.placeholder"
-				:options="args.options"
-				:className="args.className"
-				v-model="modelValue"
-			></DatePicker>
-		`,
-	}),
-	// 控制 controls 中能控制的參數
-	parameters: {
-		controls: {
-			include: [ 'className','modelValue' ],
-		},
-		docs: {
-			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						`<DatePicker`,
-						`  :format="${args.format}"`,
-						`  :isRange="${args.isRange}"`,
-						`  :placeholder="${args.placeholder}"`,
-						`  :className="${args.className}"`,
-						`></DatePicker>`,
-					].join("\n").trim();
-				}
-			}
-		}
-	},
-};
+// export const DatepickerRange = {
+// 	name: "日期區間",
+// 	args: {
+// 		format: "yyyy/mm/dd",
+// 		isRange: true,
+// 		placeholder: "YYYY/MM/DD",
+// 		className:""
+// 	},
+// 	render: (args) => ({
+// 		components: { DatePicker, Input },
+// 		setup() {
+// 			const modelValue = ref("");
+// 			return {
+// 				args,
+// 				modelValue
+// 			};
+// 		},
+// 		template: `
+// 			<DatePicker
+// 				:format="args.format"
+// 				:isRange="args.isRange"
+// 				:placeholder="args.placeholder"
+// 				:options="args.options"
+// 				:className="args.className"
+// 				v-model="modelValue"
+// 			></DatePicker>
+// 		`,
+// 	}),
+// 	// 控制 controls 中能控制的參數
+// 	parameters: {
+// 		controls: {
+// 			include: [ 'className','modelValue' ],
+// 		},
+// 		docs: {
+// 			source: {
+// 				transform: (src, storyContext) => {
+// 					const { args } = storyContext;
+// 					return [
+// 						`<DatePicker`,
+// 						`  :format="${args.format}"`,
+// 						`  :isRange="${args.isRange}"`,
+// 						`  :placeholder="${args.placeholder}"`,
+// 						`  :className="${args.className}"`,
+// 						`></DatePicker>`,
+// 					].join("\n").trim();
+// 				}
+// 			}
+// 		}
+// 	},
+// };
