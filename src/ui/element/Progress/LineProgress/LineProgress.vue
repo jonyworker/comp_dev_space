@@ -3,20 +3,20 @@ import { computed } from "vue";
 
 // 定義 Props
 const props = defineProps({
-	themeColor: {
-		type: String,
-		default: "primary",
-		validator: (value) =>
-			[
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			].includes(value),
-	},
+	// themeColor: {
+	// 	type: String,
+	// 	default: "primary",
+	// 	validator: (value) =>
+	// 		[
+	// 			"primary",
+	// 			"secondary",
+	// 			"neutral",
+	// 			"info",
+	// 			"success",
+	// 			"warning",
+	// 			"error",
+	// 		].includes(value),
+	// },
 	label: {
 		type: String,
 		default: ""
@@ -51,13 +51,11 @@ const normalizedProgress = computed(() => Math.min(Math.max(props.percent, 0), 1
 		<div :class="{'ded-progress-line':true, [props.className]:!!props.className}">
 			<div class="ded-progress-line-track" :style="{ height: `${props.strokeWidth}px` }">
 				<div class="ded-progress-line-percent-form"
-                     :class="`ded-progress-line-percent-form-${props.themeColor}`"
                      :style="{ width: `${normalizedProgress}%` }">
 				</div>
 			</div>
 			<!-- LineProgress - 進度 -->
-			<div class="ded-progress-line-label ded-progress-percent-text"
-                 :class="`ded-progress-percent-text-${props.themeColor}`">
+			<div class="ded-progress-line-label ded-progress-percent-text">
                 {{`${normalizedProgress}%`}}
             </div>
 		</div>
