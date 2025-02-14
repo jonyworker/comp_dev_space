@@ -1,6 +1,6 @@
 <script setup>
 import Button from "@/ui/element/Button/Button.vue";
-import Icon from '@/ui/element/Icon/Icon.vue';
+import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 定義 Props
 const props = defineProps({
@@ -53,7 +53,6 @@ const props = defineProps({
 	},
 });
 
-
 // 處理 tab 點擊事件
 const handleClick = (event) => {
   if (!props.isDisabled && props.onClick) {
@@ -66,35 +65,37 @@ const handleClick = (event) => {
     <!-- Tabs - 按鈕 -->
     <Button
         :themeColor="props.themeColor"
-        variant="text"
+        :variant="props.type === 'button' ? 'filled' : 'text'"
         :isDisabled="props.isDisabled"
+        :data-index="props.index"
+        @click="handleClick"
         :class="{
-			'ded-tab ': true,
+			'ded-tab ': props.type !== 'button',
 			[`ded-tab-${props.themeColor}`]: props.isActive && props.type === 'basic',
 			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'basic',
-			[`ded-tab-disable`]: props.isDisabled && props.type === 'basic',
+			[`ded-tab-disable`]: props.isDisabled && props.type === 'basic' ||props.isDisabled && props.type === 'outline',
 
 			[`ded-tab-outline-${props.themeColor}`]: props.themeColor && props.type === 'outline',
 			[`ded-tab-outline-${props.themeColor}-active`]: props.isActive && props.type === 'outline',
-			[`ded-tab-button-theme-inactive`]: props.isDisabled && props.type === 'outline',
 
+            'ded-tab-button ': !props.isActive && props.type === 'button',
 			[`ded-tab-button-${props.themeColor}`]: props.themeColor && props.type === 'button',
 			[`ded-tab-button-${props.themeColor}-active`]: props.isActive && props.type === 'button',
 			[`ded-tab-button-disable`]: props.isDisabled && props.type === 'button',
         }"
-        @click="handleClick"
-        :data-index="props.index"
     >
         <template v-if="props.prefix">
-            <div class="ded-icon">
+            <span class="ded-icon">
                 <Icon name="SvgArrowDown"></Icon>
-            </div>
+            </span>
         </template>
 
-		<div class="ded-text-medium"> {{ props.title }}</div>
+        <span> {{ props.title }}</span>
     </Button>
 
+
 </template>
+
 
 <style scoped lang="scss">
 

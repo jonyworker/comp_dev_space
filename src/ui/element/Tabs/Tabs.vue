@@ -65,7 +65,7 @@ watch(() => props.activeIndex, (newIndex) => {
 <template>
     <div :class="{'ded-tabs-container': true, [props.className]: !!props.className }">
         <!-- Tabs - 按鈕 -->
-        <div class="ded-tabs">
+        <div class="ded-tabs" :class="{'ded-tabs-button': props.type === 'button'}">
             <TabItem
                 v-for="(item, index) in props.dataSource"
                 :key="index"
