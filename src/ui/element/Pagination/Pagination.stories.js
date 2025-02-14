@@ -42,6 +42,7 @@ export default {
 			control: false,
 			table: {
 				category: 'EVENTS',
+				type: { summary: 'emits' },
 			}
 		}
 	},
