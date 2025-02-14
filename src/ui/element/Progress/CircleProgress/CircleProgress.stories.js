@@ -6,24 +6,24 @@ export default {
     component: CircleProgress,
     tags: ["autodocs"],
     argTypes: {
-        themeColor: {
-            description: "主題顏色",
-            control: { type: "select" },
-            options: [
-                "primary",
-                "secondary",
-                "neutral",
-                "info",
-                "success",
-                "warning",
-                "error",
-            ],
-            table: {
-                type: {
-                    summary: "primary | secondary | neutral | info | success | warning | error"
-                }
-            }
-        },
+        // themeColor: {
+        //     description: "主題顏色",
+        //     control: { type: "select" },
+        //     options: [
+        //         "primary",
+        //         "secondary",
+        //         "neutral",
+        //         "info",
+        //         "success",
+        //         "warning",
+        //         "error",
+        //     ],
+        //     table: {
+        //         type: {
+        //             summary: "primary | secondary | neutral | info | success | warning | error"
+        //         }
+        //     }
+        // },
         label: {
             description: "進度指示標籤",
             control: { type: "text" },
@@ -77,7 +77,7 @@ export default {
 export const DefaultCircleProgress = {
     name: "預設項目",
     args: {
-        themeColor: "primary",
+        // themeColor: "primary",
         label: "Label",
         percent: 65,
         size: 100,
@@ -94,7 +94,6 @@ export const DefaultCircleProgress = {
         },
         template: `
             <CircleProgress
-                :themeColor="args.themeColor"
                 :label="args.label"
                 :percent="args.percent"
                 :size="args.size"
@@ -114,7 +113,6 @@ export const DefaultCircleProgress = {
                     const { args } = storyContext;
                     return [
                         '<CircleProgress',
-                        `  themeColor="${args.themeColor}"`,
                         `  label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :size="${args.size}"`,
@@ -132,7 +130,6 @@ export const DefaultCircleProgress = {
 export const CircleProgressLabelStory = {
     name: "顯示標籤",
     args: {
-        themeColor: "primary",
         label: "Label",
         percent: 65,
         // size: 100,
@@ -150,7 +147,6 @@ export const CircleProgressLabelStory = {
         template: `
             <div style="display:flex; align-items: center; gap: 24px">
                 <CircleProgress
-                    :themeColor="args.themeColor"
                     :label="args.label"
                     :percent="args.percent"
                     size="70"
@@ -158,7 +154,6 @@ export const CircleProgressLabelStory = {
                     :className="args.className"
                 ></CircleProgress>
                 <CircleProgress
-                    :themeColor="args.themeColor"
                     :label="args.label"
                     :percent="args.percent"
                     size="100"
@@ -181,7 +176,6 @@ export const CircleProgressLabelStory = {
                     const { args } = storyContext;
                     return [
                         '<CircleProgress',
-                        `  themeColor="${args.themeColor}"`,
                         `  label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :size="70"`,
@@ -189,7 +183,6 @@ export const CircleProgressLabelStory = {
                         `  className="${args.className}"`,
                         '></CircleProgress>',
                         '<CircleProgress',
-                        `  themeColor="${args.themeColor}"`,
                         `  label="${args.label}"`,
                         `  :percent="${args.percent}"`,
                         `  :size="100"`,
@@ -204,156 +197,156 @@ export const CircleProgressLabelStory = {
 };
 
 //==== 主題色彩 ====//
-export const CircleProgressColorStory = {
-    name: "主題色彩",
-    args: {
-        // themeColor: "primary",
-        label: "Label",
-        percent: 65,
-        size: 100,
-        strokeWidth: 10,
-        className: '',
-    },
-    render: (args) => ({
-        components: { CircleProgress },
-        setup() {
-            // Create a ref for modelValue to be used with v-model
-            return {
-                args,
-            };
-        },
-        template: `
-            <div style="display:flex; align-items: center; flex-wrap: wrap; gap: 16px">
-                <CircleProgress
-                    themeColor="primary"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-                <CircleProgress
-                    themeColor="secondary"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-                <CircleProgress
-                    themeColor="neutral"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-                <CircleProgress
-                    themeColor="info"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-                <CircleProgress
-                    themeColor="success"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-                <CircleProgress
-                    themeColor="warning"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-                <CircleProgress
-                    themeColor="error"
-                    :label="args.label"
-                    :percent="args.percent"
-                    :size="args.size"
-                    :strokeWidth="args.strokeWidth"
-                    :className="args.className"
-                ></CircleProgress>
-            </div>
-
-        `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
-            exclude: [ 'themeColor' ]
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        '<CircleProgress',
-                        `  themeColor="primary"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  themeColor="secondary"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  themeColor="tertiary"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  themeColor="success"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  themeColor="warning"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  themeColor="error"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  themeColor="info"`,
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                    ].join('\n').trim();
-                }
-            }
-        }
-    },
-};
+// export const CircleProgressColorStory = {
+//     name: "主題色彩",
+//     args: {
+//         // themeColor: "primary",
+//         label: "Label",
+//         percent: 65,
+//         size: 100,
+//         strokeWidth: 10,
+//         className: '',
+//     },
+//     render: (args) => ({
+//         components: { CircleProgress },
+//         setup() {
+//             // Create a ref for modelValue to be used with v-model
+//             return {
+//                 args,
+//             };
+//         },
+//         template: `
+//             <div style="display:flex; align-items: center; flex-wrap: wrap; gap: 16px">
+//                 <CircleProgress
+//                     themeColor="primary"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//                 <CircleProgress
+//                     themeColor="secondary"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//                 <CircleProgress
+//                     themeColor="neutral"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//                 <CircleProgress
+//                     themeColor="info"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//                 <CircleProgress
+//                     themeColor="success"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//                 <CircleProgress
+//                     themeColor="warning"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//                 <CircleProgress
+//                     themeColor="error"
+//                     :label="args.label"
+//                     :percent="args.percent"
+//                     :size="args.size"
+//                     :strokeWidth="args.strokeWidth"
+//                     :className="args.className"
+//                 ></CircleProgress>
+//             </div>
+//
+//         `,
+//     }),
+//     // 控制 controls 中能控制的參數
+//     parameters: {
+//         controls: {
+//             // include: ['themeColor', 'label', 'value', 'name' ],
+//             exclude: [ 'themeColor' ]
+//         },
+//         docs: {
+//             source: {
+//                 transform: (src, storyContext) => {
+//                     const { args } = storyContext;
+//                     return [
+//                         '<CircleProgress',
+//                         `  themeColor="primary"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                         '<CircleProgress',
+//                         `  themeColor="secondary"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                         '<CircleProgress',
+//                         `  themeColor="tertiary"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                         '<CircleProgress',
+//                         `  themeColor="success"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                         '<CircleProgress',
+//                         `  themeColor="warning"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                         '<CircleProgress',
+//                         `  themeColor="error"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                         '<CircleProgress',
+//                         `  themeColor="info"`,
+//                         `  label="${args.label}"`,
+//                         `  :percent="${args.percent}"`,
+//                         `  :size="${args.size}"`,
+//                         `  :strokeWidth="${args.strokeWidth}"`,
+//                         `  className="${args.className}"`,
+//                         '></CircleProgress>',
+//                     ].join('\n').trim();
+//                 }
+//             }
+//         }
+//     },
+// };
