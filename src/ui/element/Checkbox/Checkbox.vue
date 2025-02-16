@@ -1,5 +1,4 @@
 <script setup>
-import { defineModel } from "vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 // 使用 defineModel 定義 v-model
