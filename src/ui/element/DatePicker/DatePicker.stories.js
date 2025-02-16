@@ -1,6 +1,5 @@
 import DatePicker from '@/ui/element/DatePicker/DatePicker.vue'
 import Input from "@/ui/element/Input/Input.vue";
-import { ref } from "vue";
 
 export default {
 	title: "Component/Date-Picker",
@@ -25,7 +24,7 @@ export default {
 		},
 		modelValue: {
 			description: "日期",
-			control: false,
+			// control: {type: "text" },
 			table: {
 				type: { summary: 'string | string[]' },
 				category: 'v-model',
@@ -45,21 +44,30 @@ export default {
 };
 
 //==== 預設項目 ====//
-export const DatepickerSingle = {
+export const DatePickerDefaultStory = {
 	name: "預設項目",
 	args: {
 		format: "yyyy/mm/dd",
-		isRange: true,
+		isRange: false,
 		placeholder: "YYYY/MM/DD",
 		className: "",
+		modelValue: "",
+	},
+	argTypes: {
+		modelValue: {
+			description: "日期",
+			control: { type: "text" },
+			table: {
+				type: { summary: "string | string[]" },
+				category: "v-model",
+			},
+		},
 	},
 	render: (args) => ({
 		components: { DatePicker, Input },
 		setup() {
-			const modelValue = ref("");
 			return {
 				args,
-				modelValue,
 			};
 		},
 		template: `
@@ -68,14 +76,14 @@ export const DatepickerSingle = {
 				:isRange="args.isRange"
 				:placeholder="args.placeholder"
 				:className="args.className"
-				v-model="modelValue"
+				v-model="args.modelValue"
 			></DatePicker>
 		`,
 	}),
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			include: [ 'format', 'isRange', 'placeholder', 'options', 'className','modelValue' ],
+			// exclude: []
 		},
 		docs: {
 			source: {
@@ -97,53 +105,60 @@ export const DatepickerSingle = {
 };
 
 //==== 日期區間 ====//
-// export const DatepickerRange = {
-// 	name: "日期區間",
-// 	args: {
-// 		format: "yyyy/mm/dd",
-// 		isRange: true,
-// 		placeholder: "YYYY/MM/DD",
-// 		className:""
-// 	},
-// 	render: (args) => ({
-// 		components: { DatePicker, Input },
-// 		setup() {
-// 			const modelValue = ref("");
-// 			return {
-// 				args,
-// 				modelValue
-// 			};
-// 		},
-// 		template: `
-// 			<DatePicker
-// 				:format="args.format"
-// 				:isRange="args.isRange"
-// 				:placeholder="args.placeholder"
-// 				:options="args.options"
-// 				:className="args.className"
-// 				v-model="modelValue"
-// 			></DatePicker>
-// 		`,
-// 	}),
-// 	// 控制 controls 中能控制的參數
-// 	parameters: {
-// 		controls: {
-// 			include: [ 'className','modelValue' ],
-// 		},
-// 		docs: {
-// 			source: {
-// 				transform: (src, storyContext) => {
-// 					const { args } = storyContext;
-// 					return [
-// 						`<DatePicker`,
-// 						`  :format="${args.format}"`,
-// 						`  :isRange="${args.isRange}"`,
-// 						`  :placeholder="${args.placeholder}"`,
-// 						`  :className="${args.className}"`,
-// 						`></DatePicker>`,
-// 					].join("\n").trim();
-// 				}
-// 			}
-// 		}
-// 	},
-// };
+export const DatepickerRange = {
+	name: "日期區間",
+	args: {
+		format: "yyyy/mm/dd",
+		isRange: true,
+		className: "",
+		modelValue: ["", ""]
+	},
+	argTypes: {
+		modelValue: {
+			description: "日期",
+			control: { type: "array" },
+			table: {
+				type: { summary: "string[]" },
+				category: "v-model",
+			},
+		},
+	},
+	render: (args) => ({
+		components: { DatePicker, Input },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+			<DatePicker
+				:format="args.format"
+				:isRange="args.isRange"
+				:className="args.className"
+				v-model="args.modelValue"
+			></DatePicker>
+		`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: [ 'className','modelValue' ],
+			exclude:['isRange','placeholder'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<DatePicker`,
+						`  :format="${args.format}"`,
+						`  :isRange="${args.isRange}"`,
+						`  :className="${args.className}"`,
+						`  v-model="modelValue"`,
+						`></DatePicker>`,
+					].join("\n").trim();
+				}
+			}
+		}
+	},
+};
