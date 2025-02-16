@@ -23,7 +23,7 @@ export default {
 			options: ["", "primary", "secondary", "neutral", "info", "success", "warning", "error" ],
 			table: {
 				type: {
-					summary: "primary | secondary | neutral | info | success | warning | error"
+					summary: "none | primary | secondary | neutral | info | success | warning | error"
 				},
 				defaultValue: {
 					summary: "none"
