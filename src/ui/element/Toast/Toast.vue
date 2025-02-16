@@ -25,7 +25,7 @@ const props = defineProps({
     },
 	title: {
 		type: String,
-        default: "Title",
+		required: true
 	},
 	content: {
 		type: String,
