@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, defineExpose  } from 'vue';
+import { ref, computed } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
 // 定義 Model
