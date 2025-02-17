@@ -18,7 +18,7 @@ const props = defineProps({
 	},
 	isShowDot: {
 		type: Boolean,
-		default: "false",
+		default: false,
 	},
 	value: {
 		type: Number,
@@ -33,7 +33,6 @@ const props = defineProps({
 		default: "",
 	},
 });
-
 
 // 計算是否大於對大設定值
 const computedValue = computed(() => {
