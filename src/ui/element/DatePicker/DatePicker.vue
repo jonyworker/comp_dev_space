@@ -89,10 +89,8 @@ function parseDate(dateStr) {
 
 function initDatepicker() {
 	if (props.isRange === true) {
-		// console.log("呼叫 initRangePicker()");
 		initRangePicker();
 	} else {
-		// console.log("呼叫 initSinglePicker()");
 		initSinglePicker();
 	}
 }
@@ -157,12 +155,11 @@ function initRangePicker() {
 				date => date instanceof Date ? formatDate(date) : ""
 			);
 
-			// Ensure we have exactly two dates (start and end)
 			if (formattedDates.length === 1) {
-				formattedDates.push("");  // Add empty end date if only one is selected
+				formattedDates.push("");
 			}
 
-			// Only take the first two dates if more are somehow selected
+			// 只取得前兩個值
 			modelValue.value = formattedDates.slice(0, 2);
 		} else {
 			modelValue.value = ["", ""];

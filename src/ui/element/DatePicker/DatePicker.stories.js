@@ -120,6 +120,7 @@ export const DatepickerRange = {
 			table: {
 				type: { summary: "string[]" },
 				category: "v-model",
+				defaultValue: { summary: '["", ""]' },
 			},
 		},
 	},
