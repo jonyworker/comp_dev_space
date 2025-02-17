@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 
-// 定義 Model
 const modelValue = defineModel();
 const emits = defineEmits(['clearDatePicker']);
 
@@ -33,10 +32,6 @@ const props = defineProps({
 		default: "medium",
 		validator: (value) => ["small", "medium", "large"].includes(value),
 	},
-	// initValue: {
-	// 	type: String,
-	// 	required: true,
-	// },
     maxLimit: {
         type: Number,
 	    default: 0,
@@ -59,7 +54,7 @@ const props = defineProps({
 	},
 });
 
-// 暴露內部的 <input> 節點(datepicker用)
+// 暴露內部的 <input> 節點 (datepicker用)
 const inputRef = ref(null);
 defineExpose({
     input:inputRef
@@ -77,8 +72,8 @@ const hintClass = computed(() => {
 // 功能: 清除輸入框
 const clearInput = () => {
 	modelValue.value = "";
+    // datepicker用
     emits('clearDatePicker');
-	// emit('update:initValue', '');
 };
 
 // 功能: 控制密碼顯示/隱藏
@@ -93,14 +88,6 @@ const toggleDropdown = () => {
 		modelValue.value = ""; // 可選擇性操作
 	}
 };
-
-// 初始化 modelValue
-// modelValue.value = props.initValue;
-
-// 監聽 initValue 的變化
-// watch(() => props.initValue, (newValue) => {
-// 	modelValue.value = newValue;
-// });
 </script>
 
 <template>
@@ -198,7 +185,7 @@ const toggleDropdown = () => {
 				'ded-input-disable': props.isDisabled
 			}"
 		>
-			{{ hint.error || hint.description }}
+			{{ props.hint.error || props.hint.description }}
 		</small>
 	</div>
 </template>

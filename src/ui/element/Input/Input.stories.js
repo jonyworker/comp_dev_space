@@ -178,9 +178,9 @@ export const InputDefault = {
     },
 };
 
-//==== 輸入框類型 ====//
+//==== 輸入類型 ====//
 export const InputTypesStory = {
-    name: "輸入框類型",
+    name: "輸入類型",
     args: {
         // label: 'Account',
         // type: 'text',
