@@ -122,26 +122,30 @@ export default {
 				}
 			}
 		},
-		logoSrc: {
-			description: "Logo 圖片",
+		mobileLogoSrc: {
+			description: "手機 Logo 圖片",
 			control: { type: "text" },
 		},
-		logo: {
-			description: "Logo 圖示",
-			control: {
-				type: "select",
-				labels: {
-					"": "none",
-					SvgAuo: "SvgAuo",
-				}
-			},
-			options: [ "", "SvgAuo" ],
-			table: {
-				type: {
-					summary: "none | SvgAuo ",
-				}
-			}
+		desktopLogoSrc: {
+			description: "桌機 Logo 圖片",
+			control: { type: "text" },
 		},
+		// logo: {
+		// 	description: "Logo 圖示",
+		// 	control: {
+		// 		type: "select",
+		// 		labels: {
+		// 			"": "none",
+		// 			SvgAuo: "SvgAuo",
+		// 		}
+		// 	},
+		// 	options: [ "", "SvgAuo" ],
+		// 	table: {
+		// 		type: {
+		// 			summary: "none | SvgAuo ",
+		// 		}
+		// 	}
+		// },
 		logoLink: {
 			description: "Logo 連結",
 			control: { type: "text" },
@@ -189,8 +193,8 @@ export const SideNavDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "blue",
-		logoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
-		logo: "SvgAuo",
+		mobileLogoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
+		desktopLogoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO_W.svg",
 		logoLink: "https://www.auo.com",
 		hasLogo: true,
 		hasRWD: true,
@@ -211,8 +215,8 @@ export const SideNavDefault = {
 					<Column xs="12" sm="4" md="4" style="text-align: start;">
 						<SideNav
 							:themeColor="args.themeColor"
-							:logoSrc="args.logoSrc"
-							:logo="args.logo"
+							:mobileLogoSrc="args.mobileLogoSrc"
+							:desktopLogoSrc="args.desktopLogoSrc"
 							:logoLink="args.logoLink"
 							:hasLogo="args.hasLogo"
 							:hasRWD="args.hasRWD"
@@ -238,8 +242,8 @@ export const SideNavDefault = {
 					return [
 						'  <SideNav',
 						`    themeColor="${args.themeColor}"`,
-						`    logoSrc="${args.logoSrc}"`,
-						`    logo="${args.logo}"`,
+						`    mobileLogoSrc="${args.mobileLogoSrc}"`,
+						`    desktopLogoSrc="${args.desktopLogoSrc}"`,
 						`    logoLink="${args.logoLink}"`,
 						`    :hasLogo="${args.hasLogo}"`,
 						`    :hasRWD="${args.hasRWD}"`,

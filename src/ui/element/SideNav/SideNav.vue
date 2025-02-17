@@ -13,14 +13,14 @@ const props = defineProps({
         type: String,
         default: "blue",
     },
-    logo: {
-        type: String,
-	    default: "",
-    },
-	logoSrc: {
+    mobileLogoSrc: {
 		type: String,
 		default: "",
 	},
+    desktopLogoSrc: {
+        type: String,
+        default: "",
+    },
 	logoLink: {
 		type: String,
 		default: "",
@@ -127,7 +127,7 @@ onUnmounted(() => {
 		<Navbar
 	        :dataSource="sortDataSource"
 			:hasLogo="hasLogo"
-			logoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
+			:logoSrc="props.mobileLogoSrc"
 			className="fixed top-0 h-[60px] w-full"
 			style="position: fixed; top: 0; height: 60px; width: 100%;"
 		>
@@ -142,8 +142,7 @@ onUnmounted(() => {
                         <div class="ded-side-nav-header-logo">
                             <template v-if="props.logoLink">
                                 <a :href="props.logoLink">
-                                    <Icon :name="props.logo" width="90" height="30"
-                                          :color="computedContentColor"></Icon>
+                                    <img :src="props.desktopLogoSrc" alt="logo">
                                 </a>
                             </template>
                             <template v-else>
