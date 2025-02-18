@@ -23,10 +23,6 @@ export default {
             description: '字數限制',
             control: { type: 'number' },
         },
-        // initValue: {
-        //     description: "輸入值",
-        //     control: { type: "text" },
-        // },
         hint: {
             description: '提示訊息',
             control: {
@@ -202,15 +198,8 @@ export const TextareaStatus = {
     render: (args) => ({
         components: { Textarea },
         setup() {
-            // Create a ref for modelValue to be used with v-model
-            // const textareaModelValue01 =ref("");
-            // const textareaModelValue02 =ref("");
-            // const textareaModelValue03 =ref("");
             return {
                 args,
-                // textareaModelValue01,
-                // textareaModelValue02,
-                // textareaModelValue03
             };
         },
         template: `
