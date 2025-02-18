@@ -424,3 +424,126 @@ export const InputHintTypeStory = {
         }
     },
 };
+
+//==== 輸入框狀態 ====//
+export const InputStatusStory = {
+    name: "輸入框狀態",
+    args: {
+        label: 'Account',
+        type: 'text',
+        hasClear: true,
+        placeholder:'Placeholder',
+        prefix: 'SvgAccount',
+        size: 'medium',
+        maxLimit: 0,
+        isDisabled: false,
+        className: '',
+        modelValue:''
+    },
+    render: (args) => ({
+        components: { Input },
+        setup() {
+            return {
+                args,
+            };
+        },
+        template: `
+            <div style="display: flex; flex-direction: column; gap:8px">
+                <Input
+                    :label="args.label"
+                    :type="args.type"
+                    :hasClear="args.hasClear"
+                    :placeholder="args.placeholder"
+                    :prefix="args.prefix"
+                    :size="args.size"
+                    :maxLimit="args.maxLimit"
+                    :hint="{ error: '', description: 'Prompt message' }"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                    v-model="args.modelValue"
+                />
+                <Input
+                    :label="args.label"
+                    :type="args.type"
+                    :hasClear="args.hasClear"
+                    :placeholder="args.placeholder"
+                    :prefix="args.prefix"
+                    :size="args.size"
+                    :maxLimit="args.maxLimit"
+                    :hint="{ error: 'Error message', description: '' }"
+                    :isDisabled="args.isDisabled"
+                    :className="args.className"
+                    v-model="args.modelValue"
+                />
+                <Input
+                    :label="args.label"
+                    :type="args.type"
+                    :hasClear="args.hasClear"
+                    :placeholder="args.placeholder"
+                    :prefix="args.prefix"
+                    :size="args.size"
+                    :maxLimit="args.maxLimit"
+                    :hint="{ error: '', description: 'Prompt message' }"
+                    :isDisabled="true"
+                    :className="args.className"
+                    v-model="args.modelValue"
+                />
+            </div>
+        `,
+    }),
+    // 控制 controls 中能控制的參數
+    parameters: {
+        controls: {
+            // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
+            exclude: ['hint', 'input', 'clearDatePicker', 'isDisabled'],
+        },
+        docs: {
+            source: {
+                transform: (src, storyContext) => {
+                    const { args } = storyContext;
+                    return [
+                        '<Input',
+                        `  label="${args.label}"`,
+                        `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  size="${args.size}"`,
+                        `  maxLimit="${args.maxLimit}"`,
+                        `  :hint="{ error: '', description: 'Prompt message' }"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
+                        '/>',
+                        '<Input',
+                        `  label="${args.label}"`,
+                        `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  size="${args.size}"`,
+                        `  maxLimit="${args.maxLimit}"`,
+                        `  :hint="{ error: 'Error message', description: '' }"`,
+                        `  :isDisabled="${args.isDisabled}"`,
+                        `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
+                        '/>',
+                        '<Input',
+                        `  label="${args.label}"`,
+                        `  type="${args.type}"`,
+                        `  hasClear="${args.hasClear}"`,
+                        `  placeholder="${args.placeholder}"`,
+                        `  prefix="${args.prefix}"`,
+                        `  size="${args.size}"`,
+                        `  maxLimit="${args.maxLimit}"`,
+                        `  :hint="{ error: '', description: 'Prompt message' }"`,
+                        `  :isDisabled="true"`,
+                        `  className="${args.className}"`,
+                        `  v-model="modelValue"`,
+                        '/>',
+                    ].join('\n').trim();
+                }
+            }
+        }
+    },
+};
