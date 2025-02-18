@@ -155,21 +155,21 @@ export const DividerContent = {
 					:direction="args.direction"
 					align="start"
 					:className="args.className"
-				>start</Divider>
+				>Start</Divider>
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					:direction="args.direction"
 					align="center"
 					:className="args.className"
-				>center</Divider>
+				>Center</Divider>
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					:direction="args.direction"
 					align="end"
 					:className="args.className"
-				>end</Divider>
+				>End</Divider>
 			</div>
 		`,
 	}),
@@ -190,21 +190,21 @@ export const DividerContent = {
 						`  direction="${args.direction}"`,
 						`  align="start"`,
 						`  className="${args.className}"`,
-						'>start</Divider>',
+						'>Start</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="${args.direction}"`,
 						`  align="center"`,
 						`  className="${args.className}"`,
-						'>center</Divider>',
+						'>Center</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="${args.direction}"`,
 						`  align="end"`,
 						`  className="${args.className}"`,
-						'>end</Divider>',
+						'>End</Divider>',
 					].join('\n').trim();
 
 				}
@@ -351,21 +351,21 @@ export const DividerTypes = {
 					:direction="args.direction"
 					:align="args.align"
 					:className="args.className"
-				>solid</Divider>
+				>Solid</Divider>
 				<Divider
 					:width="args.width"
 					type="dashed"
 					:direction="args.direction"
 					:align="args.align"
 					:className="args.className"
-				>dashed</Divider>
+				>Dashed</Divider>
 				<Divider
 					:width="args.width"
 					type="dotted"
 					:direction="args.direction"
 					:align="args.align"
 					:className="args.className"
-				>dotted</Divider>
+				>Dotted</Divider>
 			</div>
 		`,
 	}),
@@ -386,21 +386,21 @@ export const DividerTypes = {
 						`  direction="${args.direction}"`,
 						`  align="${args.align}"`,
 						`  className="${args.className}"`,
-						'>solid</Divider>',
+						'>Solid</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="dashed"`,
 						`  direction="${args.direction}"`,
 						`  align="${args.align}"`,
 						`  className="${args.className}"`,
-						'>dashed</Divider>',
+						'>Dashed</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="dotted"`,
 						`  direction="${args.direction}"`,
 						`  align="${args.align}"`,
 						`  className="${args.className}"`,
-						'>dotted</Divider>',
+						'>Dotted</Divider>',
 					].join('\n').trim();
 
 				}
@@ -437,7 +437,7 @@ export const DividerColumnDirection = {
 					direction="vertical"
 					align="start"
 					:className="args.className"
-				>start</Divider>
+				>Start</Divider>
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
@@ -445,7 +445,7 @@ export const DividerColumnDirection = {
 					direction="vertical"
 					align="center"
 					:className="args.className"
-				>center</Divider>
+				>Center</Divider>
 				<Divider
 					:themeColor="args.themeColor"
 					:width="args.width"
@@ -453,7 +453,7 @@ export const DividerColumnDirection = {
 					direction="vertical"
 					align="end"
 					:className="args.className"
-				>end</Divider>
+				>End</Divider>
 			</div>
 		`,
 	}),
@@ -475,7 +475,7 @@ export const DividerColumnDirection = {
 						`  direction="vertical"`,
 						`  align="start"`,
 						`  className="${args.className}"`,
-						'>start</Divider>',
+						'>Start</Divider>',
 						'<Divider',
 						`  themeColor="${args.themeColor}"`,
 						`  width="${args.width}"`,
@@ -483,7 +483,7 @@ export const DividerColumnDirection = {
 						`  direction="vertical"`,
 						`  align="center"`,
 						`  className="${args.className}"`,
-						'>center</Divider>',
+						'>Center</Divider>',
 						'<Divider',
 						`  themeColor="${args.themeColor}"`,
 						`  width="${args.width}"`,
@@ -491,7 +491,7 @@ export const DividerColumnDirection = {
 						`  direction="vertical"`,
 						`  align="end"`,
 						`  className="${args.className}"`,
-						'>end</Divider>',
+						'>End</Divider>',
 					].join('\n').trim();
 				}
 			}
@@ -526,21 +526,21 @@ export const DividerRowDirection = {
 					direction="horizontal"
 					align="start"
 					:className="args.className"
-				>start</Divider>
+				>Start</Divider>
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					direction="horizontal"
 					align="center"
 					:className="args.className"
-				>center</Divider>
+				>Center</Divider>
 				<Divider
 					:width="args.width"
 					:type="args.type"
 					direction="horizontal"
 					align="end"
 					:className="args.className"
-				>end</Divider>
+				>End</Divider>
 			</div>
 		`,
 	}),
@@ -561,21 +561,21 @@ export const DividerRowDirection = {
 						`  direction="horizontal"`,
 						`  align="start"`,
 						`  className="${args.className}"`,
-						'>start</Divider>',
+						'>Start</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="horizontal"`,
 						`  align="center"`,
 						`  className="${args.className}"`,
-						'>center</Divider>',
+						'>Center</Divider>',
 						'<Divider',
 						`  width="${args.width}"`,
 						`  type="${args.type}"`,
 						`  direction="horizontal"`,
 						`  align="end"`,
 						`  className="${args.className}"`,
-						'>end</Divider>',
+						'>End</Divider>',
 					].join('\n').trim();
 				}
 			}
