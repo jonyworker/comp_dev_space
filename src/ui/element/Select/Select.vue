@@ -13,7 +13,7 @@ const props = defineProps({
 	},
 	placeholder: {
 		type: String,
-		default: "Select an option",
+		default: "Select",
 	},
 	suffix: {
 		type: String,
