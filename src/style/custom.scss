@@ -74,8 +74,6 @@
   color: grey;
 }
 
-
-
 .custom-border-color::after,
 .custom-border-color::before {
   border-top-color: #FFFFFF !important;
@@ -144,4 +142,40 @@
       height: 30px;
     }
   }
+}
+
+// icon story 用
+.icon-button {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:8px;
+  width: 120px;
+  padding: 24px;
+  border: 1px solid #0D64FB;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+.icon-button:hover {
+  background-color: rgb(231.2745098039, 239.8039215686, 254.6078431373);;
+}
+.icon-button:focus {
+  box-shadow: 0 0 0 3px rgb(206.6, 224, 254.2);
+  border-color: rgb(37.6745098039, 115.8039215686, 251.4078431373);
+  color: rgb(37.6745098039, 115.8039215686, 251.4078431373);
+}
+
+.icon-button__tooltip {
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+  background-color: #374151;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 50;
+  white-space: normal;
 }

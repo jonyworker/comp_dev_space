@@ -1,8 +1,22 @@
+import { ref } from 'vue';
 import Icon from "@/ui/element/Icon/Icon.vue";
+
+// 取得 icon 資料夾內所有名稱
 const iconFiles = import.meta.glob('@/assets/icon/*.svg', { eager: true });
 const icons = Object.keys(iconFiles).map((path) =>
 	path.replace(/^.*[\\/]/, '').replace(/\.svg$/, '')
 ).filter((name) => name !== "SvgAuo");
+
+// 複製 icon 名稱
+const hoveredIcon = ref(null);
+const copiedIcon = ref(null);
+const copyToClipboard = (text) => {
+	navigator.clipboard.writeText(text).then(() => {
+		copiedIcon.value = text;
+		setTimeout(() => copiedIcon.value = null, 1500);
+	}).catch(err => console.error("複製失敗:", err));
+};
+
 
 export default {
 	title: "Component/Icon",
@@ -56,8 +70,6 @@ export const IconDefaultStory = {
 			}
 		},
 		template: `
-			
-			{{icons}}
 			<Icon
 				:name="args.name"
 				:size="args.size"
@@ -101,26 +113,39 @@ export const IconListStory = {
 		setup() {
 			return {
 				args,
-				icons
+				icons,
+				hoveredIcon,
+				copiedIcon,
+				copyToClipboard
 			}
 		},
 		template: `
-			<div v-for="icon in icons" 
-			     style="display:flex; 
-			     flex-direction: column; 
-			     align-items: center; 
-			     justify-content: center; 
-			     width: 100px; 
-			     padding: 12px; 
-			     border: 1px solid #000; 
-			     border-radius: 4px">
-				<Icon
-					:name="icon"
-					:size="args.size"
-					:color="args.color"
-				></Icon>
-				<span style="font-size: 11px; white-space: wrap">{{icon}}</span>
+			<div class="flex flex-wrap gap-4">
+				<div v-for="iconName in icons"
+				     @click="copyToClipboard(iconName)"
+				     @mouseover="hoveredIcon = iconName"
+				     @mouseleave="hoveredIcon = null"
+				     class="icon-button relative cursor-pointer">
+					<Icon
+						:name="iconName"
+						:size="args.size"
+						:color="args.color"
+					></Icon>
+					<span class="text-xs">{{iconName}}</span>
+					<!-- Hover 時顯示 Click -->
+					<span v-if="hoveredIcon === iconName && copiedIcon !== iconName"
+					      class="icon-button__tooltip">
+						Click
+					</span>
+
+					<!-- 點擊後顯示 Copied! -->
+					<span v-if="copiedIcon === iconName"
+					      class="icon-button__tooltip">
+						Copied!
+					</span>
+				</div>
 			</div>
+			
         `,
 	}),
 	// 控制 controls 中能控制的參數
