@@ -105,7 +105,7 @@ export const DatePickerDefaultStory = {
 };
 
 //==== 日期區間 ====//
-export const DatepickerRange = {
+export const DatePickerRange = {
 	name: "日期區間",
 	args: {
 		format: "yyyy/mm/dd",
