@@ -1,28 +1,28 @@
-import Slider from "./Slider.vue";
+import Slider from "@/ui/element/slider/Slider.vue";
 
 export default {
 	title: "Component/Slider",
 	component: Slider,
 	tags: ["autodocs"],
 	argTypes: {
-		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			],
-			table: {
-				type: {
-					summary: "primary | secondary | neutral | info | success | warning | error"
-				}
-			}
-		},
+		// themeColor: {
+		// 	description: "主題顏色",
+		// 	control: { type: "select" },
+		// 	options: [
+		// 		"primary",
+		// 		"secondary",
+		// 		"neutral",
+		// 		"info",
+		// 		"success",
+		// 		"warning",
+		// 		"error",
+		// 	],
+		// 	table: {
+		// 		type: {
+		// 			summary: "primary | secondary | neutral | info | success | warning | error"
+		// 		}
+		// 	}
+		// },
 		min: {
 			description: "最小值",
 			control: { type: "number" },
@@ -87,11 +87,10 @@ export default {
 export const SliderDefault = {
 	name: "預設項目",
 	args: {
-		themeColor: 'primary',
+		// themeColor: 'primary',
 		min: -100,
 		max: 100,
 		step: 1,
-		// initValue: 8,
 		label: "℃",
 		isShowRange: true,
 		isShowCurrValue: true,
@@ -108,7 +107,6 @@ export const SliderDefault = {
 		},
 		template: `
 			<slider
-				:themeColor="args.themeColor"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
@@ -132,18 +130,26 @@ export const SliderDefault = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<slider',
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  label="${args.label}"`,
-						`  :isShowRange="${args.isShowRange}"`,
-						`  :isShowCurrValue="${args.isShowCurrValue}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></slider>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import Slider from "@/ui/element/slider/Slider.vue";`,
+						'const modelValue = ref("");',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Slider`,
+						`    ${args.min !== undefined ? `:min="${args.min}"` : ""}`,
+						`    ${args.max !== undefined ? `:max="${args.max}"` : ""}`,
+						`    ${args.step !== undefined ? `:step="${args.step}"` : ""}`,
+						`    ${args.label ? `label="${args.label}"` : ""}`,
+						`    ${args.isShowRange !== undefined ? `:isShowRange="${args.isShowRange}"` : ""}`,
+						`    ${args.isShowCurrValue !== undefined ? `:isShowCurrValue="${args.isShowCurrValue}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Slider>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
@@ -154,7 +160,7 @@ export const SliderDefault = {
 export const SliderCurrent = {
 	name: "顯示目前值",
 	args: {
-		themeColor: 'primary',
+		// themeColor: 'primary',
 		min: -100,
 		max: 100,
 		step: 1,
@@ -173,7 +179,6 @@ export const SliderCurrent = {
 		},
 		template: `
 			<slider
-				:themeColor="args.themeColor"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
@@ -197,18 +202,26 @@ export const SliderCurrent = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<slider',
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  label="${args.label}"`,
-						`  :isShowRange="${args.isShowRange}"`,
-						`  :isShowCurrValue="true"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></slider>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import Slider from "@/ui/element/slider/Slider.vue";`,
+						'const modelValue = ref("");',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Slider`,
+						`    ${args.min !== undefined ? `:min="${args.min}"` : ""}`,
+						`    ${args.max !== undefined ? `:max="${args.max}"` : ""}`,
+						`    ${args.step !== undefined ? `:step="${args.step}"` : ""}`,
+						`    ${args.label ? `label="${args.label}"` : ""}`,
+						`    ${args.isShowRange !== undefined ? `:isShowRange="${args.isShowRange}"` : ""}`,
+						`    :isShowCurrValue="true"`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Slider>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
@@ -219,7 +232,6 @@ export const SliderCurrent = {
 export const SliderAround = {
 	name: "顯示範圍",
 	args: {
-		themeColor: 'primary',
 		min: -100,
 		max: 100,
 		step: 1,
@@ -238,7 +250,6 @@ export const SliderAround = {
 		},
 		template: `
 			<slider
-				:themeColor="args.themeColor"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
@@ -262,18 +273,26 @@ export const SliderAround = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<slider',
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  label="${args.label}"`,
-						`  :isShowRange="true"`,
-						`  :isShowCurrValue="${args.isShowCurrValue}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></slider>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import Slider from "@/ui/element/slider/Slider.vue";`,
+						'const modelValue = ref("");',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Slider`,
+						`    ${args.min !== undefined ? `:min="${args.min}"` : ""}`,
+						`    ${args.max !== undefined ? `:max="${args.max}"` : ""}`,
+						`    ${args.step !== undefined ? `:step="${args.step}"` : ""}`,
+						`    ${args.label ? `label="${args.label}"` : ""}`,
+						`    :isShowRange="true"`,
+						`    ${args.isShowCurrValue !== undefined ? `:isShowCurrValue="${args.isShowCurrValue}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Slider>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
