@@ -1,23 +1,24 @@
 import Menu from "@/ui/element/Menu/Menu.vue";
 function formatDataSource(dataSource) {
 	return `[
-	    ${dataSource.map(item => `{
-	        label: '${item.label}',
-	        path: '${item.path}',
-	        prefix: '${item.prefix}',
-	        order: '${item.order}',
-	        isDisabled: '${item.isDisabled}',
-	        ${item.children ? `children: [
-	            ${item.children.map(child => `{
-	                label: '${child.title}',
-	                path: '${child.path}',
-	                prefix: '${child.prefix}',
-	                order: '${child.order}',
-	            }`).join(',\n            ')}
-	        ]` : ''}
-	    }`).join(',\n    ')}
-	]`;
+        ${dataSource.map(item => `{
+            label: '${item.label}',
+            path: '${item.path}',
+            prefix: '${item.prefix}',
+            ${item.order !== undefined && item.order !== null ? `order: '${item.order}',` : ''}
+            ${item.isDisabled !== undefined ? `isDisabled: ${item.isDisabled},` : ''}
+            ${item.children && item.children.length ? `children: [
+                ${item.children.map(child => `{
+                    label: '${child.label}',
+                    path: '${child.path}',
+                    prefix: '${child.prefix}',
+                    ${child.order !== undefined && child.order !== null ? `order: '${child.order}',` : ''}
+                }`).join(',\n                ')}
+            ]` : ''}
+        }`).join(',\n    ')}
+    ]`;
 }
+
 
 export default {
 	title: "Component/Menu",
@@ -129,14 +130,20 @@ export const MenuDefault = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
+						`<script setup>`,
+						`import Menu from "@/ui/element/Menu/Menu.vue";`,
+						`</script>`,
+						'',
+						'<template>',
 						'  <Menu',
-						`    :dataSource="${dataSourceString}"`,
-						`    :isCollapsed="${args.isCollapsed}"`,
-						`    color="${args.color}"`,
-						`    :hasDivider="${args.hasDivider}"`,
-						`    className="${args.className}"`,
+						`    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+						`    ${args.isCollapsed !== undefined ? `:isCollapsed="${args.isCollapsed}"` : ""}`,
+						`    ${args.color ? `color="${args.color}"` : ""}`,
+						`    ${args.hasDivider !== undefined ? `:hasDivider="${args.hasDivider}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
 						'  ></Menu>',
-					].join('\n').trim();
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
