@@ -1,45 +1,36 @@
 import { action } from '@storybook/addon-actions';
 import List from "@/ui/element/List/List.vue";
-import ListItem from "@/ui/element/List/ListItem.vue";
 function formatDataSource(dataSource) {
 	return `[
 	    ${dataSource.map(item => `{
-	        content: {
-	            label: '${item.content.label}',
-		        value: '${item.content.value}',
-		        href: '${item.content.href}',
-		        prefix: '${item.content.prefix}',
-	        },
-	        isDisabled: '${item.isDisabled}',
+			label: '${item.label}',
+			value: '${item.value}',
+			href: '${item.href}',
+			prefix: '${item.prefix}',
+	        isDisabled: ${item.isDisabled},
 	    }`).join(',\n    ')}
 	]`;
 }
 const dataSource = [
 	{
-		content: {
-			"label": "Option1",
-			"value": "option1",
-			"href": "",
-			"prefix": "SvgAccount"
-		},
+		label: "Option1",
+		value: "option1",
+		href: "",
+		prefix: "SvgAccount",
 		isDisabled: true,
 	},
 	{
-		content: {
-			"label": "Option2",
-			"value": "option2",
-			"href": "#",
-			"prefix": "SvgAccount"
-		},
+		label: "Option2",
+		value: "option2",
+		href: "#",
+		prefix: "SvgAccount",
 		isDisabled: false,
 	},
 	{
-		content: {
-			"label": "Option3",
-			"value": "option3",
-			"href": "#",
-			"prefix": "SvgAccount"
-		},
+		label: "Option3",
+		value: "option3",
+		href: "#",
+		prefix: "SvgAccount",
 		isDisabled: false,
 	},
 ]
@@ -55,7 +46,7 @@ export default {
 			control: { type: 'object' },
 			table: {
 				type: {
-					summary: '{ content: {label: string; value: string; href: string; prefix: string;}, isDisabled: boolean }[]',
+					summary: '{ label: string, value: string, href: string, prefix: string, isDisabled: boolean }[]',
 				}
 			}
 		},
@@ -95,13 +86,13 @@ export default {
 export const ListDefaultStory = {
 	name: "預設項目",
 	args: {
-		dataSource: dataSource,
+		dataSource:dataSource,
 		hasOutline: false,
 		hasDivider: false,
 		className: '',
 	},
 	render: (args) => ({
-		components: { List, ListItem },
+		components: { List },
 		setup() {
 			return {
 				args,
@@ -116,7 +107,6 @@ export const ListDefaultStory = {
 				:className="args.className"
 				@onSelect="handleItemClick"
 			>
-				
 			</List>
         `,
 	}),
@@ -131,15 +121,21 @@ export const ListDefaultStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<List',
-						`    :dataSource="${dataSourceString}"`,
-						`    :hasOutline="${args.hasOutline}"`,
-						`    :hasDivider="${args.hasDivider}"`,
-						`    className="${args.className}"`,
-						`    @onSelect="handleItemClick"`,
-						'>',
-						'</List>',
-					].join('\n').trim();
+						`<script setup>`,
+						`import List from "@/ui/element/List/List.vue";`,
+						`const handleItemClick = () => {};`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <List`,
+						`    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+						`    ${args.hasOutline !== undefined ? `:hasOutline="${args.hasOutline}"` : ""}`,
+						`    ${args.hasDivider !== undefined ? `:hasDivider="${args.hasDivider}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    @onSelect="handleItemClick()"`,
+						`  ></List>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
@@ -152,7 +148,7 @@ export const ListOutLineStory = {
 	args: {
 		dataSource:dataSource,
 		hasDivider: false,
-		className: 'col-5',
+		className: '',
 	},
 	render: (args) => ({
 		components: { List },
@@ -184,15 +180,21 @@ export const ListOutLineStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<List',
-						`    :dataSource="${dataSourceString}"`,
+						`<script setup>`,
+						`import List from "@/ui/element/List/List.vue";`,
+						`const handleItemClick = () => {};`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <List`,
+						`    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
 						`    :hasOutline="true"`,
-						`    :hasDivider="${args.hasDivider}"`,
-						`    className="${args.className}"`,
-						`    @onSelect="handleItemClick"`,
-						'>',
-						'</List>',
-					].join('\n').trim();
+						`    ${args.hasDivider !== undefined ? `:hasDivider="${args.hasDivider}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    @onSelect="handleItemClick()"`,
+						`  ></List>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
@@ -209,7 +211,7 @@ export const ListDividerStory = {
 		className: '',
 	},
 	render: (args) => ({
-		components: { List, ListItem },
+		components: { List },
 		setup() {
 			return {
 				args,
@@ -224,7 +226,7 @@ export const ListDividerStory = {
 				:className="args.className"
 				@onSelect="handleItemClick"
 			>
-				
+
 			</List>
         `,
 	}),
@@ -239,15 +241,21 @@ export const ListDividerStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<List',
-						`    :dataSource="${dataSourceString}"`,
-						`    :hasOutline="${args.hasOutline}"`,
+						`<script setup>`,
+						`import List from "@/ui/element/List/List.vue";`,
+						`const handleItemClick = () => {};`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <List`,
+						`    ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+						`    ${args.hasOutline !== undefined ? `:hasOutline="${args.hasOutline}"` : ""}`,
 						`    :hasDivider="true"`,
-						`    className="${args.className}"`,
-						`    @onSelect="handleItemClick"`,
-						'>',
-						'</List>',
-					].join('\n').trim();
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    @onSelect="handleItemClick()"`,
+						`  ></List>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
