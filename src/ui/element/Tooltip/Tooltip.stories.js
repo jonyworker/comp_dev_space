@@ -104,15 +104,22 @@ export const DefaultTooltip = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
+						`<script setup>`,
+						`import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";`,
+						`import Button from "@/ui/element/Button/Button.vue";`,
+						`</script>`,
+						'',
+						'<template>',
 						'  <Tooltip',
-						`    content="${args.content}"`,
-						`    placement="${args.placement}"`,
-						`    :showArrow="${args.showArrow}"`,
-						`    className="${args.className}"`,
+						`    ${args.content ? `content="${args.content}"` : ""}`,
+						`    ${args.placement ? `placement="${args.placement}"` : ""}`,
+						`    ${args.showArrow !== undefined ? `:showArrow="${args.showArrow}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
 						'  >',
 						'    <Button themeColor="primary" variant="filled" prefix="SvgAccount">Hover Me</Button>',
 						'  </Tooltip>',
-					].join('\n').trim();
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
