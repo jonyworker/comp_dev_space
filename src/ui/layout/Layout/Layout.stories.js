@@ -36,7 +36,7 @@ export const LayoutDefaultStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Content :className="args.className">
+				<Content>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -61,23 +61,31 @@ export const LayoutDefaultStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Layout :className="${args.className}">',
-						'  <Content :className="${args.className}">',
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #0958d9;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      content',
-						'    </div>',
-						'  </Content>',
-						'</Layout>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import Layout, { Content } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Content>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 200px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #0958d9;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        content`,
+						`      </div>`,
+						`    </Content>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
@@ -99,7 +107,7 @@ export const LayoutThirdStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Header :className="args.className" >
+				<Header>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -111,7 +119,7 @@ export const LayoutThirdStory = {
 						font-size: 24px;
 					"> Header </div>
 				</Header>
-				<Content :className="args.className">
+				<Content>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -123,7 +131,7 @@ export const LayoutThirdStory = {
 						font-size: 24px;
 					"> Content </div>
 				</Content>
-				<Footer :className="args.className">
+				<Footer>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -148,51 +156,59 @@ export const LayoutThirdStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Layout :className="${args.className}">`,
-						`  <Header :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Header',
-						'    </div>',
-						'  </Header>',
-						`  <Content :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #0958d9;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Content',
-						'    </div>',
-						'  </Content>',
-						`  <Footer :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Footer',
-						'    </div>',
-						'  </Footer>',
-						'</Layout>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import Layout, { Header, Content, Footer } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Header>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        content`,
+						`      </div>`,
+						`    </Header>`,
+						`    <Content>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 200px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #0958d9;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        content`,
+						`      </div>`,
+						`    </Content>`,
+						`    <Footer>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        content`,
+						`      </div>`,
+						`    </Footer>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
@@ -214,7 +230,7 @@ export const LayoutLeftDrawerStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Header :className="args.className" >
+				<Header>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -226,8 +242,8 @@ export const LayoutLeftDrawerStory = {
 						font-size: 24px;
 					"> Header </div>
 				</Header>
-				<Layout :className="args.className">
-					<Side :className="args.className" >
+				<Layout>
+					<Side>
 						<div style="
 							min-width: 80px;
 							width: 100%;
@@ -240,7 +256,7 @@ export const LayoutLeftDrawerStory = {
 							font-size: 24px;
 						"> Side </div>
 					</Side>
-					<Content :className="args.className">
+					<Content>
 						<div style="
 							width: 100%;
 							height: 100%;
@@ -253,7 +269,7 @@ export const LayoutLeftDrawerStory = {
 						"> Content </div>
 					</Content>
 				</Layout>
-				<Footer :className="args.className">
+				<Footer>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -278,68 +294,79 @@ export const LayoutLeftDrawerStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Layout :className="${args.className}">`,
-						`  <Header :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Header',
-						'    </div>',
-						'  </Header>',
-						`  <div style="display: flex; height: 100%;">`, // 包裹 Side 和 Content 的 div
-						`    <Side :className="${args.className}">`,
-						'      <div style="',
-						'        min-width: 80px;',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #1677ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Side',
-						'      </div>',
-						'    </Side>',
-						`    <Content :className="${args.className}">`,
-						'      <div style="',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #0958d9;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Content',
-						'      </div>',
-						'    </Content>',
-						'  </div>', // 結束包裹 Side 和 Content 的 div
-						`  <Footer :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Footer',
-						'    </div>',
-						'  </Footer>',
-						'</Layout>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import Layout, { Header, Content, Side, Footer } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `:className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Header>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Header`,
+						`      </div>`,
+						`    </Header>`,
+						`  `,
+						`    <Layout>`,
+						`      <Side>`,
+						`        <div style="`,
+						`          min-width: 80px;`,
+						`          width: 100%;`,
+						`          height: 200px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #1677ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Side`,
+						`        </div>`,
+						`      </Side>`,
+						`  `,
+						`      <Content>`,
+						`        <div style="`,
+						`          width: 100%;`,
+						`          height: 200px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #0958d9;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Content`,
+						`        </div>`,
+						`      </Content>`,
+						`    </Layout>`,
+						`  `,
+						`    <Footer>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Footer`,
+						`      </div>`,
+						`    </Footer>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
@@ -361,7 +388,7 @@ export const LayoutRightDrawerStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Header :className="args.className" >
+				<Header>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -373,8 +400,8 @@ export const LayoutRightDrawerStory = {
 						font-size: 24px;
 					"> Header </div>
 				</Header>
-				<Layout :className="args.className">
-					<Content :className="args.className">
+				<Layout>
+					<Content>
 						<div style="
 							width: 100%;
 							height: 100%;
@@ -386,7 +413,7 @@ export const LayoutRightDrawerStory = {
 							font-size: 24px;
 						"> Content </div>
 					</Content>
-					<Side :className="args.className" >
+					<Side>
 						<div style="
 							min-width: 80px;
 							width: 100%;
@@ -400,7 +427,7 @@ export const LayoutRightDrawerStory = {
 						"> Side </div>
 					</Side>
 				</Layout>
-				<Footer :className="args.className">
+				<Footer>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -425,68 +452,79 @@ export const LayoutRightDrawerStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Layout :className="${args.className}">`,
-						`  <Header :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Header',
-						'    </div>',
-						'  </Header>',
-						`  <div style="display: flex; height: 100%;">`, // 包裹 Side 和 Content 的 div
-						`    <Content :className="${args.className}">`,
-						'      <div style="',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #0958d9;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Content',
-						'      </div>',
-						'    </Content>',
-						`    <Side :className="${args.className}">`,
-						'      <div style="',
-						'        min-width: 80px;',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #1677ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Side',
-						'      </div>',
-						'    </Side>',
-						'  </div>', // 結束包裹 Side 和 Content 的 div
-						`  <Footer :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Footer',
-						'    </div>',
-						'  </Footer>',
-						'</Layout>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import Layout, { Header, Content, Side, Footer } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `:className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Header>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Header`,
+						`      </div>`,
+						`    </Header>`,
+						`  `,
+						`    <Layout>`,
+						`      <Content>`,
+						`        <div style="`,
+						`          width: 100%;`,
+						`          height: 200px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #0958d9;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Content`,
+						`        </div>`,
+						`      </Content>`,
+						`  `,
+						`      <Side>`,
+						`        <div style="`,
+						`          min-width: 80px;`,
+						`          width: 100%;`,
+						`          height: 200px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #1677ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Side`,
+						`        </div>`,
+						`      </Side>`,
+						`    </Layout>`,
+						`  `,
+						`    <Footer>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Footer`,
+						`      </div>`,
+						`    </Footer>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
@@ -508,7 +546,7 @@ export const LayoutLeftFixedStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Side :className="args.className" >
+				<Side>
 					<div style="
 							min-width: 80px;
 							width: 100%;
@@ -521,8 +559,8 @@ export const LayoutLeftFixedStory = {
 							font-size: 24px;
 						"> Side </div>
 				</Side>
-				<Layout :className="args.className">
-					<Header :className="args.className" >
+				<Layout>
+					<Header>
 						<div style="
 							width: 100%;
 							height: 100%;
@@ -534,7 +572,7 @@ export const LayoutLeftFixedStory = {
 							font-size: 24px;
 						"> Header </div>
 					</Header>
-					<Content :className="args.className">
+					<Content>
 						<div style="
 							width: 100%;
 							height: 100%;
@@ -546,7 +584,7 @@ export const LayoutLeftFixedStory = {
 							font-size: 24px;
 						"> Content </div>
 					</Content>
-					<Footer :className="args.className">
+					<Footer>
 						<div style="
 						width: 100%;
 						height: 100%;
@@ -572,68 +610,79 @@ export const LayoutLeftFixedStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Layout :className="${args.className}">`,
-						`  <Side :className="${args.className}">`,
-						'    <div style="',
-						'      min-width: 80px;',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #1677ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Side',
-						'    </div>',
-						'  </Side>',
-						`  <div style="display: flex; height: 100%;">`,
-						`    <Header :className="${args.className}">`,
-						'      <div style="',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #4096ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Header',
-						'      </div>',
-						'    </Header>',
-						`    <Content :className="${args.className}">`,
-						'      <div style="',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #0958d9;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Content',
-						'      </div>',
-						'    </Content>',
-						`    <Footer :className="${args.className}">`,
-						'      <div style="',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #4096ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Footer',
-						'      </div>',
-						'    </Footer>',
-						'  </div>',
-						'</Layout>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import Layout, { Header, Content, Side, Footer } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `:className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Side>`,
+						`      <div style="`,
+						`        min-width: 80px;`,
+						`        width: 100%;`,
+						`        height: 320px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #1677ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Side`,
+						`      </div>`,
+						`    </Side>`,
+						`  `,
+						`    <Layout>`,
+						`      <Header>`,
+						`        <div style="`,
+						`          width: 100%;`,
+						`          height: 60px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #4096ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Header`,
+						`        </div>`,
+						`      </Header>`,
+						`  `,
+						`      <Content>`,
+						`        <div style="`,
+						`          width: 100%;`,
+						`          height: 200px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #0958d9;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Content`,
+						`        </div>`,
+						`      </Content>`,
+						`  `,
+						`      <Footer>`,
+						`        <div style="`,
+						`          width: 100%;`,
+						`          height: 60px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #4096ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Footer`,
+						`        </div>`,
+						`      </Footer>`,
+						`    </Layout>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
@@ -655,7 +704,7 @@ export const LayoutLeftStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Header :className="args.className" >
+				<Header>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -667,8 +716,8 @@ export const LayoutLeftStory = {
 						font-size: 24px;
 					"> Header </div>
 				</Header>
-				<Layout :className="args.className">
-					<Side :className="args.className" >
+				<Layout>
+					<Side>
 						<div style="
 							min-width: 80px;
 							width: 100%;
@@ -681,8 +730,8 @@ export const LayoutLeftStory = {
 							font-size: 24px;
 						"> Side </div>
 					</Side>
-					<Layout :className="args.className">
-						<Content :className="args.className">
+					<Layout>
+						<Content>
 							<div style="
 								width: 100%;
 								height: 100%;
@@ -694,7 +743,7 @@ export const LayoutLeftStory = {
 								font-size: 24px;
 							"> Content </div>
 						</Content>
-						<Footer :className="args.className">
+						<Footer>
 							<div style="
 								width: 100%;
 								height: 100%;
@@ -721,70 +770,81 @@ export const LayoutLeftStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Layout :className="${args.className}">`,
-						`  <Header :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'    ">',
-						'      Header',
-						'    </div>',
-						'  </Header>',
-						`  <div style="display: flex; height: 100%;">`,
-						`    <Side :className="${args.className}">`,
-						'      <div style="',
-						'        min-width: 80px;',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #1677ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Side',
-						'      </div>',
-						'    </Side>',
-						`    <div style="display: flex; height: 100%;">`,
-						`      <Content :className="${args.className}">`,
-						'        <div style="',
-						'          width: 100%;',
-						'          height: 100%;',
-						'          display: flex;',
-						'          justify-content: center;',
-						'          align-items: center;',
-						'          background: #0958d9;',
-						'          color: #fff;',
-						'          font-size: 24px;',
-						'        ">',
-						'          Content',
-						'        </div>',
-						'      </Content>',
-						`      <Footer :className="${args.className}">`,
-						'        <div style="',
-						'          width: 100%;',
-						'          height: 100%;',
-						'          display: flex;',
-						'          justify-content: center;',
-						'          align-items: center;',
-						'          background: #4096ff;',
-						'          color: #fff;',
-						'          font-size: 24px;',
-						'        ">',
-						'          Footer',
-						'        </div>',
-						'      </Footer>',
-						'    </div>',
-						'  </div>',
-						'</Layout>',
-					].join('\n').trim();
-
+						`<script setup>`,
+						'import Layout, { Header, Content, Side, Footer } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `:className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Header>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Header`,
+						`      </div>`,
+						`    </Header>`,
+						`  `,
+						`    <Layout>`,
+						`      <Side>`,
+						`        <div style="`,
+						`          min-width: 80px;`,
+						`          width: 100%;`,
+						`          height: 260px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #1677ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Side`,
+						`        </div>`,
+						`      </Side>`,
+						`  `,
+						`      <Layout>`,
+						`        <Content>`,
+						`          <div style="`,
+						`            width: 100%;`,
+						`            height: 200px;`,
+						`            display: flex;`,
+						`            justify-content: center;`,
+						`            align-items: center;`,
+						`            background: #0958d9;`,
+						`            color: #fff;`,
+						`            font-size: 24px;`,
+						`          ">`,
+						`            Content`,
+						`          </div>`,
+						`        </Content>`,
+						`  `,
+						`        <Footer>`,
+						`          <div style="`,
+						`            width: 100%;`,
+						`            height: 60px;`,
+						`            display: flex;`,
+						`            justify-content: center;`,
+						`            align-items: center;`,
+						`            background: #4096ff;`,
+						`            color: #fff;`,
+						`            font-size: 24px;`,
+						`          ">`,
+						`            Footer`,
+						`          </div>`,
+						`        </Footer>`,
+						`      </Layout>`,
+						`    </Layout>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
@@ -806,7 +866,7 @@ export const LayoutOfficialStory = {
 		},
 		template: `
 			<Layout :className="args.className">
-				<Header :className="args.className" >
+				<Header>
 					<div style="
 						width: 100%;
 						height: 100%;
@@ -818,8 +878,8 @@ export const LayoutOfficialStory = {
 						font-size: 24px;
 					"> Header </div>
 				</Header>
-				<Layout :className="args.className">
-					<Side :className="args.className" >
+				<Layout>
+					<Side>
 						<div style="
 							min-width: 80px;
 							width: 100%;
@@ -832,8 +892,8 @@ export const LayoutOfficialStory = {
 							font-size: 24px;
 						"> Side </div>
 					</Side>
-					<Layout :className="args.className">
-						<Content :className="args.className">
+					<Layout>
+						<Content>
 							<div style="
 								width: 100%;
 								height: 100%;
@@ -845,7 +905,7 @@ export const LayoutOfficialStory = {
 								font-size: 24px;
 							"> Content </div>
 						</Content>
-						<Footer :className="args.className">
+						<Footer>
 							<div style="
 								width: 100%;
 								height: 100%;
@@ -858,7 +918,7 @@ export const LayoutOfficialStory = {
 							"> Footer </div>
 						</Footer>
 					</Layout>
-					<Side :className="args.className" >
+					<Side>
 						<div style="
 							min-width: 80px;
 							width: 100%;
@@ -885,85 +945,197 @@ export const LayoutOfficialStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Layout :className="${args.className}">`,
-						`  <Header :className="${args.className}">`,
-						'    <div style="',
-						'      width: 100%;',
-						'      height: 100%;',
-						'      display: flex;',
-						'      justify-content: center;',
-						'      align-items: center;',
-						'      background: #4096ff;',
-						'      color: #fff;',
-						'      font-size: 24px;',
-						'    ">',
-						'      Header',
-						'    </div>',
-						'  </Header>',
-						`  <div style="display: flex; height: 100%;">`,
-						`    <Side :className="${args.className}">`,
-						'      <div style="',
-						'        min-width: 80px;',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #1677ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Side',
-						'      </div>',
-						'    </Side>',
-						`    <div style="display: flex; height: 100%;">`,
-						`      <Content :className="${args.className}">`,
-						'        <div style="',
-						'          width: 100%;',
-						'          height: 100%;',
-						'          display: flex;',
-						'          justify-content: center;',
-						'          align-items: center;',
-						'          background: #0958d9;',
-						'          color: #fff;',
-						'          font-size: 24px;',
-						'        ">',
-						'          Content',
-						'        </div>',
-						'      </Content>',
-						`      <Footer :className="${args.className}">`,
-						'        <div style="',
-						'          width: 100%;',
-						'          height: 100%;',
-						'          display: flex;',
-						'          justify-content: center;',
-						'          align-items: center;',
-						'          background: #4096ff;',
-						'          color: #fff;',
-						'          font-size: 24px;',
-						'        ">',
-						'          Footer',
-						'        </div>',
-						'      </Footer>',
-						'    </div>',
-						`    <Side :className="${args.className}">`,
-						'      <div style="',
-						'        min-width: 80px;',
-						'        width: 100%;',
-						'        height: 100%;',
-						'        display: flex;',
-						'        justify-content: center;',
-						'        align-items: center;',
-						'        background: #1677ff;',
-						'        color: #fff;',
-						'        font-size: 24px;',
-						'      ">',
-						'        Side',
-						'      </div>',
-						'    </Side>',
-						'  </div>',
-						'</Layout>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import Layout, { Header, Content, Side, Footer } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `:className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Header>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 60px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #4096ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Header`,
+						`      </div>`,
+						`    </Header>`,
+						`  `,
+						`    <Layout>`,
+						`      <Side>`,
+						`        <div style="`,
+						`          min-width: 80px;`,
+						`          width: 100%;`,
+						`          height: 260px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #1677ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Side`,
+						`        </div>`,
+						`      </Side>`,
+						`  `,
+						`      <Layout>`,
+						`        <Content>`,
+						`          <div style="`,
+						`            width: 100%;`,
+						`            height: 200px;`,
+						`            display: flex;`,
+						`            justify-content: center;`,
+						`            align-items: center;`,
+						`            background: #0958d9;`,
+						`            color: #fff;`,
+						`            font-size: 24px;`,
+						`          ">`,
+						`            Content`,
+						`          </div>`,
+						`        </Content>`,
+						`  `,
+						`        <Footer>`,
+						`          <div style="`,
+						`            width: 100%;`,
+						`            height: 60px;`,
+						`            display: flex;`,
+						`            justify-content: center;`,
+						`            align-items: center;`,
+						`            background: #4096ff;`,
+						`            color: #fff;`,
+						`            font-size: 24px;`,
+						`          ">`,
+						`            Footer`,
+						`          </div>`,
+						`        </Footer>`,
+						`      </Layout>`,
+						`  `,
+						`      <Side>`,
+						`        <div style="`,
+						`          min-width: 80px;`,
+						`          width: 100%;`,
+						`          height: 260px;`,
+						`          display: flex;`,
+						`          justify-content: center;`,
+						`          align-items: center;`,
+						`          background: #1677ff;`,
+						`          color: #fff;`,
+						`          font-size: 24px;`,
+						`        ">`,
+						`          Side`,
+						`        </div>`,
+						`      </Side>`,
+						`    </Layout>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
+				},
+			}
+		}
+	},
+};
+
+//==== 文章導覽式佈局 ====//
+export const LayoutArticleStory = {
+	name: '文章導覽式佈局',
+	args: {
+		className: '',
+	},
+	render: (args) => ({
+		components: { Layout, Header, Content, Side, Footer },
+		setup() {
+			return {
+				args,
+			};
+		},
+		template: `
+			<Layout :className="args.className">
+				<Side>
+					<div style="
+						min-width: 80px;
+						width: 100%;
+						height: 100%;
+						display:flex;
+						justify-content: center;
+						align-items: center;
+						background: #1677ff;
+						color: #fff;
+						font-size: 24px;
+					"> Side </div>
+				</Side>
+				<Content>
+					<div style="
+						width: 100%;
+						height: 100%;
+						display:flex;
+						justify-content: center;
+						align-items: center;
+						background: #0958d9;
+						color: #fff;
+						font-size: 24px;
+					"> Content </div>
+				</Content>
+			</Layout>
+			`,
+	}),
+	// 控制 controls 中能控制的參數
+	parameters: {
+		controls: {
+			// include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
+		},
+		docs: {
+			source: {
+				transform: (src, storyContext) => {
+					const { args } = storyContext;
+					return [
+						`<script setup>`,
+						'import Layout, { Content, Side } from "@/ui/layout/Layout"',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Layout`,
+						`    ${args.className ? `:className="${args.className}"` : ""}`,
+						`  >`,
+						`    <Side>`,
+						`      <div style="`,
+						`        min-width: 80px;`,
+						`        width: 100%;`,
+						`        height: 200px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #1677ff;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Side`,
+						`      </div>`,
+						`    </Side>`,
+						`  `,
+						`    <Content>`,
+						`      <div style="`,
+						`        width: 100%;`,
+						`        height: 200px;`,
+						`        display: flex;`,
+						`        justify-content: center;`,
+						`        align-items: center;`,
+						`        background: #0958d9;`,
+						`        color: #fff;`,
+						`        font-size: 24px;`,
+						`      ">`,
+						`        Content`,
+						`      </div>`,
+						`    </Content>`,
+						`  </Layout>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			}
 		}
