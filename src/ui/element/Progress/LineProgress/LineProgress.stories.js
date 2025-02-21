@@ -97,13 +97,19 @@ export const DefaultLineProgress = {
                 transform: (src, storyContext) => {
                     const { args } = storyContext;
                     return [
-                        '<LineProgress',
-                        `  :label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  :className="${args.className}"`,
-                        '></LineProgress>',
-                    ].join('\n').trim();
+                        `<script setup>`,
+                        `import LineProgress from "@/ui/element/Progress/LineProgress/LineProgress.vue";`,
+                        `</script>`,
+                        '',
+                        '<template>',
+                        `  <LineProgress`,
+                        `    ${args.label ? `label="${args.label}"` : ""}`,
+                        `    ${args.percent !== undefined ? `:percent="${args.percent}"` : ""}`,
+                        `    ${args.strokeWidth !== undefined ? `:strokeWidth="${args.strokeWidth}"` : ""}`,
+                        `    ${args.className ? `className="${args.className}"` : ""}`,
+                        `  ></LineProgress>`,
+                        '</template>',
+                    ].filter(Boolean).join("\n").trim();
                 }
             }
         }
