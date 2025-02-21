@@ -1,24 +1,24 @@
-import SideNav from "./SideNav.vue";
+import SideNav from "@/ui/element/SideNav/SideNav.vue";
 import Row from "@/ui/layout/Grid/Row.vue";
 import Column from "@/ui/layout/Grid/Column.vue";
 import Grid from "@/ui/layout/Grid/Grid.vue";
 function formatDataSource(dataSource) {
 	return `[
-	    ${dataSource.map(item => `{
-	        label: '${item.label}',
-	        path: '${item.path}',
-	        prefix: '${item.prefix}',
-	        order: '${item.order}',
-	        ${item.children ? `children: [
-	            ${item.children.map(child => `{
-	                label: '${child.title}',
-	                path: '${child.path}',
-	                prefix: '${child.prefix}',
-	                order: '${child.order}',
-	            }`).join(',\n            ')}
-	        ]` : ''}
-	    }`).join(',\n    ')}
-	]`;
+	    ${dataSource.map(item => `    {
+		        label: '${item.label}',
+		        path: '${item.path}',
+		        prefix: '${item.prefix}',
+		        order: '${item.order}',
+		        ${item.children ? `children: [
+		            ${item.children.map(child => `{
+		                label: '${child.label}',
+		                path: '${child.path}',
+		                ${child.prefix !== undefined && child.prefix !== null ? `prefix: '${child.prefix}',` : ''}
+		                order: '${child.order}',
+		            }`).join(',\n                ')}
+	            ]` : ''}
+	        }`  ).join(',\n        ')}
+		]`;
 }
 
 const dataSource = [
@@ -240,18 +240,33 @@ export const SideNavDefault = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'  <SideNav',
-						`    themeColor="${args.themeColor}"`,
-						`    mobileLogoSrc="${args.mobileLogoSrc}"`,
-						`    desktopLogoSrc="${args.desktopLogoSrc}"`,
-						`    logoLink="${args.logoLink}"`,
-						`    :hasLogo="${args.hasLogo}"`,
-						`    :hasRWD="${args.hasRWD}"`,
-						`    :hasSearch="${args.hasSearch}"`,
-						`    :dataSource="${dataSourceString}"`,
-						`    className="${args.className}"`,
-						'  ></SideNav>',
-					].join('\n').trim();
+						`<script setup>`,
+						`import SideNav from "@/ui/element/SideNav/SideNav.vue";`,
+						`import Row from "@/ui/layout/Grid/Row.vue";`,
+						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Grid fluid>`,
+						`    <Row hasGap>`,
+						`      <Column xs="12" sm="4" md="4" style="text-align: start;">`,
+						`        <SideNav`,
+						`          ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
+						`          ${args.mobileLogoSrc ? `mobileLogoSrc="${args.mobileLogoSrc}"` : ""}`,
+						`          ${args.desktopLogoSrc ? `desktopLogoSrc="${args.desktopLogoSrc}"` : ""}`,
+						`          ${args.logoLink ? `logoLink="${args.logoLink}"` : ""}`,
+						`          ${args.hasLogo !== undefined ? `:hasLogo="${args.hasLogo}"` : ""}`,
+						`          ${args.hasRWD !== undefined ? `:hasRWD="${args.hasRWD}"` : ""}`,
+						`          ${args.hasSearch !== undefined ? `:hasSearch="${args.hasSearch}"` : ""}`,
+						`          ${dataSourceString !== undefined ? `:dataSource="${dataSourceString}"` : ""}`,
+						`          ${args.className ? `className="${args.className}"` : ""}`,
+						`        ></SideNav>`,
+						`      </Column>`,
+						`    </Row>`,
+						`  </Grid>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
