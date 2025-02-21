@@ -92,11 +92,17 @@ export const BreadcrumbMany = {
                     const { args } = storyContext;
                     const dataSourceString = formatDataSource(args.dataSource);
                     return [
-                        '<Breadcrumb',
-                        `  :dataSource='${dataSourceString}'`,
-                        `  className="${args.className}"`,
-                        '>',
-                        '</Breadcrumb>'
+                        `<script setup>`,
+                        `import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";`,
+                        `</script>`,
+                        '',
+                        '<template>',
+                        '  <Breadcrumb',
+                        `    :dataSource='${dataSourceString}'`,
+                        `    ${args.className ? `className="${args.className}"` : ""}`,
+                        '  >',
+                        '  </Breadcrumb>',
+                        '</template>',
                     ].join('\n').trim();
                 }
             }
