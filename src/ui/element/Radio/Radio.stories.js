@@ -3,8 +3,8 @@ function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
         label: '${item.label}',
-        value: '${item.value}'
-        isDisabled: '${item.isDisabled}'
+        value: '${item.value}',
+        isDisabled: ${item.isDisabled}
     }`).join(',\n    ')}
   ]`;
 }
@@ -146,14 +146,22 @@ export const RadioDefaultStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import Radio from "@/ui/element/Radio/Radio.vue";`,
+						`const modelValue = ref("${args.modelValue}");`,
+						`</script>`,
+						'',
+						'<template>',
 						'<Radio',
-						`  :dataSource="${dataSourceString}"`,
-						`  direction="${args.direction}"`,
-						`  size="${args.size}"`,
-						`  className="${args.className}"`,
+						`  ${dataSourceString ? `:dataSource="${dataSourceString}"` : ""}`,
+						`  ${args.direction ? `direction="${args.direction}"` : ""}`,
+						`  ${args.size ? `size="${args.size}"` : ""}`,
+						`  ${args.className ? `className="${args.className}"` : ""}`,
 						`  v-model="modelValue"`,
 						'></Radio>',
-					].join('\n').trim();
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
