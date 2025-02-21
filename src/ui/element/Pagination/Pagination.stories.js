@@ -77,6 +77,7 @@ export const PaginationDefault = {
 			}
 		},
 		template: `
+			
 			<Pagination
 				:totalItems="args.totalItems"
 				:currentPage="args.currentPage"
@@ -99,17 +100,23 @@ export const PaginationDefault = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Pagination`,
-						`  :totalItems="${args.totalItems}"`,
-						`  :currentPage="${args.currentPage}"`,
-						`  :itemsPerPageOptions="${args.itemsPerPageOptions}"`,
-						`  :defaultItemsPerPage="${args.defaultItemsPerPage}"`,
-						`  :isShowPageInfo="${args.isShowPageInfo}"`,
-						`  className="${args.className}"`,
-						`  @onPageChange="handlePageChange"`,
-						`>`,
-						`</Pagination>`,
-					].join("\n").trim();
+						`<script setup>`,
+						`import Pagination from "@/ui/element/Pagination/Pagination.vue";`,
+						`const handlePageChange = () => {};`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Pagination`,
+						`    ${args.totalItems !== undefined ? `:totalItems="${args.totalItems}"` : ""}`,
+						`    ${args.currentPage !== undefined ? `:currentPage="${args.currentPage}"` : ""}`,
+						`    ${args.itemsPerPageOptions ? `:itemsPerPageOptions="[${args.itemsPerPageOptions}]"` : ""}`,
+						`    ${args.defaultItemsPerPage !== undefined ? `:defaultItemsPerPage="${args.defaultItemsPerPage}"` : ""}`,
+						`    ${args.isShowPageInfo !== undefined ? `:isShowPageInfo="${args.isShowPageInfo}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    @onPageChange="handlePageChange()"`,
+						`  ></Pagination>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
@@ -158,18 +165,23 @@ export const PaginationDetail = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Pagination`,
-						`  :totalItems="${args.totalItems}"`,
-						`  :currentPage="${args.currentPage}"`,
-						`  :itemsPerPageOptions="${args.itemsPerPageOptions}"`,
-						`  :defaultItemsPerPage="${args.defaultItemsPerPage}"`,
-						`  :isShowPageInfo="${args.isShowPageInfo}"`,
-						`  className="${args.className}"`,
-						`  @onPageChange="handlePageChange"`,
-						`>`,
-						`</Pagination>`,
-					].join("\n").trim();
-
+						`<script setup>`,
+						`import Pagination from "@/ui/element/Pagination/Pagination.vue";`,
+						`const handlePageChange = () => {};`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Pagination`,
+						`    ${args.totalItems !== undefined ? `:totalItems="${args.totalItems}"` : ""}`,
+						`    ${args.currentPage !== undefined ? `:currentPage="${args.currentPage}"` : ""}`,
+						`    ${args.itemsPerPageOptions ? `:itemsPerPageOptions="[${args.itemsPerPageOptions}]"` : ""}`,
+						`    ${args.defaultItemsPerPage !== undefined ? `:defaultItemsPerPage="${args.defaultItemsPerPage}"` : ""}`,
+						`    :isShowPageInfo="true"`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    @onPageChange="handlePageChange()"`,
+						`  ></Pagination>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
