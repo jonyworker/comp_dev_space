@@ -87,12 +87,18 @@ export const IconDefaultStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<Icon',
-						`    :name="${args.name}"`,
-						`    :size="${args.size}"`,
-						`    :color="${args.color}"`,
-						'>',
-						'</Icon>',
+						`<script setup>`,
+						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`</script>`,
+						'',
+						'<template>',
+						'  <Icon',
+						`    ${args.name ? `name="${args.name}"` : ""}`,
+						`    ${args.size ? `size="${args.size}"` : ""}`,
+						`    ${args.color ? `color="${args.color}"` : ""}`,
+						'  >',
+						'  </Icon>',
+						'</template>',
 					].join('\n').trim();
 				}
 			}
@@ -155,17 +161,7 @@ export const IconListStory = {
 		},
 		docs: {
 			source: {
-				transform: (src, storyContext) => {
-					const { args } = storyContext;
-					return [
-						'<Icon',
-						`    :name="${args.name}"`,
-						`    :size="${args.size}"`,
-						`    :color="${args.color}"`,
-						'>',
-						'</Icon>',
-					].join('\n').trim();
-				}
+				code: false
 			}
 		}
 	},
