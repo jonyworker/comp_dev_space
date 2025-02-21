@@ -129,7 +129,7 @@ export const MultiAvatarStory = {
 						`    ${args.className ? `className="${args.className}"` : ""}`,
 						'  ></AvatarGroup>',
 						'</template>',
-					].join('\n').trim();
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
