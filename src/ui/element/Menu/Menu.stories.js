@@ -15,7 +15,7 @@ function formatDataSource(dataSource) {
                     ${child.order !== undefined && child.order !== null ? `order: '${child.order}',` : ''}
                 }`).join(',\n                ')}
             ]` : ''}
-        }`).join(',\n    ')}
+        }`).join(',\n        ')}
     ]`;
 }
 
