@@ -127,16 +127,23 @@ export const DropdownDefault = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<Dropdown',
-						`  :datasource="${dataSourceString}"`,
-						`  :label="${args.label}"`,
-						`  :placeholder="${args.placeholder}"`,
-						`  :size="${args.size}"`,
-						`  :className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'>',
-						'</Dropdown>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import Dropdown from "@/ui/element/Dropdown/Dropdown.vue";`,
+						'const modelValue = ref("");',
+						`</script>`,
+						'',
+						'<template>',
+						'  <Dropdown',
+						`    :dataSource="${dataSourceString}"`,
+						`    ${args.label ? `label="${args.label}"` : ""}`,
+						`    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`    ${args.size ? `size="${args.size}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						'  ></Dropdown>',
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
