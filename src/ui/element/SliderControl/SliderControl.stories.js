@@ -5,24 +5,24 @@ export default {
 	component: SliderControl,
 	tags: ["autodocs"],
 	argTypes: {
-		themeColor: {
-			description: "主題顏色",
-			control: { type: "select" },
-			options: [
-				"primary",
-				"secondary",
-				"neutral",
-				"info",
-				"success",
-				"warning",
-				"error",
-			],
-			table: {
-				type: {
-					summary: "primary | secondary | neutral | info | success | warning | error"
-				}
-			}
-		},
+		// themeColor: {
+		// 	description: "主題顏色",
+		// 	control: { type: "select" },
+		// 	options: [
+		// 		"primary",
+		// 		"secondary",
+		// 		"neutral",
+		// 		"info",
+		// 		"success",
+		// 		"warning",
+		// 		"error",
+		// 	],
+		// 	table: {
+		// 		type: {
+		// 			summary: "primary | secondary | neutral | info | success | warning | error"
+		// 		}
+		// 	}
+		// },
 		min: {
 			description: '最小值',
 			control: { type: 'number' },
@@ -100,7 +100,6 @@ export default {
 export const SliderButton = {
 	name: "預設項目",
 	args: {
-		themeColor: "primary",
 		min: -100,
 		max: 100,
 		step: 1,
@@ -120,7 +119,6 @@ export const SliderButton = {
 		},
 		template: `
 			<SliderControl
-				:themeColor="args.themeColor"
 				:min="args.min"
 				:max="args.max"
 				:step="args.step"
@@ -142,18 +140,26 @@ export const SliderButton = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						'<SliderControl',
-						`  :min="${args.min}"`,
-						`  :max="${args.max}"`,
-						`  :step="${args.step}"`,
-						`  label="${args.label}"`,
-						`  prefix="${args.prefix}"`,
-						`  suffix="${args.suffix}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></SliderControl>',
-					].join('\n').trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import SliderControl from "@/ui/element/SliderControl/SliderControl.vue";`,
+						`const modelValue = ref(${args.modelValue});`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <SliderControl`,
+						`    ${args.min !== undefined ? `:min="${args.min}"` : ""}`,
+						`    ${args.max !== undefined ? `:max="${args.max}"` : ""}`,
+						`    ${args.step !== undefined ? `:step="${args.step}"` : ""}`,
+						`    ${args.label ? `label="${args.label}"` : ""}`,
+						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
+						`    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></SliderControl>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}

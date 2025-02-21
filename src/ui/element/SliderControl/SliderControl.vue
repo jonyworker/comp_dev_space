@@ -9,20 +9,20 @@ const modelValue = defineModel();
 
 // 定義 Props
 const props = defineProps({
-    themeColor: {
-        type: String,
-        default: "primary",
-        validator: (value) =>
-            [
-                "primary",
-                "secondary",
-                "neutral",
-                "info",
-                "success",
-                "warning",
-                "error",
-            ].includes(value),
-    },
+    // themeColor: {
+    //     type: String,
+    //     default: "primary",
+    //     validator: (value) =>
+    //         [
+    //             "primary",
+    //             "secondary",
+    //             "neutral",
+    //             "info",
+    //             "success",
+    //             "warning",
+    //             "error",
+    //         ].includes(value),
+    // },
     min: {
         type: Number,
         default: 0,
