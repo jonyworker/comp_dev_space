@@ -108,15 +108,22 @@ export const SearchDefault = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
-						`<Search`,
-						// `  themeColor="${args.themeColor}"`,
-						`  size="${args.size}"`,
-						`  placeholder="${args.placeholder}"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						`></Search>`,
-					].join("\n").trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import Search from "@/ui/element/Search/Search.vue";`,
+						'const modelValue = ref("");',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Search`,
+						`    ${args.size ? `size="${args.size}"` : ""}`,
+						`    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Search>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
@@ -148,21 +155,21 @@ export const SearchSize = {
 					size="large"
 					:isDisabled="args.isDisabled"
 					:className="args.className"
-					v-model="modelValue"
+					v-model="args.modelValue"
 				></Search>
 				<Search
 					:placeholder="args.placeholder"
 					size="medium"
 					:isDisabled="args.isDisabled"
 					:className="args.className"
-					v-model="modelValue"
+					v-model="args.modelValue"
 				></Search>
 				<Search
 					:placeholder="args.placeholder"
 					size="small"
 					:isDisabled="args.isDisabled"
 					:className="args.className"
-					v-model="modelValue"
+					v-model="args.modelValue"
 				></Search>
 			</div>
         `,
@@ -177,29 +184,38 @@ export const SearchSize = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
+
 					return [
-						`<Search`,
-						`  :placeholder="${args.placeholder}"`,
-						`  size="large"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`  v-model="modelValue"`,
-						`></Search>`,
-						`<Search`,
-						`  :placeholder="${args.placeholder}"`,
-						`  size="medium"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`  v-model="modelValue"`,
-						`></Search>`,
-						`<Search`,
-						`  :placeholder="${args.placeholder}"`,
-						`  size="small"`,
-						`  :isDisabled="${args.isDisabled}"`,
-						`  :className="${args.className}"`,
-						`  v-model="modelValue"`,
-						`></Search>`,
-					].join("\n").trim();
+						`<script setup>`,
+						'import { ref } from "vue";',
+						`import Search from "@/ui/element/Search/Search.vue";`,
+						'const modelValue = ref("");',
+						`</script>`,
+						'',
+						'<template>',
+						`  <Search`,
+						`    size="large"`,
+						`    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Search>`,
+						`  <Search`,
+						`    size="medium"`,
+						`    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Search>`,
+						`  <Search`,
+						`    size="small"`,
+						`    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`    v-model="modelValue"`,
+						`  ></Search>`,
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
