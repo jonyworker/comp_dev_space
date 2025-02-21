@@ -104,14 +104,20 @@ export const NavbarDefault = {
 		            const { args } = storyContext;
 		            const dataSourceString = formatDataSource(args.dataSource);
 		            return [
-		                '<Navbar',
-		                `  :datasource="${dataSourceString}"`,
-			            `  :hasLogo="${args.hasLogo}"`,
-		                `  :logoSrc="${args.logoSrc}"`,
-		                `  className="${args.className}"`,
-		                '>',
-		                '</Navbar>',
-		            ].join('\n').trim();
+			            `<script setup>`,
+			            `import Navbar from "@/ui/element/Navbar/Navbar.vue";`,
+			            `</script>`,
+			            '',
+			            '<template>',
+		                '  <Navbar',
+			            `    :dataSource="${dataSourceString ? dataSourceString : ''}"`,
+			            `    ${args.hasLogo !== undefined ? `:hasLogo="${args.hasLogo}"` : ""}`,
+			            `    ${args.logoSrc ? `logoSrc="${args.logoSrc}"` : ""}`,
+			            `    ${args.className ? `className="${args.className}"` : ""}`,
+		                '  >',
+		                '  </Navbar>',
+			            '</template>',
+		            ].filter(Boolean).join('\n').trim();
 		        }
 		    }
 		}
