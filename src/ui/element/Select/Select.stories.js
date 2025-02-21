@@ -132,15 +132,23 @@ export const SelectDefault = {
 		            const { args } = storyContext;
 		            const dataSourceString = formatDataSource(args.dataSource);
 			        return [
-				        `<Select`,
-				        `  :dataSource="${dataSourceString}"`,
-				        `  placeholder="${args.placeholder}"`,
-				        `  suffix="${args.suffix}"`,
-				        `  :isDisabled="${args.isDisabled}"`,
-				        `  className="${args.className}"`,
-				        `  v-model="modelValue"`,
-				        `></Select>`,
-			        ].join("\n").trim();
+				        `<script setup>`,
+				        'import { ref } from "vue";',
+				        `import Select from "@/ui/element/Select/Select.vue";`,
+				        'const modelValue = ref("");',
+				        `</script>`,
+				        '',
+				        '<template>',
+				        `  <Select`,
+				        `    ${dataSourceString !== undefined ? `:dataSource="${dataSourceString}"` : ""}`,
+				        `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+				        `    ${args.suffix ? `suffix="${args.suffix}"` : ""}`,
+				        `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+				        `    ${args.className ? `className="${args.className}"` : ""}`,
+				        `    v-model="modelValue"`,
+				        `  ></Select>`,
+				        '</template>',
+			        ].filter(Boolean).join('\n').trim();
 		        }
 		    }
 		}
