@@ -90,14 +90,22 @@ export const DatePickerDefaultStory = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import DatePicker from "@/ui/element/DatePicker/DatePicker.vue";`,
+						`const modelValue = ref(${args.isRange ? "['','']" : '""'});`,
+						`</script>`,
+						'',
+						'<template>',
 						`<DatePicker`,
-						`  :format="${args.format}"`,
-						`  :isRange="${args.isRange}"`,
-						`  :placeholder="${args.placeholder}"`,
-						`  :className="${args.className}"`,
+						`  ${args.format ? `format="${args.format}"` : ""}`,
+						`  ${args.isRange !== undefined ? `:isRange="${args.isRange}"` : ""}`,
+						`  ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`  ${args.className ? `className="${args.className}"` : ""}`,
 						`  v-model="modelValue"`,
 						`></DatePicker>`,
-					].join("\n").trim();
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
@@ -151,13 +159,22 @@ export const DatePickerRange = {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
 					return [
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import DatePicker from "@/ui/element/DatePicker/DatePicker.vue";`,
+						`const modelValue = ref(${args.isRange ? "['','']" : '""'});`,
+						`</script>`,
+						'',
+						'<template>',
 						`<DatePicker`,
-						`  :format="${args.format}"`,
-						`  :isRange="${args.isRange}"`,
-						`  :className="${args.className}"`,
+						`  ${args.format ? `format="${args.format}"` : ""}`,
+						`  ${args.isRange !== undefined ? `:isRange="${args.isRange}"` : ""}`,
+						`  ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+						`  ${args.className ? `className="${args.className}"` : ""}`,
 						`  v-model="modelValue"`,
 						`></DatePicker>`,
-					].join("\n").trim();
+						'</template>',
+					].filter(Boolean).join("\n").trim();
 				}
 			}
 		}
