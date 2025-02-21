@@ -2,9 +2,10 @@ import AvatarGroup from "./AvatarGroup.vue";
 function formatDataSource(dataSource) {
 	return `[
         ${dataSource.map(item => `{
-            userName: "${item.userName}",
-            src: "${item.src}",
-        }`).join(',\n    ')}
+            userName: "${item.userName}"${item.caption ? `,
+            caption: "${item.caption}"` : ''}${item.src ? `,
+            src: "${item.src}"` : ''}
+        }`).join(',\n        ')}
     ]`;
 }
 
@@ -56,7 +57,7 @@ export default {
 };
 
 //==== 預設項目 ====//
-export const MultiAvatar = {
+export const MultiAvatarStory = {
 	name: "預設項目",
 	args: {
 		dataSource:[
@@ -116,12 +117,18 @@ export const MultiAvatar = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<AvatarGroup',
-						`  :dataSource='${dataSourceString}'`,
-						`  size="${args.size}"`,
-						`  :limit="${args.limit}"`,
-						`  class="${args.className}"`,
-						'></AvatarGroup>'
+						`<script setup>`,
+						`import AvatarGroup from "@/ui/element/AvatarGroup/AvatarGroup.vue";`,
+						`</script>`,
+						'',
+						'<template>',
+						'  <AvatarGroup',
+						`    :dataSource='${dataSourceString}'`,
+						`    ${args.size ? `size="${args.size}"` : ""}`,
+						`    ${args.limit ? `:limit="${args.limit}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						'  ></AvatarGroup>',
+						'</template>',
 					].join('\n').trim();
 				}
 			}
