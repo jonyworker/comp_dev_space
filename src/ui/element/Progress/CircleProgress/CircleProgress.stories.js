@@ -112,14 +112,20 @@ export const DefaultCircleProgress = {
                 transform: (src, storyContext) => {
                     const { args } = storyContext;
                     return [
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="${args.size}"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                    ].join('\n').trim();
+                        `<script setup>`,
+                        `import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";`,
+                        `</script>`,
+                        '',
+                        '<template>',
+                        `  <CircleProgress`,
+                        `    ${args.label ? `label="${args.label}"` : ""}`,
+                        `    ${args.percent !== undefined ? `:percent="${args.percent}"` : ""}`,
+                        `    ${args.size !== undefined ? `:size="${args.size}"` : ""}`,
+                        `    ${args.strokeWidth !== undefined ? `:strokeWidth="${args.strokeWidth}"` : ""}`,
+                        `    ${args.className ? `className="${args.className}"` : ""}`,
+                        `  ></CircleProgress>`,
+                        '</template>',
+                    ].filter(Boolean).join("\n").trim();
                 }
             }
         }
@@ -175,21 +181,27 @@ export const CircleProgressLabelStory = {
                 transform: (src, storyContext) => {
                     const { args } = storyContext;
                     return [
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="70"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                        '<CircleProgress',
-                        `  label="${args.label}"`,
-                        `  :percent="${args.percent}"`,
-                        `  :size="100"`,
-                        `  :strokeWidth="${args.strokeWidth}"`,
-                        `  className="${args.className}"`,
-                        '></CircleProgress>',
-                    ].join('\n').trim();
+                        `<script setup>`,
+                        `import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";`,
+                        `</script>`,
+                        '',
+                        '<template>',
+                        `  <CircleProgress`,
+                        `    ${args.label ? `label="${args.label}"` : ""}`,
+                        `    ${args.percent !== undefined ? `:percent="${args.percent}"` : ""}`,
+                        `    :size="70"`,
+                        `    ${args.strokeWidth !== undefined ? `:strokeWidth="${args.strokeWidth}"` : ""}`,
+                        `    ${args.className ? `className="${args.className}"` : ""}`,
+                        `  ></CircleProgress>`,
+                        `  <CircleProgress`,
+                        `    ${args.label ? `label="${args.label}"` : ""}`,
+                        `    ${args.percent !== undefined ? `:percent="${args.percent}"` : ""}`,
+                        `    :size="100"`,
+                        `    ${args.strokeWidth !== undefined ? `:strokeWidth="${args.strokeWidth}"` : ""}`,
+                        `    ${args.className ? `className="${args.className}"` : ""}`,
+                        `  ></CircleProgress>`,
+                        '</template>',
+                    ].filter(Boolean).join("\n").trim();
                 }
             }
         }
