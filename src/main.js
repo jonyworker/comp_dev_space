@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
 import '@/style/globals.scss'
-import App from './App5.vue'
+import App from './playground.vue'
 
 createApp(App).mount('#app')
