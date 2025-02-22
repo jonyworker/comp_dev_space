@@ -73,7 +73,7 @@ const getInitialsOrDefault = (string, count) => {
         }">
             <div :class="['ded-avatar', `ded-avatar-${props.shape}`]">
                 <template v-if="props.src">
-                    <Image :src="props.src" :alt="props.alt" ratio="11" objectFit="cover"></Image>
+                    <Image :src="props.src" :alt="props.alt" ratio="1x1" objectFit="cover"></Image>
                 </template>
                 <template v-else>
 				<span
