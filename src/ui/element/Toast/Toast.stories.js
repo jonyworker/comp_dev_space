@@ -142,7 +142,7 @@ export const ToastDefault = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message" :class="toastHeaderMsgThemeClass">
 						<Icon :name="args.prefix" size="20"></Icon>
-						<Title :themeColor="args.themeColor" level="5">
+						<Title :themeColor="args.themeColor" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -176,7 +176,7 @@ export const ToastDefault = {
 						`      title: "${args.title}",`,
 						`      content: "${args.content}",`,
 						`      prefix: "${args.prefix}",`,
-						`      duration: "${args.duration}",`,
+						`      duration: ${args.duration},`,
 						'    });',
 						'  };',
 						'</script>',
@@ -200,7 +200,7 @@ export const ToastDefault = {
 						`  <Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showToast"`,
 						`  >`,
 						`    Toast Trigger`,
@@ -247,7 +247,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-success">
 						<Icon name="SvgSuccessCircle" size="20"></Icon>
-						<Title themeColor="success" level="5">
+						<Title themeColor="success" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -269,7 +269,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-warning">
 						<Icon name="SvgWarningTri" size="20"></Icon>
-						<Title themeColor="warning" level="5">
+						<Title themeColor="warning" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -291,7 +291,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-error">
 						<Icon name="SvgErrorCircle" size="20"></Icon>
-						<Title themeColor="error" level="5">
+						<Title themeColor="error" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -313,7 +313,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-info">
 						<Icon name="SvgInfoCircle" size="20"></Icon>
-						<Title themeColor="info" level="5">
+						<Title themeColor="info" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -335,7 +335,7 @@ export const ToastTotal = {
 				<div class="ded-toast-header">
 					<div class="ded-toast-header-message ded-toast-header-message-neutral">
 						<Icon name="SvgDisableCircle" size="20"></Icon>
-						<Title themeColor="neutral" level="5">
+						<Title themeColor="neutral" :level="5">
 							{{ args.title }}
 						</Title>
 					</div>
@@ -370,7 +370,7 @@ export const ToastTotal = {
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      prefix: "SvgSuccessCircle",`,
-						`      ${args.duration !== undefined ? `duration: "${args.duration}",` : ""}`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
 						'    });',
 						'  };',
 						'  const showWarningToast = () => {',
@@ -379,7 +379,7 @@ export const ToastTotal = {
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      prefix: "SvgWarningTri",`,
-						`      ${args.duration !== undefined ? `duration: "${args.duration}",` : ""}`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
 						'    });',
 						'  };',
 						'  const showErrorToast = () => {',
@@ -388,7 +388,7 @@ export const ToastTotal = {
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      prefix: "SvgErrorCircle",`,
-						`      ${args.duration !== undefined ? `duration: "${args.duration}",` : ""}`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
 						'    });',
 						'  };',
 						'  const showInfoToast = () => {',
@@ -397,7 +397,7 @@ export const ToastTotal = {
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      prefix: "SvgInfoCircle",`,
-						`      ${args.duration !== undefined ? `duration: "${args.duration}",` : ""}`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
 						'    });',
 						'  };',
 						'  const showDisableToast = () => {',
@@ -406,7 +406,7 @@ export const ToastTotal = {
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      prefix: "SvgDisableCircle",`,
-						`      ${args.duration !== undefined ? `duration: "${args.duration}",` : ""}`,
+						`      ${args.duration !== undefined ? `duration: ${args.duration},` : ""}`,
 						'    });',
 						'  };',
 						'</script>',
@@ -430,7 +430,7 @@ export const ToastTotal = {
 						`  <Button`,
 						`    themeColor="success"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showSuccessToast"`,
 						`  >`,
 						`    Success Trigger`,
@@ -438,7 +438,7 @@ export const ToastTotal = {
 						`  <Button`,
 						`    themeColor="warning"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showWarningToast"`,
 						`  >`,
 						`    Warning Trigger`,
@@ -446,7 +446,7 @@ export const ToastTotal = {
 						`  <Button`,
 						`    themeColor="error"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showErrorToast"`,
 						`  >`,
 						`    Error Trigger`,
@@ -454,7 +454,7 @@ export const ToastTotal = {
 						`  <Button`,
 						`    themeColor="info"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showInfoToast"`,
 						`  >`,
 						`    Info Trigger`,
@@ -462,7 +462,7 @@ export const ToastTotal = {
 						`  <Button`,
 						`    themeColor="neutral"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showDisableToast"`,
 						`  >`,
 						`    Disable Trigger`,
@@ -551,7 +551,7 @@ export const ToastInterAction = {
 						`      title: "${args.title}",`,
 						`      content: "${args.content}",`,
 						`      prefix: "${args.prefix}",`,
-						`      duration: "${args.duration}",`,
+						`      duration: ${args.duration},`,
 						'    });',
 						'  };',
 						'</script>',
@@ -575,7 +575,7 @@ export const ToastInterAction = {
 						`  <Button`,
 						`    themeColor="primary"`,
 						`    variant="filled"`,
-						`    radius="md"`,
+						`    radius="4px"`,
 						`    @click="showToast"`,
 						`  >`,
 						`    Toast Trigger`,

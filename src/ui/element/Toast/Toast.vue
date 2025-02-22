@@ -82,7 +82,7 @@ onUnmounted(() => {
             <div class="ded-toast-header">
                 <div :class="['ded-toast-header-message', `ded-toast-header-message-${props.themeColor}`]">
                     <Icon :name="props.prefix" size="20"></Icon>
-                    <Title :themeColor="props.themeColor" level="5">
+                    <Title :themeColor="props.themeColor" :level="5">
                         {{ props.title }}
                     </Title>
                 </div>
