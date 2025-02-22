@@ -23,7 +23,6 @@ const props = defineProps({
 	},
 	prefix: {
 		type: String,
-		required: true,
 	},
 	size: {
 		type: String,
