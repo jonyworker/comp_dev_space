@@ -75,7 +75,7 @@ export const ImageDefault = {
 		template: `
 			<Grid fluid>
 				<Row hasGap>
-					<Column xs="12" sm="6" md="3">
+					<Column :xs="12" :sm="6" :md="3">
 						<Image
 							:src="args.src"
 							:alt="args.alt"
@@ -108,7 +108,7 @@ export const ImageDefault = {
 						'<template>',
 						`  <Grid fluid>`,
 						`    <Row hasGap>`,
-						`      <Column xs="12" sm="6" md="3">`,
+						`      <Column :xs="12" :sm="6" :md="3">`,
 						`        <Image`,
 						`          ${args.src ? `src="${args.src}"` : ""}`,
 						`          ${args.alt ? `alt="${args.alt}"` : ""}`,
