@@ -71,7 +71,7 @@ const handleClick = (event) => {
         @click="handleClick"
         :class="{
 			'ded-tab ': props.type !== 'button',
-			[`ded-tab-${props.themeColor}`]: props.isActive && props.type === 'basic',
+			[`ded-tab-${props.themeColor}`]: props.type === 'basic',
 			[`ded-tab-${props.themeColor}-active`]: props.isActive && props.type === 'basic',
 			[`ded-tab-disable`]: props.isDisabled && props.type === 'basic' ||props.isDisabled && props.type === 'outline',
 
