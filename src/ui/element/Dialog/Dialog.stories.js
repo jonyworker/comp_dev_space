@@ -86,7 +86,7 @@ export const DialogDefault = {
 		modelValue: true,
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
+		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="4px" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="4px" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
@@ -125,12 +125,12 @@ export const DialogDefault = {
 					<Grid>
 						<Row :hasGap="true">
 							<Column :sm="4">
-								<Button variant="filled" radius="md" width="fluid" @click="onConfirm">
+								<Button variant="filled" radius="4px" width="fluid" @click="onConfirm">
 									OK
 								</Button>
 							</Column>
 							<Column :sm="4">
-								<Button variant="soft" radius="md" width="fluid" @click="onCancel">
+								<Button variant="soft" radius="4px" width="fluid" @click="onCancel">
 									Cancel
 								</Button>
 							</Column>
@@ -181,7 +181,7 @@ export const DialogDefault = {
 						`          <Column :sm="4">`,
 						`            <Button`,
 						`              variant="filled"`,
-						`              radius="md"`,
+						`              radius="4px"`,
 						`              width="fluid"`,
 						`              @click="onConfirm()"`,
 						`            >`,
@@ -191,7 +191,7 @@ export const DialogDefault = {
 						`          <Column :sm="4">`,
 						`            <Button`,
 						`              variant="soft"`,
-						`              radius="md"`,
+						`              radius="4px"`,
 						`              width="fluid"`,
 						`              @click="onCancel()"`,
 						`            >`,
@@ -227,7 +227,7 @@ export const DialogDemo = {
 		className: '',
 		header: `<Title themeColor="primary" :level="2" >Title</Title>`,
 		content: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>`,
-		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="md" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="md" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
+		footer: `<Grid><Row :hasGap="true"><Column :sm="4"><Button variant="filled" radius="4px" width="fluid" @click="onConfirm">OK</Button></Column><Column :sm="4"><Button variant="soft" radius="4px" width="fluid" @click="onCancel">Cancel</Button></Column></Row></Grid>`,
 	},
 	render: (args) => ({
 		components: { Dialog, Button, Icon, Title, Grid, Row, Column },
@@ -263,12 +263,12 @@ export const DialogDemo = {
 					<Grid>
 						<Row :hasGap="true">
 							<Column :sm="4">
-								<Button variant="filled" radius="md" width="fluid" @click="onConfirm()">
+								<Button variant="filled" radius="4px" width="fluid" @click="onConfirm()">
 									OK
 								</Button>
 							</Column>
 							<Column :sm="4">
-								<Button variant="soft" radius="md" width="fluid" @click="onCancel()">
+								<Button variant="soft" radius="4px" width="fluid" @click="onCancel()">
 									Cancel
 								</Button>
 							</Column>
@@ -327,7 +327,7 @@ export const DialogDemo = {
 						`          <Column :sm="4">`,
 						`            <Button`,
 						`              variant="filled"`,
-						`              radius="md"`,
+						`              radius="4px"`,
 						`              width="fluid"`,
 						`              @click="onConfirm()"`,
 						`            >`,
@@ -337,7 +337,7 @@ export const DialogDemo = {
 						`          <Column :sm="4">`,
 						`            <Button`,
 						`              variant="soft"`,
-						`              radius="md"`,
+						`              radius="4px"`,
 						`              width="fluid"`,
 						`              @click="onCancel()"`,
 						`            >`,
