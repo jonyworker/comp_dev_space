@@ -14,8 +14,8 @@ const dataSource = [
 				suffix: 'SvgArrowDown',
 				size: 'small',
 				width: 'fit',
-				borderWidth: 'sm',
-				radius: 'sm',
+				borderWidth: 'none',
+				radius: '4px',
 				onClick: () => {
 					alert('Button clicked!');
 				}
@@ -56,8 +56,8 @@ const oneRecord = [
 				suffix: 'SvgArrowDown',
 				size: 'small',
 				width: 'fit',
-				borderWidth: 'sm',
-				radius: 'sm',
+				borderWidth: 'none',
+				radius: '4px',
 				onClick: () => {
 					alert('Button clicked!');
 				}
@@ -189,8 +189,8 @@ export const AccordionDefault = {
 						`        suffix: 'SvgArrowDown',`,
 						`        size: 'small',`,
 						`        width: 'fit',`,
-						`        borderWidth: 'sm',`,
-						`        radius: 'sm',`,
+						`        borderWidth: 'none',`,
+						`        radius: '4px',`,
 						`        onClick: () => {`,
 						`          alert('Button clicked!');`,
 						`        }`,
@@ -305,8 +305,8 @@ export const AccordionBorderStyle = {
 						`        suffix: 'SvgArrowDown',`,
 						`        size: 'small',`,
 						`        width: 'fit',`,
-						`        borderWidth: 'sm',`,
-						`        radius: 'sm',`,
+						`        borderWidth: 'none',`,
+						`        radius: '4px',`,
 						`        onClick: () => {`,
 						`          alert('Button clicked!');`,
 						`        }`,
@@ -408,8 +408,8 @@ export const AccordionSizeStory = {
 						`        suffix: 'SvgArrowDown',`,
 						`        size: 'small',`,
 						`        width: 'fit',`,
-						`        borderWidth: 'sm',`,
-						`        radius: 'sm',`,
+						`        borderWidth: 'none',`,
+						`        radius: '4px',`,
 						`        onClick: () => {`,
 						`          alert('Button clicked!');`,
 						`        }`,
