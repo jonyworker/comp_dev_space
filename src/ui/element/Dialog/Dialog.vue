@@ -1,4 +1,10 @@
 <script setup>
+if (!document.getElementById("dialog")) {
+	const dialogContainer = document.createElement("div");
+	dialogContainer.id = "dialog";
+	document.body.appendChild(dialogContainer);
+}
+
 import Button from '@/ui/element/Button/Button.vue'
 import Icon from "@/ui/element/Icon/Icon.vue";
 
