@@ -1,4 +1,11 @@
 <script setup>
+if (!document.getElementById("toast")) {
+	const toastContainer = document.createElement("div");
+	toastContainer.id = "toast";
+	toastContainer.classList.add("ded-toast-container");
+	document.body.appendChild(toastContainer);
+}
+
 import { ref, onMounted, onUnmounted } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 import Button from '@/ui/element/Button/Button.vue';
