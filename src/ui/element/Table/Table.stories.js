@@ -1,11 +1,6 @@
 import Table from "@/ui/element/Table/Table.vue";
 import Button from "@/ui/element/Button/Button.vue";
-function formatColumns(columns) {
-	return JSON.stringify(columns, null, 2);
-}
-function formatDataSource(dataSource) {
-	return JSON.stringify(dataSource, null, 2);
-}
+
 const dataSource = [
 	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
 	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },
@@ -101,8 +96,8 @@ export const TableDefault = {
 		},
 		template: `
 			<Table
-				:columns="args.columns"
 				:dataSource="args.dataSource"
+				:columns="args.columns"
 				:showCheckbox="args.showCheckbox"
 				:showVerticalBorders="args.showVerticalBorders"
 				:isSprite="args.isSprite"
@@ -118,18 +113,36 @@ export const TableDefault = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const columnsString = formatColumns(args.columns);
-					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						`<Table`,
-						`  :columns='${columnsString}'`,
-						`  :dataSource='${dataSourceString}'`,
-						`  :showCheckbox="${args.showCheckbox}"`,
-						`  :showVerticalBorders="${args.showVerticalBorders}"`,
-						`  :isSprite="${args.isSprite}"`,
-						`  :className="${args.className}"`,
-						`/>`,
-					].join("\n");
+						`<script setup>`,
+						`import Table from "@/ui/element/Table/Table.vue";`,
+						`const dataSource = [`,
+						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-4", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`]`,
+						`const columns = [`,
+						`	{ key: "head", title: "TH", width: "50px" },`,
+						`	{ key: "column1", title: "TH", width: "100px" },`,
+						`	{ key: "column2", title: "TH", width: "100px" },`,
+						`	{ key: "column3", title: "TH", width: "100px" },`,
+						`	{ key: "column4", title: "TH", width: "50px" },`,
+						`	{ key: "column5", title: "TH", width: "50px", align: "center" },`,
+						`]`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Table`,
+						`    :dataSource='dataSource'`,
+						`    :columns='columns'`,
+						`    ${args.showCheckbox !== undefined ? `:showCheckbox="${args.showCheckbox}"` : ""}`,
+						`    ${args.showVerticalBorders !== undefined ? `:showVerticalBorders="${args.showVerticalBorders}"` : ""}`,
+						`    ${args.isSprite !== undefined ? `:isSprite="${args.isSprite}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`  />`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			},
 		},
@@ -154,12 +167,12 @@ export const TableBorder = {
 		},
 		template: `
 			<Table
-			:columns="args.columns"
-			:dataSource="args.dataSource"
-			:showCheckbox="args.showCheckbox"
-			:showVerticalBorders="args.showVerticalBorders"
-			:isSprite="args.isSprite"
-			:className="args.className"
+				:dataSource="args.dataSource"
+				:columns="args.columns"
+				:showCheckbox="args.showCheckbox"
+				:showVerticalBorders="args.showVerticalBorders"
+				:isSprite="args.isSprite"
+				:className="args.className"
 			/>
     `,
 	}),
@@ -168,19 +181,36 @@ export const TableBorder = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const columnsString = formatColumns(args.columns);
-					const dataSourceString = formatDataSource(args.dataSource);
-
 					return [
-						`<Table`,
-						`  :columns='${columnsString}'`,
-						`  :dataSource='${dataSourceString}'`,
-						`  :showCheckbox="${args.showCheckbox}"`,
-						`  :showVerticalBorders="${args.showVerticalBorders}"`,
-						`  :isSprite="${args.isSprite}"`,
-						`  :className="${args.className}"`,
-						`/>`,
-					].join("\n");
+						`<script setup>`,
+						`import Table from "@/ui/element/Table/Table.vue";`,
+						`const dataSource = [`,
+						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-4", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`]`,
+						`const columns = [`,
+						`	{ key: "head", title: "TH", width: "50px" },`,
+						`	{ key: "column1", title: "TH", width: "100px" },`,
+						`	{ key: "column2", title: "TH", width: "100px" },`,
+						`	{ key: "column3", title: "TH", width: "100px" },`,
+						`	{ key: "column4", title: "TH", width: "50px" },`,
+						`	{ key: "column5", title: "TH", width: "50px", align: "center" },`,
+						`]`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Table`,
+						`    :dataSource='dataSource'`,
+						`    :columns='columns'`,
+						`    ${args.showCheckbox !== undefined ? `:showCheckbox="${args.showCheckbox}"` : ""}`,
+						`    ${args.showVerticalBorders !== undefined ? `:showVerticalBorders="${args.showVerticalBorders}"` : ""}`,
+						`    ${args.isSprite !== undefined ? `:isSprite="${args.isSprite}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`  />`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			},
 		},
@@ -236,32 +266,54 @@ export const TableSlot = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const columnsString = formatColumns(args.columns);
-					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						`<Table`,
-						`  :columns='${columnsString}'`,
-						`  :dataSource='${dataSourceString}'`,
-						`  :showCheckbox="${args.showCheckbox}"`,
-						`  :showVerticalBorders="${args.showVerticalBorders}"`,
-						`  :isSprite="${args.isSprite}"`,
-						`  :className="${args.className}"`,
-						`>`,
-						`  <template #column5="{item}">`,
-						`    <Button`,
-						`      themeColor="primary"`,
-						`      variant="filled"`,
-						`      size="small"`,
-						`      width="fit"`,
-						`      borderWidth="1px"`,
-						`      radius="4px"`,
-						`      @click="onClick(item.column5)"`,
-						`    >`,
-						`      View`,
-						`    </Button>`,
-						`  </template>`,
-						`</Table>`,
-					].join("\n").trim();
+						`<script setup>`,
+						`import Table from "@/ui/element/Table/Table.vue";`,
+						`import Button from "@/ui/element/Button/Button.vue";`,
+						`const dataSource = [`,
+						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-4", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`]`,
+						`const columns = [`,
+						`	{ key: "head", title: "TH", width: "50px" },`,
+						`	{ key: "column1", title: "TH", width: "100px" },`,
+						`	{ key: "column2", title: "TH", width: "100px" },`,
+						`	{ key: "column3", title: "TH", width: "100px" },`,
+						`	{ key: "column4", title: "TH", width: "50px" },`,
+						`	{ key: "column5", title: "TH", width: "50px", align: "center" },`,
+						`]`,
+						`const onClick = (val) => {`,
+						`	window.alert(val.head + " " + val.column5);`,
+						`};`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Table`,
+						`    :dataSource='dataSource'`,
+						`    :columns='columns'`,
+						`    ${args.showCheckbox !== undefined ? `:showCheckbox="${args.showCheckbox}"` : ""}`,
+						`    ${args.showVerticalBorders !== undefined ? `:showVerticalBorders="${args.showVerticalBorders}"` : ""}`,
+						`    ${args.isSprite !== undefined ? `:isSprite="${args.isSprite}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`  >`,
+						`    <template #column5="{item}">`,
+						`      <Button`,
+						`        themeColor="primary"`,
+						`        variant="filled"`,
+						`        size="small"`,
+						`        width="fit"`,
+						`        borderWidth="1px"`,
+						`        radius="4px"`,
+						`        @click="onClick(item)"`,
+						`      >`,
+						`        View`,
+						`      </Button>`,
+						`    </template>`,
+						`  </Table>`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			},
 		},
@@ -286,12 +338,12 @@ export const TableCheck = {
 		},
 		template: `
 			<Table
-			:columns="args.columns"
-			:dataSource="args.dataSource"
-			:showCheckbox="args.showCheckbox"
-			:showVerticalBorders="args.showVerticalBorders"
-			:isSprite="args.isSprite"
-			:className="args.className"
+				:columns="args.columns"
+				:dataSource="args.dataSource"
+				:showCheckbox="args.showCheckbox"
+				:showVerticalBorders="args.showVerticalBorders"
+				:isSprite="args.isSprite"
+				:className="args.className"
 			/>
     `,
 	}),
@@ -300,19 +352,36 @@ export const TableCheck = {
 			source: {
 				transform: (src, storyContext) => {
 					const { args } = storyContext;
-					const columnsString = formatColumns(args.columns);
-					const dataSourceString = formatDataSource(args.dataSource);
-
 					return [
-						`<Table`,
-						`  :columns='${columnsString}'`,
-						`  :dataSource='${dataSourceString}'`,
-						`  :showCheckbox="${args.showCheckbox}"`,
-						`  :showVerticalBorders="${args.showVerticalBorders}"`,
-						`  :isSprite="${args.isSprite}"`,
-						`  :className="${args.className}"`,
-						`/>`,
-					].join("\n");
+						`<script setup>`,
+						`import Table from "@/ui/element/Table/Table.vue";`,
+						`const dataSource = [`,
+						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-3", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`	{ head: "Head-4", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
+						`]`,
+						`const columns = [`,
+						`	{ key: "head", title: "TH", width: "50px" },`,
+						`	{ key: "column1", title: "TH", width: "100px" },`,
+						`	{ key: "column2", title: "TH", width: "100px" },`,
+						`	{ key: "column3", title: "TH", width: "100px" },`,
+						`	{ key: "column4", title: "TH", width: "50px" },`,
+						`	{ key: "column5", title: "TH", width: "50px", align: "center" },`,
+						`]`,
+						`</script>`,
+						'',
+						'<template>',
+						`  <Table`,
+						`    :dataSource='dataSource'`,
+						`    :columns='columns'`,
+						`    ${args.showCheckbox !== undefined ? `:showCheckbox="${args.showCheckbox}"` : ""}`,
+						`    ${args.showVerticalBorders !== undefined ? `:showVerticalBorders="${args.showVerticalBorders}"` : ""}`,
+						`    ${args.isSprite !== undefined ? `:isSprite="${args.isSprite}"` : ""}`,
+						`    ${args.className ? `className="${args.className}"` : ""}`,
+						`  />`,
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				},
 			},
 		},
