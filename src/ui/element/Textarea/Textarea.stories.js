@@ -71,7 +71,7 @@ export const TextareaDefault = {
         placeholder: "Placeholder",
         limit: 0,
         // initValue: "Type something...",
-        hint: { error: "", description: "Prompt message" },
+        hint: { error: "", description: "" },
         isDisabled: false,
         className: "",
         modelValue: "Type something"
