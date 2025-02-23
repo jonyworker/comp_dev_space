@@ -1,5 +1,5 @@
 <script setup>
-import { watch, ref, defineAsyncComponent, markRaw } from 'vue';
+import { watch, ref, markRaw } from 'vue';
 const props = defineProps({
     name: {
         type: String,
@@ -23,23 +23,18 @@ const props = defineProps({
 
 const iconComponent = ref(null);
 
-// 動態載入本地的 SVG 檔案
-const loadIconComponent = async () => {
-	try {
-		if (props.name) {
-			iconComponent.value = markRaw(
-				defineAsyncComponent(() =>
-					import(`../../../assets/icon/${props.name}.svg`)
-				)
-			);
-		} else {
-			iconComponent.value = null;
-		}
-	} catch (error) {
-		console.error(`Error loading icon: ${error.message}`);
+// 載入所有 SVG，Vite 會自動解析
+const icons = import.meta.glob('../../../assets/icon/*.svg', { eager: true });
+
+const loadIconComponent = () => {
+	if (props.name && icons[`../../../assets/icon/${props.name}.svg`]) {
+		iconComponent.value = markRaw(icons[`../../../assets/icon/${props.name}.svg`].default);
+	} else {
+		console.warn(`Icon "${props.name}" not found.`);
 		iconComponent.value = null;
 	}
 };
+
 
 
 // 監聽 name 改變並載入本地的 SVG
