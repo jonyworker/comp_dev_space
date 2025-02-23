@@ -1,11 +1,48 @@
 {
-  "name": "comp_dev_space",
+  "name": "comp-dev-space",
   "private": true,
   "version": "0.0.0",
+  "description": "Web Design System",
+  "main": "dist/comp-dev-space.umd.js",
+  "module": "dist/comp-dev-space.es.js",
+  "license": "MIT",
+  "homepage": "https://uedteam.github.io/DED-WDS_VUE",
   "type": "module",
+  "exports": {
+    "import": "./dist/comp-dev-space.es.js",
+    "require": "./dist/comp-dev-space.umd.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "Jony Wu"
+  },
+  "contributors": [
+    {
+      "name": "Amos Lee",
+      "email": "amos.lee@auo.com"
+    }
+  ],
+  "engines": {
+    "node": ">=18",
+    "npm": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uedteam/DED-WDS_REACT.git"
+  },
+  "keywords": [
+    "ded",
+    "design system",
+    "wds",
+    "ds"
+  ],
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "prepublishOnly": "npm run build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
