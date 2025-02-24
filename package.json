@@ -8,11 +8,11 @@
 
   "_comment_project": "專案配置",
   "type": "module",
-  "main": "dist/ded-wds-vue.umd.js",
-  "module": "dist/ded-wds-vue.es.js",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
   "exports": {
-    "import": "./dist/ded-wds-vue.es.js",
-    "require": "./dist/ded-wds-vue.cjs.js"
+    "import": "./dist/index.es.js",
+    "require": "./dist/index.cjs.js"
   },
   "files": [
     "dist"
