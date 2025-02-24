@@ -144,10 +144,41 @@ const components = [
 	{ key: 'index', value: index }
 ];
 
-export default {
-	install(app) {
-		components.forEach(component => {
-			app.component(component.key, component.value);
-		});
-	},
+// export default {
+// 	install(app) {
+// 		components.forEach(component => {
+// 			app.component(component.key, component.value);
+// 		});
+// 	},
+// };
+
+export const install = (app) => {
+	components.forEach(component => {
+		app.component(component.key, component.value);
+	});
+}
+
+// 新增一個包含 install 方法的物件作為具名導出
+export const dedWdsVue = {
+	install
 };
+
+/*
+這樣您就可以用以下方式來使用您的組件庫：
+import { createApp } from 'vue';
+import { plugin } from 'your-library';  // 引入 plugin
+import App from './App.vue';
+
+const app = createApp(App);
+app.use(plugin);  // 使用 app.use()
+app.mount('#app');
+
+或者也可以這樣寫：
+import { createApp } from 'vue';
+import * as YourLibrary from 'your-library';  // 引入所有導出
+import App from './App.vue';
+
+const app = createApp(App);
+app.use(YourLibrary.plugin);  // 使用 app.use()
+app.mount('#app');
+*/

@@ -1,22 +1,33 @@
 {
-  "name": "comp-dev-space",
-  "private": true,
+  "_comment": "基本資訊",
+  "name": "ded-wds-vue",
   "version": "0.0.0",
   "description": "Web Design System",
-  "main": "dist/comp-dev-space.umd.js",
-  "module": "dist/comp-dev-space.es.js",
+  "private": true,
   "license": "MIT",
-  "homepage": "https://uedteam.github.io/DED-WDS_VUE",
+
+  "_comment_project": "專案配置",
   "type": "module",
+  "main": "dist/ded-wds-vue.umd.js",
+  "module": "dist/ded-wds-vue.es.js",
   "exports": {
-    "import": "./dist/comp-dev-space.es.js",
-    "require": "./dist/comp-dev-space.umd.js"
+    "import": "./dist/ded-wds-vue.es.js",
+    "require": "./dist/ded-wds-vue.cjs.js"
   },
   "files": [
     "dist"
   ],
+
+  "_comment_engines": "環境要求",
+  "engines": {
+    "node": ">=18",
+    "npm": ">=10"
+  },
+
+  "_comment_author": "開發者資訊",
   "author": {
-    "name": "Jony Wu"
+    "name": "Kevin Yang",
+    "email": "kevin.kk.yang@auo.com"
   },
   "contributors": [
     {
@@ -24,13 +35,12 @@
       "email": "amos.lee@auo.com"
     }
   ],
-  "engines": {
-    "node": ">=18",
-    "npm": ">=10"
-  },
+
+  "_comment_project_info": "專案資訊",
+  "homepage": "https://uedteam.github.io/DED-WDS_VUE",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uedteam/DED-WDS_REACT.git"
+    "url": "git+https://github.com/uedteam/DED-WDS_VUE.git"
   },
   "keywords": [
     "ded",
@@ -49,7 +59,6 @@
   },
   "dependencies": {
     "chart.js": "^4.4.4",
-    "comp_dev_space": "file:",
     "storybook-addon-deep-controls": "^0.8.1",
     "dompurify": "^3.2.1",
     "vue": "^3.4.37",

@@ -19,9 +19,9 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: path.resolve(__dirname, "src/index.js"), // 入口文件
-			name: "CompDevSpace", // UMD 格式需要一個全局名稱
+			name: "ded-wds-vue", // UMD 格式需要一個全局名稱
 			formats: ["es", "cjs", "umd"], // 記得加上 "cjs"，讓它可以正確輸出
-			fileName: (format) => `comp-dev-space.${format}.js`,
+			fileName: (format) => `ded-wds-vue.${format}.js`,
 		},
 		rollupOptions: {
 			// external 確保 Vue 不會被打包進去
@@ -30,7 +30,7 @@ export default defineConfig({
 				globals: {
 					vue: "Vue",
 				},
-				name: "CompDevSpace", // 這是 UMD 格式必要的
+				name: "ded-wds-vue", // 這是 UMD 格式必要的
 			},
 		},
 	},
