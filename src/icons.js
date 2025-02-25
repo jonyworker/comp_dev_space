@@ -1,5 +1,5 @@
 // src/icons.js
-const icons = import.meta.glob('./assets/icon/*.svg', { eager: true });
+const icons = import.meta.glob('./assets/icons/*.svg', { eager: true });
 
 export default Object.fromEntries(
     Object.entries(icons).map(([key, value]) => {
