@@ -43,7 +43,8 @@ import Content from './ui/layout/Layout/Content.vue';
 import Footer from './ui/layout/Layout/Footer.vue';
 import Header from './ui/layout/Layout/Header.vue';
 import Side from './ui/layout/Layout/Side.vue';
-import index from './ui/layout/Layout/index.vue';
+import Layout from './ui/layout/Layout/index.vue';
+import { useToast } from './composables/useToast';
 
 export {
 	Accordion,
@@ -91,7 +92,8 @@ export {
 	Footer,
 	Header,
 	Side,
-	index
+	Layout,
+	useToast,
 };
 
 
@@ -141,7 +143,7 @@ const components = [
 	{ key: 'Footer', value: Footer },
 	{ key: 'Header', value: Header },
 	{ key: 'Side', value: Side },
-	{ key: 'index', value: index }
+	{ key: 'Layout', value: Layout }
 ];
 
 // export default {
