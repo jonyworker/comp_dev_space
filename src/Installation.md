@@ -1,120 +1,132 @@
-# 關於 Web Design system Storybook
 
-## 關於 AUO Design system
+# 🚀 AUO Design System Storybook 安裝與使用指南
 
 AUO Design system 是一套跨設計與程式的設計系統，採用原子化設計架構，透過拆解與建構的方法達成高擴充性的元件組成與應用。AUO Design system 透過簡單的安裝即可直接使用。
 
-## 安裝前確認
 
-### 確認相容於以下版本
 
-1. "vue": "^3.4.37"
-2. "sass": "^1.77.8",
-3. "vite-svg-loader": "^5.1.0"
+## ✅ 1. 安裝前確認
 
-## 安裝方式
+請確保您的環境符合以下相容版本：
 
-### 步驟一：建立開發環境
+- **"node"** "^18.20.7"
+- **"vue"** "^3.4.37"
+- **"sass"** "^1.77.8"
+- **"vite-svg-loader"** "^5.1.0"**
 
-- 創建專案資料夾。
+## 🛠️ 2. 安裝方式
 
-```shell
-npm create vite@latest
-```
+### **步驟一：建立開發環境**
 
-- 設定專案資料夾名稱
+- 使用 Vite 建立一個 Vue 專案。
 
-```
-Project name: my_project
-```
+    ```shell
+    npm create vite@latest my_project -- --template vue
+    ```
+- 進入專案資料夾。
 
-- 選擇使用的框架
+    ```shell
+    cd my_project
+    ```
 
-```
-vue
-```
+### **步驟二：安裝開發工具與相依套件**
 
-- 選擇開發語言
+- 開啟 `package.json`，新增以下 `devDependencies`：
 
-```
-JavaScript
-```
+    ```json
+    "sass": "^1.81.0",
+    "vite-svg-loader": "^5.1.0"
+    ```
 
-- 進入專案資料夾
+- 執行安裝命令，下載相依套件：
 
-```shell
-cd my_project
-```
+    ```shell
+   npm install
+   ```
 
-### 步驟二：安裝套件
+### **步驟三：GCP 註冊設定**
 
-- 開啟建立的專案
+- 在專案資料夾內建立 `.npmrc` 設定檔。 並在檔案內貼上以下內容後儲存：
 
-- 開啟 package.json 設定檔並新增 SASS 及 SVGR 到 devDependencies :
+    ```js
+    @ded-wds-vue:registry=https://asia-east1-npm.pkg.dev/auo-ded/npm-hub-dev/
+    ```
 
-```json
-"sass": "^1.81.0",
-```
+### **步驟四：安裝 `ded-wds-vue` 套件**
 
-- 安裝初始相關套件
+- 在專案目錄下執行以下指令安裝 WDS 套件：
 
-```shell
-npm install
-```
+    ```shell
+    npm install @ded-wds-vue/ui@latest
+    ```
+   
+- 修改 `vite.config.js`，加入 `svgLoader` 插件：
 
-- 建立 .npmrc 設定檔
+   ```js
+   import svgLoader from 'vite-svg-loader'; //👈 加入這行
+   import { defineConfig } from 'vite';
 
-- 開啟 .npmrc 檔貼上 registry 路徑，並儲存
+   export default defineConfig({
+       plugins: [
+           svgLoader({ defaultExport: "component" }) //👈 加入這行
+       ],
+   });
+   ```
 
-```shell
-@ded-wds-vue:registry=https://asia-east1-npm.pkg.dev/auo-ded/npm-hub-dev/
-```
+### **步驟五：放入相關資源並引用 SCSS 檔**
 
-- 執行 npm install 安裝 WDS 套件
+- 移除預設樣式： 刪除 `src/style.css`
+- 下載並解壓縮 `source.zip`（需請學長更新 Vue 專用版本）：
+   [點此下載](https://storage.googleapis.com/ded-wds-bucket/source.zip)
+- 複製 `source` 資料夾內的內容到 `src` 並取代
+- 在 `main.js` 全局引用 `globals.scss`
 
-```shell
-npm install @ded-wds-vue/ui@latest
-```
+    ```js
+   import { createApp } from "vue";
+   import "./style/globals.scss"; //👈 加入這行
+   import App from "./App.vue";
 
-- 增加 vite-svg-loader 項目
+   createApp(App).mount("#app");
+   ```
 
-```js
-import svgLoader from 'vite-svg-loader'
+## 🎨 3. 開始使用 `ded-wds-vue` 套件
 
-export default defineConfig({
-  plugins: [
-      svgLoader({
-          defaultExport: "component"
-      })
-  ],
-});
-```
+- 打開 [Design System Storybook](https://uedteam.github.io/DED-WDS_VUE/)
+- 左側菜單 component 子選單中選擇任一元件
+- 點擊展示區右下角的 `showCode` 按鈕展開程式碼，並複製
+- 在 Vue 單文件組件（SFC）內貼上程式碼並使用，例如：
 
-### 步驟三：放入相關資源並引用 SCSS 檔
+   ```html
+   <script setup>
+       import { Button } from "@ded-wds-vue/ui";
+   </script>
+   
+   <template>
+       <Button
+           themeColor="primary"
+           variant="filled"
+           prefix="SvgHome"
+           size="medium"
+           width="fit"
+           borderWidth="1px"
+           radius="4px"
+       >
+           Button
+       </Button>
+   </template>
+  
+  <style scope></style>
+   ```
 
-- 下載 [source.zip](https://storage.googleapis.com/ded-wds-bucket/source.zip)
+- 於專案路徑下執行下列命令開啟環境進行開發
 
-- 移除專案預設樣式 (App.css、index.css)、移除預設匯入 css 檔 (App.css、index.css)
+   ```shell
+   npm run dev
+   ```
 
-- 複製 source 內相關資料夾至 src 資料夾並且取代
 
-- 在進入點的檔案（App.tsx）引用「globals.scss」
 
-```tsx
-import './style/globals.scss';
-```
-
-### 步驟四：開始開發
-
-- 執行 npm 開啟環境進行開發
-
-```shell
-npm run dev
-```
-
-- 打開 Design system Storybook（Vue 版、React 版）選擇所需
-
-## 相關套件、資源
+## 🔗 4. 相關套件與資源
 
 Design system 為提供便利的功能，部分常見元件採用功能完善的第三方套件以加快開發時程。
 
@@ -128,6 +140,6 @@ Design system 為提供便利的功能，部分常見元件採用功能完善的
 
 - SVGR: [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr)
 
-## 範例下載
+## 📌 5. 範例下載與使用方式
 
 ## 使用方式
