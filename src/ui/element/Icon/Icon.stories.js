@@ -88,7 +88,7 @@ export const IconDefaultStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`import { Icon } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

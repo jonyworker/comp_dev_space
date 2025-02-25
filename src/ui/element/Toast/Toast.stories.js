@@ -121,9 +121,6 @@ export const ToastDefault = {
 			const onAction = () => {
 				window.alert('Action');
 			};
-			// const computedTitle = computed(() => {
-			// 	return args.title ? args.title : "Title";
-			// })
 			return {
 				args,
 				onClose,
@@ -166,9 +163,8 @@ export const ToastDefault = {
 					const { args } = storyContext;
 					return [
 						'<script setup>',
-						'  import Toast from "@/ui/element/Toast/Toast.vue";',
-						`  import Button from "@/ui/element/Button/Button.vue";`,
-						'  import { useToast } from "@/composables/useToast.js";',
+						`  import { Toast, Button } from "@ded-wds-vue/ui";`,
+						'  import { useToast } from "@ded-wds-vue/composables/useToast.js";',
 						'  const { add, toasts, remove } = useToast();',
 						'  const showToast = () => {',
 						'    add({',
@@ -360,9 +356,8 @@ export const ToastTotal = {
 					const { args } = storyContext;
 					return [
 						'<script setup>',
-						'  import Toast from "@/ui/element/Toast/Toast.vue";',
-						`  import Button from "@/ui/element/Button/Button.vue";`,
-						'  import { useToast } from "@/composables/useToast.js";',
+						`  import { Toast, Button } from "@ded-wds-vue/ui";`,
+						'  import { useToast } from "@ded-wds-vue/composables/useToast.js";',
 						'  const { add, toasts, remove } = useToast();',
 						'  const showSuccessToast = () => {',
 						'    add({',
@@ -541,9 +536,8 @@ export const ToastInterAction = {
 					const { args } = storyContext;
 					return [
 						'<script setup>',
-						'  import Toast from "@/ui/element/Toast/Toast.vue";',
-						`  import Button from "@/ui/element/Button/Button.vue";`,
-						'  import { useToast } from "@/composables/useToast.js";',
+						`  import { Toast, Button } from "@ded-wds-vue/ui";`,
+						'  import { useToast } from "@ded-wds-vue/composables/useToast.js";',
 						'  const { add, toasts, remove } = useToast();',
 						'  const showToast = () => {',
 						'    add({',

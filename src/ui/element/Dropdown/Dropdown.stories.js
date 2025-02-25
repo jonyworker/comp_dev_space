@@ -129,7 +129,7 @@ export const DropdownDefault = {
 					return [
 						`<script setup>`,
 						'import { ref } from "vue";',
-						`import Dropdown from "@/ui/element/Dropdown/Dropdown.vue";`,
+						`import { Dropdown } from "@ded-wds-vue/ui";`,
 						'const modelValue = ref("");',
 						`</script>`,
 						'',

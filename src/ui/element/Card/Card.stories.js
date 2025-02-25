@@ -129,13 +129,7 @@ export const CardDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Card from "@/ui/element/Card/Card.vue";`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { Card, CardSimple, Button, Title, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -353,13 +347,7 @@ export const CardVerticalDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Card from "@/ui/element/Card/Card.vue";`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { Card, CardSimple, Button, Title, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -679,13 +667,7 @@ export const CardHorizontalDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Card from "@/ui/element/Card/Card.vue";`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { Card, CardSimple, Button, Title, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

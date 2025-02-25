@@ -173,9 +173,7 @@ export const AccordionDefault = {
 					return [
 						`<script setup>`,
 						`import { h } from "vue";`,
-						`import Accordion from "@/ui/element/Accordion/Accordion.vue";`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Accordion, Title, Button } from "@ded-wds-vue/ui";`,
 						``,
 						`const dataSource = [`,
 						`  {`,
@@ -289,9 +287,7 @@ export const AccordionBorderStyle = {
 					return [
 						`<script setup>`,
 						`import { h } from "vue";`,
-						`import Accordion from "@/ui/element/Accordion/Accordion.vue";`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Accordion, Title, Button } from "@ded-wds-vue/ui";`,
 						``,
 						`const dataSource = [`,
 						`  {`,
@@ -392,9 +388,7 @@ export const AccordionSizeStory = {
 					return [
 						`<script setup>`,
 						`import { h } from "vue";`,
-						`import Accordion from "@/ui/element/Accordion/Accordion.vue";`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Accordion, Title, Button } from "@ded-wds-vue/ui";`,
 						``,
 						`const dataSource = [`,
 						`  {`,

@@ -131,7 +131,7 @@ export const MenuDefault = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import Menu from "@/ui/element/Menu/Menu.vue";`,
+						`import { Menu } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

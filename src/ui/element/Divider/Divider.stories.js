@@ -111,7 +111,7 @@ export const DividerDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Divider from "@/ui/element/Divider/Divider.vue";`,
+						`import { Divider } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -198,7 +198,7 @@ export const DividerContent = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Divider from "@/ui/element/Divider/Divider.vue";`,
+						`import { Divider } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -307,7 +307,7 @@ export const DividerWidth = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Divider from "@/ui/element/Divider/Divider.vue";`,
+						`import { Divider } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -420,7 +420,7 @@ export const DividerTypes = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Divider from "@/ui/element/Divider/Divider.vue";`,
+						`import { Divider } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -520,7 +520,7 @@ export const DividerColumnDirection = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Divider from "@/ui/element/Divider/Divider.vue";`,
+						`import { Divider } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -618,7 +618,7 @@ export const DividerRowDirection = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Divider from "@/ui/element/Divider/Divider.vue";`,
+						`import { Divider } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

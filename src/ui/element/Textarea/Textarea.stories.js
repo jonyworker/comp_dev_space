@@ -109,7 +109,7 @@ export const TextareaDefault = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Textarea from "@/ui/element/Textarea/Textarea.vue";`,
+                        `import { Textarea } from "@ded-wds-vue/ui";`,
                         `const modelValue = ref("${args.modelValue}");`,
                         `</script>`,
                         '',
@@ -176,7 +176,7 @@ export const TextareaLimit = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Textarea from "@/ui/element/Textarea/Textarea.vue";`,
+                        `import { Textarea } from "@ded-wds-vue/ui";`,
                         `const modelValue = ref("${args.modelValue}");`,
                         `</script>`,
                         '',
@@ -254,7 +254,6 @@ export const TextareaStatus = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['themeColor', 'label', 'value', 'name' ],
             exclude: ['hint', 'isDisabled'],
         },
         docs: {
@@ -264,7 +263,7 @@ export const TextareaStatus = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Textarea from "@/ui/element/Textarea/Textarea.vue";`,
+                        `import { Textarea } from "@ded-wds-vue/ui";`,
                         `const modelValue = ref("${args.modelValue}");`,
                         `</script>`,
                         '',

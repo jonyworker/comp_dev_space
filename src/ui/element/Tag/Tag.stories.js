@@ -134,7 +134,7 @@ export const TagDefaultStory = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Tag from "@/ui/element/Tag/Tag.vue";`,
+						`import { Tag } from "@ded-wds-vue/ui";`,
 						`const showTag = ref(true);`,
 						`</script>`,
 						'',
@@ -209,7 +209,7 @@ export const TagPrefixStory = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Tag from "@/ui/element/Tag/Tag.vue";`,
+						`import { Tag } from "@ded-wds-vue/ui";`,
 						`const showTag = ref(true);`,
 						`</script>`,
 						'',
@@ -298,7 +298,7 @@ export const TagVariantStory = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Tag from "@/ui/element/Tag/Tag.vue";`,
+						`import { Tag } from "@ded-wds-vue/ui";`,
 						`const showTag = ref(true);`,
 						`</script>`,
 						'',
@@ -401,7 +401,7 @@ export const TagMultiple = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Tag from "@/ui/element/Tag/Tag.vue";`,
+						`import { Tag } from "@ded-wds-vue/ui";`,
 						`const showTag = ref(true);`,
 						`</script>`,
 						'',

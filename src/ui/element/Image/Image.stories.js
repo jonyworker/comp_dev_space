@@ -67,7 +67,6 @@ export const ImageDefault = {
 	render: (args) => ({
 		components: { Image, Grid, Row, Column },
 		setup() {
-			// Create a ref for modelValue to be used with v-model
 			return {
 				args,
 			};
@@ -99,10 +98,7 @@ export const ImageDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-					    `import Image from '@/ui/element/Image/Image.vue';`,
-					    `import Grid from '@/ui/layout/Grid/Grid.vue';`,
-					    `import Row from '@/ui/layout/Grid/Row.vue';`,
-					    `import Column from '@/ui/layout/Grid/Column.vue';`,
+						`import { Image, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -140,7 +136,6 @@ export const ImageRatio = {
 	render: (args) => ({
 		components: { Image },
 		setup() {
-			// Create a ref for modelValue to be used with v-model
 			return {
 				args,
 			};
@@ -221,7 +216,7 @@ export const ImageRatio = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Image from '@/ui/element/Image/Image.vue';`,
+						`import { Image } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -358,7 +353,7 @@ export const ImageFit = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Image from '@/ui/element/Image/Image.vue';`,
+						`import { Image } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

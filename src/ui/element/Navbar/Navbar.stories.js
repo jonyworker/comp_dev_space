@@ -105,7 +105,7 @@ export const NavbarDefault = {
 		            const dataSourceString = formatDataSource(args.dataSource);
 		            return [
 			            `<script setup>`,
-			            `import Navbar from "@/ui/element/Navbar/Navbar.vue";`,
+						`import { Navbar } from "@ded-wds-vue/ui";`,
 			            `</script>`,
 			            '',
 			            '<template>',

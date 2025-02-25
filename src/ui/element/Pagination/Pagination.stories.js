@@ -101,7 +101,7 @@ export const PaginationDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Pagination from "@/ui/element/Pagination/Pagination.vue";`,
+						`import { Pagination } from "@ded-wds-vue/ui";`,
 						`const handlePageChange = () => {};`,
 						`</script>`,
 						'',
@@ -166,7 +166,7 @@ export const PaginationDetail = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Pagination from "@/ui/element/Pagination/Pagination.vue";`,
+						`import { Pagination } from "@ded-wds-vue/ui";`,
 						`const handlePageChange = () => {};`,
 						`</script>`,
 						'',

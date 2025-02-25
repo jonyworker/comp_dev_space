@@ -92,7 +92,7 @@ export const DatePickerDefaultStory = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import DatePicker from "@/ui/element/DatePicker/DatePicker.vue";`,
+						`import { DatePicker } from "@ded-wds-vue/ui";`,
 						`const modelValue = ref(${args.isRange ? "['','']" : '""'});`,
 						`</script>`,
 						'',
@@ -161,7 +161,7 @@ export const DatePickerRange = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import DatePicker from "@/ui/element/DatePicker/DatePicker.vue";`,
+						`import { DatePicker } from "@ded-wds-vue/ui";`,
 						`const modelValue = ref(${args.isRange ? "['','']" : '""'});`,
 						`</script>`,
 						'',

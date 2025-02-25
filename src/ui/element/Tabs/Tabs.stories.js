@@ -146,7 +146,7 @@ export const DefaultTabs = {
                     const dataSourceString = formatDataSource(args.dataSource);
                     return [
                         `<script setup>`,
-                        `import Tabs from "@/ui/element/Tabs/Tabs.vue";`,
+                        `import { Tabs } from "@ded-wds-vue/ui";`,
                         `</script>`,
                         '',
                         '<template>',
@@ -243,7 +243,7 @@ export const TabsTypesStory = {
                     const { args } = storyContext;
                     return [
                         `<script setup>`,
-                        `import Tabs from "@/ui/element/Tabs/Tabs.vue";`,
+                        `import { Tabs } from "@ded-wds-vue/ui";`,
                         `const dataSource = [`,
                         `  {`,
                         `    title: 'Tab 1',`,
@@ -409,7 +409,7 @@ export const TabsColorStory = {
                     const { args } = storyContext;
                     return [
                         `<script setup>`,
-                        `import Tabs from "@/ui/element/Tabs/Tabs.vue";`,
+                        `import { Tabs } from "@ded-wds-vue/ui";`,
                         `const dataSource = [`,
                         `  {`,
                         `    title: 'Tab 1',`,

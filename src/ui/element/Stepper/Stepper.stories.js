@@ -115,7 +115,7 @@ export const StepperDefault = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import Stepper from "@/ui/element/Stepper/Stepper.vue";`,
+						`import { Stepper } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -194,8 +194,7 @@ export const StepperHorizontal = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Stepper from "@/ui/element/Stepper/Stepper.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Stepper, Button } from "@ded-wds-vue/ui";`,
 						``,
 						`const currentStep = ref(1);`,
 						`const dataSource = [`,
@@ -325,8 +324,7 @@ export const StepperVertical = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Stepper from "@/ui/element/Stepper/Stepper.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Stepper, Button } from "@ded-wds-vue/ui";`,
 						``,
 						`const currentStep = ref(1);`,
 						`const dataSource = [`,

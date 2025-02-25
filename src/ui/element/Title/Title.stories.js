@@ -96,7 +96,7 @@ export const HeadingDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
+						`import { Title } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -176,7 +176,7 @@ export const HeadingSizeDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
+						`import { Title } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -305,7 +305,7 @@ export const HeadingColorDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Title from "@/ui/element/Title/Title.vue";`,
+						`import { Title } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

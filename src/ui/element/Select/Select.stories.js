@@ -1,4 +1,3 @@
-
 import Select from "@/ui/element/Select/Select.vue";
 function formatDataSource(dataSource) {
 	return `[
@@ -134,7 +133,7 @@ export const SelectDefault = {
 			        return [
 				        `<script setup>`,
 				        'import { ref } from "vue";',
-				        `import Select from "@/ui/element/Select/Select.vue";`,
+						`import { Select } from "@ded-wds-vue/ui";`,
 				        'const modelValue = ref("");',
 				        `</script>`,
 				        '',

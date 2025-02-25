@@ -122,7 +122,7 @@ export const ListDefaultStory = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import List from "@/ui/element/List/List.vue";`,
+						`import { List } from "@ded-wds-vue/ui";`,
 						`const handleItemClick = () => {};`,
 						`</script>`,
 						'',
@@ -181,7 +181,7 @@ export const ListOutLineStory = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import List from "@/ui/element/List/List.vue";`,
+						`import { List } from "@ded-wds-vue/ui";`,
 						`const handleItemClick = () => {};`,
 						`</script>`,
 						'',
@@ -242,7 +242,7 @@ export const ListDividerStory = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import List from "@/ui/element/List/List.vue";`,
+						`import { List } from "@ded-wds-vue/ui";`,
 						`const handleItemClick = () => {};`,
 						`</script>`,
 						'',

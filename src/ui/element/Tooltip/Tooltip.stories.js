@@ -2,7 +2,6 @@ import Button from "@/ui/element/Button/Button.vue";
 import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";
 import { sanitizeHtml } from '@/composables/sanitizeHtml.js';
 
-
 export default {
 	components: {Tooltip},
 	title: "Component/Tooltip",
@@ -105,8 +104,7 @@ export const DefaultTooltip = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Tooltip from "@/ui/element/Tooltip/Tooltip.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Tooltip, Button } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

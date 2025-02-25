@@ -93,7 +93,7 @@ export const BreadcrumbMany = {
                     const dataSourceString = formatDataSource(args.dataSource);
                     return [
                         `<script setup>`,
-                        `import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";`,
+                        `import { Breadcrumb } from "@ded-wds-vue/ui";`,
                         `</script>`,
                         '',
                         '<template>',

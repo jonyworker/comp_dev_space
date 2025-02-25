@@ -117,10 +117,7 @@ export const CardSimpleDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { CardSimple, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -225,10 +222,7 @@ export const CardSimpleAlign = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { CardSimple, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -369,10 +363,7 @@ export const CardHorizontalDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { CardSimple, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -501,10 +492,7 @@ export const CardVerticalDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import CardSimple from "@/ui/element/CardSimple/CardSimple.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
+						`import { CardSimple, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

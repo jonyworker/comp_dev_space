@@ -52,7 +52,6 @@ export default {
 			table: {
 				type: { summary: 'string' },
 				category: 'v-model',
-				// defaultValue: { summary: '""' },
 			}
 		}
 	},
@@ -110,7 +109,7 @@ export const SearchDefault = {
 					return [
 						`<script setup>`,
 						'import { ref } from "vue";',
-						`import Search from "@/ui/element/Search/Search.vue";`,
+						`import { Search } from "@ded-wds-vue/ui";`,
 						'const modelValue = ref("");',
 						`</script>`,
 						'',
@@ -177,7 +176,6 @@ export const SearchSize = {
 	// 控制 controls 中能控制的參數
 	parameters: {
 		controls: {
-			// include: ['variant', 'content', 'themeColor', 'isDisabled', 'prefix'],
 			exclude: ['size'],
 		},
 		docs: {
@@ -188,7 +186,7 @@ export const SearchSize = {
 					return [
 						`<script setup>`,
 						'import { ref } from "vue";',
-						`import Search from "@/ui/element/Search/Search.vue";`,
+						`import { Search } from "@ded-wds-vue/ui";`,
 						'const modelValue = ref("");',
 						`</script>`,
 						'',

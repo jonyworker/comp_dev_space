@@ -182,7 +182,7 @@ export const DefaultButtonStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Button } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -275,7 +275,7 @@ export const ButtonPrefixSuffixStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Button } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -409,7 +409,7 @@ export const ButtonTypeStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Button } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -612,7 +612,7 @@ export const ButtonColorStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Button } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -722,134 +722,3 @@ export const ButtonColorStory = {
 		}
 	},
 };
-
-// //==== 尺寸 ====//
-// export const ButtonSizeStory = {
-// 	name: '尺寸',
-// 	args: {
-// 		themeColor: 'primary',
-// 		variant: 'ghost',
-// 		prefix: '',
-// 		suffix: '',
-// 		size: '',
-// 		width: 'fit',
-// 		borderWidth: '1px',
-// 		radius: '4px',
-// 		isDisabled: false,
-// 		className: "",
-// 		default: 'Button',
-// 	},
-// 	render: (args) => ({
-// 		components: { Button },
-// 		setup() {
-// 			return {
-// 				args,
-// 			};
-// 		},
-// 		template: `
-// 		<div style="display:flex; align-items: baseline; flex-wrap: wrap; gap: 16px">
-// 			<Button
-// 				:themeColor="args.themeColor"
-// 				:variant="args.variant"
-// 				prefix="folder"
-// 				suffix=""
-// 				size="large"
-// 				:width="args.width"
-// 				:borderWidth="args.borderWidth"
-// 				:radius="args.radius"
-// 				:isDisabled="args.isDisabled"
-// 				:className="args.className"
-// 			>
-// 				{{ args.default }}
-// 			</Button>
-// 			<Button
-// 				:themeColor="args.themeColor"
-// 				:variant="args.variant"
-// 				prefix="folder"
-// 				suffix=""
-// 				size="medium"
-// 				:width="args.width"
-// 				:borderWidth="args.borderWidth"
-// 				:radius="args.radius"
-// 				:isDisabled="args.isDisabled"
-// 				:className="args.className"
-// 			>
-// 				{{ args.default }}
-// 			</Button>
-// 			<Button
-// 				:themeColor="args.themeColor"
-// 				:variant="args.variant"
-// 				prefix="folder"
-// 				suffix=""
-// 				size="small"
-// 				:width="args.width"
-// 				:borderWidth="args.borderWidth"
-// 				:radius="args.radius"
-// 				:isDisabled="args.isDisabled"
-// 				:className="args.className"
-// 			>
-// 				{{ args.default }}
-// 			</Button>
-// 		</div>
-// 		`,
-// 	}),
-// 	// 控制 controls 中能控制的參數
-// 	parameters: {
-// 		controls: {
-// 			exclude: ['prefix','suffix'],
-// 		},
-// 		docs: {
-// 			source: {
-// 				transform: (src, storyContext) => {
-// 					const { args } = storyContext;
-// 					return [
-// 						`<Button`,
-// 						`  :themeColor="${args.themeColor}"`,
-// 						`  :variant="${args.variant}"`,
-// 						`  prefix="folder"`,
-// 						`  suffix=""`,
-// 						`  size="large"`,
-// 						`  :width="${args.width}"`,
-// 						`  :borderWidth="${args.borderWidth}"`,
-// 						`  :radius="${args.radius}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  :className="${args.className}"`,
-// 						`>`,
-// 						`  ${args.default}`,
-// 						`</Button>`,
-// 						`<Button`,
-// 						`  :themeColor="${args.themeColor}"`,
-// 						`  :variant="${args.variant}"`,
-// 						`  prefix="folder"`,
-// 						`  suffix=""`,
-// 						`  size="medium"`,
-// 						`  :width="${args.width}"`,
-// 						`  :borderWidth="${args.borderWidth}"`,
-// 						`  :radius="${args.radius}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  :className="${args.className}"`,
-// 						`>`,
-// 						`  ${args.default}`,
-// 						`</Button>`,
-// 						`<Button`,
-// 						`  :themeColor="${args.themeColor}"`,
-// 						`  :variant="${args.variant}"`,
-// 						`  prefix="folder"`,
-// 						`  suffix=""`,
-// 						`  size="small"`,
-// 						`  :width="${args.width}"`,
-// 						`  :borderWidth="${args.borderWidth}"`,
-// 						`  :radius="${args.radius}"`,
-// 						`  :isDisabled="${args.isDisabled}"`,
-// 						`  :className="${args.className}"`,
-// 						`>`,
-// 						`  ${args.default}`,
-// 						`</Button>`,
-//
-// 					].join("\n").trim();
-//
-// 				}
-// 			}
-// 		}
-// 	},
-// };

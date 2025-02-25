@@ -115,7 +115,7 @@ export const TableDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Table from "@/ui/element/Table/Table.vue";`,
+						`import { Table } from "@ded-wds-vue/ui";`,
 						`const dataSource = [`,
 						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
 						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
@@ -183,7 +183,7 @@ export const TableBorder = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Table from "@/ui/element/Table/Table.vue";`,
+						`import { Table } from "@ded-wds-vue/ui";`,
 						`const dataSource = [`,
 						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
 						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
@@ -268,8 +268,7 @@ export const TableSlot = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Table from "@/ui/element/Table/Table.vue";`,
-						`import Button from "@/ui/element/Button/Button.vue";`,
+						`import { Table, Button } from "@ded-wds-vue/ui";`,
 						`const dataSource = [`,
 						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
 						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
@@ -354,7 +353,7 @@ export const TableCheck = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Table from "@/ui/element/Table/Table.vue";`,
+						`import { Table } from "@ded-wds-vue/ui";`,
 						`const dataSource = [`,
 						`	{ head: "Head-1", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,
 						`	{ head: "Head-2", column1: "td1", column2: "td2", column3: "td3", column4: "td4", column5: "td5" },`,

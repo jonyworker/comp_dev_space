@@ -149,7 +149,6 @@ export const InputDefault = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'maxLimit', 'hint', 'isDisabled','className','modelValue'],
             exclude: ['input','clearDatePicker'],
         },
         docs: {
@@ -160,7 +159,7 @@ export const InputDefault = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Input from "@/ui/element/Input/Input.vue";`,
+                        `import { Input } from "@ded-wds-vue/ui";`,
                         'const modelValue = ref("");',
                         `</script>`,
                         '',
@@ -269,7 +268,6 @@ export const InputTypesStory = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
             exclude: ['label', 'type', 'prefix','input','clearDatePicker'],
         },
         docs: {
@@ -280,7 +278,7 @@ export const InputTypesStory = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Input from "@/ui/element/Input/Input.vue";`,
+                        `import { Input } from "@ded-wds-vue/ui";`,
                         'const modelValue = ref("");',
                         `</script>`,
                         '',
@@ -401,7 +399,6 @@ export const InputHintTypeStory = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
             exclude: ['hint', 'input', 'clearDatePicker'],
         },
         docs: {
@@ -411,7 +408,7 @@ export const InputHintTypeStory = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Input from "@/ui/element/Input/Input.vue";`,
+                        `import { Input } from "@ded-wds-vue/ui";`,
                         'const modelValue = ref("");',
                         `</script>`,
                         '',
@@ -519,7 +516,6 @@ export const InputStatusStory = {
     // 控制 controls 中能控制的參數
     parameters: {
         controls: {
-            // include: ['label', 'type', 'hasClear', 'placeholder', 'prefix', 'size', 'modelValue', 'maxLimit', 'className'],
             exclude: ['hint', 'input', 'clearDatePicker', 'isDisabled'],
         },
         docs: {
@@ -529,7 +525,7 @@ export const InputStatusStory = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import Input from "@/ui/element/Input/Input.vue";`,
+                        `import { Input } from "@ded-wds-vue/ui";`,
                         'const modelValue = ref("");',
                         `</script>`,
                         '',

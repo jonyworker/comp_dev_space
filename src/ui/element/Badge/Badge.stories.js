@@ -103,8 +103,7 @@ export const BadgeDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Badge from "@/ui/element/Badge/Badge.vue";`,
-						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`import { Badge, Icon } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -177,8 +176,7 @@ export const BadgeStyle = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Badge from "@/ui/element/Badge/Badge.vue";`,
-						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`import { Badge, Icon } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -261,8 +259,7 @@ export const BadgeLimit = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Badge from "@/ui/element/Badge/Badge.vue";`,
-						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`import { Badge, Icon } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -455,8 +452,7 @@ export const BadgeThemeColor = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Badge from "@/ui/element/Badge/Badge.vue";`,
-						`import Icon from "@/ui/element/Icon/Icon.vue";`,
+						`import { Badge, Icon } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

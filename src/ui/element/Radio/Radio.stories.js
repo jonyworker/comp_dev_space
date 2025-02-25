@@ -148,7 +148,7 @@ export const RadioDefaultStory = {
 					return [
 						`<script setup>`,
 						`import { ref } from "vue";`,
-						`import Radio from "@/ui/element/Radio/Radio.vue";`,
+						`import { Radio } from "@ded-wds-vue/ui";`,
 						`const modelValue = ref("${args.modelValue}");`,
 						`</script>`,
 						'',
@@ -225,14 +225,22 @@ export const RadioVerticalStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<Radio',
-						`  :dataSource="${dataSourceString}"`,
-						`  direction="${args.direction}"`,
-						`  size="${args.size}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></Radio>',
-					].join('\n').trim();
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import { Radio } from "@ded-wds-vue/ui";`,
+						`const modelValue = ref("${args.modelValue}");`,
+						`</script>`,
+						'',
+						'<template>',
+						'  <Radio',
+						`    :dataSource="${dataSourceString}"`,
+						`    direction="${args.direction}"`,
+						`    size="${args.size}"`,
+						`    className="${args.className}"`,
+						`    v-model="modelValue"`,
+						'  ></Radio>',
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
@@ -287,7 +295,6 @@ export const RadioRowStory = {
 	parameters: {
 		controls: {
 			expanded: true,
-			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: [ 'direction' ]
 		},
 		docs: {
@@ -296,14 +303,22 @@ export const RadioRowStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<Radio',
-						`  :dataSource="${dataSourceString}"`,
-						`  direction="${args.direction}"`,
-						`  size="${args.size}"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></Radio>',
-					].join('\n').trim();
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import { Radio } from "@ded-wds-vue/ui";`,
+						`const modelValue = ref("${args.modelValue}");`,
+						`</script>`,
+						'',
+						'<template>',
+						'  <Radio',
+						`    :dataSource="${dataSourceString}"`,
+						`    direction="${args.direction}"`,
+						`    size="${args.size}"`,
+						`    className="${args.className}"`,
+						`    v-model="modelValue"`,
+						'  ></Radio>',
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
@@ -374,7 +389,6 @@ export const RadioSizeStory = {
 	parameters: {
 		controls: {
 			expanded: true,
-			// include: ['themeColor', 'label', 'value', 'name' ],
 			exclude: [ 'size' ]
 		},
 		docs: {
@@ -383,190 +397,38 @@ export const RadioSizeStory = {
 					const { args } = storyContext;
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
-						'<Radio',
-						`  :dataSource="${dataSourceString}"`,
-						`  direction="${args.direction}"`,
-						`  size="large"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></Radio>',
-						'<Radio',
-						`  :dataSource="${dataSourceString}"`,
-						`  direction="${args.direction}"`,
-						`  size="medium"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></Radio>',
-						'<Radio',
-						`  :dataSource="${dataSourceString}"`,
-						`  direction="${args.direction}"`,
-						`  size="small"`,
-						`  className="${args.className}"`,
-						`  v-model="modelValue"`,
-						'></Radio>',
-					].join('\n').trim();
+						`<script setup>`,
+						`import { ref } from "vue";`,
+						`import { Radio } from "@ded-wds-vue/ui";`,
+						`const modelValue = ref("${args.modelValue}");`,
+						`</script>`,
+						'',
+						'<template>',
+						'  <Radio',
+						`    :dataSource="${dataSourceString}"`,
+						`    direction="${args.direction}"`,
+						`    size="large"`,
+						`    className="${args.className}"`,
+						`    v-model="modelValue"`,
+						'  ></Radio>',
+						'  <Radio',
+						`    :dataSource="${dataSourceString}"`,
+						`    direction="${args.direction}"`,
+						`    size="medium"`,
+						`    className="${args.className}"`,
+						`    v-model="modelValue"`,
+						'  ></Radio>',
+						'  <Radio',
+						`    :dataSource="${dataSourceString}"`,
+						`    direction="${args.direction}"`,
+						`    size="small"`,
+						`    className="${args.className}"`,
+						`    v-model="modelValue"`,
+						'  ></Radio>',
+						'</template>',
+					].filter(Boolean).join('\n').trim();
 				}
 			}
 		}
 	},
 };
-
-// // ==== 主題色彩 ==== //
-// export const RadioColorDefault = {
-// 	name: "主題色彩",
-// 	args: {
-// 		// themeColor: '',
-// 		dataSource: [
-// 			{ label: "Option1", value: "option1", isDisabled: false },
-// 			{ label: "Option2", value: "option2", isDisabled: false },
-// 			{ label: "Option3", value: "option3", isDisabled: false },
-// 		],
-// 		initValue: "option1",
-// 		direction: "row",
-// 		className: "",
-// 	},
-// 	render: (args) => ({
-// 		components: { Radio },
-// 		setup() {
-// 			const modelValue = ref("");
-// 			return {
-// 				args,
-// 				modelValue,
-// 			};
-// 		},
-// 		template: `
-// 			<div style="display:flex; flex-direction:column; gap: 16px">
-// 				<Radio
-// 					themeColor="primary"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-// 				<Radio
-// 					themeColor="secondary"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-// 				<Radio
-// 					themeColor="neutral"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-// 				<Radio
-// 					themeColor="info"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-// 				<Radio
-// 					themeColor="success"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-// 				<Radio
-// 					themeColor="warning"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-// 				<Radio
-// 					themeColor="error"
-// 					:dataSource="args.dataSource"
-// 					:initValue="args.initValue"
-// 					:direction="args.direction"
-// 					:className="args.className"
-// 					v-model="modelValue">
-// 				</Radio>
-//
-// 			</div>
-// 		`,
-// 	}),
-// 	// 控制 controls 中能控制的參數
-// 	parameters: {
-// 		controls: {
-// 			expanded: true,
-// 			exclude: ['themeColor'],
-// 		},
-// 		docs: {
-// 			source: {
-// 				transform: (src, storyContext) => {
-// 					const { args } = storyContext;
-// 					const dataSourceString = formatDataSource(args.dataSource);
-// 					return [
-// 						'<Radio',
-// 						`  themeColor="primary"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 						'<Radio',
-// 						`  themeColor="secondary"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 						'<Radio',
-// 						`  themeColor="neutral"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 						'<Radio',
-// 						`  themeColor="info"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 						'<Radio',
-// 						`  themeColor="success"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 						'<Radio',
-// 						`  themeColor="warning"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 						'<Radio',
-// 						`  themeColor="error"`,
-// 						`  :dataSource="${dataSourceString}"`,
-// 						`  :initValue="${args.initValue}"`,
-// 						`  direction="${args.direction}"`,
-// 						`  className="${args.className}"`,
-// 						`  v-model="modelValue"`,
-// 						'></Radio>',
-// 					].join('\n').trim();
-// 				}
-// 			}
-// 		}
-// 	},
-// };

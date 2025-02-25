@@ -125,7 +125,7 @@ export const StatusIndicatorDefault = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import StatusIndicator from "@/ui/element/StatusIndicator/StatusIndicator.vue";`,
+						`import { StatusIndicator } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -370,7 +370,7 @@ export const StatusIndicatorColors = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import StatusIndicator from "@/ui/element/StatusIndicator/StatusIndicator.vue";`,
+						`import { StatusIndicator } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -465,9 +465,6 @@ export const StatusIndicatorColors = {
 						`  >`,
 						`    Disable`,
 						`  </StatusIndicator>`,
-
-
-
 						`  <StatusIndicator`,
 						`    themeColor="info"`,
 						`    variant="filled"`,

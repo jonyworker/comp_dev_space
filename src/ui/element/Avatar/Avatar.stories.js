@@ -116,7 +116,7 @@ export const DefaultAvatar = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Avatar from "@/ui/element/Avatar/Avatar.vue";`,
+						`import { Avatar } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						``,
 						`<template>`,
@@ -199,7 +199,7 @@ export const AvatarShape = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Avatar from "@/ui/element/Avatar/Avatar.vue";`,
+						`import { Avatar } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						`<template>`,
@@ -325,7 +325,7 @@ export const AvatarStatus = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Avatar from "@/ui/element/Avatar/Avatar.vue";`,
+						`import { Avatar } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						`<template>`,

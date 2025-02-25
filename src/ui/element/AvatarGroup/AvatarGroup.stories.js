@@ -118,7 +118,7 @@ export const MultiAvatarStory = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import AvatarGroup from "@/ui/element/AvatarGroup/AvatarGroup.vue";`,
+						`import { AvatarGroup } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

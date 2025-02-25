@@ -130,22 +130,6 @@ export default {
 			description: "桌機 Logo 圖片",
 			control: { type: "text" },
 		},
-		// logo: {
-		// 	description: "Logo 圖示",
-		// 	control: {
-		// 		type: "select",
-		// 		labels: {
-		// 			"": "none",
-		// 			SvgAuo: "SvgAuo",
-		// 		}
-		// 	},
-		// 	options: [ "", "SvgAuo" ],
-		// 	table: {
-		// 		type: {
-		// 			summary: "none | SvgAuo ",
-		// 		}
-		// 	}
-		// },
 		logoLink: {
 			description: "Logo 連結",
 			control: { type: "text" },
@@ -241,10 +225,7 @@ export const SideNavDefault = {
 					const dataSourceString = formatDataSource(args.dataSource);
 					return [
 						`<script setup>`,
-						`import SideNav from "@/ui/element/SideNav/SideNav.vue";`,
-						`import Row from "@/ui/layout/Grid/Row.vue";`,
-						`import Column from "@/ui/layout/Grid/Column.vue";`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue";`,
+						`import { SideNav, Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',

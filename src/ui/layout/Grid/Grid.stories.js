@@ -206,9 +206,7 @@ export const GridDefaultStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-					    `import Grid from "@/ui/layout/Grid/Grid.vue"`,
-					    `import Row from "@/ui/layout/Grid/Row.vue"`,
-					    `import Column from "@/ui/layout/Grid/Column.vue"`,
+						`import { Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -465,9 +463,7 @@ export const Grid4ColumnsStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue"`,
-						`import Row from "@/ui/layout/Grid/Row.vue"`,
-						`import Column from "@/ui/layout/Grid/Column.vue"`,
+						`import { Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -722,9 +718,7 @@ export const Grid3ColumnsStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue"`,
-						`import Row from "@/ui/layout/Grid/Row.vue"`,
-						`import Column from "@/ui/layout/Grid/Column.vue"`,
+						`import { Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -978,9 +972,7 @@ export const Grid2ColumnsStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue"`,
-						`import Row from "@/ui/layout/Grid/Row.vue"`,
-						`import Column from "@/ui/layout/Grid/Column.vue"`,
+						`import { Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
@@ -1232,9 +1224,7 @@ export const Grid1ColumnsStory = {
 					const { args } = storyContext;
 					return [
 						`<script setup>`,
-						`import Grid from "@/ui/layout/Grid/Grid.vue"`,
-						`import Row from "@/ui/layout/Grid/Row.vue"`,
-						`import Column from "@/ui/layout/Grid/Column.vue"`,
+						`import { Grid, Row, Column } from "@ded-wds-vue/ui";`,
 						`</script>`,
 						'',
 						'<template>',
