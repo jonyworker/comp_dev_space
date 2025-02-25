@@ -1,47 +1,28 @@
 <script setup>
 import { watch, ref, markRaw } from 'vue';
+import icons from '@/icons'; // 確保 icons.js 存在，專門管理 SVG Icons
+
 const props = defineProps({
-    name: {
-        type: String,
-    },
-    size: {
-        type: String,
-    },
-	width: {
-		type: String
-	},
-	height: {
-		type: String
-	},
-    color: {
-        type: String,
-    },
-    src: {
-        type: String,
-    },
+    name: String,
+    size: String,
+    width: String,
+    height: String,
+    color: String,
+    src: String,
 });
 
 const iconComponent = ref(null);
 
-// 載入所有 SVG，Vite 會自動解析
-const icons = import.meta.glob('../../../assets/icon/*.svg', { eager: true });
-
 const loadIconComponent = () => {
-	if (props.name && icons[`../../../assets/icon/${props.name}.svg`]) {
-		iconComponent.value = markRaw(icons[`../../../assets/icon/${props.name}.svg`].default);
-	} else {
-		console.warn(`Icon "${props.name}" not found.`);
-		iconComponent.value = null;
-	}
+    if (props.name && icons[props.name]) {
+        iconComponent.value = markRaw(icons[props.name]);
+    } else {
+        console.warn(`Icon "${props.name}" not found.`);
+        iconComponent.value = null;
+    }
 };
 
-
-
-// 監聽 name 改變並載入本地的 SVG
 watch(() => props.name, loadIconComponent, { immediate: true });
-
-// 載入初始本地 icon
-loadIconComponent();
 </script>
 
 <template>
@@ -54,7 +35,7 @@ loadIconComponent();
         :style="{ fill: props.color }"
     />
     <component
-        v-else
+        v-else-if="iconComponent"
         :is="iconComponent"
         :width="props.size ? props.size : props.width"
         :height="props.size ? props.size : props.height"
