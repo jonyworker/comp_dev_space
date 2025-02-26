@@ -78,11 +78,12 @@ AUO Design system 是一套跨設計與程式的設計系統，採用原子化�
 - 移除預設樣式： 刪除 `src/style.css`
 - 下載並解壓縮 `source.zip`：
    [點此下載](https://storage.googleapis.com/ded-wds-bucket/uat/wds/source.zip)
-- 開啟 `source` 中的 `vue` 資料夾，將資料夾內的內容複製到開發環境 `src/assets` 中並取代
+- 開啟 `source` 中的 `vue` 資料夾，將資料夾內的內容複製到 `src/` 下得開發環境
 - 接下來在 `main.js` 全局引用 `globals.scss`
 
     ```js
    import { createApp } from "vue";
+   import './style.css' //👈 刪除這行
    import "./style/globals.scss"; //👈 加入這行
    import App from "./App.vue";
 
