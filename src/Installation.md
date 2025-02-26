@@ -76,10 +76,10 @@ AUO Design system 是一套跨設計與程式的設計系統，採用原子化�
 ### **步驟五：放入相關資源並引用 SCSS 檔**
 
 - 移除預設樣式： 刪除 `src/style.css`
-- 下載並解壓縮 `source.zip`（需請學長更新 Vue 專用版本）：
-   [點此下載](https://storage.googleapis.com/ded-wds-bucket/source.zip)
-- 複製 `source` 資料夾內的內容到 `src` 並取代
-- 在 `main.js` 全局引用 `globals.scss`
+- 下載並解壓縮 `source.zip`：
+   [點此下載](https://storage.googleapis.com/ded-wds-bucket/uat/wds/source.zip)
+- 開啟 `source` 中的 `vue` 資料夾，將資料夾內的內容複製到開發環境 `src/assets` 中並取代
+- 接下來在 `main.js` 全局引用 `globals.scss`
 
     ```js
    import { createApp } from "vue";
@@ -91,8 +91,7 @@ AUO Design system 是一套跨設計與程式的設計系統，採用原子化�
 
 ## 🎨 3. 開始使用 `ded-wds-vue` 套件
 
-- 打開 [Design System Storybook](https://uedteam.github.io/DED-WDS_VUE/)
-- 左側菜單 component 子選單中選擇任一元件
+- 左側菜單子選單 component 中選擇任一元件
 - 點擊展示區右下角的 `showCode` 按鈕展開程式碼，並複製
 - 在 Vue 單文件組件（SFC）內貼上程式碼並使用，例如：
 
@@ -138,7 +137,6 @@ Design system 為提供便利的功能，部分常見元件採用功能完善的
 
 - SASS CSS 預處理器： [SASS](https://sass-lang.com/)
 
-- SVGR: [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr)
 
 ## 📌 5. 範例下載與使用方式
 
