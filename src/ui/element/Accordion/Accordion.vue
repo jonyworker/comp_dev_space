@@ -1,8 +1,13 @@
 <script setup>
 import { h, computed } from "vue";
-import { sanitizeHtml } from "@/composables/sanitizeHtml.js";
+import DOMPurify from 'dompurify';
 
 import AccordionItem from "@/ui/element/Accordion/AccordionItem.vue";
+
+// 內部化 `sanitizeHtml` 函式
+const sanitizeHtml = (html) => {
+    return DOMPurify.sanitize(html);
+};
 
 const props = defineProps({
 	dataSource: {
