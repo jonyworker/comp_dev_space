@@ -1,4 +1,4 @@
-import Search from './Search.vue';
+import Search from "@/ui/element/Search/Search.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {

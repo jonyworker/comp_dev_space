@@ -1,4 +1,4 @@
-import Toggle from './Toggle.vue';
+import Toggle from "@/ui/element/Toggle/Toggle.vue";
 
 export default {
 	title: 'Component/Toggle',

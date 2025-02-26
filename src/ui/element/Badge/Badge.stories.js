@@ -1,4 +1,4 @@
-import Badge from "./Badge.vue";
+import Badge from "@/ui/element/Badge/Badge.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 
 export default {

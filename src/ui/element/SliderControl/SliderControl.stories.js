@@ -1,4 +1,4 @@
-import SliderControl from "./SliderControl.vue";
+import SliderControl from "@/ui/element/SliderControl/SliderControl.vue";
 
 export default {
 	title: "Component/Slider-Control",

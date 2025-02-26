@@ -1,5 +1,5 @@
 import { h } from "vue";
-import Accordion from "./Accordion.vue";
+import Accordion from "@/ui/element/Accordion/Accordion.vue";
 import Title from "@/ui/element/Title/Title.vue";
 import Button from "@/ui/element/Button/Button.vue";
 const dataSource = [

@@ -1,4 +1,4 @@
-import Image from './Image.vue';
+import Image from "@/ui/element/Image/Image.vue";
 import Grid from '@/ui/layout/Grid/Grid.vue';
 import Row from '@/ui/layout/Grid/Row.vue';
 import Column from '@/ui/layout/Grid/Column.vue';

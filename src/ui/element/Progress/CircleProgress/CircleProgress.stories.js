@@ -1,4 +1,4 @@
-import CircleProgress from "./CircleProgress.vue";
+import CircleProgress from "@/ui/element/Progress/CircleProgress/CircleProgress.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {

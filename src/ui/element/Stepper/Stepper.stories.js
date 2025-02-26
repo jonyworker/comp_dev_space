@@ -1,4 +1,4 @@
-import Stepper from "./Stepper.vue";
+import Stepper from "@/ui/element/Stepper/Stepper.vue";
 import Button from "@/ui/element/Button/Button.vue";
 function formatDataSource(dataSource) {
 	return `[

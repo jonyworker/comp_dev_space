@@ -1,4 +1,4 @@
-import Tabs from "./Tabs.vue";
+import Tabs from "@/ui/element/Tabs/Tabs.vue";
 function formatDataSource(dataSource) {
     return `[
     ${dataSource.map(item => `{

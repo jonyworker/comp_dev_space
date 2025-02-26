@@ -1,4 +1,4 @@
-import LineProgress from "./LineProgress.vue";
+import LineProgress from "@/ui/element/Progress/LineProgress/LineProgress.vue";
 
 export default {
     title: "Component/Progress-Line",

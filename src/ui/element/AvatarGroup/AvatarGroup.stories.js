@@ -1,4 +1,4 @@
-import AvatarGroup from "./AvatarGroup.vue";
+import AvatarGroup from "@/ui/element/AvatarGroup/AvatarGroup.vue";
 function formatDataSource(dataSource) {
 	return `[
         ${dataSource.map(item => `{

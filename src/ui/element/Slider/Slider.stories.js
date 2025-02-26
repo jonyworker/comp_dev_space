@@ -1,4 +1,4 @@
-import Slider from "@/ui/element/slider/Slider.vue";
+import Slider from "@/ui/element/Slider/Slider.vue";
 
 export default {
 	title: "Component/Slider",

@@ -1,4 +1,4 @@
-import Breadcrumb from "./Breadcrumb.vue";
+import Breadcrumb from "@/ui/element/Breadcrumb/Breadcrumb.vue";
 function formatDataSource(dataSource) {
     return `[
         ${dataSource.map(item => `{

@@ -1,4 +1,4 @@
-import Radio from "./Radio.vue";
+import Radio from "@/ui/element/Radio/Radio.vue";
 function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{

@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import Tag from "./Tag.vue";
+import Tag from "@/ui/element/Tag/Tag.vue";
 
 export default {
 	title: "Component/Tag",

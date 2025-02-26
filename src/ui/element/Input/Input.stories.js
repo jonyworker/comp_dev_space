@@ -1,4 +1,4 @@
-import Input from './Input.vue';
+import Input from "@/ui/element/Input/Input.vue";
 function formatDataSource(hint) {
     return `{
         error: '${hint.error || ""}',

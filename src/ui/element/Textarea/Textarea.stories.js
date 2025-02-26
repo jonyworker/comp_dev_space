@@ -1,4 +1,4 @@
-import Textarea from "./Textarea.vue";
+import Textarea from "@/ui/element/Textarea/Textarea.vue";
 function formatDataSource(hint) {
     return `{
         error: '${hint.error || ""}',

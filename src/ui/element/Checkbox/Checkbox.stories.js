@@ -1,4 +1,4 @@
-import Checkbox from "./Checkbox.vue";
+import Checkbox from "@/ui/element/Checkbox/Checkbox.vue";
 function formatDataSource(dataSource) {
     return `[
     ${dataSource.map(item => `{
