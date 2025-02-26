@@ -1,6 +1,6 @@
 <script setup>
 import { watch, ref, markRaw } from 'vue';
-import icons from './icons'; // 引用 icons.js
+import icons from '@/assets/icons/icons.js'; // 引用 icons.js
 
 const props = defineProps({
 	name: {
