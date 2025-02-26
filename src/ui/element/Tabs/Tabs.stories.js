@@ -317,7 +317,7 @@ export const TabsColorStory = {
             }
         ],
         activeIndex: 0,
-        type: "basic",
+        type: "button",
         prefix: 'SvgArrowDown',
         isDisabled: false,
         className: ''
