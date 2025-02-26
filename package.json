@@ -55,7 +55,9 @@
     "prepublishOnly": "npm run build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "artifactregistry-login": "npx google-artifactregistry-auth",
+    "print-access-token": "gcloud auth application-default print-access-token"
   },
   "dependencies": {
     "chart.js": "^4.4.4",
