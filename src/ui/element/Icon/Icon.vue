@@ -1,14 +1,26 @@
 <script setup>
 import { watch, ref, markRaw } from 'vue';
-import icons from '@/icons'; // 確保 icons.js 存在，專門管理 SVG Icons
+import icons from './icons'; // 引用 icons.js
 
 const props = defineProps({
-    name: String,
-    size: String,
-    width: String,
-    height: String,
-    color: String,
-    src: String,
+	name: {
+		type: String,
+	},
+	size: {
+		type: String,
+	},
+	width: {
+		type: String
+	},
+	height: {
+		type: String
+	},
+	color: {
+		type: String,
+	},
+	src: {
+		type: String,
+	},
 });
 
 const iconComponent = ref(null);
