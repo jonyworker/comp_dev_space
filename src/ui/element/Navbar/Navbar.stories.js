@@ -3,7 +3,7 @@ function formatDataSource(dataSource) {
 	return `[
     ${dataSource.map(item => `{
         label: '${item.label}',
-        path: '${item.path}',
+        href: '${item.href}',
         order: '${item.order}',
     }`).join(',\n    ')}
   ]`;
@@ -19,7 +19,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: '{ label: string; path: string; order: number; }[]',
+					summary: '{ label: string; href: string; order: number; }[]',
 				}
 			}
 		},
@@ -54,22 +54,22 @@ export const NavbarDefault = {
 		dataSource: [
 			{
 				"label": "Products",
-				"path": "#products",
+				"href": "#products",
 				"order": 1
 			},
 			{
 				"label": "Solutions",
-				"path": "#solutions",
+				"href": "#solutions",
 				"order": 2
 			},
 			{
 				"label": "About",
-				"path": "#about",
+				"href": "#about",
 				"order": 3
 			},
 			{
 				"label": "Technologies",
-				"path": "#technologies",
+				"href": "#technologies",
 				"order": 4
 			}
 		],

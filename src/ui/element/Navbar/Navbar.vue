@@ -52,10 +52,10 @@ const sortDataSource = computed(() => {
             <ul class="navbar-links">
                 <Button
                     v-for="link in sortDataSource"
-                    :key="link.path"
+                    :key="link.href"
                     themeColor="primary"
                     variant="text"
-                    @click="() => link.path && window.open(link.path, '_blank')"
+                    @click="() => link.href && window.open(link.href, '_blank')"
                 >
                     {{ link.label }}
                 </Button>
