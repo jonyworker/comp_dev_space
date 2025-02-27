@@ -2,20 +2,23 @@ import { action } from '@storybook/addon-actions';
 import List from "@/ui/element/List/List.vue";
 function formatDataSource(dataSource) {
 	return `[
-	    ${dataSource.map(item => `{
-			label: '${item.label}',
-			value: '${item.value}',
-			href: '${item.href}',
-			prefix: '${item.prefix}',
-	        isDisabled: ${item.isDisabled},
-	    }`).join(',\n    ')}
-	]`;
+        ${dataSource.map(item => {
+		const properties = [
+			item.label ? `label: '${item.label}'` : '',
+			item.value ? `value: '${item.value}'` : '',
+			item.href ? `href: '${item.href}'` : '',
+			item.prefix ? `prefix: '${item.prefix}'` : '',
+			item.isDisabled !== undefined ? `isDisabled: ${item.isDisabled}` : '',
+		].filter(Boolean).join(',\n            ');
+
+		return `{\n            ${properties}\n        }`;
+	}).join(',\n        ')}
+    ]`;
 }
 const dataSource = [
 	{
 		label: "Option1",
 		value: "option1",
-		href: "",
 		prefix: "SvgAccount",
 		isDisabled: true,
 	},
@@ -24,14 +27,12 @@ const dataSource = [
 		value: "option2",
 		href: "#",
 		prefix: "SvgAccount",
-		isDisabled: false,
 	},
 	{
 		label: "Option3",
 		value: "option3",
 		href: "#",
 		prefix: "SvgAccount",
-		isDisabled: false,
 	},
 ]
 

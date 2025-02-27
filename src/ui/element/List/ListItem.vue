@@ -64,7 +64,7 @@ const handleClick = (event) => {
 		}"
         @click="handleClick">
 
-        <template v-if="props.href !== ''">
+        <template v-if="props.href">
             <a :href="props.href" class="ded-list-item-text ded-list-item-link">
                 <div class="ded-list-icon" v-if="props.prefix || $slots.default">
                     <slot>
