@@ -4,105 +4,114 @@ import Column from "@/ui/layout/Grid/Column.vue";
 import Grid from "@/ui/layout/Grid/Grid.vue";
 function formatDataSource(dataSource) {
 	return `[
-	    ${dataSource.map(item => `    {
-		        label: '${item.label}',
-		        path: '${item.path}',
-		        prefix: '${item.prefix}',
-		        order: '${item.order}',
-		        ${item.children ? `children: [
-		            ${item.children.map(child => `{
-		                label: '${child.label}',
-		                path: '${child.path}',
-		                ${child.prefix !== undefined && child.prefix !== null ? `prefix: '${child.prefix}',` : ''}
-		                order: '${child.order}',
-		            }`).join(',\n                ')}
-	            ]` : ''}
-	        }`  ).join(',\n        ')}
-		]`;
+        ${dataSource.map(item => {
+		const properties = [
+			item.label ? `label: '${item.label}'` : '',
+			item.prefix !== undefined && item.prefix !== null ? `prefix: '${item.prefix}'` : '',
+			item.path ? `path: '${item.path}'` : '',
+			item.order !== undefined && item.order !== null ? `order: '${item.order}'` : '',
+			item.children && item.children.length ? `children: [
+            ${item.children.map(child => {
+				const childProps = [
+					child.label ? `label: '${child.label}'` : '',
+					child.prefix !== undefined && child.prefix !== null ? `prefix: '${child.prefix}'` : '',
+					child.path ? `path: '${child.path}'` : '',
+					child.order !== undefined && child.order !== null ? `order: '${child.order}'` : '',
+				].filter(Boolean).join(',\n                        ');
+
+				return `{\n                        ${childProps}\n                    }`;
+			}).join(',\n                    ')}
+                ]` : ''
+		].filter(Boolean).join(',\n            ');
+
+		return `{\n            ${properties}\n        }`;
+	}).join(',\n        ')}
+    ]`;
 }
+
 
 const dataSource = [
 	{
 		label: 'Home',
-		path: '/Home',
 		prefix: 'SvgHome',
-		order: '1',
+		path: '/Home',
+		order: 1,
 	},
 	{
 		label: 'User',
-		path: '/users',
 		prefix: 'SvgUser',
-		order: '2',
+		path: '/users',
+		order: 2,
 		children: [
 			{
 				label: 'Profile',
 				path: '/user/profile',
-				order: '1',
+				order: 1,
 			},
 			{
 				label: 'Account',
 				path: '/user/account',
-				order: '2',
+				order: 2,
 			}
 		]
 	},
 	{
 		label: 'Chart',
-		path: '/chart',
 		prefix: 'SvgBarChart',
-		order: '3',
+		path: '/chart',
+		order: 3,
 		children: [
 			{
 				label: 'Profile',
 				path: '/chart/profile',
-				order: '1',
+				order: 1,
 			},
 			{
 				label: 'Account',
 				path: '/chart/account',
-				order: '2',
+				order: 2,
 			},
 			{
 				label: 'Account',
 				path: '/chart/account',
-				order: '3',
+				order: 3,
 			},
 			{
 				label: 'Account',
 				path: '/chart/account',
-				order: '4',
+				order: 4,
 			}
 		]
 	},
 	{
 		label: 'Database',
-		path: '/database',
 		prefix: 'SvgDatabase',
-		order: '4',
+		path: '/database',
+		order: 4,
 	},
 	{
 		label: 'Favorite',
-		path: '/favorite',
 		prefix: 'SvgFavorite',
-		order: '5',
+		path: '/favorite',
+		order: 5,
 	},
 	{
 		label: 'Calendar',
-		path: '/calendar',
 		prefix: 'SvgCalendar',
-		order: '6',
+		path: '/calendar',
+		order: 6,
 	},
 	{
 		label: 'Notification',
-		path: '/notification',
 		prefix: 'SvgNotification',
-		order: '7',
+		path: '/notification',
+		order: 7,
 	},
 	{
 		label: 'Language',
-		path: '/language',
 		prefix: 'SvgLanguage',
-		order: '8',
+		path: '/language',
+		order: 8,
 	},
 ]
 
@@ -151,8 +160,8 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ label: string; path: string; prefix: string; order: string; children?: [" +
-						" title:string; path:string; prefix:string; order: string;] }[]",
+					summary: "{ label: string; prefix: string; path: string; order: number; children?: [" +
+						" label:string; path:string; order: number;] }[]",
 				}
 			}
 		},
