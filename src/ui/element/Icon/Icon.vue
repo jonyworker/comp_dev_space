@@ -22,59 +22,69 @@ const props = defineProps({
 	},
 });
 
-const iconComponent = shallowRef(null);
-const icons = shallowRef(null); // 初始為 `null`，確保 `icons.js` 載入後才觸發 `loadIconComponent()`
+const iconComponent = shallowRef(null); // 🚀 確保 Vue 不會轉換成 Proxy
+let icons = import.meta.glob('@/assets/icons/*.svg', { eager: true, import: 'default' });
 
-// 動態載入 `icons.js`
-const loadIcons = async () => {
-    try {
-        const module = await import('@/assets/icons/icons.js');
-        icons.value = markRaw(module.default); // 確保 `icons` 內的元件不會變成響應式物件
-        loadIconComponent(); // 🚀 `icons.js` 載入後再執行 `loadIconComponent`
-        // eslint-disable-next-line no-unused-vars
-    } catch (error) {
-        console.warn("⚠️ 無法載入 `icons.js`，請確認已下載並放入 `src/assets/icons/`。");
+const loadIconComponent = async () => {
+    if (!props.name) return;
+
+    // 🔥 如果使用者有提供 `src`，讓 `<img>` 處理
+    if (props.src) {
+        iconComponent.value = null;
+        return;
     }
-};
 
-// 設定圖標
-const loadIconComponent = () => {
-    if (!icons.value) return; // 🚀 icons.js 尚未載入時不執行
+    try {
+        // 先嘗試使用 `import.meta.glob()` 載入的圖標
+        if (icons[`/src/assets/icons/${props.name}.svg`]) {
+            iconComponent.value = markRaw(icons[`/src/assets/icons/${props.name}.svg`]);
+            return;
+        }
 
-    if (props.name && icons.value[props.name]) {
-        iconComponent.value = icons.value[props.name]; // 🚀 `icons` 已經是 `markRaw`
-    } else {
-        console.warn(`⚠️ 找不到圖標 "${props.name}"，請確認 \`icons.js\` 內是否有此圖標。`);
+        // 如果沒有找到，動態嘗試載入 SVG（確保是 Vue 組件）
+        const response = await fetch(`/src/assets/icons/${props.name}.svg`);
+        if (response.ok) {
+            const svgText = await response.text();
+
+            // 建立 Vue 組件來渲染 SVG（直接插入 `<svg>`）
+            iconComponent.value = markRaw({
+                template: svgText,
+            });
+
+            // 更新 `icons`，未來可直接載入
+            icons = {
+                ...icons,
+                [`/src/assets/icons/${props.name}.svg`]: iconComponent.value,
+            };
+        } else {
+            console.warn(`⚠️ 找不到圖標 "${props.name}"，請確認 icons/*.svg 是否存在`);
+            iconComponent.value = null;
+        }
+    } catch (error) {
+        console.warn(`⚠️ 無法載入圖標 "${props.name}"，請改用 src`, error);
         iconComponent.value = null;
     }
 };
 
-// 🚀 等 `icons.js` 加載完成後再監聽 `props.name`
-watch(() => props.name, () => {
-    if (icons.value) {
-        loadIconComponent();
-    }
-}, { immediate: false });
-
-loadIcons();
+// 🚀 監聽 `name` 或 `src` 變更
+watch([() => props.name, () => props.src], loadIconComponent, { immediate: true });
 </script>
 
 <template>
-    <component
+<!--    <p>{{ iconComponent?.render ? '✅ 這是一個 Vue 元件' : '❌ iconComponent 解析失敗' }}</p>-->
+    <img
         v-if="props.src"
-        :is="'img'"
         :src="props.src"
-        :width="props.size ? props.size : props.width"
-        :height="props.size ? props.size : props.height"
+        :width="props.size || props.width"
+        :height="props.size || props.height"
         :style="{ fill: props.color }"
-    />
+        :alt="props.name"
+    >
     <component
         v-else-if="iconComponent"
         :is="iconComponent"
-        :width="props.size ? props.size : props.width"
-        :height="props.size ? props.size : props.height"
+        :width="props.size || props.width"
+        :height="props.size || props.height"
         :style="{ fill: props.color }"
     />
 </template>
-
-<style lang="scss" scoped></style>
