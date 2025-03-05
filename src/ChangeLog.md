@@ -1,30 +1,5 @@
-`## V1.0.0 (2025-01-??)`
+## V1.0.0 (2025-03-06)
 
-# ✨feat
-
-### **SVG*
-- 新增 SvgArrowDropDown (學 #76)
-
-# 🆙 Updates
-
-### **SCSS**
-- 同步 SCSS (學 #76)
-
-### **Layout**
-- 修改 Storybook (學 #76)
-    1. 修改文字大小
-    2. 增加 min-width
-
-### **Menu**
-- 修改 Vue (學 #76)
-  1. 修改 dataSource 參數
-- 修改 Storybook (學 #76)
-  1. 修改 dataSource 參數
-  2. 增加 hasLogo
-
-### **Navbar**
-- 修改 Vue (學 #76)
-  1. 增加 hasLogo
-- 修改 Storybook (學 #76)
-  1. 修改 dataSource 參數
-  2. 增加 hasLogo
+### 🆙 Updates: (@ded-wds-vue/ui)
+- 修改 Icon.vue 寫法，優先使用 import.meta.glob() 載入的 Vue 組件
+- 如果 src/assets/icons/*.svg 在執行時新增，自動解析為 Vue 組件
