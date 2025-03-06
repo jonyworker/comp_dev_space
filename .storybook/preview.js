@@ -1,20 +1,17 @@
 /** @type { import('@storybook/vue3').Preview } */
 import '@/style/globals.scss';
-// import { Preview } from '@storybook/vue3';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import '../index.css';
 import './preview.scss';
+import { setup } from '@storybook/vue3'; // 正確的 Vue 3 setup 方法
+import icons from '../src/assets/icons/icons.js'; // 確保正確路徑
+
+// ✅ 在 Storybook 初始化時 `provide` icons
+setup((app) => {
+	app.provide('icons', icons);
+});
 
 const preview = {
-	initialGlobals: {
-		styles: {
-			body: {
-				margin: 0,
-				padding: 0,
-				fontFamily: 'Arial, sans-serif',
-			},
-		},
-	},
 	parameters: {
 		backgrounds: {
 			values: [
@@ -25,19 +22,13 @@ const preview = {
 		},
 		options: {
 			storySort: {
-				method: 'alphabetical', // 可選擇 'alphabetical', 'configure', 或其他自定義方法
-				order: ['Introduction', 'Components'], // 可根據需求調整順序
+				method: 'alphabetical',
+				order: ['Introduction', 'Components'],
 				locales: 'en-US',
 			},
 		},
-		html: {
-			prettier: {
-				tabWidth: 4,
-				useTabs: true,
-			},
-		},
 		viewport: {
-			viewports: INITIAL_VIEWPORTS, // 開啟更多 viewport 選擇
+			viewports: INITIAL_VIEWPORTS,
 		},
 		controls: {
 			expanded: true,
@@ -46,21 +37,8 @@ const preview = {
 				date: /Date$/i,
 			},
 		},
-		// docs: {
-		//   toc: {
-		//     contentsSelector: '.sbdocs-content',
-		//     headingSelector: 'h2, h3',
-		//     ignoreSelector: '#primary',
-		//     disable: false,
-		//     unsafeTocbotOptions: {
-		//       orderedList: false,
-		//     },
-		//   }, // 👈 Enables the table of contents
-		// },
 	},
-
 	tags: ['autodocs'],
 };
 
 export default preview;
-
