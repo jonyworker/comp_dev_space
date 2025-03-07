@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { Datepicker, DateRangePicker } from 'vanillajs-datepicker'
-import 'vanillajs-datepicker/css/datepicker-foundation.css'
 import Input from '@/ui/element/Input/Input.vue'
 
 const modelValue = defineModel()
