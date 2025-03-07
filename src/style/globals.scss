@@ -1,13 +1,7 @@
-
 //基礎設定
-//@forward "./theme/_variable";
-//@forward "./theme/_function";
 @forward "./theme/_default_variable";
 @forward "./theme/_color_schema";
 @forward "./theme/_reset";
-//@forward "./theme/_map";
-//@forward "./theme/_base";
-//@forward "./theme/_dark_light";
 
 //基礎設定
 @forward "./component/element/_accordion";
@@ -39,7 +33,7 @@
 @forward "./component/element/_slider_control";
 @forward "./component/element/_status_Indicator";
 @forward "./component/element/_stepper";
-@forward "./component/element/_table"; //(未完成)
+@forward "./component/element/_table";
 @forward "./component/element/_tabs";
 @forward "./component/element/_tag";
 @forward "./component/element/_textarea";
@@ -48,22 +42,15 @@
 @forward "./component/element/_toggle";
 @forward "./component/element/_tooltip";
 
-//舊的
-@forward "./component/old/_sliderJonyOldVer";
-@forward "./component/old/_tablePeter";
-
 //頁面佈局
 @forward "./layout/_grid";
-//@forward "./layout/_gridSystem"; //已編譯，有加 ded- 前綴的
 @forward "./layout/_layout";
-//@forward "./layout/_gridLayout"; //不知為何非得編譯才能解讀
-//@forward "./layout/_gridUtilities"; //不知為何非得編譯才能解讀
 
 //預製版型
 @forward "./template/_auth_flow";
 
 //輔助工具
-@forward "./utility/fakeContent";
+@forward "./utility/vanillajs-datepicker-foundation";
 
 //客制化樣式
 @forward "./custom";
