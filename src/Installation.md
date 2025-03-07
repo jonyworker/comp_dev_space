@@ -10,7 +10,7 @@ AUO Design system 是一套跨設計與程式的設計系統，採用原子化�
 
 1. "node": "^18.20.7"
 2. "vue": "^3.4.37"
-3. "sass": "^1.77.8"
+3. "sass": "^1.81.0"
 4. "vite-svg-loader": "^5.1.0"
 
 ## 安裝方式
@@ -99,11 +99,20 @@ export default defineConfig({
 
 - 複製 source/vue 內相關資料夾至 src 資料夾並且取代
 
-- 在 main.js 全局引用 globals.scss
+- 在進入點的檔案 main.js 全局引用 globals.scss 及匯入 icons
 
 ```js
-import './style.css'; //👈 刪除這行
+
+import { createApp } from 'vue';
+import './style.css'; //🗑️ 刪除這行
 import './style/globals.scss'; //👈 加入這行
+import App from './app.vue';
+import icons from "./assets/icons/icons.js"; // 👈 加入這行匯入 icons.js
+
+const app = createApp(App);
+app.provide("icons", icons); // 👈 加入這行提供全域 icons
+app.mount("#app");
+
 ```
 
 ### 步驟四：開始開發
