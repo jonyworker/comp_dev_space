@@ -33,7 +33,6 @@ import SvgLock from './SvgLock.svg';
 import SvgLogout from './SvgLogout.svg';
 import SvgMail from './SvgMail.svg';
 import SvgMinus from './SvgMinus.svg';
-import SvgMore from './SvgMore.svg';
 import SvgMoreVert from './SvgMoreVert.svg';
 import SvgNavigateArrow from './SvgNavigateArrow.svg';
 import SvgNotification from './SvgNotification.svg';
@@ -89,7 +88,6 @@ export default {
     SvgLogout,
     SvgMail,
     SvgMinus,
-    SvgMore,
     SvgMoreVert,
     SvgNavigateArrow,
     SvgNotification,
