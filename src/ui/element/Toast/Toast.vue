@@ -6,7 +6,7 @@ if (!document.getElementById("toast")) {
 	document.body.appendChild(toastContainer);
 }
 
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import Icon from '@/ui/element/Icon/Icon.vue';
 import Button from '@/ui/element/Button/Button.vue';
 import Title from '@/ui/element/Title/Title.vue';
@@ -30,6 +30,14 @@ const props = defineProps({
             ].includes(value),
         default: "primary",
     },
+	position: {
+		type: String,
+		default: "top-right",
+		validator: value => [
+			"top-right", "top-left", "top-center",
+			"bottom-right", "bottom-left", "bottom-center",
+		].includes(value)
+	},
 	title: {
 		type: String,
 		required: true
@@ -67,8 +75,31 @@ const show = () => {
 	}, props.duration);
 };
 
+// 動態建立 Toast 容器
+const updateToastContainer = () => {
+	let toastContainer = document.getElementById("toast");
+
+	if (!toastContainer) {
+		toastContainer = document.createElement("div");
+		toastContainer.id = "toast";
+		toastContainer.classList.add("ded-toast-container", `ded-toast-${props.position}`);
+
+		document.body.appendChild(toastContainer);
+	} else {
+		// 確保 className 被正確更新
+		toastContainer.className = `ded-toast-container ded-toast-${props.position}`;
+	}
+};
+
+// 監聽 `props.position`，當變更時更新 `toastContainer`
+watch(() => props.position, () => {
+	updateToastContainer();
+});
+
 // 元件掛載時 setTimeout
 onMounted(() => {
+	updateToastContainer();
+	console.log(props.position)
 	show();
 });
 

@@ -30,6 +30,19 @@ export default {
 				}
 			}
 		},
+		position: {
+			description: "位置",
+			control: { type: "select" },
+			options: [
+				"top-right", "top-left", "top-center",
+				"bottom-right", "bottom-left", "bottom-center"
+			],
+			table: {
+				type: {
+					summary: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center"
+				}
+			}
+		},
 		title: {
 			description: "內容",
 			control: { type: "text" },
@@ -97,6 +110,7 @@ export const ToastDefault = {
 	name: "預設項目",
 	args: {
 		themeColor: "success",
+		position: "top-right",
 		title: "Notification Title",
 		content: "Content",
 		prefix:'SvgSuccessCircle',
@@ -169,6 +183,7 @@ export const ToastDefault = {
 						`  const showToast = () => {`,
 						`    add({`,
 						`      ${args.themeColor ? `themeColor: "${args.themeColor}",` : ""}`,
+						`      ${args.position ? `position: "${args.position}",` : ""}`,
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      ${args.prefix ? `prefix: "${args.prefix}",` : ""}`,
@@ -475,10 +490,11 @@ export const ToastInterAction = {
 	name: "互動模式",
 	args: {
 		themeColor: "success",
+		position: "top-center",
 		title: "Notification Title ",
 		content: "Content",
 		prefix:'SvgSuccessCircle',
-		duration: 5000,
+		duration: 50000,
 		className: "",
 		action: `<div @click="onAction">Action</div>`,
 	},
@@ -491,6 +507,7 @@ export const ToastInterAction = {
 					themeColor: args.themeColor,
 					title: args.title,
 					content: args.content,
+					position: args.position,
 				});
 			};
 			const onAction = () => {
@@ -509,6 +526,7 @@ export const ToastInterAction = {
 				v-for="toast in toasts"
 				:key="toast.id"
 				:themeColor="toast.themeColor"
+				:position="toast.position"
 				:title="toast.title"
 				:content="toast.content"
 				:prefix="args.prefix"
@@ -542,6 +560,7 @@ export const ToastInterAction = {
 						`  const showToast = () => {`,
 						`    add({`,
 						`      ${args.themeColor ? `themeColor: "${args.themeColor}",` : ""}`,
+						`      ${args.position ? `position: "${args.position}",` : ""}`,
 						`      ${args.title ? `title: "${args.title}",` : ""}`,
 						`      ${args.content ? `content: "${args.content}",` : ""}`,
 						`      ${args.prefix ? `prefix: "${args.prefix}",` : ""}`,
