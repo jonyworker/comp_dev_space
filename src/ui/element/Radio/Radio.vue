@@ -1,8 +1,14 @@
 <script setup>
-// import { watch } from "vue";
+
+// 使用唯一識別碼生成方法
+const baseId = crypto.randomUUID()
+const generateId = (index) => `${baseId}-radio-${index}`;
 
 // 定義 Model
 const modelValue = defineModel();
+
+// 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
+defineOptions({ inheritAttrs: false });
 
 // 定義 Props
 const props = defineProps({
@@ -43,6 +49,7 @@ const props = defineProps({
                 'ded-radio-input-disabled': item.isDisabled,
                 [`ded-text-${props.size}`]: props.size
             }"
+            :for="generateId(index)"
         >
             <input
                 class="ded-radio-input"
@@ -50,6 +57,8 @@ const props = defineProps({
                 :value="item.value"
                 :name="item.name"
                 v-model="modelValue"
+                v-bind="$attrs"
+                :id="generateId(index)"
             />
             <!-- radio - 選擇框樣式 -->
             <div
