@@ -1,7 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import svgLoader from 'vite-svg-loader'
+
+// 解析 __dirname（ESM 模式）
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,10 +23,10 @@ export default defineConfig({
 	},
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, "src/index.js"), // 入口文件
+			entry: path.resolve(__dirname, "src/index.ts"), // 入口文件
 			name: "index", // UMD 格式需要一個全局名稱
 			formats: ["es", "cjs", "umd"], // 記得加上 "cjs"，讓它可以正確輸出
-			fileName: (format) => `index.${format}.js`,
+			fileName: (format: string) => `index.${format}.js`,
 		},
 		rollupOptions: {
 			// external 確保 Vue 不會被打包進去
