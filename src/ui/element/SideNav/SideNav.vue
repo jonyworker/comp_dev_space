@@ -128,7 +128,7 @@ onUnmounted(() => {
 	        :dataSource="sortDataSource"
 			:hasLogo="hasLogo"
 			:logoSrc="props.mobileLogoSrc"
-			className="fixed top-0 h-[60px] w-full"
+			className="ded-side-nav-rwd"
 			style="position: fixed; top: 0; height: 60px; width: 100%;"
 		>
 		</Navbar>
