@@ -1,6 +1,13 @@
 <script setup>
 import { computed } from 'vue';
 
+// 使用唯一識別碼生成方法
+const baseId = crypto.randomUUID()
+const generateId = `${baseId}-textarea`;
+
+// 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
+defineOptions({ inheritAttrs: false });
+
 // 定義 Model
 const modelValue = defineModel();
 
@@ -51,7 +58,7 @@ const hintClass = computed(() => {
 	<div :class="{'ded-textarea-container': true, [props.className]: !!props.className}">
 		<!-- 多行輸入框標題 -->
 		<template v-if="props.label">
-			<label :class="['ded-textarea-label', {'ded-textarea-disable': props.isDisabled}]" for="id">
+			<label :class="['ded-textarea-label', {'ded-textarea-disable': props.isDisabled}]" :for="generateId">
 				{{ props.label }}
 			</label>
 		</template>
@@ -60,11 +67,12 @@ const hintClass = computed(() => {
 			{'ded-textarea-disable': props.isDisabled},
 			( props.hint.error.length > 0 && `ded-textarea-border-${hintClass}`)]">
 			<!-- 多行輸入框 -->
-			<textarea id="id"
+			<textarea :id="generateId"
 			          :class="['ded-textarea', {'ded-textarea-disable': props.isDisabled}]"
 			          :maxlength="props.limit > 0 ? props.limit : undefined"
 			          :placeholder="props.placeholder"
 			          v-model="modelValue"
+			          v-bind="$attrs"
 			></textarea>
 
 			<!-- 輸入字數提示 -->
