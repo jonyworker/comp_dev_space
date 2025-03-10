@@ -6,6 +6,9 @@ const modelValue = defineModel({
     default: []
 });
 
+// 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
+defineOptions({ inheritAttrs: false });
+
 // 定義 Props
 const props = defineProps({
     dataSource: {
@@ -29,7 +32,8 @@ const props = defineProps({
 });
 
 // 使用唯一識別碼生成方法
-const generateId = (value) => `checkbox-${value}`;
+const baseId = crypto.randomUUID()
+const generateId = (index) => `${baseId}-checkbox-${index}`;
 
 // 切換選取狀態
 const handleCheck = (item) => {
@@ -47,14 +51,15 @@ const handleCheck = (item) => {
             [`ded-checkbox-container-${direction}`]: direction,
             [className]: !!className
         }">
-        <label v-for="item in dataSource" :key="item.value" :for="generateId(item.value)"
+        <label v-for="(item, index) in dataSource" :key="item.value" :for="generateId(index)"
                class="ded-checkbox"
                :class="{
                 'ded-checkbox-input-disabled': item.isDisabled,
                 [`ded-text-${props.size}`]: props.size
             }">
-            <input class="ded-checkbox-input" type="checkbox" :id="generateId(item.value)" :name="item.name"
-                   :value="item.value" :checked="modelValue.includes(item.value)" @change="handleCheck(item)" />
+            <input class="ded-checkbox-input" type="checkbox" :id="generateId(index)" :name="item.name"
+                   :value="item.value" :checked="modelValue.includes(item.value)" @change="handleCheck(item)"
+                   v-bind="$attrs"/>
             <!-- checkbox 選擇框樣式 -->
             <div :class="[
                     'ded-checkbox-icon',
