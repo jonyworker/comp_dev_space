@@ -40,7 +40,7 @@ const props = defineProps({
 // 點擊事件處理
 const handleClick = (event) => {
     if (!props.href) {
-        emits('selectedItem', props.value); // 如果沒有 href，直接觸發事件，傳遞 value
+        emits('selectedItem', props.label); // 如果沒有 href，直接觸發事件，傳遞 value
     } else {
         // 檢查 openInNewTab 的值，決定是否在新分頁開啟
         if (props.openInNewTab) {
