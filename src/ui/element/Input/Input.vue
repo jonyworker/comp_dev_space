@@ -5,6 +5,9 @@ import Icon from '@/ui/element/Icon/Icon.vue';
 const modelValue = defineModel();
 const emits = defineEmits(['clearDatePicker']);
 
+// 阻止 Vue 自動將 $attrs 綁定到最外層 <div>
+defineOptions({ inheritAttrs: false });
+
 // 定義 Props
 const props = defineProps({
 	label: {
@@ -59,8 +62,10 @@ const inputRef = ref(null);
 defineExpose({
     input:inputRef
 });
+
 // 或其他唯一ID生成方式
-const inputId = ref(crypto.randomUUID());
+const baseId = crypto.randomUUID()
+const uniqueId = `${baseId}-input`;
 
 // 計算屬性
 const hintClass = computed(() => {
@@ -95,7 +100,7 @@ const toggleDropdown = () => {
 		<!-- 標籤 -->
 		<label
 			v-if="label"
-			:for="inputId"
+			:for="uniqueId"
 			:class="props.isDisabled ? 'ded-input-disable' : 'ded-input-label'"
 		>
 			{{ label }}
@@ -113,7 +118,7 @@ const toggleDropdown = () => {
 			<!-- Prefix Icon -->
 			<label
 				v-if="prefix"
-				:for="inputId"
+				:for="uniqueId"
 				:class="{
 		            'ded-input-icon':true,
 					[`ded-icon-${props.size}`]:props.size,
@@ -126,7 +131,7 @@ const toggleDropdown = () => {
 			<!-- Input -->
 			<input
                 ref="inputRef"
-				:id="inputId"
+				:id="uniqueId"
 				:type="showPassword && props.type === 'password' ? 'text' : props.type"
 				v-model="modelValue"
 				:placeholder="props.placeholder"
@@ -137,6 +142,7 @@ const toggleDropdown = () => {
 					'ded-input-prefix': props.prefix,
 					'ded-input-disable': props.isDisabled,
 				}"
+                v-bind="$attrs"
 			/>
 
 			<!-- 功能圖示 -->
