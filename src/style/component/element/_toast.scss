@@ -4,9 +4,41 @@
 
 .ded-toast-container {
     position: fixed;
+    width: min(23rem, 27rem);
+}
+
+.ded-toast-top-left {
+    top: 0;
+    left: 0;
+}
+
+.ded-toast-top-center {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+}
+
+.ded-toast-top-right {
     top: 0;
     right: 0;
-    width: min(23rem, 27rem);
+}
+
+.ded-toast-bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.ded-toast-bottom-center {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+}
+
+.ded-toast-bottom-right {
+    bottom: 0;
+    right: 0;
 }
 
 .ded-toast {

@@ -19,7 +19,7 @@
         }
 
         &-highline {
-            color: $link-default;
+            color: list.nth($link-default, $site);
         }
 
         .ded-pagination-select {

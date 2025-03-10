@@ -70,6 +70,8 @@
 
             &:focus {
                 box-shadow: 0 0 0 2px getThemeColor($theme, 'outline') inset;
+                background-color: getThemeColor($theme, 'default');
+                color: list.nth($neutral-0, $site);
             }
         }
 

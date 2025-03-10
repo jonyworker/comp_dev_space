@@ -107,6 +107,11 @@
                 @if($variant =='filled') {
                     background-color: getStatusColor($theme, 'dark');
                 }
+
+                @if($variant =='soft') {
+                    background-color: getStatusColor($theme, 'soft');
+                    color: getStatusColor($theme, 'dark');
+                }
             }
         }
     }

@@ -12,6 +12,13 @@
     // height: calc(100vh - $header-h);
     background-color: list.nth($sidebar, $site);
 
+    &-rwd {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+    }
+
     &-desktop {
         display: flex;
         justify-content: space-between;

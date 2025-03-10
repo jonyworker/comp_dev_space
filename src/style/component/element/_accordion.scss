@@ -42,15 +42,13 @@
             }
         }
 
-
-
         &-open {
-            transition: transform .3s;
+            transition: transform 0.3s;
             transform: rotate(180deg);
         }
 
         &-close {
-            transition: transform .3s;
+            transition: transform 0.3s;
             transform: rotate(0deg);
         }
     }
