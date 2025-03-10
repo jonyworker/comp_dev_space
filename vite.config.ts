@@ -1,24 +1,22 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import svgLoader from 'vite-svg-loader'
 
-// 解析 __dirname（ESM 模式）
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+// 解析 __dirname
+const __dirname = path.resolve();
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
 		vue(),
 		svgLoader({
-			defaultExport: "component" // 確保 SVG 被當作 Vue 元件使用
+			defaultImport: "component" // 確保 SVG 被當作 Vue 元件使用
 		})
 	],
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, 'src'),
+			'@': path.resolve(__dirname, './src'),
 		},
 	},
 	build: {

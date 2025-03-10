@@ -16,7 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "paths": {
-      "@/*": ["src/*"] // ✅ 確保 TypeScript 解析 @ 別名
+      "@/*": ["./src/*"] // 確保 TypeScript 解析 @ 別名
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
