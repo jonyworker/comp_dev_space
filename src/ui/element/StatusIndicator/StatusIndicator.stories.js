@@ -27,12 +27,16 @@ export default {
 			description: "按鈕樣式",
 			required: true,
 			control: { type: "select" },
-			options: ["text", "filled"],
+			options: ["text", "soft", "filled"],
 			table: {
 				type: {
-					summary: "text | filled ",
+					summary: "text | soft | filled ",
 				}
 			}
+		},
+		isShowDot: {
+			description: "是否顯示圓點",
+			control: { type: "boolean" },
 		},
 		prefix: {
 			description: "前綴元素",
@@ -91,6 +95,7 @@ export const StatusIndicatorDefault = {
 	args: {
 		themeColor: "success",
 		variant: "filled",
+		isShowDot: false,
 		prefix: "",
 		size: "medium",
 		className: '',
@@ -107,6 +112,7 @@ export const StatusIndicatorDefault = {
 			<StatusIndicator
 				:themeColor="args.themeColor"
 				:variant="args.variant"
+				:isShowDot="args.isShowDot"
 				:prefix="args.prefix"
 				:size="args.size"
 				:className="args.className"
@@ -132,6 +138,7 @@ export const StatusIndicatorDefault = {
 						`  <StatusIndicator`,
 						`    ${args.themeColor ? `themeColor="${args.themeColor}"` : ""}`,
 						`    ${args.variant ? `variant="${args.variant}"` : ""}`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -152,6 +159,7 @@ export const StatusIndicatorColors = {
 	args: {
 		themeColor: "",
 		variant: "",
+		isShowDot: true,
 		prefix: "",
 		size: "medium",
 		className: "",
@@ -169,6 +177,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="info"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -178,6 +187,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="success"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -187,6 +197,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="warning"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -196,6 +207,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="error"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -205,6 +217,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="neutral"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -217,6 +230,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="info"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -226,6 +240,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="success"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -235,6 +250,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="warning"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -244,6 +260,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="error"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -253,6 +270,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="neutral"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						:prefix="args.prefix"
 						:size="args.size"
 						:className="args.className"
@@ -265,6 +283,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="info"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						prefix="SvgInfoCircle"
 						:size="args.size"
 						:className="args.className"
@@ -274,6 +293,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="success"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						prefix="SvgSuccessCircle"
 						:size="args.size"
 						:className="args.className"
@@ -283,6 +303,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="warning"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						prefix="SvgWarningTri"
 						:size="args.size"
 						:className="args.className"
@@ -292,6 +313,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="error"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						prefix="SvgErrorCircle"
 						:size="args.size"
 						:className="args.className"
@@ -301,6 +323,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="neutral"
 						variant="filled"
+						:isShowDot="args.isShowDot"
 						prefix="SvgDisableCircle"
 						:size="args.size"
 						:className="args.className"
@@ -313,6 +336,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="info"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						prefix="SvgInfoCircle"
 						:size="args.size"
 						:className="args.className"
@@ -322,6 +346,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="success"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						prefix="SvgSuccessCircle"
 						:size="args.size"
 						:className="args.className"
@@ -331,6 +356,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="warning"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						prefix="SvgWarningTri"
 						:size="args.size"
 						:className="args.className"
@@ -340,6 +366,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="error"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						prefix="SvgErrorCircle"
 						:size="args.size"
 						:className="args.className"
@@ -349,6 +376,7 @@ export const StatusIndicatorColors = {
 					<StatusIndicator
 						themeColor="neutral"
 						variant="text"
+						:isShowDot="args.isShowDot"
 						prefix="SvgDisableCircle"
 						:size="args.size"
 						:className="args.className"
@@ -377,6 +405,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="info"`,
 						`    variant="filled"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -386,6 +415,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="success"`,
 						`    variant="filled"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -395,6 +425,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="warning"`,
 						`    variant="filled"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -404,6 +435,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="error"`,
 						`    variant="filled"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -413,6 +445,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="neutral"`,
 						`    variant="filled"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -423,6 +456,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="info"`,
 						`    variant="text"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -432,6 +466,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="success"`,
 						`    variant="text"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -441,6 +476,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="warning"`,
 						`    variant="text"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -450,6 +486,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="error"`,
 						`    variant="text"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -459,6 +496,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="neutral"`,
 						`    variant="text"`,
+						`    ${args.isShowDot ? `:isShowDot="${args.isShowDot}"` : ""}`,
 						`    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -468,6 +506,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="info"`,
 						`    variant="filled"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgInfoCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -477,6 +516,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="success"`,
 						`    variant="filled"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgSuccessCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -486,6 +526,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="warning"`,
 						`    variant="filled"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgWarningTri"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -495,6 +536,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="error"`,
 						`    variant="filled"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgErrorCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -504,6 +546,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="neutral"`,
 						`    variant="filled"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgDisableCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -514,6 +557,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="info"`,
 						`    variant="text"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgInfoCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -523,6 +567,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="success"`,
 						`    variant="text"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgSuccessCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -532,6 +577,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="warning"`,
 						`    variant="text"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgWarningTri"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -541,6 +587,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="error"`,
 						`    variant="text"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgErrorCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
@@ -550,6 +597,7 @@ export const StatusIndicatorColors = {
 						`  <StatusIndicator`,
 						`    themeColor="neutral"`,
 						`    variant="text"`,
+						`    :isShowDot="false"`,
 						`    prefix="SvgDisableCircle"`,
 						`    ${args.size ? `size="${args.size}"` : ""}`,
 						`    ${args.className ? `className="${args.className}"` : ""}`,
