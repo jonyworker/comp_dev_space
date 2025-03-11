@@ -1,15 +1,8 @@
 <script setup>
-if (!document.getElementById("toast")) {
-	const toastContainer = document.createElement("div");
-	toastContainer.id = "toast";
-	toastContainer.classList.add("ded-toast-container");
-	document.body.appendChild(toastContainer);
-}
-
-import { ref, onMounted, onUnmounted, watch } from 'vue';
-import Icon from '@/ui/element/Icon/Icon.vue';
-import Button from '@/ui/element/Button/Button.vue';
-import Title from '@/ui/element/Title/Title.vue';
+import { defineProps, defineEmits, ref, onMounted, onUnmounted } from "vue";
+import Icon from "@/ui/element/Icon/Icon.vue";
+import Button from "@/ui/element/Button/Button.vue";
+import Title from "@/ui/element/Title/Title.vue";
 
 // 定義 Emits
 const emit = defineEmits(['onClose']);
@@ -32,7 +25,6 @@ const props = defineProps({
     },
 	position: {
 		type: String,
-		default: "top-right",
 		validator: value => [
 			"top-right", "top-left", "top-center",
 			"bottom-right", "bottom-left", "bottom-center",
@@ -75,31 +67,9 @@ const show = () => {
 	}, props.duration);
 };
 
-// 動態建立 Toast 容器
-const updateToastContainer = () => {
-	let toastContainer = document.getElementById("toast");
-
-	if (!toastContainer) {
-		toastContainer = document.createElement("div");
-		toastContainer.id = "toast";
-		toastContainer.classList.add("ded-toast-container", `ded-toast-${props.position}`);
-
-		document.body.appendChild(toastContainer);
-	} else {
-		// 確保 className 被正確更新
-		toastContainer.className = `ded-toast-container ded-toast-${props.position}`;
-	}
-};
-
-// 監聽 `props.position`，當變更時更新 `toastContainer`
-watch(() => props.position, () => {
-	updateToastContainer();
-});
 
 // 元件掛載時 setTimeout
 onMounted(() => {
-	updateToastContainer();
-	console.log(props.position)
 	show();
 });
 
@@ -110,13 +80,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<teleport to="#toast">
-		<div class="ded-toast" :class="[`ded-toast-border-${props.themeColor}`, props.className]">
-			<!-- toast - 關閉按鈕 -->
-			<Button class="ded-close-button" variant="text" themeColor="neutral" @click="handleClose">
-				<Icon name="SvgClose" size="20"></Icon>
-			</Button>
-			<!-- toast - 標題及說明文字 -->
+    <teleport :to="`#toast-container-${props.position}`">
+        <div class="ded-toast" :class="[`ded-toast-border-${props.themeColor}`, props.className]">
+            <Button class="ded-close-button" variant="text" themeColor="neutral" @click="handleClose">
+                <Icon name="SvgClose" size="20"></Icon>
+            </Button>
+
             <div class="ded-toast-header">
                 <div :class="['ded-toast-header-message', `ded-toast-header-message-${props.themeColor}`]">
                     <Icon :name="props.prefix" size="20"></Icon>
@@ -124,13 +93,11 @@ onUnmounted(() => {
                         {{ props.title }}
                     </Title>
                 </div>
-                <div class="ded-toast-header-action">
-                    <slot name="action"></slot>
-                </div>
             </div>
-			<p class="ded-description">{{ props.content }}</p>
-		</div>
-	</teleport>
+
+            <p class="ded-description">{{ props.content }}</p>
+        </div>
+    </teleport>
 </template>
 
 <style scoped>

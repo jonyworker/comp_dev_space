@@ -1,66 +1,19 @@
-// import { ref } from 'vue';
-//
-// // 🔹 保持 `toasts` 為單例，讓所有組件共享
-// const toasts = ref([]);
-//
-// // 🔹 儲存計時器，用於手動刪除時清除 `setTimeout`
-// const timers = new Map();
-//
-// // function - 刪除指定 id 的 Toast
-// const removeToastById = (id) => {
-// 	if (timers.has(id)) {
-// 		clearTimeout(timers.get(id)); // 清除 `setTimeout`
-// 		timers.delete(id);
-// 	}
-// 	toasts.value = toasts.value.filter(toast => toast.id !== id);
-// };
-//
-// // function - 新增 Toast，並綁定唯一 ID 與計時器
-// const addToast = (toast) => {
-// 	const id = Date.now();
-// 	const newToast = { ...toast, id };
-// 	toasts.value.push(newToast);
-//
-// 	// 如果有 duration，則自動刪除
-// 	if (toast.duration && toast.duration > 0) {
-// 		const timer = setTimeout(() => {
-// 			removeToastById(id);
-// 		}, toast.duration);
-//
-// 		timers.set(id, timer);
-// 	}
-// };
-//
-// // function - 清除所有 Toast
-// const clearAllToasts = () => {
-// 	// 清除所有計時器
-// 	timers.forEach((timer) => clearTimeout(timer));
-// 	timers.clear();
-//
-// 	// 清空 Toast 列表
-// 	toasts.value = [];
-// };
-//
-// // 🔹 讓 `useToast()` 成為單例，確保所有組件使用相同的 `toasts`
-// export const useToast = () => {
-// 	return {
-// 		add: addToast,
-// 		remove: removeToastById,
-// 		clear: clearAllToasts,
-// 		toasts
-// 	};
-// };
+import { reactive } from "vue";
 
+// 按照 position 分組存儲 Toast
+const toasts = reactive({
+	"top-right": [],
+	"top-left": [],
+	"top-center": [],
+	"bottom-right": [],
+	"bottom-left": [],
+	"bottom-center": [],
+});
 
-import { ref } from "vue";
-
-// 🔹 保持 `toasts` 為單例，讓所有組件共享
-const toasts = ref([]);
-
-// 🔹 儲存計時器，用於手動刪除時清除 `setTimeout`
+// 儲存計時器，用於手動刪除時清除 `setTimeout`
 const timers = new Map();
 
-// 🔹 儲存 `toast` 容器的 Map（key: position, value: DOM element）
+// 儲存 `toast` 容器的 Map（key: position, value: DOM element）
 const toastContainers = new Map();
 
 // function - 取得或創建 `toast` 容器
@@ -72,7 +25,7 @@ const getToastContainer = (position) => {
 
 	// 創建一個新的 `div`
 	const container = document.createElement("div");
-	container.id = `toast-${position}`;
+	container.id = `toast-container-${position}`;
 	container.classList.add("ded-toast-container", `ded-toast-${position}`);
 
 	// 追加到 `body`
@@ -85,59 +38,41 @@ const getToastContainer = (position) => {
 };
 
 // function - 刪除指定 id 的 Toast
-const removeToastById = (id) => {
+const removeToastById = (id, position) => {
+	if (!toasts[position]) return;
+
 	if (timers.has(id)) {
 		clearTimeout(timers.get(id)); // 清除 `setTimeout`
 		timers.delete(id);
 	}
 
-	// 移除 `toasts` 陣列中的該 `toast`
-	const toastIndex = toasts.value.findIndex((toast) => toast.id === id);
-	if (toastIndex !== -1) {
-		const toast = toasts.value[toastIndex];
-		const position = toast.position;
-		toasts.value.splice(toastIndex, 1);
-
-		// 同時刪除 DOM 元素
-		const container = toastContainers.get(position);
-		if (container) {
-			const toastElement = container.querySelector(`[data-id="${id}"]`);
-			if (toastElement) {
-				toastElement.remove();
-			}
-
-			// 如果該 `position` 下沒有 `toast`，則刪除 `container`
-			if (container.children.length === 0) {
-				container.remove();
-				toastContainers.delete(position);
-			}
-		}
+	// 直接修改陣列，而不是重新賦值
+	const index = toasts[position].findIndex((toast) => toast.id === id);
+	if (index !== -1) {
+		toasts[position].splice(index, 1);
 	}
 };
 
 // function - 新增 Toast，並綁定唯一 ID 與計時器
 const addToast = (toast) => {
-	const id = Date.now();
+	const id = `toast-${crypto.randomUUID()}`;
 	const position = toast.position || "top-right"; // 預設位置
-	const newToast = { ...toast, id, position };
-	toasts.value.push(newToast);
 
-	// 取得該 `position` 的 `toast` 容器（如不存在則創建）
-	const container = getToastContainer(position);
+	// 確保 `position` 內部是陣列
+	if (!Array.isArray(toasts[position])) {
+		toasts[position] = reactive([]);
+	}
 
-	// 建立 `toast` 元素
-	const toastElement = document.createElement("div");
-	toastElement.classList.add("ded-toast");
-	toastElement.textContent = toast.message;
-	toastElement.dataset.id = id;
+	// 確保 `toast` 容器存在
+	getToastContainer(position);
 
-	// 加入 `toast` 容器
-	container.appendChild(toastElement);
+	const newToast = { ...toast, id };
+	toasts[position].push(newToast);
 
-	// 如果有 duration，則自動刪除
+	// 如果有 `duration`，則自動刪除
 	if (toast.duration && toast.duration > 0) {
 		const timer = setTimeout(() => {
-			removeToastById(id);
+			removeToastById(id, position);
 		}, toast.duration);
 
 		timers.set(id, timer);
@@ -150,15 +85,13 @@ const clearAllToasts = () => {
 	timers.forEach((timer) => clearTimeout(timer));
 	timers.clear();
 
-	// 清空 Toast 列表
-	toasts.value = [];
-
-	// 移除所有 `toast` 容器
-	toastContainers.forEach((container) => container.remove());
-	toastContainers.clear();
+	// 清空所有位置的 Toast
+	Object.keys(toasts).forEach((position) => {
+		toasts[position].splice(0, toasts[position].length);
+	});
 };
 
-// 🔹 讓 `useToast()` 成為單例，確保所有組件使用相同的 `toasts`
+// 讓 `useToast()` 成為單例，確保所有組件使用相同的 `toasts`
 export const useToast = () => {
 	return {
 		add: addToast,

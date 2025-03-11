@@ -39,8 +39,9 @@ export default {
 			],
 			table: {
 				type: {
-					summary: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center"
-				}
+					summary: "top-right | top-left | top-center | bottom-right | bottom-left | bottom-center"
+				},
+				defaultValue: { summary: "top-right" }
 			}
 		},
 		title: {
