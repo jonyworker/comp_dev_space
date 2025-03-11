@@ -59,7 +59,6 @@ const props = defineProps({
 </script>
 
 <template>
-<!--	<button :class="finalButtonClass">-->
 	<button :class="{
         'ded-button': true,
         [`ded-button-${props.width}`]: props.width,
@@ -70,7 +69,6 @@ const props = defineProps({
         [`ded-button-border-width-${props.borderWidth}`]: props.borderWidth,
         [`ded-button-radius-${props.radius}`]: props.radius,
         [props.className]: !!props.className,
-        // 'ded-button-only-icon' : !slot
     }">
 		<template v-if="prefix">
 			<div :class="`ded-icon-${props.size}`">
