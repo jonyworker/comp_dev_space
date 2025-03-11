@@ -109,9 +109,9 @@ import './style/globals.scss'; //👈 加入這行
 import App from './app.vue';
 import icons from "./assets/icons/icons.js"; // 👈 加入這行匯入 icons.js
 
-const app = createApp(App);
-app.provide("icons", icons); // 👈 加入這行提供全域 icons
-app.mount("#app");
+const app = createApp(App);   //👈 加入這行
+app.provide("icons", icons); //👈 加入這行提供全域 icons
+app.mount("#app");               //👈 加入這行
 
 ```
 
