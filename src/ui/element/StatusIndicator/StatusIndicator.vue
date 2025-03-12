@@ -59,7 +59,8 @@ const props = defineProps({
 			    <span :class="{
                     'status-indicator-dot': true,
                     'status-indicator-dot-white': props.variant=== 'filled',
-			        [`status-indicator-dot-${props.themeColor}`]:props.variant=== 'text' && props.themeColor
+			        [`status-indicator-dot-${props.themeColor}`]:props.variant=== 'text' && props.themeColor ||
+			        props.variant=== 'soft' && props.themeColor
                 }"></span>
             </div>
         </template>
