@@ -76,7 +76,7 @@ export default {
 			control: { type: "object" },
 			table: {
 				type: {
-					summary: "{ id: string; label: string | Function; detail: string | Function; }[]",
+					summary: "{ id: string; label: VNode; detail: VNode; }[]",
 				}
 			}
 		},

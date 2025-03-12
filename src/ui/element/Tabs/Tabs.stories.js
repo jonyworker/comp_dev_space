@@ -36,7 +36,7 @@ export default {
             control: { type: "object" },
             table: {
                 type: {
-                    summary: "{ title: string; content: string; }[]",
+                    summary: "{ title: string; content: VNode; }[]",
                 }
             }
         },

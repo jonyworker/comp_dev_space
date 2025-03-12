@@ -11,6 +11,7 @@
     // background-color: transparent !important;
 
     &-content {
+        white-space: nowrap;
         display: inline-flex;
         align-items: center;
         gap: 8px;

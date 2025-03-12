@@ -19,9 +19,9 @@
         border-bottom-width: 2px;
     }
 
-    &-content {
-        padding: 8px;
-    }
+    // &-content {
+    //   padding: 8px;
+    // }
 
     @each $theme in $themes {
         &-#{$theme} {
