@@ -27,7 +27,7 @@ const error = () => {
     title: "Notification Title",
     content: "Content",
     prefix: "SvgErrorCircle",
-    duration: 50000,
+    duration: 500,
     action: () => h ("div", {
       onClick: () => window.alert("action"),
     }, "Action"),

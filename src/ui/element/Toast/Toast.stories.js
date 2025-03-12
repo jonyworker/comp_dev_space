@@ -1,9 +1,9 @@
 import { useToast } from '@/composable/useToast.js';
-import {computed, h} from 'vue';
+import { computed, h } from 'vue';
 import Toast from "@/ui/element/Toast/Toast.vue";
 import Icon from "@/ui/element/Icon/Icon.vue";
 import Button from "@/ui/element/Button/Button.vue";
-import Title from '@/ui/element/Title/Title.vue';;
+import Title from '@/ui/element/Title/Title.vue';
 
 export default {
 	components: {Icon, Toast},
@@ -27,6 +27,7 @@ export default {
 				type: {
 					summary: "primary | secondary | neutral | info | success | warning | error"
 				},
+				defaultValue: { summary: "primary" },
 				category: 'PROPS',
 			}
 		},
@@ -56,6 +57,7 @@ export default {
 			description: "說明文字",
 			control: { type: "text" },
 			table: {
+				defaultValue: { summary: "Content" },
 				category: 'PROPS',
 			}
 		},
@@ -74,6 +76,7 @@ export default {
 			},
 			options: ['', 'SvgInfoCircle', 'SvgSuccessCircle', 'SvgWarningTri', 'SvgErrorCircle', 'SvgDisableCircle'],
 			table: {
+				defaultValue: { summary: "" },
 				category: 'PROPS',
 			}
 		},
@@ -84,12 +87,13 @@ export default {
 						max: 5000,
 						step: 100  },
 			table: {
+				defaultValue: { summary: 1000 },
 				category: 'PROPS',
 			}
 		},
 		action: {
 			description: "操作",
-			control: { type: "object" },
+			control: { type: "text"},
 			table: {
 				type: {
 					summary: "Vue Component"
@@ -133,7 +137,7 @@ export const ToastDefault = {
 		title: "Notification Title",
 		content: "Content",
 		prefix:'SvgSuccessCircle',
-		duration: 500,
+		duration: 1000,
 		action: `() => h ("div", {onClick: () => window.alert("action")}, "Action"),`,
 		className: "",
 	},
