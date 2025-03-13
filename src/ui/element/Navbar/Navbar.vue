@@ -14,7 +14,6 @@ const props = defineProps({
     dataSource: {
         type: Array,
         required: true,
-        default: () => [],
     },
 	hasLogo: {
 		type: Boolean,
@@ -25,6 +24,12 @@ const props = defineProps({
         required: true,
         default: "",
     },
+	logoLink: {
+		type: String,
+	},
+	avatarSrc: {
+		type: String,
+	},
     className: {
         type: String,
         default: "",
@@ -34,16 +39,21 @@ const props = defineProps({
 const sortDataSource = computed(() => {
     return [...props.dataSource].sort((a, b) => a.order - b.order);
 });
+
+const handleLogoClick = () => {
+	if (props.logoLink) {
+		window.open(props.logoLink, '_self');
+	}
+};
 </script>
 
 <template>
-
     <nav :class="{'navbar':true, [props.className]:!!props.className }">
 
         <div class="navbar-menu">
             <!-- 公司logo -->
 	        <template v-if="props.hasLogo === true">
-		        <Button themeColor="primary" variant="text">
+		        <Button themeColor="primary" variant="text" @click="handleLogoClick">
 			        <Icon :src="props.logoSrc" alt="Logo" class="navbar-logo"  />
 		        </Button>
 	        </template>
@@ -92,7 +102,7 @@ const sortDataSource = computed(() => {
 			            shape="circle"
 			            size="small"
 			            status="online"
-			            src="https://storage.googleapis.com/ded-wds-bucket/lion.png"
+			            :src="props.avatarSrc"
 			            userName="Name"
 			            caption="Caption"
 		            ></Avatar>
@@ -105,12 +115,5 @@ const sortDataSource = computed(() => {
 		        <span class="navbar-switch-sr-only">切換選單</span>
 	        </button>
         </div>
-
     </nav>
-
-
 </template>
-
-<style scoped lang="scss">
-
-</style>

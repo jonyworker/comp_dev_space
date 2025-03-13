@@ -31,6 +31,14 @@ export default {
 			description: 'Logo 圖片連結',
 			control: { type: 'text' },
 		},
+		logoLink: {
+			description: 'Logo 連結',
+			control: { type: 'text' },
+		},
+		avatarSrc: {
+			description: '圖片連結',
+			control: { type: 'text' },
+		},
 		className: {
 			description: '客製化樣式',
 			control: { type: 'text' },
@@ -75,6 +83,8 @@ export const NavbarDefault = {
 		],
 		hasLogo: true,
 		logoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
+		logoLink: "https://www.auo.com",
+		avatarSrc: "https://storage.googleapis.com/ded-wds-bucket/lion.png",
 		className: ""
 	},
 	render: (args) => ({
@@ -89,6 +99,8 @@ export const NavbarDefault = {
 				:dataSource="args.dataSource"
 				:hasLogo="args.hasLogo"
 				:logoSrc="args.logoSrc"
+				:logoLink="args.logoLink"
+				:avatarSrc="args.avatarSrc"
 				:className="args.className"
 			></Navbar>
             `,
@@ -113,6 +125,8 @@ export const NavbarDefault = {
 			            `    :dataSource="${dataSourceString ? dataSourceString : ''}"`,
 			            `    ${args.hasLogo !== undefined ? `:hasLogo="${args.hasLogo}"` : ""}`,
 			            `    ${args.logoSrc ? `logoSrc="${args.logoSrc}"` : ""}`,
+			            `    ${args.logoLink ? `logoLink="${args.logoLink}"` : ""}`,
+			            `    ${args.avatarSrc ? `avatarSrc="${args.avatarSrc}"` : ""}`,
 			            `    ${args.className ? `className="${args.className}"` : ""}`,
 		                '  >',
 		                '  </Navbar>',
