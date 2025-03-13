@@ -41,12 +41,11 @@ const allOpen = computed(() => props.isOpenAll);
 
 // 處理 dataSource，檢查並執行函數型的 label
 const sanitizedDataSource = computed(() => {
-	return props.dataSource.map((item) => ({
-		...item,
-		// 如果 label 是一個函數，則傳入 h 函數
-		label: typeof item.label === "function" ? item.label(h) : sanitizeHtml(item.label),
-		detail: typeof item.detail === "function" ? item.detail(h) : sanitizeHtml(item.detail),
-	}));
+  return props.dataSource.map((item) => ({
+    ...item,
+    label: typeof item.label === "function" ? item.label(h) : item.label,
+    detail: typeof item.detail === "function" ? item.detail(h) : item.detail,
+  }));
 });
 </script>
 
@@ -55,8 +54,8 @@ const sanitizedDataSource = computed(() => {
 		<ul
 			:class="{
 				'ded-accordion': true,
-				[props.className]: !!props.className,
 				[`ded-accordion-${props.borderStyle}`]: props.borderStyle,
+				[props.className]: !!props.className,
 			}"
 		>
 			<AccordionItem
@@ -69,23 +68,16 @@ const sanitizedDataSource = computed(() => {
 			>
 				<template #label>
 					<template v-if="item.label">
-						<!-- 渲染組件或 HTML -->
 						<component v-if="typeof item.label === 'object'" :is="item.label"/>
-						<span v-else v-html="item.label"></span>
+						<span v-else>{{ item.label }}</span>
 					</template>
 				</template>
 				<template #detail>
 					<template v-for="(detailItem, index) in item.detail" :key="index">
-						<!-- 處理 h() 創建的 VNode -->
 						<component
 							v-if="typeof detailItem === 'object' && detailItem.type"
 							:is="detailItem"
 						/>
-
-						<!-- 處理純文本或 HTML 字符串 -->
-						<span v-else-if="typeof detailItem === 'string'" v-html="detailItem"></span>
-
-						<!-- 處理其他類型 -->
 						<template v-else>
 							{{ detailItem }}
 						</template>
