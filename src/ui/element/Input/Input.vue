@@ -123,6 +123,7 @@ const toggleDropdown = () => {
 		            'ded-input-icon':true,
 					[`ded-icon-${props.size}`]:props.size,
 					'ded-input-icon-disable': props.isDisabled,
+					'ded-input-icon-error': props.hint.error.length > 0
 				}"
 					>
 				<Icon :name="props.prefix" />

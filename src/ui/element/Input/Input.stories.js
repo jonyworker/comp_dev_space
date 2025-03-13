@@ -33,6 +33,16 @@ export default {
             description: "輸入提示",
             control: { type: "text" },
         },
+        size: {
+            description: "輸入框尺寸",
+            control: { type: "select" },
+            options: ["small", "medium", "large"],
+            table: {
+                type: {
+                    summary: "small | medium | large "
+                }
+            }
+        },
         prefix: {
             description: "前置元素",
             control: {
@@ -48,16 +58,6 @@ export default {
             },
             options: [ "", "SvgAccount", "SvgSearch", "SvgVisibility", "SvgVisibilityOff", "SvgMail"],
         },
-        size: {
-            description: "輸入框尺寸",
-            control: { type: "select" },
-            options: ["small", "medium", "large"],
-            table: {
-                type: {
-                    summary: "small | medium | large "
-                }
-            }
-        },
         maxLimit: {
             description: "最長輸入限制",
             control: { type: "number" },
@@ -69,7 +69,7 @@ export default {
             },
             table: {
                 type: {
-                    summary: "{ error: string; description: string; }",
+                    summary: "{ error: VNode; description: VNode; }",
                 }
             }
         },
@@ -115,8 +115,8 @@ export const InputDefault = {
         type: 'text',
         hasClear: true,
         placeholder:'Placeholder',
-        prefix: 'SvgAccount',
         size: 'medium',
+        prefix: 'SvgAccount',
         maxLimit: 0,
         hint: { error: '', description: 'Prompt message' },
         isDisabled: false,
@@ -136,8 +136,8 @@ export const InputDefault = {
                 :type="args.type"
                 :hasClear="args.hasClear"
                 :placeholder="args.placeholder"
-                :prefix="args.prefix"
                 :size="args.size"
+                :prefix="args.prefix"
                 :maxLimit="args.maxLimit"
                 :hint="args.hint"
                 :isDisabled="args.isDisabled"
@@ -169,8 +169,8 @@ export const InputDefault = {
                         `    ${args.type ? `type="${args.type}"` : ""}`,
                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.size ? `size="${args.size}"` : ""}`,
+                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
                         `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
@@ -193,13 +193,15 @@ export const InputTypesStory = {
         // type: 'text',
         hasClear: true,
         placeholder:'Placeholder',
-        // prefix: 'SvgAccount',
         size: 'medium',
+        // prefix: 'SvgAccount',
         maxLimit: 0,
         hint: { error: '', description: 'Prompt message' },
         isDisabled: false,
         className: '',
-        modelValue:''
+        modelValueAccount:'Account',
+        modelValuePassword:'Password',
+        modelValueAmount:12345
     },
     render: (args) => ({
         components: { Input },
@@ -211,56 +213,43 @@ export const InputTypesStory = {
         template: `
             <div style="display: flex; flex-direction: column; gap:8px">
                 <Input
-                    label="Number"
-                    type="number"
-                    :hasClear="args.hasClear"
-                    :placeholder="args.placeholder"
-                    prefix="SvgSearch"
-                    :size="args.size"
-                    :maxLimit="args.maxLimit"
-                    :hint="args.hint"
-                    :isDisabled="args.isDisabled"
-                    :className="args.className"
-                    v-model="args.modelValue"
-                />
-                <Input
-                    label="Text"
+                    label="Account"
                     type="text"
                     :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
-                    prefix="SvgAccount"
                     :size="args.size"
+                    prefix="SvgAccount"
                     :maxLimit="args.maxLimit"
                     :hint="args.hint"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
-                    v-model="args.modelValue"
+                    v-model="args.modelValueAccount"
                 />
                 <Input
                     label="Password"
                     type="password"
                     :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
-                    prefix="SvgLock"
                     :size="args.size"
+                    prefix="SvgLock"
                     :maxLimit="args.maxLimit"
                     :hint="args.hint"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
-                    v-model="args.modelValue"
+                    v-model="args.modelValuePassword"
                 />
                 <Input
-                    label="Email"
-                    type="email"
+                    label="Amount"
+                    type="number"
                     :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
-                    prefix="SvgMail"
                     :size="args.size"
+                    prefix="SvgAccount"
                     :maxLimit="args.maxLimit"
                     :hint="args.hint"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
-                    v-model="args.modelValue"
+                    v-model="args.modelValueAmount"
                 />
             </div>
         `,
@@ -279,61 +268,50 @@ export const InputTypesStory = {
                         `<script setup>`,
                         'import { ref } from "vue";',
                         `import { Input } from "@ded-wds-vue/ui";`,
-                        'const modelValue = ref("");',
+                        'const modelValueAccount = ref("Account");',
+                        'const modelValuePassword = ref("Password");',
+                        'const modelValueAmount = ref(12345);',
                         `</script>`,
                         '',
                         '<template>',
                         '  <Input',
-                        `    label="Number"`,
-                        `    type="number"`,
-                        `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-                        `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    prefix="SvgSearch"`,
-                        `    ${args.size ? `size="${args.size}"` : ""}`,
-                        `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
-                        `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-                        `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
-                        '  />',
-                        '  <Input',
-                        `    label="Text"`,
+                        `    label="Account"`,
                         `    type="text"`,
                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    prefix="SvgAccount"`,
                         `    ${args.size ? `size="${args.size}"` : ""}`,
+                        `    prefix="SvgAccount"`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
                         `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
+                        `    v-model="modelValuePassword"`,
                         '  />',
                         '  <Input',
                         `    label="Password"`,
                         `    type="password"`,
                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    prefix="SvgLock"`,
                         `    ${args.size ? `size="${args.size}"` : ""}`,
+                        `    prefix="SvgLock"`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
                         `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
+                        `    v-model="modelValueAmount"`,
                         '  />',
                         '  <Input',
-                        `    label="Email"`,
-                        `    type="email"`,
+                        `    label="Amount"`,
+                        `    type="number"`,
                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    prefix="SvgMail"`,
                         `    ${args.size ? `size="${args.size}"` : ""}`,
+                        `    prefix="SvgAccount"`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
                         `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
+                        `    v-model="modelValueAmount"`,
                         '  />',
                         '</template>',
                     ].filter(Boolean).join('\n').trim();
@@ -351,8 +329,8 @@ export const InputHintTypeStory = {
         type: 'text',
         hasClear: true,
         placeholder:'Placeholder',
-        prefix: 'SvgAccount',
         size: 'medium',
+        prefix: 'SvgAccount',
         maxLimit: 0,
         isDisabled: false,
         className: '',
@@ -372,10 +350,10 @@ export const InputHintTypeStory = {
                     :type="args.type"
                     :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
-                    :prefix="args.prefix"
                     :size="args.size"
+                    :prefix="args.prefix"
                     :maxLimit="args.maxLimit"
-                    :hint="{ error: '', description: 'Prompt message' }"
+                    :hint="{ error: 'Error message', description: '' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                     v-model="args.modelValue"
@@ -385,10 +363,10 @@ export const InputHintTypeStory = {
                     :type="args.type"
                     :hasClear="args.hasClear"
                     :placeholder="args.placeholder"
-                    :prefix="args.prefix"
                     :size="args.size"
+                    :prefix="args.prefix"
                     :maxLimit="args.maxLimit"
-                    :hint="{ error: 'Error message', description: '' }"
+                    :hint="{ error: '', description: 'Prompt message' }"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                     v-model="args.modelValue"
@@ -418,10 +396,10 @@ export const InputHintTypeStory = {
                         `    ${args.type ? `type="${args.type}"` : ""}`,
                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.size ? `size="${args.size}"` : ""}`,
+                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: '', description: 'Prompt message' }"`,
+                        `    :hint="{ error: 'Error message', description: '' }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
                         `    v-model="modelValue"`,
@@ -431,10 +409,10 @@ export const InputHintTypeStory = {
                         `    ${args.type ? `type="${args.type}"` : ""}`,
                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.size ? `size="${args.size}"` : ""}`,
+                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: 'Error message', description: '' }"`,
+                        `    :hint="{ error: '', description: 'Prompt message' }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
                         `    v-model="modelValue"`,
@@ -448,133 +426,133 @@ export const InputHintTypeStory = {
 };
 
 //==== 輸入框狀態 ====//
-export const InputStatusStory = {
-    name: "輸入框狀態",
-    args: {
-        label: 'Account',
-        type: 'text',
-        hasClear: true,
-        placeholder:'Placeholder',
-        prefix: 'SvgAccount',
-        size: 'medium',
-        maxLimit: 0,
-        isDisabled: false,
-        className: '',
-        modelValue:''
-    },
-    render: (args) => ({
-        components: { Input },
-        setup() {
-            return {
-                args,
-            };
-        },
-        template: `
-            <div style="display: flex; flex-direction: column; gap:8px">
-                <Input
-                    :label="args.label"
-                    :type="args.type"
-                    :hasClear="args.hasClear"
-                    :placeholder="args.placeholder"
-                    :prefix="args.prefix"
-                    :size="args.size"
-                    :maxLimit="args.maxLimit"
-                    :hint="{ error: '', description: 'Prompt message' }"
-                    :isDisabled="args.isDisabled"
-                    :className="args.className"
-                    v-model="args.modelValue"
-                />
-                <Input
-                    :label="args.label"
-                    :type="args.type"
-                    :hasClear="args.hasClear"
-                    :placeholder="args.placeholder"
-                    :prefix="args.prefix"
-                    :size="args.size"
-                    :maxLimit="args.maxLimit"
-                    :hint="{ error: 'Error message', description: '' }"
-                    :isDisabled="args.isDisabled"
-                    :className="args.className"
-                    v-model="args.modelValue"
-                />
-                <Input
-                    :label="args.label"
-                    :type="args.type"
-                    :hasClear="args.hasClear"
-                    :placeholder="args.placeholder"
-                    :prefix="args.prefix"
-                    :size="args.size"
-                    :maxLimit="args.maxLimit"
-                    :hint="{ error: '', description: 'Prompt message' }"
-                    :isDisabled="true"
-                    :className="args.className"
-                    v-model="args.modelValue"
-                />
-            </div>
-        `,
-    }),
-    // 控制 controls 中能控制的參數
-    parameters: {
-        controls: {
-            exclude: ['hint', 'input', 'clearDatePicker', 'isDisabled'],
-        },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        `<script setup>`,
-                        'import { ref } from "vue";',
-                        `import { Input } from "@ded-wds-vue/ui";`,
-                        'const modelValue = ref("");',
-                        `</script>`,
-                        '',
-                        '<template>',
-                        '  <Input',
-                        `    ${args.label ? `label="${args.label}"` : ""}`,
-                        `    ${args.type ? `type="${args.type}"` : ""}`,
-                        `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-                        `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-                        `    ${args.size ? `size="${args.size}"` : ""}`,
-                        `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: '', description: 'Prompt message' }"`,
-                        `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-                        `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
-                        '  />',
-                        '',
-                        '  <Input',
-                        `    ${args.label ? `label="${args.label}"` : ""}`,
-                        `    ${args.type ? `type="${args.type}"` : ""}`,
-                        `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-                        `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-                        `    ${args.size ? `size="${args.size}"` : ""}`,
-                        `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: 'Error message', description: '' }"`,
-                        `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
-                        `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
-                        '  />',
-                        '',
-                        '  <Input',
-                        `    ${args.label ? `label="${args.label}"` : ""}`,
-                        `    ${args.type ? `type="${args.type}"` : ""}`,
-                        `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
-                        `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
-                        `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
-                        `    ${args.size ? `size="${args.size}"` : ""}`,
-                        `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: '', description: 'Prompt message' }"`,
-                        `    :isDisabled="true"`,
-                        `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
-                        '  />',
-                        '</template>',
-                    ].filter(Boolean).join('\n').trim();
-                }
-            }
-        }
-    },
-};
+// export const InputStatusStory = {
+//     name: "輸入框狀態",
+//     args: {
+//         label: 'Account',
+//         type: 'text',
+//         hasClear: true,
+//         placeholder:'Placeholder',
+//         prefix: 'SvgAccount',
+//         size: 'medium',
+//         maxLimit: 0,
+//         isDisabled: false,
+//         className: '',
+//         modelValue:''
+//     },
+//     render: (args) => ({
+//         components: { Input },
+//         setup() {
+//             return {
+//                 args,
+//             };
+//         },
+//         template: `
+//             <div style="display: flex; flex-direction: column; gap:8px">
+//                 <Input
+//                     :label="args.label"
+//                     :type="args.type"
+//                     :hasClear="args.hasClear"
+//                     :placeholder="args.placeholder"
+//                     :prefix="args.prefix"
+//                     :size="args.size"
+//                     :maxLimit="args.maxLimit"
+//                     :hint="{ error: '', description: 'Prompt message' }"
+//                     :isDisabled="args.isDisabled"
+//                     :className="args.className"
+//                     v-model="args.modelValue"
+//                 />
+//                 <Input
+//                     :label="args.label"
+//                     :type="args.type"
+//                     :hasClear="args.hasClear"
+//                     :placeholder="args.placeholder"
+//                     :prefix="args.prefix"
+//                     :size="args.size"
+//                     :maxLimit="args.maxLimit"
+//                     :hint="{ error: 'Error message', description: '' }"
+//                     :isDisabled="args.isDisabled"
+//                     :className="args.className"
+//                     v-model="args.modelValue"
+//                 />
+//                 <Input
+//                     :label="args.label"
+//                     :type="args.type"
+//                     :hasClear="args.hasClear"
+//                     :placeholder="args.placeholder"
+//                     :prefix="args.prefix"
+//                     :size="args.size"
+//                     :maxLimit="args.maxLimit"
+//                     :hint="{ error: '', description: 'Prompt message' }"
+//                     :isDisabled="true"
+//                     :className="args.className"
+//                     v-model="args.modelValue"
+//                 />
+//             </div>
+//         `,
+//     }),
+//     // 控制 controls 中能控制的參數
+//     parameters: {
+//         controls: {
+//             exclude: ['hint', 'input', 'clearDatePicker', 'isDisabled'],
+//         },
+//         docs: {
+//             source: {
+//                 transform: (src, storyContext) => {
+//                     const { args } = storyContext;
+//                     return [
+//                         `<script setup>`,
+//                         'import { ref } from "vue";',
+//                         `import { Input } from "@ded-wds-vue/ui";`,
+//                         'const modelValue = ref("");',
+//                         `</script>`,
+//                         '',
+//                         '<template>',
+//                         '  <Input',
+//                         `    ${args.label ? `label="${args.label}"` : ""}`,
+//                         `    ${args.type ? `type="${args.type}"` : ""}`,
+//                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
+//                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+//                         `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
+//                         `    ${args.size ? `size="${args.size}"` : ""}`,
+//                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+//                         `    :hint="{ error: '', description: 'Prompt message' }"`,
+//                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+//                         `    ${args.className ? `className="${args.className}"` : ""}`,
+//                         `    v-model="modelValue"`,
+//                         '  />',
+//                         '',
+//                         '  <Input',
+//                         `    ${args.label ? `label="${args.label}"` : ""}`,
+//                         `    ${args.type ? `type="${args.type}"` : ""}`,
+//                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
+//                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+//                         `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
+//                         `    ${args.size ? `size="${args.size}"` : ""}`,
+//                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+//                         `    :hint="{ error: 'Error message', description: '' }"`,
+//                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
+//                         `    ${args.className ? `className="${args.className}"` : ""}`,
+//                         `    v-model="modelValue"`,
+//                         '  />',
+//                         '',
+//                         '  <Input',
+//                         `    ${args.label ? `label="${args.label}"` : ""}`,
+//                         `    ${args.type ? `type="${args.type}"` : ""}`,
+//                         `    ${args.hasClear !== undefined ? `:hasClear="${args.hasClear}"` : ""}`,
+//                         `    ${args.placeholder ? `placeholder="${args.placeholder}"` : ""}`,
+//                         `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
+//                         `    ${args.size ? `size="${args.size}"` : ""}`,
+//                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
+//                         `    :hint="{ error: '', description: 'Prompt message' }"`,
+//                         `    :isDisabled="true"`,
+//                         `    ${args.className ? `className="${args.className}"` : ""}`,
+//                         `    v-model="modelValue"`,
+//                         '  />',
+//                         '</template>',
+//                     ].filter(Boolean).join('\n').trim();
+//                 }
+//             }
+//         }
+//     },
+// };
