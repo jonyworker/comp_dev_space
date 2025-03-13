@@ -74,7 +74,7 @@
 .navbar-switch {
     width: 32px;
     height: 32px;
-    padding: 30px;
+    // padding: 30px;
     display: block;
     position: relative;
     border: none;
@@ -84,7 +84,8 @@
     &-bar {
         width: 24px;
         height: 2px;
-        background-color: list.nth($neutral-900, $site);
+        // background-color: list.nth($neutral-900, $site);
+        background-color: $dark-color-primary;
         position: absolute;
         inset: 0;
         margin: auto;
