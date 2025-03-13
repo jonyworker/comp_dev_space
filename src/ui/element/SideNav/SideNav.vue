@@ -25,14 +25,28 @@ const props = defineProps({
 		type: String,
 		default: "",
 	},
+	hasLogo: {
+		type: Boolean,
+		default: false,
+	},
     hasRWD: {
         type: Boolean,
         default: false,
     },
-    hasLogo: {
-        type: Boolean,
-        default: false,
-    },
+	userName: {
+		type: String,
+		required: true,
+	},
+	caption: {
+		type: String,
+		required: true,
+	},
+	userStatus: {
+		type: String,
+		required: true,
+		validator: (value) =>
+			[ "none", "online", "busy", "idle", "offline"].includes(value),
+	},
     hasSearch: {
         type: Boolean,
         default: false,
@@ -163,12 +177,12 @@ onUnmounted(() => {
                     <Avatar
                         shape="circle"
                         size="large"
-                        status="online"
+                        :status="props.userStatus"
                         :isShowInfo="true"
                         src="https://storage.googleapis.com/ded-wds-bucket/fox.png"
                         alt="無圖顯示"
-                        userName="Name"
-                        caption="Caption"
+                        :userName="props.userName"
+                        :caption="props.caption"
                         className=""
                     ></Avatar>
 

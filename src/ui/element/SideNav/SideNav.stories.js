@@ -29,12 +29,12 @@ function formatDataSource(dataSource) {
     ]`;
 }
 
-
 const dataSource = [
 	{
 		label: 'Home',
 		prefix: 'SvgHome',
 		path: '/Home',
+		isDisabled: true,
 		order: 1,
 	},
 	{
@@ -151,6 +151,24 @@ export default {
 			description: "是否有側邊導覽",
 			control: { type: "boolean" },
 		},
+		userName: {
+			description: "使用者名稱",
+			control: { type: "text" },
+		},
+		caption: {
+			description: "使用者描述",
+			control: { type: "text" },
+		},
+		userStatus: {
+			description: "使用者狀態",
+			control: { type: "select" },
+			options: ["none", "online", "idle", "busy", "offline"],
+			table: {
+				type: {
+					summary: "none | online | idle | busy | offline"
+				}
+			}
+		},
 		hasSearch: {
 			description: "是否有搜尋欄",
 			control: { type: "boolean" },
@@ -189,8 +207,11 @@ export const SideNavDefault = {
 		mobileLogoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg",
 		desktopLogoSrc: "https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO_W.svg",
 		logoLink: "https://www.auo.com",
-		hasLogo: true,
+		hasLogo: false,
 		hasRWD: true,
+		userName: "User Name",
+		caption: "User Caption",
+		userStatus: "online",
 		hasSearch: true,
 		dataSource: dataSource,
 		className: ""
@@ -213,6 +234,9 @@ export const SideNavDefault = {
 							:logoLink="args.logoLink"
 							:hasLogo="args.hasLogo"
 							:hasRWD="args.hasRWD"
+							:userName="args.userName"
+							:caption="args.caption"
+							:userStatus="args.userStatus"
 							:hasSearch="args.hasSearch"
 							:dataSource="args.dataSource"
 							:className="args.className"
@@ -248,6 +272,9 @@ export const SideNavDefault = {
 						`          ${args.logoLink ? `logoLink="${args.logoLink}"` : ""}`,
 						`          ${args.hasLogo !== undefined ? `:hasLogo="${args.hasLogo}"` : ""}`,
 						`          ${args.hasRWD !== undefined ? `:hasRWD="${args.hasRWD}"` : ""}`,
+						`          ${args.userName !== undefined ? `userName="${args.userName}"` : ""}`,
+						`          ${args.caption !== undefined ? `caption="${args.caption}"` : ""}`,
+						`          ${args.userStatus !== undefined ? `userStatus="${args.userStatus}"` : ""}`,
 						`          ${args.hasSearch !== undefined ? `:hasSearch="${args.hasSearch}"` : ""}`,
 						`          ${dataSourceString !== undefined ? `:dataSource="${dataSourceString}"` : ""}`,
 						`          ${args.className ? `className="${args.className}"` : ""}`,
