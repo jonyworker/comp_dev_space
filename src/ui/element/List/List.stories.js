@@ -68,7 +68,8 @@ export default {
 			control: false,
 			table: {
 				category: 'EVENTS',
-				type: { summary: 'emits' },
+				type: { summary: 'emit' },
+				defaultValue: { summary: () => ({}) },
 			}
 		}
 	},
