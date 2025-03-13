@@ -11,6 +11,7 @@
 .ded-input-group {
   width: 100%;
   height: 100%;
+  padding-inline: 0.5em;
   position: relative;
   display: flex;
   gap: $spacing-8;
@@ -23,6 +24,8 @@
   color: inherit;
   overflow: hidden;
   font-size: inherit;
+
+  container-type: 'inline-size';
 
   &:hover {
     border-width: $border-width-1;
@@ -48,7 +51,8 @@
 .ded-input {
   height: 100%;
   width: 100%;
-  padding: 0.5em 2em 0.5em 0.75em;
+  flex: 1 1 0;
+  padding-block: 0.5em;
   color: inherit;
   background-color: inherit;
   text-align: inherit;
@@ -57,13 +61,8 @@
     color: list.nth($text-placeholder, $site);
   }
 
-  &-prefix {
-    padding-left: 2.25em;
-  }
-
   &-icon {
-    position: absolute;
-    left: 0.75em;
+    width: 1em;
     color: $auo-icon-default;
 
     &-error {
@@ -77,11 +76,15 @@
 }
 
 .ded-input-feat-icon {
-  position: absolute;
-  right: 0.75em;
+  width: 1em;
   display: flex;
+  justify-content: center;
   gap: $spacing-4;
   color: $auo-icon-default;
+}
+
+.ded-input-feat-icon:has(:nth-child(2)) {
+  width: 2em;
 }
 
 .ded-input-border-error {
