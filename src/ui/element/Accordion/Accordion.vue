@@ -1,13 +1,6 @@
 <script setup>
 import { h, computed } from "vue";
-import DOMPurify from 'dompurify';
-
 import AccordionItem from "@/ui/element/Accordion/AccordionItem.vue";
-
-// 內部化 `sanitizeHtml` 函式
-const sanitizeHtml = (html) => {
-    return DOMPurify.sanitize(html);
-};
 
 const props = defineProps({
 	dataSource: {
@@ -41,11 +34,11 @@ const allOpen = computed(() => props.isOpenAll);
 
 // 處理 dataSource，檢查並執行函數型的 label
 const sanitizedDataSource = computed(() => {
-  return props.dataSource.map((item) => ({
-    ...item,
-    label: typeof item.label === "function" ? item.label(h) : item.label,
-    detail: typeof item.detail === "function" ? item.detail(h) : item.detail,
-  }));
+    return props.dataSource.map((item) => ({
+        ...item,
+        label: typeof item.label === "function" ? item.label(h) : item.label,
+        detail: typeof item.detail === "function" ? item.detail(h) : item.detail,
+    }));
 });
 </script>
 
@@ -87,6 +80,3 @@ const sanitizedDataSource = computed(() => {
 		</ul>
 	</div>
 </template>
-
-<style scoped lang="scss">
-</style>
