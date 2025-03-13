@@ -59,43 +59,5 @@ export const defaultDashboardStory = {
         controls: {
             // include: ['fluid', 'className', 'justify', 'align', 'g', 'gx', 'gy', 'col', 'sm', 'md', 'lg', 'xl', 'xxl'],
         },
-        docs: {
-            source: {
-                transform: (src, storyContext) => {
-                    const { args } = storyContext;
-                    return [
-                        // `<Grid`,
-                        // `  :fluid="${args.fluid}"`,
-                        // `  :gap="${args.gap}"`,
-                        // `  :className="${args.className}"`,
-                        // `>`,
-                        // `  <Row`,
-                        // `    :justify="${args.justify}"`,
-                        // `    :alignItem="${args.alignItem}"`,
-                        // `    :hasGap="${args.hasGap}"`,
-                        // `  >`,
-                        // `    <Column`,
-                        // `      v-for="(index) in 12"`,
-                        // `      :key="index"`,
-                        // `      :align="${args.align}"`,
-                        // `      :xs="${args.xs}"`,
-                        // `      :sm="${args.sm}"`,
-                        // `      :md="${args.md}"`,
-                        // `      :lg="${args.lg}"`,
-                        // `      :xl="${args.xl}"`,
-                        // `    >`,
-                        // `      <div`,
-                        // `        class="diagonal-background"`,
-                        // `        style="border:1px solid #ccc; padding:8px 16px;"`,
-                        // `      >`,
-                        // `        Column {{index}}`,
-                        // `      </div>`,
-                        // `    </Column>`,
-                        // `  </Row>`,
-                        // `</Grid>`,
-                    ].join("\n").trim();
-                }
-            }
-        }
     },
 };

@@ -1,6 +1,5 @@
 <script setup>
-import { ref } from "vue";
-import Layout, { Header, Content, Side, Footer } from '@/ui/layout/Layout'
+import Layout, { Header, Content, Side } from '@/ui/layout/Layout'
 import Grid from "@/ui/layout/Grid/Grid.vue"
 import Row from "@/ui/layout/Grid/Row.vue"
 import Column from "@/ui/layout/Grid/Column.vue"
@@ -8,75 +7,89 @@ import Navbar from "@/ui/element/Navbar/Navbar.vue";
 import SideNav from "@/ui/element/SideNav/SideNav.vue";
 
 const dataSource = [
-    {
-        path: '/Home',
-        prefix: 'SvgHome',
-        title: 'Home',
-    },
-    {
-        children: [
-            {
-                path: '/settings/profile',
-                title: 'Profile',
-            },
-            {
-                path: '/settings/account',
-                title: 'Account',
-            },
-        ],
-        path: '/User',
-        prefix: 'SvgUser',
-        title: 'User',
-    },
-    {
-        children: [
-            {
-                path: '/settings/profile',
-                title: 'Profile',
-            },
-            {
-                path: '/settings/account',
-                title: 'Account',
-            },
-            {
-                path: '/settings/account',
-                title: 'Account',
-            },
-            {
-                path: '/settings/account',
-                title: 'Account',
-            },
-        ],
-        path: '/Chart',
-        prefix: 'SvgBarChart',
-        title: 'Chart',
-    },
-    {
-        path: '/dashboard',
-        prefix: 'SvgDatabase',
-        title: 'Database',
-    },
-    {
-        path: '/Favorite',
-        prefix: 'SvgFavorite',
-        title: 'Favorite',
-    },
-    {
-        path: '/Calendar',
-        prefix: 'SvgCalendar',
-        title: 'Calendar',
-    },
-    {
-        path: '/Notification',
-        prefix: 'SvgNotification',
-        title: 'Notification',
-    },
-    {
-        path: '/Language',
-        prefix: 'SvgLanguage',
-        title: 'Language',
-    },
-];
+	{
+		label: 'Home',
+		prefix: 'SvgHome',
+		path: '/Home',
+		order: 1,
+	},
+	{
+		label: 'User',
+		prefix: 'SvgUser',
+		path: '/users',
+		order: 2,
+		children: [
+			{
+				label: 'Profile',
+				path: '/user/profile',
+				order: 1,
+			},
+			{
+				label: 'Account',
+				path: '/user/account',
+				order: 2,
+			}
+		]
+	},
+	{
+		label: 'Chart',
+		prefix: 'SvgBarChart',
+		path: '/chart',
+		order: 3,
+		children: [
+			{
+				label: 'Profile',
+				path: '/chart/profile',
+				order: 1,
+			},
+			{
+				label: 'Account',
+				path: '/chart/account',
+				order: 2,
+			},
+			{
+				label: 'Account',
+				path: '/chart/account',
+				order: 3,
+			},
+			{
+				label: 'Account',
+				path: '/chart/account',
+				order: 4,
+			}
+		]
+	},
+	{
+		label: 'Database',
+		prefix: 'SvgDatabase',
+		path: '/database',
+		order: 4,
+	},
+	{
+		label: 'Favorite',
+		prefix: 'SvgFavorite',
+		path: '/favorite',
+		order: 5,
+	},
+	{
+		label: 'Calendar',
+		prefix: 'SvgCalendar',
+		path: '/calendar',
+		order: 6,
+	},
+	{
+		label: 'Notification',
+		prefix: 'SvgNotification',
+		path: '/notification',
+		order: 7,
+	},
+	{
+		label: 'Language',
+		prefix: 'SvgLanguage',
+		path: '/language',
+		order: 8,
+	},
+]
 
 // 定義 Model
 // const modelValue = defineModel();
@@ -104,27 +117,27 @@ const props = defineProps({
                         <Header>
                             <Navbar
                                 :dataSource="[
-                                {
-                                    href: '#solutions',
-                                    label: 'Solutions',
-                                    order: 2,
-                                },
-                                {
-                                    href: '#products',
-                                    label: 'Products',
-                                    order: 1,
-                                },
-                                {
-                                    href: '#technologies',
-                                    label: 'Technologies',
-                                    order: 4,
-                                },
-                                {
-                                    href: '#about',
-                                    label: 'About',
-                                    order: 3,
-                                },
-                            ]"
+	                                {
+	                                    href: '#solutions',
+	                                    label: 'Solutions',
+	                                    order: 2
+	                                },
+	                                {
+	                                    href: '#products',
+	                                    label: 'Products',
+	                                    order: 1
+	                                },
+	                                {
+	                                    href: '#technologies',
+	                                    label: 'Technologies',
+	                                    order: 4
+	                                },
+	                                {
+	                                    href: '#about',
+	                                    label: 'About',
+	                                    order: 3
+	                                },
+	                            ]"
                                 logoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
                             >
                             </Navbar>
@@ -141,13 +154,17 @@ const props = defineProps({
                         <Column sm="3">
                             <Side>
                                 <SideNav
-                                    :dataSource="dataSource"
-                                    :hasLogo="false"
-                                    :hasRWD="false"
-                                    hasSearch
-                                    logo="SvgAuo"
-                                    logoLink="https://www.auo.com"
-                                    themeColor="blue"
+	                                themeColor="blue"
+	                                mobileLogoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
+	                                desktopLogoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO_W.svg"
+	                                logoLink="https://www.auo.com"
+	                                :hasLogo="false"
+	                                :hasRWD="false"
+	                                userName="John Doe"
+	                                caption="Software Engineer"
+	                                userStatus="online"
+	                                :hasSearch="true"
+	                                :dataSource="dataSource"
                                     style="height: 100vh;"
                                 />
                             </Side>
@@ -183,22 +200,22 @@ const props = defineProps({
                     {
                         href: '#solutions',
                         label: 'Solutions',
-                        order: 2,
+                        order: 2
                     },
                     {
                         href: '#products',
                         label: 'Products',
-                        order: 1,
+                        order: 1
                     },
                     {
                         href: '#technologies',
                         label: 'Technologies',
-                        order: 4,
+                        order: 4
                     },
                     {
                         href: '#about',
                         label: 'About',
-                        order: 3,
+                        order: 3
                     },
                 ]"
                     logoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
@@ -211,14 +228,18 @@ const props = defineProps({
                 <!-- Side Nav -->
                 <Side>
                     <SideNav
-                        :dataSource="dataSource"
-                        :hasLogo="false"
-                        :hasRWD="false"
-                        hasSearch
-                        logo="SvgAuo"
-                        logoLink="https://www.auo.com"
-                        themeColor="blue"
-                        style="height: 100vh;"
+	                    themeColor="blue"
+	                    mobileLogoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO.svg"
+	                    desktopLogoSrc="https://storage.googleapis.com/ded-wds-bucket/AUO_LOGO_W.svg"
+	                    logoLink="https://www.auo.com"
+	                    :hasLogo="false"
+	                    :hasRWD="false"
+	                    userName="John Doe"
+	                    caption="Software Engineer"
+	                    userStatus="online"
+	                    :hasSearch="true"
+	                    :dataSource="dataSource"
+	                    style="height: 100vh;"
                     />
                 </Side>
 
