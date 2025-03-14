@@ -1,4 +1,8 @@
+import { h } from "vue";
 import Input from "@/ui/element/Input/Input.vue";
+import Icon from "@/ui/element/Icon/Icon.vue";
+import StatusIndicator from "@/ui/element/StatusIndicator/StatusIndicator.vue";
+
 function formatDataSource(hint) {
     return `{
         error: '${hint.error || ""}',
@@ -69,7 +73,7 @@ export default {
             },
             table: {
                 type: {
-                    summary: "{ error: VNode; description: VNode; }",
+                    summary: "{ error: string | VNode; description: string | VNode; }",
                 }
             }
         },
@@ -118,7 +122,10 @@ export const InputDefault = {
         size: 'medium',
         prefix: 'SvgAccount',
         maxLimit: 0,
-        hint: { error: '', description: 'Prompt message' },
+        hint: {
+            error: '',
+            description: () => h( StatusIndicator, { themeColor: 'neutral', variant: 'text', size: "medium", isShowDot: false }, 'Prompt message'),
+        },
         isDisabled: false,
         className: '',
         modelValue:''
@@ -159,7 +166,7 @@ export const InputDefault = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import { Input } from "@ded-wds-vue/ui";`,
+                        `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
                         'const modelValue = ref("");',
                         `</script>`,
                         '',
@@ -172,7 +179,15 @@ export const InputDefault = {
                         `    ${args.size ? `size="${args.size}"` : ""}`,
                         `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
+                        `    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
                         `    v-model="modelValue"`,
@@ -196,7 +211,10 @@ export const InputTypesStory = {
         size: 'medium',
         // prefix: 'SvgAccount',
         maxLimit: 0,
-        hint: { error: '', description: 'Prompt message' },
+        hint: {
+            error: '',
+            description: () => h( StatusIndicator, { themeColor: 'neutral', variant: 'text', size: "medium", isShowDot: false }, 'Prompt message'),
+        },
         isDisabled: false,
         className: '',
         modelValueAccount:'Account',
@@ -267,7 +285,7 @@ export const InputTypesStory = {
                     return [
                         `<script setup>`,
                         'import { ref } from "vue";',
-                        `import { Input } from "@ded-wds-vue/ui";`,
+                        `import { Input, StatusIndicator } from "@ded-wds-vue/ui";`,
                         'const modelValueAccount = ref("Account");',
                         'const modelValuePassword = ref("Password");',
                         'const modelValueAmount = ref(12345);',
@@ -282,7 +300,15 @@ export const InputTypesStory = {
                         `    ${args.size ? `size="${args.size}"` : ""}`,
                         `    prefix="SvgAccount"`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
+                        `    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
                         `    v-model="modelValuePassword"`,
@@ -295,7 +321,15 @@ export const InputTypesStory = {
                         `    ${args.size ? `size="${args.size}"` : ""}`,
                         `    prefix="SvgLock"`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
+                        `    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
                         `    v-model="modelValueAmount"`,
@@ -308,7 +342,15 @@ export const InputTypesStory = {
                         `    ${args.size ? `size="${args.size}"` : ""}`,
                         `    prefix="SvgAccount"`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    ${dataSourceString ? `:hint="${dataSourceString}"` : ""}`,
+                        `    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
                         `    v-model="modelValueAmount"`,
@@ -332,6 +374,17 @@ export const InputHintTypeStory = {
         size: 'medium',
         prefix: 'SvgAccount',
         maxLimit: 0,
+        hintError: {
+            error: () => h('div', { style: 'display: flex; align-items: center; gap: 4px;' }, [
+                h(Icon, { name: 'SvgErrorCircle', style: 'color: red;', size: 16 }), // 加入 Icon
+                h('span', 'Error message') // 一般文字
+            ]),
+            description: '',
+        },
+        hintPrompt: {
+            error: '',
+            description: () => h( StatusIndicator, { themeColor: 'neutral', variant: 'text', size: "medium", isShowDot: false }, 'Prompt message'),
+        },
         isDisabled: false,
         className: '',
         modelValue:''
@@ -341,6 +394,7 @@ export const InputHintTypeStory = {
         setup() {
             return {
                 args,
+                StatusIndicator
             };
         },
         template: `
@@ -353,7 +407,7 @@ export const InputHintTypeStory = {
                     :size="args.size"
                     :prefix="args.prefix"
                     :maxLimit="args.maxLimit"
-                    :hint="{ error: 'Error message', description: '' }"
+                    :hint="args.hintError"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                     v-model="args.modelValue"
@@ -366,7 +420,7 @@ export const InputHintTypeStory = {
                     :size="args.size"
                     :prefix="args.prefix"
                     :maxLimit="args.maxLimit"
-                    :hint="{ error: '', description: 'Prompt message' }"
+                    :hint="args.hintPrompt"
                     :isDisabled="args.isDisabled"
                     :className="args.className"
                     v-model="args.modelValue"
@@ -385,8 +439,10 @@ export const InputHintTypeStory = {
                     const { args } = storyContext;
                     return [
                         `<script setup>`,
-                        'import { ref } from "vue";',
-                        `import { Input } from "@ded-wds-vue/ui";`,
+                        'import { ref, h } from "vue";',
+                        'import { Input, Icon, StatusIndicator } from "@ded-wds-vue/ui";',
+                        'import Icon from "@ded-wds-vue/ui/Icon";',
+                        'import StatusIndicator from "@ded-wds-vue/ui/StatusIndicator";',
                         'const modelValue = ref("");',
                         `</script>`,
                         '',
@@ -399,11 +455,18 @@ export const InputHintTypeStory = {
                         `    ${args.size ? `size="${args.size}"` : ""}`,
                         `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: 'Error message', description: '' }"`,
+                        `    :hint="{
+        error: () => h('div', { style: 'display: flex; align-items: center; gap: 4px;' }, [
+          h(Icon, { name: 'SvgErrorCircle', style: 'color: red;', size: 16 }),
+          h('span', 'Error message')
+        ]),
+        description: ''
+    }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
+                        '    v-model="modelValue"',
                         '  />',
+                        '',
                         '  <Input',
                         `    ${args.label ? `label="${args.label}"` : ""}`,
                         `    ${args.type ? `type="${args.type}"` : ""}`,
@@ -412,12 +475,20 @@ export const InputHintTypeStory = {
                         `    ${args.size ? `size="${args.size}"` : ""}`,
                         `    ${args.prefix ? `prefix="${args.prefix}"` : ""}`,
                         `    ${args.maxLimit ? `maxLimit="${args.maxLimit}"` : ""}`,
-                        `    :hint="{ error: '', description: 'Prompt message' }"`,
+                        `    :hint="{
+        error: '',
+        description: () => h( StatusIndicator, {
+          themeColor: 'neutral',
+          variant: 'text',
+          size: 'medium',
+          isShowDot: false
+        }, 'Prompt message')
+    }"`,
                         `    ${args.isDisabled !== undefined ? `:isDisabled="${args.isDisabled}"` : ""}`,
                         `    ${args.className ? `className="${args.className}"` : ""}`,
-                        `    v-model="modelValue"`,
+                        '    v-model="modelValue"',
                         '  />',
-                        '</template>',
+                        '</template>'
                     ].filter(Boolean).join('\n').trim();
                 }
             }

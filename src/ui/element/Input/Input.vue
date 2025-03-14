@@ -123,7 +123,7 @@ const toggleDropdown = () => {
 		            'ded-input-icon':true,
 					[`ded-icon-${props.size}`]:props.size,
 					'ded-input-icon-disable': props.isDisabled,
-					'ded-input-icon-error': props.hint.error.length > 0
+					'ded-input-icon-error': props.hint.error.length > 0 || typeof props.hint.error === 'function'
 				}"
 					>
 				<Icon :name="props.prefix" />
@@ -192,7 +192,9 @@ const toggleDropdown = () => {
 				'ded-input-disable': props.isDisabled
 			}"
 		>
-			{{ props.hint.error || props.hint.description }}
+            <component v-if="typeof props.hint.error === 'function'" :is="props.hint.error" />
+            <component v-else-if="typeof props.hint.description === 'function'" :is="props.hint.description" />
+            <template v-else>{{ props.hint.error || props.hint.description }}</template>
 		</small>
 	</div>
 </template>
