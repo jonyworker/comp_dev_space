@@ -5,7 +5,6 @@
   "description": "Web Design System",
   "private": true,
   "license": "MIT",
-
   "_comment_project": "專案配置",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -17,13 +16,11 @@
   "files": [
     "dist"
   ],
-
   "_comment_engines": "環境要求",
   "engines": {
     "node": ">=18",
     "npm": ">=10"
   },
-
   "_comment_author": "開發者資訊",
   "author": {
     "name": "Kevin Yang",
@@ -35,7 +32,6 @@
       "email": "amos.lee@auo.com"
     }
   ],
-
   "_comment_project_info": "專案資訊",
   "homepage": "https://uedteam.github.io/DED-WDS_VUE",
   "repository": {
@@ -48,7 +44,6 @@
     "wds",
     "ds"
   ],
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -57,16 +52,19 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "artifactregistry-login": "npx google-artifactregistry-auth",
-    "print-access-token": "gcloud auth application-default print-access-token"
+    "print-access-token": "gcloud auth application-default print-access-token",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "chart.js": "^4.4.4",
-    "storybook-addon-deep-controls": "^0.8.1",
     "dompurify": "^3.2.1",
+    "storybook-addon-deep-controls": "^0.8.1",
     "vue": "^3.4.37",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.10.1",
     "@chromatic-com/storybook": "^1.6.1",
     "@eslint/js": "^9.20.0",
     "@storybook/addon-actions": "^8.5.5",

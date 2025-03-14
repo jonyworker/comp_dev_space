@@ -1,17 +1,30 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginVue from "eslint-plugin-vue";
+// eslint.config.js
+import antfu from '@antfu/eslint-config'
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  { files: ["**/*.{js,mjs,cjs,vue}"] },
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...pluginVue.configs["flat/essential"],
-  // ...pluginVue.configs["flat/recommended"],  // ✅ 修正為正確的 Vue 3 recommended 設定
-  {
-    rules: {
-      "vue/multi-word-component-names": "off", // ✅ 關閉 Vue 3 的多單字名稱規則
-    },
+export default antfu({
+// Type of the project. 'lib' for libraries, the default is 'app'
+  type: 'lib',
+
+  // Enable stylistic formatting rules
+  // stylistic: true,
+
+  // Or customize the stylistic rules
+  stylistic: {
+    indent: 2, // 4, or 'tab'
+    quotes: 'single', // or 'double'
   },
-];
+
+  // TypeScript and Vue are autodetected, you can also explicitly enable them:
+  typescript: true,
+  vue: true,
+
+  // Disable jsonc and yaml support
+  jsonc: false,
+  yaml: false,
+
+  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+  ignores: [
+    '**/fixtures',
+    // ...globs
+  ]
+})
